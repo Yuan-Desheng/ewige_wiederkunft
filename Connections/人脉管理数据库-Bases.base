@@ -1,0 +1,110 @@
+properties:
+  property.tags:
+    displayName: 标签
+  file.name:
+    displayName: 文件名
+views:
+  - type: table
+    name: 公司Base
+    filters:
+      and:
+        - file.path.contains("Connections")
+        - tags.contains("公司卡片")
+    order:
+      - file.name
+      - 公司名称
+      - tags
+      - 公司邮箱
+      - 公司联系电话
+      - 公司地址
+      - 公司网站
+      - 公司简介
+  - type: cards
+    name: 人物Base-卡片
+    filters:
+      and:
+        - file.path.contains("Connections")
+        - tags.contains("人物卡片")
+    order:
+      - 姓名
+      - 联系电话
+      - 性别
+    sort:
+      - property: 人物照片
+        direction: DESC
+      - property: property.人物照片
+        direction: ASC
+    columnSize:
+      file.name: 92
+      note.人物照片: 184
+    image: note.人物照片
+    imageFit: ""
+    cardSize: 160
+    imageAspectRatio: 1.25
+  - type: table
+    name: 部门Base
+    filters:
+      and:
+        - file.path.contains("Connections")
+        - tags.contains("部门卡片")
+    order:
+      - file.name
+      - 部门名称
+      - 部门联系电话
+      - 部门领导
+      - 部门简介
+    columnSize:
+      note.部门名称: 191
+      note.部门领导: 117
+  - type: table
+    name: 物品Base
+    filters:
+      and:
+        - file.path.contains("Connections")
+        - tags.contains("物品卡片")
+    order:
+      - file.name
+      - 物品名称
+      - 物品简介
+      - 物品价值
+      - 物品编号
+      - 保管人员
+      - 历史销量
+      - 历史价格
+    columnSize:
+      file.name: 131
+      note.物品名称: 165
+      note.物品简介: 95
+      note.物品价值: 117
+      note.物品编号: 118
+  - type: table
+    name: 人物Base-表格
+    filters:
+      and:
+        - file.path.contains("Connections")
+        - tags.contains("人物卡片")
+    order:
+      - 姓名
+      - 性别
+      - 联系电话
+      - 在职公司
+      - 所在部门
+      - 现居职位
+      - 近期联系
+      - 过往履历
+      - 个人简介
+      - 邮箱
+      - 关联人物1
+      - 关联人物2
+      - 记录事件
+    sort:
+      - property: 人物照片
+        direction: DESC
+      - property: property.人物照片
+        direction: ASC
+    columnSize:
+      note.联系电话: 125
+    image: note.人物照片
+    imageFit: ""
+    cardSize: 160
+    imageAspectRatio: 1.25

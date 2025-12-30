@@ -1,0 +1,34 @@
+views:
+  - type: line-chart
+    name: 笔记类型折线图
+    filters:
+      and:
+        - file.folder.startsWith("Documents")
+    order:
+      - 笔记类型
+    enableAggregation: true
+    aggregateBy: file.ctime
+    aggregateValueProperty: file.ctime
+    x: note.笔记类型
+  - type: bar-chart
+    name: 笔记类型柱状图
+    filters:
+      and:
+        - file.folder.startsWith("Documents")
+    order:
+      - 笔记类型
+    enableAggregation: true
+    aggregateBy: file.ctime
+    aggregateValueProperty: file.ctime
+    x: note.笔记类型
+  - type: pie-chart
+    name: 笔记类型饼图
+    filters:
+      and:
+        - file.folder.startsWith("Documents")
+    order:
+      - 笔记类型
+    label: note.笔记类型
+    enableAggregation: true
+    aggregateBy: file.ctime
+    value: note.笔记类型

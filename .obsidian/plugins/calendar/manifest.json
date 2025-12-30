@@ -1,0 +1,10 @@
+{
+  "id": "calendar",
+  "name": "Calendar",
+  "description": "每日笔记的日历视图",
+  "version": "2.6.0",
+  "author": "Liam Cain Modified by ytmaps_鱼先生",
+  "authorUrl": "https://github.com/liamcain/",
+  "isDesktopOnly": false,
+  "minAppVersion": "0.9.11"
+}

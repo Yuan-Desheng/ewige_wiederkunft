@@ -1,0 +1,10 @@
+{
+    "id": "media-browser",
+    "name": "Media Browser",
+    "version": "0.7.3",
+    "minAppVersion": "0.15.0",
+    "description": "强大的Obsidian媒体管理插件，支持本地媒体文件浏览播放、B站视频集成、智能时间戳管理。通过代码块渲染文件夹媒体文件，内置音频播放器支持播放列表控制，支持本地视频和B站视频时间戳跳转与添加。",
+    "author": "ytmaps_鱼先生",
+    "authorUrl": "https://www.xiaohongshu.com/user/profile/63cfeb720000000026010489",
+    "isDesktopOnly": false
+}

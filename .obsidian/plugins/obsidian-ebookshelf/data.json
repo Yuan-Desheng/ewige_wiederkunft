@@ -1,0 +1,106 @@
+{
+  "imageQuality": "low",
+  "cacheEnabled": true,
+  "maxCacheSize": 100,
+  "pageCountCache": {
+    "Books/pdf书籍/The PARA Method Simplify.pdf": "154",
+    "Books/pdf书籍/卡片笔记写作法.pdf": "200",
+    "Books/pdf书籍/Murphy-lecture1-principles-3pp.pdf": "33",
+    "Books/pdf书籍/生死疲劳 .pdf": "554",
+    "Books/pdf书籍/认知觉醒.pdf": "275",
+    "Books/pdf书籍/PPT_01_Machine learning Basics.pdf": "51",
+    "Books/pdf书籍/nwac123.pdf": "11",
+    "Books/pdf书籍/打造第二大脑.pdf": "209"
+  },
+  "fileInfoCache": {
+    "Books/pdf书籍/The PARA Method Simplify.pdf": {
+      "size": "2.13 MB",
+      "mtime": 1719128476000,
+      "ctime": 1743512703000,
+      "name": "The PARA Method Simplify",
+      "path": "Books/pdf书籍/The PARA Method Simplify.pdf"
+    },
+    "Books/pdf书籍/卡片笔记写作法.pdf": {
+      "size": "4.06 MB",
+      "mtime": 1719128794000,
+      "ctime": 1742950585880,
+      "name": "卡片笔记写作法",
+      "path": "Books/pdf书籍/卡片笔记写作法.pdf"
+    },
+    "Books/pdf书籍/Murphy-lecture1-principles-3pp.pdf": {
+      "size": "2.29 MB",
+      "mtime": 1752680295687,
+      "ctime": 443779200000,
+      "name": "Murphy-lecture1-principles-3pp",
+      "path": "Books/pdf书籍/Murphy-lecture1-principles-3pp.pdf"
+    },
+    "Books/pdf书籍/生死疲劳 .pdf": {
+      "size": "4.68 MB",
+      "mtime": 1721542216000,
+      "ctime": 1743512703040,
+      "name": "生死疲劳 ",
+      "path": "Books/pdf书籍/生死疲劳 .pdf"
+    },
+    "Books/pdf书籍/认知觉醒.pdf": {
+      "size": "2.95 MB",
+      "mtime": 1719471968000,
+      "ctime": 1743512703060,
+      "name": "认知觉醒",
+      "path": "Books/pdf书籍/认知觉醒.pdf"
+    },
+    "Books/pdf书籍/PPT_01_Machine learning Basics.pdf": {
+      "size": "1.36 MB",
+      "mtime": 1752684533972,
+      "ctime": 443779200000,
+      "name": "PPT_01_Machine learning Basics",
+      "path": "Books/pdf书籍/PPT_01_Machine learning Basics.pdf"
+    },
+    "Books/pdf书籍/nwac123.pdf": {
+      "size": "458.14 KB",
+      "mtime": 1752680436848,
+      "ctime": 443779200000,
+      "name": "nwac123",
+      "path": "Books/pdf书籍/nwac123.pdf"
+    },
+    "Books/pdf书籍/打造第二大脑.pdf": {
+      "size": "4.36 MB",
+      "mtime": 1750479165917,
+      "ctime": 1743512703020,
+      "name": "打造第二大脑",
+      "path": "Books/pdf书籍/打造第二大脑.pdf"
+    }
+  },
+  "authorCache": {},
+  "categoryCache": {},
+  "categoryOrderCache": {},
+  "ratingsCache": {},
+  "customTagsCache": {
+    "Books/pdf书籍/打造第二大脑.pdf": [
+      "知识管理",
+      "PARA",
+      "CODE",
+      "信管法则"
+    ],
+    "Books/pdf书籍/The PARA Method Simplify.pdf": [
+      "知识管理",
+      "PARA",
+      "CODE",
+      "信管法则"
+    ],
+    "Books/pdf书籍/认知觉醒.pdf": [
+      "元认知",
+      "内驱力",
+      "成长方法论"
+    ],
+    "Books/pdf书籍/卡片笔记写作法.pdf": [
+      "知识管理",
+      "卡片盒"
+    ],
+    "Books/pdf书籍/生死疲劳 .pdf": [
+      "魔幻现实主义",
+      "历史叙事",
+      "民间视角"
+    ]
+  },
+  "viewModeCache": "table"
+}

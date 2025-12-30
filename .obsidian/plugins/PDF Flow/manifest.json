@@ -1,0 +1,11 @@
+{
+	"id": "pdfflow",
+	"name": "PDF Flow",
+	"version": "0.9.8",
+	"minAppVersion": "0.15.0",
+	"description": "支持从PDF拖拽文本到Canvas、Excalidraw和Markdown，自动创建摘录笔记，支持PDF高亮和区域截图。完全兼容iPad等移动设备。",
+	"author": "ytmaps",
+	"authorUrl_xiaohongshu": "https://www.xiaohongshu.com/user/profile/63cfeb720000000026010489",
+    "authorUrl_bilibili": "https://space.bilibili.com/2035394961",
+	"isDesktopOnly": false
+}

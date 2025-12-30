@@ -1,0 +1,58 @@
+{
+  "collapse-filter": false,
+  "search": "",
+  "showTags": false,
+  "showAttachments": false,
+  "hideUnresolved": false,
+  "showOrphans": true,
+  "collapse-color-groups": true,
+  "colorGroups": [
+    {
+      "query": "path:Assistants  ",
+      "color": {
+        "a": 1,
+        "rgb": 6079190
+      }
+    },
+    {
+      "query": "path:Books  ",
+      "color": {
+        "a": 1,
+        "rgb": 14063019
+      }
+    },
+    {
+      "query": "path:Connections  ",
+      "color": {
+        "a": 1,
+        "rgb": 3576506
+      }
+    },
+    {
+      "query": "path:Documents  ",
+      "color": {
+        "a": 1,
+        "rgb": 11230422
+      }
+    },
+    {
+      "query": "path:Extras  ",
+      "color": {
+        "a": 1,
+        "rgb": 0
+      }
+    }
+  ],
+  "collapse-display": false,
+  "showArrow": false,
+  "textFadeMultiplier": 0,
+  "nodeSizeMultiplier": 2.26730769230769,
+  "lineSizeMultiplier": 1.2736013986014,
+  "collapse-forces": true,
+  "centerStrength": 0.518713248970312,
+  "repelStrength": 10,
+  "linkStrength": 1,
+  "linkDistance": 250,
+  "scale": 0.1887272654872311,
+  "close": true
+}

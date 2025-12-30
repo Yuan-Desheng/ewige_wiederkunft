@@ -1,0 +1,29 @@
+{
+  "enableObjectStorage": false,
+  "storageProvider": "tencent",
+  "storagePath": "screenshot/",
+  "enableMarkdownPasteUpload": false,
+  "tencent": {
+    "endpoint": "",
+    "region": "",
+    "bucket": "",
+    "accessKeyId": "",
+    "secretAccessKey": ""
+  },
+  "aliyun": {
+    "endpoint": "",
+    "region": "",
+    "bucket": "",
+    "accessKeyId": "",
+    "secretAccessKey": ""
+  },
+  "lastHighlightCache": {
+    "Books/pdf书籍/打造第二大脑.pdf": {
+      "page": 128,
+      "select": "53,10,54,26",
+      "color": "yellow",
+      "text": "存之道展现得淋漓尽致。在她的故事里，边缘 群体总是扮演着未来的英雄的角色而非受压迫者。许多关于",
+      "timestamp": "20250820093151"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+formulas:
+  isKeep: ""
+views:
+  - type: table
+    name: 本周KISS复盘
+    filters:
+      and:
+        - file.folder.startsWith("Documents/Dailynote")
+        - date(data).format("GGGG-[W]WW") == this.file.name
+        - |-
+          file.hasProperty("Keep") || file.hasProperty("Improve") || 
+          file.hasProperty("Stop") || file.hasProperty("Start")
+    order:
+      - file.name
+      - Keep
+      - Improve
+      - Start
+      - Stop
+    sort: []
+    separator: ｜
+    columnSize:
+      file.name: 93
+      note.Keep: 143
+      note.Improve: 152
+      note.Start: 167

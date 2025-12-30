@@ -1,0 +1,51 @@
+{
+  "command_timeout": 5,
+  "templates_folder": "Assistants",
+  "templates_pairs": [
+    [
+      "",
+      ""
+    ]
+  ],
+  "trigger_on_file_creation": true,
+  "auto_jump_to_cursor": true,
+  "enable_system_commands": false,
+  "shell_path": "",
+  "user_scripts_folder": "Assistants/Templater/Scrip（用于更新，勿删）",
+  "enable_folder_templates": true,
+  "folder_templates": [
+    {
+      "folder": "Documents/I.P.A.R.A/0-收集箱",
+      "template": "Assistants/Templater/笔记/笔记通用模板.md"
+    }
+  ],
+  "syntax_highlighting": true,
+  "syntax_highlighting_mobile": false,
+  "enabled_templates_hotkeys": [
+    "Assistants/Modules/输入模块/嵌入meta-bind模块（atl+1).md",
+    "Assistants/Modules/输入模块/嵌入2分栏模块（alt+2）.md",
+    "Assistants/Modules/输入模块/嵌入3分栏模块（alt+3）.md",
+    "Assistants/Modules/输入模块/嵌入callout模块（alt+4）.md",
+    "%%本系统由vx：ytmaps0512制作，禁止盗卖%%",
+    "Assistants/Modules/输入模块/嵌入tasks模块(alt+r).md",
+    "Assistants/Templater/移动/移动至-工作领域-归档.md",
+    "Assistants/Templater/移动/移动至-工作领域-收集.md",
+    "Assistants/Templater/移动/移动至-工作领域-项目.md",
+    "Assistants/Templater/移动/移动至-工作领域-资源.md",
+    "Assistants/Templater/移动/移动至-学习领域-归档.md",
+    "Assistants/Templater/移动/移动至-学习领域-收集.md",
+    "Assistants/Templater/移动/移动至-学习领域-项目.md",
+    "Assistants/Templater/移动/移动至-学习领域-资源.md",
+    "Assistants/Templater/移动/移动至-生活领域-归档.md",
+    "Assistants/Templater/移动/移动至-生活领域-收集.md",
+    "Assistants/Templater/移动/移动至-生活领域-项目.md",
+    "Assistants/Templater/移动/移动至-生活领域-资源.md",
+    "Assistants/Templater/辅助/模板选择器.md",
+    "Assistants/Templater/其他/插入批注.md",
+    "Assistants/Templater/辅助/辅助工具选择器.md"
+  ],
+  "startup_templates": [
+    "Assistants/Templater/辅助/JS辅助脚本/rebuild-current-view.md"
+  ],
+  "enable_ribbon_icon": true
+}

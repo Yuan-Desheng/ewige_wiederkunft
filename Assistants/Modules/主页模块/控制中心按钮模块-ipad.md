@@ -1,0 +1,25 @@
+---
+fileName: 控制中心按钮模块
+tags:
+  - 模块
+  - 控制中心
+  - 按钮
+multiFile:
+---
+
+
+```col-md
+`BUTTON[riji-2col]` `BUTTON[Project-2col]` 
+`BUTTON[manyoubiji-2col]` `BUTTON[Resource-2col]`
+`BUTTON[readingnote-2col]`  `BUTTON[Archive-2col]` 
+`BUTTON[GPT-2col]` `BUTTON[inbox-2col]`
+
+`BUTTON[gongsikapian-2col]` `BUTTON[canvas-2col]`
+`BUTTON[bumenkapian-2col]` `BUTTON[excalidraw-2col]`
+`BUTTON[renwukapian-2col]` `BUTTON[cardnotetopic-2col]`
+`BUTTON[wupinkapian-2col]` `BUTTON[cardnotes-2col]`
+```
+
+
+
+

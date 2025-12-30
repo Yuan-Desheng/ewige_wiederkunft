@@ -1,0 +1,61 @@
+filters:
+  and:
+    - file.folder == "Connections/人物"
+formulas:
+  未命名: file.hasProperty(Note20251012165232)
+  未命名 2: object.values(Note)
+  多久没联系: (number(now().date()) - number(date(近期联系).date())) / (24 * 60 * 60 * 1000)
+  年龄: "(number(now().date().year) - number(date(生日).date().year)) "
+views:
+  - type: line-chart
+    name: 多久没联系
+    filters:
+      and:
+        - file.folder.startsWith("Connections")
+    order:
+      - formula.多久没联系
+    columnSize:
+      formula.未命名: 549
+    enableAggregation: false
+    label: note.城市
+    x: note.姓名
+    height: "200"
+  - type: pie-chart
+    name: 男女比例图
+    filters:
+      and:
+        - file.folder.startsWith("Connections")
+    order:
+      - file.ctime
+    columnSize:
+      formula.未命名: 549
+    enableAggregation: true
+    aggregateBy: note.性别
+    label: note.性别
+    size: "200"
+  - type: pie-chart
+    name: 城市分布图
+    filters:
+      and:
+        - file.folder.startsWith("Connections")
+    order:
+      - file.ctime
+    columnSize:
+      formula.未命名: 549
+    enableAggregation: true
+    aggregateBy: note.城市
+    label: note.城市
+    size: "200"
+  - type: bar-chart
+    name: 年龄柱状图
+    filters:
+      and:
+        - file.folder.startsWith("Connections")
+    order:
+      - formula.年龄
+    columnSize:
+      formula.未命名: 549
+    enableAggregation: false
+    label: note.城市
+    x: note.姓名
+    height: "300"

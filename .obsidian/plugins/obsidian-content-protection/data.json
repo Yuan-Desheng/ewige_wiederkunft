@@ -1,0 +1,143 @@
+{
+  "isActivated": true,
+  "deviceId": "iPHla6XyMSQGTC0uil2M",
+  "whitelistUpdated": false,
+  "hasBeenActivated": true,
+  "treatFileNodeEdgesAsLinks": false,
+  "canvasBacklinks": {
+    "startX": 100,
+    "startY": 100,
+    "nodeWidth": 440,
+    "nodeHeight": 500,
+    "horizontalSpacing": 80,
+    "verticalSpacing": 100,
+    "columns": 5,
+    "debug": true
+  },
+  "canvasGrouping": {
+    "startX": 100,
+    "startY": 100,
+    "groupSpacing": 200,
+    "maxRowWidth": 5800,
+    "verticalSpacing": 60,
+    "debug": true,
+    "frontmatterKey": "笔记类型",
+    "groupTypes": [
+      "闪念笔记",
+      "项目笔记",
+      "永久笔记"
+    ]
+  },
+  "canvasGraphNodeShortener": {
+    "enabled": true
+  },
+  "canvasCollapse": {
+    "enabled": true,
+    "minimapEnabled": true,
+    "canvasStates": {},
+    "create": {
+      "childNodeWidth": 250,
+      "childNodeHeight": 60,
+      "direction": "LR",
+      "parentChildGap": 200,
+      "siblingGapHorizontal": 350,
+      "siblingGapVertical": 200
+    }
+  },
+  "metaBindTagAutoCompleteEnabled": true,
+  "enableUpdateNotification": true,
+  "areaManagement": {
+    "templaterDisabled": false,
+    "templaterWasEnabled": false
+  },
+  "canvasTitleEnabled": true,
+  "lucideIcons": {
+    "commonIcons": [
+      "heart",
+      "star",
+      "moon",
+      "alert-circle",
+      "check",
+      "check-circle",
+      "x",
+      "x-circle",
+      "info",
+      "arrow-right",
+      "arrow-left",
+      "arrow-up",
+      "arrow-down",
+      "file",
+      "folder",
+      "tag",
+      "bookmark"
+    ]
+  },
+  "fileIcons": {
+    "快速上手打卡任务（完成后，请删除）.md": "square-check-big",
+    "Documents": "folder-open",
+    "Extras": "file-image",
+    "Connections": "contact",
+    "Books": "book",
+    "Assistants": "helping-hand",
+    "使用指南": "circle-question-mark",
+    "数据库与导航.md": "database",
+    "Assistants/Modules": "box",
+    "Assistants/Templater": "book-template",
+    "Books/白板笔记": "layout-dashboard",
+    "Books/电子书架.md": "library-big",
+    "Books/pdf书籍": "book-open-check",
+    "Books/读书笔记": "sticky-note",
+    "Connections/部门": "briefcase-business",
+    "Connections/公司": "building-2",
+    "Connections/人物": "contact-round",
+    "Connections/物品": "shopping-bag",
+    "Connections/人脉管理数据库-Bases.base": "database",
+    "Documents/Canvas": "layout-dashboard",
+    "Documents/Dailynote": "calendar-days",
+    "Documents/Douban": "file-video",
+    "Documents/Excalidraw": "pen-tool",
+    "Documents/I.P.A.R.A": "folder-edit",
+    "Documents/文档数据库-Bases.base": "database",
+    "Extras/宠物": "dog",
+    "Extras/导入": "import",
+    "Extras/封面": "book-image",
+    "Extras/附件": "scissors-square-dashed-bottom",
+    "Extras/人物": "contact-2",
+    "Extras/头图": "image",
+    "Extras/头像": "contact",
+    "Extras/物品": "baggage-claim",
+    "Extras/主题": "palette",
+    "使用指南/00--通用说明（重要）": "alert-circle"
+  },
+  "vikaSync": {
+    "updateIds": [
+      "5IJl7HLA0m",
+      "6tNKl56Arf",
+      "XBmCj5io1m",
+      "weMTgoFx83",
+      "Znlbwn6rSF",
+      "U88QattgqD",
+      "XaYNADrYe6",
+      "56tX0gRx1D",
+      "A7dkTB7LAF",
+      "DQw1QbwOZl",
+      "rdDsjNOjz3",
+      "Wy7ZDvIb2B"
+    ],
+    "updateTimes": {
+      "5IJl7HLA0m": "2025-12-28T09:21:00.000Z",
+      "6tNKl56Arf": "2025-08-25T05:37:00.000Z",
+      "XBmCj5io1m": "2025-11-17T05:11:00.000Z",
+      "weMTgoFx83": "2025-12-12T04:22:00.000Z",
+      "Znlbwn6rSF": "2025-09-01T06:25:00.000Z",
+      "U88QattgqD": "2025-11-25T08:07:00.000Z",
+      "XaYNADrYe6": "2025-09-15T02:12:00.000Z",
+      "56tX0gRx1D": "2025-10-19T13:35:00.000Z",
+      "A7dkTB7LAF": "2025-11-24T01:46:00.000Z",
+      "DQw1QbwOZl": "2025-12-22T02:20:00.000Z",
+      "rdDsjNOjz3": "2025-12-25T02:52:00.000Z",
+      "Wy7ZDvIb2B": "2025-12-19T02:41:00.000Z"
+    },
+    "ignoredUpdateIds": []
+  }
+}

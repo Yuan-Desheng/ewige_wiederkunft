@@ -1,0 +1,11 @@
+formulas:
+  文件大小: if(file.size < 1024, "小文件（<1KB）", if(file.size < 10240, "中文件（1～10KB）", "大文件（>10KB）"))
+views:
+  - type: pie-chart
+    name: 文件大小（饼图）
+    order:
+      - formula.文件大小
+    enableAggregation: true
+    aggregateBy: file.ctime
+    label: formula.文件大小
+    size: "300"

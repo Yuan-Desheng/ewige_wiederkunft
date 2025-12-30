@@ -1,0 +1,33 @@
+{
+  "checkInItems": [
+    {
+      "label": "运动时长",
+      "icon": "🏃",
+      "type": "number",
+      "unit": "分钟",
+      "enabled": true
+    },
+    {
+      "label": "体重",
+      "icon": "⚖",
+      "type": "number",
+      "unit": "kg",
+      "enabled": true
+    },
+    {
+      "label": "今日喝水量",
+      "icon": "💧",
+      "type": "number",
+      "unit": "ml",
+      "enabled": true
+    },
+    {
+      "label": "读书时长",
+      "icon": "📚",
+      "type": "number",
+      "unit": "分钟",
+      "enabled": true
+    }
+  ],
+  "weeklyDisplayMode": "dots"
+}

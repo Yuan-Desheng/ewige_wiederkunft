@@ -1,0 +1,56 @@
+formulas:
+  month: date(file.ctime).format("YYYY") + date(file.ctime).format("MM")
+  year: date(file.ctime).year.toString()
+  day: date(file.ctime).day.toString()
+views:
+  - type: bar-chart
+    name: 每月笔记柱状图
+    filters:
+      and:
+        - file.folder.startsWith("Documents")
+    groupBy:
+      property: formula.year
+      direction: ASC
+    order:
+      - file.ctime
+    multiChartMode: group
+    aggregateValueProperty: file.ctime
+    enableAggregation: true
+    x: formula.month
+    aggregateFunction: count
+    aggregateBy: file.ctime
+    height: "300"
+  - type: line-chart
+    name: 每月笔记折线图
+    filters:
+      and:
+        - file.folder.startsWith("Documents")
+    groupBy:
+      property: formula.year
+      direction: ASC
+    order:
+      - file.ctime
+    multiChartMode: group
+    aggregateValueProperty: file.ctime
+    enableAggregation: true
+    x: formula.month
+    aggregateFunction: count
+    aggregateBy: file.ctime
+    height: "300"
+  - type: pie-chart
+    name: 每月笔记饼图
+    filters:
+      and:
+        - file.folder.startsWith("Documents")
+    groupBy:
+      property: formula.year
+      direction: ASC
+    order:
+      - file.ctime
+    multiChartMode: group
+    aggregateValueProperty: file.ctime
+    enableAggregation: true
+    x: formula.month
+    aggregateFunction: count
+    aggregateBy: file.ctime
+    label: formula.month

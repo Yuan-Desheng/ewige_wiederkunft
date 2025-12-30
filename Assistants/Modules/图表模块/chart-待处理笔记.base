@@ -1,0 +1,21 @@
+formulas:
+  未命名: if(date(阐述日期).date() < today(), "逾期未处理", if(date(阐述日期).date() == today(), "今日需处理", if(date(阐述日期).date() <= today() + '7d', "本周需处理", "远期需处理")))
+properties:
+  formula.未命名:
+    displayName: 待处理笔记公式
+views:
+  - type: pie-chart
+    name: 待处理笔记
+    filters:
+      and:
+        - file.folder.startsWith("Documents")
+        - "!阐述日期.isEmpty()"
+    order:
+      - formula.未命名
+    enableAggregation: true
+    aggregateBy: formula.未命名
+    aggregateValueProperty: file.ctime
+    x: note.笔记类型
+    label: formula.未命名
+    size: "200"
+    showLegend: true

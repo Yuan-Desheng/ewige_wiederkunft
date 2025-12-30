@@ -1,0 +1,11 @@
+{
+  "id": "check-in",
+  "name": "Check-in",
+  "description": "基于日历的打卡插件，支持自定义打卡项目，并与bases view插件联动，提供数据可视化",
+  "version": "0.2.5",
+  "author": "ytmaps",
+  "authorUrl_xiaohongshu": "https://www.xiaohongshu.com/user/profile/63cfeb720000000026010489",
+	"authorUrl_bilibili": "https://space.bilibili.com/2035394961",
+  "isDesktopOnly": false,
+  "minAppVersion": "0.15.0"
+}

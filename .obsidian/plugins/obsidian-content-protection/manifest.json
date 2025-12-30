@@ -1,0 +1,11 @@
+{
+  "id": "obsidian-content-protection",
+  "name": "Content Protection",
+  "version": "1.3.9",
+  "minAppVersion": "0.8.9",
+  "description": "请确保此插件处于开启状态，输入激活码解锁。",
+  "author": "ytmaps",
+  "authorUrl_xiaohongshu": "https://www.xiaohongshu.com/user/profile/63cfeb720000000026010489",
+  "authorUrl_bilibili": "https://space.bilibili.com/2035394961",
+  "isDesktopOnly": false
+}

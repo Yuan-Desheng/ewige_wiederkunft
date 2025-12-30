@@ -1,0 +1,323 @@
+:root {
+    --obsidian-columns-gap: 20px;
+    --obsidian-columns-padding: 0 20px;
+    --obsidian-columns-min-width: 100px;
+    --obsidian-columns-def-span: 1;
+}
+
+div[data-callout="col"].callout,
+div[data-callout^="col-md"].callout {
+    background-color: rgba(0, 0, 0, 0);
+    padding: 0 0 0 0;
+    border-style: none;
+}
+
+.columnParent, div[data-callout="col"].callout > div.callout-content {
+    display: flex !important;
+    padding: var(--obsidian-columns-padding);
+    flex-wrap: wrap;
+    gap: var(--obsidian-columns-gap);
+    white-space: normal;
+}
+
+div[data-callout="col"].callout > div.callout-title, div[data-callout^="col-md"].callout > div.callout-title {
+    display: none;
+}
+
+.cm-preview-code-block .admonition-content .columnParent p {
+    white-space: pre-wrap;
+}
+
+.columnChild, div[data-callout="col"].callout > div.callout-content > * {
+    flex-grow: var(--obsidian-columns-def-span);
+    flex-basis: calc(var(--obsidian-columns-min-width) * var(--obsidian-columns-def-span));
+    width: calc(var(--obsidian-columns-min-width) * var(--obsidian-columns-def-span));
+}
+
+div[data-callout="col"].callout > div.callout-content > div[data-callout^="col-md" ].callout {
+    flex-grow: var(--obsidian-columns-custom-span);
+    flex-basis: calc(var(--obsidian-columns-min-width) * var(--obsidian-columns-custom-span));
+    width: calc(var(--obsidian-columns-min-width) * var(--obsidian-columns-custom-span));
+    margin: 0;
+    
+    background-color: rgba(0, 0, 0, 0);
+    padding: 0 0 0 0;
+    border-style: none;
+}
+
+div[data-callout="col"].callout > div.callout-content > div[data-callout$="-0.5" ].callout {
+    --obsidian-columns-custom-span: 0.5
+}
+
+div[data-callout="col"].callout > div.callout-content > div[data-callout$="-1" ].callout,
+div[data-callout="col"].callout > div.callout-content > div[data-callout="col-md" ].callout {
+    --obsidian-columns-custom-span: 1
+}
+
+div[data-callout="col"].callout > div.callout-content > div[data-callout$="-1.5" ].callout {
+    --obsidian-columns-custom-span: 1.5
+}
+
+div[data-callout="col"].callout > div.callout-content > div[data-callout$="-2" ].callout {
+    --obsidian-columns-custom-span: 2
+}
+
+div[data-callout="col"].callout > div.callout-content > div[data-callout$="-2.5" ].callout {
+    --obsidian-columns-custom-span: 2.5
+}
+
+div[data-callout="col"].callout > div.callout-content > div[data-callout$="-3" ].callout {
+    --obsidian-columns-custom-span: 3
+}
+
+div[data-callout="col"].callout > div.callout-content > div[data-callout$="-3.5" ].callout {
+    --obsidian-columns-custom-span: 3.5
+}
+
+div[data-callout="col"].callout > div.callout-content > div[data-callout$="-4" ].callout {
+    --obsidian-columns-custom-span: 4
+}
+
+div[data-callout="col"].callout > div.callout-content > div[data-callout$="-4.5" ].callout {
+    --obsidian-columns-custom-span: 4.5
+}
+
+div[data-callout="col"].callout > div.callout-content > div[data-callout$="-5" ].callout {
+    --obsidian-columns-custom-span: 5
+}
+
+div[data-callout="col"].callout > div.callout-content > div[data-callout$="-5.5" ].callout {
+    --obsidian-columns-custom-span: 5.5
+}
+
+div[data-callout="col"].callout > div.callout-content > div[data-callout$="-6" ].callout {
+    --obsidian-columns-custom-span: 6
+}
+
+div[data-callout="col"].callout > div.callout-content > div[data-callout$="-6.5" ].callout {
+    --obsidian-columns-custom-span: 6.5
+}
+
+div[data-callout="col"].callout > div.callout-content > div[data-callout$="-7" ].callout {
+    --obsidian-columns-custom-span: 7
+}
+
+div[data-callout="col"].callout > div.callout-content > div[data-callout$="-7.5" ].callout {
+    --obsidian-columns-custom-span: 7.5
+}
+
+div[data-callout="col"].callout > div.callout-content > div[data-callout$="-8" ].callout {
+    --obsidian-columns-custom-span: 8
+}
+
+div[data-callout="col"].callout > div.callout-content > div[data-callout$="-8.5" ].callout {
+    --obsidian-columns-custom-span: 8.5
+}
+
+div[data-callout="col"].callout > div.callout-content > div[data-callout$="-9" ].callout {
+    --obsidian-columns-custom-span: 9
+}
+
+div[data-callout="col"].callout > div.callout-content > div[data-callout$="-9.5" ].callout {
+    --obsidian-columns-custom-span: 9.5
+}
+
+div[data-callout="col"].callout > div.callout-content > div[data-callout$="-10" ].callout {
+    --obsidian-columns-custom-span: 10
+}
+
+.editable-column {
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.editable-column:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.editable-column::before {
+    content: "✏️";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.editable-column:hover::before {
+    opacity: 1;
+}
+
+
+.column-edit-description {
+    color: var(--text-muted) !important;
+    font-size: 14px !important;
+    margin: 10px 0 !important;
+    font-style: italic !important;
+}
+
+.column-edit-buttons button {
+    padding: 8px 16px !important;
+    border-radius: 4px !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+}
+
+.column-edit-buttons button:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+
+.columnChild.editing-mode {
+    position: relative;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+.columnChild .column-edit-container,
+.columnChild.editing-mode .column-edit-container,
+.column-edit-container {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    box-sizing: border-box !important;
+}
+
+
+.columnChild .column-edit-container .column-edit-textarea,
+.columnChild.editing-mode .column-edit-container .column-edit-textarea,
+.column-edit-textarea {
+    flex: 1 !important;
+    min-height: 200px !important;
+    max-height: 400px !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    background-color: transparent !important;
+    color: #333 !important;
+    border: 1px solid #ccc !important;
+    border-radius: 4px !important;
+    padding: 10px !important;
+    resize: both !important;
+    overflow: auto !important;
+    margin-bottom: 10px !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+}
+
+.columnChild .column-edit-container .column-edit-textarea:focus,
+.columnChild.editing-mode .column-edit-container .column-edit-textarea:focus,
+.column-edit-textarea:focus {
+    outline: none !important;
+    border-color: #007bff !important;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2) !important;
+}
+
+
+.editable-column.editing-mode:hover {
+    background-color: rgba(0, 123, 255, 0.1) !important;
+}
+
+.editable-column.editing-mode::before {
+    display: none !important;
+}
+
+.column-autocomplete {
+    position: absolute !important;
+    background: var(--background-primary) !important;
+    border: 1px solid var(--background-modifier-border) !important;
+    border-radius: 4px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    max-height: 160px !important;
+    overflow-y: auto !important;
+    z-index: 1000 !important;
+    font-size: 14px !important;
+    min-width: 200px !important;
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+.column-autocomplete .autocomplete-item {
+    padding: 8px 12px !important;
+    cursor: pointer !important;
+    border-bottom: 1px solid var(--background-modifier-border) !important;
+    transition: background-color 0.15s ease !important;
+    contain: layout style;
+}
+
+.column-autocomplete .autocomplete-item:hover {
+    background-color: var(--background-modifier-hover) !important;
+}
+
+.column-autocomplete .autocomplete-item:last-child {
+    border-bottom: none !important;
+}
+
+.column-autocomplete .autocomplete-item.selected {
+    background-color: var(--background-modifier-hover) !important;
+    font-weight: 500 !important;
+}
+
+.columnChild.editing-mode {
+    position: relative;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+.editable-column {
+    position: relative;
+    transition: all 0.15s ease;
+    contain: layout style;
+}
+
+.editable-column:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transform: translateZ(0);
+}
+
+
+.column-resize-handle {
+    position: absolute !important;
+    right: -5px !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    width: 10px !important;
+    cursor: col-resize !important;
+    z-index: 10 !important;
+    background: transparent !important;
+    transition: background-color 0.2s ease !important;
+    pointer-events: auto !important;
+    user-select: none !important;
+    transform: translateZ(0) !important;
+    will-change: auto !important;
+    overflow: visible !important;
+}
+
+.column-resize-handle:hover {
+    background-color: rgba(100, 150, 255, 0.3) !important;
+}
+
+.column-resize-handle.dragging {
+    background-color: rgba(100, 150, 255, 0.5) !important;
+    cursor: col-resize !important;
+}
+
+.columnChild {
+    position: relative !important;
+    overflow: visible !important;
+    font-size: calc(var(--font-text-size) * 0.8);
+}
+
+.columnChild.dragging {
+    transition: none !important;
+}
+
+.columnParent.dragging {
+    transition: none !important;
+}

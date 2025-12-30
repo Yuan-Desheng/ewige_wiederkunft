@@ -1,0 +1,13 @@
+{
+  "shouldConfirmBeforeCreate": false,
+  "weekStart": "locale",
+  "wordsPerDot": 250,
+  "showWeeklyNote": true,
+  "weeklyNoteFormat": "gggg-[W]ww",
+  "weeklyNoteTemplate": "Assistants/Templater/日记/周记模板1.md",
+  "weeklyNoteFolder": "Documents/Dailynote/周记",
+  "localeOverride": "system-default",
+  "weatherEnabled": true,
+  "weatherApiPublicKey": "",
+  "weatherLocation": ""
+}

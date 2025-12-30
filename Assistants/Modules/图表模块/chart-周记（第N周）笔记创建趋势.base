@@ -1,0 +1,17 @@
+formulas:
+  本周笔记创建: file.ctime.format("YYYY-MM-DD")
+views:
+  - type: bar-chart
+    name: 本周笔记创建趋势
+    filters:
+      and:
+        - file.folder.startsWith("Documents/I.P.A.R.A")
+        - date(createTime).format("GGGG-[W]WW") == this.file.name
+    order:
+      - formula.本周笔记创建
+    x: formula.本周笔记创建
+    multiChartMode: group
+    enableAggregation: true
+    aggregateBy: file.ctime
+    height: "200"
+    showDataLabels: true

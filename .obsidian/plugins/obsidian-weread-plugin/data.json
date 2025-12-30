@@ -1,0 +1,22 @@
+{
+  "cookies": [],
+  "noteLocation": "Books/读书笔记",
+  "dailyNotesLocation": "/",
+  "insertAfter": "<!-- start of weread -->",
+  "insertBefore": "<!-- end of weread -->",
+  "dailyNotesFormat": "YYYY-MM-DD",
+  "lastCookieTime": 1766830924092,
+  "isCookieValid": false,
+  "user": "",
+  "userVid": "",
+  "template": "---\nisbn: {{metaData.isbn}}\nlastReadDate: {{metaData.lastReadDate}}\nauthor:  {{metaData.author}}\ndescription: {{metaData.intro}}\n发行日期:  {{metaData.publishTime}}\ntitle:  {{metaData.title}}\ntags: 电子书\n出版社: {{metaData.publisher}}\nimageData: {{metaData.cover}}\n---\n\n``````ad-flex \n`````col\n````col-md\nflexGrow=0.7\n===\n`VIEW[{imageData}][image]`\n````\n`````col\n````col-md\nflexGrow=1\n===\n书名：`INPUT[text(class(text-70)):title]` \n作者：`INPUT[text(class(text-70)):author]` \n出版：`INPUT[text(class(text-70)):出版社]` \n进度：`INPUT[inlineSelect(option(在读), option(已读), option(未读)):status]` `INPUT[slider(addLabels):progress]`\n类型：`INPUT[inlineSelect(option(论文), option(电子书), option(合同), option(其他文档)):tags]` 发行：`INPUT[datePicker:发行日期]` \n评分：`INPUT[inlineSelect(option(⭐), option(⭐⭐), option(⭐⭐⭐), option(⭐⭐⭐⭐), option(⭐⭐⭐⭐⭐), option(⭐⭐⭐⭐⭐⭐), option(⭐⭐⭐⭐⭐⭐⭐), option(⭐⭐⭐⭐⭐⭐⭐⭐), option(⭐⭐⭐⭐⭐⭐⭐⭐⭐), option(⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐)):评价]`\n书籍简介：\n`INPUT[textArea(class(textArea-270)):description]`\n````\n`````\n````col-md\nflexGrow=1\n===\n✏️Thoughts/读后感 \n```meta-bind-embed\n[[横格输入模块-textArea-4行]]\n```\n````\n``````\n{% for chapter in chapterHighlights %}\n{% for highlight in chapter.highlights %}{% if highlight.reviewContent %}\n### 划线{{highlight.bookmarkId}}\n📌 {{ highlight.markText |trim }} ^{{highlight.bookmarkId}}\n💭 {{highlight.reviewContent}} - ⏱ {{highlight.createTime}} {% else %}\n### 划线{{highlight.bookmarkId}}\n📌 {{ highlight.markText |trim }} \n⏱ {{highlight.createTime}} ^{{highlight.bookmarkId}}{% endif %}\n{% endfor %}{% endfor %}\n{% for chapter in bookReview.chapterReviews %}{% if chapter.reviews or chapter.chapterReview %}\n{% if chapter.chapterReviews %}{% for chapterReview in chapter.chapterReviews %}\n{{chapterReview.content}} ^{{chapterReview.reviewId}}\n    ⏱ {{chapterReview.createTime}} {% endfor %}{% endif %}{% if chapter.reviews %}{% for review in chapter.reviews %}\n### 想法{{review.reviewId}}\n📌 {{review.abstract |trim }}  ^{{review.reviewId}}\n    💭 {{review.content}}\n    ⏱ {{review.createTime}}\n{% endfor %} {% endif %} {% endif %} {% endfor %}",
+  "noteCountLimit": -1,
+  "subFolderType": "title",
+  "fileNameType": "BOOK_NAME",
+  "dailyNotesToggle": false,
+  "notesBlacklist": "",
+  "showEmptyChapterTitleToggle": false,
+  "convertTags": false,
+  "saveArticleToggle": true,
+  "saveReadingInfoToggle": true
+}

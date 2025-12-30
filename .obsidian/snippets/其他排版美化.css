@@ -1,0 +1,792 @@
+/* @settings
+
+name: 👉其他排版美化
+id: 鱼先生的模块化Obsidian
+settings:
+    -   
+        id: clutter-free-headings
+        title: 编辑状态使用H1 H2 替代「#」(显示标题级别)
+        title.zh: 编辑状态使用H1 H2 替代「#」(显示标题级别)
+        description: 来自 blue-topaz 主题
+        type: class-toggle
+        default: true
+    - 
+        id: code-line-number
+        title: Code box showing line numbers (Editing Mode)
+        title.zh: 代码显示行号 （编辑模式）
+        description: csslass declares code-line-number to be available for the current document, copy from blue-topaz theme
+        description.zh:  csslass 声明 code-line-number 可对单篇note生效，来自 blue-topaz 主题
+        type: class-toggle
+        default: true
+    -
+        id: increase-headings-gap
+        title: 标题与正文间距增大
+        description: 来自 yaozhuwa
+        type: class-toggle
+        default: true
+    -
+        id: center-image
+        title: 图片居中显示
+        description: 来自 blue-topaz 主题
+        type: class-toggle
+        default: false
+    -
+        id: left-image
+        title: 图片居左显示
+        description: 
+        type: class-toggle
+        default: false
+    -
+        id: custom-line-padding
+        title: 自定义行间距
+        description: 输入具体的行间距值(单位：px)
+        type: variable-number
+        default: 5
+        format: px
+    -
+        id: custom-line-padding-toggle
+        title: 启用自定义行间距
+        description: 开启后可通过上方选项调整行间距
+        type: class-toggle
+        default: true
+    -
+        id: enable-custom-status-bar
+        title: 状态栏隐藏/显示开关
+        description: 默认关闭
+        type: class-toggle
+        default: false
+    -
+        id: enable-grid-background
+        title: 网格背景开启/关闭选项
+        description: 默认关闭
+        type: class-toggle
+        default: false
+    -
+        id: scrollbar-movein-animation
+        title: enable scrollbar movein animation
+        title.zh: 启用滚动条鼠标移入动画效果
+        type: class-toggle
+        default: true
+    -
+        id: scrollbar-gutter
+        title: scrollbar gutter config
+        description: scroll bar appears without squeezing the parent container❗overlay property is marked as deprecated officially
+        title.zh: 控制滚动条槽
+        description.zh: 使滚动条出现时不会对父容器产生挤压，选项：默认(default) / 悬浮滚动条(overlay) / 预留滚动条位置(reserve)❗overlay可能在后续的版本不支持
+        type: class-select
+        allowEmpty: false
+        default: scrollbar-gutter-default
+        options:
+            -   label: default
+                value: scrollbar-gutter-default
+            -   label: overlay
+                value: scrollbar-gutter-overlay
+            -   label: reserve
+                value: scrollbar-gutter-reserve
+    - 
+        id: cloze style
+        title: 完形填空
+        type: heading
+        level: 2
+        collapsed: false
+    -
+        id: subscript-style
+        title: 下标改完形填空
+        description: 将下标样式改为下划线样式，悬停显示原文，实现完形填空
+        type: class-toggle
+        default: true
+        level: 2
+        collapsed: true
+    - 
+        id: show-all-answers
+        title: Show All Answers
+        description: 关闭或显示所有完形填空内容
+        type: class-toggle
+        default: false
+        level: 2
+        collapsed: true
+    - 
+        id: table-tweak
+        title: 表格优化
+        type: heading
+        level: 2
+        collapsed: false
+    -
+        id: table-line-number
+        title: 表格行号显示
+        description: 来自 minimal 主题
+        type: class-toggle
+        default: true
+    -
+        id: table-drag-fix
+        title: 表格拖拽异常修复
+        description: shiba inu主题下表格拖拽异常修复
+        type: class-toggle
+        default: true
+    -
+        id: anp-pdf-viewer-header
+        title: PDF Viewer
+        description: 
+        type: heading
+        level: 2
+        collapsed: true
+    -
+        id: anp-pdf-blend-toggle-dark
+        title: Toggle PDF background blending - Dark Mode
+        desc: 在黑暗模式下将 PDF 查看器背景与黑曜石背景融合
+        type: class-toggle
+    -
+        id: anp-pdf-blend-toggle-light
+        title: Toggle PDF background blending - Light Mode
+        desc: 在浅色模式下将 PDF 查看器背景与黑曜石背景混合
+        type: class-toggle
+    -
+        id: hr-for-pagination
+        title: Use hr (---) for Paging
+        title.zh: 使用分隔符（---）分页
+        type: class-toggle
+        default: false
+ */
+
+
+
+
+/* headers */
+/*编辑状态是否显示H1 H2标记*/
+/*适配Live preview模式*/
+.clutter-free-headings div:not(.cm-active).cm-line span:not(.cm-formatting-header):not(.cm-hashtag):not(.cm-inline-code):not(.cm-highlight).cm-header::before {
+  font-size: 0.6rem;
+  width: auto;
+  margin-right: 1px;
+  border-radius: var(--radius-xs);
+  color: var(--text-muted);
+  overflow: visible;
+  font-family: var(--font-default);
+  font-weight: normal !important;
+}
+
+.clutter-free-headings div.mod-cm6.is-live-preview div:not(.cm-active).cm-line .cm-header ~ span.cm-header::before,
+.clutter-free-headings div.mod-cm6.is-live-preview div:not(.cm-active).cm-line .cm-header.cm-hmd-internal-link::before {
+  display: none;
+}
+
+.clutter-free-headings div:not(.cm-active).cm-line span:not(.cm-formatting-header).cm-header-1::before {
+  content: 'H1';
+  margin-top: calc(var(--h1-size) - 0.1em);
+}
+
+.clutter-free-headings div:not(.cm-active).cm-line span:not(.cm-formatting-header).cm-header-2::before {
+  content: 'H2';
+  margin-top: calc(var(--h2-size) - 0.2em);
+}
+
+.clutter-free-headings div:not(.cm-active).cm-line span:not(.cm-formatting-header).cm-header-3::before {
+  content: 'H3';
+  margin-top: calc(var(--h3-size) - 0.2em);
+}
+.clutter-free-headings div:not(.cm-active).cm-line span:not(.cm-formatting-header).cm-header-4::before {
+  content: 'H4';
+  margin-top: calc(var(--h4-size) - 0.3em);
+}
+
+.clutter-free-headings div:not(.cm-active).cm-line span:not(.cm-formatting-header).cm-header-5::before {
+  content: 'H5';
+  margin-top: calc(var(--h5-size) - 0.4em);
+}
+
+.clutter-free-headings div:not(.cm-active).cm-line span:not(.cm-formatting-header).cm-header-6::before {
+  content: 'H6';
+  margin-top: calc(var(--h6-size) - 0.4em);
+}
+
+/*适配source mode 模式*/
+.clutter-free-headings div.mod-cm6:not(.is-live-preview) div:not(.cm-active).cm-line span:not(.cm-formatting-header).cm-header ~ span.cm-header::before
+{
+  display: none;
+}
+ .clutter-free-headings div.mod-cm6:not(.is-live-preview) div:not(.cm-active).cm-line span.cm-formatting-header {
+  display:none;
+}
+/*适配传统模式*/
+.clutter-free-headings div:not(.CodeMirror-activeline)>.CodeMirror-line.hmd-inactive-line span.cm-formatting-header::before {
+  position: absolute;
+  margin-top: 10px;
+  font-size: 0.7rem;
+  width: auto;
+  margin-left: -18px;
+  padding: 0px 2px;
+  border-radius: var(--radius-xs);
+  color: var(--text-muted);
+  overflow: visible;
+  font-family: var(--font-default);
+  font-weight: normal !important;
+}
+.clutter-free-headings div:not(.CodeMirror-activeline)>.CodeMirror-line:not(.hmd-inactive-line) span.cm-formatting-header::before {
+  position: absolute;
+  margin-top: 10px;
+  font-size: 0.7rem;
+  width: auto;
+  margin-left: -6px;
+  border-radius: var(--radius-xs);
+  color: var(--text-muted);
+  overflow: visible;
+  font-family: var(--font-default);
+  font-weight: normal !important;
+}
+
+.clutter-free-headings div:not(.CodeMirror-activeline)>.CodeMirror-line span.cm-formatting-header {
+  color: transparent !important;
+  background: none;
+}
+
+.clutter-free-headings div:not(.CodeMirror-activeline)>.CodeMirror-line span.cm-formatting-header-1::before {
+  content: 'H1';
+}
+.clutter-free-headings div:not(.CodeMirror-activeline)>.CodeMirror-line span.cm-formatting-header-2::before {
+  content: 'H2';
+}
+.clutter-free-headings div:not(.CodeMirror-activeline)>.CodeMirror-line span.cm-formatting-header-3::before {
+  content: 'H3';
+}
+.clutter-free-headings div:not(.CodeMirror-activeline)>.CodeMirror-line span.cm-formatting-header-4::before {
+  content: 'H4';
+}
+.clutter-free-headings div:not(.CodeMirror-activeline)>.CodeMirror-line span.cm-formatting-header-5::before {
+  content: 'H5';
+}
+.clutter-free-headings div:not(.CodeMirror-activeline)>.CodeMirror-line span.cm-formatting-header-6::before {
+  content: 'H6';
+}
+
+
+/* 代码行号显示 */
+.code-line-number .HyperMD-codeblock-begin {
+  counter-reset: line-numbers;
+}
+
+.code-line-number .HyperMD-codeblock.cm-line:not(.HyperMD-codeblock-begin):not(.HyperMD-codeblock-end) {
+  padding-left: 3em;
+  position: relative;
+}
+  
+.code-line-number .HyperMD-codeblock.cm-line:not(.HyperMD-codeblock-begin):not(.HyperMD-codeblock-end)::after {
+  align-items: flex-start;
+  color: var(--text-faint);
+  content: counter(line-numbers);
+  counter-increment: line-numbers;
+  display: flex;
+  font-size: 0.8em;
+  height: 100%;
+  justify-content: flex-end;
+  left: 0;
+  position: absolute;
+  text-align: right;
+  width: 2em;
+  padding-right: 0.5em;
+  bottom: -2px;
+  border-right: 1px solid var(--scrollbar-thumb-bg);
+}
+
+.code-line-number .HyperMD-codeblock.cm-line.cm-active:not(.HyperMD-codeblock-begin):not(.HyperMD-codeblock-end)::after {
+  color: var(--color-accent);
+}
+
+.code-line-number .HyperMD-codeblock .cm-foldPlaceholder::before {
+  display: none;
+}
+
+.center-image :is(.markdown-preview-view,.markdown-rendered) img:not([class*="emoji"]) {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.center-image .print :is(.markdown-preview-view,.markdown-rendered) img:not([class*="emoji"]) {
+  display: block;
+}
+
+.center-image .view-content img:not([class*="emoji"]) {
+  cursor: zoom-in;
+  display: block;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+
+.left-image img{
+  margin-left: 0cm;
+  margin-right: auto;
+}
+
+
+
+/* 表格行号显示 */
+.table-line-number table:not(.calendar) {
+  counter-reset: section
+}
+
+.table-line-number table:not(.calendar)>thead>tr>th:first-child::before {
+  content: " ";
+  padding-right: .5em;
+  display: inline-block;
+  min-width: 2em
+}
+
+.table-line-number table:not(.calendar)>tbody>tr>td:first-child::before {
+  counter-increment: section;
+  content: counter(section) " ";
+  text-align: center;
+  padding-right: .5em;
+  display: inline-block;
+  min-width: 2em;
+/*  color: var(#6c6e70);*/
+  font-variant-numeric: tabular-nums
+}
+
+
+
+.table-drag-fix :is(.markdown-preview-section,.markdown-rendered) table:not(.dataview.table-view-table) {
+  overflow: auto;
+}
+
+
+/* 标题间距优化 */ 
+.increase-headings-gap div.HyperMD-header.cm-line{
+    padding-top: 0.5em !important;
+    padding-bottom: 0.5em !important;
+}
+
+
+/* 行间距调整 */
+
+.custom-line-padding-toggle .markdown-source-view.mod-cm6 .cm-line {
+  padding: var(--custom-line-padding);
+}
+.custom-line-padding.markdown-source-view.mod-cm6 .cm-line {
+  padding: 5px;
+}
+
+
+/*======== PDF ==================*/
+/* PDF Blending */
+.theme-dark.anp-pdf-blend-toggle-dark,
+.theme-light.anp-pdf-blend-toggle-light {
+  --pdf-background: var(--background-secondary);
+  --pdf-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 8px transparent;
+  --pdf-thumbnail-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 8px transparent;
+}
+.theme-dark.anp-pdf-blend-toggle-dark .pdf-viewer .canvasWrapper,
+.theme-dark.anp-pdf-blend-toggle-dark .pdf-thumbnail-view .thumbnailImage,
+.theme-light.anp-pdf-blend-toggle-light .pdf-viewer .canvasWrapper,
+.theme-light.anp-pdf-blend-toggle-light .pdf-thumbnail-view .thumbnailImage {
+  filter: invert(1) hue-rotate(180deg);
+  mix-blend-mode: screen;
+}
+.theme-dark.anp-pdf-blend-toggle-dark .pdf-viewer,
+.theme-light.anp-pdf-blend-toggle-light .pdf-viewer {
+  background-color: var(--pdf-background);
+}
+.theme-dark.anp-pdf-blend-toggle-dark .pdf-viewer .page,
+.theme-light.anp-pdf-blend-toggle-light .pdf-viewer .page {
+  background-color: var(--background-primary);
+  border-color: var(--pdf-background);
+}
+/* 分隔符分页 */
+body.hr-for-pagination .markdown-rendered hr {
+  break-after: page;
+  visibility: hidden;
+}
+
+body.hr-for-pagination.fancy-hr-number .markdown-rendered hr:after {
+  break-after: page;
+  visibility: visible;
+}
+
+
+/* 基础完形填空样式 */
+.subscript-style .cm-content sub,
+.subscript-style .markdown-preview-view sub {
+  color: transparent;
+  border-bottom: 1px solid var(--text-muted);
+  font-size: inherit;
+  vertical-align: baseline;
+  top: 0;
+  transition: color 0.2s ease;
+}
+
+/* 鼠标悬停显示 */
+.cm-content sub:hover,
+.markdown-preview-view sub:hover {
+  color: var(--text-normal);
+}
+
+/* 通过 Style Settings 控制答案显示 */
+.show-all-answers .cm-content sub,
+.show-all-answers .markdown-preview-view sub {
+  color: var(--text-normal);
+}
+
+
+/* 滚动条样式 */
+
+
+body {
+  /* 鼠标移入时的颜色 */
+  --scrollbar-color-movein: hsla(var(--color-accent-hsl), 24%);
+  /* 鼠标点击时的颜色 */
+  --scrollbar-color-active: hsla(var(--color-accent-hsl), 64%);
+  --animation: var(--anim-duration-fast) var(--anim-motion-smooth);
+}
+
+/* ! overflow: overlay is deprecated */
+body.scrollbar-gutter-overlay :is(.vertical-tab-header, .vertical-tab-content, .nav-files-container, .view-content, .search-result-container, .git-view-body, .suggestion-container .suggestion, .prompt-results, .community-modal-search-results-wrapper, .community-modal-info, .modal:not(.mod-settings, .mod-community-theme, .mod-community-plugin), .tag-container, .backlink-pane, .workspace-leaf-content[data-type=markdown] .cm-scroller, .markdown-preview-view, .workspace-leaf-content[data-type=calendar] .view-content, .janitor-scan-results, .excalidraw-wrapper :is(.App-mobile-menu, .App-menu .Stack .Island.App-menu__left, .scrollbar), .excalidraw-contextMenuContainer .popover, .kanban-plugin__board, .kanban-plugin__lane-items) {
+  overflow-y: overlay !important;
+}
+body.scrollbar-gutter-overlay .workspace .mod-root .workspace-tabs.mod-stacked .workspace-tab-container, body.scrollbar-gutter-overlay mjx-container, body.scrollbar-gutter-overlay .markdown-embed-content .markdown-rendered, body.scrollbar-gutter-overlay pre code {
+  overflow-x: overlay !important;
+}
+
+body.scrollbar-gutter-reserve {
+  --setting-scrollbar-gutter: stable;
+}
+
+body.scrollbar-hover-accent {
+  --setting-scrollbar-hover: hsla(var(--color-accent-hsl), 40%);
+}
+
+
+@property --scrollbar-color {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: rgba(0, 0, 0, 0);
+}
+::-webkit-scrollbar {
+  width: var(--size-4-3) !important;
+  height: var(--size-4-3) !important;
+  background-color: transparent !important;
+}
+::-webkit-scrollbar-track {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: var(--size-2-3) !important;
+  border: 3.6px solid transparent !important;
+  background-color: var(--scrollbar-color) !important;
+}
+::-webkit-scrollbar-thumb:hover {
+  --scrollbar-color: var(--setting-scrollbar-hover);
+}
+::-webkit-scrollbar-thumb:active {
+  --scrollbar-color: hsla(var(--color-accent-hsl), 64%);
+}
+
+body:not(.scrollbar-movein-animation) {
+  --scrollbar-color: hsla(var(--color-accent-hsl), 24%);
+}
+
+body.scrollbar-movein-animation :is(.vertical-tab-header, .vertical-tab-content, .nav-files-container, .view-content, .search-result-container, .git-view-body, .suggestion-container .suggestion, .prompt-results, .community-modal-search-results-wrapper, .community-modal-info, .modal:not(.mod-settings, .mod-community-theme, .mod-community-plugin), .tag-container, .backlink-pane, .workspace-leaf-content[data-type=markdown] .cm-scroller, .markdown-preview-view, .workspace .mod-root .workspace-tabs.mod-stacked .workspace-tab-container, mjx-container, .markdown-embed-content .markdown-rendered, pre code, .workspace-leaf-content[data-type=calendar] .view-content, .janitor-scan-results, .excalidraw-wrapper :is(.App-mobile-menu, .App-menu .Stack .Island.App-menu__left, .scrollbar), .excalidraw-contextMenuContainer .popover, .kanban-plugin__board, .kanban-plugin__lane-items) {
+  transition: --scrollbar-color var(--animation);
+  scrollbar-gutter: var(--setting-scrollbar-gutter, initial);
+}
+body.scrollbar-movein-animation :is(.vertical-tab-header, .vertical-tab-content, .nav-files-container, .view-content, .search-result-container, .git-view-body, .suggestion-container .suggestion, .prompt-results, .community-modal-search-results-wrapper, .community-modal-info, .modal:not(.mod-settings, .mod-community-theme, .mod-community-plugin), .tag-container, .backlink-pane, .workspace-leaf-content[data-type=markdown] .cm-scroller, .markdown-preview-view, .workspace .mod-root .workspace-tabs.mod-stacked .workspace-tab-container, mjx-container, .markdown-embed-content .markdown-rendered, pre code, .workspace-leaf-content[data-type=calendar] .view-content, .janitor-scan-results, .excalidraw-wrapper :is(.App-mobile-menu, .App-menu .Stack .Island.App-menu__left, .scrollbar), .excalidraw-contextMenuContainer .popover, .kanban-plugin__board, .kanban-plugin__lane-items):hover {
+  --scrollbar-color: hsla(var(--color-accent-hsl), 24%);
+}
+body.scrollbar-movein-animation textarea {
+  color: transparent;
+  transition: color var(--animation);
+  -webkit-text-fill-color: var(--text-normal);
+}
+body.scrollbar-movein-animation textarea:hover {
+  color: hsla(var(--color-accent-hsl), 24%);
+}
+body.scrollbar-movein-animation textarea * {
+  -webkit-text-fill-color: initial;
+}
+body.scrollbar-movein-animation textarea::-webkit-scrollbar-thumb {
+  box-shadow: 0 0 0 10px inset;
+  border-width: 3.2px;
+  background-clip: content-box;
+  background-color: transparent !important;
+}
+
+body.scrollbar-smooth.scrollbar-smooth-editor .workspace-leaf-content[data-type=markdown] .cm-scroller, .markdown-preview-view,
+body.scrollbar-smooth :is(.vertical-tab-header, .vertical-tab-content, .nav-files-container, .view-content, .search-result-container, .git-view-body, .suggestion-container .suggestion, .prompt-results, .community-modal-search-results-wrapper, .community-modal-info, .modal:not(.mod-settings, .mod-community-theme, .mod-community-plugin), .tag-container, .backlink-pane, .workspace .mod-root .workspace-tabs.mod-stacked .workspace-tab-container, mjx-container, .markdown-embed-content .markdown-rendered, pre code, .workspace-leaf-content[data-type=calendar] .view-content, .janitor-scan-results, .excalidraw-wrapper :is(.App-mobile-menu, .App-menu .Stack .Island.App-menu__left, .scrollbar), .excalidraw-contextMenuContainer .popover, .kanban-plugin__board, .kanban-plugin__lane-items) {
+  scroll-behavior: smooth;
+}
+
+/* 隐藏状态栏 */
+
+.enable-custom-status-bar .status-bar,
+.enable-custom-status-bar .is-translucent .status-bar {
+    background: transparent;
+    font-size: 12px;
+    position: fixed;
+    left: 110;
+    backdrop-filter: blur(15px);
+    border-top: 1px solid var(--shade-plus-darker);
+    border-left: 1px solid var(--shade-plus-darker);
+    border-radius: 5px 0px 0px 0px;
+    line-height: 1;
+    padding: 8px 12px 8px 0;
+    color: var(--text-muted);
+    max-height: unset;
+    margin-left: 300px;
+    opacity: 0.01;
+    transition: .2s;
+}
+
+.enable-custom-status-bar .status-bar:hover {
+    opacity: 1;
+    transition: .2s;
+}
+
+.enable-custom-status-bar .status-bar-item {
+    padding: 0 0 0 10px;
+}
+
+.enable-custom-status-bar .status-bar-item-segment {
+    margin-right: 0; 
+}
+
+.enable-custom-status-bar .status-bar-item-segment:last-child {
+    display: inline-block;
+}
+
+.enable-custom-status-bar .status-bar-item-icon {
+    display: block;
+}
+
+.enable-custom-status-bar .status-bar-item-icon svg {
+    display: block;
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+}
+
+
+/* 网格背景 */
+.theme-dark.enable-grid-background {
+  --bg-color-notebook: #2a2825;
+  --grid-notebook-line-color-1: #c7c7c71f;
+  --grid-notebook-line-color-2: #74747440;
+  --dotted-notebook-dot-color: #c7c7c71f;
+}
+
+.theme-light.enable-grid-background {
+  --bg-color-notebook: #fef9f1;
+  --grid-notebook-line-color-1: #c7c7c740;
+  --grid-notebook-line-color-2: #afafaf40;
+  --dotted-notebook-dot-color: #c7c7c780;
+}
+
+.enable-grid-background .markdown-reading-view .markdown-rendered,
+.enable-grid-background .markdown-source-view.mod-cm6 .cm-scroller {
+  background-image:
+      linear-gradient(var(--grid-notebook-line-color-2) 1px, transparent 0),
+      linear-gradient(90deg, var(--grid-notebook-line-color-2) 1px, transparent 0),
+      linear-gradient(var(--grid-notebook-line-color-1) 1px, transparent 0),
+      linear-gradient(90deg, var(--grid-notebook-line-color-1) 1px, transparent 0);
+  background-size: 75px 75px, 75px 75px, 15px 15px, 15px 15px;
+}
+
+.enable-grid-background .markdown-reading-view .markdown-rendered,
+.enable-grid-background .markdown-source-view.mod-cm6 .cm-scroller {
+  background-attachment: local !important;
+}
+
+/* 居左布局 */
+.image-mask-rounded,
+.image-mask-circle,
+.image-mask-default,
+.image-mask-blinds {
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  pointer-events: none;
+}
+
+/* 居右布局 */
+.image-mask-rounded-R,
+.image-mask-circle-R,
+.image-mask-default-R,
+.image-mask-blinds-R {
+  float: right;
+  margin: 10px;
+  pointer-events: none;
+}
+/* 修复图片交互：允许点击图片，避免浮动容器遮挡光标 */
+.image-mask-rounded img,
+.image-mask-circle img,
+.image-mask-default img,
+.image-mask-blinds img,
+.image-mask-rounded-R img,
+.image-mask-circle-R img,
+.image-mask-default-R img,
+.image-mask-blinds-R img {
+  pointer-events: auto;
+  position: relative;
+  z-index: 1;
+  vertical-align: bottom; /* 修复底部圆角显示不全的问题（消除基线间隙） */
+}
+/* 圆角遮罩 */
+.image-mask-rounded,
+.image-mask-rounded-R{
+  display: inline-block;
+  overflow: hidden;
+  border-radius: 8px;
+  /* float 和 margin 已通过通用样式添加 */
+}
+
+/* 圆形遮罩 */
+.image-mask-circle,
+.image-mask-circle-R {
+  display: inline-block;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+
+/* 百叶窗遮罩样式 */
+.image-mask-blinds,
+.image-mask-blinds-R {
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+  --stripe-width: 50px;     /* 条纹总宽度 */
+  --stripe-gap: 5px;        /* 条纹间距 */
+  --angle: -90deg;          /* 倾斜角度 */
+
+  /* 全宽渐变的条纹遮罩 */
+  -webkit-mask-image: repeating-linear-gradient(
+    var(--angle),
+    transparent 0,
+    transparent var(--stripe-gap),
+    /* 左边开始完全显示 */
+    black var(--stripe-gap),
+    /* 一系列渐变步骤 */
+    rgba(118, 23, 23, 0.95) calc(var(--stripe-gap) + var(--stripe-width)*0.1),
+    rgba(0,0,0,0.9) calc(var(--stripe-gap) + var(--stripe-width)*0.2),
+    rgba(0,0,0,0.8) calc(var(--stripe-gap) + var(--stripe-width)*0.3),
+    rgba(0,0,0,0.7) calc(var(--stripe-gap) + var(--stripe-width)*0.4),
+    rgba(0,0,0,0.6) calc(var(--stripe-gap) + var(--stripe-width)*0.5),
+    rgba(0,0,0,0.5) calc(var(--stripe-gap) + var(--stripe-width)*0.6),
+    rgba(0,0,0,0.4) calc(var(--stripe-gap) + var(--stripe-width)*0.7),
+    rgba(0,0,0,0.3) calc(var(--stripe-gap) + var(--stripe-width)*0.8),
+    rgba(0,0,0,0.2) calc(var(--stripe-gap) + var(--stripe-width)*0.9),
+    rgba(0,0,0,0) calc(var(--stripe-gap) + var(--stripe-width)),
+    transparent calc(var(--stripe-gap) + var(--stripe-width))
+  );
+  
+  mask-image: repeating-linear-gradient(
+    var(--angle),
+    transparent 0,
+    transparent var(--stripe-gap),
+    /* 左边开始完全显示 */
+    black var(--stripe-gap),
+    /* 一系列渐变步骤 */
+    rgba(0,0,0,0.95) calc(var(--stripe-gap) + var(--stripe-width)*0.1),
+    rgba(0,0,0,0.9) calc(var(--stripe-gap) + var(--stripe-width)*0.2),
+    rgba(0,0,0,0.8) calc(var(--stripe-gap) + var(--stripe-width)*0.3),
+    rgba(0,0,0,0.7) calc(var(--stripe-gap) + var(--stripe-width)*0.4),
+    rgba(0,0,0,0.6) calc(var(--stripe-gap) + var(--stripe-width)*0.5),
+    rgba(0,0,0,0.5) calc(var(--stripe-gap) + var(--stripe-width)*0.6),
+    rgba(0,0,0,0.4) calc(var(--stripe-gap) + var(--stripe-width)*0.7),
+    rgba(0,0,0,0.3) calc(var(--stripe-gap) + var(--stripe-width)*0.8),
+    rgba(0,0,0,0.2) calc(var(--stripe-gap) + var(--stripe-width)*0.9),
+    rgba(0,0,0,0) calc(var(--stripe-gap) + var(--stripe-width)),
+    transparent calc(var(--stripe-gap) + var(--stripe-width))
+  );
+}
+/* 搜索结果模态窗口样式 */
+.search-result-title {
+  color: var(--text-accent);
+  border-bottom: 2px solid var(--background-modifier-border);
+  padding-bottom: 0.5em;
+  margin-bottom: 1em;
+}
+
+.search-result-scroll {
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.file-title {
+  color: var(--text-normal);
+  font-weight: 600;
+  margin: 1em 0 0.5em;
+  padding: 4px 8px;
+  background: var(--background-secondary);
+  border-radius: 4px;
+}
+
+.match-block {
+  margin: 0.8em 0;
+  padding: 0.8em;
+  background: var(--background-primary-alt);
+  border-radius: 4px;
+  border: 1px solid var(--background-modifier-border);
+}
+
+.match-index {
+  color: var(--text-muted);
+  font-size: 0.9em;
+  margin-bottom: 0.5em;
+}
+
+.markdown-preview {
+  font-family: var(--font-monospace);
+  padding: 0.5em;
+  background: var(--background-secondary);
+  border-radius: 3px;
+  white-space: pre-wrap;
+}
+
+.modal-action-bar {
+  display: flex;
+  gap: 8px;
+  margin-top: 1em;
+  padding-top: 1em;
+  border-top: 1px solid var(--background-modifier-border);
+}
+
+.file-divider {
+  margin: 1.5em 0;
+  border-color: var(--background-modifier-border);
+}
+
+.markdown-rendered :is(p,pre,table,ul,ol) + :is(h1,h2,h3,h4,h5,h6), 
+.markdown-rendered div:is(.el-p,.el-pre,.el-table,.el-ul,.el-ol) + div > :is(h1,h2,h3,h4,h5,h6){
+  margin-top: auto;
+}
+
+/* 进度条 */
+progress{
+  margin-right: 0px;
+}
+.notice progress, 
+.markdown-preview-view progress, 
+.markdown-rendered progress, 
+.markdown-source-view.is-live-preview progress{
+  height: 3px;
+}
+
+/* mermaid */
+.mermaid svg {
+  max-width: 800px;;
+}
+
+/* canvas节点不显示标题 */
+.canvas-node-content [data-heading*="Note"] {
+  display: none !important;
+}
+/* datacore 表格 */
+.datacore-table > tbody > tr > td{
+  font-size: small;
+  border-bottom: 0.1px solid #6b628067;
+}
+.datacore-table > thead > tr > th{
+  font-size: small;
+}
+

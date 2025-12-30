@@ -1,0 +1,371 @@
+{
+  "apiKey": "",
+  "baseUrl": "",
+  "model": "",
+  "providers": {
+    "openai": {
+      "apiKey": "",
+      "baseUrl": "https://api.openai.com/v1",
+      "enabled": true,
+      "apiKeyLink": "https://platform.openai.com/api-keys"
+    },
+    "anthropic": {
+      "apiKey": "",
+      "baseUrl": "https://api.anthropic.com/v1",
+      "enabled": true,
+      "apiKeyLink": "https://console.anthropic.com/"
+    },
+    "gemini": {
+      "apiKey": "",
+      "baseUrl": "https://generativelanguage.googleapis.com/v1beta/openai",
+      "enabled": true,
+      "apiKeyLink": "https://aistudio.google.com/app/apikey"
+    },
+    "deepseek": {
+      "apiKey": "",
+      "baseUrl": "https://api.deepseek.com/v1",
+      "enabled": true,
+      "apiKeyLink": "https://platform.deepseek.com/api_keys"
+    },
+    "ollama": {
+      "apiKey": "ollama",
+      "baseUrl": "http://localhost:11434/v1",
+      "enabled": true
+    },
+    "kimi": {
+      "apiKey": "",
+      "baseUrl": "https://api.moonshot.cn/v1",
+      "enabled": true,
+      "apiKeyLink": "https://platform.moonshot.cn/console/api-keys"
+    },
+    "doubao": {
+      "apiKey": "",
+      "baseUrl": "https://ark.cn-beijing.volces.com/api/v3/",
+      "enabled": true,
+      "apiKeyLink": "https://console.volcengine.com/ark/region"
+    },
+    "qwen": {
+      "apiKey": "",
+      "baseUrl": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+      "enabled": true,
+      "apiKeyLink": "https://bailian.console.aliyun.com/?tab=model#/api-key"
+    }
+  },
+  "models": {
+    "claude-3.7-sonnet": {
+      "id": "claude-3.7-sonnet",
+      "name": "Claude 3.7 Sonnet",
+      "provider": "anthropic",
+      "model": "claude-3-7-sonnet-latest",
+      "actualModel": "claude-3-7-sonnet-latest",
+      "type": "chat",
+      "enabled": true,
+      "category": "text"
+    },
+    "claude-sonnet-4": {
+      "id": "claude-sonnet-4",
+      "name": "Claude Sonnet 4",
+      "provider": "anthropic",
+      "model": "claude-sonnet-4-20250514",
+      "actualModel": "claude-sonnet-4-20250514",
+      "type": "chat",
+      "enabled": true,
+      "category": "text"
+    },
+    "gpt-4.1": {
+      "id": "gpt-4.1",
+      "name": "GPT-4.1",
+      "provider": "openai",
+      "model": "gpt-4.1",
+      "actualModel": "gpt-4.1",
+      "type": "chat",
+      "enabled": true,
+      "category": "text"
+    },
+    "gpt-5": {
+      "id": "gpt-5",
+      "name": "GPT-5",
+      "provider": "openai",
+      "model": "gpt-5",
+      "actualModel": "gpt-5",
+      "type": "chat",
+      "enabled": true,
+      "category": "text"
+    },
+    "dall-e-3": {
+      "id": "dall-e-3",
+      "name": "DALL-E 3",
+      "provider": "openai",
+      "model": "dall-e-3",
+      "actualModel": "dall-e-3",
+      "type": "image",
+      "enabled": true,
+      "category": "image"
+    },
+    "deepseek-chat": {
+      "id": "deepseek-chat",
+      "name": "DeepSeek Chat",
+      "provider": "deepseek",
+      "model": "deepseek-chat",
+      "actualModel": "deepseek-chat",
+      "type": "chat",
+      "enabled": true,
+      "category": "text"
+    },
+    "deepseek-reasoner": {
+      "id": "deepseek-reasoner",
+      "name": "DeepSeek Reasoner",
+      "provider": "deepseek",
+      "model": "deepseek-reasoner",
+      "actualModel": "deepseek-reasoner",
+      "type": "chat",
+      "enabled": true,
+      "category": "thinking"
+    },
+    "gemini-2.5-pro": {
+      "id": "gemini-2.5-pro",
+      "name": "Gemini 2.5 Pro",
+      "provider": "gemini",
+      "model": "gemini-2.5-pro",
+      "actualModel": "gemini-2.5-pro",
+      "type": "chat",
+      "enabled": true,
+      "category": "multimodal"
+    },
+    "gemini-2.5-flash": {
+      "id": "gemini-2.5-flash",
+      "name": "Gemini 2.5 Flash",
+      "provider": "gemini",
+      "model": "gemini-2.5-flash",
+      "actualModel": "gemini-2.5-flash",
+      "type": "chat",
+      "enabled": true,
+      "category": "multimodal"
+    },
+    "imagen-3.0-generate": {
+      "id": "imagen-3.0-generate",
+      "name": "Imagen 3.0 Generate",
+      "provider": "gemini",
+      "model": "imagen-3.0-generate-002",
+      "actualModel": "imagen-3.0-generate-002",
+      "type": "image",
+      "enabled": true,
+      "category": "image"
+    },
+    "kimi-k2-0905-preview": {
+      "id": "kimi-k2-0905-preview",
+      "name": "Kimi K2",
+      "provider": "kimi",
+      "model": "kimi-k2-0905-preview",
+      "actualModel": "kimi-k2-0905-preview",
+      "type": "chat",
+      "enabled": true,
+      "category": "text"
+    },
+    "doubao-seed-1-6-250615": {
+      "id": "doubao-seed-1-6-250615",
+      "name": "Doubao Seed 1.6",
+      "provider": "doubao",
+      "model": "doubao-seed-1-6-250615",
+      "actualModel": "doubao-seed-1-6-250615",
+      "type": "chat",
+      "enabled": true,
+      "category": "thinking"
+    },
+    "doubao-seedream-3-0-t2i-250415": {
+      "id": "doubao-seedream-3-0-t2i-250415",
+      "name": "Doubao Seedream 3.0",
+      "provider": "doubao",
+      "model": "doubao-seedream-3-0-t2i-250415",
+      "actualModel": "doubao-seedream-3-0-t2i-250415",
+      "type": "image",
+      "enabled": true,
+      "category": "image"
+    },
+    "kimi-k2-thinking": {
+      "id": "kimi-k2-thinking",
+      "name": "kimi-k2-thinking",
+      "provider": "kimi",
+      "model": "kimi-k2-thinking",
+      "actualModel": "kimi-k2-thinking",
+      "category": "thinking",
+      "enabled": true
+    },
+    "qwen-plus": {
+      "id": "qwen-plus",
+      "name": "qwen-plus",
+      "provider": "Qwen",
+      "model": "qwen-plus",
+      "actualModel": "qwen-plus",
+      "category": "text",
+      "enabled": true
+    },
+    "qwen-vl-plus": {
+      "id": "qwen-vl-plus",
+      "name": "qwen-vl-plus",
+      "provider": "Qwen",
+      "model": "qwen-vl-plus",
+      "actualModel": "qwen-vl-plus",
+      "category": "vision",
+      "enabled": true
+    }
+  },
+  "currentModel": "deepseek-chat",
+  "timeout": 30000,
+  "enableRightClick": true,
+  "enableAtTrigger": true,
+  "continueMode": "balanced",
+  "maxTokens": 5000,
+  "geminiReasoningEffort": "low",
+  "shortcuts": {
+    "continueText": "Ctrl+Shift+C"
+  },
+  "commonPrompts": [
+    {
+      "id": "expand",
+      "name": "扩展内容",
+      "content": "请扩展这段内容，增加更多细节和例子"
+    },
+    {
+      "id": "summarize",
+      "name": "总结概括",
+      "content": "请总结这段内容的要点"
+    },
+    {
+      "id": "improve",
+      "name": "改进文本",
+      "content": "请改进这段文本的表达和逻辑"
+    },
+    {
+      "id": "translate",
+      "name": "翻译",
+      "content": "请将这段内容翻译成英文"
+    },
+    {
+      "id": "continue",
+      "name": "继续写作",
+      "content": "请根据上下文继续写作，保持风格一致"
+    },
+    {
+      "id": "RealisticsScenes",
+      "name": "🌅 逼真场景",
+      "content": "一张以[环境]为背景的，具有[主体]、[动作或表情]的逼真[镜头类型]照片。场景由[灯光描述]照亮，营造[情绪]氛围。使用[相机/镜头细节]拍摄，突出[关键纹理和细节]。图像应采用[宽高比]格式。"
+    },
+    {
+      "id": "IllustrationsAndStickers",
+      "name": "🌅 风格化插画和贴纸",
+      "content": "一个[主题]的[风格]贴纸，包含[主要特征]和[配色方案]。设计应包含[线条样式]和[阴影样式]。背景必须透明。"
+    },
+    {
+      "id": "PicturesWithText",
+      "name": "🌅 文字图片",
+      "content": "为[品牌/概念]创建[图片类型]，并在[字体样式]中添加文本\"[待渲染文本]\"。设计应为[样式描述]，并采用[配色方案]。"
+    },
+    {
+      "id": "CommercialPhotography",
+      "name": "🌅 产品模型和商业摄影",
+      "content": "一张高分辨率、工作室灯光下的产品照片，以[产品描述]为背景，展现[背景表面/描述]。灯光采用[照明设置，例如三点式柔光箱]，以达到[照明目的]。拍摄角度采用[角度类型]，以展现[特定功能]。超逼真，清晰对焦[关键细节]。[宽高比]。"
+    }
+  ],
+  "globalRules": [
+    {
+      "id": "rule_1755530387418_hqeo7cahl",
+      "name": "数学公式格式",
+      "content": "公式需要遵循以下Latex格式，并且只输出公式本身（前后$以及包裹的内容，$符号与包裹的内容之间不能有空格），未明确输入公式为单行或多行时，默认使用单行公式\n单行公式：$公式$\n多行公式：\n$$\n公式\n$$",
+      "description": "采用Latex格式",
+      "category": "format",
+      "priority": 9,
+      "enabled": true,
+      "createdAt": 1755530387418,
+      "updatedAt": 1755533815951
+    },
+    {
+      "id": "rule_1755532985773_lk0ybaxay",
+      "name": "YAML格式",
+      "content": "若笔记中顶部位置包含YAML区域（前后---符号包裹），在输出内容时，需要保持YAML区域前后的---符号不变",
+      "description": "YAML格式",
+      "category": "format",
+      "priority": 9,
+      "enabled": true,
+      "createdAt": 1755532985773,
+      "updatedAt": 1755532985773
+    },
+    {
+      "id": "rule_1755533236905_yik6ximru",
+      "name": "属性字段格式",
+      "content": "YAML区域内的字段，如果包含tags、aliases、cssclasses字段，其字段值必须采用无序列表数组格式（其中cssclasses字段值不要修改），例如：\ntags: \n - 标签1\n - 标签2\n\naliases:\n - 别名1\n - 别名2",
+      "description": "tags、aliases、cssclasses属性",
+      "category": "format",
+      "priority": 9,
+      "enabled": true,
+      "createdAt": 1755533236905,
+      "updatedAt": 1755533637754
+    },
+    {
+      "id": "rule_1755534125515_lbwla58f9",
+      "name": "代码块内容处理",
+      "content": "除非提示词明确要求修改代码内容，否则前后```符号包裹的代码块内容（也可能是多个反引号代码块包裹的内容），不允许修改",
+      "description": "",
+      "category": "custom",
+      "priority": 9,
+      "enabled": true,
+      "createdAt": 1755534125515,
+      "updatedAt": 1755534186528
+    },
+    {
+      "id": "rule_1755575228972_f3aunhozx",
+      "name": "语言设置",
+      "content": "请使用简体中文回复",
+      "description": "",
+      "category": "language",
+      "priority": 9,
+      "enabled": true,
+      "createdAt": 1755575228972,
+      "updatedAt": 1755575238871
+    }
+  ],
+  "enableGlobalRules": true,
+  "ruleTemplates": [
+    {
+      "id": "writing-style-formal",
+      "name": "正式写作风格",
+      "description": "使用正式、专业的写作风格",
+      "content": "请使用正式、专业的语言风格，避免口语化表达，确保逻辑清晰、表达准确。",
+      "category": "writing"
+    },
+    {
+      "id": "writing-style-casual",
+      "name": "轻松写作风格",
+      "description": "使用轻松、友好的写作风格",
+      "content": "请使用轻松、友好的语言风格，可以适当使用口语化表达，让内容更加亲切易懂。",
+      "category": "writing"
+    },
+    {
+      "id": "format-markdown",
+      "name": "Markdown格式",
+      "description": "确保输出符合Markdown格式规范",
+      "content": "请确保输出内容符合Markdown格式规范，正确使用标题、列表、代码块等格式。",
+      "category": "format"
+    },
+    {
+      "id": "content-detailed",
+      "name": "详细说明",
+      "description": "提供详细的说明和例子",
+      "content": "请提供详细的说明，包含具体的例子和实际应用场景，帮助读者更好地理解。",
+      "category": "writing"
+    },
+    {
+      "id": "language-chinese",
+      "name": "中文输出",
+      "description": "确保输出为简体中文",
+      "content": "请确保所有输出内容都使用简体中文，表达要符合中文的语言习惯。",
+      "category": "language"
+    }
+  ],
+  "imageSavePath": "Extras/附件",
+  "imageSize": 300,
+  "imageGenerationSize": "1024x1024",
+  "guidanceScale": 2.5,
+  "maxContextLines": 20,
+  "maxContextChars": 3000
+}

@@ -1,0 +1,631 @@
+{
+  "choices": [
+    {
+      "id": "d638770f-9d79-48aa-8875-450a48ded209",
+      "name": "创建人物卡片",
+      "type": "Template",
+      "command": true,
+      "templatePath": "Assistants/Templater/人脉/人物卡片模板",
+      "fileNameFormat": {
+        "enabled": false,
+        "format": ""
+      },
+      "folder": {
+        "enabled": true,
+        "folders": [
+          "Connections/人物"
+        ],
+        "chooseWhenCreatingNote": false,
+        "createInSameFolderAsActiveFile": false,
+        "chooseFromSubfolders": false
+      },
+      "appendLink": false,
+      "openFileInNewTab": {
+        "enabled": true,
+        "direction": "vertical",
+        "focus": true
+      },
+      "openFile": true,
+      "openFileInMode": "default",
+      "fileExistsMode": "Increment the file name",
+      "setFileExistsBehavior": true
+    },
+    {
+      "id": "10c0f39a-04b3-4b09-abb0-a171597efe3f",
+      "name": "创建公司卡片",
+      "type": "Template",
+      "command": true,
+      "templatePath": "Assistants/Templater/人脉/公司卡片模板",
+      "fileNameFormat": {
+        "enabled": false,
+        "format": ""
+      },
+      "folder": {
+        "enabled": true,
+        "folders": [
+          "Connections/公司"
+        ],
+        "chooseWhenCreatingNote": false,
+        "createInSameFolderAsActiveFile": false,
+        "chooseFromSubfolders": false
+      },
+      "appendLink": false,
+      "openFileInNewTab": {
+        "enabled": true,
+        "direction": "vertical",
+        "focus": true
+      },
+      "openFile": true,
+      "openFileInMode": "default",
+      "fileExistsMode": "Increment the file name",
+      "setFileExistsBehavior": true
+    },
+    {
+      "id": "0c5ff72e-b7ec-41e6-96a8-84a6b62503f1",
+      "name": "创建部门卡片",
+      "type": "Template",
+      "command": true,
+      "templatePath": "Assistants/Templater/人脉/部门卡片模板",
+      "fileNameFormat": {
+        "enabled": false,
+        "format": ""
+      },
+      "folder": {
+        "enabled": true,
+        "folders": [
+          "Connections/部门"
+        ],
+        "chooseWhenCreatingNote": false,
+        "createInSameFolderAsActiveFile": false,
+        "chooseFromSubfolders": false
+      },
+      "appendLink": false,
+      "openFileInNewTab": {
+        "enabled": true,
+        "direction": "vertical",
+        "focus": true
+      },
+      "openFile": true,
+      "openFileInMode": "default",
+      "fileExistsMode": "Increment the file name",
+      "setFileExistsBehavior": true
+    },
+    {
+      "id": "d4a0bed3-f430-487c-a7d9-30a87cf2d496",
+      "name": "创建物品卡片",
+      "type": "Template",
+      "command": true,
+      "templatePath": "Assistants/Templater/人脉/物品卡片模板.md",
+      "fileNameFormat": {
+        "enabled": false,
+        "format": ""
+      },
+      "folder": {
+        "enabled": true,
+        "folders": [
+          "Connections/物品"
+        ],
+        "chooseWhenCreatingNote": false,
+        "createInSameFolderAsActiveFile": false,
+        "chooseFromSubfolders": false
+      },
+      "appendLink": false,
+      "openFileInNewTab": {
+        "enabled": true,
+        "direction": "vertical",
+        "focus": true
+      },
+      "openFile": true,
+      "openFileInMode": "default",
+      "fileExistsMode": "Increment the file name",
+      "setFileExistsBehavior": true
+    },
+    {
+      "id": "87f09f63-b2d4-41e9-802c-fb7844189ee5",
+      "name": "创建Project笔记",
+      "type": "Template",
+      "command": true,
+      "templatePath": "Assistants/Templater/笔记/笔记模板-项目",
+      "fileNameFormat": {
+        "enabled": false,
+        "format": ""
+      },
+      "folder": {
+        "enabled": true,
+        "folders": [
+          "Documents/I.P.A.R.A/工作领域/项目",
+          "Documents/I.P.A.R.A/学习领域/项目",
+          "Documents/I.P.A.R.A/生活领域/项目"
+        ],
+        "chooseWhenCreatingNote": false,
+        "createInSameFolderAsActiveFile": false,
+        "chooseFromSubfolders": false
+      },
+      "appendLink": false,
+      "openFileInNewTab": {
+        "enabled": false,
+        "direction": "vertical",
+        "focus": true
+      },
+      "openFile": true,
+      "openFileInMode": "default",
+      "fileExistsMode": "Increment the file name",
+      "setFileExistsBehavior": true
+    },
+    {
+      "id": "762e745f-c470-46a9-8419-35a1518bcf20",
+      "name": "创建Resource笔记",
+      "type": "Template",
+      "command": true,
+      "templatePath": "Assistants/Templater/笔记/笔记模板-资源",
+      "fileNameFormat": {
+        "enabled": false,
+        "format": ""
+      },
+      "folder": {
+        "enabled": true,
+        "folders": [
+          "Documents/I.P.A.R.A/工作领域/资源",
+          "Documents/I.P.A.R.A/学习领域/资源",
+          "Documents/I.P.A.R.A/生活领域/资源"
+        ],
+        "chooseWhenCreatingNote": false,
+        "createInSameFolderAsActiveFile": false,
+        "chooseFromSubfolders": false
+      },
+      "appendLink": false,
+      "openFileInNewTab": {
+        "enabled": false,
+        "direction": "vertical",
+        "focus": true
+      },
+      "openFile": true,
+      "openFileInMode": "default",
+      "fileExistsMode": "Increment the file name",
+      "setFileExistsBehavior": true
+    },
+    {
+      "id": "270fac2d-c9aa-4aa0-97b4-0bd95827588e",
+      "name": "创建Archive笔记",
+      "type": "Template",
+      "command": true,
+      "templatePath": "Assistants/Templater/笔记/笔记模板-归档",
+      "fileNameFormat": {
+        "enabled": false,
+        "format": ""
+      },
+      "folder": {
+        "enabled": true,
+        "folders": [
+          "Documents/I.P.A.R.A/工作领域/归档",
+          "Documents/I.P.A.R.A/学习领域/归档",
+          "Documents/I.P.A.R.A/生活领域/归档"
+        ],
+        "chooseWhenCreatingNote": false,
+        "createInSameFolderAsActiveFile": false,
+        "chooseFromSubfolders": false
+      },
+      "appendLink": false,
+      "openFileInNewTab": {
+        "enabled": false,
+        "direction": "vertical",
+        "focus": true
+      },
+      "openFile": true,
+      "openFileInMode": "default",
+      "fileExistsMode": "Increment the file name",
+      "setFileExistsBehavior": true
+    },
+    {
+      "id": "e823d54a-f542-401d-bebe-d4d44b432266",
+      "name": "创建Inbox笔记",
+      "type": "Template",
+      "command": true,
+      "templatePath": "Assistants/Templater/笔记/笔记通用模板",
+      "fileNameFormat": {
+        "enabled": false,
+        "format": ""
+      },
+      "folder": {
+        "enabled": true,
+        "folders": [
+          "Documents/I.P.A.R.A/工作领域/收集",
+          "Documents/I.P.A.R.A/学习领域/收集",
+          "Documents/I.P.A.R.A/生活领域/收集"
+        ],
+        "chooseWhenCreatingNote": false,
+        "createInSameFolderAsActiveFile": false,
+        "chooseFromSubfolders": false
+      },
+      "appendLink": false,
+      "openFileInNewTab": {
+        "enabled": false,
+        "direction": "vertical",
+        "focus": true
+      },
+      "openFile": true,
+      "openFileInMode": "default",
+      "fileExistsMode": "Increment the file name",
+      "setFileExistsBehavior": true
+    },
+    {
+      "id": "7bd824b9-825a-4864-81fb-b1991ac83d8b",
+      "name": "创建会议记录",
+      "type": "Template",
+      "command": true,
+      "templatePath": "Assistants/Templater/笔记/会议记录模板.md",
+      "fileNameFormat": {
+        "enabled": false,
+        "format": ""
+      },
+      "folder": {
+        "enabled": true,
+        "folders": [
+          "Documents/I.P.A.R.A/0-收集箱"
+        ],
+        "chooseWhenCreatingNote": false,
+        "createInSameFolderAsActiveFile": false,
+        "chooseFromSubfolders": false
+      },
+      "appendLink": false,
+      "openFileInNewTab": {
+        "enabled": false,
+        "direction": "horizontal",
+        "focus": true
+      },
+      "openFile": true,
+      "openFileInMode": "default",
+      "fileExistsMode": "Overwrite the file",
+      "setFileExistsBehavior": true
+    },
+    {
+      "id": "013c5af3-a2a0-4b75-84c0-3ce3cdb05132",
+      "name": "创建canvas",
+      "type": "Template",
+      "command": true,
+      "templatePath": "",
+      "fileNameFormat": {
+        "enabled": false,
+        "format": ""
+      },
+      "folder": {
+        "enabled": true,
+        "folders": [],
+        "chooseWhenCreatingNote": false,
+        "createInSameFolderAsActiveFile": false,
+        "chooseFromSubfolders": false
+      },
+      "appendLink": false,
+      "openFileInNewTab": {
+        "enabled": true,
+        "direction": "horizontal",
+        "focus": true
+      },
+      "openFile": true,
+      "openFileInMode": "default",
+      "fileExistsMode": "Overwrite the file",
+      "setFileExistsBehavior": true
+    },
+    {
+      "id": "d637f68b-3fbb-4905-8c09-607a9d777c4f",
+      "name": "创建卡片盒笔记",
+      "type": "Template",
+      "command": true,
+      "templatePath": "Assistants/Templater/笔记/笔记通用模板.md",
+      "fileNameFormat": {
+        "enabled": false,
+        "format": ""
+      },
+      "folder": {
+        "enabled": true,
+        "folders": [
+          "Documents/I.P.A.R.A/工作领域/收集",
+          "Documents/I.P.A.R.A/学习领域/收集",
+          "Documents/I.P.A.R.A/生活领域/收集"
+        ],
+        "chooseWhenCreatingNote": false,
+        "createInSameFolderAsActiveFile": false,
+        "chooseFromSubfolders": false
+      },
+      "appendLink": false,
+      "openFileInNewTab": {
+        "enabled": false,
+        "direction": "vertical",
+        "focus": true
+      },
+      "openFile": true,
+      "openFileInMode": "default",
+      "fileExistsMode": "Increment the file name",
+      "setFileExistsBehavior": false
+    },
+    {
+      "id": "a7d6daab-b54a-49a4-b115-d1939510f662",
+      "name": "标签移动至指定文件夹",
+      "type": "Macro",
+      "command": true,
+      "macroId": "fd404d1a-1758-4e35-8532-f06a67ea4149"
+    },
+    {
+      "id": "41905ac8-48b2-4705-bba3-0155c2ff14a8",
+      "name": "反向链接重组笔记",
+      "type": "Macro",
+      "command": true,
+      "macroId": "acd25224-1a12-4a26-969a-bed2ba82be5b"
+    },
+    {
+      "id": "f98c3d47-d82d-491a-b35c-4f59a2c26ef0",
+      "name": "自动嵌入文件夹内所有文档链接",
+      "type": "Macro",
+      "command": true,
+      "macroId": "9d295ab0-6e0e-465e-b5c5-4e4064e97ea6"
+    },
+    {
+      "id": "a21f0898-e73b-462c-9ec5-f10e8cfafb8d",
+      "name": "一键显示所有完形填空",
+      "type": "Macro",
+      "command": true,
+      "macroId": "b10dfd64-69a3-4d4a-87b1-272136d75edc"
+    },
+    {
+      "id": "d4908ae4-6de5-4f50-912d-7ff1ee8d9369",
+      "name": "英文单词",
+      "type": "Template",
+      "command": true,
+      "templatePath": "Assistants/Templater/片段/英文单词.md",
+      "fileNameFormat": {
+        "enabled": false,
+        "format": ""
+      },
+      "folder": {
+        "enabled": true,
+        "folders": [],
+        "chooseWhenCreatingNote": false,
+        "createInSameFolderAsActiveFile": false,
+        "chooseFromSubfolders": false
+      },
+      "appendLink": false,
+      "openFileInNewTab": {
+        "enabled": false,
+        "direction": "vertical",
+        "focus": true
+      },
+      "openFile": true,
+      "openFileInMode": "default",
+      "fileExistsMode": "Increment the file name",
+      "setFileExistsBehavior": false
+    },
+    {
+      "id": "c07f2eab-9cec-42cf-ad56-fd6f9ffcfa5f",
+      "name": "今日需处理的笔记",
+      "type": "Macro",
+      "command": true,
+      "macroId": "d8a4e4b4-d0bf-4231-8933-e87f177a363d"
+    },
+    {
+      "id": "6c16de2b-5e87-41f8-80f9-e56bccbf3164",
+      "name": "卡片盒主题选择器",
+      "type": "Macro",
+      "command": true,
+      "macroId": "2e257936-7172-4f54-b1eb-7f836ab4dee4"
+    },
+    {
+      "id": "73a89623-7228-479a-9ca8-e531b2d4dcd7",
+      "name": "创建canvas主题索引卡",
+      "type": "Macro",
+      "command": true,
+      "macroId": "91bb7adc-d0b7-4e94-89d4-542a639fd009"
+    },
+    {
+      "id": "5c838b63-d750-452f-89a2-ace2b8588c05",
+      "name": "数据库中筛选主题",
+      "type": "Macro",
+      "command": true,
+      "macroId": "8dd435b0-20c1-4ce1-9c87-cfa4de72be01"
+    },
+    {
+      "id": "e96b198e-1777-47f8-8c62-8a627db7a413",
+      "name": "开启/关闭完型填空功能",
+      "type": "Macro",
+      "command": true,
+      "macroId": "2259c474-d790-45bb-afca-e4417267193f"
+    }
+  ],
+  "macros": [
+    {
+      "name": "将带有标签的笔记移动至指定文件夹",
+      "id": "fd404d1a-1758-4e35-8532-f06a67ea4149",
+      "commands": [
+        {
+          "name": "tagsToFolder",
+          "type": "UserScript",
+          "id": "44399085-9ff4-4465-ad62-380f83c40153",
+          "path": "Assistants/Templater/Scrip（用于更新，勿删）/tagsToFolder.js",
+          "settings": {}
+        }
+      ],
+      "runOnStartup": false
+    },
+    {
+      "name": "反向链接重组笔记",
+      "id": "acd25224-1a12-4a26-969a-bed2ba82be5b",
+      "commands": [
+        {
+          "name": "backlink-quickadd+meta bind版本",
+          "type": "UserScript",
+          "id": "1fb7381c-be7a-4ba9-a3b9-57489836f22e",
+          "path": "Assistants/Templater/其他/backlink-quickadd+meta bind版本.js",
+          "settings": {}
+        }
+      ],
+      "runOnStartup": false
+    },
+    {
+      "name": "自动嵌入文件夹内所有文档链接",
+      "id": "9d295ab0-6e0e-465e-b5c5-4e4064e97ea6",
+      "commands": [
+        {
+          "name": "folderDocumentsLinker",
+          "type": "UserScript",
+          "id": "8c3831e2-cb66-43c7-b9ce-9d3f66a34851",
+          "path": "Assistants/Templater/其他/folderDocumentsLinker.js",
+          "settings": {}
+        }
+      ],
+      "runOnStartup": false
+    },
+    {
+      "name": "Toggle Cloze Answers",
+      "id": "b10dfd64-69a3-4d4a-87b1-272136d75edc",
+      "commands": [
+        {
+          "name": "toggle-cloze-answers",
+          "type": "UserScript",
+          "id": "75a6d427-e095-4464-8ba6-6660796a96cb",
+          "path": "Assistants/Templater/其他/toggle-cloze-answers.js",
+          "settings": {}
+        }
+      ],
+      "runOnStartup": false
+    },
+    {
+      "name": "今日需处理笔记",
+      "id": "d8a4e4b4-d0bf-4231-8933-e87f177a363d",
+      "commands": [
+        {
+          "name": "today-notification-script",
+          "type": "UserScript",
+          "id": "08394358-3d6c-4344-84b6-0d190a6dc343",
+          "path": "Assistants/Templater/辅助/JS辅助脚本/today-notification-script.js",
+          "settings": {}
+        }
+      ],
+      "runOnStartup": false
+    },
+    {
+      "name": "主题索引卡选择器",
+      "id": "2e257936-7172-4f54-b1eb-7f836ab4dee4",
+      "commands": [
+        {
+          "name": "select-canvas-theme-card",
+          "type": "UserScript",
+          "id": "9e98c2b3-f6b4-4269-b80e-2e03376d42f3",
+          "path": "Assistants/Templater/辅助/JS辅助脚本/select-canvas-theme-card.js",
+          "settings": {}
+        }
+      ],
+      "runOnStartup": false
+    },
+    {
+      "name": "创建canvas主题索引卡",
+      "id": "91bb7adc-d0b7-4e94-89d4-542a639fd009",
+      "commands": [
+        {
+          "name": "create-canvas-theme-card",
+          "type": "UserScript",
+          "id": "79201605-5491-4644-a149-27639da6cda5",
+          "path": "Assistants/Templater/辅助/JS辅助脚本/create-canvas-theme-card.js",
+          "settings": {}
+        }
+      ],
+      "runOnStartup": false
+    },
+    {
+      "name": "数据库中筛选主题",
+      "id": "8dd435b0-20c1-4ce1-9c87-cfa4de72be01",
+      "commands": [
+        {
+          "name": "topic-Card-Filter",
+          "type": "UserScript",
+          "id": "588de7a8-6899-4d73-a160-fb102fcc63b8",
+          "path": "Assistants/Templater/辅助/JS辅助脚本/topic-Card-Filter.js",
+          "settings": {}
+        }
+      ],
+      "runOnStartup": false
+    },
+    {
+      "name": "开启或关闭完型填空功能",
+      "id": "2259c474-d790-45bb-afca-e4417267193f",
+      "commands": [
+        {
+          "name": "toggle-cloze-sub",
+          "type": "UserScript",
+          "id": "0c238a87-28a1-4736-a29c-2049ea335653",
+          "path": "Assistants/Templater/其他/toggle-cloze-sub.js",
+          "settings": {}
+        }
+      ],
+      "runOnStartup": false
+    }
+  ],
+  "inputPrompt": "multi-line",
+  "devMode": false,
+  "templateFolderPath": "Assistants",
+  "announceUpdates": false,
+  "version": "1.8.1",
+  "disableOnlineFeatures": false,
+  "ai": {
+    "defaultModel": "Ask me",
+    "defaultSystemPrompt": "As an AI assistant within Obsidian, your primary goal is to help users manage their ideas and knowledge more effectively. Format your responses using Markdown syntax. Please use the [[Obsidian]] link format. You can write aliases for the links by writing [[Obsidian|the alias after the pipe symbol]]. To use mathematical notation, use LaTeX syntax. LaTeX syntax for larger equations should be on separate lines, surrounded with double dollar signs ($$). You can also inline math expressions by wrapping it in $ symbols. For example, use $$w_{ij}^{\text{new}}:=w_{ij}^{\text{current}}+etacdotdelta_jcdot x_{ij}$$ on a separate line, but you can write \"($eta$ = learning rate, $delta_j$ = error term, $x_{ij}$ = input)\" inline.",
+    "promptTemplatesFolderPath": "",
+    "showAssistant": true,
+    "providers": [
+      {
+        "name": "OpenAI",
+        "endpoint": "https://api.openai.com/v1",
+        "apiKey": "",
+        "models": [
+          {
+            "name": "text-davinci-003",
+            "maxTokens": 4096
+          },
+          {
+            "name": "gpt-3.5-turbo",
+            "maxTokens": 4096
+          },
+          {
+            "name": "gpt-3.5-turbo-16k",
+            "maxTokens": 16384
+          },
+          {
+            "name": "gpt-3.5-turbo-1106",
+            "maxTokens": 16385
+          },
+          {
+            "name": "gpt-4",
+            "maxTokens": 8192
+          },
+          {
+            "name": "gpt-4-32k",
+            "maxTokens": 32768
+          },
+          {
+            "name": "gpt-4-1106-preview",
+            "maxTokens": 128000
+          },
+          {
+            "name": "gpt-4-turbo",
+            "maxTokens": 128000
+          },
+          {
+            "name": "gpt-4o",
+            "maxTokens": 128000
+          },
+          {
+            "name": "gpt-4o-mini",
+            "maxTokens": 128000
+          }
+        ]
+      }
+    ]
+  },
+  "migrations": {
+    "migrateToMacroIDFromEmbeddedMacro": true,
+    "useQuickAddTemplateFolder": true,
+    "incrementFileNameSettingMoveToDefaultBehavior": true,
+    "mutualExclusionInsertAfterAndWriteToBottomOfFile": true,
+    "setVersionAfterUpdateModalRelease": true,
+    "addDefaultAIProviders": true
+  },
+  "enableRibbonIcon": false
+}

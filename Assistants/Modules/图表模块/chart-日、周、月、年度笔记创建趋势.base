@@ -1,0 +1,56 @@
+formulas:
+  周度笔记创建趋势: file.ctime.format("YYYY-[W]WW")
+  未命名: file.ctime.format("YYYY-[W]WW").toString()
+  月度笔记创建趋势: file.ctime.format("YYYY-MM")
+  年度笔记创建趋势: file.ctime.format("YYYY")
+  日度笔记创建趋势: file.ctime.format("YYYY-MM-DD")
+views:
+  - type: line-chart
+    name: 日度笔记创建趋势
+    filters:
+      and:
+        - file.folder.startsWith("Documents")
+    order:
+      - file.ctime
+    x: formula.日度笔记创建趋势
+    multiChartMode: group
+    enableAggregation: true
+    aggregateBy: file.ctime
+    height: "300"
+  - type: line-chart
+    name: 周度笔记创建趋势
+    filters:
+      and:
+        - file.folder.startsWith("Documents")
+    order:
+      - file.ctime
+    x: formula.周度笔记创建趋势
+    multiChartMode: group
+    enableAggregation: true
+    aggregateBy: file.ctime
+    height: "300"
+  - type: line-chart
+    name: 月度笔记创建趋势
+    filters:
+      and:
+        - file.folder.startsWith("Documents")
+    order:
+      - file.ctime
+    x: formula.月度笔记创建趋势
+    multiChartMode: group
+    enableAggregation: true
+    aggregateBy: file.ctime
+    height: "300"
+  - type: line-chart
+    name: 年度笔记创建趋势
+    filters:
+      and:
+        - file.folder.startsWith("Documents")
+    order:
+      - file.ctime
+      - formula.日度笔记创建趋势
+    x: formula.年度笔记创建趋势
+    multiChartMode: group
+    enableAggregation: true
+    aggregateBy: file.ctime
+    height: "300"

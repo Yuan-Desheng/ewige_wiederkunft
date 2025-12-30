@@ -1,0 +1,267 @@
+/* Imagen插件图片编辑器样式 */
+
+/* 图片查看器容器 */
+.imagen-viewer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    backdrop-filter: blur(5px);
+}
+
+/* 编辑工具栏 */
+.imagen-toolbar {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 8px 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    z-index: 10000;
+}
+
+/* 工具栏按钮 */
+.imagen-toolbar button {
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    padding: 8px;
+    cursor: pointer;
+    font-size: 11px;
+    min-width: 36px;
+    min-height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.imagen-toolbar button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+}
+
+.imagen-toolbar button.active {
+    background: rgba(100, 150, 255, 0.7);
+    border-color: rgba(100, 150, 255, 0.9);
+    box-shadow: 0 2px 8px rgba(100, 150, 255, 0.3);
+}
+
+/* 按钮图标样式 */
+.imagen-toolbar button .icon {
+    width: 16px;
+    height: 16px;
+    stroke-width: 2;
+    flex-shrink: 0;
+}
+
+/* 按钮文字样式 */
+.imagen-toolbar button .text {
+    font-size: 10px;
+    white-space: nowrap;
+    opacity: 0.9;
+}
+
+/* 颜色选择器 */
+.imagen-toolbar input[type="color"] {
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.imagen-toolbar input[type="color"]:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+}
+
+/* 画笔大小控制 */
+.imagen-toolbar input[type="range"] {
+    width: 50px;
+    height: 18px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 9px;
+    outline: none;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: all 0.2s ease;
+}
+
+.imagen-toolbar input[type="range"]:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.imagen-toolbar input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    border: 2px solid rgba(100, 150, 255, 0.8);
+}
+
+/* 画布容器 */
+.imagen-canvas-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 90vw;
+    max-height: 80vh;
+}
+
+/* 画布样式 */
+.imagen-canvas {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    cursor: default;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* 隐藏的图片元素 */
+.imagen-hidden-img {
+    display: none;
+}
+
+/* 工具栏标签 */
+.imagen-toolbar span {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 10px;
+    margin-right: 4px;
+    font-weight: 500;
+}
+
+/* 工具栏分组分隔符 */
+.imagen-toolbar .separator {
+    width: 1px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.15);
+    margin: 0 4px;
+}
+
+/* 工具组样式 */
+.imagen-toolbar .tool-group {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* 清除按钮特殊样式 */
+.imagen-toolbar .clear-btn {
+    background: rgba(255, 100, 100, 0.8);
+}
+
+.imagen-toolbar .clear-btn:hover {
+    background: rgba(255, 100, 100, 1);
+}
+
+/* 保存按钮特殊样式 */
+.imagen-toolbar .save-btn {
+    background: rgba(100, 255, 100, 0.8);
+}
+
+.imagen-toolbar .save-btn:hover {
+    background: rgba(100, 255, 100, 1);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .imagen-toolbar {
+        flex-wrap: wrap;
+        max-width: 95vw;
+        gap: 4px;
+        padding: 6px 10px;
+    }
+    
+    .imagen-toolbar button {
+        min-width: 32px;
+        min-height: 32px;
+        padding: 6px;
+        font-size: 10px;
+    }
+    
+    .imagen-toolbar button .icon {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .imagen-toolbar input[type="range"] {
+        width: 40px;
+        height: 16px;
+    }
+    
+    .imagen-toolbar input[type="color"] {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .imagen-toolbar .separator {
+        height: 20px;
+        margin: 0 2px;
+    }
+    
+    .imagen-toolbar .tool-group {
+        gap: 3px;
+    }
+}
+
+/* 图片重命名对话框样式 */
+.imagen-rename-modal {
+    font-family: var(--font-interface);
+}
+
+.imagen-rename-modal input[type="text"] {
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.imagen-rename-modal input[type="text"]:focus {
+    outline: none;
+    border-color: var(--interactive-accent);
+    box-shadow: 0 0 0 2px var(--interactive-accent-hover);
+}
+
+.imagen-rename-modal button {
+    transition: all 0.2s ease;
+}
+
+.imagen-rename-modal button:hover {
+    opacity: 0.8;
+    transform: translateY(-1px);
+}
+
+.imagen-rename-modal button:active {
+    transform: translateY(0);
+}
+
+/* 确保对话框在所有主题下都可见 */
+.imagen-rename-modal {
+    --background-primary: var(--background-primary, #ffffff);
+    --background-modifier-border: var(--background-modifier-border, #e0e0e0);
+    --text-normal: var(--text-normal, #000000);
+    --text-muted: var(--text-muted, #666666);
+    --text-on-accent: var(--text-on-accent, #ffffff);
+    --interactive-accent: var(--interactive-accent, #007acc);
+    --interactive-accent-hover: var(--interactive-accent-hover, rgba(0, 122, 204, 0.2));
+}

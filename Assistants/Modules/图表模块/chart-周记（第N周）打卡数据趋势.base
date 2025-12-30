@@ -1,0 +1,22 @@
+views:
+  - type: line-chart
+    name: 本周打卡数据趋势
+    filters:
+      and:
+        - file.folder.startsWith("Documents/Dailynote")
+        - date(data).format("GGGG-[W]WW") == this.file.name
+    order:
+      - 运动时长
+      - 读书时长
+    viewMode: year
+    cellSize: "12"
+    colorScheme: green
+    dateProperty: note.data
+    enableAggregation: false
+    showDataLabels: true
+    x: note.data
+    height: "200"
+    multiChartMode: group
+    groupLayout: vertical
+    aggregateFunction: count
+    showDataPoints: true

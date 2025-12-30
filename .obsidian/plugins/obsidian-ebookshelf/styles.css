@@ -1,0 +1,1361 @@
+
+
+/* 加载和错误状态 */
+.pdf-ebookshelf-loading,
+.pdf-ebookshelf-error,
+.pdf-ebookshelf-empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.pdf-ebookshelf-error {
+    color: var(--text-error);
+}
+
+/* 渲染状态指示器 */
+.pdf-render-status {
+    text-align: center;
+    padding: 15px;
+    margin: 10px 0;
+    background: var(--background-secondary);
+    border-radius: 6px;
+    color: var(--text-muted);
+    font-size: 13px;
+    font-style: italic;
+    border: 1px solid var(--background-modifier-border);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 虚拟滚动样式 */
+.pdf-virtual-scroll-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.pdf-virtual-scroll-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.pdf-virtual-scroll-item {
+    box-sizing: border-box;
+    padding: 10px;
+    border-bottom: 1px solid var(--background-modifier-border);
+}
+
+/* 虚拟滚动模式下的网格样式 */
+.pdf-ebookshelf-grid.pdf-virtual-scroll-mode {
+    display: block !important;
+    height: 600px;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.pdf-ebookshelf-grid.pdf-virtual-scroll-mode .pdf-book-card {
+    margin-bottom: 15px;
+    break-inside: avoid;
+}
+
+
+
+/* 视图模式切换容器 */
+.pdf-view-mode-container {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 15px;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 10px;
+}
+
+/* 视图模式切换按钮 */
+.pdf-view-mode-btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    background: var(--background-primary);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+
+
+.pdf-view-mode-btn.pdf-view-mode-active {
+    background: var(--interactive-accent);
+    color: var(--text-on-accent);
+    border-color: var(--interactive-accent);
+}
+
+.pdf-view-mode-btn.pdf-view-mode-active:hover {
+    background: var(--interactive-accent-hover);
+    transform: translateY(-1px);
+}
+
+/* 暗色主题适配 */
+.theme-dark .pdf-view-mode-btn {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--background-modifier-border);
+    color: var(--text-normal);
+}
+
+.theme-dark .pdf-view-mode-btn:hover {
+    background: var(--background-modifier-hover);
+    border-color: var(--interactive-accent);
+}
+
+.theme-dark .pdf-view-mode-btn.pdf-view-mode-active {
+    background: var(--interactive-accent);
+    color: var(--text-on-accent);
+    border-color: var(--interactive-accent);
+}
+
+/* 分类筛选标签容器 */
+.pdf-category-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 15px 10px 25px 10px;
+    padding: 0;
+
+}
+
+/* 分类筛选按钮样式 */
+.pdf-category-filter-btn {
+    padding: 6px 14px;
+    border: none;
+    border-radius: 20px;
+    background: var(--interactive-accent);
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    text-transform: capitalize;
+    letter-spacing: 0.3px;
+}
+
+.pdf-category-filter-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+.pdf-category-filter-btn:active {
+    transform: translateY(0);
+}
+
+/* 激活状态的分类按钮 */
+.pdf-category-filter-active {
+    transform: translateY(-1px);
+    filter: brightness(1.2) !important;
+}
+
+.pdf-category-filter-active:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.3) !important;
+}
+
+/* "全部"按钮特殊样式 */
+.pdf-category-filter-btn:not([data-category]) {
+    background: var(--background-modifier-border-focus);
+    color: var(--text-normal);
+}
+
+.pdf-category-filter-btn:not([data-category]):hover {
+    background: var(--background-modifier-border-focus);
+}
+
+
+/* 主内容容器 */
+.pdf-ebookshelf-main-content {
+    margin-top: 0;
+}
+
+
+/* 书籍卡片 */
+.pdf-book-card {
+    background: white;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+    position: relative;
+    animation: fadeInUp 0.5s ease-out;
+}
+
+/* 封面占位符 */
+.pdf-cover-placeholder {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--background-secondary);
+    color: var(--text-muted);
+    font-size: 48px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    user-select: none;
+}
+
+/* 分类按钮（左上角） */
+.pdf-category-btn {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 50%;
+    background: transparent !important;
+    font-size: 12px;
+    cursor: pointer;
+    z-index: 10;
+
+}
+
+
+
+
+/* 分类容器样式 */
+.pdf-category-container {
+    margin-bottom: 30px;
+}
+
+.pdf-category-container:last-child {
+    margin-bottom: 0;
+}
+
+/* 分类标题容器样式 */
+.pdf-category-title-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+/* 上下移动按钮容器 */
+.pdf-category-move-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-right: 4px;
+}
+
+/* 上下移动按钮样式 */
+.pdf-category-move-btn {
+    width: 20px;
+    height: 12px;
+    background: transparent !important;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    padding: 0;
+    margin: 0;
+    font-size: 0;
+    line-height: 1;
+    color: var(--text-muted);
+}
+
+.pdf-category-move-btn svg {
+    width: 12px;
+    height: 12px;
+    stroke: currentColor;
+    fill: none;
+    display: block;
+    pointer-events: none;
+    flex-shrink: 0;
+}
+
+
+
+/* 向上按钮特殊样式 */
+.pdf-category-move-up:hover {
+    background: var(--color-green);
+    border-color: var(--color-green);
+}
+
+/* 向下按钮特殊样式 */
+.pdf-category-move-down:hover {
+    background: var(--color-blue);
+    border-color: var(--color-blue);
+}
+
+/* 分类标题样式 - 简洁高级版 */
+.pdf-category-title {
+    margin: 0;
+    padding: 0 0 8px 0;
+    border-bottom: 1px solid var(--background-modifier-border);
+    text-transform: uppercase;
+    flex: 1;
+}
+
+.pdf-category-title::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 30px;
+    height: 1px;
+    background: var(--interactive-accent);
+    transition: width 0.3s ease;
+}
+
+.theme-dark .pdf-category-title {
+    color: var(--text-muted);
+}
+
+/* 分类标题文本样式 */
+.pdf-category-title-text {
+    font-weight: 500;
+}
+
+/* 分类统计信息样式 */
+.pdf-category-stats {
+    font-weight: 300;
+    font-size: 0.85em;
+    color: var(--text-muted);
+    margin-left: 8px;
+    opacity: 0.8;
+}
+
+.theme-dark .pdf-category-stats {
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+/* 分类标题悬停效果 - 动态宽度将由JavaScript控制 */
+.pdf-category-title:hover::after {
+    width: var(--dynamic-width, 60px);
+}
+
+.pdf-book-card:hover {
+    transform: translateY(-4px);
+    border-color: #007acc;
+}
+
+.pdf-book-card:hover .pdf-book-cover {
+    border-color: #007acc;
+}
+
+/* 封面区域 */
+.pdf-book-cover {
+    position: relative;
+    width: calc(100% - 8px);
+    aspect-ratio: 3/4;
+    margin: 4px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+}
+
+.pdf-cover-image {
+    width: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    transform: translate3d(0, 0, 0);
+    height: auto;
+    min-height: 100%;
+}
+
+.pdf-book-card:hover .pdf-cover-image {
+    transform: scale(1.05);
+}
+
+.pdf-default-cover {
+    font-size: 48px;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f5f5f5, #e8e8e8);
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+.pdf-book-card:hover .pdf-default-cover {
+    transform: scale(1.1);
+    color: #007acc;
+}
+
+/* 书籍信息区域 */
+.pdf-book-info {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    width: calc(100% - 10px);
+    padding: 20px 16px 6px;
+    /* 更柔和的渐变过渡 */
+    background: linear-gradient(to top, 
+        rgba(0, 0, 0, 0.95) 5%, 
+        rgba(0, 0, 0, 0.8) 10%, 
+        rgba(0, 0, 0, 0.7) 20%, 
+        rgba(0, 0, 0, 0.5) 40%, 
+        rgba(0, 0, 0, 0.3) 60%, 
+        rgba(0, 0, 0, 0.15) 80%, 
+        rgba(0, 0, 0, 0.05) 95%, 
+        rgba(0, 0, 0, 0) 100%);
+    color: white;
+    backdrop-filter: blur(2px);
+}
+
+.pdf-book-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 6px;
+    line-height: 1.3;
+    cursor: pointer;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: color 0.2s ease;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7), 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.pdf-book-title:hover {
+    color: #ffd700;
+}
+
+.pdf-book-pages,
+.pdf-book-backlinks,
+.pdf-book-size {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 3px;
+    display: flex;
+    align-items: center;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6), 0 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+/* 页数和大小在同一行显示 */
+.pdf-book-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    margin-bottom: 3px;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6), 0 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+.pdf-book-meta .pdf-book-pages,
+.pdf-book-meta .pdf-book-size {
+    margin-bottom: 0;
+    white-space: nowrap;
+}
+
+.pdf-book-separator {
+    margin: 0 6px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 10px;
+}
+
+/* 作者信息样式 */
+.pdf-book-author,
+.pdf-book-author-placeholder {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 3px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6), 0 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+.pdf-book-author:hover,
+.pdf-book-author-placeholder:hover {
+    color: #ffd700;
+}
+
+.pdf-book-author-placeholder {
+    color: rgba(255, 255, 255, 0.7);
+    font-style: italic;
+}
+
+.pdf-book-pages::before {
+    content: "📄";
+    margin-right: 4px;
+    font-size: 10px;
+}
+
+.pdf-book-backlinks::before {
+    content: "🔗";
+    margin-right: 4px;
+    font-size: 10px;
+}
+
+.pdf-book-size::before {
+    content: "💾";
+    margin-right: 4px;
+    font-size: 10px;
+}
+
+/* 多列数字体大小控制 */
+.pdf-ebookshelf-columns-5 .pdf-book-meta {
+    font-size: 9px !important;
+}
+
+.pdf-ebookshelf-columns-5 .pdf-book-separator {
+    font-size: 8px !important;
+    margin: 0 4px !important;
+}
+
+.pdf-ebookshelf-columns-5 .pdf-book-author,
+.pdf-ebookshelf-columns-5 .pdf-book-author-placeholder {
+    font-size: 9px !important;
+}
+
+.pdf-ebookshelf-columns-5 .pdf-book-title {
+    font-size: 12px !important;
+}
+
+.pdf-ebookshelf-columns-5 .pdf-book-pages,
+.pdf-ebookshelf-columns-5 .pdf-book-size {
+    font-size: 9px !important;
+}
+
+.pdf-ebookshelf-columns-5 .pdf-book-pages::before,
+.pdf-ebookshelf-columns-5 .pdf-book-size::before {
+    font-size: 8px !important;
+}
+
+.pdf-ebookshelf-columns-5 .pdf-book-info {
+    padding: 16px 12px 4px !important;
+}
+
+.pdf-ebookshelf-columns-6 .pdf-book-meta {
+    font-size: 8px !important;
+}
+
+.pdf-ebookshelf-columns-6 .pdf-book-separator {
+    font-size: 7px !important;
+    margin: 0 3px !important;
+}
+
+.pdf-ebookshelf-columns-6 .pdf-book-author,
+.pdf-ebookshelf-columns-6 .pdf-book-author-placeholder {
+    font-size: 8px !important;
+}
+
+.pdf-ebookshelf-columns-6 .pdf-book-title {
+    font-size: 11px !important;
+}
+
+.pdf-ebookshelf-columns-6 .pdf-book-pages,
+.pdf-ebookshelf-columns-6 .pdf-book-size {
+    font-size: 8px !important;
+}
+
+.pdf-ebookshelf-columns-6 .pdf-book-pages::before,
+.pdf-ebookshelf-columns-6 .pdf-book-size::before {
+    font-size: 7px !important;
+}
+
+.pdf-ebookshelf-columns-6 .pdf-book-info {
+    padding: 14px 10px 3px !important;
+}
+
+.pdf-ebookshelf-columns-7 .pdf-book-meta {
+    font-size: 7px !important;
+}
+
+.pdf-ebookshelf-columns-7 .pdf-book-separator {
+    font-size: 6px !important;
+    margin: 0 2px !important;
+}
+
+.pdf-ebookshelf-columns-7 .pdf-book-author,
+.pdf-ebookshelf-columns-7 .pdf-book-author-placeholder {
+    font-size: 7px !important;
+}
+
+.pdf-ebookshelf-columns-7 .pdf-book-title {
+    font-size: 10px !important;
+}
+
+.pdf-ebookshelf-columns-7 .pdf-book-pages,
+.pdf-ebookshelf-columns-7 .pdf-book-size {
+    font-size: 7px !important;
+}
+
+.pdf-ebookshelf-columns-7 .pdf-book-pages::before,
+.pdf-ebookshelf-columns-7 .pdf-book-size::before {
+    font-size: 6px !important;
+}
+
+.pdf-ebookshelf-columns-7 .pdf-book-info {
+    padding: 12px 8px 2px !important;
+}
+
+.pdf-ebookshelf-columns-8 .pdf-book-meta {
+    font-size: 6px !important;
+}
+
+.pdf-ebookshelf-columns-8 .pdf-book-separator {
+    font-size: 5px !important;
+    margin: 0 2px !important;
+}
+
+.pdf-ebookshelf-columns-8 .pdf-book-author,
+.pdf-ebookshelf-columns-8 .pdf-book-author-placeholder {
+    font-size: 6px !important;
+}
+
+.pdf-ebookshelf-columns-8 .pdf-book-title {
+    font-size: 9px !important;
+}
+
+.pdf-ebookshelf-columns-8 .pdf-book-pages,
+.pdf-ebookshelf-columns-8 .pdf-book-size {
+    font-size: 6px !important;
+}
+
+.pdf-ebookshelf-columns-8 .pdf-book-pages::before,
+.pdf-ebookshelf-columns-8 .pdf-book-size::before {
+    font-size: 5px !important;
+}
+
+.pdf-ebookshelf-columns-8 .pdf-book-info {
+    padding: 10px 6px 2px !important;
+}
+
+/* 表格视图样式 */
+
+
+.pdf-books-table {
+    width: 100%;
+    background: var(--background-primary);
+    table-layout: fixed; /* 固定表格布局，确保列宽严格按照设定比例 */
+}
+
+.pdf-books-table thead {
+    background: var(--background-secondary);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.pdf-books-table th {
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-normal);
+    border-right: 1px solid var(--background-modifier-border);
+    white-space: nowrap;
+    font-size: 13px;
+}
+
+
+
+/* 表头列宽度设置 */
+.pdf-books-table th:nth-child(1) { /* 书名 */
+    width: 25%;
+    max-width: 25%;
+}
+
+.pdf-books-table th:nth-child(2) { /* 作者 */
+    width: 12%;
+    max-width: 12%;
+}
+
+.pdf-books-table th:nth-child(3) { /* 评价 */
+    width: 10%;
+    max-width: 10%;
+}
+
+.pdf-books-table th:nth-child(4) { /* 进度 */
+    width: 10%;
+    max-width: 10%;
+}
+
+.pdf-books-table th:nth-child(5) { /* 页数 */
+    width: 10%;
+    max-width: 10%;
+}
+
+.pdf-books-table th:nth-child(6) { /* 大小 */
+    width: 10%;
+    max-width: 10%;
+}
+
+.pdf-books-table th:nth-child(7) { /* 标签 */
+    width: 20%;
+    max-width: 20%;
+}
+
+.pdf-books-table td {
+    vertical-align: middle;
+    font-size: 12px;
+}
+
+.pdf-books-table td:last-child {
+    background-color: transparent !important;
+}
+.pdf-books-table td:first-child {
+    background-color: transparent !important;
+}
+
+.pdf-books-table th:first-child {
+    background-color: transparent !important;
+}
+
+/* 表格行悬停效果 */
+.pdf-table-row:hover {
+    background-color: var(--background-modifier-hover) !important;
+}
+
+/* 各列特殊样式和固定宽度 */
+.pdf-table-title {
+    font-weight: 500;
+    color: var(--interactive-accent) !important;
+    cursor: pointer !important;
+    width: 25%;
+    max-width: 25%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pdf-table-title:hover {
+    color: var(--interactive-accent-hover) !important;
+    text-decoration: underline;
+}
+
+.pdf-table-author {
+    cursor: pointer !important;
+    width: 15%;
+}
+
+.pdf-table-author:hover {
+    color: var(--interactive-accent);
+    text-decoration: underline;
+}
+
+.pdf-table-rating {
+    user-select: none;
+    width: 10%;
+}
+
+
+.pdf-table-progress {
+    width: 10%;
+    text-align: center !important;
+}
+
+.pdf-table-pages {
+    width: 10%;
+    text-align: center !important;
+}
+
+.pdf-table-size {
+    color: var(--text-muted);
+    text-align: center !important;
+    width: 10%;
+    max-width: 10%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pdf-table-category {
+    cursor: pointer !important;
+    background: var(--interactive-accent);
+    width: 20%;
+}
+
+
+
+/* 暗色主题适配 */
+.theme-dark .pdf-table-container {
+    background: var(--background-primary);
+    border-color: var(--background-modifier-border);
+}
+
+.theme-dark .pdf-books-table {
+    background: var(--background-primary);
+}
+
+.theme-dark .pdf-books-table thead {
+    background: var(--background-secondary);
+}
+
+.theme-dark .pdf-books-table th {
+    color: var(--text-normal);
+    border-color: var(--background-modifier-border);
+}
+
+.theme-dark .pdf-books-table td {
+    color: var(--text-normal);
+    border-color: var(--background-modifier-border);
+}
+
+.theme-dark .pdf-table-title {
+    color: var(--interactive-accent) !important;
+}
+
+.theme-dark .pdf-table-title:hover {
+    color: var(--interactive-accent-hover) !important;
+}
+
+.theme-dark .pdf-table-author {
+    color: var(--text-muted);
+}
+
+.theme-dark .pdf-table-author:hover {
+    color: var(--interactive-accent);
+}
+
+.theme-dark .pdf-table-rating {
+    color: var(--text-normal);
+    cursor: pointer;
+    user-select: none;
+}
+
+.pdf-table-rating:hover {
+    background-color: var(--background-modifier-hover);
+}
+
+.theme-dark .pdf-table-progress {
+    color: var(--color-green);
+}
+
+.theme-dark .pdf-table-pages,
+.theme-dark .pdf-table-size {
+    color: var(--text-muted);
+}
+
+.theme-dark .pdf-table-category {
+    background: var(--interactive-accent);
+    color: white;
+}
+
+.theme-dark .pdf-table-category:hover {
+    background: var(--interactive-accent-hover);
+}
+
+/* 表格视图状态类 */
+.pdf-table-view .pdf-table-container {
+    border-radius: 3px;
+}
+
+.pdf-table-view .pdf-ebookshelf-grid {
+    display: none !important;
+}
+
+/* 卡片视图状态类 */
+.pdf-card-view .pdf-table-container {
+    display: none;
+}
+
+.pdf-card-view .pdf-ebookshelf-grid {
+    margin-top: 15px;
+}
+
+/* 表格响应式设计 */
+@media (max-width: 1024px) {
+    .pdf-books-table {
+        font-size: 12px;
+    }
+    
+    .pdf-books-table th,
+    .pdf-books-table td {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+    
+    .pdf-table-title {
+        max-width: 150px;
+    }
+    
+    .pdf-table-author {
+        max-width: 100px;
+    }
+    
+    .pdf-table-publisher {
+        max-width: 80px;
+    }
+    
+    .pdf-table-category {
+        max-width: 80px;
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .pdf-table-container {
+        border-radius: 4px;
+    }
+    
+    .pdf-books-table {
+        font-size: 11px;
+    }
+    
+    .pdf-books-table th,
+    .pdf-books-table td {
+        padding: 6px 8px;
+        font-size: 11px;
+    }
+    
+    .pdf-table-title {
+        max-width: 120px;
+    }
+    
+    .pdf-table-author {
+        max-width: 80px;
+    }
+    
+    .pdf-table-publisher {
+        max-width: 60px;
+    }
+    
+    .pdf-table-category {
+        max-width: 60px;
+        font-size: 9px;
+    }
+    
+    /* 在小屏幕上隐藏出版社列 */
+    .pdf-books-table th:nth-child(3),
+    .pdf-books-table td:nth-child(3) {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    /* 在更小屏幕上进一步简化表格 */
+    .pdf-books-table th:nth-child(5),
+    .pdf-books-table td:nth-child(5),
+    .pdf-books-table th:nth-child(6),
+    .pdf-books-table td:nth-child(6) {
+        display: none;
+    }
+    
+    .pdf-table-title {
+        max-width: 100px;
+    }
+    
+    .pdf-table-author {
+        max-width: 60px;
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .pdf-ebookshelf-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important;
+        gap: 15px;
+    }
+    
+    .pdf-book-cover {
+        aspect-ratio: 3/4;
+        width: calc(100% - 12px);
+        margin: 6px;
+    }
+    
+    .pdf-book-info {
+        padding: 16px 12px 12px;
+    }
+    
+    .pdf-book-title {
+        font-size: 12px;
+    }
+    
+    .pdf-book-meta {
+        font-size: 10px;
+    }
+    
+    .pdf-book-author,
+    .pdf-book-author-placeholder {
+        font-size: 10px;
+    }
+    
+    /* 移动端增大按钮点击区域 */
+    .pdf-category-move-btn {
+        width: 24px;
+        height: 16px;
+        min-width: 24px;
+        min-height: 16px;
+    }
+    
+    .pdf-category-move-btn svg {
+        width: 14px;
+        height: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pdf-ebookshelf-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)) !important;
+        gap: 10px;
+    }
+    
+    .pdf-book-cover {
+        aspect-ratio: 3/4;
+        width: calc(100% - 8px);
+        margin: 4px;
+    }
+    
+    .pdf-book-info {
+        padding: 14px 10px 10px;
+    }
+    
+    .pdf-book-title {
+        font-size: 11px;
+    }
+    
+    .pdf-book-meta {
+        font-size: 9px;
+    }
+    
+    .pdf-book-author,
+    .pdf-book-author-placeholder {
+        font-size: 9px;
+    }
+    
+    .pdf-default-cover {
+        font-size: 32px;
+    }
+    
+    /* 小屏幕进一步增大按钮 */
+    .pdf-category-move-btn {
+        width: 28px;
+        height: 18px;
+        min-width: 28px;
+        min-height: 18px;
+    }
+    
+    .pdf-category-move-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+/* 暗色主题适配 */
+.theme-dark .pdf-book-card {
+    background: #bdbaba;
+    border-color: #444;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.theme-dark .pdf-book-cover {
+    background: #1e1e1e;
+    border-color: #444;
+}
+
+.theme-dark .pdf-default-cover {
+    background: linear-gradient(135deg, #3a3a3a, #2d2d2d);
+    color: #ccc;
+}
+
+.theme-dark .pdf-book-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    border-color: #007acc;
+}
+
+.theme-dark .pdf-book-card:hover .pdf-book-cover {
+    border-color: #007acc;
+}
+
+.theme-dark .pdf-book-card:hover .pdf-default-cover {
+    color: #007acc;
+}
+
+/* 动画效果 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 自定义滚动条 */
+.pdf-ebookshelf-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.pdf-ebookshelf-container::-webkit-scrollbar-track {
+    background: var(--background-secondary);
+    border-radius: 4px;
+}
+
+.pdf-ebookshelf-container::-webkit-scrollbar-thumb {
+    background: var(--interactive-accent);
+    border-radius: 4px;
+}
+
+.pdf-ebookshelf-container::-webkit-scrollbar-thumb:hover {
+    background: var(--interactive-accent-hover);
+}
+
+/* 进度条样式 */
+.pdf-book-progress {
+    width: 10%;
+    height: 6px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.pdf-book-progress-text{
+    font-size: 10px;
+}
+
+
+/* 激活提示样式 */
+.pdf-ebookshelf-activation-notice {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    margin: 20px 0;
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.pdf-ebookshelf-activation-notice h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.pdf-ebookshelf-activation-notice p {
+    margin: 5px 0;
+    font-size: 0.9em;
+    opacity: 0.9;
+}
+
+.theme-dark .pdf-ebookshelf-activation-notice {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4);
+}
+
+/* 分类编辑模态对话框样式 */
+.category-suggestions {
+    margin: 15px 0;
+    padding: 10px;
+    background: var(--background-secondary);
+    border-radius: 6px;
+    border: 1px solid var(--background-modifier-border);
+}
+
+.category-suggestions p {
+    margin: 0 0 8px 0;
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.category-suggestions-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.category-suggestion-btn {
+    padding: 4px 8px;
+    border: 1px solid var(--interactive-accent);
+    border-radius: 12px;
+    background: transparent;
+    color: var(--interactive-accent);
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.category-suggestion-btn:hover {
+    background: var(--interactive-accent);
+    color: white;
+    transform: translateY(-1px);
+}
+
+.category-suggestion-btn:active {
+    transform: translateY(0);
+}
+
+/* 暗色主题适配 */
+.theme-dark .pdf-category-btn {
+    background: rgba(255, 255, 255, 0.15);
+    color: #c0392b;
+}
+
+
+
+/* 星级评价样式 */
+.star {
+    font-size: 14px;
+    margin-right: 1px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.star.filled {
+    color: #ffd700;
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+}
+
+.star.empty {
+    color: #ddd;
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+/* 表格视图中的星级行样式 */
+.star-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    line-height: 1.2;
+    margin-bottom: 1px;
+}
+
+.star-row:last-child {
+    margin-bottom: 0;
+}
+
+/* 表格视图中的星级样式 */
+.pdf-table-rating .star {
+    font-size: 12px;
+    margin-right: 0.5px;
+}
+
+.pdf-table-rating .star-row {
+    margin-bottom: 0.5px;
+}
+
+
+/* 评价选择器样式 */
+.pdf-rating-selector {
+    position: absolute;
+    z-index: 1000;
+    background: var(--background-primary);
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 4px;
+    padding: 4px;
+    font-size: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    min-width: 200px;
+}
+
+.pdf-rating-selector option {
+    padding: 4px 8px;
+    font-size: 12px;
+}
+
+/* 暗色主题下的星级样式 */
+.theme-dark .star.filled {
+    color: #ffd700;
+}
+
+.theme-dark .star.empty {
+    color: #666;
+}
+
+.theme-dark .pdf-rating-selector {
+    background: var(--background-primary);
+    border-color: var(--background-modifier-border);
+    color: var(--text-normal);
+}
+
+/* 分类移动动画效果 */
+.pdf-category-moving {
+    transition: all 0.3s ease;
+    z-index: 10;
+    position: relative;
+}
+
+.pdf-category-move-up-animation {
+    animation: categoryMoveUp 0.3s ease;
+}
+
+.pdf-category-move-down-animation {
+    animation: categoryMoveDown 0.3s ease;
+}
+
+@keyframes categoryMoveUp {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-10px);
+        opacity: 0.7;
+        box-shadow: 0 4px 12px rgba(0, 122, 204, 0.3);
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes categoryMoveDown {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(10px);
+        opacity: 0.7;
+        box-shadow: 0 4px 12px rgba(0, 122, 204, 0.3);
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* 暗色主题下的移动按钮适配 */
+.theme-dark .pdf-category-move-btn {
+    background: transparent !important;
+    border: none;
+    color: var(--text-muted);
+}
+
+.theme-dark .pdf-category-move-btn svg {
+    stroke: var(--text-muted);
+}
+
+.theme-dark .pdf-category-move-btn:hover {
+    background: var(--interactive-accent) !important;
+    color: white;
+}
+
+.theme-dark .pdf-category-move-btn:hover svg {
+    stroke: white;
+}
+
+.theme-dark .pdf-category-move-up:hover {
+    background: var(--color-green) !important;
+}
+
+.theme-dark .pdf-category-move-down:hover {
+    background: var(--color-blue) !important;
+}

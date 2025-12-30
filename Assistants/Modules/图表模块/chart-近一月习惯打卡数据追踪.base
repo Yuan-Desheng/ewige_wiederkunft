@@ -1,0 +1,21 @@
+views:
+  - type: line-chart
+    name: 近一月习惯打卡数据追踪
+    filters:
+      and:
+        - file.folder.startsWith("Documents/Dailynote")
+        - data >= now()-"30d"
+    order:
+      - 读书时长
+      - 运动时长
+    viewMode: year
+    cellSize: "12"
+    colorScheme: green
+    dateProperty: note.data
+    enableAggregation: false
+    showDataLabels: true
+    x: note.data
+    height: "200"
+    multiChartMode: group
+    groupLayout: vertical
+    aggregateFunction: count

@@ -1,0 +1,43 @@
+views:
+  - type: bar-chart
+    name: 读书时长图表
+    filters:
+      and:
+        - file.folder == "Documents/Dailynote"
+    order:
+      - 读书时长
+    groupLayout: horizontal
+    x: note.data
+    multiChartMode: property
+    height: "300"
+  - type: line-chart
+    name: 体重追踪图表
+    filters:
+      and:
+        - file.folder == "Documents/Dailynote"
+    order:
+      - 体重
+    x: note.data
+    height: "300"
+    multiChartMode: group
+  - type: pie-chart
+    name: 喝水量追踪图表
+    filters:
+      and:
+        - file.folder == "Documents/Dailynote"
+    order:
+      - 今日喝水量
+    label: note.今日喝水量
+    value: note.今日喝水量
+    enableAggregation: true
+    aggregateBy: note.今日喝水量
+    aggregateFunction: sum
+  - type: pie-chart
+    name: 每日回顾图表
+    filters:
+      and:
+        - file.folder == "Documents/Dailynote"
+    order:
+      - 回顾建立联系笔记数量
+    label: note.回顾建立联系笔记数量
+    value: note.回顾建立联系笔记数量

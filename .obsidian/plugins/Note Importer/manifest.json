@@ -1,0 +1,10 @@
+{
+	"id": "note-importer",
+	"name": "Note Importer",
+	"version": "0.1.8",
+	"minAppVersion": "0.15.0",
+	"description": "从其他仓库导入笔记及其关联附件到模块化OB预制仓库",
+	"author": "ytmaps_鱼先生",
+	"authorUrl": "",
+	"isDesktopOnly": true
+}

@@ -1,0 +1,49 @@
+{
+  "nodes": [
+    {
+      "id": "note-1766239546790-7162",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/0-收集箱/未命名 1.md",
+      "x": 100,
+      "y": 100,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1766239554945-948",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/0-收集箱/未命名 3.md",
+      "x": 590,
+      "y": 100,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1766239599187-7625",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/0-收集箱/未命名 2.md",
+      "x": 1080,
+      "y": 100,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1766992699510-6065",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/工作领域/项目/六爻排盘.md",
+      "x": 1570,
+      "y": 100,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1767092015253-817",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/0-收集箱/media ase.md",
+      "x": 2060,
+      "y": 100,
+      "width": 440,
+      "height": 500
+    }
+  ]
+}

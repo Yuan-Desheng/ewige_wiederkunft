@@ -1,0 +1,15 @@
+views:
+  - type: heat-map
+    name: 年度笔记创建热度
+    filters:
+      and:
+        - file.folder.startsWith("Documents")
+    order:
+      - file.ctime
+    colorScheme: green
+    cellSize: "12"
+    aggregateFunction: count
+    aggregateBy: file.ctime
+    showMonthLabels: true
+    showWeekLabels: true
+    enableAggregation: true

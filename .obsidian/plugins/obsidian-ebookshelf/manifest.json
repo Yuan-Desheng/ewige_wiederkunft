@@ -1,0 +1,11 @@
+{
+  "id": "pdf-ebookshelf",
+  "name": "PDF Ebookshelf",
+  "version": "0.2.9",
+  "minAppVersion": "0.15.0",
+  "description": "PDF电子书架插件，从指定文件夹扫描PDF文件并以卡片网格、表格等形式展示",
+  "author": "ytmaps_鱼先生",
+  "authorUrl": "",
+  "fundingUrl": "",
+  "isDesktopOnly": false
+}

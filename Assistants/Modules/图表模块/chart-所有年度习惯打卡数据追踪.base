@@ -1,0 +1,20 @@
+views:
+  - type: line-chart
+    name: 年度习惯数据追踪
+    filters:
+      and:
+        - file.folder.startsWith("Documents/Dailynote")
+    order:
+      - 读书时长
+      - 运动时长
+    viewMode: year
+    cellSize: "12"
+    colorScheme: green
+    dateProperty: note.data
+    enableAggregation: false
+    aggregateBy: note.读书时长
+    showDataLabels: false
+    x: note.data
+    height: "150"
+    multiChartMode: group
+    showDataPoints: false

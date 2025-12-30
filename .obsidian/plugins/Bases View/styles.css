@@ -1,0 +1,396 @@
+/* Bases View Plugin Styles */
+
+.bases-view{
+    scrollbar-gutter: auto !important;
+}
+
+/* 通用图表容器样式 */
+.bases-line-chart-container,
+.bases-bar-chart-container,
+.bases-pie-chart-container {
+    background: var(--background-primary);
+    border-radius: 4px;
+    border: 1px solid var(--background-modifier-border);
+    margin: 2px 2px;
+    min-height: 200px;
+    position: relative;
+}
+
+/* 多图表分组容器样式 */
+.bases-chart-group {
+    background: var(--background-primary);
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding-top: 10px;
+}
+
+
+
+/* 响应式布局 - 横向布局 */
+@media (max-width: 768px) {
+    .bases-chart-group {
+        min-width: 100% !important;
+        max-width: 100% !important;
+        flex: none !important;
+    }
+}
+
+@media (max-width: 1024px) {
+    .bases-chart-group {
+        min-width: 45% !important;
+        max-width: 48% !important;
+    }
+}
+
+/* 确保SVG在容器中正确显示 */
+.bases-chart-group svg {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+}
+
+/* 无数据提示样式 */
+.bases-chart-svg {
+    display: block;
+    margin: 0 0;
+    background: var(--background-primary);
+    border-radius: 4px;
+}
+
+
+
+/* 无数据状态样式 */
+.bases-chart-no-data {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    color: var(--text-muted);
+    font-size: 16px;
+    font-style: italic;
+    background: var(--background-secondary);
+    border-radius: 4px;
+    border: 2px dashed var(--background-modifier-border);
+}
+
+/* 工具提示样式 */
+.bases-chart-tooltip {
+    position: absolute;
+    background: var(--background-primary-alt);
+    color: var(--text-normal);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--background-modifier-border);
+    pointer-events: none;
+    z-index: 1000;
+    white-space: nowrap;
+    backdrop-filter: blur(8px);
+}
+
+.theme-dark .bases-chart-tooltip {
+    background: rgba(30, 30, 30, 0.95);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* 数据标签样式 */
+.line-data-label,
+.bar-data-label,
+.pie-data-label {
+    font-size: 12px;
+    font-weight: bold;
+    fill: var(--text-normal);
+    pointer-events: none;
+    text-anchor: middle;
+    dominant-baseline: middle;
+}
+
+.theme-dark .line-data-label,
+.theme-dark .bar-data-label,
+.theme-dark .pie-data-label {
+    fill: var(--text-normal);
+}
+
+
+.bases-line-chart-container .bases-chart-svg {
+    width: 100%;
+    height: auto;
+}
+
+/* 折线图悬停效果 */
+.bases-line-chart-container .bases-chart-svg circle {
+    transition: r 0.2s ease, fill 0.2s ease;
+    cursor: pointer;
+}
+
+.bases-line-chart-container .bases-chart-svg circle:hover {
+    r: 6;
+    filter: drop-shadow(0 2px 4px rgba(79, 70, 229, 0.4));
+}
+
+.bases-line-chart-container .bases-chart-svg path {
+    transition: stroke-width 0.2s ease;
+}
+
+.bases-line-chart-container .bases-chart-svg path:hover {
+    stroke-width: 3;
+}
+
+
+
+.bases-bar-chart-container .bases-chart-svg {
+    width: 100%;
+    height: auto;
+}
+
+/* 柱状图悬停效果 */
+.bases-bar-chart-container .bases-chart-svg rect {
+    transition: height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                y 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                fill 0.2s ease, 
+                filter 0.2s ease;
+    cursor: pointer;
+}
+
+.bases-bar-chart-container .bases-chart-svg rect:hover {
+    filter: drop-shadow(0 2px 4px rgba(16, 185, 129, 0.4));
+}
+
+/* 柱状图组的过渡动画 */
+.bases-bar-chart-container .bases-chart-svg .bar-group {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+
+/* 饼图悬停效果 */
+.bases-pie-chart-container .bases-chart-svg path {
+    transition: opacity 0.2s ease, filter 0.2s ease;
+    cursor: pointer;
+}
+
+.bases-pie-chart-container .bases-chart-svg path:hover {
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.2));
+}
+
+/* 饼图扇形块组的过渡动画 */
+.bases-pie-chart-container .bases-chart-svg .pie-slice {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center;
+}
+
+/* 饼图扇形块路径的过渡动画 */
+.bases-pie-chart-container .bases-chart-svg .pie-slice-path {
+    transition: opacity 0.2s ease, filter 0.2s ease;
+    cursor: pointer;
+}
+
+/* 饼图标签的过渡动画 */
+.bases-pie-chart-container .bases-chart-svg .pie-slice-label {
+    pointer-events: none;
+    user-select: none;
+}
+
+/* 饼图图例样式 */
+.bases-pie-legend {
+    padding: 16px;
+    margin-right: 20px;
+    background: var(--background-secondary);
+    max-width: 200px;
+}
+
+.bases-pie-legend > div {
+    padding: 4px 0;
+    transition: background-color 0.2s ease;
+    border-radius: 4px;
+    cursor: default;
+}
+
+.bases-pie-legend > div:hover {
+    background: var(--background-modifier-hover);
+}
+
+.bases-pie-legend span {
+    font-size: 12px !important;
+    color: var(--text-normal);
+    font-weight: 500;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .bases-line-chart-container,
+    .bases-bar-chart-container,
+    .bases-pie-chart-container {
+        padding: 12px;
+        margin: 4px 4px;
+    }
+    
+    .bases-pie-chart-wrapper {
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    .bases-pie-legend {
+        max-width: 100%;
+        width: 100%;
+    }
+    
+    .bases-chart-svg {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .bases-line-chart-container,
+    .bases-bar-chart-container,
+    .bases-pie-chart-container {
+        padding: 8px;
+    }
+    
+    .bases-chart-no-data {
+        height: 150px;
+        font-size: 14px;
+    }
+}
+
+/* 打印样式 */
+@media print {
+    .bases-line-chart-container,
+    .bases-bar-chart-container,
+    .bases-pie-chart-container {
+        break-inside: avoid;
+        border: 1px solid #ccc;
+        background: white;
+    }
+    
+    .bases-chart-tooltip {
+        display: none;
+    }
+    
+    .bases-chart-svg {
+        box-shadow: none;
+    }
+}
+
+/* 高对比度模式支持 */
+@media (prefers-contrast: high) {
+    .bases-line-chart-container,
+    .bases-bar-chart-container,
+    .bases-pie-chart-container {
+        border: 2px solid;
+    }
+    
+    .bases-chart-svg {
+        box-shadow: none;
+        border: 1px solid;
+    }
+}
+
+/* 减少动画模式支持 */
+@media (prefers-reduced-motion: reduce) {
+    .bases-line-chart-container .bases-chart-svg circle,
+    .bases-line-chart-container .bases-chart-svg path,
+    .bases-bar-chart-container .bases-chart-svg rect,
+    .bases-bar-chart-container .bases-chart-svg .bar-group,
+    .bases-pie-chart-container .bases-chart-svg path,
+    .bases-pie-chart-container .bases-chart-svg .pie-slice,
+    .bases-pie-chart-container .bases-chart-svg .pie-slice-path,
+    .bases-pie-legend > div,
+    .bases-line-chart-container,
+    .bases-bar-chart-container,
+    .bases-pie-chart-container {
+        transition: none;
+        animation: none;
+    }
+}
+
+/* 焦点样式（键盘导航支持） */
+.bases-chart-svg:focus {
+    outline: 2px solid var(--interactive-accent);
+    outline-offset: 2px;
+}
+
+/* 加载状态样式 */
+.bases-chart-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.bases-chart-loading::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--background-modifier-border);
+    border-top: 2px solid var(--interactive-accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 8px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 错误状态样式 */
+.bases-chart-error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    color: var(--text-error);
+    font-size: 14px;
+    background: var(--background-secondary);
+    border-radius: 4px;
+    border: 2px dashed var(--text-error);
+}
+
+.bases-chart-error::before {
+    content: '⚠️';
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+/* 自定义滚动条样式 */
+.bases-pie-legend::-webkit-scrollbar {
+    width: 6px;
+}
+
+.bases-pie-legend::-webkit-scrollbar-track {
+    background: var(--background-secondary);
+    border-radius: 3px;
+}
+
+.bases-pie-legend::-webkit-scrollbar-thumb {
+    background: var(--background-modifier-border);
+    border-radius: 3px;
+}
+
+.bases-pie-legend::-webkit-scrollbar-thumb:hover {
+    background: var(--background-modifier-border-hover);
+}
+
+/* 图表容器动画 */
+.bases-line-chart-container,
+.bases-bar-chart-container,
+.bases-pie-chart-container {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

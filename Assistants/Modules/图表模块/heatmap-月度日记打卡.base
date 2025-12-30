@@ -1,0 +1,13 @@
+views:
+  - type: heat-map
+    name: 坚持每日日记
+    filters:
+      and:
+        - file.folder.startsWith("Documents/Dailynote")
+    order:
+      - data
+    viewMode: month
+    cellSize: "12"
+    colorScheme: purple
+    dateProperty: note.data
+    enableAggregation: true

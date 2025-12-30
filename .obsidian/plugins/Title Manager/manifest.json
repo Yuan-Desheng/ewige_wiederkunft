@@ -1,0 +1,11 @@
+{
+	"id": "title-manager",
+	"name": "Title Manager",
+	"version": "0.3.0",
+	"minAppVersion": "0.15.0",
+	"description": "自动保持Markdown文档的第一个标题与文档名称同步,提供“标题导航功能”（适用于长文写作），通过Title Manager插件可以帮助用户更好的管理笔记标题",
+	"author": "ytmaps",
+	"authorUrl_xiaohongshu": "https://www.xiaohongshu.com/user/profile/63cfeb720000000026010489",
+	"authorUrl_bilibili": "https://space.bilibili.com/2035394961",
+	"isDesktopOnly": false
+}

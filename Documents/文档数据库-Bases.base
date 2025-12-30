@@ -1,0 +1,134 @@
+formulas:
+  反向连接: file.backlinks
+  未命名: ""
+properties:
+  file.name:
+    displayName: 文件名
+  property.tags:
+    displayName: 标签
+  file.folder:
+    displayName: 路径
+  file.ctime:
+    displayName: 创建时间
+  file.ext:
+    displayName: 格式
+  property.country:
+    displayName: 国家
+  property.datePublished:
+    displayName: 出版日期
+  property.director:
+    displayName: 导演
+  property.score:
+    displayName: 评分
+  property.desc:
+    displayName: 简介
+  property.今日喝水量:
+    displayName: 喝水量(ml)
+  property.读书时长:
+    displayName: 读书时长(min)
+  property.回顾打卡:
+    displayName: 🔗
+  property.运动时长:
+    displayName: 运动时长(h)
+  property.今日心情:
+    displayName: 🙂
+  property.运动打卡:
+    displayName: 🏃
+  property.喝水打卡:
+    displayName: 💧
+  property.读书打卡:
+    displayName: 📖
+  property.回顾建立联系笔记数量:
+    displayName: 每日链接数量(篇)
+views:
+  - type: table
+    name: 文档数据库-日记
+    filters:
+      and:
+        - file.path.contains("Documents/Dailynote")
+        - file.name != "0-KISS复盘汇总"
+    order:
+      - file.name
+      - 今日心情
+      - 运动打卡
+      - 喝水打卡
+      - 读书打卡
+      - 回顾打卡
+      - 读书时长
+      - 今日喝水量
+      - 运动时长
+      - 回顾建立联系笔记数量
+      - Keep
+      - Improve
+      - Start
+      - Stop
+    sort: []
+    columnSize:
+      file.name: 141
+      property.回顾打卡: 51
+      property.Keep: 136
+      property.Improve: 130
+      property.Start: 139
+      property.Stop: 133
+  - type: table
+    name: 文档数据库-IPARA
+    filters:
+      and:
+        - file.path.contains("Documents/I.P.A.R.A")
+        - file.ext != "canvas"
+        - file.name != "保留此文档不要删"
+    order:
+      - file.name
+      - 笔记类型
+      - 卡片盒笔记主题
+      - tags
+    sort:
+      - property: formula.未命名
+        direction: DESC
+      - property: formula.反向连接
+        direction: DESC
+    columnSize:
+      file.name: 260
+      formula.反向连接: 323
+    cardSize: 220
+    imageFit: ""
+    imageAspectRatio: 1
+  - type: table
+    name: 文档数据库-主题索引卡
+    filters:
+      and:
+        - file.path.contains("Documents/I.P.A.R.A")
+        - file.ext.contains("canvas")
+    order:
+      - file.name
+      - file.folder
+      - file.ctime
+      - file.ext
+    sort:
+      - property: file.ctime
+        direction: DESC
+    columnSize:
+      file.name: 260
+      file.folder: 524
+      file.ctime: 198
+  - type: cards
+    name: 文档数据库-豆瓣电影
+    filters:
+      and:
+        - file.path.contains("Documents/Douban")
+    order:
+      - file.name
+      - director
+      - scoreStar
+    sort:
+      - property: property.country
+        direction: DESC
+    columnSize:
+      file.name: 206
+      property.country: 185
+      property.datePublished: 130
+      property.director: 210
+      property.score: 115
+      property.desc: 428
+    image: note.imageData
+    imageAspectRatio: 1.55

@@ -1,0 +1,365 @@
+/* Media Browser 插件样式 */
+
+.media-browser-container {
+    background: var(--callout-content-background);
+
+    padding: 15px;
+
+}
+
+.media-browser-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #dee2e687;
+    padding-bottom: 8px;
+}
+
+.media-browser-container h4 {
+    margin: 0;
+    color: var(--text-color-code);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* 刷新按钮样式 */
+.media-browser-refresh-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 4px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-family: inherit;
+    box-shadow: none !important;    
+}
+
+.media-browser-refresh-btn:hover {
+    background: #0056b3;
+}
+
+.media-browser-refresh-btn:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+}
+
+/* 子文件夹切换按钮样式 */
+.media-browser-subfolders-btn {
+    background: #28a745;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 4px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-family: inherit;
+    box-shadow: none !important;    
+}
+
+.media-browser-subfolders-btn:hover {
+    background: #1e7e34;
+}
+
+.media-browser-subfolders-btn:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+}
+
+.media-browser-list {
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.media-browser-item {
+    margin-bottom: 3px;
+    line-height: 1;
+    transition: background-color 0.2s ease;
+    padding: 2px 4px;
+    border-radius: 3px;
+    margin-right: 0;
+}
+
+.media-browser-item:hover {
+    background-color: var(--background-modifier-hover);
+    border-radius: 3px;
+    /* 保持和 .media-browser-item 一致，避免跳动 */
+    padding: 2px 4px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* 链接样式 */
+.media-browser-item a {
+    color: rgb(214 102 0);
+    text-decoration: none;
+    font-size: 13px;
+    display: inline-block;
+    padding: 1px 2px;
+    border-radius: 2px;
+    transition: all 0.2s ease;
+}
+
+
+
+/* 文件链接样式 */
+.media-browser-file {
+    font-weight: normal;
+    color: #007bff;
+}
+
+.media-browser-file:hover {
+    color: #0056b3;
+    background-color: #e3f2fd;
+}
+
+/* 滚动条样式 */
+.media-browser-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.media-browser-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.media-browser-list::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.media-browser-list::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* 加载状态样式 */
+.media-browser-loading {
+    color: #007bff;
+    font-style: italic;
+    text-align: center;
+    padding: 20px;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+/* 错误状态样式 */
+.media-browser-error {
+    color: #dc3545;
+    background: transparent;
+    border: 2px dashed #a3a3a3;
+    font-size: 15px;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .media-browser-container {
+        padding: 10px;
+        margin: 5px 0;
+    }
+    
+    .media-browser-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .media-browser-subfolders-btn,
+    .media-browser-refresh-btn {
+        align-self: flex-end;
+        margin-right: 0;
+        margin-bottom: 4px;
+    }
+    
+    .media-browser-item {
+        font-size: 12px;
+    }
+    
+    .media-browser-list {
+        max-height: 300px;
+    }
+}
+.media-browser-subfolders-btn,
+.media-browser-refresh-btn,
+.media-browser-history-btn {
+    background-color: transparent !important;
+}
+
+/* 历史记录按钮样式（与刷新/子文件夹一致） */
+.media-browser-history-btn {
+    font-size: 12px;
+    cursor: pointer;
+    box-shadow: none !important;    
+}
+
+.media-browser-history-btn:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+}
+
+/* 历史菜单与条目样式 */
+.media-browser-history-menu {
+    user-select: none;
+    min-width: 220px;
+}
+.media-browser-history-item:hover {
+    background-color: var(--background-modifier-hover);
+}
+
+/* 历史删除按钮样式 */
+.media-browser-history-delete-btn {
+    background: transparent !important; 
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    box-shadow: none !important;
+}
+.media-browser-history-delete-btn:hover {
+    color: var(--text-error);
+}
+
+/* 右键菜单样式 */
+.media-browser-contextmenu {
+  user-select: none;
+  min-width: 140px;
+  transition: box-shadow 0.2s;
+}
+.media-browser-contextmenu:active {
+  background: #f0f0f0;
+}
+
+/* 音频播放器样式 */
+.media-browser-audio-player {
+    background: transparent;
+    border: 1px solid rgb(24 91 0 / 60%);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.media-browser-audio-player button {
+    box-shadow: none !important;
+}
+
+.media-browser-audio-player button:hover {
+    transform: scale(1.1);
+}
+
+.media-browser-current-file {
+    padding-left: 10px;
+    flex: 1;
+    min-width: 120px;
+    font-size: 12px;
+    color: #495057;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* 进度条样式 */
+.media-browser-progress {
+    flex: 1;
+    height: 3px !important;
+    border-radius: 2px;
+    background:rgba(45, 128, 128, 0.648) !important;
+    outline: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.media-browser-progress::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px !important;
+    height: 12px !important;
+    border-radius: 50% !important;
+    background: rgb(0, 161, 248) !important;
+    cursor: pointer;
+
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+/* 折叠/展开按钮样式 */
+.media-browser-toggle-btn {
+    cursor: pointer;
+    vertical-align: middle;
+    margin-right: 4px;
+    transition: transform 0.2s ease;
+}
+
+.media-browser-toggle-btn:hover {
+    transform: scale(1.1);
+}
+
+/* B站登录状态设置页面样式 */
+.bilibili-login-status {
+    background: var(--background-secondary);
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 6px;
+    padding: 12px;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.2s ease;
+}
+
+.bilibili-login-status:hover {
+    background: var(--background-secondary-alt);
+}
+
+.status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #ccc;
+    flex-shrink: 0;
+    transition: background-color 0.3s ease;
+}
+
+.bilibili-login-status button {
+    padding: 6px 12px;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 4px;
+    background: var(--background-primary);
+    color: var(--text-normal);
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s ease;
+}
+
+.bilibili-login-status button:hover {
+    background: var(--background-modifier-hover);
+    border-color: var(--background-modifier-border-hover);
+}
+
+.bilibili-login-status button:active {
+    transform: translateY(1px);
+}
+
+/* 登录按钮特殊样式 */
+.bilibili-login-status button[style*="background: #00a1d6"] {
+    background: #00a1d6 !important;
+    color: white !important;
+    border-color: #00a1d6 !important;
+}
+
+.bilibili-login-status button[style*="background: #00a1d6"]:hover {
+    background: #0091c2 !important;
+    border-color: #0091c2 !important;
+}

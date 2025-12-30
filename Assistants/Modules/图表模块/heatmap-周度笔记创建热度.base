@@ -1,0 +1,9 @@
+views:
+  - type: heat-map
+    name: 周度笔记创建热度
+    order:
+      - file.ctime
+    viewMode: week
+    cellSize: "12"
+    colorScheme: purple
+    enableAggregation: true

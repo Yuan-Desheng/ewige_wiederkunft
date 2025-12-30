@@ -1,0 +1,188 @@
+/* Note Importer 插件样式 */
+
+.note-importer-modal {
+    padding: 20px;
+}
+
+.note-importer-modal h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* Vault 路径输入容器 */
+.vault-path-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.vault-path-input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 4px;
+    background-color: var(--background-primary);
+    color: var(--text-normal);
+}
+
+.vault-browse-btn {
+    padding: 8px 16px;
+    border-radius: 4px;
+    background-color: var(--interactive-normal);
+    color: var(--text-normal);
+    border: none;
+    cursor: pointer;
+}
+
+.vault-browse-btn:hover {
+    background-color: var(--interactive-hover);
+}
+
+/* Vault 路径显示 */
+.vault-path-display {
+    color: var(--text-muted);
+    font-size: 0.9em;
+    margin-bottom: 15px;
+    padding: 8px;
+    background-color: var(--background-secondary);
+    border-radius: 4px;
+}
+
+/* 搜索容器 */
+.search-container {
+    margin-bottom: 15px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 4px;
+    background-color: var(--background-primary);
+    color: var(--text-normal);
+}
+
+/* 笔记列表容器 */
+.note-list-container {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 4px;
+    padding: 5px;
+    margin-bottom: 20px;
+    background-color: var(--background-primary);
+}
+
+.note-list-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.note-list-container::-webkit-scrollbar-track {
+    background: var(--background-secondary);
+    border-radius: 4px;
+}
+
+.note-list-container::-webkit-scrollbar-thumb {
+    background: var(--background-modifier-border);
+    border-radius: 4px;
+}
+
+.note-list-container::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
+
+/* 笔记项 */
+.note-item {
+    display: flex;
+    align-items: center;
+    padding: 0px 8px;
+    margin-bottom: 0px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.note-item:hover {
+    background-color: var(--background-secondary);
+}
+
+.note-checkbox {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.note-label {
+    display: flex;
+    flex: 1;
+    cursor: pointer;
+    color: var(--text-normal);
+    line-height: 30px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.note-label::before {
+    content: '📁';
+    display: inline-block;
+    margin-right: 6px;
+}
+
+/* 文件夹树样式 */
+.note-item.folder-item {
+    position: relative;
+}
+
+.folder-toggle {
+    width: 18px;
+    flex-shrink: 0;
+    text-align: center;
+    cursor: pointer;
+    color: var(--text-muted);
+    margin-right: 10px;
+}
+
+.folder-toggle:hover {
+    color: var(--text-normal);
+}
+
+/* 无笔记消息 */
+.no-notes-message {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 40px 20px;
+}
+
+/* 按钮容器 */
+.modal-button-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.modal-button-container button {
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.modal-button-container button:not(.mod-cta) {
+    background-color: var(--interactive-normal);
+    color: var(--text-normal);
+}
+
+.modal-button-container button:not(.mod-cta):hover {
+    background-color: var(--interactive-hover);
+}
+
+.modal-button-container button.mod-cta {
+    background-color: var(--interactive-accent);
+    color: var(--text-on-accent);
+}
+
+.modal-button-container button.mod-cta:hover {
+    background-color: var(--interactive-accent-hover);
+}

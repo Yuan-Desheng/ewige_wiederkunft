@@ -1,0 +1,22 @@
+views:
+  - type: table
+    name: 模块（Modules）
+    filters:
+      and:
+        - file.path.contains("Assistants/Modules")
+    order:
+      - file.name
+      - tags
+      - aliases
+    columnSize:
+      file.name: 416
+      note.tags: 214
+  - type: table
+    name: 模板（Templater）
+    filters:
+      and:
+        - file.path.contains("Assistants/Templater")
+    order:
+      - file.name
+      - tags
+      - aliases

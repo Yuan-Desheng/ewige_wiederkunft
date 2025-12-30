@@ -1,0 +1,11 @@
+
+{
+  "id": "note-rambler",
+  "name": "Note Rambler",
+  "version": "0.1.4",
+  "minAppVersion": "1.5.0",
+  "description": "在指定路径中按random属性值（阅读次数）与笔记类型智能随机抽取笔记，支持路径排除、次数上限过滤，并自动打开本地图谱辅助复习",
+  "author": "ytmaps_鱼先生",
+  "authorUrl": "",
+  "isDesktopOnly": false
+}

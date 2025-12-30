@@ -1,0 +1,9 @@
+views:
+  - type: heat-map
+    name: 月度笔记创建热度
+    order:
+      - file.ctime
+    aggregateBy: file.ctime
+    viewMode: month
+    cellSize: "12"
+    colorScheme: red

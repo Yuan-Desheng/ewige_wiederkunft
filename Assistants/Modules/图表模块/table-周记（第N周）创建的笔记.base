@@ -1,0 +1,17 @@
+views:
+  - type: table
+    name: 本周创建的笔记
+    filters:
+      and:
+        - file.folder.startsWith("Documents/I.P.A.R.A")
+        - date(createTime).format("GGGG-[W]WW") == this.file.name
+    order:
+      - file.name
+      - 笔记类型
+      - 卡片盒笔记主题
+      - 文档标签
+    separator: ｜
+    columnSize:
+      file.name: 210
+      note.笔记类型: 82
+      note.卡片盒笔记主题: 198

@@ -1,0 +1,11 @@
+{
+  "id": "banner-image",
+  "name": "Banner Image",
+  "version": "0.2.1",
+  "minAppVersion": "0.15.0",
+  "description": "提供更稳定、更快速的顶部图片设置与显示功能",
+  "author": "鱼先生_ytmaps",
+  "authorUrl": "https://www.xiaohongshu.com/user/profile/63cfeb720000000026010489",
+  "fundingUrl": "",
+  "isDesktopOnly": false
+}

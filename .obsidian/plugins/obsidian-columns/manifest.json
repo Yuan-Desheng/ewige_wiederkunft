@@ -1,0 +1,12 @@
+{
+	"id": "obsidian-columns",
+	"name": "Columns",
+	"minAppVersion": "0.12.0",
+	"description": "Allows you to create columns in Obsidian Markdown，Modified by ytmaps_鱼先生 based on original work by Trevor Nichols",
+	"author": "Trevor Nichols",
+	"authorUrl": "https://github.com/tnichols217/obsidian-columns",
+	"contributor": "ytmpas_鱼先生",
+	"contributorUrl": "https://www.xiaohongshu.com/user/profile/63cfeb720000000026010489",
+	"isDesktopOnly": false,
+	"version": "2.8.3"
+}
