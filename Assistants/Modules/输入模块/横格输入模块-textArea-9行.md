@@ -12,6 +12,6 @@ id: 202407115201
 ---
 
 ```col-md
-`INPUT[textArea(class(textArea-405-grid)):area-note9]`
+`INPUT[textArea(class(textArea-405-grid), placeholder(在这里写下今天的日记)):area-note9]`
 ```
 
