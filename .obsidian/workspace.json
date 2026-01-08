@@ -4,22 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "8cc93380a3395fb9",
+        "id": "bab999d5cab5e917",
         "type": "tabs",
         "children": [
           {
-            "id": "ce562e198020ffe8",
+            "id": "8f9a9a24fc52a0b1",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Assistants/Templater/日记/日记模板2.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "日记模板2"
+              "title": "新标签页"
             }
           }
         ]
@@ -54,7 +49,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "kiss",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -79,7 +74,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 304
+    "width": 304,
+    "collapsed": true
   },
   "right": {
     "id": "128c55eacc93ffde",
@@ -112,11 +108,9 @@
             "type": "leaf",
             "state": {
               "type": "file-properties",
-              "state": {
-                "file": "Documents/I.P.A.R.A/生活领域/资源/（云）MAD.md"
-              },
+              "state": {},
               "icon": "lucide-info",
-              "title": "（云）MAD的笔记属性"
+              "title": "笔记属性"
             }
           },
           {
@@ -193,7 +187,7 @@
             }
           }
         ],
-        "currentTab": 6
+        "currentTab": 1
       },
       {
         "id": "bda6964f87b3610f",
@@ -305,44 +299,48 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "ce562e198020ffe8",
+  "active": "8f9a9a24fc52a0b1",
   "lastOpenFiles": [
-    "Assistants/Templater/日记/日常点滴记录模板2.md",
-    "Assistants/Templater/日记/日记模板2.md",
-    "Assistants/Templater/日记/日常点滴记录模板2.md~",
-    "Assistants/Templater/日记/日常点滴记录模板.md",
-    "Documents/Dailynote/0-KISS复盘汇总.md",
-    "Assistants/Templater/日记/日记模板1.md",
-    "Documents/Dailynote/2026-01-02.md",
-    "使用指南/00--通用说明（重要）/3-如何快速嵌入模块.md",
-    "使用指南/00--通用说明（重要）/15-如何更新、获取新的模块.md",
-    "使用指南/00--通用说明（重要）/14-软件、插件版本.md",
-    "使用指南/00--通用说明（重要）/12-如何在移动端使用模块化OB.md",
-    "使用指南/00--通用说明（重要）/11-如何更改模板.md",
-    "快速上手打卡任务（完成后，请删除）.md",
-    "Documents/Douban/movie/触不可及.md",
-    "Documents/Dailynote/2025-11-06.md",
-    "使用指南/00--通用说明（重要）/2-了解系统组成.md",
-    "Books/电子书架.md",
+    "Documents/I.P.A.R.A/工作领域/项目/自媒体平台数据爬取.md",
+    "Documents/I.P.A.R.A/0-收集箱/未命名.base",
+    "Documents/I.P.A.R.A/0-收集箱/未命名 1.base",
+    "Documents/I.P.A.R.A/0-收集箱/未命名.md",
+    "Documents/I.P.A.R.A/0-收集箱/未命名 1.md",
+    "数据库与导航.md",
+    "Documents/I.P.A.R.A/0-收集箱/未命名 4.md",
+    "Documents/I.P.A.R.A/0-收集箱/未命名 5.md",
+    "Documents/I.P.A.R.A/0-收集箱/media ase.md",
     "Documents/I.P.A.R.A/0-收集箱/未命名 3.md",
-    "Books/读书笔记/明朝那些事儿（全集）/明朝那些事儿（全集）.md",
-    "Books/读书笔记/圆圈正义：作为自由前提的信念/圆圈正义：作为自由前提的信念.md",
-    "Books/读书笔记/作家榜名著：人生的智慧/作家榜名著：人生的智慧.md",
-    "Books/读书笔记/Fate/Zero（全四卷）/FateZero（全四卷）.md",
-    "Books/读书笔记/修真四万年/修真四万年.md",
-    "Books/读书笔记/五堂极简生物课/五堂极简生物课.md",
-    "Books/读书笔记/天使的呢喃/天使的呢喃.md",
-    "Books/读书笔记/你不知道的JavaScript（上卷）/你不知道的JavaScript（上卷）.md",
+    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/海媒传播分析系统.canvas",
+    "Documents/I.P.A.R.A/学习领域/项目/『芋道项目』ruoyi-vue-pro、yudao-cloud.md",
+    "Documents/Dailynote/2026-01-05.md",
+    "Documents/Dailynote/2026-01-04.md",
+    "Documents/Dailynote/2026-01-03.md",
+    "Documents/Dailynote/2026-01-02.md",
+    "Documents/I.P.A.R.A/学习领域/归档/Gemini CLI Interactions/2026-01-02_Daily_Note_Refactor.md",
+    "使用指南/00--通用说明（重要）/18-基础markdown语法.md",
+    "使用指南/00--通用说明（重要）/4-如何分栏.md",
+    "快速上手打卡任务（完成后，请删除）.md",
+    "Assistants/Templater/日记/日常点滴记录模板2.md",
+    "Assistants/Templater/主页/homepage-侧页.md",
+    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/Java.canvas",
+    "Documents/I.P.A.R.A/生活领域/收集/科幻故事点子.md",
+    "Documents/I.P.A.R.A/生活领域/归档/卡片盒笔记主题索引卡/故事点子.canvas",
+    "Documents/I.P.A.R.A/学习领域/归档/Gemini CLI Interactions",
+    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/六爻.canvas",
+    "Documents/Dailynote/2026-01-02.md~",
+    "Assistants/Templater/日记/待办模块.md",
+    "使用指南/00--通用说明（重要）/11-如何更改模板.md",
+    "Assistants/Templater/日记/日记模板2.md",
+    "Extras/附件/Pasted image 20260102172801.png",
+    "Assistants/Templater/日记/日常点滴记录模板2.md~",
+    "Documents/I.P.A.R.A/0-收集箱/任务笔记示例1.md",
+    "Assistants/Templater/日记/日常点滴记录模板.md",
     "Books/读书笔记/三体全集（全三册）",
     "Books/读书笔记/修真四万年",
     "Books/读书笔记/明朝那些事儿（全集）",
     "Books/读书笔记/自私的基因（40周年增订版）",
     "Books/读书笔记/五堂极简生物课",
-    "Books/读书笔记/你的第一本哲学书",
-    "Books/读书笔记/黑客与画家",
-    "Books/读书笔记/思想史：从火到弗洛伊德（全二册）",
-    "Books/读书笔记/你不知道的JavaScript（上卷）",
-    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/六爻.canvas",
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/great idea.canvas",
     "Extras/附件/Pasted image 20251229152546.png",
     "Extras/附件/Pasted image 20251229152440.png",
@@ -354,13 +352,9 @@
     "Extras/头像/头像2.png",
     "Extras/头像/头像1.png",
     "Extras/头图/banner-电影.jpg",
-    "Extras/头图/banner-笔记.png",
     "Documents/Canvas/未命名.canvas",
     "Documents/I.P.A.R.A/生活领域/归档/卡片盒笔记主题索引卡/鲜花养护知识.canvas",
     "Documents/I.P.A.R.A/生活领域/归档/卡片盒笔记主题索引卡/撒旦法.canvas",
-    "Documents/I.P.A.R.A/数学领域/归档/卡片盒笔记主题索引卡/数学测试领域.canvas",
-    "Assistants/Templater/笔记/主题索引卡模板-白板.canvas",
-    "Books/白板笔记/打造第二大脑.canvas",
-    "Books/白板笔记/未命名.canvas"
+    "Documents/I.P.A.R.A/数学领域/归档/卡片盒笔记主题索引卡/数学测试领域.canvas"
   ]
 }

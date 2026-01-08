@@ -22,7 +22,7 @@ cssclasses:
 
 重要问题：
 请基于.obsidian/plugins/Dida Sync/data.json待办文件（主要分析"tasks"数组中的内容即可createdAt是创建时间updatedAt是修改时间status为0表示未完成status为2表示已完成）（data.json文件中的内容比较多，你可以从第2000行开始读取），
-帮我修改Documents/Dailynote/目录下今天的日记中的待办模块部分，要求：
+帮我整理Documents/Dailynote/目录下昨天和今天的日记中的待办模块部分，要求：
 1.展示今日创建：整理出创建时间为“今天”的所有待办任务（无论其截止日期是何时）。
 2.展示今日完成：将当天已完成的任务列表，自动汇总至当日日记中。
 3.提示逾期任务：将逾期未完成的任务（如昨天到期），自动显示在今日日记里进行提醒。

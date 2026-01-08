@@ -1,4 +1,6 @@
 {
 	"edges":[],
-	"nodes":[]
+	"nodes":[
+		{"id":"note-1767515880965-1404","type":"file","file":"Documents/I.P.A.R.A/学习领域/项目/『芋道项目』ruoyi-vue-pro、yudao-cloud.md","x":100,"y":100,"width":440,"height":500}
+	]
 }

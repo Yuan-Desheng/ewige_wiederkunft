@@ -12,7 +12,7 @@ tags:
   - "[[Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/Java.canvas|Java]]"
 ---
 
-## 『芋道项目』ruoyi-vue-pro、yudao-cloud全新版本，优化重构所有功能
+## 『芋道项目』ruoyi-vue-pro、yudao-cloud
 ```meta-bind-embed
 [[笔记抬头模块]]
 ```
