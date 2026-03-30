@@ -1,0 +1,10 @@
+{
+  "id": "dockspace",
+  "name": "DockSpace",
+  "version": "0.2.5",
+  "minAppVersion": "1.5.0",
+  "description": "一个临时存储区域，用于快速缓存文件、文本、网络图片、网页地址等内容，并将它们鼠标拖放、或右键新建、添加到其他笔记中。",
+  "author": "ytmaps_鱼先生",
+  "authorUrl": "https://www.xiaohongshu.com/user/profile/63cfeb720000000026010489",
+  "isDesktopOnly": true
+}

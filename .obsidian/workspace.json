@@ -4,71 +4,101 @@
     "type": "split",
     "children": [
       {
-        "id": "b495f948124625c6",
+        "id": "5697bd844e175844",
         "type": "tabs",
         "children": [
           {
-            "id": "ed133c30893a1cdf",
+            "id": "a5fa0df6d4994961",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Documents/I.P.A.R.A/学习领域/收集/峰华Vue 3.x完全指南与实战.md",
+                "file": "Documents/I.P.A.R.A/学习领域/收集/ClaudeCode+GLM.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "峰华Vue 3.x完全指南与实战"
+              "title": "ClaudeCode+GLM"
             }
           },
           {
-            "id": "499bcd9dfc280415",
+            "id": "4e470971f761f106",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Documents/I.P.A.R.A/学习领域/收集/使用 computed 计算属性处理稍复杂的业务逻辑.md",
+                "file": "Documents/I.P.A.R.A/学习领域/收集/安卓平台适配.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "使用 computed 计算属性处理稍复杂的业务逻辑"
+              "title": "安卓平台适配"
             }
           },
           {
-            "id": "1bf06a26212c2228",
+            "id": "3573c40a4e6769ba",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Documents/I.P.A.R.A/学习领域/收集/Git.md",
+                "file": "Documents/I.P.A.R.A/工作领域/项目/知塘晓物-APP端开发.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "Git"
+              "title": "知塘晓物-APP端开发"
             }
           },
           {
-            "id": "c25b16ca2c7d5e14",
+            "id": "2306b174c8e68d45",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Documents/I.P.A.R.A/工作领域/项目/自媒体平台数据爬取.md",
+                "file": "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "自媒体平台数据爬取"
+              "title": "融合大模型智能体的虚拟电厂仿真系统"
+            }
+          },
+          {
+            "id": "c7910c8deca160c4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documents/I.P.A.R.A/工作领域/项目/负荷预测、可调能力、协同仿真 页面原型.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "负荷预测、可调能力、协同仿真 页面原型"
+            }
+          },
+          {
+            "id": "836b92506ab7b910",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documents/I.P.A.R.A/学习领域/收集/Windows安装Ubuntu （双系统）.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "Windows安装Ubuntu （双系统）"
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -121,8 +151,7 @@
               "title": "书签"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -333,10 +362,11 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "imagen:图片管理": false,
+      "bases:新建数据库": false,
       "note-importer:导入笔记": false,
       "dida-sync:滴答时间线视图": false,
       "obsidian-content-protection:同步数据": false,
-      "bases:创建新数据库": false,
       "obsidian-content-protection:插件市场": false,
       "obsidian-spaced-repetition:复习卡片": false,
       "obsidian-weread-plugin:同步微信读书笔记": false,
@@ -351,62 +381,62 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "1bf06a26212c2228",
+  "active": "60a7820e453ce0cc",
   "lastOpenFiles": [
-    "Documents/I.P.A.R.A/工作领域/项目/自媒体平台数据爬取.md",
-    "Documents/I.P.A.R.A/学习领域/收集/使用 computed 计算属性处理稍复杂的业务逻辑.md",
-    "数据库与导航.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Git.md",
-    "Documents/I.P.A.R.A/学习领域/收集/峰华Vue 3.x完全指南与实战.md",
-    "Extras/附件/Pasted image 20260109110446.png",
-    "Assistants/Templater/主页/homepage-侧页.md",
-    "Documents/I.P.A.R.A/学习领域/收集/快速入门.md",
-    "Extras/附件/Pasted image 20260108150443.png",
-    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/海媒传播分析系统.canvas",
-    "Extras/附件/Pasted image 20260108112411.png",
-    "Extras/附件/Pasted image 20260108112400.png",
-    "Extras/附件/Pasted image 20260108112311.png",
-    "Extras/附件/Pasted image 20260108112232.png",
-    "Extras/附件/Pasted image 20260108112156.png",
-    "Extras/附件/Pasted image 20260108112120.png",
-    "Extras/附件/Pasted image 20260108112057.png",
-    "Extras/附件/Pasted image 20260108112007.png",
-    "Documents/I.P.A.R.A/学习领域/项目/『芋道项目』ruoyi-vue-pro、yudao-cloud.md",
-    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/峰华Vue3.canvas",
-    "Documents/I.P.A.R.A/0-收集箱/未命名.base",
     "Documents/I.P.A.R.A/0-收集箱/未命名 1.base",
-    "Documents/I.P.A.R.A/0-收集箱/未命名.md",
-    "Documents/I.P.A.R.A/0-收集箱/未命名 1.md",
-    "Documents/I.P.A.R.A/0-收集箱/未命名 4.md",
-    "Documents/I.P.A.R.A/0-收集箱/未命名 5.md",
-    "Documents/I.P.A.R.A/0-收集箱/media ase.md",
-    "Documents/I.P.A.R.A/0-收集箱/未命名 3.md",
-    "Documents/Dailynote/2026-01-05.md",
-    "Documents/Dailynote/2026-01-04.md",
-    "Documents/Dailynote/2026-01-03.md",
-    "Documents/Dailynote/2026-01-02.md",
-    "Documents/I.P.A.R.A/学习领域/归档/Gemini CLI Interactions/2026-01-02_Daily_Note_Refactor.md",
-    "使用指南/00--通用说明（重要）/18-基础markdown语法.md",
-    "使用指南/00--通用说明（重要）/4-如何分栏.md",
-    "快速上手打卡任务（完成后，请删除）.md",
-    "Assistants/Templater/日记/日常点滴记录模板2.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Windows安装Ubuntu （双系统）.md",
+    "Assistants/Templater/主页/homepage-侧页.md",
+    "Documents/I.P.A.R.A/工作领域/项目/负荷预测、可调能力、协同仿真 页面原型.md",
+    "Documents/I.P.A.R.A/学习领域/收集/安卓平台适配.md",
+    "Documents/I.P.A.R.A/学习领域/收集/ClaudeCode+GLM.md",
+    "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
+    "数据库与导航.md",
+    "Documents/I.P.A.R.A/学习领域/收集/OpenClaw.md",
+    "Documents/I.P.A.R.A/工作领域/项目/知塘晓物-APP端开发.md",
+    "Documents/I.P.A.R.A/工作领域/项目/AI生成知塘晓物 UI原型、API接口.md",
+    "Documents/I.P.A.R.A/学习领域/项目/『芋道项目』ruoyi-vue-pro、yudao-cloud.md",
+    "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统UI原型生成提示词.md",
+    "Documents/I.P.A.R.A/学习领域/收集/CodePen.md",
+    "Documents/I.P.A.R.A/工作领域/项目/虚拟电厂仿真系统-原始需求的提示词整理.md",
+    "Documents/I.P.A.R.A/学习领域/收集/从Dart语言到Flutter核心框架.md",
+    "Documents/I.P.A.R.A/学习领域/收集/APP打包上架.md",
+    "Documents/I.P.A.R.A/学习领域/收集/主页 Tab 栏.md",
+    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/Flutter.canvas",
+    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/知塘晓物.canvas",
+    "Documents/I.P.A.R.A/工作领域/项目/知塘晓物-后台管理开发.md",
+    "Documents/I.P.A.R.A/工作领域/项目/流水线部署前端项目.md",
+    "Documents/I.P.A.R.A/工作领域/项目/工业数据采集公司官网.md",
+    "Documents/I.P.A.R.A/工作领域/项目/企业AI培训.md",
+    "Documents/I.P.A.R.A/工作领域/项目/需求名词解释.md",
+    "Extras/附件/Pasted image 20260317152414.png",
+    "Extras/附件/Pasted image 20260317152119.png",
+    "Extras/附件/Pasted image 20260317152004.png",
+    "Extras/附件/Pasted image 20260317151934.png",
+    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/融合大模型智能体的虚拟电厂仿真系统.canvas",
+    "Documents/I.P.A.R.A/学习领域/收集/登录实现（接口对接）.md",
+    "Extras/附件/Flutter从入门到实战-综合案例.pdf",
+    "Documents/I.P.A.R.A/学习领域/收集/退出登录-确认弹窗-进度弹窗.md",
+    "Extras/附件/Pasted image 20260304112617.png",
+    "Extras/附件/Pasted image 20260304110144.png",
+    "Extras/附件/Pasted image 20260304105048.png",
+    "Extras/附件/Pasted image 20260304104933.png",
+    "Extras/附件/Pasted image 20260304104849.png",
+    "Extras/附件/Pasted image 20260304104838.png",
+    "Documents/I.P.A.R.A/工作领域/项目/前台门户网站.md",
+    "Extras/附件/Flutter从入门到实战-Flutter框架.pdf",
+    "Documents/I.P.A.R.A/0-收集箱/未命名 2.base",
+    "Extras/附件/Flutter从入门到实战.pdf",
+    "Documents/I.P.A.R.A/0-收集箱/未命名.base",
+    "Documents/I.P.A.R.A/0-收集箱/未命名 3.base",
+    "Extras/附件/Dart_x64.stable.setup.exe",
+    "Extras/附件/Flutter从入门到实战 1.pdf",
+    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/Dart.canvas",
+    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/Gemini.canvas",
+    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/海媒传播分析系统.canvas",
+    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/峰华Vue3.canvas",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/Java.canvas",
-    "Documents/I.P.A.R.A/生活领域/收集/科幻故事点子.md",
     "Documents/I.P.A.R.A/生活领域/归档/卡片盒笔记主题索引卡/故事点子.canvas",
     "Documents/I.P.A.R.A/学习领域/归档/Gemini CLI Interactions",
-    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/六爻.canvas",
-    "Documents/Dailynote/2026-01-02.md~",
-    "Assistants/Templater/日记/待办模块.md",
-    "Assistants/Templater/日记/日常点滴记录模板2.md~",
-    "Books/读书笔记/三体全集（全三册）",
-    "Books/读书笔记/修真四万年",
-    "Books/读书笔记/明朝那些事儿（全集）",
-    "Books/读书笔记/自私的基因（40周年增订版）",
-    "Books/读书笔记/五堂极简生物课",
-    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/great idea.canvas",
-    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/测试索引卡（可删）.canvas",
-    "Documents/Canvas/未命名.canvas",
-    "Documents/I.P.A.R.A/生活领域/归档/卡片盒笔记主题索引卡/鲜花养护知识.canvas",
-    "Documents/I.P.A.R.A/生活领域/归档/卡片盒笔记主题索引卡/撒旦法.canvas"
+    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/六爻.canvas"
   ]
 }

@@ -72,7 +72,7 @@
 
 .tab-navigation {
     display: flex;
-    background: var(--background-secondary);
+    background: transparent;
     border-radius: 8px;
     padding: 4px;
     margin-bottom: 20px;
@@ -101,7 +101,7 @@
     background: transparent;
     color: var(--font-default);
     font-weight: 500;
-    border-bottom: 5px solid rebeccapurple;
+    border-bottom: 3px solid rebeccapurple;
 }
 
 .tab-icon {
@@ -113,10 +113,9 @@
 }
 
 .tab-content-container {
-    background: var(--background-primary);
+    background: var(--background-modifier-hover);
     border-radius: 8px;
     padding: 20px;
-    border: 1px solid var(--background-modifier-border);
 }
 
 .content-section {
@@ -126,14 +125,6 @@
 .content-section:last-child {
     margin-bottom: 0;
 }
-
-.content-section h3 {
-    color: var(--text-accent);
-    margin-bottom: 15px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--background-modifier-border);
-}
-
 
 .setting-item .activation-status {
     font-weight: bold;
@@ -582,22 +573,6 @@
   }
   
 
-  .canvas-minimap-container {
-      background: var(--background-primary) !important;
-      border: 2px solid var(--background-modifier-border) !important;
-      border-radius: 8px !important;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
-      backdrop-filter: blur(10px) !important;
-      transition: all 0.3s ease;
-      opacity: 0.95;
-  }
-  
-  .canvas-minimap-container:hover {
-      opacity: 1;
-      transform: scale(1.02);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2) !important;
-      border-color: var(--interactive-accent) !important;
-  }
 
   .canvas-minimap-title {
       background: var(--background-secondary) !important;
@@ -625,77 +600,6 @@
       opacity: 0.7;
   }
   
-
-  .canvas-minimap-container canvas {
-      transition: all 0.2s ease;
-  }
-  
-  .canvas-minimap-container canvas:hover {
-      opacity: 1;
-  }
-  
-
-  .theme-dark .canvas-minimap-container {
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
-      border-color: var(--background-modifier-border-hover) !important;
-  }
-  
-  .theme-dark .canvas-minimap-container:hover {
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6) !important;
-  }
-  
-
-  @media (max-width: 768px) {
-      .canvas-minimap-container {
-          width: 250px !important;
-          height: 170px !important;
-          bottom: 10px !important;
-          right: 10px !important;
-      }
-      
-      .canvas-minimap-title {
-          padding: 6px 10px !important;
-          font-size: 11px !important;
-      }
-  }
-
-  @media (max-width: 480px) {
-      .canvas-minimap-container {
-          width: 200px !important;
-          height: 140px !important;
-          bottom: 5px !important;
-          right: 5px !important;
-      }
-      
-      .canvas-minimap-title {
-          padding: 4px 8px !important;
-          font-size: 10px !important;
-      }
-  }
-
-  @media (prefers-contrast: high) {
-      .canvas-minimap-container {
-          border-width: 3px !important;
-          border-color: var(--text-normal) !important;
-      }
-      
-      .canvas-minimap-title {
-          font-weight: bold !important;
-          color: var(--text-normal) !important;
-      }
-  }
-  
-
-  @media (prefers-reduced-motion: reduce) {
-      .canvas-minimap-container,
-      .canvas-minimap-container canvas,
-      .canvas-minimap-container:hover {
-          transition: none !important;
-          transform: none !important;
-      }
-  }
-  
-
   .canvas-minimap-collapsed-node {
       fill: var(--text-accent) !important;
       stroke: var(--text-accent) !important;
@@ -715,24 +619,12 @@
       opacity: 0.5;
   }
   
-
-  .workspace-split.mod-root .canvas-minimap-container {
-      position: fixed !important;
-      z-index: 9999 !important;
-  }
-
-  .canvas-wrapper.is-readonly .canvas-minimap-container {
-      opacity: 0.8;
-      pointer-events: none;
-  }
-  
   .canvas-wrapper.is-readonly .canvas-minimap-title::after {
       content: " (只读)";
       font-size: 0.9em;
       opacity: 0.7;
   }
 
-/* 插件市场样式 */
 /* 插件市场容器 */
 .plugin-market-container {
     padding: 20px;
@@ -748,15 +640,15 @@
 
 /* 插件卡片样式 */
 .plugin-card {
-    border: 5px solid white;
+    border: 5px solid var(--color-white);
     border-radius: 12px;
     padding: 10px;
-    padding-bottom: 10px; /* 为下载按钮留出空间 */
+    padding-bottom: 10px; 
     transition: all 0.3s ease;
     box-shadow: 0 2px 18px rgba(0, 0, 0, 0.2);
     max-width: 300px;
     max-height: 200px;
-    position: relative; /* 为绝对定位的下载按钮提供参考 */
+    position: relative; 
 }
 
 .plugin-card:hover {
@@ -802,11 +694,6 @@
     color: var(--text-muted);
 }
 
-.lucide-puzzle {
-    width: 24px;
-    height: 24px;
-    color: var(--text-muted);
-}
 
 .plugin-info {
     flex: 1;
@@ -869,7 +756,6 @@
     opacity: 0.8;
 }
 
-/* 插件描述 */
 .plugin-description {
     color: var(--text-normal);
     font-size: 10px;
@@ -878,7 +764,6 @@
     min-height: 80px;
 }
 
-/* 插件有效期 */
 .plugin-validity {
     font-size: 10px;
     position: absolute;
@@ -899,7 +784,6 @@
     background: rgba(var(--color-red-rgb), 0.1);
 }
 
-/* 插件作者 */
 .plugin-author {
     font-size: 10px;
     color: var(--text-muted);
@@ -908,7 +792,7 @@
     left: 15px;
 }
 
-/* 插件操作按钮 */
+
 .plugin-actions {
     position: absolute;
     bottom: 15px;
@@ -970,7 +854,6 @@
     transform: none;
 }
 
-/* 下载权限有效期信息 */
 .plugin-market-modal-content {
     position: relative;
 }
@@ -1101,37 +984,6 @@
     display: flex;
     align-items: center;
     gap: 10px;
-}
-
-.plugin-market-modal .refresh-button {
-    background: none;
-    border: none;
-    color: var(--text-muted);
-    cursor: pointer;
-    padding: 5px;
-    border-radius: 4px;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-}
-
-.plugin-market-modal .refresh-button:hover {
-    background: var(--background-modifier-hover);
-    color: var(--text-normal);
-}
-
-.plugin-market-modal .refresh-button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-.plugin-market-modal .refresh-button svg {
-    width: 18px;
-    height: 18px;
-    color: inherit;
 }
 
 .plugin-market-modal .plugin-market-modal-content {
@@ -1306,23 +1158,18 @@
     padding-right: 4px;
 }
 
-.vika-updateid-item {
-    background: var(--background-secondary);
-    border: 1px solid var(--background-modifier-border);
+.theme-dark .vika-updateid-item {
+    background: #00000012;
     border-radius: 8px;
-    padding: 5px;
+    padding: 15px;
     transition: all 0.2s ease;
 }
-
-.vika-updateid-item:hover {
-    border-color: var(--interactive-accent);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+.theme-light .vika-updateid-item {
+    background: #bababa30;
+    border-radius: 8px;
+    padding: 15px;
 }
 
-.vika-updateid-header {
-    gap: 8px;
-    margin-bottom: 8px;
-}
 
 .vika-updateid-id {
     font-weight: 600;
@@ -1349,27 +1196,30 @@
 }
 
 .vika-updateid-item button {
-    width: 60px;
+    max-width: 70px;
+    width: 95%;
+    background: var(--background-modifier-hover);
+    border-radius: 10px ;
+    color: var(--text-error);
 }
 
 /* Vika 记录表格样式 */
 .vika-records-table-container {
     margin: 12px 0;
-    overflow-x: auto;
     border-radius: 6px;
     border: 1px solid var(--background-modifier-border);
+    max-height: 300px;
+    overflow-y: auto;
 }
 
 .vika-records-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 12px;
-    background: var(--background-primary);
 }
 
 .vika-records-table thead {
-    background: var(--background-secondary);
-    border-bottom: 2px solid var(--background-modifier-border);
+    border-bottom: 1px solid var(--background-modifier-border);
 }
 
 .vika-records-table th {
@@ -1388,11 +1238,9 @@
 .vika-records-table tbody tr {
     border-bottom: 1px solid var(--background-modifier-border);
     transition: background-color 0.2s ease;
+    background-color: transparent;
 }
 
-.vika-records-table tbody tr:hover {
-    background: var(--background-modifier-hover);
-}
 
 .vika-records-table tbody tr:last-child {
     border-bottom: none;
@@ -1403,9 +1251,6 @@
     border-right: 1px solid var(--background-modifier-border);
     vertical-align: top;
     word-wrap: break-word;
-    max-width: 200px;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .vika-records-table td:last-child {
@@ -1440,16 +1285,16 @@
 /* 文件列表自定义 Lucide 图标样式 */
 .content-protection-file-icon {
     display: inline-flex;
-    align-items: center;   /* 控制内部 SVG 的垂直对齐 */
-    align-self: center;    /* 关键：作为 flex item 在父容器中垂直居中 */
-    margin-right: 5px;     /* 图标和文字的间距 */
+    align-items: center; 
+    align-self: center; 
+    margin-right: 5px; 
 }
 
 /* 适配 Obsidian 的 svg-icon 类 */
 .content-protection-file-icon .svg-icon {
     width: 16px;
     height: 16px;
-    display: block;        /* 避免 SVG 自己按基线对齐 */
+    display: block;  
 }
 /* 空值样式 */
 .vika-records-table td:empty::before {
@@ -1514,13 +1359,7 @@
     background: var(--scrollbar-thumb-bg-hover, #a8a8a8);
 }
 
-/* Firefox 滚动条样式 */
-.vika-updateid-list {
-    scrollbar-width: thin;
-    scrollbar-color: var(--scrollbar-thumb-bg, #c1c1c1) var(--background-secondary);
-}
 
-/* Vika 同步状态指示器 */
 .vika-sync-status {
     display: inline-flex;
     align-items: center;
@@ -1588,13 +1427,6 @@
     font-weight: 500;
 }
 
-/* 优化表格性能 */
-.vika-records-table-container {
-    max-height: 300px;
-    overflow-y: auto;
-}
-
-
 
 /* 自定义CSS窗口样式 */
 .vika-custom-window {
@@ -1606,31 +1438,23 @@
     max-width: 1200px;
     height: 80vh;
     max-height: 800px;
-    background: var(--background-primary);
-    border: 2px solid var(--background-modifier-border);
     border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     z-index: 20;
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    backdrop-filter: blur(10px);
 }
+
+
 
 .vika-window-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 16px 20px;
-    background: var(--background-secondary);
+    background:  transparent;
     border-bottom: 1px solid var(--background-modifier-border);
     border-radius: 10px 10px 0 0;
-}
-
-.vika-window-controls {
-    display: flex;
-    align-items: center;
-    gap: 8px;
 }
 
 .vika-window-header h3 {
@@ -1640,44 +1464,14 @@
     font-weight: 600;
 }
 
-.vika-window-close {
-    background: transparent !important;
-    border: none;
+
+.vika-help-btn,.vika-window-close {
+    cursor: pointer;
+    padding: 4px 8px;
     font-size: 24px;
-    cursor: pointer;
-    padding: 4px 8px;
-    border-radius: 4px;
-    transition: all 0.2s ease;
-    line-height: 1;
-    margin-bottom: 4px;
-}
-
-.vika-window-close:hover {
-    background: var(--background-modifier-hover);
-    color: var(--text-normal);
-}
-
-.vika-help-btn {
     background: transparent !important;
-    border: none;
-    cursor: pointer;
-    padding: 4px 8px;
-    border-radius: 4px;
-    transition: all 0.2s ease;
-    line-height: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.vika-help-btn:hover {
-    background: var(--background-modifier-hover);
-    color: var(--text-accent);
-}
-
-.vika-help-btn svg {
-    width: 20px;
-    height: 20px;
+    vertical-align: top;
+    box-shadow: none !important;
 }
 
 .vika-window-content {
@@ -1686,30 +1480,6 @@
     flex-direction: column;
     overflow: hidden;
     padding: 20px;
-}
-
-.vika-window-footer {
-    padding: 16px 0 0 0;
-    border-top: 1px solid var(--background-modifier-border);
-    margin-top: 16px;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.vika-cancel-btn {
-    background: var(--background-modifier-border);
-    color: var(--text-muted);
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: all 0.2s ease;
-}
-
-.vika-cancel-btn:hover {
-    background: var(--background-modifier-hover);
-    color: var(--text-normal);
 }
 
 /* 响应式设计 */
@@ -1735,84 +1505,23 @@
     }
 }
 
-/* 深色模式适配 */
-.theme-dark .vika-custom-window {
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
-}
-
-/* 动画效果 */
-.vika-custom-window {
-    animation: vikaWindowFadeIn 0.3s ease-out;
-}
-
-@keyframes vikaWindowFadeIn {
-    from {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-    }
-}
-
-/* 移动端动画 */
-@media (max-width: 768px) {
-    .vika-custom-window {
-        animation: vikaWindowSlideIn 0.3s ease-out;
-    }
-    
-    @keyframes vikaWindowSlideIn {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-}
 
 /* UpdateId组标题布局样式 */
 .vika-updateid-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     padding: 5px;
-    background: var(--background-secondary);
-    border-radius: 8px 8px 0 0;
-    border-bottom: 1px solid var(--background-modifier-border);
 }
 
 .vika-header-left {
     display: flex;
     align-items: center;
     gap: 8px;
-}
-
-.vika-sync-btn {
-    background: var(--interactive-accent);
-    color: var(--text-on-accent);
-    border: none;
-    padding: 6px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 12px;
-    font-weight: 500;
-    transition: all 0.2s ease;
-    white-space: nowrap;
+    width: 70%;
 }
 
 .vika-sync-btn:hover {
     background: var(--interactive-accent-hover);
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-}
-
-.vika-sync-btn:active {
-    transform: translateY(0);
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* 响应式设计 */
@@ -1824,7 +1533,6 @@
     }
     
     .vika-header-left {
-        width: 100%;
         justify-content: space-between;
     }
     
@@ -1838,32 +1546,8 @@
 .vika-header-buttons {
     display: flex;
     gap: 8px;
-    align-items: center;
 }
 
-.vika-ignore-btn {
-    background: var(--background-modifier-border);
-    border: none;
-    padding: 6px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 12px;
-    font-weight: 500;
-    transition: all 0.2s ease;
-    white-space: nowrap;
-}
-
-.vika-ignore-btn:hover {
-    background: var(--background-modifier-hover);
-    color: var(--text-normal);
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-}
-
-.vika-ignore-btn:active {
-    transform: translateY(0);
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-}
 
 /* 响应式设计 */
 @media (max-width: 768px) {
@@ -1882,7 +1566,7 @@
 
 /* 领域管理样式 */
 .area-step-section {
-    background: var(--background-secondary);
+    background: var(--background-modifier-hover);
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 20px;
@@ -1969,8 +1653,8 @@
 }
 
 .area-create-button {
-    background: var(--interactive-accent);
-    color: var(--text-on-accent);
+    background: var(--interactive-accent) !important;
+    color: var(--text-on-accent) !important;
     border: none;
     padding: 12px 24px;
     border-radius: 6px;
@@ -1995,7 +1679,7 @@
 
 
 .area-instructions {
-    background: var(--background-primary);
+    background: var(--background-modifier-hover);
     border: 1px solid var(--background-modifier-border);
     border-radius: 6px;
     padding: 12px;
@@ -2184,7 +1868,7 @@
     margin-bottom: 1em;
     border: 1px solid var(--background-modifier-border);
     border-radius: 5px;
-    background-color: var(--background-primary);
+    background-color: transparent;
     max-height: 450px;
 }
 
@@ -2211,6 +1895,18 @@
     background-color: var(--interactive-accent);
     border-color: var(--interactive-accent);
     color: var(--text-on-accent);
+}
+
+.icon-grid-item.focused {
+    background-color: var(--background-modifier-hover);
+    border-color: var(--interactive-accent);
+    box-shadow: 0 0 0 2px var(--interactive-accent);
+    outline: none;
+}
+
+.icon-grid-item.focused.selected {
+    background-color: var(--interactive-accent);
+    box-shadow: 0 0 0 2px var(--interactive-accent-hover);
 }
 
 .icon-grid-item .icon-container {
@@ -2267,9 +1963,8 @@
     align-items: center;
     gap: 8px;
     padding: 8px;
-    border: 1px solid var(--background-modifier-border);
     border-radius: 5px;
-    background-color: var(--background-secondary);
+    background-color:var(--background-modifier-hover);
 }
 
 .lucide-icon-item .icon-preview {
@@ -2316,4 +2011,113 @@
     gap: 10px !important;
     display: flex
 ;
+}
+.path-selector-popup{
+    position: absolute;
+    z-index: 10000;
+    background: var(--background-primary);
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    min-width: 300px;
+    max-width: 400px;
+    padding: 16px;
+    font-size: 14px;
+}
+.meta-bind-tag-autocomplete-dropdown{
+    position: fixed;
+            z-index: 99999;
+            background: var(--background-primary);
+            border: 1px solid var(--background-modifier-border);
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            max-height: 200px;
+            overflow-y: auto;
+            font-size: 14px;
+            min-width: 200px;
+}
+
+.meta-bind-tag-autocomplete-item{
+    padding: 8px 12px;
+                cursor: pointer;
+                border-bottom: 1px solid var(--background-modifier-border-hover);
+                transition: background-color 0.1s ease;
+}
+/* 洋牡丹 */
+.theme-light.shib-card-layout.ranunculus{
+    --background-primary:#f7f1e8 !important;
+    --background-secondary:#f7f1e8 !important;
+    --card-background-color:#f2e4d4 !important;
+    --background-secondary-alt: transparent !important;
+}
+.theme-dark.shib-card-layout.ranunculus{
+    --background-primary:#39342d !important;
+    --background-secondary:#39342d !important;
+    --card-background-color:#2e2824 !important;
+    --background-secondary-alt: transparent !important;
+}
+/* 绣球 */
+.theme-light.shib-card-layout.hydrangea{
+    --background-primary:#dce3e4 !important;
+    --background-secondary:#dce3e4 !important;
+    --card-background-color:#ccd6d9 !important;
+    --background-secondary-alt: transparent !important;
+    --bold-color:rgb(21, 45, 122) !important;
+}
+.theme-dark.shib-card-layout.hydrangea{
+    --background-primary:#2f383e !important;
+    --background-secondary:#2f383e !important;
+    --card-background-color:#293137  !important;
+    --background-secondary-alt: transparent !important;
+    --bold-color:rgb(82, 132, 190)!important;
+}
+/* 香雪兰 */
+.theme-light.shib-card-layout.freesia{
+--background-primary: #e8efe3  !important;
+--background-secondary: #e8efe3   !important;
+--card-background-color:#d2ddc4 !important;
+--background-secondary-alt: transparent !important;
+--bold-color:rgb(35, 131, 73) !important;
+
+}
+.theme-dark.shib-card-layout.freesia{
+    --background-primary:#3f443c !important;
+    --background-secondary:#3f443c !important;
+    --card-background-color:#2b2f29   !important;
+    --background-secondary-alt: transparent !important;
+    --bold-color:rgb(35, 131, 73) !important;
+}
+
+/* 风铃 */
+
+.theme-light.shib-card-layout.campanula{
+    --background-primary:#fcf9f4 !important;
+    --background-secondary:#fcf8f4 !important;
+    --card-background-color:#f7e4e9 !important;
+    --bold-color:rgb(35, 131, 73) !important;
+}
+.theme-dark.shib-card-layout.campanula{
+--background-primary: #303631  !important;
+--background-secondary: #303631   !important;
+--card-background-color:#1f221d !important;
+--background-secondary-alt: transparent !important;
+--bold-color:rgb(35, 131, 73) !important;
+}
+
+/* 玫瑰 */
+
+.theme-light.shib-card-layout.rose{
+    --background-primary:#fff5f5 !important;
+    --background-secondary:#fff5f5 !important;
+    --card-background-color:#df7a93 !important; 
+    --background-secondary-alt: transparent !important;
+    --tab-text-color-focused-active-current:#cecede !important;
+    --icon-color-focused:#cecede !important;
+
+}
+.theme-dark.shib-card-layout.rose{
+--background-primary: #4b2e34 !important;
+--background-secondary: #4b2e34 !important;
+--card-background-color:#8b2317!important;
+--background-secondary-alt: transparent !important;
 }

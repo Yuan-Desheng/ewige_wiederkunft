@@ -45,17 +45,17 @@ var EditorWidthSliderSettingTab = class extends import_obsidian.PluginSettingTab
   display() {
     const { containerEl } = this;
     containerEl.empty();
-    new import_obsidian.Setting(containerEl).setName("Slider Width").setDesc("How wide do you want your slider to be?").addText((text) => text.setPlaceholder("Slider width in px").setValue(this.plugin.settings.sliderWidth).onChange(async (value) => {
+    new import_obsidian.Setting(containerEl).setName("滑块宽度").setDesc("底部状态栏的宽度设置滑块宽度?").addText((text) => text.setPlaceholder("Slider width in px").setValue(this.plugin.settings.sliderWidth).onChange(async (value) => {
       this.plugin.settings.sliderWidth = value;
       this.plugin.updateSliderStyle();
       await this.plugin.saveSettings();
     }));
-    new import_obsidian.Setting(containerEl).setName("Slider Default Percentage").setDesc("What do you want the default percentage of the slider to be?").addText((text) => text.setPlaceholder("Slider width in px").setValue(this.plugin.settings.sliderPercentageDefault).onChange(async (value) => {
+    new import_obsidian.Setting(containerEl).setName("滑块默认百分比").setDesc("您希望滑块的默认百分比是多少?").addText((text) => text.setPlaceholder("Slider width in px").setValue(this.plugin.settings.sliderPercentageDefault).onChange(async (value) => {
       this.plugin.settings.sliderPercentageDefault = value;
       this.plugin.updateSliderStyle();
       await this.plugin.saveSettings();
     }));
-    new import_obsidian.Setting(containerEl).setName("Note:").setDesc(`The field should be named "editor-width" in the YAML frontmatter of the note in order to customize the editor width of that repective note. It won't work globally for all notes unless you specify it in each note's frontmatter.`);
+    new import_obsidian.Setting(containerEl).setName("注意:").setDesc(`为了自定义特定笔记的编辑器宽度，需要在该笔记的 YAML 属性区域中添加“editor-width”字段，例如“editor-width: 40”。除非您在每篇笔记的YAML属性中都进行设置，否则此设置不会全局应用于所有笔记。（注意：当笔记的YAML属性中设置了editor-width属性字段后，优先使用属性设置的栏宽值，而底部状态栏的滑块将不再作用作用于该笔记`);
   }
 };
 
@@ -67,7 +67,7 @@ var WarningModal = class extends import_obsidian2.Modal {
   }
   onOpen() {
     const { contentEl } = this;
-    contentEl.setText("Editor width must be a number from 0 to 100!");
+    contentEl.setText("编辑器的栏宽值必须是 0～100的整数值!");
   }
   onClose() {
     const { contentEl } = this;
@@ -87,11 +87,14 @@ var EditorWidthSlider = class extends import_obsidian3.Plugin {
   async onload() {
     await this.loadSettings();
     this.addStyle();
-    this.app.workspace.on("file-open", () => {
-      this.updateEditorStyleYAML();
-    });
+    this.registerEvent(
+      this.app.workspace.on("file-open", () => {
+        this.updateEditorStyleYAML();
+      })
+    );
     this.createSlider();
     this.addSettingTab(new EditorWidthSliderSettingTab(this.app, this));
+    this.updateEditorStyleYAML();
   }
   // async onLoadFile(file: TFile) {
   // }
@@ -146,7 +149,7 @@ var EditorWidthSlider = class extends import_obsidian3.Plugin {
       const value = parseInt(slider.value);
       this.settings.sliderPercentage = value.toString();
       this.saveSettings();
-      this.updateEditorStyle();
+      this.updateEditorStyleYAML();
       sliderValueText.textContent = value.toString();
     });
     const sliderValueText = document.createElement("span");
@@ -235,7 +238,7 @@ var EditorWidthSlider = class extends import_obsidian3.Plugin {
   updateEditorStyleYAML() {
     const file = this.app.workspace.getActiveFile();
     if (file && file.name) {
-      const metadata = app.metadataCache.getFileCache(file);
+      const metadata = this.app.metadataCache.getFileCache(file);
       if (metadata) {
         if (metadata.frontmatter) {
           try {

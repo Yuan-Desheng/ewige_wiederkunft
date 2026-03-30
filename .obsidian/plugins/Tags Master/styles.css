@@ -1,0 +1,1067 @@
+/* Tags Master 面板样式 */
+.tags-master-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0);
+    z-index: 999; /* 面板在其上方，确保点击覆盖其余区域 */
+}
+
+.tags-master-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    max-height: 700px;
+    background: var(--background-primary);
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(10px);
+}
+
+/* 标题栏 */
+.tags-panel-title-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: var(--background-secondary);
+    border-bottom: 1px solid var(--background-modifier-border);
+    border-radius: 8px 8px 0 0;
+    cursor: default;
+    user-select: none;
+    gap: 16px;
+}
+
+.tags-panel-title-container {
+    display: flex;
+    align-items: center;
+}
+
+.tags-panel-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-normal);
+}
+
+/* 标题左侧图标样式 */
+.tags-panel-title-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+    color: var(--text-muted);
+}
+.tags-panel-title-icon svg {
+    display: block;
+}
+
+/* 视图切换按钮 */
+.tags-view-switcher {
+    display: flex;
+    gap: 4px;
+    background: var(--background-primary);
+    padding: 4px;
+    border-radius: 6px;
+}
+
+.view-switch-btn {
+    padding: 6px 16px;
+    background: transparent;
+    color: var(--text-muted);
+    border: none;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.view-switch-btn:hover {
+    background: var(--background-modifier-hover);
+    color: var(--text-normal);
+}
+
+.view-switch-btn.active {
+    background: var(--interactive-accent);
+    color: var(--text-on-accent);
+}
+
+.tags-panel-close-btn {
+    background: none !important;
+    border: none;
+    font-size: 24px;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    box-shadow: none !important;
+}
+
+.tags-panel-close-btn:hover {
+    background: var(--background-modifier-hover);
+    color: var(--text-normal);
+}
+
+/* 内容容器 */
+.tags-panel-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* 操作按钮区域（在标题栏中） */
+.tags-panel-title-bar .tags-panel-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    padding: 0;
+    border-bottom: none;
+}
+
+/* 顶部栏容器（搜索和操作按钮在同一行） */
+.tags-panel-top-bar {
+    display: flex;
+    gap: 12px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--background-modifier-border);
+    align-items: center;
+}
+
+/* 搜索区域（占30%） */
+.tags-panel-search {
+    flex: 0 0 30%;
+    padding: 0;
+}
+
+.tags-panel-search-input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 6px;
+    background: var(--background-primary);
+    color: var(--text-normal);
+    font-size: 14px;
+    transition: border-color 0.2s ease;
+}
+
+.tags-panel-search-input:focus {
+    outline: none;
+    border-color: var(--interactive-accent);
+    box-shadow: 0 0 0 2px var(--interactive-accent-hover);
+}
+
+/* 操作按钮区域（占70%） */
+.tags-panel-actions {
+    flex: 1;
+    padding: 0;
+    border-bottom: none;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.tags-panel-btn {
+    padding: 6px 12px;
+    background: var(--interactive-normal);
+    color: var(--text-on-accent);
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* 排序下拉选项容器 */
+.tags-sort-container {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    gap: 6px;
+}
+
+.tags-sort-select {
+    padding: 6px 8px;
+    background: var(--background-primary);
+    color: var(--text-normal);
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 120px;
+    /* 在内部右侧添加自定义箭头图标 */
+    -webkit-appearance: none;
+    appearance: none;
+    padding-right: 28px; /* 为图标预留空间 */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevrons-up-down-icon lucide-chevrons-up-down"><path d="m7 15 5 5 5-5"/><path d="m7 9 5-5 5 5"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 16px 16px;
+}
+
+.tags-sort-select:hover {
+    border-color: var(--interactive-accent);
+}
+
+.tags-sort-select:focus {
+    outline: none;
+    border-color: var(--interactive-accent);
+    box-shadow: 0 0 0 2px var(--interactive-accent-hover);
+}
+
+.tags-panel-btn:hover {
+    background: var(--interactive-hover);
+}
+
+/* 下拉指示图标样式 */
+.tags-sort-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.1s ease;
+}
+
+.tags-sort-icon:hover {
+    color: var(--interactive-accent);
+}
+
+.tags-sort-icon svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+}
+
+/* 标签列表区域 */
+.tags-panel-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px 0;
+    max-height: 500px;
+}
+
+.tags-hierarchy-list {
+    padding: 0 8px;
+}
+
+/* 列表表头样式 */
+.tags-hierarchy-header {
+    display: flex;
+    align-items: center;
+    padding: 6px 3px;
+    margin: 2px 10px;
+    color: var(--text-muted);
+    font-size: 12px;
+    gap: 8px;
+}
+
+.tags-hierarchy-header .tag-hierarchy-name {
+    color: var(--text-muted);
+}
+
+/* 让表头中的操作列可见 */
+.tags-hierarchy-header .tag-hierarchy-actions {
+    opacity: 1;
+}
+
+/* 层级标签项 */
+.tag-hierarchy-item {
+    display: flex;
+    align-items: center;
+    padding: 6px 8px;
+    margin: 2px 10px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    min-height: 32px;
+    gap: 8px; /* 添加元素间距 */
+}
+
+.tag-hierarchy-item:hover {
+    background: var(--background-modifier-hover);
+}
+
+/* 展开/折叠按钮 */
+.tag-expand-btn {
+    width: 16px;
+    height: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-muted);
+    font-size: 12px;
+    margin-right: 6px;
+    transition: color 0.2s ease;
+}
+
+.tag-expand-btn:hover {
+    color: var(--text-normal);
+}
+
+.tag-expand-spacer {
+    width: 16px;
+    margin-right: 6px;
+}
+
+/* 标签名称 */
+.tag-hierarchy-name {
+    flex: 0 0 auto;
+    min-width: 120px;
+    font-size: 13px;
+    color: var(--tag-color);
+    cursor: text;
+    padding: 2px 4px;
+}
+
+
+
+/* 标签使用数量列样式 */
+.tag-count-column {
+    flex: 0 0 60px; /* 固定宽度以对齐表头 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    margin: 0 8px;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+
+
+/* 内联编辑输入框 */
+.tag-inline-edit-input {
+    background: var(--background-primary);
+    border: 1px solid var(--interactive-accent);
+    border-radius: 3px;
+    padding: 2px 6px;
+    font-size: 13px;
+    color: var(--text-normal);
+    outline: none;
+    width: 100%;
+    box-shadow: 0 0 0 2px var(--interactive-accent-hover);
+}
+
+/* 标签操作按钮 */
+.tag-hierarchy-actions {
+    display: flex;
+    gap: 4px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    flex: 0 0 160px; /* 固定宽度以对齐表头 */
+    justify-content: flex-end;
+}
+
+.tag-hierarchy-item:hover .tag-hierarchy-actions {
+    opacity: 1;
+}
+
+.tag-hierarchy-btn {
+    padding: 4px 8px;
+    font-size: 11px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tag-hierarchy-btn.rename-btn {
+    background: var(--color-blue);
+    color: white;
+}
+
+
+/* 确认按钮样式 */
+.tag-hierarchy-btn.confirm-btn {
+    background: var(--color-green);
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.tag-hierarchy-btn.confirm-btn:hover {
+    background: #28a745;
+    transform: scale(1.05);
+}
+
+.tag-hierarchy-btn.delete-btn {
+    background: var(--color-red);
+    color: white;
+}
+
+/* 无标签消息 */
+.no-tags-message {
+    text-align: center;
+    color: var(--text-muted);
+    font-style: italic;
+    padding: 20px;
+    margin: 0;
+}
+
+/* 对话框遮罩层 */
+.tags-dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    backdrop-filter: blur(2px);
+}
+
+/* 重命名对话框 */
+.tags-rename-dialog {
+    background: var(--background-primary);
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 8px;
+    padding: 24px;
+    min-width: 320px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.tags-rename-dialog h3 {
+    margin: 0 0 16px 0;
+    color: var(--text-normal);
+    font-size: 18px;
+}
+
+.rename-form label {
+    display: block;
+    margin: 12px 0 4px 0;
+    color: var(--text-normal);
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.old-tag-name {
+    background: var(--background-secondary);
+    padding: 8px 12px;
+    border-radius: 4px;
+    color: var(--text-muted);
+    margin: 0 0 12px 0;
+}
+
+.new-tag-input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 4px;
+    background: var(--background-primary);
+    color: var(--text-normal);
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.new-tag-input:focus {
+    outline: none;
+    border-color: var(--interactive-accent);
+    box-shadow: 0 0 0 2px var(--interactive-accent-hover);
+}
+
+/* 确认删除对话框 */
+.tags-confirm-dialog {
+    background: var(--background-primary);
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 8px;
+    padding: 24px;
+    min-width: 320px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.tags-confirm-dialog h3 {
+    margin: 0 0 16px 0;
+    color: var(--text-normal);
+    font-size: 18px;
+}
+
+.delete-message p {
+    margin: 8px 0;
+    color: var(--text-normal);
+}
+
+.warning-text {
+    color: var(--text-error) !important;
+    font-weight: 500;
+    font-size: 13px;
+}
+
+/* 对话框按钮 */
+.dialog-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.dialog-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.dialog-btn.confirm-btn {
+    background: var(--interactive-accent);
+    color: var(--text-on-accent);
+}
+
+.dialog-btn.confirm-btn:hover {
+    background: var(--interactive-accent-hover);
+}
+
+.dialog-btn.confirm-btn.warning {
+    background: var(--color-red);
+    color: white;
+}
+
+.dialog-btn.confirm-btn.warning:hover {
+    background: var(--color-red-hover);
+}
+
+.dialog-btn.cancel-btn {
+    background: var(--background-secondary);
+    color: var(--text-normal);
+    border: 1px solid var(--background-modifier-border);
+}
+
+.dialog-btn.cancel-btn:hover {
+    background: var(--background-modifier-hover);
+}
+
+/* 滚动条样式 */
+.tags-panel-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.tags-panel-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.tags-panel-list::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb-bg);
+    border-radius: 3px;
+}
+
+.tags-panel-list::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-bg-hover);
+}
+
+/* 标签注释列样式 */
+.tag-comment-column {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    min-width: 0; /* 允许内容收缩 */
+}
+
+.tag-comment-text {
+    flex: 1;
+    font-size: 12px;
+    color: var(--text-muted);
+    font-style: italic;
+    padding: 2px 6px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    min-height: 20px;
+    display: flex;
+    align-items: center;
+}
+
+
+
+.tag-comment-text:empty::before {
+    content: '点击添加注释';
+    color: var(--text-faint);
+}
+
+.tag-comment-input {
+    flex: 1;
+    background: var(--background-primary);
+    border: 1px solid var(--interactive-accent);
+    border-radius: 3px;
+    padding: 4px 8px;
+    font-size: 12px;
+    color: var(--text-normal);
+    outline: none;
+    box-shadow: 0 0 0 2px var(--interactive-accent-hover);
+}
+
+.tag-comment-input::placeholder {
+    color: var(--text-faint);
+    font-style: italic;
+}
+
+/* 标签最近使用时间列样式 */
+.tag-time-column {
+    flex: 0 0 100px; /* 固定宽度以对齐表头 */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 80px;
+    max-width: 100px;
+    margin: 0 8px;
+}
+
+.tag-time-text {
+    font-size: 11px;
+    color: var(--text-faint);
+    font-style: normal;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: var(--background-secondary);
+    white-space: nowrap;
+    cursor: help;
+    transition: all 0.2s ease;
+}
+
+.tag-time-text:hover {
+    color: var(--text-muted);
+    background: var(--background-modifier-hover);
+}
+
+/* 相似标签面板样式 */
+.similar-tags-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    max-height: 700px;
+    background: var(--background-primary);
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(10px);
+}
+
+/* 相似标签标题栏 */
+.similar-tags-title-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: var(--background-secondary);
+    border-bottom: 1px solid var(--background-modifier-border);
+    border-radius: 8px 8px 0 0;
+    user-select: none;
+}
+
+.similar-tags-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-normal);
+}
+
+.similar-tags-close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.similar-tags-close-btn:hover {
+    background: var(--background-modifier-hover);
+    color: var(--text-normal);
+}
+
+/* 设置区域 */
+.similar-tags-settings {
+    padding-right: 12px;
+    border-bottom: 1px solid var(--background-modifier-border);
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    background: var(--background-primary);
+}
+
+.similar-tags-settings label {
+    font-size: 13px;
+    color: var(--text-normal);
+    white-space: nowrap;
+}
+
+.threshold-slider {
+    flex: 1;
+    max-width: 200px;
+    cursor: pointer;
+}
+
+.threshold-value {
+    font-size: 13px;
+    color: var(--text-accent);
+    font-weight: 600;
+    min-width: 40px;
+    text-align: center;
+}
+
+.similar-tags-btn {
+    padding: 6px 12px;
+    background: var(--interactive-normal);
+    color: var(--text-on-accent);
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;       /* 让图标与文本并排 */
+    align-items: center;        /* 垂直居中对齐 */
+    gap: 6px;                   /* 图标与文本间距 */
+}
+
+.similar-tags-btn:hover {
+    background: var(--interactive-hover);
+}
+
+/* 相似标签列表 */
+.similar-tags-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    max-height: 500px;
+}
+
+.loading-message {
+    text-align: center;
+    color: var(--text-muted);
+    font-style: italic;
+    padding: 20px;
+}
+
+.no-similar-tags-message {
+    text-align: center;
+    color: var(--text-muted);
+    font-style: italic;
+    padding: 40px 20px;
+    margin: 0;
+}
+
+.similar-tags-info {
+    color: var(--text-accent);
+    font-weight: 500;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+/* 顶部栏：信息与设置同一行 */
+.similar-tags-top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--background-modifier-border);
+    background: var(--background-primary);
+}
+
+.similar-tags-top-bar .similar-tags-info {
+    flex: 1;
+    margin: 0;        /* 顶部栏中取消外边距以贴合行内 */
+    padding: 0;       /* 顶部栏中去掉内边距以对齐 */
+    background: none; /* 顶部栏中不需要独立背景 */
+}
+
+.similar-tags-top-bar .similar-tags-settings {
+    border: 0;
+    background: transparent;
+}
+
+/* 相似标签组 */
+.similar-tag-group {
+    background: var(--background-secondary);
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 16px;
+    transition: box-shadow 0.2s ease;
+}
+
+.similar-tag-group:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.similar-tag-group-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.group-number {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-accent);
+}
+
+/* 相似标签项 */
+.similar-tags-items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.similar-tag-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 12px;
+    background: var(--background-primary);
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.similar-tag-item:hover {
+    background: var(--background-modifier-hover);
+    border-color: var(--interactive-accent);
+}
+
+/* 排除状态的标签项 */
+.similar-tag-item.excluded {
+    opacity: 0.5;
+    background: var(--background-secondary);
+    border-style: dashed;
+}
+
+.similar-tag-item.excluded:hover {
+    opacity: 0.6;
+}
+
+/* 左侧容器 */
+.similar-tag-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    cursor: pointer;
+}
+
+/* 相似标签列表中的锁止按钮 */
+.similar-tag-left .tag-lock-btn {
+    flex-shrink: 0;
+}
+
+.similar-tag-item input[type="radio"] {
+    cursor: pointer;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.similar-tag-name {
+    flex: 1;
+    font-size: 13px;
+    color: var(--tag-color);
+    font-weight: 500;
+}
+
+.similar-tag-count {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* 排除按钮 */
+.exclude-tag-btn {
+    padding: 4px 12px;
+    background: var(--background-secondary);
+    color: var(--text-muted);
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.exclude-tag-btn:hover {
+    background: var(--background-modifier-hover);
+    color: var(--text-normal);
+    border-color: var(--interactive-accent);
+}
+
+.exclude-tag-btn.active {
+    background: var(--interactive-accent);
+    color: var(--text-on-accent);
+    border-color: var(--interactive-accent);
+}
+
+.exclude-tag-btn.active:hover {
+    background: var(--interactive-accent-hover);
+}
+
+/* 合并按钮 */
+.merge-tags-btn {
+    width: 100%;
+    padding: 8px 16px;
+    background: var(--interactive-accent);
+    color: var(--text-on-accent);
+    border: none;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.merge-tags-btn:hover {
+    background: var(--interactive-accent-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.merge-tags-btn:disabled {
+    background: var(--background-modifier-border);
+    color: var(--text-muted);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* 合并确认对话框样式 */
+.merge-message {
+    color: var(--text-normal);
+}
+
+.merge-message p {
+    margin: 8px 0;
+}
+
+.source-tags-list {
+    background: var(--background-secondary);
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 4px;
+    padding: 12px 12px 12px 32px;
+    margin: 12px 0;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.source-tags-list li {
+    margin: 4px 0;
+    color: var(--text-normal);
+}
+
+/* 锁止按钮样式 */
+.tag-lock-column {
+    flex: 0 0 30px; /* 固定宽度以对齐表头 */
+    display: flex;
+    align-items: center;
+    margin-right: 4px;
+}
+
+.tag-lock-btn {
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    border-radius: 3px;
+}
+
+.tag-lock-btn:hover {
+    color: var(--text-accent);
+    background: var(--background-modifier-hover);
+}
+
+.tag-lock-btn svg {
+    display: block;
+}
+
+/* 禁用状态的按钮样式 */
+.tag-hierarchy-btn.disabled,
+.tag-hierarchy-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: var(--background-modifier-border);
+}
+
+.tag-hierarchy-btn.disabled:hover,
+.tag-hierarchy-btn:disabled:hover {
+    background: var(--background-modifier-border);
+    transform: none;
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+    .tags-master-panel {
+        width: calc(100vw - 20px);
+        left: 10px;
+        right: 10px;
+        top: 20px;
+    }
+    
+    .similar-tags-panel {
+        width: calc(100vw - 20px);
+        max-height: calc(100vh - 40px);
+    }
+    
+    .tags-rename-dialog,
+    .tags-confirm-dialog {
+        width: calc(100vw - 40px);
+        margin: 0 20px;
+    }
+}
+.similar-tags-btn .btn-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.similar-tags-btn .btn-text {
+    display: inline-block;
+}

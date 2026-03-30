@@ -177,6 +177,7 @@
 
 .title-manager-minimap:hover .minimap-content {
     overflow: visible !important; /* 悬停时允许溢出 */
+
 }
 
 /* 标题容器基础状态和悬停状态 */
@@ -256,12 +257,45 @@
 /* 悬浮在标题容器时：显示文字，移除横条背景，呈现当前样式 */
 .minimap-headings:hover .heading-block {
     background: transparent !important;
-    color: var(--text-normal);
     overflow: visible !important;
     text-overflow: unset !important;
     white-space: nowrap !important;
     will-change: opacity, transform;
     transform: translateZ(0);
+}
+
+/* 右侧迷你地图：悬浮在标题容器时，文本右对齐，盒子靠右锚定，超长只向左侧溢出 */
+.title-manager-minimap[style*="right"] .minimap-headings:hover .heading-block {
+    right: 4px;      
+    left: auto;               
+    width: auto !important;   
+    justify-content: flex-end; 
+    padding-right: 0;        
+}
+
+/* 悬浮时：为不同级别标题提供独立的文字颜色控制 */
+.minimap-headings:hover .heading-block.h1 {
+    color: var(--h1-color);
+}
+
+.minimap-headings:hover .heading-block.h2 {
+    color: var(--h2-color);
+}
+
+.minimap-headings:hover .heading-block.h3 {
+    color: var(--h3-color);
+}
+
+.minimap-headings:hover .heading-block.h4 {
+    color: var(--h4-color);
+}
+
+.minimap-headings:hover .heading-block.h5 {
+    color: var(--h5-color);
+}
+
+.minimap-headings:hover .heading-block.h6 {
+    color: var(--h6-color);
 }
 
 
@@ -272,7 +306,7 @@
 .title-manager-minimap[style*="right"] .heading-block.h5.current-heading,
 .title-manager-minimap[style*="right"] .heading-block.h6.current-heading {
     border-left: none !important;
-    border-right: 5px solid rgba(255, 0, 0, 1) !important;
+    border-right: 5px solid red !important;
 }
 
 .title-manager-minimap[style*="left"] .heading-block.current-heading,
@@ -281,7 +315,7 @@
 .title-manager-minimap[style*="left"] .heading-block.h5.current-heading,
 .title-manager-minimap[style*="left"] .heading-block.h6.current-heading {
     border-right: none !important;
-    border-left: 5px solid rgba(255, 0, 0, 1) !important;
+    border-left: 5px solid red !important;
 }
 
 
@@ -297,36 +331,21 @@
 
 /* 迷你地图把手样式 */
 .minimap-handle {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 10px;
-    height: 40px;
-    cursor: pointer;
     z-index: 1001;
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(var(--background-secondary-rgb), 0.9);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    opacity: 0;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    opacity: 0; /* 默认隐藏，在 hover 或 collapsed 状态下显示 */
     will-change: transform, opacity;
 }
 
 /* 右侧位置的把手样式（把手在左边） */
 .title-manager-minimap[style*="right"] .minimap-handle {
     left: -10px;
-    border-radius: 4px 0 0 4px;
     border-right: none;
 }
 
 /* 左侧位置的把手样式（把手在右边） */
 .title-manager-minimap[style*="left"] .minimap-handle {
     right: -10px;
-    border-radius: 0 4px 4px 0;
     border-left: none;
 }
 

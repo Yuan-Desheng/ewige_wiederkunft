@@ -1098,6 +1098,7 @@
     }
   ],
   "excludedFolders": [],
+  "customTags": [],
   "minSyncInterval": 50,
   "maxSyncInterval": 1000
 }

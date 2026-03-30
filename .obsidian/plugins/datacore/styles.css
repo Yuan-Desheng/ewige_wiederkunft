@@ -180,6 +180,12 @@
   margin-bottom: 10px;
   gap: 10px;
 }
+.dc-paging-info {
+  margin-right: auto;
+  font-size: var(--font-ui-small);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
 button.dc-paging-control-page {
   width: var(--input-height);
   height: var(--input-height);

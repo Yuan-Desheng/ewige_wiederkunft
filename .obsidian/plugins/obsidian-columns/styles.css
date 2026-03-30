@@ -128,18 +128,25 @@ div[data-callout="col"].callout > div.callout-content > div[data-callout$="-10" 
 
 .editable-column {
     position: relative;
-    transition: all 0.2s ease;
+    transition: all 0.15s ease;
+    contain: layout style;
+    padding: 10px;
 }
 
-.editable-column:hover {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+.editable-column.editing-mode:hover {
+    background-color: rgba(0, 123, 255, 0.1) !important;
+}
+
+.editable-column.editing-mode::before {
+    display: none !important;
 }
 
 .editable-column::before {
     content: "✏️";
     position: absolute;
-    top: 5px;
-    right: 5px;
+    bottom: 5px;
+    right:  5px;
     font-size: 12px;
     opacity: 0;
     transition: opacity 0.2s ease;
@@ -175,7 +182,7 @@ div[data-callout="col"].callout > div.callout-content > div[data-callout$="-10" 
 .columnChild.editing-mode {
     position: relative;
     z-index: 100;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    box-shadow: none !important;
 }
 
 .columnChild .column-edit-container,
@@ -198,8 +205,8 @@ div[data-callout="col"].callout > div.callout-content > div[data-callout$="-10" 
     font-size: 14px !important;
     line-height: 1.5 !important;
     background-color: transparent !important;
-    color: #333 !important;
-    border: 1px solid #ccc !important;
+    color: var(--text-muted) !important;
+    border: 1px dashed var(--tab-outline-color) !important;
     border-radius: 4px !important;
     padding: 10px !important;
     resize: both !important;
@@ -213,18 +220,9 @@ div[data-callout="col"].callout > div.callout-content > div[data-callout$="-10" 
 .columnChild.editing-mode .column-edit-container .column-edit-textarea:focus,
 .column-edit-textarea:focus {
     outline: none !important;
-    border-color: #007bff !important;
-    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2) !important;
 }
 
 
-.editable-column.editing-mode:hover {
-    background-color: rgba(0, 123, 255, 0.1) !important;
-}
-
-.editable-column.editing-mode::before {
-    display: none !important;
-}
 
 .column-autocomplete {
     position: absolute !important;
@@ -265,22 +263,13 @@ div[data-callout="col"].callout > div.callout-content > div[data-callout$="-10" 
 .columnChild.editing-mode {
     position: relative;
     z-index: 100;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    box-shadow: none !important;
     transform: translateZ(0);
     will-change: transform;
 }
-
-.editable-column {
-    position: relative;
-    transition: all 0.15s ease;
-    contain: layout style;
+.columnChild.editing-mode:hover{
+    background-color: transparent !important;
 }
-
-.editable-column:hover {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transform: translateZ(0);
-}
-
 
 .column-resize-handle {
     position: absolute !important;

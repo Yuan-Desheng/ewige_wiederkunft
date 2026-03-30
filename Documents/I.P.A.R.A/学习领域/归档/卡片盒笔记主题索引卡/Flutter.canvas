@@ -1,0 +1,23 @@
+{
+	"edges":[],
+	"nodes":[
+		{"id":"note-1770303144939-7526","type":"file","file":"Documents/I.P.A.R.A/学习领域/收集/Dart 变量与常量.md","x":100,"y":100,"width":440,"height":500},
+		{"id":"note-1770395364302-636","type":"file","file":"Documents/I.P.A.R.A/学习领域/收集/从Dart语言到Flutter核心框架.md","x":590,"y":100,"width":440,"height":500},
+		{"id":"note-1771481824653-9063","type":"file","file":"Documents/I.P.A.R.A/学习领域/收集/Flutter组件初体验.md","x":1080,"y":100,"width":440,"height":500},
+		{"id":"note-1771932565143-1325","type":"file","file":"Documents/I.P.A.R.A/学习领域/收集/Flutter 点击事件与交互.md","x":1570,"y":100,"width":440,"height":500},
+		{"id":"note-1771996836575-4830","type":"file","file":"Documents/I.P.A.R.A/学习领域/收集/Flutter 布局组件-基础容器.md","x":2060,"y":100,"width":440,"height":500},
+		{"id":"note-1772002511847-7623","type":"file","file":"Documents/I.P.A.R.A/学习领域/收集/Flutter 布局组件 - 弹性布局.md","x":100,"y":700,"width":440,"height":500},
+		{"id":"note-1772006929975-3839","type":"file","file":"Documents/I.P.A.R.A/学习领域/收集/Flutter 布局组件 - 层叠布局.md","x":590,"y":700,"width":440,"height":500},
+		{"id":"note-1772178238555-3024","type":"file","file":"Documents/I.P.A.R.A/学习领域/收集/第1章 课程介绍与学习指南.md","x":1080,"y":700,"width":440,"height":500},
+		{"id":"note-1772287819512-2154","type":"file","file":"Documents/I.P.A.R.A/学习领域/收集/搭建基础路由和组件.md","x":1570,"y":700,"width":440,"height":500},
+		{"id":"note-1772287857074-5059","type":"file","file":"Documents/I.P.A.R.A/学习领域/收集/主页 Tab 栏.md","x":2060,"y":700,"width":440,"height":500},
+		{"id":"note-1772287889458-8617","type":"file","file":"Documents/I.P.A.R.A/学习领域/收集/案例需求和规划.md","x":100,"y":1300,"width":440,"height":500},
+		{"id":"note-1772287940243-9522","type":"file","file":"Documents/I.P.A.R.A/学习领域/收集/获取轮播图数据.md","x":590,"y":1300,"width":440,"height":500},
+		{"id":"note-1772359377468-5723","type":"file","file":"Documents/I.P.A.R.A/学习领域/收集/登录页面(集成+表单校验).md","x":1080,"y":1300,"width":440,"height":500},
+		{"id":"note-1772419125919-220","type":"file","file":"Documents/I.P.A.R.A/学习领域/收集/第3章 Flutter网络和数据存储框架搭建.md","x":1570,"y":1300,"width":440,"height":500},
+		{"id":"note-1772419131469-3469","type":"file","file":"Documents/I.P.A.R.A/学习领域/收集/第2章 Flutter 2空安全适配指南.md","x":2060,"y":1300,"width":440,"height":500},
+		{"id":"note-1772419332763-4162","type":"file","file":"Documents/I.P.A.R.A/学习领域/收集/安装Flutter开发环境.md","x":100,"y":1900,"width":440,"height":500},
+		{"id":"note-1772432537872-4579","type":"file","file":"Documents/I.P.A.R.A/学习领域/收集/登录实现（接口对接）.md","x":590,"y":1900,"width":440,"height":500},
+		{"id":"note-1772432543790-7560","type":"file","file":"Documents/I.P.A.R.A/学习领域/收集/Getx 共享用户数据.md","x":1080,"y":1900,"width":440,"height":500}
+	]
+}

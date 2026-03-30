@@ -49,6 +49,30 @@
       "baseUrl": "https://dashscope.aliyuncs.com/compatible-mode/v1",
       "enabled": true,
       "apiKeyLink": "https://bailian.console.aliyun.com/?tab=model#/api-key"
+    },
+    "zhipu": {
+      "apiKey": "",
+      "baseUrl": "https://open.bigmodel.cn/api/paas/v4",
+      "enabled": true,
+      "apiKeyLink": "https://open.bigmodel.cn/usercenter/apikeys"
+    },
+    "minimax": {
+      "apiKey": "",
+      "baseUrl": "https://api.minimax.chat/v1",
+      "enabled": true,
+      "apiKeyLink": "https://platform.minimaxi.com/user-center/basic-information/interface-key"
+    },
+    "hunyuan": {
+      "apiKey": "",
+      "baseUrl": "https://api.hunyuan.cloud.tencent.com/v1",
+      "enabled": true,
+      "apiKeyLink": "https://cloud.tencent.com/product/hunyuan"
+    },
+    "xiaomi": {
+      "apiKey": "",
+      "baseUrl": "https://api.xiaomimimo.com/v1",
+      "enabled": true,
+      "apiKeyLink": "https://platform.xiaomimimo.com/#/console/api-keys"
     }
   },
   "models": {
@@ -214,9 +238,18 @@
   "timeout": 30000,
   "enableRightClick": true,
   "enableAtTrigger": true,
-  "continueMode": "balanced",
+  "enableSparklesTrigger": true,
+  "agentVaultSearchDefaultEnabled": false,
+  "agentVaultSearchExcludePaths": [
+    ".obsidian",
+    "Assistants",
+    "Connections",
+    "Extras"
+  ],
+  "enableGhostText": true,
+  "enableAutoGhostText": false,
+  "autoGhostTextDelay": 8000,
   "maxTokens": 5000,
-  "geminiReasoningEffort": "low",
   "shortcuts": {
     "continueText": "Ctrl+Shift+C"
   },
@@ -367,5 +400,9 @@
   "imageGenerationSize": "1024x1024",
   "guidanceScale": 2.5,
   "maxContextLines": 20,
-  "maxContextChars": 3000
+  "maxContextChars": 3000,
+  "maxBacklinkNotes": 10,
+  "agentMaxSessions": 50,
+  "continueMode": "balanced",
+  "geminiReasoningEffort": "low"
 }

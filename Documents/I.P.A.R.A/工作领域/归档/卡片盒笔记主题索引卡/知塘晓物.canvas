@@ -1,0 +1,10 @@
+{
+	"edges":[],
+	"nodes":[
+		{"id":"note-1769653873109-8039","type":"file","file":"Documents/I.P.A.R.A/工作领域/项目/螃蟹养殖方案.md","x":100,"y":100,"width":440,"height":500},
+		{"id":"note-1769937547814-3155","type":"file","file":"Documents/I.P.A.R.A/工作领域/项目/知塘晓物.md","x":590,"y":100,"width":440,"height":500},
+		{"id":"note-1770603977825-1682","type":"file","file":"Documents/I.P.A.R.A/工作领域/项目/AI生成知塘晓物 UI原型、API接口.md","x":1080,"y":100,"width":440,"height":500},
+		{"id":"note-1772419672111-1271","type":"file","file":"Documents/I.P.A.R.A/工作领域/项目/知塘晓物-后台管理开发.md","x":1570,"y":100,"width":440,"height":500},
+		{"id":"note-1772419854565-9481","type":"file","file":"Documents/I.P.A.R.A/工作领域/项目/知塘晓物-APP端开发.md","x":2060,"y":100,"width":440,"height":500}
+	]
+}

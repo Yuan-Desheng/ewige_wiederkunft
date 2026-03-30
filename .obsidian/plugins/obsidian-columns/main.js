@@ -215,6 +215,51 @@ class ObsidianColumns extends Plugin {
         return o;
     };
 
+    normalizeVaultPath = (path) => {
+        return (path || '').replace(/\\/g, '/').replace(/^\/+|\/+$/g, '');
+    };
+
+    getParentFolderPath = (sourcePath) => {
+        const normalizedSourcePath = this.normalizeVaultPath(sourcePath);
+        const lastSlashIndex = normalizedSourcePath.lastIndexOf('/');
+        return lastSlashIndex === -1 ? '' : normalizedSourcePath.substring(0, lastSlashIndex);
+    };
+
+    resolveAttachmentPath = (sourcePath) => {
+        const rawAttachmentPath = (this.app.vault.config?.attachmentFolderPath || '').trim();
+        if (!rawAttachmentPath) {
+            return 'attachments';
+        }
+
+        const normalizedAttachmentPath = rawAttachmentPath.replace(/\\/g, '/');
+        if (normalizedAttachmentPath === '.') {
+            return this.getParentFolderPath(sourcePath);
+        }
+
+        if (normalizedAttachmentPath.startsWith('./')) {
+            const parentFolderPath = this.getParentFolderPath(sourcePath);
+            return this.normalizeVaultPath(parentFolderPath ? `${parentFolderPath}/${normalizedAttachmentPath.slice(2)}` : normalizedAttachmentPath.slice(2));
+        }
+
+        return this.normalizeVaultPath(normalizedAttachmentPath);
+    };
+
+    ensureFolderExists = async (folderPath) => {
+        const normalizedFolderPath = this.normalizeVaultPath(folderPath);
+        if (!normalizedFolderPath) {
+            return;
+        }
+
+        const segments = normalizedFolderPath.split('/').filter(Boolean);
+        let currentPath = '';
+        for (const segment of segments) {
+            currentPath = currentPath ? `${currentPath}/${segment}` : segment;
+            if (!(await this.app.vault.adapter.exists(currentPath))) {
+                await this.app.vault.createFolder(currentPath);
+            }
+        }
+    };
+
     // 生成唯一的文件名
     generateUniqueFileName = async (attachmentPath, baseName, extension) => {
         let fileName = `${baseName}.${extension}`;
@@ -314,8 +359,6 @@ class ObsidianColumns extends Plugin {
     enterEditMode = (columnElement, originalContent, columnSource, fullSource, columnIndex, ctx) => {
         columnElement.classList.add('editing-mode');
         columnElement.style.backgroundColor = 'transparent';
-        columnElement.style.border = '2px solid rgb(54 139 140)';
-        columnElement.style.borderRadius = '6px';
         columnElement.style.padding = '10px';
         
         // 保存原始内容并隐藏
@@ -337,19 +380,7 @@ class ObsidianColumns extends Plugin {
         editContainer.style.setProperty('flex-direction', 'column', 'important');
         const textArea = editContainer.createEl('textarea', 'column-edit-textarea');
         textArea.value = originalContent;
-        textArea.style.setProperty('width', '100%', 'important');
-        textArea.style.setProperty('min-height', '200px', 'important');
-        textArea.style.setProperty('max-height', '200px', 'important');
-        textArea.style.setProperty('font-size', '14px', 'important');
-        textArea.style.setProperty('padding', '10px', 'important');
-        textArea.style.setProperty('border', '1px solid #ccc', 'important');
-        textArea.style.setProperty('border-radius', '4px', 'important');
-        textArea.style.setProperty('resize', 'both', 'important');
-        textArea.style.setProperty('overflow', 'auto', 'important');
-        textArea.style.setProperty('background-color', 'transparent', 'important');
-        textArea.style.setProperty('color', '#333', 'important');
-        textArea.style.setProperty('box-sizing', 'border-box', 'important');
-        textArea.style.setProperty('margin-bottom', '10px', 'important');
+
         this.setupAutocomplete(textArea, ctx.sourcePath);
         
         // 存储编辑信息到全局Map中
@@ -419,23 +450,19 @@ class ObsidianColumns extends Plugin {
                         const arrayBuffer = await file.arrayBuffer();
                         
                         // 获取附件文件夹路径
-                        const attachmentFolder = this.app.vault.adapter.getResourcePath('');
-                        let attachmentPath = this.app.vault.config?.attachmentFolderPath || '';
-                        
+                        let attachmentPath = this.resolveAttachmentPath(ctx.sourcePath);
+                         
                         // 如果没有设置附件文件夹，使用默认路径
                         if (!attachmentPath) {
                             attachmentPath = 'attachments';
                         }
                         
                         // 确保附件文件夹存在
-                        const folderExists = await this.app.vault.adapter.exists(attachmentPath);
-                        if (!folderExists) {
-                            await this.app.vault.createFolder(attachmentPath);
-                        }
-                        
+                        await this.ensureFolderExists(attachmentPath);
+                         
                         // 完整的文件路径
                         const fullPath = `${attachmentPath}/${fileName}`;
-                        
+                         
                         // 保存文件到vault
                         await this.app.vault.createBinary(fullPath, arrayBuffer);
                         
@@ -1912,7 +1939,7 @@ class RenameModal extends Modal {
         const handleSubmit = async () => {
             const value = input.value.trim();
             if (value && value.length > 0) {
-                // 验证文件名是否合法
+                // 验证文���名是否合法
                 const invalidChars = /[<>:"/\\|?*]/g;
                 if (invalidChars.test(value)) {
                     new Notice('文件名包含无效字符，请重新输入');

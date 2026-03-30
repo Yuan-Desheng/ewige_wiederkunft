@@ -27,9 +27,10 @@
   "spellcheck": false,
   "autoPairMarkdown": false,
   "pdfExportSettings": {
-    "pageSize": "A4",
+    "includeName": false,
+    "pageSize": "Letter",
     "landscape": true,
-    "margin": "2",
+    "margin": "0",
     "downscalePercent": 100
   },
   "alwaysUpdateLinks": true,

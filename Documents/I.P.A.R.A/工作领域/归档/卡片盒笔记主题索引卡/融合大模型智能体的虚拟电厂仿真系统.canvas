@@ -1,0 +1,10 @@
+{
+	"edges":[],
+	"nodes":[
+		{"id":"note-1773624608880-7761","type":"file","file":"Documents/I.P.A.R.A/工作领域/项目/虚拟电厂仿真系统-原始需求的提示词整理.md","x":100,"y":100,"width":440,"height":500},
+		{"id":"note-1773624611614-2059","type":"file","file":"Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统UI原型生成提示词.md","x":590,"y":100,"width":440,"height":500},
+		{"id":"note-1773902167171-252","type":"file","file":"Documents/I.P.A.R.A/工作领域/项目/负荷预测、可调能力、协同仿真 页面原型.md","x":1080,"y":100,"width":440,"height":500},
+		{"id":"note-1773902194217-2169","type":"file","file":"Documents/I.P.A.R.A/工作领域/项目/需求名词解释.md","x":1570,"y":100,"width":440,"height":500},
+		{"id":"note-1773906436609-611","type":"file","file":"Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md","x":2060,"y":100,"width":440,"height":500}
+	]
+}

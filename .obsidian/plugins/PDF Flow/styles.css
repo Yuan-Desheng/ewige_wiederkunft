@@ -2,8 +2,8 @@
 
 /* Canvas拖拽悬停效果 */
 .pdfflow-drag-over {
-    background-color: rgba(0, 122, 204, 0.1);
-    border: 2px dashed #007acc;
+    background-color: rgba(132, 132, 132, 0.1);
+    border: 2px dashed #7a7a7a;
 }
 
 /* 拖拽预览样式 */
@@ -18,12 +18,6 @@
     word-wrap: break-word;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     border: 1px solid #63b3ed;
-    z-index: 10000;
-}
-
-/* PDF选择文本高亮增强 */
-.pdf-viewer ::selection {
-    background-color: rgba(100, 200, 255, 0.3);
 }
 
 
@@ -33,83 +27,24 @@
     cursor: grabbing !important;
 }
 
-/* 成功提示样式 */
-.notice.pdfflow-success {
-    background-color: #10b981;
-    color: white;
+/* 裁切浮动按钮基础样式（工具栏内使用） */
+.pdfflow-floating-button {
+    background: transparent !important;
+    color: #666666 !important;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
 }
 
-/* 错误提示样式 */
-.notice.pdfflow-error {
-    background-color: #ef4444;
-    color: white;
-}
-
-/* PDF视图拖拽准备状态 */
-.pdf-viewer.pdfflow-ready {
-    position: relative;
-}
-
-.pdf-viewer.pdfflow-ready::after {
-    content: "选中文本后可拖拽到Canvas";
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: var(--background-secondary);
-    color: var(--text-muted);
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 11px;
-    opacity: 0.7;
-    z-index: 100;
-}
-
-/* Canvas拖拽区域指示 */
-.canvas-wrapper.pdfflow-drop-zone {
-    position: relative;
-}
-
-.canvas-wrapper.pdfflow-drop-zone::before {
-    content: "拖拽PDF文本到此处";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: var(--background-secondary);
-    color: var(--text-muted);
-    padding: 12px 20px;
-    border-radius: 8px;
-    font-size: 14px;
-    opacity: 0;
-    z-index: 1000;
-    transition: opacity 0.3s ease;
-}
-
-.canvas-wrapper.pdfflow-drop-zone.pdfflow-drag-over::before {
+.pdfflow-floating-button.active {
+    background: rgba(255, 87, 34, 0.8);
     opacity: 0.9;
 }
-
-/* 动画效果 */
-@keyframes pdfflow-pulse {
-    0% { opacity: 0.5; }
-    50% { opacity: 1; }
-    100% { opacity: 0.5; }
+.pdfflow-floating-button  svg {
+    width: 22px !important;
+    height: 22px !important;
 }
 
-@keyframes contextMenuSlideIn {
-    0% {
-        opacity: 0;
-        transform: scale(0.8) translateY(-10px);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
-}
-
-.pdfflow-drag-active {
-    animation: pdfflow-pulse 1.5s ease-in-out infinite;
-}
 
 /* 响应式设计 */
 @media (max-width: 768px) {
@@ -156,6 +91,7 @@
         padding: 4px !important;
         min-width: 28px !important;
         min-height: 24px !important;
+        background: transparent !important;
     }
 }
 
@@ -248,30 +184,7 @@
 }
 
 /* 深色主题适配 */
-.theme-dark .pdfflow-drag-preview {
-    background: #2d3748;
-    color: #e2e8f0;
-    border-color: #4a5568;
-}
 
-.theme-dark .pdfflow-drag-over {
-    background-color: rgba(100, 200, 255, 0.05) !important;
-    border-color: #3182ce !important;
-}
-
-.theme-dark .pdfflow-rect-overlay {
-    border-color: #63b3ed;
-    background-color: rgba(99, 179, 237, 0.1);
-}
-
-.theme-dark .pdfflow-rect-overlay:hover {
-    background-color: rgba(99, 179, 237, 0.2);
-    border-color: #3182ce;
-}
-
-.theme-dark .pdfflow-rect-selection-mode::before {
-    background: #3182ce;
-}
 
 .theme-dark .pdfflow-highlight-dropdown {
     background: var(--background-primary);
@@ -304,38 +217,7 @@
     color: var(--text-normal);
 }
 
-/* 高对比度主题适配 */
-.theme-high-contrast .pdfflow-drag-over {
-    background-color: rgba(255, 255, 0, 0.2) !important;
-    border-color: #ffff00 !important;
-    border-width: 3px !important;
-}
 
-/* Excalidraw拖拽悬停样式 */
-.pdfflow-excalidraw-drag-over {
-    border: 2px dashed #007acc !important;
-    background-color: rgba(0, 122, 204, 0.1) !important;
-    opacity: 0.9 !important;
-    border-radius: 6px !important;
-    box-shadow: 0 0 8px rgba(0, 122, 204, 0.2) !important;
-}
-
-.pdfflow-excalidraw-drag-over::after {
-    content: "拖拽到 Excalidraw 画布";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(0, 122, 204, 0.9);
-    color: white;
-    padding: 8px 16px;
-    border-radius: 4px;
-    font-size: 14px;
-    font-weight: bold;
-    z-index: 1001;
-    pointer-events: none;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
 
 /* 拆切模式样式 */
 .pdfflow-rect-selection-mode .workspace-leaf-content[data-type="pdf"] {
@@ -349,8 +231,8 @@
 /* 矩形选择覆盖层 */
 .pdfflow-rect-overlay {
     position: fixed !important;
-    border: 2px dashed #007acc !important;
-    background-color: rgba(0, 122, 204, 0.1) !important;
+    border: 2px dashed #7a7a7a !important;
+    background-color: rgba(132, 132, 132, 0.1) !important;
     z-index: 1000 !important;
     transition: all 0.1s ease;
     pointer-events: none !important;
@@ -358,8 +240,8 @@
 }
 
 .pdfflow-rect-overlay:hover {
-    background-color: rgba(0, 122, 204, 0.2);
-    border-color: #005a9e;
+    background-color: rgba(132, 132, 132, 0.1) !important;
+    border-color: #7a7a7a ;
 }
 
 .pdfflow-rect-overlay.draggable {
@@ -367,7 +249,6 @@
     pointer-events: auto !important;
     border-style: dashed !important;
     border-width: 2px !important;
-    box-shadow: 0 2px 8px rgba(0, 122, 204, 0.3) !important;
 }
 
 .pdfflow-rect-overlay.draggable:active {
@@ -375,8 +256,8 @@
 }
 
 .pdfflow-rect-overlay.draggable:hover {
-    background-color: rgba(0, 122, 204, 0.2) !important;
-    border-color: #005a9e !important;
+    background-color: rgba(132, 132, 132, 0.1) !important;
+    border-color: #7a7a7a  !important;
 }
 
 /* 矩形选择提示 */
@@ -391,30 +272,11 @@
     border-radius: 4px;
     font-size: 12px;
     z-index: 10000;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* PDF查看器样式增强 */
 .workspace-leaf-content[data-type="pdf"] .pdfflow-rect-overlay {
     border-radius: 3px;
-}
-
-/* 拖拽预览增强 */
-
-/* 浅色主题适配 */
-.theme-light .pdfflow-rect-overlay {
-    border-color: #007acc;
-    background-color: rgba(0, 122, 204, 0.08);
-}
-
-.theme-light .pdfflow-rect-overlay:hover {
-    background-color: rgba(0, 122, 204, 0.15);
-}
-
-/* CanvasNote 倒计时动画样式 - 绳子烧掉效果 */
-.pdfflow-countdown-animation {
-    position: relative;
-    overflow: visible;
 }
 
 /* Canvas平滑移动动画 */
@@ -426,70 +288,7 @@
     transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.pdfflow-countdown-animation::before {
-    content: '';
-    position: absolute;
-    top: -3px;
-    left: -3px;
-    right: -3px;
-    bottom: -3px;
-    z-index: 1;
-    border-radius: 6px;
-    /* 使用SVG创建虚线边框，这样可以控制dash的动画 */
-    background: url("data:image/svg+xml,%3Csvg width='30' height='30' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='28' height='28' fill='none' stroke='%23ff5722' stroke-width='2' stroke-dasharray='100' stroke-dashoffset='0' rx='6'/%3E%3C/svg%3E") no-repeat;
-    background-size: 100% 100%;
-    filter: drop-shadow(0 0 4px #ff5722);
-    animation: burnOut 5s linear forwards;
-}
 
-@keyframes burnOut {
-    0% {
-        /* 开始时完整的虚线 */
-        background: url("data:image/svg+xml,%3Csvg width='30' height='30' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='28' height='28' fill='none' stroke='%23ff5722' stroke-width='2' stroke-dasharray='4,2' stroke-dashoffset='0' rx='6'/%3E%3C/svg%3E") no-repeat;
-        background-size: 100% 100%;
-        filter: drop-shadow(0 0 4px #ff5722);
-    }
-    
-    20% {
-        /* 虚线开始移动 */
-        background: url("data:image/svg+xml,%3Csvg width='30' height='30' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='28' height='28' fill='none' stroke='%23ff7043' stroke-width='2' stroke-dasharray='4,2' stroke-dashoffset='-20' rx='6'/%3E%3C/svg%3E") no-repeat;
-        background-size: 100% 100%;
-        filter: drop-shadow(0 0 4px #ff7043);
-    }
-    
-    40% {
-        /* 虚线变稀疏 */
-        background: url("data:image/svg+xml,%3Csvg width='30' height='30' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='28' height='28' fill='none' stroke='%23ff8a65' stroke-width='2' stroke-dasharray='2,4' stroke-dashoffset='-40' rx='6'/%3E%3C/svg%3E") no-repeat;
-        background-size: 100% 100%;
-        filter: drop-shadow(0 0 3px #ff8a65);
-    }
-    
-    60% {
-        /* 虚线更稀疏 */
-        background: url("data:image/svg+xml,%3Csvg width='30' height='30' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='28' height='28' fill='none' stroke='%23ffab91' stroke-width='2' stroke-dasharray='1,6' stroke-dashoffset='-60' rx='6'/%3E%3C/svg%3E") no-repeat;
-        background-size: 100% 100%;
-        filter: drop-shadow(0 0 2px #ffab91);
-    }
-    
-    80% {
-        /* 几乎看不见 */
-        background: url("data:image/svg+xml,%3Csvg width='30' height='30' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='28' height='28' fill='none' stroke='%23ffccbc' stroke-width='1' stroke-dasharray='1,10' stroke-dashoffset='-80' rx='6'/%3E%3C/svg%3E") no-repeat;
-        background-size: 100% 100%;
-        filter: drop-shadow(0 0 1px #ffccbc);
-    }
-    
-    100% {
-        /* 完全消失 */
-        background: url("data:image/svg+xml,%3Csvg width='30' height='30' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='28' height='28' fill='none' stroke='transparent' stroke-width='0' stroke-dasharray='0,100' stroke-dashoffset='-100' rx='6'/%3E%3C/svg%3E") no-repeat;
-        background-size: 100% 100%;
-        filter: none;
-    }
-}
-
-/* 鼠标悬停时暂停动画 */
-.pdfflow-countdown-animation:hover::before {
-    animation-play-state: paused;
-}
 
 /* pdf反向连接高亮层 */
 .pdfflow-backlink-highlight-layer {
@@ -640,8 +439,8 @@
     
     /* Excalidraw拖拽悬停样式 - iPad优化 */
     .pdfflow-excalidraw-drag-over {
-        border: 3px dashed #007acc !important;
-        background-color: rgba(0, 122, 204, 0.15) !important;
+        border: 3px dashed #7a7a7a !important;
+        background-color: rgba(132, 132, 132, 0.1) !important;
         opacity: 0.95 !important;
         border-radius: 8px !important;
         box-shadow: 0 0 10px rgba(0, 122, 204, 0.3) !important;
@@ -842,51 +641,15 @@
 }
 
 
-/* 浮动按钮基础样式 */
-.pdfflow-floating-button {
-    position: absolute;
-    top: 450px;
-    right: 45px;
-    width: 24px;
-    height: 24px;
-    background: rgba(0, 122, 204, 0.75);
-    border: none;
-    border-radius: 4px;
-    color: white;
-    cursor: pointer;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    transition: all 0.2s ease;
-    backdrop-filter: blur(14px);
-}
 
-/* 浮动按钮悬停状态 */
-.pdfflow-floating-button:hover {
-    background: rgba(0, 122, 204, 0.95);
-    transform: scale(1.05);
-}
-
-/* 浮动按钮激活状态 */
-.pdfflow-floating-button.active {
-    background: rgba(255, 87, 34, 0.8);
-    opacity: 0.9;
-}
-
-/* 浮动按钮点击效果 */
-.pdfflow-floating-button:active {
-    transform: scale(0.95);
-}
 
 /* 矩形覆盖层基础样式 */
 .pdfflow-rect-overlay-fixed {
     position: fixed;
     pointer-events: none;
     z-index: 1000;
-    border: 2px dashed #007acc;
-    background-color: rgba(0, 122, 204, 0.1);
+    border: 2px dashed #7a7a7a;
+    background-color: rgba(132, 132, 132, 0.1) !important;
 }
 
 /* 矩形覆盖层可拖拽状态 */
@@ -899,50 +662,7 @@
     cursor: grabbing;
 }
 
-/* 矩形拖拽预览 */
-.pdfflow-rect-drag-preview {
-    position: fixed;
-    background: rgba(0, 122, 204, 0.9);
-    color: white;
-    padding: 8px 12px;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: bold;
-    pointer-events: none;
-    z-index: 10001;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(8px);
-    white-space: nowrap;
-}
 
-/* 矩形选择辅助按钮样式 */
-.pdfflow-rect-assist-button {
-    position: absolute;
-    top: -45px;
-    right: -5px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 8px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 500;
-    cursor: grab;
-    user-select: none;
-    z-index: 1002;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    white-space: nowrap;
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    opacity: 1;
-    visibility: visible;
-    animation: pdfflow-button-fade-in 0.3s ease-out;
-    pointer-events: auto;
-}
 
 @keyframes pdfflow-button-fade-in {
     from {
@@ -958,7 +678,6 @@
 .pdfflow-rect-assist-button:hover {
     transform: scale(1.05);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
 }
 
 .pdfflow-rect-assist-button:active {
@@ -1420,7 +1139,7 @@
     background: var(--background-primary);
     border: 1px solid var(--background-modifier-border);
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
     padding: 12px;
     padding-top: 5px;
     max-width: 300px;
@@ -1463,21 +1182,10 @@
 
 /* 标签添加按钮样式 */
 .pdfflow-add-tag-btn {
-    background: transparent !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     cursor: pointer;
-    font-size: 12px;
-    transition: all 0.2s ease;
-    
 }
 
-.pdfflow-add-tag-btn svg {
-    width: 16px;
-    height: 16px;
-    stroke: currentColor;
-}
+
 /* 标签输入弹窗样式 */
 .pdfflow-tag-input-popup {
     background: var(--background-primary);
@@ -1587,13 +1295,14 @@
 
 /* 标签样式 */
 .pdfflow-tag {
-    display: inline-block;
+    display: flex;
+    align-items: center;
     background: var(--tag-background);
     color: var(--tag-color);
     border-radius: 12px;
     font-size: 11px;
     transition: all 0.2s ease;
-    padding: 5px;
+    padding: 5px !important;
 }
 
 .pdfflow-tag:hover {
@@ -1641,28 +1350,21 @@
 /* 删除高亮按钮样式 */
 .pdfflow-delete-highlight-btn {
     background: transparent !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     cursor: pointer;
-    font-size: 12px;
-    transition: all 0.2s ease;
 }
-
-.pdfflow-delete-highlight-btn svg {
-    width: 16px;
-    height: 16px;
-    stroke: currentColor;
-}
-
 
 
 /* 按钮左右内边距覆盖 */
 .pdfflow-delete-highlight-btn,
 .pdfflow-add-tag-btn {
-    padding-left: 5px !important;
-    padding-right: 5px !important;
-    box-shadow: none !important;
+    padding: 0;
+    opacity: 0.7;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    transform: scale(1);
+    background: transparent !important;
 }
 
 /* 触摸设备优化 */
@@ -1725,11 +1427,10 @@
 .pdfflow-comment-delete-btn {
     position: absolute;
     top: -6px;
-    left: -6px;
+    right: -6px;
     width: 18px;
     height: 18px;
-    background: #ef4444;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: var(--background-modifier-error);
     border-radius: 50%;
     display: none;
     align-items: center;
@@ -1849,7 +1550,7 @@
 
 .pdfflow-comment-add-btn {
     padding: 8px 16px;
-    background: var(--interactive-accent);
+    background: transparent !important;
     color: var(--text-on-accent);
     border: none;
     border-radius: 4px;
@@ -1859,17 +1560,10 @@
     cursor: pointer;
     transition: background-color 0.2s ease;
     white-space: nowrap;
+    box-shadow: none !important;
     
 }
 
-.pdfflow-comment-add-btn:hover {
-    background: var(--interactive-accent-hover);
-}
-
-.pdfflow-comment-add-btn:active {
-    background: var(--interactive-accent);
-    transform: translateY(1px);
-}
 
 /* 深色主题适配 */
 .theme-dark .pdfflow-comment-input-container {
@@ -1901,18 +1595,6 @@
 }
 
 /* PDF右键菜单样式 */
-.pdfflow-context-menu {
-    position: fixed;
-    background: var(--background-primary);
-    border: 1px solid var(--background-modifier-border);
-    border-radius: 8px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-    z-index: 100001;
-    padding: 4px 0;
-    min-width: 180px;
-    font-size: 14px;
-    animation: contextMenuSlideIn 0.15s ease-out;
-}
 
 .pdfflow-context-menu-item {
     user-select: none;
@@ -2038,6 +1720,8 @@
     min-width: 32px !important;
     min-height: 28px !important;
     box-shadow: none !important;
+    background: transparent !important;
+    padding: 5px !important;
 }
 /* 标题样式 */
 .pdf-ebookshelf-title{
@@ -2049,8 +1733,8 @@
     /* Windows和Mac设备上的矩形选择框优化 */
     .pdfflow-rect-overlay {
         position: fixed !important;
-        border: 2px dashed #007acc !important;
-        background-color: rgba(0, 122, 204, 0.1) !important;
+        border: 2px dashed #7a7a7a !important;
+        background-color: rgba(132, 132, 132, 0.1) !important;
         z-index: 1000 !important;
         pointer-events: none !important;
         box-sizing: border-box !important;
@@ -2092,8 +1776,8 @@
 
 .pdfflow-rect-selector-selection {
     position: absolute;
-    border: 2px dashed #007acc;
-    background-color: rgba(0, 122, 204, 0.1);
+    border: 2px dashed #7a7a7a;
+    background-color: rgba(132, 132, 132, 0.1);
     pointer-events: none;
     z-index: 10000;
     transition: all 0.1s ease;
@@ -2157,10 +1841,26 @@
   width: 12px;
   height: 12px;
   color: black;
-  stroke: black;
+  stroke: var(--text-normal);
   fill: none;
 }
 
 .pdfflow-inline-comment-btn:hover {
   transform: scale(1.05);
+}
+
+
+button:not(.clickable-icon) .pdfflow-tag-filter-btn {
+    box-shadow: none !important;
+}
+
+.pdf-page-input{
+    width: 40px;
+    height: 25px !important;
+}
+.pdf-toolbar-divider{
+    display: none;
+}
+.pdf-toolbar-left{
+    gap: 2px !important;
 }

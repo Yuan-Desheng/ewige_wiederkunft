@@ -1,117 +1,70 @@
 /* Imagen插件图片编辑器样式 */
 
-/* 图片查看器容器 */
+/* 图片查看器容器：基础布局 */
 .imagen-viewer {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.9);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    backdrop-filter: blur(5px);
+             top: 0;
+             left: 0;
+             width: 100%;
+             height: 100%;
+             z-index: 10000;
+             display: flex;
+             flex-direction: column;
+             align-items: center;
+             justify-content: center;
+}
+
+/* 亮色主题下的查看器背景 */
+.theme-light .imagen-viewer {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23000000' fill-opacity='0.05' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+    backdrop-filter: blur(20px);
+}
+
+/* 暗色主题下的查看器背景 */
+.theme-dark .imagen-viewer {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23ffffff' fill-opacity='0.12' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+    backdrop-filter: blur(20px);
 }
 
 /* 编辑工具栏 */
-.imagen-toolbar {
+.theme-light .imagen-toolbar,.theme-dark .imagen-toolbar {
     position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(0, 0, 0, 0.85);
-    padding: 8px 12px;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(15px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    z-index: 10000;
+             bottom: 20px;
+             left: 50%;
+             transform: translateX(-50%);
+             background: rgba(0, 0, 0, 0.35);
+             border-radius: 15px;
+             padding: 10px;
+             display: flex;
+             gap: 10px;
+             backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(255, 255, 255, 0.25) !important;
+        border-left: 1px solid rgba(255, 255, 255, 0.2) !important;
+        box-shadow: 2px 2px 15px rgba(100, 100, 100, 0.2) !important;
+        z-index: 2;
 }
+
 
 /* 工具栏按钮 */
 .imagen-toolbar button {
-    background: rgba(255, 255, 255, 0.08);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 8px;
-    padding: 8px;
-    cursor: pointer;
-    font-size: 11px;
     min-width: 36px;
     min-height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-    transition: all 0.2s ease;
-    position: relative;
 }
 
-.imagen-toolbar button:hover {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.3);
-    transform: translateY(-1px);
-}
 
 .imagen-toolbar button.active {
     background: rgba(100, 150, 255, 0.7);
-    border-color: rgba(100, 150, 255, 0.9);
-    box-shadow: 0 2px 8px rgba(100, 150, 255, 0.3);
 }
 
-/* 按钮图标样式 */
-.imagen-toolbar button .icon {
-    width: 16px;
-    height: 16px;
-    stroke-width: 2;
-    flex-shrink: 0;
-}
-
-/* 按钮文字样式 */
-.imagen-toolbar button .text {
-    font-size: 10px;
-    white-space: nowrap;
-    opacity: 0.9;
-}
 
 /* 颜色选择器 */
-.imagen-toolbar input[type="color"] {
-    width: 32px;
-    height: 32px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 6px;
-    background: transparent;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
 
 .imagen-toolbar input[type="color"]:hover {
     border-color: rgba(255, 255, 255, 0.3);
-    transform: translateY(-1px);
 }
 
 /* 画笔大小控制 */
-.imagen-toolbar input[type="range"] {
-    width: 50px;
-    height: 18px;
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 9px;
-    outline: none;
-    cursor: pointer;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    transition: all 0.2s ease;
-}
 
-.imagen-toolbar input[type="range"]:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.25);
-}
 
 .imagen-toolbar input[type="range"]::-webkit-slider-thumb {
     appearance: none;
@@ -121,17 +74,31 @@
     background: white;
     cursor: pointer;
     border: 2px solid rgba(100, 150, 255, 0.8);
+    transform: translateY(-2px);
 }
 
 /* 画布容器 */
 .imagen-canvas-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    max-width: 90vw;
-    max-height: 80vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
 }
+
+.imagen-viewer-close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    border-radius: 50%;
+    background: transparent !important;
+    cursor: pointer;
+    z-index: 3;
+    box-shadow: none !important;
+}
+
 
 /* 画布样式 */
 .imagen-canvas {
@@ -148,8 +115,7 @@
 /* 工具栏标签 */
 .imagen-toolbar span {
     color: rgba(255, 255, 255, 0.7);
-    font-size: 10px;
-    margin-right: 4px;
+    font-size: 16px;
     font-weight: 500;
 }
 
@@ -255,13 +221,171 @@
     transform: translateY(0);
 }
 
-/* 确保对话框在所有主题下都可见 */
-.imagen-rename-modal {
-    --background-primary: var(--background-primary, #ffffff);
-    --background-modifier-border: var(--background-modifier-border, #e0e0e0);
-    --text-normal: var(--text-normal, #000000);
-    --text-muted: var(--text-muted, #666666);
-    --text-on-accent: var(--text-on-accent, #ffffff);
-    --interactive-accent: var(--interactive-accent, #007acc);
-    --interactive-accent-hover: var(--interactive-accent-hover, rgba(0, 122, 204, 0.2));
+
+/* ========== 图片文字环绕样式（基于内部链接 # 标识） ========== */
+
+/* 文字环绕通用基础样式 */
+.imagen-text-wrap {
+    display: block;
+    width: fit-content;
+    margin-bottom: 10px;
+}
+
+.imagen-text-wrap .image-wrapper {
+    display: block;
+}
+
+.imagen-text-wrap img {
+    object-fit: cover;
+}
+
+/* 实时预览模式：仅在编辑器内容区域内调整布局，确保注释位于图片下方 */
+.cm-content .imagen-text-wrap.image-embed {
+    display: flex;
+    flex-direction: column;
+}
+
+/* #LR - 左侧圆角图文环绕 */
+.imagen-wrap-left-rounded {
+    float: left !important;
+    margin-right: 15px !important;
+    margin-bottom: 10px !important;
+    margin-top: 4px !important;
+    overflow: hidden;
+}
+
+.imagen-wrap-left-rounded img {
+    border-radius: 8px;
+}
+
+/* #RR - 右侧圆角图文环绕 */
+.imagen-wrap-right-rounded {
+    float: right !important;
+    margin-left: 15px !important;
+    margin-bottom: 10px !important;
+    margin-top: 4px !important;
+    overflow: hidden;
+}
+
+.imagen-wrap-right-rounded img {
+    border-radius: 8px;
+}
+
+/* #LC - 左侧圆形图文环绕 */
+.imagen-wrap-left-circle {
+    float: left !important;
+    margin-right: 15px !important;
+    margin-bottom: 10px !important;
+    margin-top: 4px !important;
+    overflow: hidden;
+}
+
+.imagen-wrap-left-circle img {
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+/* #RC - 右侧圆形图文环绕 */
+.imagen-wrap-right-circle {
+    float: right !important;
+    margin-left: 15px !important;
+    margin-bottom: 10px !important;
+    margin-top: 4px !important;
+    overflow: hidden;
+}
+
+.imagen-wrap-right-circle img {
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+/* 确保文字环绕图片后面的内容正确环绕 */
+.imagen-text-wrap + .cm-line,
+.imagen-text-wrap + div {
+    display: block;
+    clear: both;
+}
+
+/* 清除浮动：防止文字环绕影响后续独立段落 */
+.imagen-text-wrap ~ .cm-line:empty,
+.imagen-text-wrap ~ div:empty {
+    clear: both;
+}
+
+/* ========== 图片注释文字样式（^注释） ========== */
+
+.imagen-wrap-alt-label {
+    display: block;
+    margin: 4px 0;
+    padding: 2px 4px;
+    font-size: 0.8em;
+    color: var(--text-faint);
+    cursor: text;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    outline: none;
+    min-height: 1.2em;
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    pointer-events: auto;
+    user-select: text;
+    -webkit-user-select: text;
+}
+
+.imagen-wrap-alt-label:hover {
+    color: var(--text-accent);
+}
+
+.imagen-wrap-alt-label:focus {
+    background: var(--background-modifier-hover);
+    color: var(--text-normal);
+}
+
+/* 左浮动环绕的注释跟随浮动 */
+.imagen-wrap-left-rounded .imagen-wrap-alt-label,
+.imagen-wrap-left-circle .imagen-wrap-alt-label {
+    clear: both;
+}
+
+/* 右浮动环绕的注释跟随浮动 */
+.imagen-wrap-right-rounded .imagen-wrap-alt-label,
+.imagen-wrap-right-circle .imagen-wrap-alt-label {
+    clear: both;
+}
+
+/* 空白注释的占位符提示 */
+.imagen-wrap-alt-label:empty::before {
+    content: '点击添加注释...';
+    color: var(--text-faint);
+    font-style: italic;
+    opacity: 0.6;
+}
+
+/* ========== 图片环绕类型快捷按钮 ========== */
+
+.imagen-wrap-toolbar {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    backdrop-filter: blur(16px);
+    pointer-events: auto;
+    border-radius: 10px;
+}
+
+.imagen-wrap-toolbar-btn {
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 5px;
+    cursor: pointer;
+    color: var(--icon-color) !important;
+
+}
+
+.imagen-wrap-toolbar-btn:hover {
+    background: var(--interactive-accent, #007acc);
 }

@@ -19,9 +19,9 @@ tags:
 <progress value="10" max="100" style="width: 100%;"></progress>
 
 ## 待办事项
-- [ ] 从零开始01：视频课程导读：项目简介、功能列表、技术选型 [🔗Dida](obsidian://dida-task?didaId=695a2778e4b00d63de5732f0) 
-- [ ] 从零开始02：在Windows环境下，如何运行前后端项目？ [🔗Dida](obsidian://dida-task?didaId=695a27b3e4b0e682865a433b) 
-- [ ] 从零开始03：在MacOS环境下，如何运行前后端项目？ [🔗Dida](obsidian://dida-task?didaId=695a27bfe4b00d63de574889) 
-- [ ] 从零开始04：自顶向下，讲解项目的整体结构(上) [🔗Dida](obsidian://dida-task?didaId=695a27cae4b02f0160c39449) 
-- [ ] 从零开始04：自顶向下，讲解项目的整体结构(下) [🔗Dida](obsidian://dida-task?didaId=695a27d8e4b00d63de575116) 
-- [ ] 从零开始05：如何5分钟，开发一个新功能？ [🔗Dida](obsidian://dida-task?didaId=695a27ece4b00d63de5757ed) 
+- [x] 从零开始01：视频课程导读：项目简介、功能列表、技术选型 [🔗Dida](obsidian://dida-task?didaId=695a2778e4b00d63de5732f0) 
+- [x] 从零开始02：在Windows环境下，如何运行前后端项目？ [🔗Dida](obsidian://dida-task?didaId=695a27b3e4b0e682865a433b) 
+- [x] 从零开始03：在MacOS环境下，如何运行前后端项目？ [🔗Dida](obsidian://dida-task?didaId=695a27bfe4b00d63de574889) 
+- [x] 从零开始04：自顶向下，讲解项目的整体结构(上) [🔗Dida](obsidian://dida-task?didaId=695a27cae4b02f0160c39449) 
+- [x] 从零开始04：自顶向下，讲解项目的整体结构(下) [🔗Dida](obsidian://dida-task?didaId=695a27d8e4b00d63de575116) 
+- [x] 从零开始05：如何5分钟，开发一个新功能？ [🔗Dida](obsidian://dida-task?didaId=695a27ece4b00d63de5757ed) 
