@@ -1,59 +1,11 @@
 {
-  "edges": [],
-  "nodes": [
-    {
-      "id": "note-1770303139974-4452",
-      "type": "file",
-      "file": "Documents/I.P.A.R.A/学习领域/收集/Dart 变量与常量.md",
-      "x": 100,
-      "y": 100,
-      "width": 440,
-      "height": 500
-    },
-    {
-      "id": "note-1770395361504-2801",
-      "type": "file",
-      "file": "Documents/I.P.A.R.A/学习领域/收集/从Dart语言到Flutter核心框架.md",
-      "x": 590,
-      "y": 100,
-      "width": 440,
-      "height": 500
-    },
-    {
-      "id": "note-1770395631248-5081",
-      "type": "file",
-      "file": "Documents/I.P.A.R.A/学习领域/收集/Dart的常用数据类型.md",
-      "x": 1080,
-      "y": 100,
-      "width": 440,
-      "height": 500
-    },
-    {
-      "id": "note-1771236354522-7758",
-      "type": "file",
-      "file": "Documents/I.P.A.R.A/学习领域/收集/Dart的运算符.md",
-      "x": 1570,
-      "y": 100,
-      "width": 440,
-      "height": 500
-    },
-    {
-      "id": "note-1772419339222-4173",
-      "type": "file",
-      "file": "Documents/I.P.A.R.A/学习领域/收集/Dart的类.md",
-      "x": 2060,
-      "y": 100,
-      "width": 440,
-      "height": 500
-    },
-    {
-      "id": "note-1772419346971-9408",
-      "type": "file",
-      "file": "Documents/I.P.A.R.A/学习领域/收集/Dart的流程控制.md",
-      "x": 100,
-      "y": 700,
-      "width": 440,
-      "height": 500
-    }
-  ]
+	"edges":[],
+	"nodes":[
+		{"id":"note-1770303139974-4452","type":"file","file":"Documents/I.P.A.R.A/学习领域/收集/Dart 变量与常量.md","x":100,"y":100,"width":440,"height":500},
+		{"id":"note-1770395361504-2801","type":"file","file":"Documents/I.P.A.R.A/学习领域/收集/从Dart语言到Flutter核心框架.md","x":590,"y":100,"width":440,"height":500},
+		{"id":"note-1770395631248-5081","type":"file","file":"Documents/I.P.A.R.A/学习领域/收集/Dart的常用数据类型.md","x":1080,"y":100,"width":440,"height":500},
+		{"id":"note-1771236354522-7758","type":"file","file":"Documents/I.P.A.R.A/学习领域/收集/Dart的运算符.md","x":1570,"y":100,"width":440,"height":500},
+		{"id":"note-1772419339222-4173","type":"file","file":"Documents/I.P.A.R.A/学习领域/收集/Dart的类.md","x":2060,"y":100,"width":440,"height":500},
+		{"id":"note-1772419346971-9408","type":"file","file":"Documents/I.P.A.R.A/学习领域/收集/Dart的流程控制.md","x":100,"y":700,"width":440,"height":500}
+	]
 }

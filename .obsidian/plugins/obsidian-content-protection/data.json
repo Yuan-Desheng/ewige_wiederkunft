@@ -72,6 +72,37 @@
       "bookmark"
     ]
   },
+  "vikaSync": {
+    "updateIds": [
+      "5IJl7HLA0m",
+      "6tNKl56Arf",
+      "XBmCj5io1m",
+      "weMTgoFx83",
+      "Znlbwn6rSF",
+      "U88QattgqD",
+      "XaYNADrYe6",
+      "56tX0gRx1D",
+      "A7dkTB7LAF",
+      "DQw1QbwOZl",
+      "rdDsjNOjz3",
+      "Wy7ZDvIb2B"
+    ],
+    "updateTimes": {
+      "5IJl7HLA0m": "2025-12-28T09:21:00.000Z",
+      "6tNKl56Arf": "2025-08-25T05:37:00.000Z",
+      "XBmCj5io1m": "2025-11-17T05:11:00.000Z",
+      "weMTgoFx83": "2025-12-12T04:22:00.000Z",
+      "Znlbwn6rSF": "2025-09-01T06:25:00.000Z",
+      "U88QattgqD": "2025-11-25T08:07:00.000Z",
+      "XaYNADrYe6": "2025-09-15T02:12:00.000Z",
+      "56tX0gRx1D": "2025-10-19T13:35:00.000Z",
+      "A7dkTB7LAF": "2025-11-24T01:46:00.000Z",
+      "DQw1QbwOZl": "2025-12-22T02:20:00.000Z",
+      "rdDsjNOjz3": "2025-12-25T02:52:00.000Z",
+      "Wy7ZDvIb2B": "2025-12-19T02:41:00.000Z"
+    },
+    "ignoredUpdateIds": []
+  },
   "fileIcons": {
     "快速上手打卡任务（完成后，请删除）.md": "square-check-big",
     "Documents": "folder-open",
@@ -108,36 +139,5 @@
     "Extras/物品": "baggage-claim",
     "Extras/主题": "palette",
     "使用指南/00--通用说明（重要）": "alert-circle"
-  },
-  "vikaSync": {
-    "updateIds": [
-      "5IJl7HLA0m",
-      "6tNKl56Arf",
-      "XBmCj5io1m",
-      "weMTgoFx83",
-      "Znlbwn6rSF",
-      "U88QattgqD",
-      "XaYNADrYe6",
-      "56tX0gRx1D",
-      "A7dkTB7LAF",
-      "DQw1QbwOZl",
-      "rdDsjNOjz3",
-      "Wy7ZDvIb2B"
-    ],
-    "updateTimes": {
-      "5IJl7HLA0m": "2025-12-28T09:21:00.000Z",
-      "6tNKl56Arf": "2025-08-25T05:37:00.000Z",
-      "XBmCj5io1m": "2025-11-17T05:11:00.000Z",
-      "weMTgoFx83": "2025-12-12T04:22:00.000Z",
-      "Znlbwn6rSF": "2025-09-01T06:25:00.000Z",
-      "U88QattgqD": "2025-11-25T08:07:00.000Z",
-      "XaYNADrYe6": "2025-09-15T02:12:00.000Z",
-      "56tX0gRx1D": "2025-10-19T13:35:00.000Z",
-      "A7dkTB7LAF": "2025-11-24T01:46:00.000Z",
-      "DQw1QbwOZl": "2025-12-22T02:20:00.000Z",
-      "rdDsjNOjz3": "2025-12-25T02:52:00.000Z",
-      "Wy7ZDvIb2B": "2025-12-19T02:41:00.000Z"
-    },
-    "ignoredUpdateIds": []
   }
 }

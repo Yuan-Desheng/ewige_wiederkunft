@@ -31,3 +31,10 @@ cssclasses:
 [程序员的AI生产力组合，ClaudeCode+GLM太适合国内程序员使用了_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1AqCKBeEpN/?spm_id_from=333.788.recommend_more_video.2&trackid=web_related_0.router-related-2479604-pxdwc.1774594641722.509&vd_source=8084410e3cc6827800d6f9584a3788b5)
 spec driven + skills：
 [https://chat.deepseek.com/share/0flnva62hdh7hf52u7](https://chat.deepseek.com/share/k46lolp2r0raterg8k)
+
+## 笔记
+
+常用命令
+```
+
+```

@@ -73,6 +73,11 @@
       "baseUrl": "https://api.xiaomimimo.com/v1",
       "enabled": true,
       "apiKeyLink": "https://platform.xiaomimimo.com/#/console/api-keys"
+    },
+    "lmstudio": {
+      "apiKey": "lm-studio",
+      "baseUrl": "http://localhost:1234/v1",
+      "enabled": true
     }
   },
   "models": {
@@ -249,7 +254,6 @@
   "enableGhostText": true,
   "enableAutoGhostText": false,
   "autoGhostTextDelay": 8000,
-  "maxTokens": 5000,
   "shortcuts": {
     "continueText": "Ctrl+Shift+C"
   },
@@ -396,13 +400,15 @@
     }
   ],
   "imageSavePath": "Extras/附件",
+  "defaultImageGenerationModel": "",
   "imageSize": 300,
   "imageGenerationSize": "1024x1024",
-  "guidanceScale": 2.5,
   "maxContextLines": 20,
   "maxContextChars": 3000,
   "maxBacklinkNotes": 10,
   "agentMaxSessions": 50,
+  "maxTokens": 5000,
+  "guidanceScale": 2.5,
   "continueMode": "balanced",
   "geminiReasoningEffort": "low"
 }

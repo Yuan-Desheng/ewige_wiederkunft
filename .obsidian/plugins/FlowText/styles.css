@@ -586,7 +586,7 @@
 .theme-light .flowtext-at-popup,
 .theme-light .flowtext-modal-content {
   border-radius: 12px;
-  min-width: 300px;
+  min-width: 350px;
   max-width: 400px;
   background: transparent;
   backdrop-filter: blur(20px);
@@ -597,7 +597,7 @@
 .theme-dark .flowtext-at-popup,
 .theme-dark .flowtext-modal-content {
   border-radius: 12px;
-  min-width: 300px;
+  min-width: 350px;
   max-width: 400px;
   background:transparent;   
   backdrop-filter: blur(20px);
@@ -733,7 +733,7 @@
   display: inline-flex;
   align-items: center;
   gap: 3px;
-  padding: 0 8px;
+  padding: 0 4px 0 8px;
   background: var(--background-modifier-hover);
   color: var(--text-normal);
   border-radius: 10px;
@@ -742,6 +742,7 @@
   user-select: none;
   vertical-align: middle;
   white-space: nowrap;
+  position: relative;
 }
 
 .flowtext-inline-tag-icon {
@@ -749,12 +750,56 @@
   line-height: 1;
 }
 
+.flowtext-inline-tag-name-wrap {
+  display: inline-flex;
+  align-items: baseline;
+  max-width: 132px;
+  min-width: 0;
+}
+
 .flowtext-inline-tag-name {
-  max-width: 120px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  min-width: 0;
   color: var(--text-accent);
+}
+
+.flowtext-inline-tag-ext {
+  color: var(--text-muted);
+  font-size: 0.88em;
+  flex-shrink: 0;
+  margin-left: 1px;
+}
+
+.flowtext-inline-tag-remove {
+  -webkit-appearance: none;
+  appearance: none;
+  display: none;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-left: 1px;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  background: transparent !important;
+  color: var(--text-muted);
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: none !important;
+}
+
+.flowtext-inline-tag:hover .flowtext-inline-tag-remove {
+  display: inline-flex;
+}
+
+.flowtext-inline-tag-remove:hover {
+  background: var(--background-modifier-error-hover);
+  color: var(--text-error);
 }
 
 /* 文件/文件夹选择模态框样式 */
@@ -836,6 +881,100 @@
   display: flex;
   align-items: center;
   gap: 6px;
+}
+
+/* 续写弹窗：主题行 + 右侧「文生图」复选框 */
+.flowtext-topics-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 10px;
+  background: transparent;
+}
+
+.flowtext-topics-toolbar .flowtext-note-topics {
+  padding: 0;
+  flex: 1;
+  min-width: 0;
+}
+
+.flowtext-continue-generate-image-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-normal);
+  padding-right: 4px;
+  cursor: pointer;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.flowtext-generate-image-toggle-text {
+  line-height: 1.2;
+}
+
+/* 文生图：toggle 开关（仍为 checkbox，便于现有逻辑） */
+.flowtext-generate-image-switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 22px;
+  flex-shrink: 0;
+  vertical-align: middle;
+  scale: 0.7;
+}
+
+.flowtext-generate-image-check {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.flowtext-generate-image-switch-slider {
+  position: absolute;
+  inset: 0;
+  border-radius: 11px;
+  background: var(--background-modifier-border);
+  transition: background 0.2s ease;
+  pointer-events: none;
+}
+
+.flowtext-generate-image-switch-slider::before {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  left: 2px;
+  top: 2px;
+  border-radius: 50%;
+  background: var(--background-primary);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
+  transition: transform 0.2s ease;
+}
+
+.flowtext-generate-image-check:checked + .flowtext-generate-image-switch-slider {
+  background: var(--interactive-accent);
+}
+
+.flowtext-generate-image-check:checked + .flowtext-generate-image-switch-slider::before {
+  transform: translateX(18px);
+}
+
+.flowtext-generate-image-check:focus-visible + .flowtext-generate-image-switch-slider {
+  outline: 2px solid var(--interactive-accent);
+  outline-offset: 2px;
+}
+
+.flowtext-generate-image-check:disabled + .flowtext-generate-image-switch-slider {
+  opacity: 0.5;
 }
 
 .flowtext-note-topics {
@@ -2189,7 +2328,7 @@
 }
 
 .flowtext-agent-step-text {
-  font-size: 11px;
+  font-size: 13px;
   line-height: 1.5;
   color: var(--text-normal);
   word-break: break-word;
@@ -2197,7 +2336,7 @@
 }
 .flowtext-agent-step-text.is-mono {
   font-family: var(--font-monospace);
-  font-size: 11px;
+  font-size: 13px;
   line-height: 1.45;
   color: var(--color-purple);
 }
@@ -2208,7 +2347,7 @@
 .flowtext-agent-step--thinking {
   padding: 4px 10px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 6px;
 }
 .flowtext-agent-step--thinking .flowtext-agent-step-icon {
@@ -2235,6 +2374,33 @@
   mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
   padding: 6px 0;
   color:var(--color-green);
+  cursor: pointer;
+  transition: max-height 0.3s ease, -webkit-mask-image 0.3s ease, mask-image 0.3s ease;
+}
+.flowtext-agent-step--observation .flowtext-agent-step-text.expanded {
+  max-height: none;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+.flowtext-agent-step--observation .flowtext-agent-step-text.collapsed {
+  max-height: 120px;
+  -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
+}
+.flowtext-agent-step--observation .flowtext-agent-step-text::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: linear-gradient(transparent, var(--background-primary));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.flowtext-agent-step--observation .flowtext-agent-step-text.collapsed::after {
+  opacity: 1;
 }
 
 /* Diff 统计展示（observation 中的 edit 结果） */
@@ -2367,6 +2533,57 @@
 .flowtext-agent-copy-btn.is-copied {
   opacity: 1;
   color: var(--text-success, #0b0);
+}
+
+/* Agent 追问：可点击选项 */
+.flowtext-agent-followup-choices {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--background-modifier-border);
+}
+.flowtext-agent-choice-row {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+}
+.flowtext-agent-choice-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-align: left;
+  font-size: 12px;
+  background: transparent !important;
+  cursor: pointer;
+  padding: 0;
+  box-shadow: none !important;
+  height: 1.5em;
+}
+.flowtext-agent-choice-chip-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--text-muted);
+}
+.flowtext-agent-choice-chip-icon svg {
+  width: 14px;
+  height: 14px;
+}
+.flowtext-agent-choice-chip-label {
+  flex: 1;
+  min-width: 0;
+}
+.flowtext-agent-choice-chip:hover:not(:disabled) {
+  background: var(--background-modifier-hover);
+  border-color: var(--interactive-accent);
+}
+.flowtext-agent-choice-chip:hover:not(:disabled) .flowtext-agent-choice-chip-icon {
+  color: var(--text-normal);
+}
+.flowtext-agent-choice-chip:disabled {
+  opacity: 0.55;
+  cursor: default;
 }
 
 /* 错误 */
@@ -2539,6 +2756,29 @@
   cursor: not-allowed;
 }
 
+/* Agent 输入：contenteditable + 与续写一致的内联标签，避免双层边框 */
+.flowtext-agent-input.flowtext-editable-input {
+  padding: 4px 0;
+  border: none;
+  min-height: 36px;
+  max-height: 120px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  background: transparent !important;
+}
+.flowtext-agent-input.flowtext-editable-input.empty:before {
+  font-size: 10px;
+  color: var(--text-faint);
+  opacity: 0.7;
+  white-space: pre-wrap;
+}
+.flowtext-agent-input.flowtext-editable-input[contenteditable="false"] {
+  opacity: 0.4;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
 /* 底部行：模型选择 + 发送按钮 */
 .flowtext-agent-input-bottom {
   display: flex;
@@ -2572,6 +2812,57 @@
   background-color: transparent;
 }
 
+/* 思考模式开关 */
+.flowtext-agent-thinking-toggle {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 50%;
+  color: var(--text-muted);
+  cursor: pointer;
+  margin-left: 4px;
+  user-select: none;  
+  justify-content: center;  
+  transition: color 0.15s, opacity 0.15s;
+  display: none;
+}
+.flowtext-agent-thinking-icon svg{
+  width: 13px !important; 
+  height: 13px !important; 
+}
+.flowtext-agent-thinking-toggle:hover {
+  color: var(--interactive-accent);
+  opacity: 0.8;
+}
+.flowtext-agent-thinking-toggle.is-active {
+  color: var(--interactive-accent);
+  border-radius: 50%;
+}
+.flowtext-agent-thinking-icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.flowtext-agent-thinking-label {
+  white-space: nowrap;
+}
+
+/* 流式思考内容预览：进行中完整多行展示；结束后隐藏 */
+.flowtext-agent-thinking-preview {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--text-faint);
+  font-style: italic;
+  opacity: 0.9;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.flowtext-agent-step--thinking.flowtext-agent-thinking-complete .flowtext-agent-thinking-preview {
+  display: none;
+}
 
 /* 发送按钮 */
 .flowtext-agent-btn-send {
@@ -2682,7 +2973,7 @@
 }
 .flowtext-agent-rollback-item-name {
   flex: 1;
-  font-size: 12px;
+  font-size: 13px;
   color: var(--text-normal);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -2694,6 +2985,12 @@
   padding: 1px 6px;
   border-radius: 3px;
   background: var(--background-primary);
+}
+/* 重命名合并行：与「移动」区分 */
+
+.flowtext-agent-rollback-item--rename .flowtext-agent-rollback-item-type {
+  color: var(--text-accent);
+  background: var(--background-modifier-hover);
 }
 .flowtext-agent-rollback-item-btn {
   display: flex;
@@ -2726,7 +3023,7 @@
   border: 1px solid var(--background-modifier-border);
   border-radius: 8px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-  z-index: 100;
+  z-index: 10000;
   overflow: hidden;
 }
 .flowtext-agent-suggestions-list {
@@ -2950,12 +3247,76 @@
 
 /* 弹窗内容区初始隐藏（JS 控制淡入） */
 .flowtext-at-popup--from-sparkles .flowtext-popup-header,
-.flowtext-at-popup--from-sparkles .flowtext-note-topics,
+.flowtext-at-popup--from-sparkles .flowtext-topics-toolbar,
 .flowtext-at-popup--from-sparkles .flowtext-popup-content {
   opacity: 0;
   transform: translateY(4px);
 }
 
 .flowtext-agent-btn-shortcut{
-  font-size: 8px;
+  font-size: 9px;
+}
+
+/* 设置页：添加自定义 Skill 模态框 */
+.flowtext-custom-skill-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.flowtext-custom-skill-modal .flowtext-custom-skill-label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 600;
+  font-size: var(--font-ui-small);
+}
+.flowtext-custom-skill-modal .flowtext-custom-skill-input,
+.flowtext-custom-skill-modal .flowtext-custom-skill-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 12px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 4px;
+  padding: 6px 8px;
+  background: var(--background-primary);
+  color: var(--text-normal);
+}
+.flowtext-custom-skill-modal .flowtext-custom-skill-textarea {
+  min-height: 160px;
+  resize: vertical;
+  font-family: var(--font-text);
+}
+.flowtext-custom-skill-modal .flowtext-custom-skill-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 8px;
+}
+/* 设置页：常用提示词 / 自定义 Skill 等「管理列表」条目（统一视觉） */
+.flowtext-settings-managed-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  margin-bottom: 8px;
+  border-left: 4px solid var(--background-modifier-border);
+  border-radius: 6px;
+  background: var(--background-secondary-alt);
+}
+.flowtext-settings-managed-item-info {
+  flex: 1;
+  min-width: 0;
+}
+.flowtext-settings-managed-item-title {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+.flowtext-settings-managed-item-sub {
+  color: var(--text-muted);
+  font-size: 0.7em;
+  word-break: break-word;
+}
+.flowtext-settings-managed-btns {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
 }

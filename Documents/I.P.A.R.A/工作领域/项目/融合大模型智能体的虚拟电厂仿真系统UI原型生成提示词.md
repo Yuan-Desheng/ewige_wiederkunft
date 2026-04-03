@@ -15,46 +15,6 @@ multiMedia:
 [[笔记抬头模块]]
 ```
 <progress value="10" max="100" style="width: 100%;"></progress>
-## 资料
-[‍​​﻿⁠​​​​‍‍‌‌﻿​​‍​‬﻿​‬​​​​‍​​‍​⁠​​​​‬⁠﻿⁠⁠‍‍​‍​​​​‬对于「融合大模型」项目的技术方向思考 - 飞书云文档](https://my.feishu.cn/wiki/TdcvwTrTdi09XEkFsdXczqSXnwf)
-
-[Docs](https://jizhishida.feishu.cn/wiki/EOqfwC2gXiuE2QkSHtbcfsMWnGf)
-
-## 开发环境
-13楼内网gitlab： http://192.168.8.32:81/
-账号：root
-密码：J903kkROl+EmTJYOY4z2wlBbQu8fAM2jizx1lKQb8T4=
-
-### 测试环境地址
-http://192.168.8.32:82
-
-## swagger
-http://192.168.8.32:9999/doc.html
-
-## 前端部署
-[‌​﻿⁠‍​​​⁠​​⁠​​​​​‌​⁠‬⁠​​‌​‍‍​​‌‬⁠​​​​‍‍​﻿‌‬‬​﻿​⁠​⁠前端工程（vpp-frontend） - 飞书云文档](https://jizhishida.feishu.cn/wiki/EOqfwC2gXiuE2QkSHtbcfsMWnGf)
-打包`npm run build`
-位置`vpp-frontend\nginx\html\dist`
-账号：
-```
-admin
-```
-密码：
-```
-gu#gong9
-```
-远程网络上传打包文件
-![[Pasted image 20260317152119.png]]
-
-远程连接桌面`192.168.8.32`
-![[Pasted image 20260317151934.png]]
-![[Pasted image 20260317152004.png]]
-将上传的dist拷贝至：E:\vppss\vpp-frontend\nginx\html\dist
-![[Pasted image 20260317152414.png]]
-重启nginx
-```
-docker exec nginx-vpp-frontend nginx -s reload
-```
 
 ## 需求
 ```
