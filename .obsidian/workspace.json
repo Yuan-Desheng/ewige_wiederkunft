@@ -23,22 +23,7 @@
             }
           },
           {
-            "id": "03eb07590d370b65",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Documents/I.P.A.R.A/学习领域/归档/openclaw提示词-04-03.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "openclaw提示词-04-03"
-            }
-          },
-          {
-            "id": "ffba678a9ff58885",
+            "id": "f4b38ca86e292ce4",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -50,36 +35,6 @@
               },
               "icon": "lucide-file",
               "title": "OpenClaw常用命令"
-            }
-          },
-          {
-            "id": "4e470971f761f106",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Documents/I.P.A.R.A/学习领域/收集/安卓平台适配.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "安卓平台适配"
-            }
-          },
-          {
-            "id": "3573c40a4e6769ba",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Documents/I.P.A.R.A/工作领域/项目/知塘晓物-APP端开发.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "知塘晓物-APP端开发"
             }
           },
           {
@@ -98,21 +53,6 @@
             }
           },
           {
-            "id": "ce6bd4da2a7c2583",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Documents/I.P.A.R.A/学习领域/收集/ClaudeCode+GLM.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "ClaudeCode+GLM"
-            }
-          },
-          {
             "id": "c0353435f736d574",
             "type": "leaf",
             "state": {
@@ -128,22 +68,37 @@
             }
           },
           {
-            "id": "032127a7c4016705",
+            "id": "d18ca27c5a82ed06",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Documents/I.P.A.R.A/学习领域/收集/项目开发需求画图.md",
+                "file": "Documents/I.P.A.R.A/工作领域/项目/知塘晓物-后台管理开发.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "项目开发需求画图"
+              "title": "知塘晓物-后台管理开发"
+            }
+          },
+          {
+            "id": "f03d23cf8af7cbc0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documents/I.P.A.R.A/工作领域/项目/知塘晓物-APP端开发.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "知塘晓物-APP端开发"
             }
           }
         ],
-        "currentTab": 8
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -196,7 +151,8 @@
               "title": "书签"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -291,7 +247,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Documents/I.P.A.R.A/生活领域/资源/（云）MAD.md",
+                "file": "Documents/I.P.A.R.A/学习领域/收集/ClaudeCode.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -301,7 +257,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "（云）MAD 的反向链接列表"
+              "title": "ClaudeCode 的反向链接列表"
             }
           },
           {
@@ -310,8 +266,8 @@
             "state": {
               "type": "dida-task-view",
               "state": {},
-              "icon": "lucide-ghost",
-              "title": "dida-task-view"
+              "icon": "check-square",
+              "title": "滴答任务清单"
             }
           }
         ]
@@ -404,7 +360,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 423
+    "width": 423,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -427,45 +384,45 @@
       "note-importer:导入笔记": false
     }
   },
-  "active": "032127a7c4016705",
+  "active": "f03d23cf8af7cbc0",
   "lastOpenFiles": [
-    "数据库与导航.md",
-    "Documents/I.P.A.R.A/学习领域/收集/ClaudeCode.md",
-    "Documents/I.P.A.R.A/学习领域/收集/ClaudeCode+GLM.md",
-    "Assistants/Templater/主页/homepage-侧页.md",
-    "Documents/I.P.A.R.A/学习领域/归档/openclaw提示词-04-03.md",
-    "Documents/I.P.A.R.A/学习领域/收集/OpenClaw常用命令.md",
-    "Documents/I.P.A.R.A/学习领域/收集/OpenClaw.md",
-    "Documents/I.P.A.R.A/学习领域/归档/openclaw提示词-04-02.md",
-    "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
-    "Documents/I.P.A.R.A/学习领域/收集/安卓平台适配.md",
-    "Documents/I.P.A.R.A/学习领域/收集/OpenClaw安装、部署&使用教程.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Linux.md",
-    "Extras/附件/Pasted image 20260403105218.png",
-    "Documents/I.P.A.R.A/0-收集箱/[[openclaw提示词-04-02.md",
-    "Documents/I.P.A.R.A/学习领域/归档/openclaw提示词-04-01.md",
-    "Documents/I.P.A.R.A/工作领域/收集/产品管理.md",
+    "Documents/I.P.A.R.A/工作领域/项目/知塘晓物-后台管理开发.md",
     "Documents/I.P.A.R.A/工作领域/项目/知塘晓物-APP端开发.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Windows安装Ubuntu （双系统）.md",
+    "Documents/I.P.A.R.A/学习领域/收集/ClaudeCode.md",
+    "Documents/I.P.A.R.A/学习领域/收集/OpenClaw常用命令.md",
+    "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
+    "Documents/I.P.A.R.A/学习领域/收集/OpenClaw.md",
+    "Documents/I.P.A.R.A/工作领域/项目/海军推门听课.md",
+    "数据库与导航.md",
+    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/知塘晓物.canvas",
+    "Documents/I.P.A.R.A/工作领域/项目/负荷预测、可调能力、协同仿真 页面原型.md",
+    "Documents/I.P.A.R.A/学习领域/收集/frontend-dev Agent Claude Code 集成方案.md",
+    "Assistants/Templater/主页/homepage-侧页.md",
+    "Documents/I.P.A.R.A/学习领域/收集/ClaudeCode+GLM.md",
+    "Documents/I.P.A.R.A/学习领域/归档/openclaw提示词-04-08.md",
+    "Documents/I.P.A.R.A/学习领域/归档/openclaw提示词-04-01.md",
+    "Documents/I.P.A.R.A/学习领域/归档/openclaw提示词-04-077.md",
+    "Documents/I.P.A.R.A/学习领域/归档/openclaw提示词-04-07.md",
+    "Documents/I.P.A.R.A/学习领域/归档/openclaw提示词-04-03.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Linux HBuilderX CLI.md",
+    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/融合大模型智能体的虚拟电厂仿真系统.canvas",
+    "Documents/I.P.A.R.A/学习领域/收集/项目开发需求画图.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Linux.md",
+    "Documents/I.P.A.R.A/学习领域/收集/安卓平台适配.md",
+    "Documents/I.P.A.R.A/工作领域/项目/自媒体平台数据爬取.md",
+    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/海媒传播分析系统.canvas",
+    "Documents/I.P.A.R.A/工作领域/项目/流水线部署前端项目.md",
     "Documents/I.P.A.R.A/学习领域/收集/OpenClaw技能清单.md",
-    "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统UI原型生成提示词.md",
-    "Documents/I.P.A.R.A/学习领域/收集/从Dart语言到Flutter核心框架.md",
+    "Documents/I.P.A.R.A/学习领域/归档/openclaw提示词-04-02.md",
+    "Extras/附件/Pasted image 20260403105218.png",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/Dart.canvas",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/Flutter.canvas",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/OpenClaw.canvas",
-    "Documents/I.P.A.R.A/工作领域/项目/虚拟电厂仿真系统-原始需求的提示词整理.md",
-    "Documents/I.P.A.R.A/工作领域/项目/负荷预测、可调能力、协同仿真 页面原型.md",
     "Documents/I.P.A.R.A/0-收集箱/未命名 1.base",
-    "Documents/I.P.A.R.A/工作领域/项目/AI生成知塘晓物 UI原型、API接口.md",
-    "Documents/I.P.A.R.A/学习领域/项目/『芋道项目』ruoyi-vue-pro、yudao-cloud.md",
-    "Documents/I.P.A.R.A/学习领域/收集/CodePen.md",
-    "Documents/I.P.A.R.A/学习领域/收集/APP打包上架.md",
-    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/知塘晓物.canvas",
     "Extras/附件/Pasted image 20260317152414.png",
     "Extras/附件/Pasted image 20260317152119.png",
     "Extras/附件/Pasted image 20260317152004.png",
     "Extras/附件/Pasted image 20260317151934.png",
-    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/融合大模型智能体的虚拟电厂仿真系统.canvas",
     "Extras/附件/Flutter从入门到实战-综合案例.pdf",
     "Extras/附件/Pasted image 20260304112617.png",
     "Extras/附件/Pasted image 20260304110144.png",
@@ -480,7 +437,6 @@
     "Extras/附件/Dart_x64.stable.setup.exe",
     "Extras/附件/Flutter从入门到实战 1.pdf",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/Gemini.canvas",
-    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/海媒传播分析系统.canvas",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/峰华Vue3.canvas",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/Java.canvas",
     "Documents/I.P.A.R.A/生活领域/归档/卡片盒笔记主题索引卡/故事点子.canvas",

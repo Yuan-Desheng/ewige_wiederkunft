@@ -337,3 +337,60 @@ watch(dialogVisible, (val) => {
 生成到@lib/pages/目录下，创建一个合适的看板目录,需要注意样式和动效和使用合适的组件进行页面的搭建，谢谢。
 ```
 
+## 04-05
+```
+临时添加 PATH：只对当前终端窗口有效，关闭终端后失效。
+export PATH="/opt/flutter/bin:$PATH"
+永久添加 PATH：把上面的命令写入 ~/.bashrc 或 ~/.zshrc，每次打开终端自动生效：
+echo 'export PATH="/opt/flutter/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+```
+
+```
+flutter run -d chrome                   # 运行 Web 应用
+flutter build web                       # 构建 Web 版本
+```
+
+```
+请帮我修改 查看传感器数据看板 /PondDashboardPage 页面
+后端通知我说获取的传感器数据格式有更新，
+我现在使用websoket实际获取到的数据是：“
+{"type":"device-telemetry","content":"{\"type\":\"DATA\",\"tbDeviceId\":\"771ba750-027b-11f1-9589-9d8ce3857b6f\",\"data\":{\"salinity_ppm\":\"0.0\",\"hc_motor_0_position_mm\":\"99.0\",\"conductivity_us_decimal_places\":\"0.0\",\"lc_digital_input_3\":\"1.0\",\"lc_digital_input_2\":\"1.0\",\"lc_motor_0_target_position_mm\":\"65535.0\",\"lc_digital_input_1\":\"1.0\",\"do\":\"8.7\",\"lc_digital_input_0\":\"1.0\",\"temperature_raw\":\"0.0\",\"salinity_temp\":\"22.3\",\"conductivity\":\"0.0\",\"weather_station_wind_direction_360\":\"287.0\",\"ph_decimal_places\":\"2.0\",\"do_decimal_places\":\"2.0\",\"hc_motor_0_status_flag\":\"0.0\",\"humidity\":\"70\",\"disk_usage\":\"65.75275201050765\",\"hc_power_4_time_s\":\"0.0\",\"conductivity_us_raw\":\"0.0\",\"conductivity_ms_raw\":\"0.0\",\"lc_motor_1_position_mm\":\"999.0\",\"lc_motor_0_position_mm\":\"99.0\",\"lc_power_1_time_s\":\"0.0\",\"tds_ppt_raw\":\"0.0\",\"currentFirmwareVersion\":\"v1.2.3\",\"wind_level\":\"1.0\",\"hc_digital_input_1\":\"1.0\",\"hc_digital_input_0\":\"1.0\",\"level_diff\":\"0.0\",\"wind_direction_8\":\"0.0\",\"salinity_ppm_raw\":\"0.0\",\"weather_station_temperature\":\"16.9\",\"weather_station_wind_speed\":\"1.4\",\"water_quality_salinity_ppm\":\"0.0\",\"lc_power_3_time_s\":\"0.0\",\"cpu_usage\":\"1.0\",\"weather_station_noise\":\"30.0\",\"water_quality_salinity_ppt\":\"0.0\",\"tds_ppm_raw\":\"0.0\",\"tds_ppt\":\"0.0\",\"conductivity_ms_decimal_places\":\"0.0\",\"tsd\":\"0.0\",\"hc_motor_0_target_position_mm\":\"100.0\",\"tds_ppt_decimal_places\":\"0.0\",\"weather_station_wind_direction_8\":\"6.0\",\"tds_ppm\":\"0.0\",\"lc_motor_1_target_position_mm\":\"65535.0\",\"do_temperature\":\"17.1\",\"water_quality_temperature\":\"0.0\",\"lc_system_reset\":\"0.0\",\"enabled\":\"true\",\"weather_station_wind_level\":\"1.0\",\"salinity_ppt_decimal_places\":\"0.0\",\"orp_decimal_places\":\"0.0\",\"water_quality_conductivity_ms\":\"0.0\",\"ram_usage\":\"22.4\",\"temperature\":\"42.0\",\"noise\":\"30.0\",\"salinity_ppm_decimal_places\":\"0.0\",\"wind_speed\":\"1.0\",\"salinity_ppt_raw\":\"0.0\",\"lc_motor_reset_speed\":\"3210.0\",\"solar_radiation\":\"0.0\",\"lc_motor_max_travel_mm\":\"1900.0\",\"salinity\":\"0.0\",\"lc_power_0_time_s\":\"0.0\",\"lc_power_2_time_s\":\"0.0\",\"conductivity_us\":\"0.0\",\"water_quality_tds_ppt\":\"0.0\",\"lc_motor_run_speed\":\"2800.0\",\"orp\":\"158.0\",\"wind_direction_360\":\"0.0\",\"water_quality_conductivity_us\":\"0.0\",\"do_temperature_decimal_places\":\"1.0\",\"temperature_decimal_places\":\"0.0\",\"tds_ppm_decimal_places\":\"0.0\",\"conductivity_ms\":\"0.0\",\"water_quality_tds_ppm\":\"0.0\",\"weather_station_solar_radiation\":\"0.0\",\"lc_motor_start_speed\":\"4321.0\",\"weather_station_humidity\":\"40.4\",\"ph_temperature\":\"16.5\",\"lc_power_4_time_s\":\"0.0\",\"ph\":\"8.4\",\"lc_motor_0_status_flag\":\"1.0\",\"atmospheric_pressure\":\"100.9\",\"salinity_ppt\":\"0.0\",\"lc_motor_1_status_flag\":\"1.0\",\"weather_station_atmospheric_pressure\":\"100.4\"},\"timestamp\":1775367879599}"}
+”
+数据说明：“ 2.1 Sensor Data Keys Uploaded to ThingsBoard 2.1.1 📊 ORP Sensor (ORP 传感器) - Slave ID: 226 Telemetry Key Unit Meaning / Description orp mV Oxidation-Reduction Potential value (final scaled value) --- 2.1.2 🧪 PH Sensor (PH 传感器) - Slave ID: 223 Telemetry Key Unit Meaning / Description ph_temperature °C Temperature measurement from PH sensor ph pH PH value (acidity/alkalinity measurement) --- 2.1.3 💨 Dissolved Oxygen Sensor (溶解氧传感器) - Slave ID: 224 Telemetry Key Unit Meaning / Description do_temperature °C Temperature measurement from DO sensor do_temperature_decimal_places - Decimal places for DO temperature (metadata) sensor_do mg/L Dissolved Oxygen concentration in water do_decimal_places - Decimal places for DO measurement (metadata) --- 2.1.4 🌊 Multi-Parameter Water Quality Sensor (多参数水质传感器) - Slave ID: 243 Telemetry Key Unit Meaning / Description water_quality_temperature °C Final scaled temperature value (range: 0-50°C) water_quality_conductivity_us μS/cm Conductivity in microsiemens per centimeter (range: 0-30000) water_quality_salinity_ppm ppm Salinity in parts per million (range: 0-30000) water_quality_tds_ppm ppm Total Dissolved Solids in parts per million (range: 0-30000) water_quality_conductivity_ms mS/cm Conductivity in millisiemens per centimeter (range: 0-30) water_quality_salinity_ppt ppt Salinity in parts per thousand (range: 0-30) water_quality_tds_ppt ppt Total Dissolved Solids in parts per thousand (range: 0-30) --- 2.1.5 🌤️ Weather Station (气象站传感器) - Slave ID: 10 Telemetry Key Unit Meaning / Description weather_station_wind_speed m/s Wind speed measurement (scaled by 0.1) weather_station_wind_level level Wind level using Beaufort scale weather_station_wind_direction_8 direction Wind direction (8 cardinal directions) weather_station_wind_direction_360 degrees Wind direction (0-360 degrees) weather_station_humidity %RH Relative humidity percentage (scaled by 0.1) weather_station_temperature °C Ambient temperature (scaled by 0.1) weather_station_noise dB Noise level in decibels (scaled by 0.1) weather_station_atmospheric_pressure hPa Atmospheric pressure in hectopascals (scaled by 0.1) weather_station_solar_radiation W/m² Solar radiation intensity token：66GR3eWkPTUONHQq52WP deviceid：771ba750-027b-11f1-9589-9d8ce3857b6f ws://115.190.175.31:8203/infra/ws
+
+请帮我分析一下展示传感器数据组件是否需要更新。
+
+```
+
+```
+请帮我根据 @prototype/code.html 新的首页原型，重新绘制首页
+```
+
+```
+好的，请帮我继续修改首页，
+1.导航文本应该是知塘晓物，去掉右侧的通知图表
+2.设备状态的查看全部不能点击，点击后跳转到目前选择对应渔塘的/PondDeviceManagePage页面
+3.请帮我根据原型增加展示告警中心、手动控制区域，没有对应的接口先展示假数据。
+```
+
+```
+好的，我现在运行Support for Android x86 targets will be removed in the next stable release after 3.27. See                                
+https://github.com/flutter/flutter/issues/157543 for details.                                                                               
+Running Gradle task 'assembleDebug'...                           1,247ms                                                                    
+✓ Built build/app/outputs/flutter-apk/app-debug.apk                                                                                         
+可以打包成功了，不过我发现首页没有展示获取到传感器是是数据的时间，请仿照/PondDashboardPage页面，展示数据更新时间。
+```
+
+```
+flutter create --platforms=android .
+
+# Debug 版（快，用于测试）
+flutter build apk --debug
+
+# Release 版（优化，用于发布）
+flutter build apk --release
+
+```
+
+## 04-11

@@ -30,11 +30,16 @@ cssclasses:
 ## 笔记
 [[OpenClaw安装、部署&使用教程]]
 [[OpenClaw技能清单]]
+[[OpenClaw常用命令]]
+[[frontend-dev Agent Claude Code 集成方案]]
 
 ## 提示词
 [[openclaw提示词-04-01]]
 [[openclaw提示词-04-02]]
 [[openclaw提示词-04-03]]
+[[openclaw提示词-04-07]]
+[[openclaw提示词-04-08]]
+
 
 
 ## 飞书机器人
@@ -49,145 +54,40 @@ frontend-dev
 ```
 
 ### 临时提示词
-```
-系统目录 /home/yuan/code/smart_vision/vpp/vpp-tov/src/pages 下，是"融合大模型智能体的虚拟电厂仿真系统"的前台页面代码。
-请帮我优化可调能力预测用户级页面“/home/yuan/code/smart_vision/vpp/vpp-tov/src/pages/user_adjustable_prediction/index.vue”的模块布局和页面样式，页面样式需要注意与系统中实时符合预测的页面“/home/yuan/code/smart_vision/vpp/vpp-tov/src/pages/province_load/index.vue”样式风格保持一直。
+workspace
 ```
 
 ```
-我找到了在 Claude Code 中使用 MiniMax-M2.7 模型进行 AI 编程。的教程：https://platform.minimaxi.com/docs/token-plan/claude-code#%E6%89%8B%E5%8A%A8%E7%BC%96%E8%BE%91%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6
 
-教程中配置需要的MiniMax API Key是：sk-api-b0J64l7inQvLBCSVH3sP4OnQrC9a7Flh_iYAhuP6uMSyKpiopgRKJ1q6hh5Wb_Hma9637_QEq8VFPSV1LyAE3YUJP7pk1ZiFBrHqAgLvBxv3e4eKeNrtStc
-
-具体操作：
-> ## Documentation Index
-> Fetch the complete documentation index at: https://platform.minimaxi.com/docs/llms.txt
-> Use this file to discover all available pages before exploring further.
-
-# Claude Code
-
-> 在 Claude Code 中使用 MiniMax-M2.7 模型进行 AI 编程。
-
-## 安装 Claude Code
-
-可参考 [Claude Code 文档](https://docs.claude.com/en/docs/claude-code/setup) 进行安装。
-
-## 配置 MiniMax API
-
-<Warning>
-  **重要提示**：
-
-  在配置前，请确保清除以下 Anthropic 相关的环境变量，以免影响 MiniMax API 的正常使用：
-
-  * `ANTHROPIC_AUTH_TOKEN`
-  * `ANTHROPIC_BASE_URL`
-</Warning>
-
-<Steps>
-  <Step title="API 配置">
-    <Tabs>
-      <Tab title="使用 cc-switch（推荐）">
-        [cc-switch](https://github.com/farion1231/cc-switch) 是一个便捷的工具，可以快速切换 Claude Code 的 API 配置。
-
-        **1. 安装 cc-switch**
-
-        <Tabs>
-          <Tab title="macOS / Linux">
-            ```bash  theme={null}
-            brew tap farion1231/ccswitch
-            brew install --cask cc-switch
-            brew upgrade --cask cc-switch
-            ```
-          </Tab>
-
-          <Tab title="Windows">
-            前往 [cc-switch GitHub Releases](https://github.com/farion1231/cc-switch/releases) 页面下载最新版本的安装包。
-          </Tab>
-        </Tabs>
-
-        **2. 添加 MiniMax 配置**
-
-        启动 cc-switch，点击右上角 **"+"** ，选择预设的 MiniMax 供应商，并填写您的 MiniMax API Key。 <img src="https://filecdn.minimax.chat/public/0acbfee9-8871-4171-af19-e318476456a4.png" alt="choose" />
-
-        **3. 配置模型名称**
-
-        将模型名称全部改为 `MiniMax-M2.7`，完成后点击右下角的 **"添加"**。 <img src="https://filecdn.minimax.chat/public/1ceadee0-5488-44a1-82bb-94af0fc8d3b7.png" alt="add" />
-
-        **4. 启用配置**
-
-        回到首页，点击 **"启用"** <img src="https://filecdn.minimax.chat/public/0c5cbe27-1a6d-4583-9ad9-b48222055c3b.png" alt="start" />
-
-        **5. 编辑配置文件**
-
-        编辑或新增 `.claude.json` 文件，MacOS & Linux 为 `~/.claude.json`，Windows 为`用户目录/.claude.json`
-
-        ```json  theme={null}
-        # 新增 `hasCompletedOnboarding` 参数
-        {
-          "hasCompletedOnboarding": true
-        }
-        ```
-      </Tab>
-
-      <Tab title="手动编辑配置文件">
-        ```json  theme={null}
-        # Stpe1: 编辑或创建 Claude Code 的配置文件
-        # MacOS & Linux 为 `~/.claude/settings.json`
-        # Windows 为`用户目录/.claude/settings.json`
-        # `MINIMAX_API_KEY` 需替换为您的 MiniMax API Key
-        # 环境变量 `ANTHROPIC_AUTH_TOKEN` 和 `ANTHROPIC_BASE_URL` 优先级高于配置文件
-        {
-          "env": {
-            "ANTHROPIC_BASE_URL": "https://api.minimaxi.com/anthropic",
-            "ANTHROPIC_AUTH_TOKEN": "MINIMAX_API_KEY",
-            "API_TIMEOUT_MS": "3000000",
-            "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": 1,
-            "ANTHROPIC_MODEL": "MiniMax-M2.7",
-            "ANTHROPIC_SMALL_FAST_MODEL": "MiniMax-M2.7",
-            "ANTHROPIC_DEFAULT_SONNET_MODEL": "MiniMax-M2.7",
-            "ANTHROPIC_DEFAULT_OPUS_MODEL": "MiniMax-M2.7",
-            "ANTHROPIC_DEFAULT_HAIKU_MODEL": "MiniMax-M2.7"
-          }
-        }
-        # Step2: 编辑或新增 `.claude.json` 文件
-        # MacOS & Linux 为 `~/.claude.json`
-        # Windows 为`用户目录/.claude.json`
-        # 新增 `hasCompletedOnboarding` 参数
-        {
-          "hasCompletedOnboarding": true
-        }
-        ```
-      </Tab>
-    </Tabs>
-  </Step>
-
-  <Step title="启动 Claude Code">
-    配置完成后，进入工作目录，在终端中运行 `claude` 命令以启动 Claude Code
-  </Step>
-
-  <Step title="信任文件夹">
-    启动后，选择 **信任此文件夹 (Trust This Folder)**，以允许 Claude Code 访问该文件夹中的文件，随后开始在 Claude Code 中使用 MiniMax-M2.7
-
-    ![](https://filecdn.minimax.chat/public/7ca00f05-81bd-4058-a357-3bb79eabd738.jpg)
-  </Step>
-</Steps>
-
-<Warning>
-  **重要提示**：
-
-  在配置完成后，如果您还想要使用 图片理解 & 网络搜索 能力，则需要根据 [此教程](https://platform.minimaxi.com/docs/token-plan/mcp-guide) 来配置图片理解 & 网络搜索 MCP
-</Warning>
-
+frontend-dev
+```
+@yuan-frontend-dev 请使用claude,继续帮我修改 **融合大模型智能体的虚拟电厂仿真系统** 项目，/adjustable-capability-prediction路由下的，可调能力预测页面:请帮我将风险预警、实操指标 模块 去掉，因为业务需求，将 浙江省可调能力热力图 的地图模式和热力图模式分开，不需要tab切换就能直接在页面当中进行展示。
 ```
 
 ```
-好的，frontend-dev已经改造好了。
-接下来我想要安装一些与claude相关的skill
-https://clawhub.ai/cheenu1092-oss/claude-code-mastery
-https://clawhub.ai/yossiovadia/claude-code-wingman
-https://clawhub.ai/johba37/claude-code-supervisor
-https://clawhub.ai/enderfga/openclaw-claude-code
-https://clawhub.ai/hw10181913/claude-code
-https://clawhub.ai/paulrahul/claude-tmux
-这些skill是不是有功能重复的地方，会不会有冲突，请帮我分析一下。
+@yuan-frontend-dev MapPanel中的地图和热力图，可以分两个模块进行展示，甚至可以拆分为两个vue组件，页面上展示为两个模块，不要挤在一个模块里。
+将“可调负荷结构深度拆解”模块移动到页面右侧，将拆分后的热力图移动到现在“可调负荷结构深度拆解”的位置上。
+```
+
+```
+curl 'https://open.bigmodel.cn/api/biz/pay/preview' \
+  -H 'accept: application/json, text/plain, */*' \
+  -H 'accept-language: zh' \
+  -H 'authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX3R5cGUiOiJQRVJTT05BTCIsInVzZXJfY2hhbm5lbCI6IldFQ0hBVF9PUEVOIiwidXNlcl9pZCI6NzczMTE4NywidXNlcl9rZXkiOiJkYTZiMTFlNC04OTI3LTQ2ZTMtOTFlNC04MDY3NDBjYjJhMWUiLCJjdXN0b21lcl9pZCI6IjcwNDAxNzc1NzE1NDkwNTI0IiwidXNlcm5hbWUiOiJqem1lbXg0MCJ9.0cKmYMmfIogGlsuX2xyLwX76HpGv1iisfvuTg88aMkPqrUbXFwUyo5b4PDn4Sv_7tl8nlL8adrEmg3IJ57Mddg' \
+  -H 'bigmodel-organization: org-f21392E08f3b4E6E80A5C684cE619E0E' \
+  -H 'bigmodel-project: proj_0DB16967Bd2B4c17b2731D7cDa12D0d7' \
+  -H 'content-type: application/json;charset=UTF-8' \
+  -b 'sensorsdata2015jssdkchannel=%7B%22prop%22%3A%7B%22_sa_channel_landing_url%22%3A%22%22%7D%7D; _ga=GA1.1.1259135326.1775628654; TDC_itoken=1154733481%3A1775715465; bigmodel_token_production=eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX3R5cGUiOiJQRVJTT05BTCIsInVzZXJfY2hhbm5lbCI6IldFQ0hBVF9PUEVOIiwidXNlcl9pZCI6NzczMTE4NywidXNlcl9rZXkiOiJkYTZiMTFlNC04OTI3LTQ2ZTMtOTFlNC04MDY3NDBjYjJhMWUiLCJjdXN0b21lcl9pZCI6IjcwNDAxNzc1NzE1NDkwNTI0IiwidXNlcm5hbWUiOiJqem1lbXg0MCJ9.0cKmYMmfIogGlsuX2xyLwX76HpGv1iisfvuTg88aMkPqrUbXFwUyo5b4PDn4Sv_7tl8nlL8adrEmg3IJ57Mddg; _tea_utm_cache_586864={%22utm_source%22:%22bigmodel%22%2C%22utm_medium%22:%22link%22%2C%22utm_campaign%22:%22Platform_Ops%22%2C%22utm_term%22:%22%E7%BC%96%E7%A0%81%E5%A5%97%E9%A4%90%E6%8E%A5%E5%85%A5%E6%95%99%E7%A8%8B%22}; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%2270401775715490524%22%2C%22first_id%22%3A%2219d6bb71349561-0a121ec31b9a058-11462c69-2073600-19d6bb7134aa7e%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%2C%22%24latest_referrer%22%3A%22%22%2C%22%24latest_utm_source%22%3A%22bigmodel%22%2C%22%24latest_utm_medium%22%3A%22link%22%2C%22%24latest_utm_campaign%22%3A%22Platform_Ops%22%2C%22%24latest_utm_term%22%3A%22%E7%BC%96%E7%A0%81%E5%A5%97%E9%A4%90%E6%8E%A5%E5%85%A5%E6%95%99%E7%A8%8B%22%7D%2C%22identities%22%3A%22eyIkaWRlbnRpdHlfY29va2llX2lkIjoiMTlkNmJiNzEzNDk1NjEtMGExMjFlYzMxYjlhMDU4LTExNDYyYzY5LTIwNzM2MDAtMTlkNmJiNzEzNGFhN2UiLCIkaWRlbnRpdHlfbG9naW5faWQiOiI3MDQwMTc3NTcxNTQ5MDUyNCJ9%22%2C%22history_login_id%22%3A%7B%22name%22%3A%22%24identity_login_id%22%2C%22value%22%3A%2270401775715490524%22%7D%7D; acw_tc=3ccdc16e17757851737687281e5083b1f1e0fb9ead2fca4d0f4d506cfcbe2d; Hm_lvt_a1b1a5545a8f11fdd72d54f10971c4ea=1775718554,1775785175; HMACCOUNT=C7C2AF9E197E2521; Hm_lpvt_a1b1a5545a8f11fdd72d54f10971c4ea=1775786642; _ga_SF8X67RPF9=GS2.1.s1775785175$o5$g1$t1775786642$j40$l0$h0; ssxmod_itna=1-eqGOAKYvkbD5GQG08DRD9DedqUhDIgL40dGMD3dq7U3GcD8x40pNgxtRkUqtvdD8GDh0XewKlT2rDlh7eDZDG9dDqx0ErX/gG02dz70AoetoKCQ20IeB9CD0poUCOogpz8II0S9qCC7X4tBwp9LLuDGoDbqDyDAtD0qDiGn5D/4ArK8eD4R3Dt4rD3bbDixGm7eDStxD9DGPoxAETWr4oTpcFdPDEDYPoVeDgmDDB_brDKTPTgPDAilPDIRy7xBE_Nh2ipl5OU0yp/eGyK5Gu8ZeCOQOOQ=HHZausfMvrSfLq8SqVbB5iReeFDrQG5tnxW0DGGq9hZS4etRZKhut_xtROSRNzuYYygbyS8yYC0rnvh3WhK25BDeUDxt0P7ArtGZnxNl2PbDrb05Kh4muNFgxGBq=_DD; ssxmod_itna2=1-eqGOAKYvkbD5GQG08DRD9DedqUhDIgL40dGMD3dq7U3GcD8x40pNgxtRkUqtvdD8GDh0XewKlT2YDi=bBvxwtex035IbPRnqox0yLqWVrPSy0wVDgdmjmTlLMDfeA9BTCgXbiIiyLWsgvdBdt44MPNYn5DNG6NSMv2_gqRKYto1GQBRlpQhYh4xexRWkYDh705ww67ATclKkGh/_T3TMLZzrUkxktb=uHasOi56lP3c6tOM_UDoM4IxnFwrdLdGtIQN0cqQdT5BG0h5L3haGfLPVwQVD=cnpb9MLy1176GsvT5ss0wPHR12XTotO2AsELIhm3ZPDS3w2f7ZwcP=SBhMGQkcv/==lDAWOoTEvsoer6L/CqNbAxGjW1RIp2axYycpiUvHPt1P0dxY9OEKYf0Af_Y6G955YEdBA/mG/2xp9pe03GiYjeYk95bKYSmD4ltYioToQYYvxnRciFtzjx=Dg2i9Q3hctp607QI0aK1PIWZU4YIqF6NG=9jai=QV_y0BYBBQgY2XY5S0DKKQjPI1OQ0UiSiFvtg115vgA4qOfBq3IpGjBaFvMtNAmpL8KSlw94KkhKHT5b397PM7iFkRHdMMQaF2OOH673cSX7dylBqNNRZHfBk3p3idv00DvCnsCegBGeetY0hZlIi2wYsh0rki=D6vAq0zpxv/Ra1uhc3myd5lvPZLnBGnL5j4SkY/xs3/nKSkploSilKwRTk3dMx/36yDDdtqoWbf6MDFtWEwliLDeLq40xKhrGDF2Fmdt4t75ShLhL3_NBYt4wD/tD0q4FrxD; sensorsdata2015jssdksession=%7B%22session_id%22%3A%2219d750b6a611e7700df0209694791511462c69207360019d750b6a6228a4%22%2C%22first_session_time%22%3A1775785175649%2C%22latest_session_time%22%3A1775786690503%7D' \
+  -H 'origin: https://open.bigmodel.cn' \
+  -H 'priority: u=1, i' \
+  -H 'referer: https://open.bigmodel.cn/glm-coding' \
+  -H 'sec-ch-ua: "Chromium";v="146", "Not-A.Brand";v="24", "Google Chrome";v="146"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'sec-ch-ua-platform: "Linux"' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-site: same-origin' \
+  -H 'set-language: zh' \
+  -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36' \
+  --data-raw '{"productId":"product-5643e6"}'
 ```

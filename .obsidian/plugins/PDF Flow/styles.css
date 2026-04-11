@@ -1347,10 +1347,70 @@
     }
 }
 
+/* 外部 PDF 虚拟链接弹窗说明 */
+.pdfflow-dummy-modal-desc {
+    font-size: var(--font-ui-small);
+    color: var(--text-muted);
+    margin: 0 0 12px 0;
+    line-height: 1.45;
+}
+
 /* 删除高亮按钮样式 */
 .pdfflow-delete-highlight-btn {
     background: transparent !important;
     cursor: pointer;
+}
+
+/* 应用内删除确认（替代 window.confirm，兼容无系统对话框的环境） */
+.pdfflow-delete-confirm-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin: 0 0 8px 0;
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid red;
+}
+
+.pdfflow-delete-confirm-text {
+    flex: 1 1 160px;
+    font-size: 12px;
+    line-height: 1.35;
+    color: var(--text-normal);
+}
+
+.pdfflow-delete-confirm-actions {
+    display: flex;
+    flex-shrink: 0;
+    gap: 6px;
+}
+
+.pdfflow-delete-confirm-cancel,
+.pdfflow-delete-confirm-yes {
+    padding: 4px 10px;
+    font-size: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid var(--background-modifier-border);
+    background: var(--background-secondary);
+    color: var(--text-normal);
+}
+
+.pdfflow-delete-confirm-cancel:hover {
+    background: var(--background-modifier-hover);
+}
+
+.pdfflow-delete-confirm-yes {
+    background: var(--background-modifier-error, rgba(200, 60, 60, 0.25));
+    border-color: var(--text-error, #c44);
+    color: var(--text-error, #a33);
+    font-weight: 600;
+}
+
+.pdfflow-delete-confirm-yes:hover {
+    filter: brightness(0.95);
 }
 
 

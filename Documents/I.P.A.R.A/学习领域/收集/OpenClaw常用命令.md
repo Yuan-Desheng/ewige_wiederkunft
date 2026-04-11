@@ -37,3 +37,9 @@ openclaw gateway restart
 ```shell
 openclaw logs --follow
 ```
+
+
+## 提示词
+```
+请帮我把 .openclaw 的改动提交并推送到远程仓库
+```

@@ -17,12 +17,13 @@
 .fca-y, .fca-n {
   display: inline-flex;
   align-items: center;
-  padding: 1px 6px;
+  padding: 1px 6px !important;
   border: 3px solid var(--background-modifier-border);
   border-radius: 4px;
   font-size: 12px;
   cursor: pointer;
   background: transparent !important;
+  height: inherit;
 }
 
 .fca-y {
@@ -52,7 +53,6 @@
 
 .flowtext-message-thinking .flowtext-message-content {
   padding: 12px;
-  font-family: var(--font-monospace);
   font-size: 0.85em;
   line-height: 1.4;
   color: var(--text-muted);
@@ -85,7 +85,6 @@
 
 /* 通用样式 */
 .flowtext-modal {
-  font-family: var(--font-interface);
   color: var(--text-normal);
 }
 
@@ -99,7 +98,6 @@
   width: 100%;
   height: 100%;
   z-index: 20000;
-  font-family: var(--font-interface);
   pointer-events: none;
 }
 
@@ -126,14 +124,13 @@
 }
 
 .flowtext-window-header {
-  display: flex;
+  display: none;
   justify-content: space-between;
   align-items: center;
   padding: 16px 20px;
   border-bottom: 1px solid var(--background-modifier-border);
   background: var(--background-secondary);
   border-radius: 12px 12px 0 0;
-  display: none;
 }
 
 .flowtext-window-header h2 {
@@ -175,7 +172,7 @@
   width: 100%;
   padding: 8px 12px;
   border: 1px solid var(--background-modifier-border);
-  border-radius: 6px;
+  border-radius: 4px;
   background: var(--background-primary);
   color: var(--text-normal);
   font-size: 14px;
@@ -189,7 +186,7 @@
 
 .flowtext-file-list,
 .flowtext-folder-list {
-  max-height: 200px;
+  max-height: 300px;
   overflow-y: auto;
 }
 
@@ -197,10 +194,12 @@
 .flowtext-folder-item {
   display: flex;
   align-items: center;
-  padding: 6px 8px;
+  padding: 2px 12px;
   margin-bottom: 4px;
   border-radius: 4px;
   transition: background-color 0.2s ease;
+  cursor: pointer;
+  white-space: nowrap;
 }
 
 .flowtext-file-item:hover,
@@ -289,14 +288,12 @@
 
 
 
-/* 主要按钮（接受、生成） */
-.flowtext-accept-btn,
+/* 续写/弹窗提交按钮 */
 .flowtext-submit-btn {
   background: var(--interactive-accent);
   color: var(--text-on-accent);
 }
 
-.flowtext-accept-btn:hover,
 .flowtext-submit-btn:hover {
   background: var(--interactive-accent-hover);
   transform: translateY(-1px);
@@ -408,19 +405,12 @@
   color: var(--text-normal);
 }
 
-.setting-item[data-flowtext-setting] .setting-item-description {
-  color: var(--text-muted);
-  font-size: 0.9em;
-  margin-top: 4px;
-}
-
 
 /* 供应商和模型配置表格样式 - 简约紧凑版本 */
 .flowtext-config-table {
   width: 100%;
   border-collapse: collapse;
   margin: 12px 0;
-  background: var(--background-primary);
   border-radius: 6px;
   overflow: hidden;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
@@ -455,7 +445,6 @@
 }
 
 .flowtext-config-table .flowtext-api-key-cell {
-  font-family: var(--font-monospace);
   color: var(--text-muted);
   max-width: 120px;
   overflow: hidden;
@@ -535,20 +524,6 @@
 
 /* 响应式设计 */
 @media (max-width: 768px) {
-  .flowtext-at-trigger-modal {
-  width: 95vw;
-  max-width: none;
-}
-  
-  .flowtext-button-group {
-    flex-direction: column;
-    gap: 8px;
-  }
-  
-  .flowtext-button-group button {
-    width: 100%;
-  }
-  
   .flowtext-config-table {
     font-size: 0.75em;
   }
@@ -582,47 +557,35 @@
 }
 
 
-/* @符号触发弹出窗口样式 */
+/* @符号触发弹出窗口样式（明暗主题共用同一套玻璃拟态） */
 .theme-light .flowtext-at-popup,
-.theme-light .flowtext-modal-content {
-  border-radius: 12px;
-  min-width: 350px;
-  max-width: 400px;
-  background: transparent;
-  backdrop-filter: blur(20px);
-  box-shadow: 2px 2px 15px var(--background-modifier-box-shadow)!important;
-  border: 0.5px solid var(--prompt-border-color);
-}
-
+.theme-light .flowtext-modal-content,
 .theme-dark .flowtext-at-popup,
 .theme-dark .flowtext-modal-content {
   border-radius: 12px;
-  min-width: 350px;
-  max-width: 400px;
-  background:transparent;   
-  backdrop-filter: blur(20px);
+  width: 400px;
+  background: var(--background-primary);
   box-shadow: 2px 2px 15px var(--background-modifier-box-shadow) !important;
-  border: 0.5px solid var(--prompt-border-color);
+  /* 必须高于 .flowtext-modal-backdrop，否则移动端点击会落到背景层并误关窗 */
+  position: relative;
+  z-index: 1;
+  border: 0.5px solid var(--background-modifier-border);
 }
 
 
   /* 上下文按钮样式已移动到上方 */
 
-.flowtext-select-file-btn{
-    background: transparent !important;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    padding: 5px;
-    box-shadow: none !important;
-    display: none;
+.flowtext-select-file-btn,
+.flowtext-select-folder-btn {
+  background: transparent !important;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  padding: 5px !important;
+  box-shadow: none !important;
 }
 
-.flowtext-select-folder-btn {
-    background: transparent !important;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    padding: 5px;
-    box-shadow: none !important;
+.flowtext-select-file-btn {
+  display: none;
 }
 
 
@@ -721,13 +684,6 @@
   word-wrap: break-word;
 }
 
-.flowtext-editable-input.empty:before {
-  content: attr(data-placeholder);
-  color: var(--text-muted);
-  pointer-events: none;
-  position: absolute;
-}
-
 /* 内联标签样式 */
 .flowtext-inline-tag {
   display: inline-flex;
@@ -802,76 +758,14 @@
   color: var(--text-error);
 }
 
-/* 文件/文件夹选择模态框样式 */
-.flowtext-search-container {
-    margin-bottom: 16px;
-}
-
-.flowtext-search-input {
-    width: 100%;
-    padding: 8px 12px;
-    border: 1px solid var(--background-modifier-border);
-    border-radius: 4px;
-    background: var(--background-primary);
-    color: var(--text-normal);
-    font-size: 14px;
-}
-
-.flowtext-search-input:focus {
-    outline: none;
-    border-color: var(--interactive-accent);
-}
-
-.flowtext-file-list,
-.flowtext-folder-list {
-    max-height: 300px;
-    overflow-y: auto;
-}
-
-.flowtext-file-item,
-.flowtext-folder-item {
-    display: flex;
-    align-items: center;
-    padding: 2px 12px;
-    cursor: pointer;
-    white-space: nowrap;
-}
-
-.flowtext-file-item:last-child,
-.flowtext-folder-item:last-child {
-    border-bottom: none;
-}
-
-.flowtext-file-item:hover,
-.flowtext-folder-item:hover {
-    background: var(--background-modifier-hover);
-}
-
-
-.flowtext-file-label,
-.flowtext-folder-label {
-    flex: 1;
-    cursor: pointer;
-    font-size: 12px;
-}
-
-.flowtext-modal-buttons {
-    display: flex;
-    gap: 8px;
-    justify-content: flex-end;
-}
-
-
-
 .flowtext-popup-header {
+  display: none;
   padding: 12px 16px;
-  padding-bottom: 0px;
+  padding-bottom: 0;
   background: transparent;
   border-radius: 8px 8px 0 0;
-  display: flex;
   align-items: center;
   justify-content: space-between;
-  display: none;
 }
 
 .flowtext-popup-title {
@@ -898,6 +792,7 @@
   padding: 0;
   flex: 1;
   min-width: 0;
+  margin-left: 10px;
 }
 
 .flowtext-continue-generate-image-label {
@@ -1020,9 +915,7 @@
 
 
 .flowtext-popup-content {
-  padding: 16px;
-  padding-bottom: 0px;
-  padding-top: 0px;
+  padding: 0 16px;
   box-shadow: none !important;
   background: transparent;
 }
@@ -1070,29 +963,6 @@
     transform: scale(1) translateY(0);
   }
 }
-
-/* 动画效果 */
-.flowtext-at-trigger-modal {
-  animation: flowtext-modal-appear 0.2s ease-out;
-}
-
-@keyframes flowtext-modal-appear {
-  from {
-    opacity: 0;
-    transform: scale(0.95) translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-/* 焦点可见性 */
-.flowtext-button-group button:focus-visible {
-  outline: 2px solid var(--interactive-accent);
-  outline-offset: 2px;
-}
-
 
 /* 错误状态样式 */
 .flowtext-error {
@@ -1183,8 +1053,7 @@
 }
 
 .flowtext-preview-img {
-	max-width: 100px;
-	max-height: 80px;
+	max-height: 30px;
 	object-fit: cover;
 	border-radius: 4px;
 	display: block;
@@ -1197,8 +1066,7 @@
 	width: 18px;
 	height: 18px;
 	border-radius: 50%;
-	background: var(--text-error);
-	color: white;
+	background: transparent !important;
 	border: none;
 	cursor: pointer;
 	font-size: 10px;
@@ -1208,6 +1076,7 @@
 	line-height: 1;
 	transition: all 0.2s ease;
 	opacity: 0;
+  box-shadow: none !important;
 }
 
 .flowtext-image-preview:hover .flowtext-remove-image {
@@ -1228,7 +1097,6 @@
   padding: 4px;
   min-width: 150px;
   animation: flowtext-popup-appear 0.15s ease-out;
-  font-family: var(--font-interface);
 }
 
 .pdfflow-menu-item {
@@ -1263,7 +1131,7 @@
 
 .flowtext-image-info {
 	margin-top: 4px;
-	font-size: 10px;
+	font-size: 6px;
 	color: var(--text-muted);
 	text-align: center;
 	line-height: 1.2;
@@ -1315,7 +1183,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-interface);
 }
 
 /* 通用模态框背景 */
@@ -1326,6 +1193,7 @@
   width: 100%;
   height: 100%;
   cursor: pointer;
+  z-index: 0;
 }
 
   
@@ -1356,23 +1224,21 @@
 }
 
 /* 通用模态框关闭按钮样式 */
-.flowtext-modal-close {
+.flowtext-modal-close,
+.flowtext-popup-close {
   background: transparent !important;
-  font-size: 18px;
   cursor: pointer;
   padding: 4px;
   box-shadow: none !important;
 }
 
-
+.flowtext-modal-close {
+  font-size: 18px;
+}
 
 .flowtext-popup-close {
-  background: transparent !important;
   font-size: 15px;
-  cursor: pointer;
-  padding: 4px;
   border: none;
-  box-shadow: none !important;
 }
 
 .flowtext-popup-close:hover {
@@ -1428,8 +1294,7 @@
   word-wrap: break-word;
   transition: all 0.3s ease;
   padding-left: 8px;
-  background: var(--blockquote-background-color);
-  border-left: 2px solid var(--color-accent);
+  border: 1px dashed var(--color-accent);
   border-radius: 6px;
 }
 
@@ -1477,6 +1342,11 @@
     width: 95vw;
     max-width: none;
   }
+  .theme-light .flowtext-modal-content,
+  .theme-dark .flowtext-modal-content {
+    max-width: 95vw;
+    touch-action: manipulation;
+  }
 }
 
 /* 提示词选择弹出窗口样式 */
@@ -1489,7 +1359,6 @@
   min-width: 200px;
   max-height: 300px;
   overflow-y: auto;
-  font-family: var(--font-interface);
   z-index: 10010 !important;
 }
 
@@ -1550,40 +1419,6 @@
   font-style: italic;
 }
 
-/* 滚动条样式 */
-.flowtext-prompt-selector-popup::-webkit-scrollbar {
-  width: 6px;
-}
-
-.flowtext-prompt-selector-popup::-webkit-scrollbar-track {
-  background: var(--background-secondary);
-}
-
-.flowtext-prompt-selector-popup::-webkit-scrollbar-thumb {
-  background: var(--background-modifier-border);
-  border-radius: 3px;
-}
-
-.flowtext-prompt-selector-popup::-webkit-scrollbar-thumb:hover {
-  background: var(--text-muted);
-}
-
-
-/* AI结果对比窗口样式 */
-.flowtext-ai-result-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 10000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-interface);
-}
-
-
 .flowtext-confirm-btn, .flowtext-cancel-btn {
   background: transparent !important;
   border: 1px solid var(--background-modifier-border);
@@ -1616,6 +1451,33 @@
 .flowtext-suggestions-list {
   max-height: 300px;
   overflow-y: auto;
+}
+
+/* 列表/历史/提示词弹层：统一细滚动条（减少重复规则） */
+.flowtext-prompt-selector-popup::-webkit-scrollbar,
+.flowtext-suggestions-list::-webkit-scrollbar,
+.flowtext-chat-history::-webkit-scrollbar {
+  width: 6px;
+}
+
+.flowtext-prompt-selector-popup::-webkit-scrollbar-track,
+.flowtext-suggestions-list::-webkit-scrollbar-track,
+.flowtext-chat-history::-webkit-scrollbar-track {
+  background: var(--background-secondary);
+  border-radius: 3px;
+}
+
+.flowtext-prompt-selector-popup::-webkit-scrollbar-thumb,
+.flowtext-suggestions-list::-webkit-scrollbar-thumb,
+.flowtext-chat-history::-webkit-scrollbar-thumb {
+  background: var(--background-modifier-border);
+  border-radius: 3px;
+}
+
+.flowtext-prompt-selector-popup::-webkit-scrollbar-thumb:hover,
+.flowtext-suggestions-list::-webkit-scrollbar-thumb:hover,
+.flowtext-chat-history::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
 }
 
 .flowtext-suggestion-item {
@@ -1661,129 +1523,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   margin-top: 2px;
-}
-
-.flowtext-suggestions-list::-webkit-scrollbar {
-  width: 6px;
-}
-
-.flowtext-suggestions-list::-webkit-scrollbar-track {
-  background: var(--background-secondary);
-  border-radius: 3px;
-}
-
-.flowtext-suggestions-list::-webkit-scrollbar-thumb {
-  background: var(--background-modifier-border);
-  border-radius: 3px;
-}
-
-.flowtext-suggestions-list::-webkit-scrollbar-thumb:hover {
-  background: var(--text-muted);
-}
-
-/* 响应式设计 */
-@media (max-width: 1024px) {
-  .flowtext-ai-result-modal .flowtext-modal-content {
-    width: 95vw;
-    max-height: 90vh;
-  }
-  
-  .flowtext-ai-result-modal .flowtext-modal-body {
-    height: calc(90vh - 80px);
-  }
-  
-  .flowtext-comparison-container {
-    gap: 15px;
-  }
-  
-  .flowtext-divider {
-    padding: 0 5px;
-    min-width: 30px;
-  }
-  
-  .flowtext-divider-line {
-    height: 40px;
-  }
-  
-  .flowtext-divider-arrow {
-    font-size: 14px;
-  }
-}
-
-@media (max-width: 768px) {
-  .flowtext-ai-result-modal .flowtext-modal-content {
-    width: 98vw;
-    max-height: 95vh;
-    border-radius: 8px;
-  }
-  
-  .flowtext-ai-result-modal .flowtext-modal-body {
-    height: calc(95vh - 70px);
-    padding: 15px;
-  }
-  
-  .flowtext-comparison-container {
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .flowtext-divider {
-    flex-direction: row;
-    padding: 10px 0;
-    min-width: auto;
-  }
-  
-  .flowtext-divider-line {
-    width: 60px;
-    height: 2px;
-  }
-  
-  .flowtext-divider-arrow {
-    margin-top: 0;
-    margin-left: 8px;
-    transform: rotate(90deg);
-  }
-  
-  .flowtext-ai-result-modal .flowtext-button-group {
-    flex-direction: column;
-    gap: 8px;
-  }
-  
-  .flowtext-ai-result-modal .flowtext-button-group button {
-    width: 100%;
-    justify-content: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .flowtext-ai-result-modal .flowtext-modal-header {
-    padding: 12px 15px;
-  }
-  
-  .flowtext-ai-result-modal .flowtext-modal-title {
-    font-size: 14px;
-  }
-  
-  .flowtext-ai-result-modal .flowtext-modal-body {
-    padding: 12px;
-  }
-  
-  .flowtext-section-header {
-    padding: 10px 12px;
-  }
-  
-  .flowtext-section-header h3 {
-    font-size: 13px;
-  }
-  
-  .flowtext-text-content {
-    padding: 2px;
-  }
-  
-  .flowtext-original-text,
-  .flowtext-ai-result {
-    font-size: 12px;
-  }
 }
 
 /* 多轮对话相关样式 */
@@ -1849,7 +1588,6 @@
 }
 
 .flowtext-message-content {
-  font-family: var(--font-text);
   font-size: 14px;
   line-height: 1.5;
   color: var(--text-normal);
@@ -1933,25 +1671,6 @@
   font-size: 11px;
   cursor: pointer;
   box-shadow: none !important;
-}
-.theme-light .flowtext-modal-content
-/* 滚动条样式 */
-.flowtext-chat-history::-webkit-scrollbar {
-  width: 6px;
-}
-
-.flowtext-chat-history::-webkit-scrollbar-track {
-  background: var(--background-secondary);
-  border-radius: 3px;
-}
-
-.flowtext-chat-history::-webkit-scrollbar-thumb {
-  background: var(--background-modifier-border);
-  border-radius: 3px;
-}
-
-.flowtext-chat-history::-webkit-scrollbar-thumb:hover {
-  background: var(--text-muted);
 }
 
 /* 响应式设计 - 多轮对话 */
@@ -2202,12 +1921,12 @@
   align-items: center;
   justify-content: center;
   border: none;
-  border-radius: 6px;
   background: transparent !important;
   cursor: pointer;
   transition: background 0.15s, color 0.15s;
   box-shadow: none !important;
   padding: 5px;
+  opacity: 0.6;
 }
 .flowtext-agent-icon-btn svg {
   width: 16px;
@@ -2335,33 +2054,191 @@
   white-space: pre-wrap;
 }
 .flowtext-agent-step-text.is-mono {
-  font-family: var(--font-monospace);
   font-size: 13px;
   line-height: 1.45;
   color: var(--color-purple);
 }
 
-/* -- 按类型着色 -- */
+/* MarkdownRenderer 输出：避免 pre-wrap 破坏块级排版，并约束宽内容 */
+.flowtext-agent-step-text.flowtext-agent-step-text--markdown,
+.flowtext-agent-turn-plan.flowtext-agent-turn-plan--markdown {
+  white-space: normal;
+}
+.flowtext-agent-step-text.flowtext-agent-step-text--markdown img,
+.flowtext-agent-turn-plan.flowtext-agent-turn-plan--markdown img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+.flowtext-agent-step-text.flowtext-agent-step-text--markdown .markdown-rendered table,
+.flowtext-agent-step-text.flowtext-agent-step-text--markdown table,
+.flowtext-agent-turn-plan.flowtext-agent-turn-plan--markdown .markdown-rendered table,
+.flowtext-agent-turn-plan.flowtext-agent-turn-plan--markdown table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
 
-/* 思考计时 */
-.flowtext-agent-step--thinking {
-  padding: 4px 10px;
+/* Agent 单轮 LLM：父级规划 + 子任务执行/验证 */
+.flowtext-agent-turn-card {
+  margin: 6px 0 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+}
+.flowtext-agent-turn-head {
   display: flex;
-  align-items: flex-start;
-  gap: 6px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--background-modifier-border);
 }
-.flowtext-agent-step--thinking .flowtext-agent-step-icon {
-  color: var(--text-faint);
+.flowtext-agent-turn-head-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
 }
-.flowtext-agent-thinking-timer {
+.flowtext-agent-turn-head-icon {
+  display: flex;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+.flowtext-agent-turn-head-icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.flowtext-agent-turn-card--reasoning-done .flowtext-agent-turn-head-icon svg {
+  animation: none;
+}
+.flowtext-agent-turn-iter {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-normal);
+}
+.flowtext-agent-turn-timer {
   font-size: 11px;
   color: var(--color-orange);
   font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
 }
-@keyframes flowtext-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.flowtext-agent-turn-section {
+  margin-top: 6px;
 }
+.flowtext-agent-turn-section-title {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-faint);
+  margin-bottom: 4px;
+}
+.flowtext-agent-turn-plan {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-normal);
+  word-break: break-word;
+}
+.flowtext-agent-turn-children {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.flowtext-agent-subtask {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 0;
+  border-radius: 6px;
+  background: var(--background-primary);
+  border: 0.5px solid var(--background-modifier-border);
+  overflow: hidden;
+}
+.flowtext-agent-subtask-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px 10px;
+  padding: 6px 8px;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: background 0.12s ease;
+}
+.flowtext-agent-subtask-head:hover {
+  background: var(--background-modifier-hover);
+}
+/* 仅由 .is-expanded 控制：避免 collapsed+expanded 双类时 display 规则冲突导致无法收起 */
+.flowtext-agent-subtask .flowtext-agent-subtask-detail {
+  display: none;
+}
+.flowtext-agent-subtask.is-expanded .flowtext-agent-subtask-detail {
+  display: block;
+}
+.flowtext-agent-subtask-main {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+.flowtext-agent-subtask-icon {
+  display: flex;
+  flex-shrink: 0;
+  color: var(--text-muted);
+  padding-top: 1px;
+}
+.flowtext-agent-subtask-icon svg {
+  width: 13px;
+  height: 13px;
+}
+.flowtext-agent-subtask-label {
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--text-normal);
+  word-break: break-word;
+}
+.flowtext-agent-subtask-status {
+  font-size: 11px;
+  font-weight: 600;
+  flex-shrink: 0;
+  padding: 1px 6px;
+  border-radius: 4px;
+  line-height: 1.4;
+}
+.flowtext-agent-subtask--running .flowtext-agent-subtask-status {
+  background: rgba(120, 120, 200, 0.15);
+  color: var(--color-purple);
+}
+.flowtext-agent-subtask--done .flowtext-agent-subtask-status.is-ok {
+  background: rgba(0, 180, 80, 0.12);
+  color: var(--text-success, #0a0);
+}
+.flowtext-agent-subtask--fail .flowtext-agent-subtask-status.is-fail {
+  background: rgba(220, 80, 80, 0.12);
+  color: var(--text-error, #c00);
+}
+.flowtext-agent-subtask--fixed .flowtext-agent-subtask-status.is-fixed {
+  background: rgba(80, 140, 220, 0.14);
+  color: var(--color-blue);
+}
+.flowtext-agent-subtask-detail {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--text-muted);
+  white-space: pre-wrap;
+  word-break: break-word;
+  padding: 0 8px 8px;
+  margin: 0;
+  border-top: 1px dashed var(--background-modifier-border);
+}
+
+/* -- 按类型着色 -- */
 
 /* 结果 */
 .flowtext-agent-step--observation {
@@ -2414,15 +2291,16 @@
   margin-right: 6px;
   align-items: center;
 }
-.flowtext-agent-diff-added {
-  color: #2da44e;
+.flowtext-agent-diff-added,
+.flowtext-agent-diff-removed {
   font-weight: 500;
   font-size: 10px;
 }
+.flowtext-agent-diff-added {
+  color: #2da44e;
+}
 .flowtext-agent-diff-removed {
   color: #cf222e;
-  font-weight: 500;
-  font-size: 10px;
 }
 .flowtext-agent-diff-neutral {
   color: var(--text-faint);
@@ -2440,6 +2318,51 @@
 }
 .flowtext-agent-step--confirm .flowtext-agent-step-icon {
   color: var(--text-warning, #e0a000);
+}
+
+/* 危险 CLI 内联确认 */
+
+.flowtext-agent-step--dangerous-cli .flowtext-agent-step-icon {
+  color: var(--text-error, #c44);
+}
+.flowtext-agent-danger-cli-cmd {
+  font-family: var(--font-monospace-theme);
+  font-size: 11px;
+  white-space: pre-wrap;
+  word-break: break-all;
+  margin: 6px 0 8px;
+  padding: 8px;
+  border-radius: 6px;
+  background: var(--background-primary-alt, var(--background-modifier-form-field));
+  border: 1px solid var(--background-modifier-border);
+  color: var(--text-normal);
+}
+.flowtext-agent-danger-consent-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  margin-top: 4px;
+}
+.flowtext-agent-danger-consent-btn {
+  width: 100%;
+  text-align: left;
+  padding: 8px 10px;
+  font-size: 12px;
+  border-radius: 6px;
+  border: 1px solid var(--background-modifier-border);
+  background: var(--background-primary);
+  color: var(--text-normal);
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+}
+.flowtext-agent-danger-consent-btn:hover:not(:disabled) {
+  background: var(--background-modifier-hover);
+  border-color: var(--interactive-accent);
+}
+.flowtext-agent-danger-consent-btn:disabled {
+  opacity: 0.55;
+  cursor: default;
 }
 
 /* 完成 */
@@ -2557,7 +2480,6 @@
   cursor: pointer;
   padding: 0;
   box-shadow: none !important;
-  height: 1.5em;
 }
 .flowtext-agent-choice-chip-icon {
   display: flex;
@@ -2573,6 +2495,7 @@
 .flowtext-agent-choice-chip-label {
   flex: 1;
   min-width: 0;
+  white-space: normal;
 }
 .flowtext-agent-choice-chip:hover:not(:disabled) {
   background: var(--background-modifier-hover);
@@ -2730,7 +2653,6 @@
   background: transparent;
   color: var(--text-normal);
   font-size: 13px;
-  font-family: inherit;
   line-height: 1.5;
   resize: none;
   outline: none;
@@ -2779,6 +2701,19 @@
   cursor: not-allowed;
 }
 
+/* Agent 图片预览条（复用 .flowtext-image-preview） */
+.flowtext-agent-image-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  margin-top: 2px;
+}
+.flowtext-agent-image-previews {
+  margin: 0;
+  max-height: 140px;
+}
+
 /* 底部行：模型选择 + 发送按钮 */
 .flowtext-agent-input-bottom {
   display: flex;
@@ -2786,10 +2721,15 @@
   justify-content: space-between;
 }
 
-/* 选项行 */
+/* 选项行：模型下拉 → 上传图片 → 思考开关 */
 .flowtext-agent-options-row {
   display: flex;
   align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.flowtext-agent-options-row .flowtext-agent-upload-img-btn {
+  flex-shrink: 0;
 }
 
 .flowtext-agent-model-select {
@@ -2798,7 +2738,7 @@
   background: transparent;
   color: var(--text-faint);
   font-size: 10px;
-  max-width: 170px;
+  max-width: 120px;
   outline: none;
   cursor: pointer;
   appearance: none;
@@ -2846,22 +2786,6 @@
 
 .flowtext-agent-thinking-label {
   white-space: nowrap;
-}
-
-/* 流式思考内容预览：进行中完整多行展示；结束后隐藏 */
-.flowtext-agent-thinking-preview {
-  display: block;
-  margin-top: 4px;
-  font-size: 12px;
-  line-height: 1.45;
-  color: var(--text-faint);
-  font-style: italic;
-  opacity: 0.9;
-  white-space: pre-wrap;
-  word-break: break-word;
-}
-.flowtext-agent-step--thinking.flowtext-agent-thinking-complete .flowtext-agent-thinking-preview {
-  display: none;
 }
 
 /* 发送按钮 */
@@ -3277,13 +3201,11 @@
   border: 1px solid var(--background-modifier-border);
   border-radius: 4px;
   padding: 6px 8px;
-  background: var(--background-primary);
   color: var(--text-normal);
 }
 .flowtext-custom-skill-modal .flowtext-custom-skill-textarea {
-  min-height: 160px;
+  min-height: 220px;
   resize: vertical;
-  font-family: var(--font-text);
 }
 .flowtext-custom-skill-modal .flowtext-custom-skill-footer {
   display: flex;
@@ -3298,9 +3220,9 @@
   justify-content: space-between;
   padding: 10px;
   margin-bottom: 8px;
-  border-left: 4px solid var(--background-modifier-border);
+  border-left: 4px solid gray;
   border-radius: 6px;
-  background: var(--background-secondary-alt);
+  background: var(--background-modifier-hover);
 }
 .flowtext-settings-managed-item-info {
   flex: 1;
