@@ -37,13 +37,38 @@ Ctrl+L
 ping -c 3 115.190.175.31
 ```
 
+系统监视器
+```
+gnome-system-monitor
+```
+
+杀死进程
+```
+xkill
+```
+
+查看历史
+```
+history
+```
 
 用 SSH 连接
 ```
 ssh root@115.190.175.31
 ```
+
+```
 !p@ssword1
+```
+
+```
 docker restart hz_test_local-nginx-1
+```
+
+在文件管理器中打开当前所在的目录
+```
+nautilus .
+```
 
 
 
@@ -71,3 +96,28 @@ pandoc input.md -o output.pdf   # md 转 pdf
 pandoc input.md -o output.docx  # md 转 word
 pandoc input.md -o output.html  # md 转 html
 ```
+
+好的，已按您的要求去掉所有标题格式（如加粗、emoji、符号等），保留纯文本内容。
+
+---
+
+Typst 方案配置完成
+
+安装结果
+- typst 版本 0.14.2 已安装到 ~/.local/bin/
+- COLOR_RULES.pdf（286KB）已生成
+
+使用方法
+
+方式一：使用脚本（推荐）
+./md2pdf.sh COLOR_RULES.md
+
+方式二：手动执行三步转换
+1. 将 Markdown 转为 Typst 格式
+pandoc file.md -o file.typst -t typst
+
+2. 修正水平线语法（将 #horizontalrule 替换为 Typst 支持的画线命令）
+sed -i 's/#horizontalrule/#line(length: 100%, stroke: 0.5pt)/g' file.typst
+
+3. 编译生成 PDF
+typst compile file.typst

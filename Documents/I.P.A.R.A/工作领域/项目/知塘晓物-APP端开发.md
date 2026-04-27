@@ -21,11 +21,17 @@ multiMedia:
 - [x] Android应用市场上架步骤调研 [🔗Dida](obsidian://dida-task?didaId=69a4fcdfe4b02959a27b67c8) 
 - [x] flutter打包并运行到Android [🔗Dida](obsidian://dida-task?didaId=69a575ade4b0144e00730c53) 
 - [x] 优化Loading和提示弹窗的样式，统一项目样式主题风格 [🔗Dida](obsidian://dida-task?didaId=69a57a58e4b0094200f9df80) 
-- [ ] 打包运行到app端之后，测试登录信息token持久化功能 [🔗Dida](obsidian://dida-task?didaId=69a58072e4b0f82e29962d66) 
-- [ ] 养殖基地接口对接 [🔗Dida](obsidian://dida-task?didaId=69c01313e4b067bb55f729ad) 
-- [ ] 鱼塘接口对接 [🔗Dida](obsidian://dida-task?didaId=69c0131fe4b0086619c5b19f) 
-- [ ] 字典接口以及其工具类 [🔗Dida](obsidian://dida-task?didaId=69c0132ce4b067bb55f72aed) 
+- [x] 养殖基地接口对接 [🔗Dida](obsidian://dida-task?didaId=69c01313e4b067bb55f729ad) 
+- [x] 鱼塘接口对接 [🔗Dida](obsidian://dida-task?didaId=69c0131fe4b0086619c5b19f) 
+- [x] 字典接口以及其工具类 [🔗Dida](obsidian://dida-task?didaId=69c0132ce4b067bb55f72aed) 
 - [ ] 养殖基地经纬度从文本输入修改为地图 [🔗Dida](obsidian://dida-task?didaId=69c0134fe4b0407f4c95421c) 
+- [x] 找android端可以播放m3u8格式直播流的demo [🔗Dida](obsidian://dida-task?didaId=69da334fe4b07562688aa291) 
+- [x] 使用手册 [🔗Dida](obsidian://dida-task?didaId=69da3360e4b0694f11fb8460) 
+- [x] app端首页，页面顶部的：基地、池塘、设备、下拉选择，点击后不实时切换选中状态问题。并且选中后应该关闭选择框。然后给这些选择框应该增加刷性功能。 [🔗Dida](obsidian://dida-task?didaId=69da58a6e4b064eb946c718e) 
+- [x] 增加从池塘的设备列表页面也可以进入视频直播详情页面的跳转按钮。 [🔗Dida](obsidian://dida-task?didaId=69da7fb9e4b0694f11ff784d) 
+- [x] 基地列表页面 @lib/pages/base/index.dart 、池塘列表页面/PondListPage、设备列表页面/PondDeviceManagePage，导航右上角的三个点的图标没什么用就去掉吧 [🔗Dida](obsidian://dida-task?didaId=69da8050e4b03f838618eda3) 
+- [x] 控制设备（发送RPC命令）接口对接 [🔗Dida](obsidian://dida-task?didaId=69dbb963e4b0756268b88523) 
+- [ ] 打包运行到app端之后，测试登录信息token持久化功能 [🔗Dida](obsidian://dida-task?didaId=69a58072e4b0f82e29962d66) 
 
 ## 提示词
 ### 0302
@@ -394,3 +400,320 @@ flutter build apk --release
 ```
 
 ## 04-11
+对接-为指定设备开启直播
+http://115.190.175.31:8203/doc.html#/all/%E7%AE%A1%E7%90%86%E5%90%8E%E5%8F%B0%20-%20%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86/Device_startLiveStream
+
+demo网址
+http://115.190.175.31:8203/device-live-stream-test.html
+
+```
+好的，接下来，请参考@mobile-app/4-1-池塘列表管理页面/4-1-池塘列表管理页面/code.html中的html代码，帮我转换为flutter的静态页面，生成到@lib/pages/目录下，创建一个合适的池塘管理目录,需要注意样式和动效和使用合适的组件进行页面的搭建，进入池塘管理页面的入口是，谢谢。
+```
+
+```
+好的接下来，请帮我对接点击池塘的设备管理 `d:\smart_vision\zhitang-insight\zhitang-insight-app\zhitang-insight-app\lib\pages\pond\index.dart#L713-726` 后的页面和接口，接口文档是： `d:\smart_vision\zhitang-insight\zhitang-insight-app\interface\用户APP-渔塘管理-设备管理.mb` 
+生成到@lib/pages/目录下，创建一个合适的设备管理目录,需要注意样式和动效和使用合适的组件进行页面的搭建，谢谢。
+```
+
+```
+好的，接下来，请参考
+@prototype/6-1-养殖基地管理列表/6-1-养殖基地管理列表/code.html
+和
+@prototype/6-1-养殖基地管理列表/6-2-视频巡检控制/code.html
+中的html代码，帮我转换为flutter的静态页面，生成到@lib/pages/目录下，创建一个合适的视频巡检目录。
+,需要注意样式和动效和使用合适的组件进行页面的搭建，进入视频巡检页面的入口是@lib/pages/base/index.dart页面的
+child: Row(  
+  mainAxisAlignment: MainAxisAlignment.center,  
+  children: const [  
+    Icon(Icons.videocam_rounded, size: 18, color: primaryColor),  
+    SizedBox(width: 6),  
+    Text(  
+      "视频巡检",  
+      style: TextStyle(color: primaryColor, fontSize: 12.5, fontWeight: FontWeight.w800),  
+    ),  
+  ],  
+),
+，谢谢。
+```
+
+```
+好的，接下来请帮我对接/VideoListPage视频监控列表页面的接口：其实视频监控列表页面的接口是和/PondDeviceManagePage池塘设备管理页面，已绑定设备的接口是一样的，一个一绑定的设备，就是一个摄像头。
+```
+
+```
+好的，视频监控列表页面对接好了，接下来请帮我对接 /VideoControlPage 页面，
+对接接口文档：interface/device.md
+进入/VideoControlPage 页面的时候调用为指定设备开启直播接口
+退出页面的时候调用为指定设备关闭直播接口
+然后直播画面的url是
+
+http://115.190.175.31:8212/hls/7a6f3770-3244-11f1-8078-cd940a4242f0.m3u8
+中间的7a6f3770-3244-11f1-8078-cd940a4242f0是设备的tbDeviceId
+请分析我的需求，帮我对接接口。
+```
+
+http://115.190.175.31:8212/hls/7a6f3770-3244-11f1-8078-cd940a4242f0.m3u8
+http://115.190.175.31:8212/hls/7a6f3770-3244-11f1-8078-cd940a4242f0.m3u8
+
+## 04-12
+```
+命令行
+
+# 运行 Web 应用
+flutter run -d chrome
+# 构建 Web 版本
+flutter build web
+
+# Android打包
+flutter create --platforms=android .
+# Debug 版（快，用于测试）
+flutter build apk --debug
+# Release 版（优化，用于发布）
+flutter build apk --release
+
+# 真机模拟
+flutter devices
+# 运行
+flutter run -d 23013RK75C
+```
+
+```
+请帮我检查一下页面
+@lib/pages/video/control.dart
+进入页面的时候首先需要调用接口/pond/device/start-live-stream
+接口正确调用的curl是
+curl 'http://115.190.175.31:8203/admin-api/pond/device/start-live-stream' \
+  -H 'Accept: */*' \
+  -H 'Accept-Language: zh-CN,zh;q=0.9' \
+  -H 'Authorization: Bearer c823c00439284eccabaf0d1b98db3fef' \
+  -H 'Content-Type: application/json' \
+  -H 'Origin: http://115.190.175.31:8203' \
+  -H 'Proxy-Connection: keep-alive' \
+  -H 'Referer: http://115.190.175.31:8203/device-live-stream-test.html' \
+  -H 'Tenant-Id: 1' \
+  -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36' \
+  --data-raw '{"deviceId":1,"timeA":600}' \
+  --insecure
+正确的响应是
+{"code":0,"msg":"","data":true}
+  
+退出页面的时候调用/pond/device/stop-live-stream
+curl是
+curl 'http://115.190.175.31:8203/admin-api/pond/device/stop-live-stream' \
+  -H 'Accept: */*' \
+  -H 'Accept-Language: zh-CN,zh;q=0.9' \
+  -H 'Authorization: Bearer c823c00439284eccabaf0d1b98db3fef' \
+  -H 'Content-Type: application/json' \
+  -H 'Origin: http://115.190.175.31:8203' \
+  -H 'Proxy-Connection: keep-alive' \
+  -H 'Referer: http://115.190.175.31:8203/device-live-stream-test.html' \
+  -H 'Tenant-Id: 1' \
+  -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36' \
+  --data-raw '{"deviceId":1}' \
+  --insecure
+正确的响应是
+{"code":0,"msg":"","data":true}
+
+还有现在播放m3u8报错
+E/ExoPlayerImplInternal( 2941): Playback error
+E/ExoPlayerImplInternal( 2941):   androidx.media3.exoplayer.ExoPlaybackException: Source error
+E/ExoPlayerImplInternal( 2941):       at androidx.media3.exoplayer.ExoPlayerImplInternal.handleIoException(ExoPlayerImplInternal.java:737)
+E/ExoPlayerImplInternal( 2941):       at androidx.media3.exoplayer.ExoPlayerImplInternal.handleMessage(ExoPlayerImplInternal.java:713)
+E/ExoPlayerImplInternal( 2941):       at android.os.Handler.dispatchMessage(Handler.java:102)
+E/ExoPlayerImplInternal( 2941):       at android.os.Looper.loopOnce(Looper.java:210)
+E/ExoPlayerImplInternal( 2941):       at android.os.Looper.loop(Looper.java:299)
+E/ExoPlayerImplInternal( 2941):       at android.os.HandlerThread.run(HandlerThread.java:67)
+E/ExoPlayerImplInternal( 2941):   Caused by: androidx.media3.exoplayer.hls.playlist.HlsPlaylistTracker$PlaylistStuckException
+E/ExoPlayerImplInternal( 2941):       at androidx.media3.exoplayer.hls.playlist.DefaultHlsPlaylistTracker$MediaPlaylistBundle.processLoadedPlaylist(DefaultHlsPlaylistTracker.java:774)
+E/ExoPlayerImplInternal( 2941):       at androidx.media3.exoplayer.hls.playlist.DefaultHlsPlaylistTracker$MediaPlaylistBundle.onLoadCompleted(DefaultHlsPlaylistTracker.java:619)
+E/ExoPlayerImplInternal( 2941):       at androidx.media3.exoplayer.hls.playlist.DefaultHlsPlaylistTracker$MediaPlaylistBundle.onLoadCompleted(DefaultHlsPlaylistTracker.java:538)
+E/ExoPlayerImplInternal( 2941):       at androidx.media3.exoplayer.upstream.Loader$LoadTask.handleMessage(Loader.java:516)
+E/ExoPlayerImplInternal( 2941):       at android.os.Handler.dispatchMessage(Handler.java:106)
+E/ExoPlayerImplInternal( 2941):       ... 3 more
+I/ExoPlayerImpl( 2941): Init 8959675 [AndroidXMedia3/1.5.1] [mondrian, 23013RK75C, Xiaomi, 33]
+I/ExoPlayerImpl( 2941): Release 6fd5850 [AndroidXMedia3/1.5.1] [mondrian, 23013RK75C, Xiaomi, 33] [media3.common, media3.exoplayer, media3.decoder, media3.exoplayer.hls, media3.datasource, media3.extractor]
+I/ang_insight_app( 2941): This is sticky GC, maxfree is 33554432 minfree is 8388608
+Lost connection to device.
+
+我再vlc中测试是有画面的，日志是“yuan@yuan-Legion-Y7000-IRX9:~$ vlc "http://115.190.175.31:8212/hls/7a6f3770-3244-11f1-8078-cd940a4242f0.m3u8"
+VLC media player 3.0.16 Vetinari (revision 3.0.13-8-g41878ff4f2)
+[000062dcf1587590] main libvlc: 正在以默认界面运行 vlc。使用“cvlc”可以无界面模式使用 vlc。
+[00007eddb8002bd0] ts demux error: libdvbpsi error (PSI decoder): TS duplicate (received 0, expected 1) for PID 0
+[00007eddb8002bd0] ts demux error: libdvbpsi error (PSI decoder): TS duplicate (received 0, expected 1) for PID 4097
+[00007eddbc026d00] main decoder error: buffer deadlock prevented
+[00007eddbc0fe510] main decoder error: buffer deadlock prevented
+[00007eddb0004590] gl gl: Initialized libplacebo v4.192.1 (API v192)
+Failed to open VDPAU backend libvdpau_va_gl.so: 无法打开共享目标文件: 没有那个文件或目录
+[00007eddb0004590] gl gl: Initialized libplacebo v4.192.1 (API v192)
+”，请帮我解决一下这个问题。
+
+```
+
+```
+请帮我修改 @lib/pages/video/control.dart 中的
+_ActionButton(  
+  icon: Icons.light_mode_rounded,  
+  label: "补光",  
+  activeColor: Colors.amber,  
+  isActive: _isLightOn,  
+  onTap: () => setState(() => _isLightOn = !_isLightOn),  
+),
+代码，点击的时候调用接口：@04-interface/控制设备.md
+注意项目中调用的接口都需要封装到 @lib/api 文件夹下
+通用控制设备接口。  不同业务控制参数，
+5. # 打开示警灯
+    
+
+Things board RPC: {self.base_url}/rpc/twoway/{device_id}
+
+Sending Two-Way RPC Request:
+   Device ID: 771ba750-027b-11f1-9589-9d8ce3857b6f
+   Method: setLcPowerTiming
+   Params: {
+    "power_id": 3
+    "time_seconds": 10
+    // "close"
+}
+
+params：time_seconds
+亮多少秒的意思
+
+```
+
+## 04-13
+```
+现在 @lib/pages/video/control.dart 页面中，的补光按钮“_ActionButton(  
+  icon: Icons.light_mode_rounded,  
+  label: "补光",  
+  activeColor: Colors.amber,  
+  isActive: _isLightOn,  
+  onTap: () => _toggleLight(),  
+),”
+调用的接口是对的，但是传递的参数是错的，请帮我分析文档，修改一下传参。
+文档：
+4. # 执行策略接口：
+Things board RPC: {self.base_url}/rpc/twoway/{device_id}
+```Plain
+Sending Two-Way RPC Request:
+   Method: operateOxygenAerator
+   Params: {
+    "number": 1
+    "operation": "open" 
+    // "close"
+}
+```
+
+```
+好的，摄像头补光灯功能对接完成了。
+接下来请帮我将 @lib/pages/video/control.dart 页面中的
+深度升降修改为传感器升降
+云台控制修改为摄像头控制
+传感器升降和摄像头控制调用的接口还是和摄像头补光灯的接口一样，只是需要传递的参数不一样。
+文档：
+7. # 摄像头上下移动
+    
+
+Things board RPC: {self.base_url}/rpc/twoway/{device_id}
+
+```Plain
+Sending Two-Way RPC Request:
+   Method: setLcMotor0Position
+   Params: {
+    "position": 100 //moving to the position 100mm
+}
+```
+
+8. # 摄像头左右移动
+    
+
+Things board RPC: {self.base_url}/rpc/twoway/{device_id}
+
+```Plain
+Sending Two-Way RPC Request:
+   Method: setHcPowerTiming
+   Params: {
+    "position": 100 //moving to the position 100mm
+}
+```
+
+9. # 传感器上下移动
+    
+
+Things board RPC: {self.base_url}/rpc/twoway/{device_id}
+
+```Plain
+Sending Two-Way RPC Request:
+   Method: setLcMotor1Position
+   Params: {
+    "position": 100 //moving to the position 100mm
+}
+```
+
+请参考文档，帮我对接一下传感器升降和摄像头控制功能。
+
+
+## 04-25
+https://jizhishida.feishu.cn/docx/XZNmd1K0wobqsPxKA75c5fkonMg?from=from_copylink
+
+```
+好的，接下来请帮我修改 @zhitang-insight-app/ 把页面上没实现的功能按钮都给隐藏注释掉，只保留可以点击的部分
+```
+回答：
+完成。以下是各页面隐藏的非功能按钮汇总：
+
+| 页面 | 隐藏内容 | 原因 |
+|------|----------|------|
+| **登录页** | "忘记密码？"按钮 | `onPressed` 为空操作 |
+| | "立即注册"链接 | `onTap` 为空操作 |
+| | 用户协议/隐私条款的点击跳转 | `TapGestureRecognizer` 为空操作（保留勾选框本身） |
+| **首页** | 告警中心整个区块 | 使用硬编码假数据 |
+| | 手动控制整个区块 | 4个按钮均为空操作 |
+| **我的** | 全部三个菜单分组（6个菜单项） | 所有 `onTap` 均为空操作 |
+| **视频控制** | 右上角设置按钮 | `onTap` 为空操作 |
+| | 水上/水下模式切换 | 仅前端状态，未对接后端 |
+| | 抓拍按钮 | `onTap` 为空操作 |
+| | 录制按钮 | 仅本地状态切换，未对接后端 |
+| | 回放按钮 | `onTap` 为空操作 |
+| **渔塘列表** | 离线渔塘的"重新绑定"按钮 | 仅显示"重新绑定开发中"提示 |
+
+```
+app端仿照后台管理端 的历史数据展示组件 @/home/yuan/code/smart_vision/zhitang-insight/zhitang-insight-admin/src/views/ztxw/fish/FishHistoryDataDialog.vue
+修改 /PondDashboardPage 页面也增加展示查看历史数据的功能，增加实时和历史数据的tab切换，历史数据展示表格和图表两种视图，图表展示可以去flutter官方或者github中搜索一下flutter中展示图表的最佳实践。
+```
+
+```
+监测数据页面新增历史数据查询图表和首页传感器区增加实时/趋势图表
+图表的x轴展示时间应该是从小到大，现在是反过来的
+```
+
+```
+好的，接下来请帮我修改 /VideoControlPage 页面中的传感器升降范围是0～2300（范围这么大现在的操作方式应该不方便了，请修改ui换一种更加方标操作的组件） ，摄像头控制上下是0～2345 左右是0～1900
+
+```
+
+## 04-27
+```
+请根据
+资料
+@docs/【新十年 新形象】小米新LOGO_原文和译文.docx
+@docs/01-requirements/知塘晓物需求规格说明书v0.1.pdf
+app端代码
+@zhitang-insight/zhitang-insight-app/
+帮我生成一份负荷app主题色的 Logo 设计方案提示词
+需要生成两张图片，一张是 logo 的高保真图片，另一张是logo的设计方案理念和logo黄金分割曲线示意图等展示（参考和仿照@docs/【新十年 新形象】小米新LOGO_原文和译文.docx）
+请先帮我分析项目资料然后将生成的提示词保存为md文件，谢谢。
+```
+
+```
+好的，请帮我继续修改，我觉得 负荷预测的热力图 @src/pages/forecast/components/CityErrorCompareCard.vue 样式和数据都不够好不够真实，请帮我去掉现在的负荷预测热力图，然后参考 @src/pages/capacity/components/CityHeatmapCard.vue 帮我重新生成一份热力图。
+```
+
+
+
+
+
+
+
+
+
+

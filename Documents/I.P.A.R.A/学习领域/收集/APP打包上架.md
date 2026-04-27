@@ -102,3 +102,32 @@ cssclasses:
 - 费用：**1440元**（官网+APP）
 - 备案查询地址：[https://beian.miit.gov.cn/#/Integrated/recordQuery](https://beian.miit.gov.cn/#/Integrated/recordQuery)
 
+# 实操
+
+## 资料
+[Android APP打包上架完整指南](https://chat.deepseek.com/a/chat/s/aa2a9076-4024-417c-9ee6-deeee8fcaf2e)
+
+## 火山云ICP备案
+网站、APP备案
+https://console.volcengine.com/beian/overview/
+
+### 资料
+[App备案FAQ](https://www.volcengine.com/docs/6428/1126969?lang=zh)
+[一图读懂APP备案](https://www.miit.gov.cn/jgsj/xgj/hlwgl/art/2023/art_fd468b6fe66b4c05b8e3546566fd8265.html)
+[查看备案结果](https://beian.miit.gov.cn/#/Integrated/index)
+
+## 软著申请
+[中国版权保护中心官网](http://www.ccopyright.com.cn/)
+[2026软著申请教程【简洁版】](https://ruanzhubao.com/blogs/ruanzhu-shenqing-jiandan-jiaocheng)
+
+## 上架华为应用市场
+
+https://developer.huawei.com/
+```
+desheng.lailai@gmail.com
+!P@ssword1
+```
+
+创建并配置应用
+
+1. **创建应用**：登录[AppGallery Connect](https://developer.huawei.com/consumer/cn/service/josp/agc/index.html)平台，点击“我的应用” -> “创建应用”，按提示填写应用名称、分类等基本信息[](http://www.metabaas.cn/news/471/)。

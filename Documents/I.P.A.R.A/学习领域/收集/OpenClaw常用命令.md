@@ -23,7 +23,17 @@ openclaw的根文件夹
 cd ~/.openclaw
 ```
 
+配置
+```
+openclaw onboard
+```
 
+快速配置模型
+```
+openclaw configure --section model
+```
+
+打开web页面
 ```shell
 openclaw dashboard
 ```
