@@ -1,6 +1,15 @@
 formulas:
-  反向连接: file.backlinks
-  未命名: ""
+  进度: |-
+    if(number(progress), 
+       html("<div style='background: radial-gradient(closest-side, var(--background-primary) 70%, transparent 71% 100%), conic-gradient(" + 
+            if(progress >= 80, "var(--color-green)",
+               if(progress >= 60, "var(--color-yellow)",
+                  if(progress >= 40, "var(--color-orange)",
+                     "var(--color-red)"))) + 
+            " " + min(max(progress, 0), 100) + "%, var(--background-modifier-border) 0); width: 20px; height: 20px; border-radius: 50%; display: inline-block;' title='" + min(max(progress, 0), 100) + "%'></div>"), 
+       html("<div style='background: radial-gradient(closest-side, var(--background-primary) 70%, transparent 71% 100%), conic-gradient(var(--color-red) 0%, var(--background-modifier-border) 0); width: 20px; height: 20px; border-radius: 50%; display: inline-block;' title='0%'></div>")
+    )
+  修改时间: file.mtime.relative()
 properties:
   file.name:
     displayName: 文件名
@@ -42,11 +51,42 @@ properties:
     displayName: 每日链接数量(篇)
 views:
   - type: table
+    name: 文档数据库-IPARA
+    filters:
+      and:
+        - file.path.contains("Documents/I.P.A.R.A")
+        - file.ext != "canvas"
+        - file.name != "保留此文档不要删"
+    order:
+      - file.name
+      - 笔记类型
+      - 卡片盒笔记主题
+      - tags
+      - formula.进度
+      - progress
+      - formula.修改时间
+    sort:
+      - property: formula.修改时间
+        direction: DESC
+      - property: formula.未命名
+        direction: DESC
+      - property: formula.反向连接
+        direction: DESC
+    columnSize:
+      file.name: 241
+      note.卡片盒笔记主题: 162
+      note.tags: 201
+      formula.笔记进度: 45
+      note.progress: 89
+    cardSize: 220
+    imageFit: ""
+    imageAspectRatio: 1
+    rowHeight: ""
+  - type: table
     name: 文档数据库-日记
     filters:
       and:
         - file.path.contains("Documents/Dailynote")
-        - file.name != "0-KISS复盘汇总"
     order:
       - file.name
       - 今日心情
@@ -70,65 +110,3 @@ views:
       property.Improve: 130
       property.Start: 139
       property.Stop: 133
-  - type: table
-    name: 文档数据库-IPARA
-    filters:
-      and:
-        - file.path.contains("Documents/I.P.A.R.A")
-        - file.ext != "canvas"
-        - file.name != "保留此文档不要删"
-    order:
-      - file.name
-      - 笔记类型
-      - 卡片盒笔记主题
-      - tags
-    sort:
-      - property: formula.未命名
-        direction: DESC
-      - property: formula.反向连接
-        direction: DESC
-    columnSize:
-      file.name: 260
-      formula.反向连接: 323
-    cardSize: 220
-    imageFit: ""
-    imageAspectRatio: 1
-  - type: table
-    name: 文档数据库-主题索引卡
-    filters:
-      and:
-        - file.path.contains("Documents/I.P.A.R.A")
-        - file.ext.contains("canvas")
-    order:
-      - file.name
-      - file.folder
-      - file.ctime
-      - file.ext
-    sort:
-      - property: file.ctime
-        direction: DESC
-    columnSize:
-      file.name: 260
-      file.folder: 524
-      file.ctime: 198
-  - type: cards
-    name: 文档数据库-豆瓣电影
-    filters:
-      and:
-        - file.path.contains("Documents/Douban")
-    order:
-      - file.name
-      - director
-      - scoreStar
-    sort:
-      - property: property.country
-        direction: DESC
-    columnSize:
-      file.name: 206
-      property.country: 185
-      property.datePublished: 130
-      property.director: 210
-      property.score: 115
-      property.desc: 428
-    image: note.imageData
-    imageAspectRatio: 1.55

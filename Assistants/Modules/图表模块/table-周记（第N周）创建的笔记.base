@@ -1,3 +1,6 @@
+properties:
+  note.tags:
+    displayName: 文档标签
 views:
   - type: table
     name: 本周创建的笔记
@@ -9,7 +12,10 @@ views:
       - file.name
       - 笔记类型
       - 卡片盒笔记主题
-      - 文档标签
+      - tags
+    sort:
+      - property: tags
+        direction: ASC
     separator: ｜
     columnSize:
       file.name: 210

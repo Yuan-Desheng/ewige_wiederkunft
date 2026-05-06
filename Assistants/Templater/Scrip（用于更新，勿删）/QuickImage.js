@@ -3,7 +3,7 @@
 ** Author: 鱼先生的模块化Obsidian
 ** Bilibili: https://space.bilibili.com/2035394961?spm_id_from=333.1007.0.0
 ** 小红书：https://www.xiaohongshu.com/user/profile/63cfeb720000000026010489
-** Version: 1.0.3
+** Version: 1.0.4
 */
 class QuickImage {
     constructor(tp, tR, settings) {
@@ -111,8 +111,8 @@ class QuickImage {
     
         let maskClass = "";
         if (useMask) {
-            const maskChoices = ["不用遮罩-居左", "圆角遮罩-居左", "圆形遮罩-居左", "窗格效果-居左", "不用遮罩-居右", "圆角遮罩-居右", "圆形遮罩-居右", "窗格效果-居右"];
-            const maskOptions = ["default", "rounded", "circle", "blinds", "default-R", "rounded-R", "circle-R", "blinds-R"];
+            const maskChoices = ["圆角遮罩-居左",  "圆角遮罩-居右","圆形遮罩-居左", "圆形遮罩-居右", ];
+            const maskOptions = ["rounded", "rounded-R",  "circle", "circle-R", ];
             const option = await this.tp.system.suggester(maskChoices, maskOptions, false, "选择遮罩类型和嵌入位置");
             maskClass = option ? `image-mask-${option}` : "";
         }
@@ -151,7 +151,7 @@ class QuickImage {
             const prefix = this.tR ? ' ' : '';
             
             if (maskClass) {
-                return this.tR + prefix + `<span class="${maskClass}" style="width: ${width}px; height: ${height}px;"><img src="${imageUrl}" alt="${keywords}" style="width: 100%; height: 100%; object-fit: cover;"></span>\u200B`;
+                return this.tR + prefix + `<span class="${maskClass}" style="width: ${width}px; height: ${height}px;" data-imagen-wrap="true"><img src="${imageUrl}" alt="${keywords}" style="width: 100%; height: 100%; object-fit: cover;"></span>\u200B`;
             } else {
                 return this.tR + prefix + `<img src="${imageUrl}" alt="${keywords}" width="${width}" height="${height}" style="object-fit: cover;">`;
             }

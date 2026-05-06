@@ -1,3 +1,12 @@
+/*──────────────────────────────────────────────────────────────────
+其他排版样式优化
+Version 0.5.0
+Created by @ytmaps_鱼先生
+
+authorurl:
+https://www.xiaohongshu.com/user/profile/63cfeb720000000026010489
+
+──────────────────────────────────────────────────────────────────── */
 /* @settings
 
 name: 👉其他排版美化
@@ -492,23 +501,6 @@ body.scrollbar-movein-animation :is(.vertical-tab-header, .vertical-tab-content,
 body.scrollbar-movein-animation :is(.vertical-tab-header, .vertical-tab-content, .nav-files-container, .view-content, .search-result-container, .git-view-body, .suggestion-container .suggestion, .prompt-results, .community-modal-search-results-wrapper, .community-modal-info, .modal:not(.mod-settings, .mod-community-theme, .mod-community-plugin), .tag-container, .backlink-pane, .workspace-leaf-content[data-type=markdown] .cm-scroller, .markdown-preview-view, .workspace .mod-root .workspace-tabs.mod-stacked .workspace-tab-container, mjx-container, .markdown-embed-content .markdown-rendered, pre code, .workspace-leaf-content[data-type=calendar] .view-content, .janitor-scan-results, .excalidraw-wrapper :is(.App-mobile-menu, .App-menu .Stack .Island.App-menu__left, .scrollbar), .excalidraw-contextMenuContainer .popover, .kanban-plugin__board, .kanban-plugin__lane-items):hover {
   --scrollbar-color: hsla(var(--color-accent-hsl), 24%);
 }
-body.scrollbar-movein-animation textarea {
-  color: transparent;
-  transition: color var(--animation);
-  -webkit-text-fill-color: var(--text-normal);
-}
-body.scrollbar-movein-animation textarea:hover {
-  color: hsla(var(--color-accent-hsl), 24%);
-}
-body.scrollbar-movein-animation textarea * {
-  -webkit-text-fill-color: initial;
-}
-body.scrollbar-movein-animation textarea::-webkit-scrollbar-thumb {
-  box-shadow: 0 0 0 10px inset;
-  border-width: 3.2px;
-  background-clip: content-box;
-  background-color: transparent !important;
-}
 
 body.scrollbar-smooth.scrollbar-smooth-editor .workspace-leaf-content[data-type=markdown] .cm-scroller, .markdown-preview-view,
 body.scrollbar-smooth :is(.vertical-tab-header, .vertical-tab-content, .nav-files-container, .view-content, .search-result-container, .git-view-body, .suggestion-container .suggestion, .prompt-results, .community-modal-search-results-wrapper, .community-modal-info, .modal:not(.mod-settings, .mod-community-theme, .mod-community-plugin), .tag-container, .backlink-pane, .workspace .mod-root .workspace-tabs.mod-stacked .workspace-tab-container, mjx-container, .markdown-embed-content .markdown-rendered, pre code, .workspace-leaf-content[data-type=calendar] .view-content, .janitor-scan-results, .excalidraw-wrapper :is(.App-mobile-menu, .App-menu .Stack .Island.App-menu__left, .scrollbar), .excalidraw-contextMenuContainer .popover, .kanban-plugin__board, .kanban-plugin__lane-items) {
@@ -761,9 +753,16 @@ body.scrollbar-smooth :is(.vertical-tab-header, .vertical-tab-content, .nav-file
   margin-top: auto;
 }
 
-/* 进度条 */
+/* 进度条  来自minimal主题*/
+
+body{
+  --progress-outline:var(--background-modifier-border);
+  --progress-complete:var(--text-accent);
+}
+
+
 progress{
-  margin-right: 0px;
+  margin-right: 0px;  
 }
 .notice progress, 
 .markdown-preview-view progress, 
@@ -771,6 +770,79 @@ progress{
 .markdown-source-view.is-live-preview progress{
   height: 3px;
 }
+
+.markdown-preview-view progress[value^="1"]::-webkit-progress-value,
+.markdown-preview-view progress[value^="2"]::-webkit-progress-value,
+.markdown-preview-view progress[value^="3"]::-webkit-progress-value,
+.markdown-rendered progress[value^="1"]::-webkit-progress-value,
+.markdown-rendered progress[value^="2"]::-webkit-progress-value,
+.markdown-rendered progress[value^="3"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value^="1"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value^="2"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value^="3"]::-webkit-progress-value
+{background-color:var(--color-red)}
+  
+  
+.markdown-preview-view progress[value^="4"]::-webkit-progress-value,
+.markdown-preview-view progress[value^="5"]::-webkit-progress-value,
+.markdown-rendered progress[value^="4"]::-webkit-progress-value,
+.markdown-rendered progress[value^="5"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value^="4"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value^="5"]::-webkit-progress-value
+{background-color:var(--color-orange)}
+  
+  
+.markdown-preview-view progress[value^="6"]::-webkit-progress-value,
+.markdown-preview-view progress[value^="7"]::-webkit-progress-value,.markdown-rendered progress[value^="6"]::-webkit-progress-value,
+.markdown-rendered progress[value^="7"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value^="6"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value^="7"]::-webkit-progress-value
+{background-color:var(--color-yellow)}
+  
+.markdown-preview-view progress[value^="8"]::-webkit-progress-value,
+.markdown-preview-view progress[value^="9"]::-webkit-progress-value,.markdown-rendered progress[value^="8"]::-webkit-progress-value,
+.markdown-rendered progress[value^="9"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value^="8"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value^="9"]::-webkit-progress-value
+{background-color:var(--color-green)}
+  
+.markdown-preview-view progress[value="1"]::-webkit-progress-value,
+.markdown-preview-view progress[value="100"]::-webkit-progress-value,
+.markdown-rendered progress[value="1"]::-webkit-progress-value,
+.markdown-rendered progress[value="100"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value="1"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value="100"]::-webkit-progress-value
+{background-color:var(--progress-complete)}
+  
+.markdown-preview-view progress[value="0"]::-webkit-progress-value,
+.markdown-preview-view progress[value="2"]::-webkit-progress-value,
+.markdown-preview-view progress[value="3"]::-webkit-progress-value,
+.markdown-preview-view progress[value="4"]::-webkit-progress-value,
+.markdown-preview-view progress[value="5"]::-webkit-progress-value,
+.markdown-preview-view progress[value="6"]::-webkit-progress-value,
+.markdown-preview-view progress[value="7"]::-webkit-progress-value,
+.markdown-preview-view progress[value="8"]::-webkit-progress-value,
+.markdown-preview-view progress[value="9"]::-webkit-progress-value,
+.markdown-rendered progress[value="0"]::-webkit-progress-value,
+.markdown-rendered progress[value="2"]::-webkit-progress-value,
+.markdown-rendered progress[value="3"]::-webkit-progress-value,
+.markdown-rendered progress[value="4"]::-webkit-progress-value,
+.markdown-rendered progress[value="5"]::-webkit-progress-value,
+.markdown-rendered progress[value="6"]::-webkit-progress-value,
+.markdown-rendered progress[value="7"]::-webkit-progress-value,
+.markdown-rendered progress[value="8"]::-webkit-progress-value,
+.markdown-rendered progress[value="9"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value="0"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value="2"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value="3"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value="4"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value="5"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value="6"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value="7"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value="8"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview progress[value="9"]::-webkit-progress-value
+{background-color:var(--color-red)}
+
 
 /* mermaid */
 .mermaid svg {
@@ -790,3 +862,113 @@ progress{
   font-size: small;
 }
 
+
+/* admontion & callout 抬头模块移动按钮区域优化*/
+
+.callout[data-callout="info"]{
+  background: none !important;
+  border: none;
+  box-shadow: none;
+}
+.callout[data-callout="info"] .callout-title{
+  background: none !important;
+  padding: 5px 3px !important;
+}
+
+
+.callout.is-collapsible:not(.is-collapsed) .callout-content .callout[data-callout="info"] .admonition-content>*:first-child{
+  margin-top:0;
+}
+
+
+/* 软件设置面板优化显示 */
+.modal.mod-settings .vertical-tab-header{
+  padding:var(--size-4-3);
+}
+.vertical-tab-content .setting-item{
+  padding:var(--setting-items-padding) !important;
+}
+.theme-light .setting-group .setting-items{
+  background-color: #bababa30 !important;
+}
+.theme-dark .setting-group .setting-items{
+  background-color: #3434346e !important;
+}
+
+
+.theme-dark:not(.graph-control-section) .setting-item{
+  background-color: #34343429 !important;
+  border: none;
+}
+.theme-light:not(.graph-control-section) .setting-item{
+  background-color: #bababa30 !important;
+  border: none;
+}
+
+.horizontal-tab-content, .vertical-tab-content{
+  background-color: transparent !important;
+}
+
+.vertical-tab-content .setting-item ~ :is(h1, h2, h3, h4, .setting-item-heading){
+  padding:0;
+}
+
+.style-settings-heading:not([data-level="0"],[data-id=shiba-inu-support-header])+.style-settings-container{
+  background-color: transparent;
+}
+.theme-light .dropdown,
+.theme-light .dropdown{
+  border:1px solid rgba(0, 0, 0, 0.1);
+  background-color: transparent;
+  box-shadow: inherit;
+}
+.theme-light .setting-group .setting-group-search{
+  background-color: #bababa30 !important;
+}
+.theme-dark .setting-group .setting-group-search{
+  background-color: #3434346e !important;
+}
+.theme-light .modal .modal-content .vertical-tab-header-group-items .vertical-tab-nav-item.is-active,
+.theme-dark .modal .modal-content .vertical-tab-header-group-items .vertical-tab-nav-item.is-active
+{
+  background-color:#a3a3a330 !important;
+  backdrop-filter: blur(10px);
+  border: none !important;
+  color: var(--text-accent);
+
+}
+
+
+/* 插件市场&主题市场 */
+.community-item{
+  background: #f6f5f214;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 2px 2px 5px rgba(26, 26, 26, 0.2) !important;
+}
+body:not(.is-phone) .community-item.is-selected, body:not(.is-phone) .community-item.is-selected:hover{
+  background: var(--color-accent);
+
+}
+
+
+/* 侧边栏设置按钮常驻显示*/
+body:not(.is-mobile) .mod-left-split.is-sidedock-collapsed {
+  display: block !important;
+
+}
+
+body:not(.is-mobile) .workspace-split.mod-left-split .workspace-sidedock-vault-profile .workspace-drawer-vault-actions{
+    display: grid;
+    left: 5px;
+    position: fixed !important;
+    z-index: 50;
+    bottom: 20px;
+
+}
+
+body:not(.is-mobile) .workspace-split.mod-left-split.is-sidedock-collapsed .workspace-sidedock-vault-profile {
+  bottom: 100px;
+  position: relative;
+}

@@ -1961,14 +1961,6 @@
   background: var(--background-modifier-hover);
   color: var(--text-normal);
 }
-.flowtext-agent-btn-stop {
-  color: var(--text-error, #e44);
-}
-.flowtext-agent-btn-stop:hover {
-  background: rgba(220, 50, 50, 0.1);
-  color: var(--text-error, #e44);
-}
-
 /* 日志区域 */
 .flowtext-agent-body {
   flex: 1;
@@ -2565,6 +2557,120 @@
   border-color: var(--interactive-accent);
 }
 
+.flowtext-agent-task-state {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 2px 0 8px 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--background-modifier-border) 72%, transparent);
+  margin-bottom: 6px;
+}
+
+.flowtext-agent-task-state.is-empty {
+  gap: 0;
+  padding-bottom: 6px;
+  padding-left: 10px;
+  display: none;
+}
+
+.flowtext-agent-task-state-summary {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--text-muted);
+  cursor: pointer;
+  user-select: none;
+}
+
+.flowtext-agent-task-state-summary-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.flowtext-agent-task-state-summary-toggle svg {
+  width: 14px;
+  height: 14px;
+}
+
+.flowtext-agent-task-state-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.flowtext-agent-task-state.is-collapsed .flowtext-agent-task-state-list {
+  display: none;
+}
+
+.flowtext-agent-task-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 100%;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 0.5px dashed var(--background-modifier-border);
+  background: color-mix(in srgb, var(--background-secondary) 88%, transparent);
+  font-size: 13px;
+  line-height: 1.2;
+  color: var(--text-normal);
+}
+
+.flowtext-agent-task-pill-status {
+  flex-shrink: 0;
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+}
+
+.flowtext-agent-task-pill-status svg {
+  width: 14px;
+  height: 14px;
+  stroke-width: 2;
+}
+
+.flowtext-agent-task-pill-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 220px;
+}
+
+.flowtext-agent-task-pill-ref {
+  flex-shrink: 0;
+  padding: 1px 5px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--background-primary) 72%, transparent);
+  color: var(--text-faint);
+  font-size: 12px;
+}
+
+
+.flowtext-agent-task-pill--done .flowtext-agent-task-pill-status {
+  color: var(--color-green, #2ea043);
+}
+
+.flowtext-agent-task-pill--ready,
+.flowtext-agent-task-pill--failed,
+.flowtext-agent-task-pill--blocked,
+.flowtext-agent-task-pill--skipped {
+  opacity: 0.82;
+}
+
+.flowtext-agent-task-pill.is-live .flowtext-agent-task-pill-status {
+  color: var(--color-green, #2ea043);
+  animation: flowtext-spin 1.1s linear infinite;
+}
+
 /* 顶部行：引用笔记标签 */
 .flowtext-agent-input-top {
   display: flex;
@@ -2619,7 +2725,7 @@
   border-radius: 6px;
   border: 0.5px solid var(--background-modifier-border);
   background: var(--background-primary);
-  font-size: 10px;
+  font-size: 13px;
   color: var(--text-muted);
   cursor: default;
   max-width: 300px;
@@ -2675,16 +2781,10 @@
 /* 文本输入区 */
 .flowtext-agent-input {
   flex: 1;
-  border: none;
-  background: transparent;
   color: var(--text-normal);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.5;
   resize: none;
-  outline: none;
-  padding: 4px 0;
-  min-height: 36px;
-  max-height: 120px;
 }
 .flowtext-agent-input:focus{
   outline: none !important;
@@ -2708,9 +2808,8 @@
 .flowtext-agent-input.flowtext-editable-input {
   padding: 4px 0;
   border: none;
-  min-height: 36px;
+  min-height: 40px !important;
   max-height: 120px;
-  overflow-y: auto;
   white-space: pre-wrap;
   word-wrap: break-word;
   background: transparent !important;
@@ -2800,8 +2899,8 @@
   border-radius: 5px;
   background: transparent;
   color: var(--text-faint);
-  font-size: 10px;
-  max-width: 120px;
+  font-size: 12px;
+  max-width: 150px;
   outline: none;
   cursor: pointer;
   appearance: none;
@@ -2864,11 +2963,26 @@
   transition: opacity 0.15s;
   box-shadow: none !important;
   padding-right: 2px;
+  gap: 2px;
 }
-.flowtext-agent-btn-send svg {
+.flowtext-agent-btn-send-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.flowtext-agent-btn-send-icon svg {
   width: 16px;
   height: 16px;
-
+  background: var(--checklist-done-color);
+  border-radius: 50%;
+  color: var(--text-on-accent);
+  padding: 1px;
+}
+.flowtext-agent-btn-send.is-stop-mode .flowtext-agent-btn-send-icon svg {
+  background: var(--checklist-done-color);
+  border-radius: 50%;
+  color: var(--text-on-accent);
+  padding: 2.5px;
 }
 .flowtext-agent-btn-send:hover {
   opacity: 0.85;
@@ -3248,7 +3362,8 @@
 }
 
 .flowtext-agent-btn-shortcut{
-  font-size: 9px;
+  font-size: 12px;
+  color: var(--text-faint);
 }
 
 /* 设置页：添加自定义 Skill 模态框 */

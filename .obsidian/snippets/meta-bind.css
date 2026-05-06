@@ -1,5 +1,12 @@
+/*──────────────────────────────────────────────────────────────────
+meta bind样式优化
+Version 0.3.0
+Created by @ytmaps_鱼先生
 
+authorurl:
+https://www.xiaohongshu.com/user/profile/63cfeb720000000026010489
 
+──────────────────────────────────────────────────────────────────── */
 /* meta bind 网格颜色 */
 .theme-dark {
     --bg-color-notebook: #2a2825;
@@ -539,8 +546,8 @@ textarea, input.metadata-input-text, input[type='date'], input[type='datetime-lo
     border-right: 10px solid var(--para-border) !important;
     justify-content: left;
     transition: all 0.3s ease;
-    backdrop-filter: blur(5px);
-    border: 0.5px solid #8a8888;
+    backdrop-filter: blur(10px);
+    border: 0.5px solid #b7b7b7;
     background-color: transparent;
 }
 
@@ -551,8 +558,8 @@ textarea, input.metadata-input-text, input[type='date'], input[type='datetime-lo
     border-right: 10px solid var(--connections-border) !important;
     justify-content: left;
     transition: all 0.3s ease;
-    backdrop-filter: blur(5px);
-    border: 0.5px solid #8a8888;
+    backdrop-filter: blur(10px);
+    border: 0.5px solid #b7b7b7;
     background-color: transparent;
 }
 
@@ -563,8 +570,8 @@ textarea, input.metadata-input-text, input[type='date'], input[type='datetime-lo
     border-right: 10px solid var(--qita-border) !important;
     justify-content: left;
     transition: all 0.3s ease;
-    backdrop-filter: blur(5px);
-    border: 0.5px solid #8a8888;
+    backdrop-filter: blur(10px);
+    border: 0.5px solid #b7b7b7;
     background-color: transparent;
 }
 
@@ -574,12 +581,63 @@ textarea, input.metadata-input-text, input[type='date'], input[type='datetime-lo
     border-right: 10px solid var(--cardnotes-border) !important;
     justify-content: left;
     transition: all 0.3s ease;
-    backdrop-filter: blur(5px);
-    border: 0.5px solid #8a8888;
+    backdrop-filter: blur(10px);
+    border: 0.5px solid #b7b7b7;
     background-color: transparent;
 }
 
 
+/* ==========液态玻璃效果========== */
+.theme-dark .cardnotes-4col button, 
+.theme-dark .cardnotes-3col button, 
+.theme-dark .cardnotes-2col button {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.25) ;
+    border-left: 1px solid rgba(255, 255, 255, 0.2) ;  
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+
+.theme-dark .qita-4col button, 
+.theme-dark .qita-3col button, 
+.theme-dark .qita-2col button {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.25) ;
+    border-left: 1px solid rgba(255, 255, 255, 0.2) ;  
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1) 
+}
+
+
+.theme-dark .para-4col button, 
+.theme-dark .para-3col button, 
+.theme-dark .para-2col button {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.25) ;
+    border-left: 1px solid rgba(255, 255, 255, 0.2) ;  
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1) ;
+}
+
+
+.theme-dark .connections-4col button, 
+.theme-dark .connections-3col button, 
+.theme-dark .connections-2col button {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.25) ;
+    border-left: 1px solid rgba(255, 255, 255, 0.2) ;  
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1) ;
+}
+
+
+.theme-light .mb-calendar-header{
+    background: #30303012;
+}
+.theme-dark .mb-calendar-header{
+    background: #3030303b;
+}
 
 
 /* 增强悬停效果 */
