@@ -394,3 +394,494 @@
         transform: translateY(0);
     }
 }
+
+/* ========== 官方 Bases 搜索：按属性字段筛选（UI：图标 + 下拉；筛选走核心 applySearchQuery） ========== */
+
+.search-input-container.document-search-input.mod-bases-property-scope {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    padding-inline-start: 30px;
+    min-width: 0;
+}
+
+.search-input-container.document-search-input.mod-bases-property-scope > input {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding-left: 5px;
+}
+
+.bases-search-scope-current-field {
+    flex: 0 1 auto;
+    max-width: 42%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: var(--font-ui-smaller, 0.85em);
+    line-height: var(--line-height-tight);
+    color: var(--color-accent);
+    font-weight: 500;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.search-input-container.document-search-input.mod-bases-property-scope::before {
+    content: "";
+    position: absolute;
+    inset-block-start: 50%;
+    inset-inline-start: 8px;
+    width: 18px;
+    height: 18px;
+    margin-block-start: -9px;
+    background-color: var(--text-muted);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.search-input-container.document-search-input.mod-bases-property-scope:hover::before {
+    background-color: var(--text-normal);
+}
+
+.bases-property-search-scope-menu {
+    position: fixed;
+    z-index: var(--layer-popover, 65);
+    min-width: 180px;
+    max-width: min(320px, 90vw);
+    max-height: min(360px, 50vh);
+    overflow-y: auto;
+    padding: 4px;
+    margin: 0;
+    border-radius: var(--radius-m, 6px);
+    border: 1px solid var(--background-modifier-border);
+    background-color: var(--background-primary);
+    box-shadow: var(--shadow-l, 0 4px 16px rgba(0, 0, 0, 0.12));
+}
+
+.bases-property-search-scope-item {
+    display: block;
+    text-align: start;
+    background: transparent !important;
+    cursor: pointer;
+    box-shadow: none !important;
+}
+
+.bases-property-search-scope-item:hover {
+    background-color: var(--background-modifier-hover);
+}
+
+.bases-property-search-scope-item.is-active {
+    color: var(--text-accent);
+    font-weight: 500;
+    background-color: var(--background-modifier-hover);
+}
+
+/* ========== Bases 表格 tags 列：彩色胶囊标签（颜色由 main.js 写入 CSS 变量） ========== */
+
+/* tags 列：让容器受列宽约束（min-width:0），flex-wrap 才能折到下一行 */
+.bases-view .bases-td .metadata-property-value[data-property-type="tags"],
+.bases-view .bases-table-cell .metadata-property-value[data-property-type="tags"] {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* 多个 pill 在容器内换行；每个 pill 内文本不换行 */
+.bases-view .metadata-property-value[data-property-type="tags"] .multi-select-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    align-items: center;
+    align-content: flex-start;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+    white-space: normal;
+}
+
+.bases-view .metadata-property-value[data-property-type="tags"] .multi-select-pill,
+.bases-view .metadata-property-value[data-property-type="tags"] .multi-select-pill.mod-bases-colored-tag-pill {
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    max-width: 100%;
+    white-space: nowrap;
+    padding: 3px 3px;
+    margin: 0;
+    font-size: 11px;
+    line-height: 1;
+    border-radius: var(--tag-radius);
+    cursor: pointer;
+    color: #2c3e50;
+    background-color: var(--bases-tag-bg, hsl(200, 45%, 85%));
+}
+
+.bases-view .metadata-property-value[data-property-type="tags"] .multi-select-pill-content,
+.bases-view .metadata-property-value[data-property-type="tags"] .multi-select-pill-content * {
+    white-space: nowrap;
+}
+
+/* 深色模式：main.js 仍写入偏浅的 hsl，此处与 --background-primary 混色并统一描边/阴影 */
+.theme-dark .bases-view .metadata-property-value[data-property-type="tags"] .multi-select-pill.mod-bases-colored-tag-pill {
+    color: var(--text-normal);
+    border: 1px solid var(--background-modifier-border);
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    background-color: var(--bases-tag-bg, hsl(200, 35%, 32%));
+}
+
+@supports (background: color-mix(in srgb, red, blue)) {
+    .theme-dark .bases-view .metadata-property-value[data-property-type="tags"] .multi-select-pill.mod-bases-colored-tag-pill {
+        background-color: color-mix(in srgb, var(--bases-tag-bg) 38%, var(--background-primary));
+
+    }
+
+}
+
+/* Bases 表格：插件「布局」— 单元格内换行（与官方 rowHeight 多行模式配合更佳） */
+.bases-table-container.mod-bases-plugin-table-cell-wrap .bases-table-cell {
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+}
+
+/* tags 列：整格可换行，但每个标签药丸内不换行；药丸之间由 .multi-select-container 的 flex-wrap 换行 */
+.bases-table-container.mod-bases-plugin-table-cell-wrap
+    .metadata-property-value[data-property-type="tags"]
+    .multi-select-pill,
+.bases-table-container.mod-bases-plugin-table-cell-wrap
+    .metadata-property-value[data-property-type="tags"]
+    .multi-select-pill-content,
+.bases-table-container.mod-bases-plugin-table-cell-wrap
+    .metadata-property-value[data-property-type="tags"]
+    .multi-select-pill-content * {
+    white-space: nowrap;
+    word-break: normal;
+    overflow-wrap: normal;
+}
+
+.bases-table-container.mod-bases-plugin-table-cell-wrap
+    .metadata-property-value[data-property-type="tags"]
+    .multi-select-pill {
+    flex-shrink: 0;
+}
+
+/* ---------- 水平对齐（按 Base 持久化；不作用于「文件名」列 file.name） ---------- */
+
+/* 未选「单元格对齐」时：数字列默认居左（覆盖官方数字 input 常见 text-align: end） */
+.bases-table-container:not(.mod-bases-plugin-cell-align-left):not(.mod-bases-plugin-cell-align-center):not(
+        .mod-bases-plugin-cell-align-right
+    )
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell
+    .metadata-input-number,
+.bases-table-container:not(.mod-bases-plugin-cell-align-left):not(.mod-bases-plugin-cell-align-center):not(
+        .mod-bases-plugin-cell-align-right
+    )
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell
+    .metadata-input-number
+    input,
+.bases-table-container:not(.mod-bases-plugin-cell-align-left):not(.mod-bases-plugin-cell-align-center):not(
+        .mod-bases-plugin-cell-align-right
+    )
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell[data-property-type="number"],
+.bases-table-container:not(.mod-bases-plugin-cell-align-left):not(.mod-bases-plugin-cell-align-center):not(
+        .mod-bases-plugin-cell-align-right
+    )
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell[data-property-type="number"]
+    input,
+.bases-table-container:not(.mod-bases-plugin-cell-align-left):not(.mod-bases-plugin-cell-align-center):not(
+        .mod-bases-plugin-cell-align-right
+    )
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell
+    .metadata-property-value[data-property-type="number"] {
+    text-align: left;
+}
+
+.bases-table-container:not(.mod-bases-plugin-cell-align-left):not(.mod-bases-plugin-cell-align-center):not(
+        .mod-bases-plugin-cell-align-right
+    )
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell
+    .metadata-input-number,
+.bases-table-container:not(.mod-bases-plugin-cell-align-left):not(.mod-bases-plugin-cell-align-center):not(
+        .mod-bases-plugin-cell-align-right
+    )
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell[data-property-type="number"] {
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.bases-table-container.mod-bases-plugin-cell-align-left .bases-tbody .bases-td:not([data-property="file.name"]),
+.bases-table-container.mod-bases-plugin-cell-align-left
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell {
+    text-align: left;
+}
+
+.bases-table-container.mod-bases-plugin-cell-align-center .bases-tbody .bases-td:not([data-property="file.name"]),
+.bases-table-container.mod-bases-plugin-cell-align-center
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell {
+    text-align: center;
+}
+
+.bases-table-container.mod-bases-plugin-cell-align-right .bases-tbody .bases-td:not([data-property="file.name"]),
+.bases-table-container.mod-bases-plugin-cell-align-right
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell {
+    text-align: right;
+}
+
+/* 官方可能把 .bases-table-cell 做成 flex：用主轴对齐整块内容 */
+.bases-table-container.mod-bases-plugin-cell-align-left
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell {
+    justify-content: flex-start;
+}
+
+.bases-table-container.mod-bases-plugin-cell-align-center
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell {
+    justify-content: center;
+}
+
+.bases-table-container.mod-bases-plugin-cell-align-right
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell {
+    justify-content: flex-end;
+}
+
+/* 常见内层（DOM：markdown-rendered / bases-rendered-value / metadata 长文本 / 日期 span） */
+.bases-table-container.mod-bases-plugin-cell-align-left
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell
+    .markdown-rendered,
+.bases-table-container.mod-bases-plugin-cell-align-left
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell
+    .bases-rendered-value,
+.bases-table-container.mod-bases-plugin-cell-align-left
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell
+    .metadata-property-value,
+.bases-table-container.mod-bases-plugin-cell-align-left
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell
+    .metadata-input-longtext,
+.bases-table-container.mod-bases-plugin-cell-align-left
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell
+    .metadata-input-number,
+.bases-table-container.mod-bases-plugin-cell-align-left
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell
+    .metadata-input-number
+    input,
+.bases-table-container.mod-bases-plugin-cell-align-left
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell[data-property-type="number"],
+.bases-table-container.mod-bases-plugin-cell-align-left
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell[data-property-type="number"]
+    input,
+.bases-table-container.mod-bases-plugin-cell-align-left
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell
+    .mod-datetime {
+    text-align: left;
+}
+
+.bases-table-container.mod-bases-plugin-cell-align-center
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell
+    .markdown-rendered,
+.bases-table-container.mod-bases-plugin-cell-align-center
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell
+    .bases-rendered-value,
+.bases-table-container.mod-bases-plugin-cell-align-center
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell
+    .metadata-property-value,
+.bases-table-container.mod-bases-plugin-cell-align-center
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell
+    .metadata-input-longtext,
+.bases-table-container.mod-bases-plugin-cell-align-center
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell
+    .metadata-input-number,
+.bases-table-container.mod-bases-plugin-cell-align-center
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell
+    .metadata-input-number
+    input,
+.bases-table-container.mod-bases-plugin-cell-align-center
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell[data-property-type="number"],
+.bases-table-container.mod-bases-plugin-cell-align-center
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell[data-property-type="number"]
+    input,
+.bases-table-container.mod-bases-plugin-cell-align-center
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell
+    .mod-datetime {
+    text-align: center;
+}
+
+.bases-table-container.mod-bases-plugin-cell-align-right
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell
+    .markdown-rendered,
+.bases-table-container.mod-bases-plugin-cell-align-right
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell
+    .bases-rendered-value,
+.bases-table-container.mod-bases-plugin-cell-align-right
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell
+    .metadata-property-value,
+.bases-table-container.mod-bases-plugin-cell-align-right
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell
+    .metadata-input-longtext,
+.bases-table-container.mod-bases-plugin-cell-align-right
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell
+    .metadata-input-number,
+.bases-table-container.mod-bases-plugin-cell-align-right
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell
+    .metadata-input-number
+    input,
+.bases-table-container.mod-bases-plugin-cell-align-right
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell[data-property-type="number"],
+.bases-table-container.mod-bases-plugin-cell-align-right
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell[data-property-type="number"]
+    input,
+.bases-table-container.mod-bases-plugin-cell-align-right
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell
+    .mod-datetime {
+    text-align: right;
+}
+
+/* multitext / tags 等：flex 的 .multi-select-container 不能仅靠 text-align，需主轴对齐 + 占满列宽 */
+.bases-table-container.mod-bases-plugin-cell-align-left
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .multi-select-container {
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.bases-table-container.mod-bases-plugin-cell-align-center
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .multi-select-container {
+    justify-content: center;
+    width: 100%;
+}
+
+.bases-table-container.mod-bases-plugin-cell-align-right
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .multi-select-container {
+    justify-content: flex-end;
+    width: 100%;
+}
+
+/* number：官方 .metadata-input-number 常为 flex，需与 multitext 一样拉满列宽并设主轴对齐 */
+.bases-table-container.mod-bases-plugin-cell-align-left
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell
+    .metadata-input-number,
+.bases-table-container.mod-bases-plugin-cell-align-left
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell[data-property-type="number"] {
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.bases-table-container.mod-bases-plugin-cell-align-center
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell
+    .metadata-input-number,
+.bases-table-container.mod-bases-plugin-cell-align-center
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell[data-property-type="number"] {
+    justify-content: center;
+    width: 100%;
+}
+
+.bases-table-container.mod-bases-plugin-cell-align-right
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell
+    .metadata-input-number,
+.bases-table-container.mod-bases-plugin-cell-align-right
+    .bases-tbody
+    .bases-td:not([data-property="file.name"])
+    .bases-table-cell[data-property-type="number"] {
+    justify-content: flex-end;
+    width: 100%;
+}
+

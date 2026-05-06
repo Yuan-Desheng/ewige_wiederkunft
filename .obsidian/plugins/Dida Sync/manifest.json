@@ -1,7 +1,7 @@
 {
   "id": "dida-sync",
   "name": "Dida Sync",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "minAppVersion": "0.15.0",
   "description": "与滴答清单双向同步任务的插件",
   "author": "ytmpas_鱼先生",

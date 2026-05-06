@@ -13,5 +13,7 @@
     "note.读书时长": "#14b8a6",
     "count(file.ctime)": "#f97316"
   },
-  "showDataPoints": true
+  "showDataPoints": true,
+  "basesTableWrapByBasePath": {},
+  "basesTableCellAlignByBasePath": {}
 }

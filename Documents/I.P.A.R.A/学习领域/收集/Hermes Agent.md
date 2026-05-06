@@ -50,3 +50,8 @@ curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scri
 ```
 hermes model
 ```
+
+**交互式会话选择器**，用方向键和回车即可选中恢复
+```
+hermes sessions browse
+```

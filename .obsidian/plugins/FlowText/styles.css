@@ -689,7 +689,7 @@
   display: inline-flex;
   align-items: center;
   gap: 3px;
-  padding: 0 4px 0 8px;
+  padding: 0 4px 0 4px;
   background: var(--background-modifier-hover);
   color: var(--text-normal);
   border-radius: 10px;
@@ -701,9 +701,29 @@
   position: relative;
 }
 
+/* 左侧固定槽：图标与删除按钮叠放，悬停时互换显示，不改变标签总宽度 */
+.flowtext-inline-tag-leading {
+  position: relative;
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
 .flowtext-inline-tag-icon {
   font-size: 13px;
   line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.08s ease;
+}
+
+.flowtext-inline-tag:hover .flowtext-inline-tag-icon {
+  opacity: 0;
 }
 
 .flowtext-inline-tag-name-wrap {
@@ -731,13 +751,17 @@
 .flowtext-inline-tag-remove {
   -webkit-appearance: none;
   appearance: none;
-  display: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
   width: 18px;
   height: 18px;
-  margin-left: 1px;
+  margin: 0;
   padding: 0;
   border: none;
   border-radius: 4px;
@@ -747,10 +771,14 @@
   line-height: 1;
   cursor: pointer;
   box-shadow: none !important;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.08s ease;
 }
 
 .flowtext-inline-tag:hover .flowtext-inline-tag-remove {
-  display: inline-flex;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .flowtext-inline-tag-remove:hover {
@@ -1428,15 +1456,12 @@
 
 /* 输入框@符号上下文选择器样式 */
 .flowtext-context-suggestions {
-  position: fixed;
   background: var(--background-primary);
-  border: 1px solid var(--background-modifier-border);
   border-radius: 8px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-  min-width: 300px;
-  max-width: 500px;
+  min-width: 200px;
+  max-width: 300px;
   overflow: hidden;
-  z-index: 10000;
 }
 
 .flowtext-suggestions-header {
@@ -2051,7 +2076,6 @@
   line-height: 1.5;
   color: var(--text-normal);
   word-break: break-word;
-  white-space: pre-wrap;
 }
 .flowtext-agent-step-text.is-mono {
   font-size: 13px;
@@ -2375,6 +2399,7 @@
   color: var(--text-success, #0b0);
 }
 
+
 /* 按钮组（final 步骤右上角：反馈 + 复制） */
 .flowtext-agent-final-btns {
   position: absolute;
@@ -2584,6 +2609,7 @@
   white-space: nowrap;
 }
 
+
 /* 笔记引用标签 */
 .flowtext-agent-note-ref {
   display: inline-flex;
@@ -2596,7 +2622,7 @@
   font-size: 10px;
   color: var(--text-muted);
   cursor: default;
-  max-width: 200px;
+  max-width: 300px;
   transition: opacity 0.15s;
 }
 .flowtext-agent-note-ref-icon {
@@ -2719,9 +2745,46 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 6px;
 }
 
-/* 选项行：模型下拉 → 上传图片 → 思考开关 */
+/* Agent 上下文用量条（5 段，与设置「上下文总长度上限」一致） */
+.flowtext-agent-context-meter {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flowtext-agent-context-bars {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0;
+  font-size: 8px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  user-select: none;
+}
+.flowtext-agent-context-bar.is-empty {
+  color: var(--background-modifier-border);
+  opacity: 0.4;
+}
+.flowtext-agent-context-meter--safe .flowtext-agent-context-bar.is-filled {
+  color: var(--color-green, #2ea043);
+}
+.flowtext-agent-context-meter--warn .flowtext-agent-context-bar.is-filled {
+  color: var(--interactive-accent);
+}
+.flowtext-agent-context-meter--orange .flowtext-agent-context-bar.is-filled {
+  color: var(--color-orange);
+}
+.flowtext-agent-context-meter--red .flowtext-agent-context-bar.is-filled {
+  color: var(--color-red);
+}
+.flowtext-agent-context-meter--over .flowtext-agent-context-bar.is-filled {
+  color: var(--color-red);
+}
+
+/* 选项行：加号上传 → 模型下拉 → 思考开关 */
 .flowtext-agent-options-row {
   display: flex;
   align-items: center;
@@ -3001,11 +3064,6 @@
   overflow-y: auto;
   animation: flowtext-agent-fadeIn 0.2s ease;
 }
-.flowtext-agent-session-actions {
-  display: flex;
-  justify-content: flex-end;
-  padding: 6px 10px 2px;
-}
 .flowtext-agent-session-clear-all {
   font-size: 11px;
   color: var(--text-faint);
@@ -3016,9 +3074,21 @@
   border-radius: 4px;
   box-shadow: none;
 }
+.flowtext-agent-session-clear-all--header {
+  margin-right: 6px;
+  align-self: center;
+  flex-shrink: 0;
+}
+.flowtext-agent-session-clear-all.is-confirm {
+  color: var(--text-error);
+  font-weight: 600;
+}
 .flowtext-agent-session-clear-all:hover {
   color: var(--text-error);
   background: var(--background-modifier-hover);
+}
+.flowtext-agent-session-clear-all.is-confirm:hover {
+  color: var(--text-error);
 }
 .flowtext-agent-session-list {
   padding: 2px 6px 6px;

@@ -240,45 +240,153 @@
 /* 音频播放器样式 */
 .media-browser-audio-player {
     background: transparent;
-    border: 1px solid rgb(24 91 0 / 60%);
     border-radius: 8px;
-    padding: 12px;
+    padding: 10px;
     margin-bottom: 12px;
     display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-}
+    align-items: stretch;
+    gap: 14px;
+    flex-wrap: nowrap;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    box-shadow: 0 1px 13px rgb(0 0 0 / 12%);
+}   
 
 .media-browser-audio-player button {
     box-shadow: none !important;
+    min-width: 28px;
+    min-height: 28px;
 }
 
 .media-browser-audio-player button:hover {
     transform: scale(1.1);
 }
 
-.media-browser-current-file {
-    padding-left: 10px;
-    flex: 1;
-    min-width: 120px;
-    font-size: 12px;
-    color: #495057;
+.media-browser-audio-cover {
+    width: 50px;
+    height: 50px;
+    flex: 0 0 50px;
+    border-radius: 8px !important;
+    background: var(--background-secondary);
+    box-shadow: 0 1px 3px rgb(0 0 0 / 12%);
+    user-select: none;
+    align-self: center;
+    box-sizing: border-box;
+
+}
+
+.media-browser-audio-cover.is-default-cover {
+    object-fit: contain;
+    padding: 8px;
+}
+
+.media-browser-audio-main {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: 100%;
     overflow: hidden;
-    text-overflow: ellipsis;
+    display: grid;
+    grid-template-rows: minmax(38px, auto) 1fr;
+}
+
+.media-browser-audio-top-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    gap: 12px;
+    align-items: stretch;
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+    justify-items: start;
+}
+
+.media-browser-audio-controls,
+.media-browser-current-file {
+    min-height: 38px;
+    box-sizing: border-box;
+}
+
+.media-browser-audio-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 4px 8px;
+}
+
+.media-browser-current-file {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 12px !important;
+    flex: none !important;
+    min-width: 0 !important;
+    max-width: 100%;
+    overflow: hidden !important;
     white-space: nowrap;
 }
 
+.media-browser-current-file-text {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.media-browser-audio-progress-row {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 12px;
+    min-width: 0 !important;
+    max-width: 100%;
+    width: 100%;
+    padding: 0 2px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+
 /* 进度条样式 */
 .media-browser-progress {
-    flex: 1;
-    height: 3px !important;
-    border-radius: 2px;
+    width: 100% !important;
+    flex: none !important;
     background:rgba(45, 128, 128, 0.648) !important;
-    outline: none;
-    cursor: pointer;
-    -webkit-appearance: none;
-    appearance: none;
+
+}
+
+@media (max-width: 420px) {
+    .media-browser-audio-player {
+        gap: 10px;
+        padding: 12px;
+    }
+
+    .media-browser-audio-cover {
+        width: 64px;
+        height: 64px;
+        flex-basis: 64px;
+    }
+
+    .media-browser-audio-top-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .media-browser-audio-progress-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+
+    .media-browser-time-display {
+        text-align: center !important;
+    }
 }
 
 .media-browser-progress::-webkit-slider-thumb {

@@ -318,7 +318,6 @@
     line-height: 1.2;
     background-color: var(--tag-background, rgba(120, 120, 120, 0.08));
     color: var(--tag-color, var(--text-muted));
-    border: 1px solid var(--tag-border-color, rgba(120, 120, 120, 0.4));
     white-space: nowrap;
 }
 
@@ -561,6 +560,12 @@
     background-color: var(--background-modifier-hover);
 }
 
+/* 拖拽到 Markdown 文档时给标题一点视觉反馈 */
+.dida-task-title-clickable[draggable="true"].dida-task-dragging {
+    opacity: 0.6;
+    background-color: var(--background-modifier-active-hover, var(--background-modifier-hover));
+}
+
 /* 任务详情下拉区域样式 */
 .dida-task-details {
     padding-top: 6px;
@@ -680,12 +685,10 @@
     color: var(--color-red) !important;
     max-width: 160px;
     display:inline;
+    box-shadow: none !important;
 }
 
-.dida-task-jump-btn.mod-warning:hover {
-    background: transparent !important;
-    color: var(--color-red-hover) !important;
-}
+
 
 /* 时间线任务详情中的按钮容器和按钮样式 */
 .dida-timeline-task-item .dida-task-details .dida-task-button-container {
@@ -751,7 +754,8 @@
 
 
 
-.dida-task-due-date {
+.dida-task-due-date,
+.dida-task-item.dida-subtask-item .dida-task-due-date.dida-subtask-due-date {
     font-size: 11px;
     opacity: 0.6;
     padding: 2px 2px;
@@ -760,6 +764,7 @@
     min-width: 35px;
     text-align: center;
     font-weight: 500;
+    margin-bottom: 0;
 }
 
 .dida-task-due-date.today {
@@ -1442,7 +1447,7 @@
 }
 
 .dida-add-subtask-btn {
-    padding: 6px 12px;
+    padding: 4px;
     background: var(--interactive-accent);
     color: var(--text-on-accent);
     border: none;
@@ -1533,6 +1538,37 @@
     display: block !important;
 }
 
+/* 检查项 / 子任务标签页：纵向排列，添加按钮在最后一行 item 下方；长列表在区域内滚动 */
+.dida-tab-content.active#check-items-tab,
+.dida-tab-content.active#subtasks-tab {
+    display: flex !important;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+    max-height: min(42vh, 280px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 8px;
+    box-sizing: border-box;
+}
+
+.dida-check-items-list:empty {
+    display: none;
+    margin: 0;
+    padding: 0;
+    min-height: 0;
+}
+
+.dida-tab-content.active#check-items-tab .dida-project-add-task-btn.dida-add-check-item-btn,
+.dida-tab-content.active#subtasks-tab .dida-project-add-task-btn.dida-add-subtask-btn {
+    position: static !important;
+    align-self: flex-start;
+    margin: 6px 0 0 0 !important;
+    margin-left: 0 !important;
+    top: auto !important;
+    right: auto !important;
+}
+
 /* 任务编辑区域样式 */
 .dida-task-detail-title,
 .dida-task-detail-content {
@@ -1545,6 +1581,7 @@
     font-size: 12px !important;
     box-sizing: border-box;
     height: 25px !important;
+    border: none !important;
 }
 
 .dida-task-content-textarea {
@@ -1682,6 +1719,8 @@
     transition: background-color 0.2s ease;
     flex-shrink: 0;
 }
+
+
 /* 添加按钮样式 */
 .dida-add-task-btn {
     margin-top: 10px;
@@ -2504,7 +2543,6 @@ label + .dida-project-select {
 }
 
 .dida-task-delete-link-btn:hover {
-    background: var(--background-modifier-hover) !important;
     color: var(--color-red) !important;
     transform: scale(1.1);
 }
@@ -2555,7 +2593,7 @@ label + .dida-project-select {
     stroke: var(--color-red);
 }
 
-/* 重置按钮样�� */
+/* 重置按钮样式 */
 .setting-item-control button.mod-warning {
     background: var(--color-red);
     color: var(--text-on-accent);
@@ -2850,6 +2888,106 @@ label + .dida-project-select {
     color: var(--text-accent);
     border-left: 3px solid var(--interactive-accent);
     padding-left: 13px;
+}
+
+/* 任务操作菜单 · 到期日期简易日历 */
+.task-action-menu-inline.task-action-menu-with-calendar {
+    min-width: 252px;
+    max-width: 280px;
+}
+
+.task-action-cal-today-hint {
+    padding: 6px 12px 4px;
+    font-size: 11px;
+    color: var(--text-muted);
+    text-align: center;
+    border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.task-action-cal-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 6px 10px;
+}
+
+.task-action-cal-nav-btn {
+    flex: 0 0 auto;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--text-muted);
+    user-select: none;
+}
+
+.task-action-cal-nav-btn:hover {
+    background: var(--background-modifier-hover);
+    color: var(--text-normal);
+}
+
+.task-action-cal-nav-label {
+    flex: 1 1 auto;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-normal);
+}
+
+.task-action-cal-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    padding: 2px 8px 4px;
+    font-size: 10px;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+.task-action-cal-weekday {
+    padding: 2px 0;
+}
+
+.task-action-cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 3px;
+    padding: 4px 8px 10px;
+}
+
+.task-action-cal-cell {
+    min-height: 28px;
+    line-height: 28px;
+    text-align: center;
+    font-size: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: var(--text-normal);
+    user-select: none;
+}
+
+.task-action-cal-cell-empty {
+    visibility: hidden;
+    pointer-events: none;
+    min-height: 28px;
+}
+
+.task-action-cal-cell:hover:not(.task-action-cal-cell-empty) {
+    background: var(--background-modifier-hover);
+}
+
+.task-action-cal-cell-today {
+    font-weight: 700;
+    box-shadow: inset 0 0 0 2px var(--interactive-accent);
+    border-radius: 4px;
+}
+
+.task-action-cal-cell-due {
+    background: var(--background-modifier-active-hover, var(--background-modifier-hover));
 }
 
 /* 深色主题适配 */
