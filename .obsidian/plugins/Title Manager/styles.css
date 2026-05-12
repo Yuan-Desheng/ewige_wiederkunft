@@ -452,3 +452,13 @@
     }
 }
 
+/* 页内标题样式 */
+
+.workspace-split.mod-left-split .inline-title:not([data-level]), .workspace-split.mod-right-split .inline-title:not([data-level]){
+    display: none !important;
+}
+
+.shib-card-layout .inline-title:not([data-level]){
+    font-size: 20px;
+    padding-left: 20px;
+}

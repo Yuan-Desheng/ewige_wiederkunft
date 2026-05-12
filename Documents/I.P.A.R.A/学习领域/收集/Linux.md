@@ -70,6 +70,11 @@ docker restart hz_test_local-nginx-1
 nautilus .
 ```
 
+展示当前目录及其直接子目录的内容
+```
+tree -L 2
+```
+
 
 
 ## 前端打包部署

@@ -53,36 +53,6 @@
             }
           },
           {
-            "id": "e9bfbe9d61d62af2",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "融合大模型智能体的虚拟电厂仿真系统"
-            }
-          },
-          {
-            "id": "8f018113abe5959a",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "数据库与导航.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "数据库与导航"
-            }
-          },
-          {
             "id": "cc6958531c714094",
             "type": "leaf",
             "state": {
@@ -98,48 +68,18 @@
             }
           },
           {
-            "id": "343a4f3b00f71bc0",
+            "id": "6850ee5841d54388",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Documents/I.P.A.R.A/学习领域/收集/从零构建大模型.md",
+                "file": "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "从零构建大模型"
-            }
-          },
-          {
-            "id": "c0353435f736d574",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Documents/I.P.A.R.A/学习领域/收集/Claude Code.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "Claude Code"
-            }
-          },
-          {
-            "id": "d188a5d170ce8256",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Documents/I.P.A.R.A/学习领域/收集/Claude Code-指令.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "Claude Code-指令"
+              "title": "融合大模型智能体的虚拟电厂仿真系统"
             }
           },
           {
@@ -171,9 +111,24 @@
               "icon": "lucide-file",
               "title": "Hermes Agent"
             }
+          },
+          {
+            "id": "ab1a384cfcda5bbe",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documents/I.P.A.R.A/学习领域/收集/Claude Code-指令.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "Claude Code-指令"
+            }
           }
         ],
-        "currentTab": 5
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -226,11 +181,13 @@
               "title": "书签"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 304
+    "width": 304,
+    "collapsed": true
   },
   "right": {
     "id": "128c55eacc93ffde",
@@ -433,7 +390,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 423
+    "width": 423,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -456,14 +414,30 @@
       "note-importer:导入笔记": false
     }
   },
-  "active": "cc6958531c714094",
+  "active": "6850ee5841d54388",
   "lastOpenFiles": [
-    "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
+    "Documents/I.P.A.R.A/工作领域/项目/自媒体平台数据爬取.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Claude Code-指令.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Claude Code.md",
     "数据库与导航.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Claude Code + Blender + Unity + Flutter.md",
+    "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
     "Documents/I.P.A.R.A/工作领域/项目/知塘晓物-APP端开发.md",
+    "Documents/I.P.A.R.A/学习领域/收集/从零构建大模型.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Linux.md",
+    "Documents/I.P.A.R.A/工作领域/项目/虚拟电厂仿真系统-原始需求的提示词整理.md",
+    "Documents/I.P.A.R.A/工作领域/项目/负荷预测、可调能力、协同仿真 页面原型.md",
+    "Extras/附件/接口对接完成总结.md",
+    "Connections/人脉管理数据库-Bases.base",
+    "Extras/附件/对接方案.md",
+    "Extras/附件/Unity Editor MCP + Claude Code 配置指南.md",
+    "Extras/附件/Pasted image 20260424164725.png",
+    "Extras/附件/Pasted image 20251229151116.png",
+    "Extras/附件/Flutter从入门到实战.pdf",
+    "Assistants/Templater/主页/homepage-侧页.md",
     "使用指南/00--通用说明（重要）/0-更新日志.md",
     "Assistants/Modules/任务模块/今日需处理的笔记.md",
-    "Assistants/Templater/主页/homepage-侧页.md",
     "Documents/Canvas/未命名.canvas",
     "Assistants/Modules/影视模块/音乐播放器.md",
     "Assistants/Templater/笔记/视频时间戳笔记.md",
@@ -471,24 +445,11 @@
     "Documents/I.P.A.R.A/学习领域/收集/OpenClaw.md",
     "快速上手打卡任务（完成后，请删除）.md",
     "Documents/I.P.A.R.A/生活领域/收集/跑步.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Linux.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Claude Code.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Claude Code-指令.md",
-    "Documents/I.P.A.R.A/工作领域/项目/自媒体平台数据爬取.md",
     "Documents/I.P.A.R.A/学习领域/收集/Claude Code-命令.md",
-    "Extras/附件/unity-editor-mcp-guide.md",
-    "Documents/I.P.A.R.A/学习领域/收集/从零构建大模型.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent.md",
     "Documents/I.P.A.R.A/学习领域/收集/OpenClaw常用命令.md",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/Artificial Intelligence.canvas",
-    "Documents/I.P.A.R.A/学习领域/收集/APP打包上架.md",
     "Documents/I.P.A.R.A/0-收集箱/未命名 1.base",
-    "Documents/I.P.A.R.A/学习领域/收集/Skill.md",
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/知塘晓物.canvas",
-    "Documents/I.P.A.R.A/工作领域/项目/知塘晓物-后台管理开发.md",
-    "Documents/I.P.A.R.A/学习领域/收集/frontend-dev Agent Claude Code 集成方案.md",
-    "Documents/I.P.A.R.A/学习领域/收集/OpenClaw技能清单.md",
-    "Extras/附件/Pasted image 20260424164725.png",
     "Extras/附件/Pasted image 20260424164618.png",
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/海媒传播分析系统.canvas",
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/融合大模型智能体的虚拟电厂仿真系统.canvas",
@@ -503,16 +464,13 @@
     "Extras/附件/Flutter从入门到实战-综合案例.pdf",
     "Extras/附件/Pasted image 20260304112617.png",
     "Extras/附件/Pasted image 20260304110144.png",
-    "Extras/附件/Pasted image 20260304105048.png",
     "Extras/附件/Flutter从入门到实战-Flutter框架.pdf",
     "Documents/I.P.A.R.A/0-收集箱/未命名 2.base",
-    "Extras/附件/Flutter从入门到实战.pdf",
     "Documents/I.P.A.R.A/0-收集箱/未命名.base",
     "Documents/I.P.A.R.A/0-收集箱/未命名 3.base",
     "Extras/附件/Dart_x64.stable.setup.exe",
     "Extras/附件/Flutter从入门到实战 1.pdf",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/Gemini.canvas",
-    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/峰华Vue3.canvas",
-    "Documents/I.P.A.R.A/学习领域/归档/Gemini CLI Interactions"
+    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/峰华Vue3.canvas"
   ]
 }

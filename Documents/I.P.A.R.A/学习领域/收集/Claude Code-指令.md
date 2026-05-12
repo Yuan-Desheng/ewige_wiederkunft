@@ -88,7 +88,7 @@ cssclasses:
 
 ---
 
-## 🧹 核心功能
+ 🧹 核心功能
 
 | 特性 | 说明 |
 |------|------|
@@ -99,7 +99,7 @@ cssclasses:
 
 ---
 
-## 📝 使用示例
+📝 使用示例
 
 ```bash
 # 在 Claude Code 会话中直接输入
@@ -115,7 +115,7 @@ Conversation history cleared. Starting fresh.
 
 ---
 
-## 💡 适用场景
+💡 适用场景
 
 | 场景 | 为什么用 /clear |
 |------|----------------|
@@ -126,7 +126,7 @@ Conversation history cleared. Starting fresh.
 
 ---
 
-## ⚠️ 注意事项
+⚠️ 注意事项
 
 1. **不可撤销**：`/clear` 会永久删除当前会话的历史，无法恢复。如果需要保留某个历史节点，建议先使用 `claude --resume` 或通过第三方工具（如 `claude-sesh`）备份会话。
 
@@ -140,7 +140,7 @@ Conversation history cleared. Starting fresh.
 
 ---
 
-## 🔄 与相关命令对比
+🔄 与相关命令对比
 
 | 命令 | 作用 | 是否可逆 |
 |------|------|----------|
@@ -151,8 +151,85 @@ Conversation history cleared. Starting fresh.
 
 ---
 
-## 📌 总结
+📌 总结
 
 **`/clear` = “忘掉之前说过的一切，重新开始”**
 
 它是你日常使用 Claude Code 时用来隔离任务、清理上下文、恢复性能的最快捷方式。当你在同一个项目目录下切换多个不相关的开发任务时，养成先敲 `/clear` 的习惯，能有效避免“历史遗留问题”干扰新任务。
+
+### /plugin
+
+`/plugin` 是 Claude Code 用于管理**插件**和**市场源（Marketplace）** 的核心命令。所有子命令和操作都可以在对话中直接输入，或通过交互面板完成。
+
+1. 主要操作与子命令
+
+1.1 管理市场源（Marketplace）
+市场源是插件的“下载来源”，通常是一个 Git 仓库或本地路径。
+
+| 命令 | 用途 | 示例 |
+|------|------|------|
+| `/plugin marketplace add <来源>` | 添加一个新的市场源 | `/plugin marketplace add obra/superpowers-marketplace` |
+| `/plugin marketplace remove <名称>` | 移除一个市场源 | `/plugin marketplace remove zai-coding-plugins` |
+| `/plugin marketplace list` | 列出所有已注册的市场源 | — |
+
+1.2 安装与卸载插件
+
+| 命令 | 用途 | 示例 |
+|------|------|------|
+| `/plugin install <插件名>@<市场源>` | 从指定市场源安装插件 | `/plugin install superpowers@superpowers-marketplace` |
+| `/plugin uninstall <插件名>` | 卸载插件（会询问范围） | `/plugin uninstall superpowers` |
+| `/plugin update <插件名>` | 更新已安装的插件 | `/plugin update superpowers` |
+
+**安装时的范围选项**（决定插件配置保存在哪里）：
+- **User scope**：用户级别，对所有项目生效。
+- **Project scope**：项目级别，保存在 `.claude/` 下，可提交到 Git 共享给团队。
+- **Local scope**：项目本地级别，保存在 `.claude-local/`，不提交到版本控制。
+
+1.3 查看与管理已安装插件
+
+| 命令 | 用途 | 示例 |
+|------|------|------|
+| `/plugin list` | 列出所有已安装的插件 | — |
+| `/plugin status <插件名>` | 查看某个插件的详细状态 | `/plugin status superpowers` |
+| `/reload-plugins` | 重新加载所有插件（新增或更新后使用） | — |
+| `/plugin enable <插件名>` | 启用一个已禁用的插件 | — |
+| `/plugin disable <插件名>` | 禁用一个插件，但不卸载 | — |
+| `/plugin load <插件名>` | 强制加载某个插件 | `/plugin load superpowers` |
+
+1.4 交互式面板
+直接输入 `/plugin` 会打开一个 TUI（终端交互界面），包含 5 个标签页：
+
+- **Discover**：浏览所有可用插件（按市场源分类），可搜索、安装。
+- **Installed**：查看已安装插件和 MCP 连接的状态，可启用/禁用/卸载。
+- **Marketplaces**：管理市场源，添加/删除。
+- **Errors**：显示加载失败的市场源或插件，可清理。
+- **Plugins**（部分版本）：插件总览。
+
+在面板中通常用 `Tab` / 方向键切换，`Enter` 选择，`Space` 切换状态，`D` 删除等（底部会有功能键提示）。
+
+---
+
+2. 常见工作流
+
+- **安装一个新插件**（如 Superpowers）：
+  1. `/plugin marketplace add obra/superpowers-marketplace`
+  2. `/plugin install superpowers@superpowers-marketplace`
+  3. 选择安装范围 → 确定。
+  4. `/reload-plugins`（或重启 Claude Code）。
+
+- **排查插件问题**：
+  1. `/plugin` 进入面板，切到 **Installed** 查看是否已启用。
+  2. 若没有，切到 **Errors** 查看是否有加载失败信息。
+  3. 如果市场源失效，可移除后重新添加。
+
+- **暂时禁用某个插件**（不想卸载）：
+  `/plugin disable superpowers`
+
+---
+
+3. 注意事项
+
+- **安全提示**：安装任何插件前，系统会提示“请确保你信任此插件”，因为插件可执行代码和文件操作。
+- **版本兼容**：更新 Claude Code 后，有时需要重新加载或更新插件。
+- **MCP 与 Plugin 的区别**：MCP 连接是外部工具服务（如 `web-reader`），在 `Installed` 标签页中与插件并列显示，但管理方式不同，MCP 通常需要在 `.claude/mcp.json` 或环境中配置。
+- **优先级**：项目根目录的 `CLAUDE.md` 文件或对话中的直接指令，优先级始终高于插件行为，可用于精细控制插件工作方式。
