@@ -4,7 +4,7 @@ createTime: 2026-01-08 11:00
 multiFile:
 multiMedia:
 description:
-笔记类型:
+笔记类型: 永久笔记
 阐述日期:
 tags:
   - Vue3
@@ -22,12 +22,12 @@ cssclasses:
 
 ## 待办事项
 - [x] 快速入门 [🔗Dida](obsidian://dida-task?didaId=695f1e80e4b0c9d5f876dfe0) 
-- [x] 使用 computed 计算属性处理稍复杂的业务逻辑 [🔗Dida](obsidian://dida-task?didaId=6960665ce4b08a3586bb91d7) 
-- [x] 使用 methods 方法处理事件 [🔗Dida](obsidian://dida-task?didaId=69606661e4b08a3586bb9266) 
-- [x] 使用 watch 监听数据的变化 [🔗Dida](obsidian://dida-task?didaId=6960669ee4b0ab82d9709319) 
-- [x] 计算属性和方法的区别 [🔗Dida](obsidian://dida-task?didaId=696066a1e4b02154ba1bdd74) 
-- [x] 计算属性 和 Watch 监听器的区别 [🔗Dida](obsidian://dida-task?didaId=696066b5e4b0ab82d970994c) 
-- [x] 方法和 Watch 监听器的区别 [🔗Dida](obsidian://dida-task?didaId=696066c8e4b08a3586bb9f2f) 
+- [ ] 使用 computed 计算属性处理稍复杂的业务逻辑 [🔗Dida](obsidian://dida-task?didaId=6960665ce4b08a3586bb91d7) 
+- [ ] 使用 methods 方法处理事件 [🔗Dida](obsidian://dida-task?didaId=69606661e4b08a3586bb9266) 
+- [ ] 使用 watch 监听数据的变化 [🔗Dida](obsidian://dida-task?didaId=6960669ee4b0ab82d9709319) 
+- [ ] 计算属性和方法的区别 [🔗Dida](obsidian://dida-task?didaId=696066a1e4b02154ba1bdd74) 
+- [ ] 计算属性 和 Watch 监听器的区别 [🔗Dida](obsidian://dida-task?didaId=696066b5e4b0ab82d970994c) 
+- [ ] 方法和 Watch 监听器的区别 [🔗Dida](obsidian://dida-task?didaId=696066c8e4b08a3586bb9f2f) 
 
 ## 笔记
 
