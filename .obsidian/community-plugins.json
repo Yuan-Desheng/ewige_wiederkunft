@@ -21,7 +21,6 @@
   "pdf-ebookshelf",
   "pdfflow",
   "flowtext",
-  "media-browser",
   "imagen",
   "dida-sync",
   "datacore",
@@ -31,5 +30,6 @@
   "check-in",
   "note-rambler",
   "note-importer",
-  "title-manager"
+  "title-manager",
+  "obsidian-cli-gui"
 ]
