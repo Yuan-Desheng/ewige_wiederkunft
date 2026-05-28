@@ -134,4 +134,11 @@ typst compile file.typst
 table.header 而非手动写表头行，不要用 calc.mod 做隔行变色。
 ```
 
+```
+将 @/home/yuan/obsidian/ewige_wiederkunft/Documents/I.P.A.R.A/工作领域/项目/OpenCLI-Facebook 博主数据采集方案.md 用 Typst 转为 PDF。注意：不要用 Pandoc 的 typst
+输出格式，它生成的代码 Typst 无法编译。请直接手写 Typst                       
+源文件再编译，中文需指定 Noto Sans CJK SC 字体，代码块用 ``` 包裹，表格用
+table.header 而非手动写表头行，不要用 calc.mod 做隔行变色。
+```
+
 

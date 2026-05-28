@@ -1,0 +1,22 @@
+{
+  "dictionaryProvider": "youdao-free",
+  "mdxPath": "",
+  "mddPath": "",
+  "mdxCssPath": "",
+  "mdxPath2": "",
+  "mddPath2": "",
+  "mdxCssPath2": "",
+  "vocabNoteFolder": "",
+  "vocabNoteFileName": "生词本",
+  "dailyReviewLimit": 50,
+  "defaultPlaybackRate": 1,
+  "shadowingBufferMs": 500,
+  "aiProvider": "deepseek",
+  "deepseekApiKey": "your-api-key",
+  "geminiApiKey": "",
+  "arkApiKey": "",
+  "ribbonDictIcon": true,
+  "ribbonFlashcardIcon": true,
+  "ribbonShadowingIcon": false,
+  "ribbonHighlightIcon": false
+}

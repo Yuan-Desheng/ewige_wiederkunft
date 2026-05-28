@@ -1,7 +1,7 @@
 {
   "id": "obsidian-content-protection",
   "name": "Content Protection",
-  "version": "1.4.3",
+  "version": "1.4.5",
   "minAppVersion": "0.8.9",
   "description": "请确保此插件处于开启状态，输入激活码解锁。",
   "author": "ytmaps",

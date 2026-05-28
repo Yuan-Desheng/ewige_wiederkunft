@@ -4,41 +4,41 @@
     "type": "split",
     "children": [
       {
-        "id": "5697bd844e175844",
+        "id": "fb918ad92318a95b",
         "type": "tabs",
         "children": [
           {
-            "id": "f4b38ca86e292ce4",
+            "id": "39daf3ef4ed49418",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Documents/I.P.A.R.A/学习领域/收集/OpenClaw常用命令.md",
+                "file": "Documents/I.P.A.R.A/学习领域/收集/Claude Code.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "OpenClaw常用命令"
+              "title": "Claude Code"
             }
           },
           {
-            "id": "9cb824d916892973",
+            "id": "09d2f8517d137e7f",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Documents/I.P.A.R.A/学习领域/收集/Linux.md",
+                "file": "Documents/I.P.A.R.A/工作领域/项目/知塘晓物-APP端开发.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "Linux"
+              "title": "知塘晓物-APP端开发"
             }
           },
           {
-            "id": "fc57a106efa264ea",
+            "id": "56bc166ddcee16f1",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -53,22 +53,157 @@
             }
           },
           {
-            "id": "da63a1d5206b9bc0",
+            "id": "61f6ab9245a195e7",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "使用指南/00--通用说明（重要）/0-更新日志.md",
+                "file": "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "0-更新日志"
+              "title": "Hermes Agent + LLM Wiki知识库 + Obsidian图谱"
+            }
+          },
+          {
+            "id": "876c0dd386d2620b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documents/I.P.A.R.A/工作领域/项目/前台门户网站.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "前台门户网站"
+            }
+          },
+          {
+            "id": "21eecc897e405715",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documents/I.P.A.R.A/学习领域/收集/Linux.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "Linux"
+            }
+          },
+          {
+            "id": "4344a34c8c21c944",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documents/I.P.A.R.A/学习领域/收集/Octos安装和配置.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "Octos安装和配置"
+            }
+          },
+          {
+            "id": "1bc60683e2ad5e7f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documents/I.P.A.R.A/学习领域/收集/OpenClaw.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "OpenClaw"
+            }
+          },
+          {
+            "id": "6182630f682f0c42",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documents/I.P.A.R.A/工作领域/项目/自媒体平台数据爬取.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "自媒体平台数据爬取"
+            }
+          },
+          {
+            "id": "6d5408e0c170ae3b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "融合大模型智能体的虚拟电厂仿真系统"
+            }
+          },
+          {
+            "id": "1b2dea14441c143a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documents/I.P.A.R.A/工作领域/项目/海军思想政治教育云课堂.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "海军思想政治教育云课堂"
+            }
+          },
+          {
+            "id": "8158856f78184863",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documents/I.P.A.R.A/工作领域/项目/OpenCLI-Facebook 博主数据采集方案.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "OpenCLI-Facebook 博主数据采集方案"
+            }
+          },
+          {
+            "id": "a59e72c52068702f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documents/I.P.A.R.A/学习领域/收集/Ubuntu 安装 Windows 虚拟机.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "Ubuntu 安装 Windows 虚拟机"
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -88,7 +223,7 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": true
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
               "title": "文件列表"
@@ -135,7 +270,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 304
+    "width": 304,
+    "collapsed": true
   },
   "right": {
     "id": "128c55eacc93ffde",
@@ -163,28 +299,6 @@
             }
           },
           {
-            "id": "79b313f7d24a2e13",
-            "type": "leaf",
-            "state": {
-              "type": "file-properties",
-              "state": {
-                "file": "Documents/Douban/movie/疯狂动物城.md"
-              },
-              "icon": "lucide-info",
-              "title": "疯狂动物城的笔记属性"
-            }
-          },
-          {
-            "id": "ea4b7b33d2e55247",
-            "type": "leaf",
-            "state": {
-              "type": "calendar",
-              "state": {},
-              "icon": "calendar-with-checkmark",
-              "title": "Calendar"
-            }
-          },
-          {
             "id": "a59d491eae878e27",
             "type": "leaf",
             "state": {
@@ -204,12 +318,127 @@
               "title": "AI Agent"
             }
           }
-        ],
-        "currentTab": 4
+        ]
+      },
+      {
+        "id": "0fe25eece3e4ed4c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e058ffb68982e0ef",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "融合大模型智能体的虚拟电厂仿真系统 的大纲"
+            }
+          },
+          {
+            "id": "ea4b7b33d2e55247",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {},
+              "icon": "calendar-with-checkmark",
+              "title": "Calendar"
+            }
+          },
+          {
+            "id": "79b313f7d24a2e13",
+            "type": "leaf",
+            "state": {
+              "type": "file-properties",
+              "state": {
+                "file": "Documents/I.P.A.R.A/学习领域/收集/Claude Code.md"
+              },
+              "icon": "lucide-info",
+              "title": "Claude Code的笔记属性"
+            }
+          },
+          {
+            "id": "a204ba86936ede9f",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "6370a1bb9fa4d532",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "8074f855ea0028d6",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Hermes Agent 的反向链接列表"
+            }
+          },
+          {
+            "id": "717ad6f5699951af",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Hermes Agent 的出链列表"
+            }
+          },
+          {
+            "id": "494d4bd66caa3bc5",
+            "type": "leaf",
+            "state": {
+              "type": "eme-dict-view",
+              "state": {},
+              "icon": "book-open",
+              "title": "单词助手"
+            }
+          }
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 423
+    "width": 387,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -229,49 +458,58 @@
       "imagen:图片管理": false,
       "dida-sync:滴答时间线视图": false,
       "note-importer:导入笔记": false,
+      "obsidian-english-made-easy:单词助手": false,
+      "obsidian-english-made-easy:闪卡复习": false,
       "obsidian-cli-gui:CLI Commander": false,
       "homepage:Open homepage": false
     }
   },
-  "active": "60a7820e453ce0cc",
+  "active": "61f6ab9245a195e7",
   "lastOpenFiles": [
-    "Documents/Douban/movie/触不可及.md",
-    "Documents/I.P.A.R.A/工作领域/项目/知塘晓物-APP端开发.md",
-    "Assistants/Templater/主页/homepage-侧页.md",
-    "使用指南/00--通用说明（重要）/0-更新日志.md",
-    "Documents/I.P.A.R.A/学习领域/收集/使用 computed 计算属性处理稍复杂的业务逻辑.md",
-    "Assistants/Templater/片段/英文单词.md",
-    "快速上手打卡任务（完成后，请删除）.md",
-    "Documents/I.P.A.R.A/学习领域/归档/openclaw提示词-04-08.md",
-    "Documents/I.P.A.R.A/工作领域/项目/AI生成知塘晓物 UI原型、API接口.md",
-    "Documents/I.P.A.R.A/工作领域/项目/知塘晓物-后台管理开发.md",
-    "Documents/I.P.A.R.A/工作领域/项目/虚拟电厂仿真系统-原始需求的提示词整理.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Claude Code-指令.md",
-    "Assistants/Modules/影视模块/音乐播放器.md",
-    "Documents/I.P.A.R.A/0-收集箱/未命名.md",
-    "Documents/I.P.A.R.A/0-收集箱/未命名.base",
-    "Documents/I.P.A.R.A/0-收集箱/未命名 1.base",
-    "Documents/I.P.A.R.A/工作领域/项目/工业数据采集公司官网.md",
-    "Assistants/Modules/挂件模块/多彩时钟模块（英文）.md",
-    "使用指南/00--通用说明（重要）/18-基础markdown语法.md",
-    "数据库与导航.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md",
     "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent.md",
     "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
-    "Documents/I.P.A.R.A/学习领域/收集/峰华Vue 3.x完全指南与实战.md",
-    "Documents/I.P.A.R.A/学习领域/收集/快速入门.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Linux.md",
-    "Documents/I.P.A.R.A/学习领域/收集/OpenClaw常用命令.md",
+    "Documents/I.P.A.R.A/工作领域/项目/海军思想政治教育云课堂.md.tmp.52479.11f776c4289a",
+    "Documents/I.P.A.R.A/工作领域/项目/海军思想政治教育云课堂.md.tmp.52479.6f1b65eb7ffd",
+    "Documents/I.P.A.R.A/工作领域/项目/海军思想政治教育云课堂.md.tmp.52479.f5baa7294a3a",
+    "Documents/I.P.A.R.A/工作领域/项目/海军思想政治教育云课堂.md",
+    "Documents/I.P.A.R.A/工作领域/项目/海军思想政治教育云课堂.md.tmp.52479.a95e225fd5b4",
+    "Documents/I.P.A.R.A/工作领域/项目/海军思想政治教育云课堂.md.tmp.52479.390199e53d66",
+    "Documents/I.P.A.R.A/工作领域/项目/海军思想政治教育云课堂.md.tmp.52479.cd1fafe8ed9f",
+    "Documents/I.P.A.R.A/工作领域/项目/OpenCLI-Facebook 博主数据采集方案.md",
+    "数据库与导航.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Ubuntu 安装 Windows 虚拟机.md",
     "Documents/I.P.A.R.A/工作领域/项目/自媒体平台数据爬取.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Dart的运算符.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Linux.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Octos安装和配置.md",
+    "Documents/I.P.A.R.A/学习领域/收集/OpenClaw.md",
+    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/海军思想政治教育云课堂.canvas",
+    "Assistants/Templater/主页/homepage-侧页.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Claude Code.md",
+    "Documents/I.P.A.R.A/工作领域/项目/知塘晓物-APP端开发.md",
+    "Documents/I.P.A.R.A/工作领域/项目/前台门户网站.md",
+    "使用指南/00--通用说明（重要）/20-意见反馈.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Claude Code-指令.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Claude Code-命令.md",
+    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/海媒传播分析系统.canvas",
+    "Documents/I.P.A.R.A/工作领域/项目/OpenCLI-Facebook 博主数据采集方案.pdf",
+    "Documents/I.P.A.R.A/工作领域/项目/手动启动服务.md",
+    "Documents/I.P.A.R.A/工作领域/项目/负荷预测、可调能力、协同仿真 页面原型.md",
+    "Documents/I.P.A.R.A/学习领域/收集/ChatDev 2.0.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Octos.md",
+    "Documents/I.P.A.R.A/学习领域/收集/OpenClaw常用命令.md",
+    "Documents/I.P.A.R.A/0-收集箱/生词本.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Claude Code + Blender + Unity + Flutter.md",
+    "Documents/Douban/movie/触不可及.md",
+    "Documents/I.P.A.R.A/0-收集箱/未命名.base",
+    "Documents/I.P.A.R.A/0-收集箱/未命名 1.base",
     "Connections/人脉管理数据库-Bases.base",
     "Extras/附件/Pasted image 20260424164725.png",
     "Extras/附件/Pasted image 20251229151116.png",
-    "Extras/附件/Flutter从入门到实战.pdf",
     "Documents/Canvas/未命名.canvas",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/Artificial Intelligence.canvas",
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/知塘晓物.canvas",
     "Extras/附件/Pasted image 20260424164618.png",
-    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/海媒传播分析系统.canvas",
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/融合大模型智能体的虚拟电厂仿真系统.canvas",
     "Extras/附件/Pasted image 20260403105218.png",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/Dart.canvas",
@@ -281,15 +519,8 @@
     "Extras/附件/Pasted image 20260317152119.png",
     "Extras/附件/Pasted image 20260317152004.png",
     "Extras/附件/Pasted image 20260317151934.png",
-    "Extras/附件/Flutter从入门到实战-综合案例.pdf",
     "Extras/附件/Pasted image 20260304112617.png",
     "Extras/附件/Pasted image 20260304110144.png",
-    "Extras/附件/Flutter从入门到实战-Flutter框架.pdf",
-    "Documents/I.P.A.R.A/0-收集箱/未命名 2.base",
-    "Documents/I.P.A.R.A/0-收集箱/未命名 3.base",
-    "Extras/附件/Dart_x64.stable.setup.exe",
-    "Extras/附件/Flutter从入门到实战 1.pdf",
-    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/Gemini.canvas",
-    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/峰华Vue3.canvas"
+    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/Gemini.canvas"
   ]
 }

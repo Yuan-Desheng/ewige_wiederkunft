@@ -459,6 +459,6 @@
 }
 
 .shib-card-layout .inline-title:not([data-level]){
-    font-size: 20px;
+    font-size: var(--h2-size);
     padding-left: 20px;
 }

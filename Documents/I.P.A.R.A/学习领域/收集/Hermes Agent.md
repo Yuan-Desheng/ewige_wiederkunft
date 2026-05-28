@@ -38,6 +38,8 @@ curl -fsSL https://jimeng.jianying.com/cli | bash
 
 ## 笔记
 
+[[Hermes Agent + LLM Wiki知识库 + Obsidian图谱]]
+
 ### 安装
 
 ```
@@ -55,3 +57,9 @@ hermes model
 ```
 hermes sessions browse
 ```
+
+打开web页面
+```
+hermes dashboard
+```
+
