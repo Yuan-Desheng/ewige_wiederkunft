@@ -53,7 +53,7 @@
             }
           },
           {
-            "id": "61f6ab9245a195e7",
+            "id": "d2a6f51566f759cf",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -270,8 +270,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 304,
-    "collapsed": true
+    "width": 304
   },
   "right": {
     "id": "128c55eacc93ffde",
@@ -464,10 +463,15 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "61f6ab9245a195e7",
+  "active": "d2a6f51566f759cf",
   "lastOpenFiles": [
-    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md",
+    "CLAUDE.md.tmp.20351.cd3a9ac565a4",
+    "CLAUDE.md.tmp.20351.64ba52d6da6d",
+    "CLAUDE.md.tmp.20351.53fcd622a3e7",
     "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent.md",
+    "Documents/I.P.A.R.A/工作领域/项目/前台门户网站.md",
+    "快速上手打卡任务（完成后，请删除）.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md",
     "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
     "Documents/I.P.A.R.A/工作领域/项目/海军思想政治教育云课堂.md.tmp.52479.11f776c4289a",
     "Documents/I.P.A.R.A/工作领域/项目/海军思想政治教育云课堂.md.tmp.52479.6f1b65eb7ffd",
@@ -487,7 +491,6 @@
     "Assistants/Templater/主页/homepage-侧页.md",
     "Documents/I.P.A.R.A/学习领域/收集/Claude Code.md",
     "Documents/I.P.A.R.A/工作领域/项目/知塘晓物-APP端开发.md",
-    "Documents/I.P.A.R.A/工作领域/项目/前台门户网站.md",
     "使用指南/00--通用说明（重要）/20-意见反馈.md",
     "Documents/I.P.A.R.A/学习领域/收集/Claude Code-指令.md",
     "Documents/I.P.A.R.A/学习领域/收集/Claude Code-命令.md",
@@ -499,11 +502,7 @@
     "Documents/I.P.A.R.A/学习领域/收集/Octos.md",
     "Documents/I.P.A.R.A/学习领域/收集/OpenClaw常用命令.md",
     "Documents/I.P.A.R.A/0-收集箱/生词本.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Claude Code + Blender + Unity + Flutter.md",
-    "Documents/Douban/movie/触不可及.md",
     "Documents/I.P.A.R.A/0-收集箱/未命名.base",
-    "Documents/I.P.A.R.A/0-收集箱/未命名 1.base",
-    "Connections/人脉管理数据库-Bases.base",
     "Extras/附件/Pasted image 20260424164725.png",
     "Extras/附件/Pasted image 20251229151116.png",
     "Documents/Canvas/未命名.canvas",
