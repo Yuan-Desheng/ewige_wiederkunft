@@ -4,7 +4,7 @@ createTime: 2026-05-14 10:32
 multiFile:
 multiMedia:
 description: AI Agent 平台，Rust 原生，支持多渠道、多租户、工具系统
-笔记类型:
+笔记类型: 收集笔记
 阐述日期: 2026-05-14
 tags:
   - AI

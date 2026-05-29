@@ -50,6 +50,86 @@ This vault relies heavily on these community plugins:
 - Templater JS scripts (`.js`) are in `Assistants/Templater/Scrip（用于更新，勿删）/` and `Assistants/Templater/辅助/JS辅助脚本/`.
 - Notes use YAML frontmatter with properties like `Tag`, `searchText`, etc.
 
+## Note Creation Rules
+
+- New notes must be created under `Documents/I.P.A.R.A/` in the correct area subdirectory (`工作领域/`, `学习领域/`, `生活领域/`, `0-收集箱/`). Each area has `收集/`, `归档/`, `项目/`, `资源/` subfolders.
+- The default note placement for new ideas is `收集/` (inbox). Move to `项目/`, `资源/`, or `归档/` once classified.
+- Use the existing areas (`工作领域/`, `学习领域/`, `生活领域/`). Do NOT create custom areas unless the user explicitly requests it.
+- Note title (first `## ` heading) should match the file name. Title Manager plugin keeps them in sync.
+
+## Required Frontmatter
+
+Every note under `Documents/I.P.A.R.A/` should include this frontmatter structure:
+
+```yaml
+---
+createTime: YYYY-MM-DD HH:mm
+笔记ID: YYYYMMDDHHmmss
+multiFile:
+multiMedia:
+description:
+笔记类型:
+阐述日期:
+tags:
+aliases:
+cssclasses:
+卡片盒笔记主题:
+---
+```
+
+Key fields:
+- `笔记ID` — Unique ID, format `YYYYMMDDHHmmss` (timestamp of creation)
+- `笔记类型` — Note type classification (used by database views)
+- `阐述日期` — Review/elaboration date (for spaced review scheduling)
+- `卡片盒笔记主题` — Links note to a theme/index card (used by Canvas integration)
+- `tags` — Freeform tags; auto-complete is configured via Content Protection plugin
+
+## Note Body Structure
+
+A typical note follows this pattern:
+1. `## Title` (matches filename)
+2. ````meta-bind-embed\n[[笔记抬头模块]]\n```` — Embeds the card-box note header module (interactive buttons for type, tags, theme, move, progress)
+3. `<progress value="N" max="100">` — Progress tracker (0-100, in multiples of 10)
+4. Content sections with `## ` or `### ` headings
+
+## Content Placement Rules
+
+- PDF books → `Books/pdf书籍/` (subfolders allowed)
+- Person photos → `Extras/人物/`
+- Task management → Use Dida Sync (滴答清单), NOT Tasks plugin or Dataview task queries
+- AI-generated/rewritten content → Use `笔记类型: AI整理` and `cssclasses: ai-note` to distinguish from hand-written notes
+- AI daily notes → `Documents/I.P.A.R.A/0-收集箱/AI笔记/YYYY-MM-DD.md`
+- Douban media entries → `Documents/Douban/` (via Douban plugin)
+
+## AI Conversation Organization Rules
+
+When organizing AI conversations into notes (`0-收集箱/AI笔记/YYYY-MM-DD.md`):
+
+**For code-related conversations:**
+- Preserve the original conversation (user question + AI response) as-is, not just summarized
+- Code blocks: save the key/important snippets only, trim boilerplate
+- For every code modification: explain the **reasoning** (why this change) and **basic knowledge points** (the underlying concept the user may have forgotten due to AI-assisted coding)
+
+**For non-code conversations:**
+- Summarize and extract key points as usual
+
+**When content is too large for one pass:**
+- Create a prioritized plan listing all topics found
+- Ask the user which parts need detailed/verbatim organization, which can be summarized
+- Do not silently skip or truncate content
+
+**Cross-conversation scanning:**
+- Source: `~/.claude/projects/<project>/<session>.jsonl` (all projects modified today)
+- User messages: `type: user` → `message.content` (type=text items)
+- Assistant responses: `type: assistant` → `message.content` items where type=text and length > 100
+- Group by project, sort by timestamp
+
+## Template System
+
+- Templates live in `Assistants/Templater/` subfolders: `笔记/`, `辅助/`, `片段/`, `主页/`, `日记/`, `人脉/`, `移动/`, `其他/`
+- Snippet templates (frequently used) go in `Assistants/Templater/片段/`
+- Do not modify templates in `Assistants/` directly — copy and rename first, as author updates overwrite originals
+
 ## Git
 
 - Branch: `master` (single-branch workflow)

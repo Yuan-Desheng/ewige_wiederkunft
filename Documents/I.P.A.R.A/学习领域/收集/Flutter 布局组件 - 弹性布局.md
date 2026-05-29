@@ -4,7 +4,7 @@ createTime: 2026-02-25 14:55
 multiFile:
 multiMedia:
 description: 详细介绍了 Flutter 中的弹性布局体系，重点分析了 Flex 组件及其核心子组件 Expanded 和 Flexible 的空间分配逻辑与差异。
-笔记类型:
+笔记类型: 收集笔记
 阐述日期:
 tags:
   - Flutter

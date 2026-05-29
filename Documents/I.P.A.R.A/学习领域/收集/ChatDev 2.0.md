@@ -1,3 +1,17 @@
+---
+createTime: 2026-05-27 10:44
+笔记ID: 20260527104442
+multiFile:
+multiMedia:
+description:
+笔记类型: 收集笔记
+阐述日期:
+tags:
+aliases:
+cssclasses:
+卡片盒笔记主题:
+---
+
 # ChatDev 2.0 部署笔记
 
 > 零代码多智能体平台 - 用于开发一切

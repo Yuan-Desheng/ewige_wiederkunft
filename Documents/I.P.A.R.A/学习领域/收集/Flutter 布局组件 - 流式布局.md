@@ -4,7 +4,7 @@ createTime: 2026-02-25 15:19
 multiFile:
 multiMedia:
 description: 详细介绍了 Flutter 中的流式布局组件 Wrap，分析了其换行特性、核心属性以及如何结合 List.generate 动态生成子组件。
-笔记类型:
+笔记类型: 收集笔记
 阐述日期:
 tags:
   - Flutter

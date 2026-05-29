@@ -4,7 +4,7 @@ createTime: <% tp.file.creation_date() %>
 multiFile:
 multiMedia:
 description:
-笔记类型:
+笔记类型: 收集笔记
 阐述日期:
 tags:
 aliases:

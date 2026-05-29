@@ -4,7 +4,7 @@ createTime: 2026-02-22 23:03
 multiFile:
 multiMedia:
 description: Flutter中的组件根据其状态是否可变，分为无状态组件（StatelessWidget）和有状态组件（StatefulWidget）。
-笔记类型:
+笔记类型: 收集笔记
 阐述日期:
 tags:
   - Flutter

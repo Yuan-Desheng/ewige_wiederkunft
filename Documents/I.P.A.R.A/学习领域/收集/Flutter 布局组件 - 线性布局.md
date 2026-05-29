@@ -4,7 +4,7 @@ createTime: 2026-02-25 14:40
 multiFile:
 multiMedia:
 description: 深入讲解 Flutter 中的线性布局组件 Column 和 Row，涵盖主轴与交叉轴对齐、尺寸策略及实际应用场景。
-笔记类型:
+笔记类型: 收集笔记
 阐述日期:
 tags:
   - Flutter

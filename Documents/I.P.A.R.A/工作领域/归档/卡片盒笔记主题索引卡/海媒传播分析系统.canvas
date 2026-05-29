@@ -2,6 +2,7 @@
 	"edges":[],
 	"nodes":[
 		{"id":"note-1767589629758-4368","type":"file","file":"Documents/I.P.A.R.A/工作领域/项目/自媒体平台数据爬取.md","x":100,"y":100,"width":440,"height":500},
-		{"id":"note-1769577728089-7392","type":"file","file":"Documents/I.P.A.R.A/工作领域/项目/前台门户网站.md","x":590,"y":100,"width":440,"height":500}
+		{"id":"note-1769577728089-7392","type":"file","file":"Documents/I.P.A.R.A/工作领域/项目/前台门户网站.md","x":590,"y":100,"width":440,"height":500},
+		{"id":"note-1779965541043-415","type":"file","file":"Documents/I.P.A.R.A/工作领域/项目/OpenCLI-Facebook 博主数据采集方案.md","x":1080,"y":100,"width":440,"height":500}
 	]
 }

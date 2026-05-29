@@ -4,7 +4,7 @@ createTime: 2026-02-25 16:38
 multiFile:
 multiMedia:
 description: 详细介绍了 Flutter 中最基础的文本显示组件 Text，以及支持多种样式的 Text.rich 和 TextSpan 的用法。
-笔记类型:
+笔记类型: 收集笔记
 阐述日期:
 tags:
   - Flutter

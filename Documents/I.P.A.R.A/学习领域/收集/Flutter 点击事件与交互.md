@@ -4,7 +4,7 @@ createTime: 2026-02-24 19:29
 multiFile:
 multiMedia:
 description: 详细介绍了 Flutter 中的点击事件处理机制，包括 GestureDetector、InkWell 以及如何通过 setState 更新交互状态。
-笔记类型:
+笔记类型: 收集笔记
 阐述日期:
 tags:
   - Flutter

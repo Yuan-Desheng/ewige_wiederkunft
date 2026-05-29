@@ -4,7 +4,7 @@ createTime: 2026-02-25 17:48
 multiFile:
 multiMedia:
 description: 详细介绍了 Flutter 中实现文本输入功能的核心组件 TextField，涵盖控制器管理、装饰定制（InputDecoration）及密码隐藏等实战技巧。
-笔记类型:
+笔记类型: 收集笔记
 阐述日期:
 tags:
   - Flutter

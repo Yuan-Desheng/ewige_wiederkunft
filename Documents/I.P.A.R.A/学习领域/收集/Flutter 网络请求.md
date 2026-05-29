@@ -4,7 +4,7 @@ createTime: 2026-02-26 13:54
 multiFile:
 multiMedia:
 description: 深入讲解了 Flutter 中使用 Dio 插件进行网络请求的实战案例，涵盖工具类封装、拦截器配置、Web 端跨域解决及 UI 渲染。
-笔记类型:
+笔记类型: 收集笔记
 阐述日期:
 tags:
   - Flutter

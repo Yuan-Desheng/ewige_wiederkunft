@@ -4,7 +4,7 @@ createTime: 2026-04-01 09:49
 multiFile:
 multiMedia:
 description:
-笔记类型:
+笔记类型: 收集笔记
 阐述日期:
 tags:
 aliases:

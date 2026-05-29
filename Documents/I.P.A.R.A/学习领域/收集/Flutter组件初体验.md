@@ -4,7 +4,7 @@ createTime: 2026-02-19 13:49
 multiFile:
 multiMedia:
 description: MaterialApp是Flutter应用的根组件，用于设置应用的整体主题、路由和首页。Scaffold用于构建Material Design风格页面的核心布局组件。
-笔记类型:
+笔记类型: 收集笔记
 阐述日期:
 tags:
   - Flutter

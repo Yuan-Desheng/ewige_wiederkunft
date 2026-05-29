@@ -1,0 +1,15 @@
+{
+  "tasks": [
+    {
+      "id": "de28a792",
+      "cron": "53 22 * * *",
+      "prompt": "整理今天所有 Claude Code 对话内容到 Obsidian AI笔记中。\n\n目标文件：/home/yuan/obsidian/ewige_wiederkunft/Documents/I.P.A.R.A/0-收集箱/AI笔记/$(date +%Y-%m-%d).md\n\n步骤：\n1. `find ~/.claude/projects/ -name \"*.jsonl\" -mtime 0` 找到今天所有对话\n2. python3 解析 JSONL：提取 user 消息（type=user, message.content 中 type=text）和 assistant 回复（type=assistant, message.content 中 type=text 且 len>100）\n3. 按项目分组\n\n整理规则：\n- **代码相关对话**：保留原始对话（用户问题 + AI回复原文），代码块只保存重点片段\n- **代码修改**：解释修改理由和涉及的基础知识点（用户长期用AI辅助编程，基础编写能力需回顾）\n- **非代码对话**：提炼要点摘要\n- **内容过多时**：先列出所有主题的目录计划，标记哪些是代码相关，然后开始整理。如果一次整不完，在笔记末尾标注\"未完成\"并列出剩余主题\n\n文件格式：\n- 如已存在则追加新主题，如不存在则创建\n- frontmatter: createTime / 笔记ID / tags: [ai笔记, 知识回顾] / 笔记类型: AI整理 / 来源: claude-code\n- 每个主题：## 主题N：标题（项目名）+ > [!ai] 标记 + 知识点 + 官方文档参考\n- 末尾附跨对话汇总表\n\n如果今天没有对话内容需要整理，跳过。",
+      "createdAt": 1779959600273,
+      "recurring": true,
+      "createdBySessionId": "b9bd1de6-cc8f-4bdd-a2b4-6ec741379785",
+      "createdByPid": 12492,
+      "createdByProcStart": "489163",
+      "lastFiredAt": 1780023176401
+    }
+  ]
+}

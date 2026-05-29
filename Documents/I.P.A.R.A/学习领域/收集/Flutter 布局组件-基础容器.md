@@ -4,7 +4,7 @@ createTime: 2026-02-25 13:20
 multiFile:
 multiMedia:
 description: 详细介绍了 Flutter 布局体系中的核心组件，包括 Container、Center、Align 和 Padding 的属性、用法及对比。
-笔记类型:
+笔记类型: 收集笔记
 阐述日期:
 tags:
   - Flutter

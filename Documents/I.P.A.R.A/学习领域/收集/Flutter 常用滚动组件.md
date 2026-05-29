@@ -4,7 +4,7 @@ createTime: 2026-02-25 18:29
 multiFile:
 multiMedia:
 description: 详细介绍了 Flutter 中常用的滚动组件，包括 SingleChildScrollView、ListView、GridView、CustomScrollView 以及 PageView。
-笔记类型:
+笔记类型: 收集笔记
 阐述日期:
 tags:
   - Flutter

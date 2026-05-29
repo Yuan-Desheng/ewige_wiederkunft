@@ -4,7 +4,7 @@ createTime: 2026-02-19 13:33
 multiFile:
 multiMedia:
 description:
-笔记类型:
+笔记类型: 收集笔记
 阐述日期:
 tags:
   - Flutter

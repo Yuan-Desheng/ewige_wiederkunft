@@ -1,3 +1,17 @@
+---
+createTime: 2026-05-15 17:03
+笔记ID: 20260515170335
+multiFile:
+multiMedia:
+description:
+笔记类型: 收集笔记
+阐述日期:
+tags:
+aliases:
+cssclasses:
+卡片盒笔记主题:
+---
+
 # Ubuntu 安装 Windows 虚拟机
 
 ## 概述

@@ -4,7 +4,7 @@ createTime: 2026-02-25 16:10
 multiFile:
 multiMedia:
 description: 深入讲解 Flutter 中的层叠布局体系，重点分析了 Stack 组件及其核心搭档 Positioned 的定位逻辑、层叠顺序及实际应用场景。
-笔记类型:
+笔记类型: 收集笔记
 阐述日期:
 tags:
   - Flutter

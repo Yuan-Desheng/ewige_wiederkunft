@@ -4,7 +4,7 @@ createTime: 2026-02-25 17:02
 multiFile:
 multiMedia:
 description: 详细介绍了 Flutter 中图片显示组件 Image 的四种加载方式（Asset, Network, File, Memory）以及核心适配属性。
-笔记类型:
+笔记类型: 收集笔记
 阐述日期:
 tags:
   - Flutter

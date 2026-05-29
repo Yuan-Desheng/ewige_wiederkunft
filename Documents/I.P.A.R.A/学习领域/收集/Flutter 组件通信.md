@@ -4,7 +4,7 @@ createTime: 2026-02-26 10:32
 multiFile:
 multiMedia:
 description: 详细介绍了 Flutter 中组件间通信的多种方式，包括父传子（构造函数）、子传父（回调函数）的步骤、注意事项及实战案例。
-笔记类型:
+笔记类型: 收集笔记
 阐述日期:
 tags:
   - Flutter
