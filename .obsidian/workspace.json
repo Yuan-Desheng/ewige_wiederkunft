@@ -173,7 +173,7 @@
             }
           }
         ],
-        "currentTab": 10
+        "currentTab": 8
       }
     ],
     "direction": "vertical"
@@ -433,9 +433,12 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "14326a491e988503",
+  "active": "f848549dea33adaf",
   "lastOpenFiles": [
     "Documents/I.P.A.R.A/工作领域/项目/自媒体平台数据爬取.md",
+    "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
+    "Documents/I.P.A.R.A/0-收集箱/未命名.md",
+    "数据库与导航.md",
     "Documents/I.P.A.R.A/0-收集箱/docs/youtube_api.md",
     "Documents/I.P.A.R.A/0-收集箱/docs/x_api.md",
     "Documents/I.P.A.R.A/0-收集箱/docs/instagram_api.md",
@@ -443,8 +446,6 @@
     "Documents/I.P.A.R.A/0-收集箱/docs/execution_commands.md",
     "Documents/I.P.A.R.A/0-收集箱/docs/database_tables.md",
     "Documents/I.P.A.R.A/0-收集箱/docs",
-    "数据库与导航.md",
-    "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
     "Documents/I.P.A.R.A/学习领域/收集/Linux.md",
     "Documents/I.P.A.R.A/学习领域/收集/Octos安装和配置.md",
     "Documents/I.P.A.R.A/0-收集箱/数据采集问题.md",
@@ -470,7 +471,6 @@
     "Documents/I.P.A.R.A/0-收集箱/JSON文件问题检查报告.md",
     "Documents/I.P.A.R.A/0-收集箱/泰国工作表主页地址补全记录.md",
     "Documents/I.P.A.R.A/0-收集箱/意见领袖数据补全_完整执行记录.md",
-    "Documents/I.P.A.R.A/0-收集箱/意见领袖数据补全执行记录.md",
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/海媒传播分析系统.canvas",
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/海军思想政治教育云课堂.canvas",
     "Extras/附件/Pasted image 20260424164725.png",
