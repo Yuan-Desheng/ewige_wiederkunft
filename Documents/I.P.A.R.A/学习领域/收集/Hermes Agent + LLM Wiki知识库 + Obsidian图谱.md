@@ -99,7 +99,7 @@ https://www.bilibili.com/opus/1190405075833454616
 - 使用 [[wikilinks]] 建立双向链接，确保 Obsidian 图谱视图可正常工作
 ```
 
-### 提示词 D：通用场景 — 每日AI对话整理为Obsidian笔记
+### 提示词 D：Obsidian vault 项目 — 每日AI对话整理为Obsidian笔记
 ```
 任务：将今天的AI对话内容整理为Obsidian笔记。
 
@@ -130,9 +130,7 @@ https://www.bilibili.com/opus/1190405075833454616
 7. 官方文档参考：优先中英文链接
 
 触发方式：
-- 手动触发：在任何 Claude Code 会话中说"整理今天的对话"
-  （已写入 ~/.claude/CLAUDE.md 全局配置，所有项目可用）
-- 自动触发：cron 每日22:53执行（obsidian vault 项目内）
+- 手动触发：在 Obsidian vault 项目的 Claude Code 会话中说"整理今天的对话"
 ```
 
 ## 实施计划
@@ -174,39 +172,14 @@ https://www.bilibili.com/opus/1190405075833454616
 - [ ] 验证 Obsidian 图谱视图中 wiki 链接是否正确显示
 
 ### 第四阶段：自动化工作流（持续优化）
-- [x] 配置提示词D的自动触发机制 ✅ 2026-05-28
-  - 方案A ✅：Claude Code cron定时任务（每日22:53，durable模式）
-    - Job ID: de28a792
-    - 自动扫描 `~/.claude/projects/` 下当天所有对话 JSONL
-    - 按项目分组整理到 `0-收集箱/AI笔记/YYYY-MM-DD.md`
-    - 支持跨对话整合（多个项目会话合并到同一篇笔记）
-    - 7天后自动过期，需续期
-  - 方案B：Hermes Agent skill hook（待配置）
-  - 方案C：Obsidian Templater + QuickAdd 手动触发按钮（待配置）
 - [x] AI笔记目录调整 ✅ 2026-05-28
   - 从 `学习领域/收集/AI笔记/` 移动到 `0-收集箱/AI笔记/`
-  - CLAUDE.md 和 cron 任务中的路径已同步更新
-- [x] 首次跨对话整理完成 ✅ 2026-05-28
-  - 整合了 4 个 Claude Code 会话（obsidian-vault ×1、vpp-simulator ×2、naval-class ×1）
-  - 新增主题：ECharts韦恩图、Vue主题切换、PptxGenJS
-  - 05-29 又整合 2 个会话（tikhub-sentiment ×1、obsidian-vault ×1），新增 4 个主题
-- [x] 整理规则修正 ✅ 2026-05-29
-  - 发现问题：第一次整理时 AI 对原始对话做了压缩和改写，丢失了原文细节
-  - 修正：全局规则改为"原文照搬，不做任何修改"，已同步到 `~/.claude/CLAUDE.md`
-  - 发现问题：日期用了会话日期而非当天日期（05-29的整理存到了05-28.md）
-  - 修正：规则中强调"当天实际日期"，用 `date +%Y-%m-%d` 获取
-- [x] Git 提交 ✅ 2026-05-29
-  - Commit: `0b7f88a` — 106个文件，1834行新增
-- [x] 整理规则细化 ✅ 2026-05-28（05-29修正）
+- [x] 整理规则制定 ✅ 2026-05-28（05-29修正）
   - 代码对话**原文照搬**，不做任何改写、压缩或分析
   - 代码块保留完整代码，不删减为"重点片段"
   - 表格保留完整表格，不转换为 markdown 重写
   - 对话原文之后加 `### 基础知识点` 小节讲解知识点
   - 内容过多时先列计划再分批整理
-- [x] 跨项目触发 ✅ 2026-05-28
-  - 写入 `~/.claude/CLAUDE.md` 全局配置
-  - 任何 Claude Code 项目中说"整理今天的对话"即可触发
-  - 写入 `~/.claude/projects/.../memory/ai-note-organization-rules.md` 持久化记忆
 - [ ] 建立 AI笔记 → 学习领域/资源/ 的定期归档流程
 - [ ] 设置定期 lint 检查（孤立页面、断链、frontmatter完整性）
 
@@ -248,16 +221,12 @@ https://www.bilibili.com/opus/1190405075833454616
 > [ ] 配置 Obsidian QuickAdd 手动触发按钮
 > [ ] 建立 AI笔记 → 学习领域/资源/ 的定期归档流程
 > [ ] 设置定期 lint 检查（孤立页面、断链、frontmatter完整性）
-> [ ] cron 定时任务续期（7天后过期）
 
 ## 配置文件位置汇总
 
 | 配置项               | 文件路径                                                          | 说明                            |
 | ----------------- | ------------------------------------------------------------- | ----------------------------- |
 | Obsidian vault 规则 | `/home/yuan/obsidian/ewige_wiederkunft/CLAUDE.md`             | 笔记创建规则、frontmatter格式、AI对话整理规则 |
-| 全局 Claude Code 规则 | `~/.claude/CLAUDE.md`                                         | 跨项目通用：AI对话整理指令和流程             |
-| Cron 定时任务         | `~/.claude/projects/.../scheduled_tasks.json`                 | Job: de28a792，每日22:53         |
-| 持久化记忆             | `~/.claude/projects/.../memory/ai-note-organization-rules.md` | 跨会话记住整理规则                     |
 | Hermes 环境变量       | `~/.hermes/.env`                                              | WIKI_PATH 配置                  |
 | LLM Wiki Schema   | `/home/yuan/obsidian/ewige_wiederkunft/SCHEMA.md`             | 知识库结构和约定                      |
 | Wiki 索引           | `Documents/I.P.A.R.A/学习领域/资源/wiki-index.md`                   | 所有 wiki 页面目录                  |
@@ -266,9 +235,9 @@ https://www.bilibili.com/opus/1190405075833454616
 
 ## 每日使用指南
 
-### 方式一：手动触发（任何 Claude Code 项目）
+### 手动触发（Obsidian vault 项目中）
 
-在任何项目的 Claude Code 对话框中，直接输入：
+在 Obsidian vault 项目的 Claude Code 对话框中，直接输入：
 
 ```
 整理今天的对话
@@ -281,13 +250,7 @@ Claude Code 会自动：
 4. 非代码对话提炼摘要
 5. 输出到 `0-收集箱/AI笔记/YYYY-MM-DD.md`（如已存在则追加新主题）
 
-### 方式二：自动触发（每日22:53）
-
-- 前提：Obsidian vault 项目的 Claude Code 会话处于运行状态
-- 触发后自动执行与手动触发相同的流程
-- 7天后过期需续期：在 Obsidian vault 项目中执行 `/cron` 查看和续期
-
-### 方式三：在对话中指定范围
+### 在对话中指定范围
 
 可以更精确地控制整理范围：
 
@@ -320,7 +283,7 @@ Claude Code 会自动：
 
 ### 注意事项
 
-- 手动触发**不限于** Obsidian vault 项目，在任何 Claude Code 项目中都可以用
+- 仅在 **Obsidian vault 项目** 中可用
 - 每次整理会扫描当天**所有项目**的对话，已存在的主题不会重复写入
 - 如果对话量很大，会先列出目录计划让你选择哪些需要详细整理
 - 整理时必须使用**当天实际日期**（`date +%Y-%m-%d`），不要用会话开始时的日期
