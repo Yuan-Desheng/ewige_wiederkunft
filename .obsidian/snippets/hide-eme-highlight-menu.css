@@ -1,0 +1,4 @@
+/* 隐藏 English Made Easy 插件的选中文本弹出菜单 */
+.eme-highlight-menu {
+    display: none !important;
+}

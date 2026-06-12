@@ -24,7 +24,8 @@
     "minimalcards",
     "note-cssclasses",
     "Shiba Inu主题",
-    "sidenotes"
+    "sidenotes",
+    "hide-eme-highlight-menu"
   ],
   "theme": "moonstone",
   "baseFontSize": 17,

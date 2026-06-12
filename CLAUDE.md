@@ -107,7 +107,7 @@ When organizing AI conversations into notes (`0-收集箱/AI笔记/YYYY-MM-DD.md
 
 **For code-related conversations:**
 - Preserve the original conversation (user question + AI response) as-is, not just summarized
-- Code blocks: save the key/important snippets only, trim boilerplate
+- Code blocks: preserve complete code verbatim, do not trim, summarize, or reduce to "key snippets"
 - For every code modification: explain the **reasoning** (why this change) and **basic knowledge points** (the underlying concept the user may have forgotten due to AI-assisted coding)
 
 **For non-code conversations:**

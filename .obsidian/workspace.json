@@ -173,7 +173,7 @@
             }
           }
         ],
-        "currentTab": 9
+        "currentTab": 8
       }
     ],
     "direction": "vertical"
@@ -424,8 +424,8 @@
   "left-ribbon": {
     "hiddenItems": {
       "bases:新建数据库": false,
-      "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
+      "switcher:打开快速切换": false,
       "canvas:新建白板": false,
       "daily-notes:打开/创建今天的日记": false,
       "command-palette:打开命令面板": false,
@@ -445,28 +445,30 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "a9ca0938dcbedc35",
+  "active": "48e1e256290ab64f",
   "lastOpenFiles": [
+    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md.tmp.9096.3d6f641ced52",
+    "CLAUDE.md.tmp.9096.477065ae2ab2",
+    "Documents/I.P.A.R.A/学习领域/收集/Linux.md",
+    "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent.md",
+    "Documents/I.P.A.R.A/工作领域/项目/自媒体平台数据爬取.md",
+    "Documents/I.P.A.R.A/学习领域/收集/项目开发需求画图.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md",
     "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md.tmp.21707.a06ee2688d6e",
     "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md.tmp.21707.497cef6505bd",
     "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md.tmp.21707.80b2982fee6b",
     "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md.tmp.21707.947e5216150e",
     "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md.tmp.21707.7f97c1071150",
     "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md.tmp.21707.d421f3bea607",
-    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md",
     "CLAUDE.md",
     "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-05-28.md",
     "数据库与导航.md",
     "Documents/I.P.A.R.A/0-收集箱/X平台数据缺失诊断报告.md",
     "Documents/I.P.A.R.A/0-收集箱/未命名 1.base",
-    "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
     "Documents/I.P.A.R.A/学习领域/收集/frontend-dev Agent Claude Code 集成方案.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent.md",
     "Assistants/Templater/主页/homepage-侧页.md",
-    "Documents/I.P.A.R.A/工作领域/项目/自媒体平台数据爬取.md",
     "Documents/I.P.A.R.A/工作领域/项目/前台门户网站.md",
-    "Documents/I.P.A.R.A/学习领域/收集/项目开发需求画图.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Linux.md",
     "Documents/I.P.A.R.A/工作领域/项目/知塘晓物-APP端开发.md",
     "Documents/I.P.A.R.A/0-收集箱/未命名.md",
     "Documents/I.P.A.R.A/0-收集箱/docs/youtube_api.md",
@@ -479,9 +481,7 @@
     "Documents/I.P.A.R.A/学习领域/收集/Octos安装和配置.md",
     "Documents/I.P.A.R.A/0-收集箱/数据采集问题.md",
     "Documents/I.P.A.R.A/0-收集箱/数据采集问题.md.tmp.73865.6c234147ed28",
-    "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-05-30.md.tmp.23874.1f2daaf701fe",
     "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-05-30.md",
-    "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-05-30.md.tmp.23874.3a8f8049d42a",
     "Documents/I.P.A.R.A/0-收集箱/Instagram_X数据缺失分析.md",
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/海媒传播分析系统.canvas",
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/海军思想政治教育云课堂.canvas",

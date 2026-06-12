@@ -289,3 +289,46 @@ Claude Code 会自动：
 - 整理时必须使用**当天实际日期**（`date +%Y-%m-%d`），不要用会话开始时的日期
 - 对话内容必须**原文照搬**，不要对 AI 的回复做任何压缩、改写或分析
 
+## 跨项目整理提示词
+
+在**非 Obsidian vault 项目**的 Claude Code 会话中，复制以下提示词即可整理对话：
+
+```
+整理今天的AI对话到Obsidian笔记。
+
+第一步：定位 Obsidian vault
+执行 find ~ -maxdepth 4 -path "*/ewige_wiederkunft/CLAUDE.md" 2>/dev/null | head -1
+取其父目录作为 VAULT_PATH。如果找不到，问我 vault 路径。
+
+第二步：读取笔记规则
+cat "$VAULT_PATH/CLAUDE.md"，重点关注 AI Conversation Organization Rules 和 Required Frontmatter 部分。
+这些规则定义了笔记格式、存放路径和内容要求，请严格遵循。
+
+第三步：扫描当天对话
+find ~/.claude/projects/ -name "*.jsonl" -mtime 0
+
+第四步：按 CLAUDE.md 规则整理
+- 输出路径：$VAULT_PATH/Documents/I.P.A.R.A/0-收集箱/AI笔记/$(date +%Y-%m-%d).md
+- 文件已存在则追加，不存在则创建
+- 代码对话：原文照搬，不做压缩改写，之后加基础知识点小节
+- 非代码对话：提炼要点摘要
+- 内容过多时先列计划问我
+
+现在开始执行。
+```
+
+### 工作原理
+
+1. **自动定位 vault** — 通过 `find` 搜索特征文件 `ewige_wiederkunft/CLAUDE.md`，无需记忆路径
+2. **规则随仓库走** — 详细规则存储在 vault 的 `CLAUDE.md` 中（git 跟踪），换机器无需额外配置
+3. **跨项目扫描** — 扫描 `~/.claude/projects/` 下所有项目的当天对话，按项目分组整理
+
+### 适配其他机器
+
+如果 vault 目录名不同，修改 find 命令中的路径特征即可：
+
+```bash
+# 示例：vault 在 ~/notes/my-vault/
+find ~ -maxdepth 4 -name "CLAUDE.md" -path "*/my-vault/*" 2>/dev/null | head -1
+```
+
