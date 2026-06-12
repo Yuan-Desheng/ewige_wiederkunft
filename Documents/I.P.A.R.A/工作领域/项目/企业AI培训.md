@@ -7,6 +7,10 @@ multiMedia:
 笔记类型: 项目笔记
 阐述日期:
 tags:
+  - AI
+  - 培训
+卡片盒笔记主题:
+  - "[[Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/Artificial Intelligence.canvas|Artificial Intelligence]]"
 ---
 
 ##  企业AI培训

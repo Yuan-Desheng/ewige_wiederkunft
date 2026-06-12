@@ -7,9 +7,13 @@ description:
 笔记类型: 收集笔记
 阐述日期:
 tags:
+  - Docker
+  - Nginx
+  - 部署
 aliases:
 cssclasses:
 卡片盒笔记主题:
+  - "[[Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/DevOps.canvas|DevOps]]"
 ---
 
 ##  Docker 与 Nginx 部署教程：从安装到前端项目实战

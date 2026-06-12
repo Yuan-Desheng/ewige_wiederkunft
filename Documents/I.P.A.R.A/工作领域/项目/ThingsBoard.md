@@ -7,6 +7,10 @@ multiMedia:
 笔记类型: 项目笔记
 阐述日期:
 tags:
+  - ThingsBoard
+  - IoT
+卡片盒笔记主题:
+  - "[[Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/ThingsBoard.canvas|ThingsBoard]]"
 ---
 
 ##  ThingsBoard

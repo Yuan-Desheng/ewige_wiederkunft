@@ -15,6 +15,7 @@ aliases:
   - Octos AI Agent Platform
 cssclasses:
 卡片盒笔记主题:
+  - "[[Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/Artificial Intelligence.canvas|Artificial Intelligence]]"
 ---
 
 ## Octos

@@ -7,9 +7,12 @@ description:
 笔记类型: 收集笔记
 阐述日期:
 tags:
+  - Flutter
+  - Token
 aliases:
 cssclasses:
 卡片盒笔记主题:
+  - "[[Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/Flutter.canvas|Flutter]]"
 ---
 
 ## Token持久化

@@ -7,9 +7,12 @@ multiMedia:
 笔记类型: 项目笔记
 阐述日期:
 tags:
+  - MAD
+  - 剪辑
 aliases:
 cssclasses:
 卡片盒笔记主题:
+  - "[[Documents/I.P.A.R.A/生活领域/归档/卡片盒笔记主题索引卡/MAD剪辑.canvas|MAD剪辑]]"
 ---
 
 ##  （云）MAD

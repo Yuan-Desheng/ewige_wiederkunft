@@ -7,12 +7,21 @@ description:
 笔记类型: 收集笔记
 阐述日期:
 tags:
+  - Linux
+  - 虚拟机
+  - Windows
 aliases:
 cssclasses:
 卡片盒笔记主题:
+  - "[[Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/Linux.canvas|Linux]]"
 ---
 
 # Ubuntu 安装 Windows 虚拟机
+
+```meta-bind-embed
+[[笔记抬头模块]]
+```
+
 
 ## 概述
 

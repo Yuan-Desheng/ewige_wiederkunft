@@ -4,7 +4,7 @@ createTime: 2026-02-26 16:42
 multiFile:
 multiMedia:
 description: 详细介绍了 Flutter 中的路由管理机制，包括基本路由、命名路由、跳转方法、参数传递以及动态路由拦截（onGenerateRoute）等高级用法。
-笔记类型:
+笔记类型: 收集笔记
 阐述日期:
 tags:
   - Flutter

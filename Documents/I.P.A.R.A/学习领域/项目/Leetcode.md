@@ -7,6 +7,10 @@ multiMedia:
 笔记类型: 项目笔记
 阐述日期:
 tags:
+  - LeetCode
+  - 算法
+卡片盒笔记主题:
+  - "[[Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/算法刷题.canvas|算法刷题]]"
 ---
 
 ##  Leetcode

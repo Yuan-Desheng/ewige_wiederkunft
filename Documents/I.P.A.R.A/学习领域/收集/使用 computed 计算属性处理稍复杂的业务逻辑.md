@@ -7,9 +7,12 @@ description:
 笔记类型: 收集笔记
 阐述日期:
 tags:
+  - Vue
+  - computed
 aliases:
 cssclasses:
 卡片盒笔记主题:
+  - "[[Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/峰华Vue3.canvas|峰华Vue3]]"
 ---
 
 ##  使用 computed 计算属性处理稍复杂的业务逻辑

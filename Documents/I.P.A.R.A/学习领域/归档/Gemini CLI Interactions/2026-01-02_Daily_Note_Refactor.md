@@ -12,6 +12,7 @@ tags:
 aliases:
 cssclasses:
 卡片盒笔记主题:
+  - "[[Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/Gemini.canvas|Gemini]]"
 ---
 
 ##  2026-01-02_Daily_Note_Refactor

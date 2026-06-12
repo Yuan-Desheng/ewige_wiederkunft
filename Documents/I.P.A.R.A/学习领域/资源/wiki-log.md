@@ -3,9 +3,16 @@ createTime: 2026-05-28 11:30
 笔记ID: 20260528113002
 tags: [wiki, log]
 笔记类型: wiki笔记
+卡片盒笔记主题:
+  - "[[Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/LLM Wiki.canvas|LLM Wiki]]"
 ---
 
 # Wiki Log
+
+```meta-bind-embed
+[[笔记抬头模块]]
+```
+
 
 > 所有wiki操作的按时间记录。追加写入。
 > 格式: `## [YYYY-MM-DD] action | subject`

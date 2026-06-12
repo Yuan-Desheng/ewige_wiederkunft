@@ -1,0 +1,41 @@
+{
+  "edges": [],
+  "nodes": [
+    {
+      "id": "note-1781247289711-4378",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/Docker 与 Nginx 部署教程：从安装到前端项目实战.md",
+      "x": 100,
+      "y": 100,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1781247289713-6184",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/Git.md",
+      "x": 590,
+      "y": 100,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1781247289715-9199",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/工作领域/项目/流水线部署前端项目.md",
+      "x": 1080,
+      "y": 100,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1781247289717-2867",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/工作领域/项目/手动启动服务.md",
+      "x": 1570,
+      "y": 100,
+      "width": 440,
+      "height": 500
+    }
+  ]
+}

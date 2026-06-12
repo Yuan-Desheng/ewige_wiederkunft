@@ -7,9 +7,12 @@ multiMedia:
 笔记类型: 永久笔记
 阐述日期:
 tags:
+  - OpenClaw
+  - 提示词
 aliases:
 cssclasses:
 卡片盒笔记主题:
+  - "[[Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/OpenClaw.canvas|OpenClaw]]"
 ---
 
 ##  openclaw提示词-04-03

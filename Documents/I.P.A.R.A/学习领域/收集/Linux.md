@@ -7,9 +7,11 @@ description:
 笔记类型: 收集笔记
 阐述日期:
 tags:
+  - Linux
 aliases:
 cssclasses:
 卡片盒笔记主题:
+  - "[[Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/Linux.canvas|Linux]]"
 ---
 
 ##  Linux

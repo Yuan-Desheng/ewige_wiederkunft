@@ -14,6 +14,7 @@ tags:
 aliases:
 cssclasses:
 卡片盒笔记主题:
+  - "[[Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/Artificial Intelligence.canvas|Artificial Intelligence]]"
 ---
 
 ##  Hermes Agent + LLM Wiki知识库 + Obsidian图谱
@@ -21,8 +22,13 @@ cssclasses:
 [[笔记抬头模块]]
 ```
 <progress value="80" max="100" style="width: 100%;"></progress>
+
 ## 待办
-- [ ] 每天按日期整理的ai笔记功能有了，现在需要增加整理一个对话，或者上下文中的内容到制定的笔记中的功能，并列出基础知识点和官网文档地址。 [🔗Dida](obsidian://dida-task?didaId=6a1909b8e4b037c374061c07) 
+- [ ] 每天按日期整理的ai笔记功能有了，现在需要增加整理一个对话，或者上下文中的内容到制定的笔记中的功能，并列出基础知识点和官网文档地址。 [🔗Dida](obsidian://dida-task?didaId=6a1909b8e4b037c374061c07)
+- [ ] ① **水位线增量整理**：在 AI笔记目录维护 `.organized.json`（会话ID → 已整理到的消息时间戳），提示词从"按 -mtime 0 扫描"改为"整理所有未整理消息"——一次解决重复追加、隔天遗漏、跨天归属三个问题
+- [ ] ② **复习闭环**：整理时自动将 `阐述日期` 设为 +7 天（进入 Alt+X 复习流）；知识点解析输出 `[[wikilink]]` 连接概念页（涉及格式变更，先出样例确认）
+- [ ] ③ **多 agent 采集**：openclaw / hermes 会话日志接入整理流水线，或收窄 frontmatter `来源` 枚举为 claude-code
+- [ ] ④ **定时兜底**：每日固定时间（如 21:30）自动执行整理，手动触发保留用于即时需要
 
 ## 原始提示词
 ```
@@ -46,7 +52,20 @@ https://www.bilibili.com/opus/1190405075833454616
 - Hermes Agent GitHub: https://github.com/NousResearch/hermes-agent
 - LLM Wiki Skill: https://github.com/NousResearch/hermes-agent/blob/main/skills/research/llm-wiki/SKILL.md
 
-## 优化后的提示词
+## 整理规则（唯一来源：CLAUDE.md）
+
+> [!important] 规则不在本笔记中复制
+> AI 对话整理的全部规则以 vault 根目录 **CLAUDE.md → "AI Conversation Organization Rules"** 为准（git 跟踪，规则随仓库走）。修改规则请改 CLAUDE.md，不要改本笔记——本笔记曾复制过一份规则副本（原"提示词 D"），后因规则演进产生漂移，已于 2026-06-12 删除。
+
+当前规则速览（仅索引，细节看 CLAUDE.md）：
+- **笔记格式**：Required Frontmatter（`笔记类型: AI整理` + `cssclasses: ai-note`）→ `## YYYY-MM-DD` 标题 → `meta-bind-embed [[笔记抬头模块]]` → 内容
+- **敏感信息脱敏**（CRITICAL）：vault 推送到公网 GitHub，密码/token/密钥替换为【已脱敏】并在提交前校验；SSH 公钥可保留
+- **扫描范围**：本机多人共用，默认只整理路径含 `yuandesheng` 的项目会话
+- **提取排除项**：跳过压缩摘要伪消息、`<local-command>`/`Caveat` 消息，剥离 `<system-reminder>`，保留 `<bash-input>/<bash-stdout>`；jsonl 时间戳为 UTC（本地 +8）
+- **内容要求**：对话原文照搬（代码和非代码）、之后加 `### 知识点解析`（修改原因、基础知识点、官方文档链接）
+- **过大先列计划**：列主题清单问用户哪些详细整理，不静默截断
+
+## 历史提示词归档（2026-05-28 已执行，仅留作设计记录）
 
 ### 提示词 A：Claude Code场景 — 将鱼先生操作规范写入CLAUDE.md
 ```
@@ -99,38 +118,6 @@ https://www.bilibili.com/opus/1190405075833454616
 - 使用 [[wikilinks]] 建立双向链接，确保 Obsidian 图谱视图可正常工作
 ```
 
-### 提示词 D：Obsidian vault 项目 — 每日AI对话整理为Obsidian笔记
-```
-任务：将今天的AI对话内容整理为Obsidian笔记。
-
-数据源：
-- find ~/.claude/projects/ -name "*.jsonl" -mtime 0
-- python3 解析 JSONL：user 消息（type=user, message.content 中 type=text）
-  和 assistant 回复（type=assistant, message.content 中 type=text 且 len>100）
-- 按项目分组
-
-整理规则：
-1. 笔记路径：Documents/I.P.A.R.A/0-收集箱/AI笔记/YYYY-MM-DD.md
-2. 如果文件已存在则追加，不存在则创建
-3. frontmatter 格式：
-   ---
-   createTime: YYYY-MM-DD HH:mm
-   笔记ID: YYYYMMDDHHmmss
-   tags: [ai笔记, 知识回顾]
-   笔记类型: AI整理
-   来源: claude-code | hermes | openclaw
-   ---
-4. 所有对话（代码和非代码）：
-   - 保留原始对话（用户问题 + AI回复原文），**原文照搬，不做任何改写或压缩**
-   - 代码块保留完整代码，不删减为"重点片段"
-   - 表格保留完整表格，不重新格式化
-   - 对话原文之后加 `### 知识点解析` 小节，详细解释：修改原因、基础知识点、官方文档链接（中英文）
-5. 内容过多时：先列出主题目录计划，问用户哪些需要详细整理
-
-触发方式：
-- 手动触发：在 Obsidian vault 项目的 Claude Code 会话中说"整理今天的对话"
-```
-
 ## 实施计划
 
 ### 第一阶段：基础规范建立（1-2天）
@@ -149,6 +136,10 @@ https://www.bilibili.com/opus/1190405075833454616
   - 68篇空笔记类型已设为"收集笔记"（含FLutter 路由）
   - 19篇项目笔记已添加 tags: 字段
   - 1篇旧格式frontmatter（手动启动服务.md）已迁移为新格式
+- [x] 第二轮全库补全 ✅ 2026-06-12（见下方第二轮报告）
+  - 110 篇笔记全部补齐 `meta-bind-embed [[笔记抬头模块]]`（卡片盒格式强制化）
+  - 笔记类型缺失清零、tags 缺失清零（80 篇修改）
+  - 卡片盒笔记主题补 29 篇（只从已有索引卡选取）、20 篇无对应索引卡有意留空
 - [ ] 在 Obsidian 数据库视图中验证整理结果
 
 ### 第三阶段：LLM Wiki搭建（3-5天）
@@ -172,12 +163,11 @@ https://www.bilibili.com/opus/1190405075833454616
 ### 第四阶段：自动化工作流（持续优化）
 - [x] AI笔记目录调整 ✅ 2026-05-28
   - 从 `学习领域/收集/AI笔记/` 移动到 `0-收集箱/AI笔记/`
-- [x] 整理规则制定 ✅ 2026-05-28（05-29修正，06-12再次修正）
-  - **所有对话原文照搬**（代码和非代码），不做任何改写、压缩或分析
-  - 代码块保留完整代码，不删减为"重点片段"
-  - 表格保留完整表格，不转换为 markdown 重写
-  - 对话原文之后加 `### 知识点解析` 小节，详细解释修改原因、基础知识点、官方文档链接
-  - 内容过多时先列计划再分批整理
+- [x] 整理规则制定并收敛到 CLAUDE.md ✅ 2026-05-28（05-29 修正，06-12 规则 v2）
+  - 06-12 新增：敏感信息脱敏、多用户机器扫描范围、jsonl 提取排除项、卡片盒格式强制
+  - 本笔记不再保留规则副本，见上方「整理规则」一节
+- [ ] ① 水位线增量整理（`.organized.json`，见顶部待办）
+- [ ] ② 复习闭环（阐述日期 +7 天、知识点 wikilink，见顶部待办）
 - [ ] 建立 AI笔记 → 学习领域/资源/ 的定期归档流程
 - [ ] 设置定期 lint 检查（孤立页面、断链、frontmatter完整性）
 
@@ -185,13 +175,14 @@ https://www.bilibili.com/opus/1190405075833454616
 - 每个阶段完成后在 Obsidian 中验证结果，不要跳过验证直接进入下一阶段
 - Hermes LLM Wiki 的 raw/ 目录不可变原则需与鱼先生的"收集箱"概念协调——建议 raw/ 仅存放AI处理的原始对话，收集箱继续存放手动收集的内容
 - AI整理的笔记使用 `cssclasses: ai-note` 或 `笔记类型: AI整理` 进行区分，配合 Obsidian CSS snippet 实现视觉区分（如不同背景色）
+- 直接写 frontmatter 的 `卡片盒笔记主题` **不会**自动把笔记嵌入主题 canvas（那是插件按钮的行为）——需在本地 Obsidian 打开对应 canvas 后用 `Alt+Shift+B` 批量嵌入反链笔记
 
 ## 笔记分类检查报告
 
+### 第一轮（2026-05-28）
+
 > [!success] 修正已完成
 > 扫描时间：2026-05-28 | 总笔记数：104 | 修正前问题：87篇 | 已全部修正
-
-### 修正前问题分布（已全部处理）
 
 | 问题类型 | 数量 | 修正状态 | 执行的操作 |
 |---|---|---|---|
@@ -200,56 +191,62 @@ https://www.bilibili.com/opus/1190405075833454616
 | `笔记类型` 为空 | 68 | ✅ 已修复 | 统一设为 `收集笔记` |
 | 非标准frontmatter | 1 | ✅ 已修复 | `手动启动服务.md` 旧格式迁移为新格式 |
 
-### 修正后验证结果
+### 第二轮（2026-06-12）
 
-- 空笔记类型笔记数：0（修正前68篇）
-- 缺少tags的项目笔记数：0（修正前19篇）
-- 无frontmatter的笔记数：0（修正前3篇中的2篇已补充，1篇已有）
+> [!success] 卡片盒格式全库对齐
+> 总笔记数：110 | 修改：80篇（frontmatter）+ 10篇（补抬头模块）
 
-### 待验证
+| 项目 | 结果 |
+|---|---|
+| `meta-bind-embed [[笔记抬头模块]]` | 110/110 全覆盖（补 10 篇，其中 05-29/05-30 同时补了与文件名一致的标题头） |
+| 笔记类型 | 缺失 0（补 1 篇） |
+| tags | 缺失 0（补 70 篇，按内容语义 1-3 个标签） |
+| 卡片盒笔记主题 | 补 29 篇（只从现存 15 张索引卡选取：Flutter/峰华Vue3/OpenClaw/Artificial Intelligence/海媒/虚拟电厂/Gemini）；20 篇无对应索引卡暂时留空 |
 
-- [ ] 在 Obsidian 数据库视图中确认修正后的笔记正确显示分类
-- [ ] 重启 Hermes Agent 使 `WIKI_PATH` 生效
-- [ ] 在 Obsidian 图谱视图中确认 wiki 页面链接
+✅ 2026-06-12 后续：为留空的 20 篇新建 12 张索引卡并全部关联（Linux、前端开发、DevOps、算法刷题、LLM Wiki、软件工程、英语学习、ThingsBoard、工业数据采集公司官网、空军推门听课交接、跑步、MAD剪辑），canvas 中已内置成员笔记 file 节点。至此全库 110 篇主题无缺失。
 
 ## 待办事项
 
+> [ ] ① 水位线增量整理 `.organized.json`（最高优先级，解决重复/遗漏/跨天）
+> [ ] ② 复习闭环：阐述日期 +7 天 + 知识点解析 `[[wikilink]]`（先出样例确认格式）
+> [ ] ③ openclaw / hermes 会话采集接入（或收窄 `来源` 枚举）
+> [ ] ④ 每日定时兜底整理（如 21:30）
 > [ ] Hermes Agent 中执行第一批 source ingest（将已有对话记录导入 wiki）
-> [ ] 配置 Hermes skill hook（对话结束时自动触发整理）
 > [ ] 配置 Obsidian QuickAdd 手动触发按钮
 > [ ] 建立 AI笔记 → 学习领域/资源/ 的定期归档流程
 > [ ] 设置定期 lint 检查（孤立页面、断链、frontmatter完整性）
 
 ## 配置文件位置汇总
 
-| 配置项               | 文件路径                                                          | 说明                            |
-| ----------------- | ------------------------------------------------------------- | ----------------------------- |
-| Obsidian vault 规则 | `/home/yuan/obsidian/ewige_wiederkunft/CLAUDE.md`             | 笔记创建规则、frontmatter格式、AI对话整理规则 |
-| Hermes 环境变量       | `~/.hermes/.env`                                              | WIKI_PATH 配置                  |
-| LLM Wiki Schema   | `/home/yuan/obsidian/ewige_wiederkunft/SCHEMA.md`             | 知识库结构和约定                      |
-| Wiki 索引           | `Documents/I.P.A.R.A/学习领域/资源/wiki-index.md`                   | 所有 wiki 页面目录                  |
-| Wiki 日志           | `Documents/I.P.A.R.A/学习领域/资源/wiki-log.md`                     | 操作记录                          |
-| AI 笔记输出           | `Documents/I.P.A.R.A/0-收集箱/AI笔记/YYYY-MM-DD.md`                | 每日AI对话整理笔记                    |
+> [!note] 多机说明
+> vault 同时存在于多台机器（如 `/home/yuan/obsidian/ewige_wiederkunft`、`/home/work/yuandesheng/ewige_wiederkunft`），因此下表使用 **vault 相对路径**；绝对路径一律通过提示词第一步的 `find` 动态定位。
+
+| 配置项               | 路径（vault 相对）                                    | 说明                            |
+| ----------------- | ----------------------------------------------- | ----------------------------- |
+| Obsidian vault 规则 | `CLAUDE.md`                                     | 笔记创建规则、frontmatter格式、AI对话整理规则（唯一规则来源） |
+| LLM Wiki Schema   | `SCHEMA.md`                                     | 知识库结构和约定                      |
+| Wiki 索引           | `Documents/I.P.A.R.A/学习领域/资源/wiki-index.md`     | 所有 wiki 页面目录                  |
+| Wiki 日志           | `Documents/I.P.A.R.A/学习领域/资源/wiki-log.md`       | 操作记录                          |
+| AI 笔记输出           | `Documents/I.P.A.R.A/0-收集箱/AI笔记/YYYY-MM-DD.md`  | 每日AI对话整理笔记                    |
+| Hermes 环境变量       | `~/.hermes/.env`（机器本地，不在 vault 内）               | WIKI_PATH 配置                  |
 
 ## 每日使用指南
 
 ### 手动触发（Obsidian vault 项目中）
 
-在 Obsidian vault 项目的 Claude Code 对话框中，直接输入：
+在 vault 项目的 Claude Code 对话框中，直接输入：
 
 ```
 整理今天的对话
 ```
 
-Claude Code 会自动：
-1. 扫描 `~/.claude/projects/` 下当天所有对话（跨项目）
-2. 解析对话内容，按项目分组
-3. 所有对话保留原文 + 解释修改理由、基础知识点和官方文档链接
-4. 输出到 `0-收集箱/AI笔记/YYYY-MM-DD.md`（如已存在则追加新主题）
+Claude Code 会按 CLAUDE.md 规则自动：
+1. 扫描 `~/.claude/projects/` 下当天会话（默认只取本人项目，路径含 `yuandesheng`）
+2. 解析对话（剔除压缩摘要等注入消息），按项目/会话分组
+3. 对话原文照搬 + 知识点解析；密码/token 自动脱敏
+4. 输出到 `0-收集箱/AI笔记/YYYY-MM-DD.md`（已存在则追加）
 
 ### 在对话中指定范围
-
-可以更精确地控制整理范围：
 
 ```
 # 只整理某个项目的对话
@@ -262,33 +259,33 @@ Claude Code 会自动：
 整理今天对话中的代码修改部分
 ```
 
-### 输出笔记的结构
+### 输出笔记的结构（现行版，2026-06-12 定版）
 
 ```
-0-收集箱/AI笔记/2026-05-28.md
-├── frontmatter（createTime / 笔记ID / tags / 笔记类型: AI整理 / 来源）
-├── 主题1：xxx（项目A）
-│   ├── 原始对话 / 知识点
-│   └── 官方文档参考
-├── 主题2：xxx（项目B）
-│   ├── 原始对话 / 知识点
-│   └── 官方文档参考
-├── ...
-├── 跨对话汇总表
-└── 今日工作成果
+0-收集箱/AI笔记/2026-06-12.md
+├── frontmatter（Required Frontmatter，笔记类型: AI整理 / cssclasses: ai-note / 卡片盒笔记主题按内容归属）
+├── ## 2026-06-12（标题 = 文件名）
+├── meta-bind-embed [[笔记抬头模块]]
+├── 引言（整理范围、时区、脱敏说明）
+├── 会话一：主题概述（会话ID、实际日期范围）
+│   ├── 对话原文（逐条 用户/Claude，按时间序）
+│   └── 知识点解析（修改原因、基础知识点、官方文档链接）
+├── 会话二：……
+│   ├── 对话原文
+│   └── 知识点解析
 ```
 
 ### 注意事项
 
-- 仅在 **Obsidian vault 项目** 中可用
-- 每次整理会扫描当天**所有项目**的对话，已存在的主题不会重复写入
+- 仅在 **Obsidian vault 项目** 中可用（其他项目用下方跨项目提示词）
+- ⚠️ **同一天重复运行会重复追加已整理过的内容**——去重机制见待办①（水位线），落地前请勿对同一天的对话跑两次
 - 如果对话量很大，会先列出目录计划让你选择哪些需要详细整理
 - 整理时必须使用**当天实际日期**（`date +%Y-%m-%d`），不要用会话开始时的日期
 - 对话内容必须**原文照搬**，不要对 AI 的回复做任何压缩、改写或分析
 
 ## 跨项目整理提示词
 
-在**非 Obsidian vault 项目**的 Claude Code 会话中，复制以下提示词即可整理对话：
+在**非 Obsidian vault 项目**的 Claude Code 会话中，复制以下提示词即可整理对话（2026-06-12 更新：预过滤本人项目）：
 
 ```
 整理今天的AI对话到Obsidian笔记。
@@ -299,16 +296,17 @@ Claude Code 会自动：
 
 第二步：读取笔记规则
 cat "$VAULT_PATH/CLAUDE.md"，重点关注 AI Conversation Organization Rules 和 Required Frontmatter 部分。
-这些规则定义了笔记格式、存放路径和内容要求，请严格遵循。
+这些规则定义了笔记格式、存放路径、脱敏要求和提取排除项，请严格遵循。
 
-第三步：扫描当天对话
-find ~/.claude/projects/ -name "*.jsonl" -mtime 0
+第三步：扫描当天对话（只取我自己的项目）
+find ~/.claude/projects/ -path "*yuandesheng*" -name "*.jsonl" -mtime 0
 
 第四步：按 CLAUDE.md 规则整理
 - 输出路径：$VAULT_PATH/Documents/I.P.A.R.A/0-收集箱/AI笔记/$(date +%Y-%m-%d).md
 - 文件已存在则追加，不存在则创建
 - 所有对话原文照搬（代码和非代码），不做压缩改写
 - 对话原文之后加知识点解析（修改原因、基础知识点、官方文档链接）
+- 密码/token 等敏感信息替换为【已脱敏】并校验
 - 内容过多时先列计划问我
 
 现在开始执行。
@@ -317,8 +315,8 @@ find ~/.claude/projects/ -name "*.jsonl" -mtime 0
 ### 工作原理
 
 1. **自动定位 vault** — 通过 `find` 搜索特征文件 `ewige_wiederkunft/CLAUDE.md`，无需记忆路径
-2. **规则随仓库走** — 详细规则存储在 vault 的 `CLAUDE.md` 中（git 跟踪），换机器无需额外配置
-3. **跨项目扫描** — 扫描 `~/.claude/projects/` 下所有项目的当天对话，按项目分组整理
+2. **规则随仓库走** — 详细规则存储在 vault 的 `CLAUDE.md` 中（git 跟踪），换机器无需额外配置；本笔记只保留引导提示词
+3. **跨项目扫描** — 扫描 `~/.claude/projects/` 下本人项目的当天对话，按项目分组整理
 
 ### 适配其他机器
 
@@ -328,4 +326,3 @@ find ~/.claude/projects/ -name "*.jsonl" -mtime 0
 # 示例：vault 在 ~/notes/my-vault/
 find ~ -maxdepth 4 -name "CLAUDE.md" -path "*/my-vault/*" 2>/dev/null | head -1
 ```
-

@@ -1,0 +1,23 @@
+{
+  "edges": [],
+  "nodes": [
+    {
+      "id": "note-1781247289706-5208",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/Angular.md",
+      "x": 100,
+      "y": 100,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1781247289708-2089",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/CodePen.md",
+      "x": 590,
+      "y": 100,
+      "width": 440,
+      "height": 500
+    }
+  ]
+}
