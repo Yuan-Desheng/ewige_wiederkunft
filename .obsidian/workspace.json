@@ -156,24 +156,9 @@
               "icon": "lucide-file",
               "title": "自媒体平台数据爬取"
             }
-          },
-          {
-            "id": "14326a491e988503",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Documents/I.P.A.R.A/学习领域/收集/frontend-dev Agent Claude Code 集成方案.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "frontend-dev Agent Claude Code 集成方案"
-            }
           }
         ],
-        "currentTab": 8
+        "currentTab": 9
       }
     ],
     "direction": "vertical"
@@ -236,12 +221,12 @@
               "title": "CLI Commander"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 304,
-    "collapsed": true
+    "width": 304
   },
   "right": {
     "id": "128c55eacc93ffde",
@@ -310,13 +295,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
+                "file": "Assistants/Templater/主页/homepage-侧页.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "融合大模型智能体的虚拟电厂仿真系统 的大纲"
+              "title": "homepage-侧页 的大纲"
             }
           },
           {
@@ -395,12 +380,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent.md",
+                "file": "Assistants/Templater/主页/homepage-侧页.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Hermes Agent 的出链列表"
+              "title": "homepage-侧页 的出链列表"
             }
           },
           {
@@ -413,13 +398,11 @@
               "title": "单词助手"
             }
           }
-        ],
-        "currentTab": 7
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 387,
-    "collapsed": true
+    "width": 387
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -445,28 +428,43 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "48e1e256290ab64f",
+  "active": "e058ffb68982e0ef",
   "lastOpenFiles": [
+    "Documents/I.P.A.R.A/工作领域/项目/自媒体平台数据爬取.md",
+    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/Artificial Intelligence.canvas",
+    "数据库与导航.md",
+    "Documents/I.P.A.R.A/学习领域/归档/openclaw提示词-04-07.md",
+    "Documents/I.P.A.R.A/学习领域/归档/openclaw提示词-04-08.md",
+    "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-06-12.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md",
+    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/AI笔记.canvas",
+    "Documents/I.P.A.R.A/生活领域/归档/卡片盒笔记主题索引卡/跑步.canvas",
+    "Documents/I.P.A.R.A/生活领域/归档/卡片盒笔记主题索引卡/MAD剪辑.canvas",
+    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/空军推门听课交接.canvas",
+    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/工业数据采集公司官网.canvas",
+    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/ThingsBoard.canvas",
+    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/软件工程.canvas",
+    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/英语学习.canvas",
+    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/算法刷题.canvas",
+    "快速上手打卡任务（完成后，请删除）.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent.md",
+    "Documents/I.P.A.R.A/学习领域/收集/frontend-dev Agent Claude Code 集成方案.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md.tmp.9096.a52380d75e61",
+    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md.tmp.9096.d796599360d4",
+    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md.tmp.9096.fab39e7a6e55",
+    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md.tmp.9096.a47000c30988",
+    "CLAUDE.md.tmp.9096.5045bea3da32",
+    "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
     "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md.tmp.9096.3d6f641ced52",
     "CLAUDE.md.tmp.9096.477065ae2ab2",
     "Documents/I.P.A.R.A/学习领域/收集/Linux.md",
-    "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent.md",
-    "Documents/I.P.A.R.A/工作领域/项目/自媒体平台数据爬取.md",
     "Documents/I.P.A.R.A/学习领域/收集/项目开发需求画图.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md",
     "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md.tmp.21707.a06ee2688d6e",
     "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md.tmp.21707.497cef6505bd",
     "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md.tmp.21707.80b2982fee6b",
-    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md.tmp.21707.947e5216150e",
-    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md.tmp.21707.7f97c1071150",
-    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md.tmp.21707.d421f3bea607",
     "CLAUDE.md",
     "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-05-28.md",
-    "数据库与导航.md",
     "Documents/I.P.A.R.A/0-收集箱/X平台数据缺失诊断报告.md",
-    "Documents/I.P.A.R.A/0-收集箱/未命名 1.base",
-    "Documents/I.P.A.R.A/学习领域/收集/frontend-dev Agent Claude Code 集成方案.md",
     "Assistants/Templater/主页/homepage-侧页.md",
     "Documents/I.P.A.R.A/工作领域/项目/前台门户网站.md",
     "Documents/I.P.A.R.A/工作领域/项目/知塘晓物-APP端开发.md",
@@ -477,31 +475,15 @@
     "Documents/I.P.A.R.A/0-收集箱/docs/tiktok_api.md",
     "Documents/I.P.A.R.A/0-收集箱/docs/execution_commands.md",
     "Documents/I.P.A.R.A/0-收集箱/docs/database_tables.md",
-    "Documents/I.P.A.R.A/0-收集箱/docs",
-    "Documents/I.P.A.R.A/学习领域/收集/Octos安装和配置.md",
-    "Documents/I.P.A.R.A/0-收集箱/数据采集问题.md",
-    "Documents/I.P.A.R.A/0-收集箱/数据采集问题.md.tmp.73865.6c234147ed28",
-    "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-05-30.md",
-    "Documents/I.P.A.R.A/0-收集箱/Instagram_X数据缺失分析.md",
-    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/海媒传播分析系统.canvas",
-    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/海军思想政治教育云课堂.canvas",
     "Extras/附件/Pasted image 20260424164725.png",
     "Extras/附件/Pasted image 20251229151116.png",
-    "Documents/Canvas/未命名.canvas",
-    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/Artificial Intelligence.canvas",
-    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/知塘晓物.canvas",
     "Extras/附件/Pasted image 20260424164618.png",
-    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/融合大模型智能体的虚拟电厂仿真系统.canvas",
     "Extras/附件/Pasted image 20260403105218.png",
-    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/Dart.canvas",
-    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/Flutter.canvas",
-    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/OpenClaw.canvas",
     "Extras/附件/Pasted image 20260317152414.png",
     "Extras/附件/Pasted image 20260317152119.png",
     "Extras/附件/Pasted image 20260317152004.png",
     "Extras/附件/Pasted image 20260317151934.png",
     "Extras/附件/Pasted image 20260304112617.png",
-    "Extras/附件/Pasted image 20260304110144.png",
-    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/Gemini.canvas"
+    "Extras/附件/Pasted image 20260304110144.png"
   ]
 }

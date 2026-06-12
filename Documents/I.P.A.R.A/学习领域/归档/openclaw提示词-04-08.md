@@ -2133,7 +2133,9 @@ Sender (untrusted metadata):
 
 [message_id: om_x100b52789450b48cb2982211f439fd7]
 ou_cd536a614d89b3df2d73bac7a41772df: 我需要修改的是：融合大模型智能体的虚拟电厂仿真系统前台项目的/adjustable-capability-prediction路由下的浙江省可调能力热力图模块。
-现在地图和热力图的切换效果已经完成了，不过热力图模式，x轴已经有时间了，就不用展示地图模式底部的时间进度条了，热力图模式的图表现在没有正常的展示可调能力值数据，你可以参考demo：“// prettier-ignore
+现在地图和热力图的切换效果已经完成了，不过热力图模式，x轴已经有时间了，就不用展示地图模式底部的时间进度条了，热力图模式的图表现在没有正常的展示可调能力值数据，你可以参考demo：“
+```
+// prettier-ignore
 const hours = [
     '12a', '1a', '2a', '3a', '4a', '5a', '6a',
     '7a', '8a', '9a', '10a', '11a',
@@ -2197,6 +2199,7 @@ option = {
     }
   ]
 };”
+```
 进行修改。
 
 [System: The content may include mention tags in the form <at user_id="...">name</at>. Treat these as real mentions of Feishu entities (users or bots).]
