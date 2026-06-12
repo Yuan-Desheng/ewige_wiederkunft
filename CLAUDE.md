@@ -105,13 +105,13 @@ A typical note follows this pattern:
 
 When organizing AI conversations into notes (`0-收集箱/AI笔记/YYYY-MM-DD.md`):
 
-**For code-related conversations:**
+**All conversations (code and non-code):**
 - Preserve the original conversation (user question + AI response) as-is, not just summarized
 - Code blocks: preserve complete code verbatim, do not trim, summarize, or reduce to "key snippets"
-- For every code modification: explain the **reasoning** (why this change) and **basic knowledge points** (the underlying concept the user may have forgotten due to AI-assisted coding)
-
-**For non-code conversations:**
-- Summarize and extract key points as usual
+- After the verbatim conversation, add a `### 知识点解析` section that explains:
+  - **Why** each change was made (reasoning behind the decision)
+  - **Underlying concepts** (basic knowledge points the user may have forgotten due to AI-assisted coding)
+  - **Official documentation links** (Chinese or English) for further reading
 
 **When content is too large for one pass:**
 - Create a prioritized plan listing all topics found
