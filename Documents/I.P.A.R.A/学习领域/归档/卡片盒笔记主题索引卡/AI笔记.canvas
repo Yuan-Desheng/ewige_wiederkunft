@@ -1,0 +1,41 @@
+{
+  "edges": [],
+  "nodes": [
+    {
+      "id": "note-1781247926366-3823",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-05-28.md",
+      "x": 100,
+      "y": 100,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1781247926368-2322",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-05-29.md",
+      "x": 590,
+      "y": 100,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1781247926370-1836",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-05-30.md",
+      "x": 1080,
+      "y": 100,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1781247926372-2024",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-06-12.md",
+      "x": 1570,
+      "y": 100,
+      "width": 440,
+      "height": 500
+    }
+  ]
+}

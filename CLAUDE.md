@@ -127,6 +127,15 @@ When organizing AI conversations into notes (`0-收集箱/AI笔记/YYYY-MM-DD.md
 
 **Note format:** frontmatter (Required Frontmatter with `笔记类型: AI整理`, `cssclasses: ai-note`) → `## YYYY-MM-DD` title → `meta-bind-embed [[笔记抬头模块]]` block → content (per Note Body Structure above).
 
+**Theme (fixed):** every AI daily note uses the `AI笔记` theme — NOT a per-content/project theme:
+```yaml
+卡片盒笔记主题:
+  - "[[Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/AI笔记.canvas|AI笔记]]"
+```
+When creating a new daily AI note, also append its `file` node to `AI笔记.canvas`.
+
+**Markdown-safe formatting (rendering-critical):** all code MUST be wrapped in fenced code blocks (` ``` ` with a language tag) or inline backticks. Never leave raw angle-bracket tokens bare in prose — e.g. `<IndustryDetailVO>`, `<div ...>`, generics, HTML/Vue fragments — Obsidian parses bare `<...>` as HTML and breaks the rendering of everything after it. This applies especially to verbatim user pastes (DOM dumps, JSON+HTML mixes, garbled OCR code): keep the content verbatim but wrap the code portion in a fence, leaving surrounding prose outside.
+
 **Sensitive information (CRITICAL — this vault is pushed to a public GitHub remote):**
 - Conversation transcripts may contain plaintext passwords, tokens, or keys (e.g., service credential lists the user pasted). Replace each with `【已脱敏】` before writing, then verify the written file contains no remaining secrets before committing.
 - SSH **public** keys may be kept verbatim; private keys must never be written.
@@ -137,7 +146,7 @@ When organizing AI conversations into notes (`0-收集箱/AI笔记/YYYY-MM-DD.md
 **Extraction exclusions (jsonl parsing):**
 - Skip harness-injected pseudo-user messages: compaction summaries (text starting with "This session is being continued"), and messages starting with `<local-command`, `<command-name>`, or `Caveat`.
 - Strip `<system-reminder>...</system-reminder>` blocks from user message text.
-- The user's own terminal commands appear as `<bash-input>`/`<bash-stdout>` messages — keep them (unescape HTML entities like `&gt;`).
+- The user's own terminal commands appear as `<bash-input>`/`<bash-stdout>` messages — keep their content (unescape HTML entities like `&gt;`), but NEVER write the raw tags into the note (they break rendering): reformat as 终端命令：`<inline code>` and 终端输出： + fenced ` ```text ` block. Same for `/`-command injections (`<command-message>`/`<command-name>`): replace with a one-line description like （用户执行 `/init` 命令）.
 - Sessions spanning multiple days are allowed in one daily note — label each session's actual date range; timestamps in jsonl are UTC (local is UTC+8).
 
 **All conversations (code and non-code):**

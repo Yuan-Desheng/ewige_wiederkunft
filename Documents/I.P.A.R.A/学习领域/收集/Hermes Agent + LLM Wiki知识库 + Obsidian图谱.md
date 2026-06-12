@@ -243,8 +243,9 @@ https://www.bilibili.com/opus/1190405075833454616
 Claude Code 会按 CLAUDE.md 规则自动：
 1. 扫描 `~/.claude/projects/` 下当天会话（默认只取本人项目，路径含 `yuandesheng`）
 2. 解析对话（剔除压缩摘要等注入消息），按项目/会话分组
-3. 对话原文照搬 + 知识点解析；密码/token 自动脱敏
-4. 输出到 `0-收集箱/AI笔记/YYYY-MM-DD.md`（已存在则追加）
+3. 对话原文照搬（代码一律加 ``` 围栏，禁止裸 `<...>`）+ 知识点解析；密码/token 自动脱敏
+4. 输出到 `0-收集箱/AI笔记/YYYY-MM-DD.md`（已存在则追加），主题固定挂 `AI笔记` 并向 `AI笔记.canvas` 追加节点
+5. 写入后自检并报告：脱敏残留 0、围栏外裸 `<...>` 0、canvas 节点已追加
 
 ### 在对话中指定范围
 
@@ -263,7 +264,7 @@ Claude Code 会按 CLAUDE.md 规则自动：
 
 ```
 0-收集箱/AI笔记/2026-06-12.md
-├── frontmatter（Required Frontmatter，笔记类型: AI整理 / cssclasses: ai-note / 卡片盒笔记主题按内容归属）
+├── frontmatter（Required Frontmatter，笔记类型: AI整理 / cssclasses: ai-note / 卡片盒笔记主题固定为 AI笔记）
 ├── ## 2026-06-12（标题 = 文件名）
 ├── meta-bind-embed [[笔记抬头模块]]
 ├── 引言（整理范围、时区、脱敏说明）
@@ -285,29 +286,31 @@ Claude Code 会按 CLAUDE.md 规则自动：
 
 ## 跨项目整理提示词
 
-在**非 Obsidian vault 项目**的 Claude Code 会话中，复制以下提示词即可整理对话（2026-06-12 更新：预过滤本人项目）：
+在**非 Obsidian vault 项目**的 Claude Code 会话中，复制以下提示词即可整理对话（2026-06-12 v3：瘦身为"纯引导 + 自检"，规则细节一律指向 CLAUDE.md，不再复述——避免规则演进时提示词再次过时）：
 
 ```
-整理今天的AI对话到Obsidian笔记。
+整理近期未整理的AI对话到Obsidian笔记。
 
-第一步：定位 Obsidian vault
-执行 find ~ -maxdepth 4 -path "*/ewige_wiederkunft/CLAUDE.md" 2>/dev/null | head -1
-取其父目录作为 VAULT_PATH。如果找不到，问我 vault 路径。
+第一步：定位 vault
+find ~ -maxdepth 4 -path "*/ewige_wiederkunft/CLAUDE.md" 2>/dev/null | head -1
+取其父目录作为 VAULT_PATH。找不到则问我。
 
-第二步：读取笔记规则
-cat "$VAULT_PATH/CLAUDE.md"，重点关注 AI Conversation Organization Rules 和 Required Frontmatter 部分。
-这些规则定义了笔记格式、存放路径、脱敏要求和提取排除项，请严格遵循。
+第二步：读取规则（唯一权威，严格遵循，不要凭记忆）
+cat "$VAULT_PATH/CLAUDE.md"，重点是 AI Conversation Organization Rules
+（笔记格式与固定主题、脱敏、扫描范围、提取排除项、Markdown 安全围栏）。
 
-第三步：扫描当天对话（只取我自己的项目）
+第三步：扫描对话
 find ~/.claude/projects/ -path "*yuandesheng*" -name "*.jsonl" -mtime 0
+注意：这是滚动24小时窗口而非自然日；同一天重复运行会重复追加，
+整理前先确认我今天是否已经整理过。
 
-第四步：按 CLAUDE.md 规则整理
-- 输出路径：$VAULT_PATH/Documents/I.P.A.R.A/0-收集箱/AI笔记/$(date +%Y-%m-%d).md
-- 文件已存在则追加，不存在则创建
-- 所有对话原文照搬（代码和非代码），不做压缩改写
-- 对话原文之后加知识点解析（修改原因、基础知识点、官方文档链接）
-- 密码/token 等敏感信息替换为【已脱敏】并校验
-- 内容过多时先列计划问我
+第四步：按规则整理写入。特别强调：密码/token 一律替换为【已脱敏】。
+内容过多时先列计划问我。
+
+第五步：写入后自检，向我报告三项结果：
+1. 敏感信息残留扫描（grep 已知密码模式，必须为 0）
+2. 代码围栏外裸 <...> 扫描（必须为 0，``` 行数为偶数）
+3. AI笔记.canvas 已追加新笔记的 file 节点
 
 现在开始执行。
 ```
