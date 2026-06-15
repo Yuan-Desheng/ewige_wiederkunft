@@ -18,6 +18,15 @@
       "y": 100,
       "width": 440,
       "height": 500
+    },
+    {
+      "id": "note-1781502968477-1234",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/MinIO 视频直传.md",
+      "x": 1080,
+      "y": 100,
+      "width": 440,
+      "height": 500
     }
   ]
 }
