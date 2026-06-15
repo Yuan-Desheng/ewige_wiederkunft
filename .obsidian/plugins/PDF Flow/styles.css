@@ -573,10 +573,8 @@
 }
 
 .pdfflow-color-option {
-    width: 24px;
-    height: 24px;
     border-radius: 50%;
-    border: 2px solid transparent;
+    border: 2px solid rgba(255, 255, 255, 0.8);
     cursor: pointer;
     transition: all 0.2s ease;
     position: relative;
@@ -584,12 +582,11 @@
 
 .pdfflow-color-option:hover {
     transform: scale(1.1);
-    border-color: var(--text-normal);
+    border-color: #b1b1b1;
 }
 
 .pdfflow-color-option.selected {
-    border-color: var(--text-normal);
-    box-shadow: 0 0 0 2px var(--background-primary);
+    border-color: #b1b1b1;
 }
 
 /* 高亮项目样式 */
@@ -1347,6 +1344,108 @@
     }
 }
 
+/* 网络外部 PDF 下载进度 */
+.pdfflow-ext-pdf-download-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.45);
+    pointer-events: auto;
+}
+
+.pdfflow-ext-pdf-download-panel {
+    width: min(420px, calc(100vw - 32px));
+    padding: 20px 22px;
+    border-radius: 10px;
+    border: 1px solid var(--background-modifier-border);
+    background: var(--background-primary);
+    box-shadow: var(--shadow-l);
+}
+
+.pdfflow-ext-pdf-download-title {
+    margin: 0 0 8px 0;
+    font-size: var(--font-ui-medium);
+}
+
+.pdfflow-ext-pdf-download-url {
+    margin: 0 0 14px 0;
+    font-size: var(--font-ui-smaller);
+    color: var(--text-muted);
+    word-break: break-all;
+    line-height: 1.4;
+}
+
+.pdfflow-ext-pdf-download-track {
+    height: 8px;
+    border-radius: 4px;
+    background: var(--background-modifier-border);
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.pdfflow-ext-pdf-download-bar {
+    height: 100%;
+    width: 0;
+    border-radius: 4px;
+    background: var(--interactive-accent);
+    transition: width 0.15s ease-out;
+}
+
+.pdfflow-ext-pdf-download-bar.is-indeterminate {
+    width: 40% !important;
+    animation: pdfflow-ext-pdf-download-indeterminate 1.2s ease-in-out infinite;
+}
+
+@keyframes pdfflow-ext-pdf-download-indeterminate {
+    0% {
+        transform: translateX(-120%);
+    }
+    100% {
+        transform: translateX(320%);
+    }
+}
+
+.pdfflow-ext-pdf-download-status,
+.pdfflow-ext-pdf-download-speed {
+    margin: 0;
+    font-size: var(--font-ui-small);
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+.pdfflow-ext-pdf-download-status-warn {
+    color: var(--text-warning, #b8860b);
+}
+
+.pdfflow-ext-pdf-download-retry {
+    padding: 6px 14px;
+    font-size: var(--font-ui-small);
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.pdfflow-ext-pdf-download-speed {
+    min-height: 1.2em;
+    margin-bottom: 14px;
+}
+
+.pdfflow-ext-pdf-download-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.pdfflow-ext-pdf-download-pause,
+.pdfflow-ext-pdf-download-stop {
+    padding: 6px 14px;
+    font-size: var(--font-ui-small);
+    border-radius: 6px;
+    cursor: pointer;
+}
+
 /* 外部 PDF 虚拟链接弹窗说明 */
 .pdfflow-dummy-modal-desc {
     font-size: var(--font-ui-small);
@@ -1782,6 +1881,27 @@
     box-shadow: none !important;
     background: transparent !important;
     padding: 5px !important;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 4px;
+    color: var(--text-muted);
+}
+
+/* 工具栏内联 Canvas 颜色（与 pdfflow-color-selector 一致） */
+.pdfflow-toolbar-color-selector {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 6px;
+}
+
+.pdfflow-toolbar-color-selector .pdfflow-color-option {
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    flex-shrink: 0;
 }
 /* 标题样式 */
 .pdf-ebookshelf-title{

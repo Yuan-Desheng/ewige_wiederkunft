@@ -1,6 +1,6 @@
 /*──────────────────────────────────────────────────────────────────
 Shiba inu主题优化
-Version 0.5.1
+Version 0.6.1
 Created by @ytmaps_鱼先生
 
 authorurl:
@@ -35,6 +35,13 @@ settings:
     -
         id: datacore-table-font-size
         title: Datacore表格字体大小
+        description: 输入具体的像素值(单位：px)
+        type: variable-number
+        default: 14
+        format: px
+    -
+        id: embed-base-table-font-size
+        title: base嵌入表格字体大小
         description: 输入具体的像素值(单位：px)
         type: variable-number
         default: 14
@@ -114,6 +121,11 @@ settings:
 .shib-card-layout .table-view-table > thead > tr > th {
     font-size: var(--dataview-table-font-size,14px) !important;
 }
+/* 嵌入base表格字体大小 */
+.shib-card-layout .bases-view[data-view-type="table"]{
+    font-size: var(--embed-base-table-font-size,14px) !important;
+}
+
 
 .shib-table-toggle .is-live-preview.cards:not(.table-disable) table:not(.dataview) td, 
 .shib-table-toggle .markdown-preview-view.cards:not(.table-disable) table:not(.dataview) .shib-table-toggle .is-live-preview:not(.cards):not(.table-disable) table td, 
@@ -126,23 +138,25 @@ settings:
     font-size: var(--dataview-table-font-size,14px);
 }
 
-.shib-card-layout .is-live-preview.cards:not(.table-disable) table:not(.dataview), 
-.shib-table-toggle .is-live-preview.cards:not(.table-disable) table:not(.dataview) td, 
-.shib-table-toggle .is-live-preview.cards:not(.table-disable) table:not(.dataview) th, 
-.shib-table-toggle .is-live-preview.cards:not(.table-disable) table:not(.dataview) thead tr>th, 
-.shib-table-toggle .is-live-preview.cards:not(.table-disable) table:not(.dataview) thead tr>th:first-child, 
-.shib-table-toggle .is-live-preview.cards:not(.table-disable) table:not(.dataview) thead tr>th:last-child, 
-.shib-table-toggle .markdown-preview-view.cards:not(.table-disable) table:not(.dataview) .shib-table-toggle .is-live-preview:not(.cards):not(.table-disable) table,
-.shib-table-toggle .markdown-preview-view.cards:not(.table-disable) table:not(.dataview) .shib-table-toggle .is-live-preview:not(.cards):not(.table-disable) table td, 
-.shib-table-toggle .markdown-preview-view.cards:not(.table-disable) table:not(.dataview) .shib-table-toggle .is-live-preview:not(.cards):not(.table-disable) table th, 
-.shib-table-toggle .markdown-preview-view.cards:not(.table-disable) table:not(.dataview) .shib-table-toggle .is-live-preview:not(.cards):not(.table-disable) table thead tr>th, 
-.shib-table-toggle .markdown-preview-view.cards:not(.table-disable) table:not(.dataview) .shib-table-toggle .is-live-preview:not(.cards):not(.table-disable) table thead tr>th:first-child, 
-.shib-table-toggle .markdown-preview-view.cards:not(.table-disable) table:not(.dataview) .shib-table-toggle .is-live-preview:not(.cards):not(.table-disable) table thead tr>th:last-child, 
-.shib-table-toggle .markdown-preview-view:not(.cards):not(.table-disable) table, .shib-table-toggle .markdown-preview-view:not(.cards):not(.table-disable) table td, 
-.shib-table-toggle .markdown-preview-view:not(.cards):not(.table-disable) table th, .shib-table-toggle .markdown-preview-view:not(.cards):not(.table-disable) table thead tr>th, 
-.shib-table-toggle .markdown-preview-view:not(.cards):not(.table-disable) table thead tr>th:first-child, 
-.shib-table-toggle .markdown-preview-view:not(.cards):not(.table-disable) table thead tr>th:last-child{
-    border-bottom:solid 1px #80808073;
+.shib-card-layout .mod-right-split .is-live-preview.cards:not(.table-disable) table:not(.dataview), 
+.shib-table-toggle .mod-right-split .is-live-preview.cards:not(.table-disable) table:not(.dataview) td, 
+.shib-table-toggle .mod-right-split .is-live-preview.cards:not(.table-disable) table:not(.dataview) th, 
+.shib-table-toggle .mod-right-split .is-live-preview.cards:not(.table-disable) table:not(.dataview) thead tr>th, 
+.shib-table-toggle .mod-right-split .is-live-preview.cards:not(.table-disable) table:not(.dataview) thead tr>th:first-child, 
+.shib-table-toggle .mod-right-split .is-live-preview.cards:not(.table-disable) table:not(.dataview) thead tr>th:last-child, 
+.shib-table-toggle .mod-right-split .markdown-preview-view.cards:not(.table-disable) table:not(.dataview) .shib-table-toggle .is-live-preview:not(.cards):not(.table-disable) table,
+.shib-table-toggle .mod-right-split .markdown-preview-view.cards:not(.table-disable) table:not(.dataview) .shib-table-toggle .is-live-preview:not(.cards):not(.table-disable) table td, 
+.shib-table-toggle .mod-right-split .markdown-preview-view.cards:not(.table-disable) table:not(.dataview) .shib-table-toggle .is-live-preview:not(.cards):not(.table-disable) table th, 
+.shib-table-toggle .mod-right-split .markdown-preview-view.cards:not(.table-disable) table:not(.dataview) .shib-table-toggle .is-live-preview:not(.cards):not(.table-disable) table thead tr>th, 
+.shib-table-toggle .mod-right-split .markdown-preview-view.cards:not(.table-disable) table:not(.dataview) .shib-table-toggle .is-live-preview:not(.cards):not(.table-disable) table thead tr>th:first-child, 
+.shib-table-toggle .mod-right-split .markdown-preview-view.cards:not(.table-disable) table:not(.dataview) .shib-table-toggle .is-live-preview:not(.cards):not(.table-disable) table thead tr>th:last-child, 
+.shib-table-toggle .mod-right-split .markdown-preview-view:not(.cards):not(.table-disable) table, 
+.shib-table-toggle .mod-right-split .markdown-preview-view:not(.cards):not(.table-disable) table td, 
+.shib-table-toggle .mod-right-split .markdown-preview-view:not(.cards):not(.table-disable) table th, 
+.shib-table-toggle .mod-right-split .markdown-preview-view:not(.cards):not(.table-disable) table thead tr>th, 
+.shib-table-toggle .mod-right-split .markdown-preview-view:not(.cards):not(.table-disable) table thead tr>th:first-child, 
+.shib-table-toggle .mod-right-split .markdown-preview-view:not(.cards):not(.table-disable) table thead tr>th:last-child{
+    border-bottom:solid 0.5px var(--tab-outline-color);
     border-left: none;
     border-right: none;
     text-align: left;
@@ -597,57 +611,6 @@ Blue Topaz 彩色文件列表样式
 }
 /* ==========玻璃效果========== */
 
-.modal-bg{
-    background-color: rgba(255, 255, 255, 0.02) !important
-}
-
-.theme-light:not(.is-mobile) {
-  .modal-container{
-    background: rgba(231, 231, 231, 0.5);
-    backdrop-filter: blur(20px) !important;
-  }
-}
-.theme-dark:not(.is-mobile) {
-    .modal-container{
-      background: rgb(65, 65, 65,0.5);
-      backdrop-filter: blur(20px) !important;
-    }
-  }
-
-.theme-light:not(.is-mobile){
-
-    .modal,
-    .prompt,
-    .suggestion-container,
-    .menu,
-    .dropdown-menu,
-    .modal.mod-settings,
-    .modal.mod-command-palette {
-        background: transparent;
-        backdrop-filter: blur(20px);
-        box-shadow: 2px 2px 15px var(--background-modifier-box-shadow)!important;
-        border: 0.5px solid var(--prompt-border-color);
-
-    }
-}
-
-.theme-dark:not(.is-mobile) {
-
-    .modal,
-    .prompt,    
-    .suggestion-container,
-    .menu,
-    .dropdown-menu,
-    .modal.mod-settings,
-    .modal.mod-command-palette {
-        background:transparent;   
-        backdrop-filter: blur(20px);
-        box-shadow: 2px 2px 15px var(--background-modifier-box-shadow) !important;
-        border: 0.5px solid var(--prompt-border-color);
-    }
-
-}
-
 
 /* 文件列表*/
 body.shib-card-layout.css-settings-manager{
@@ -890,9 +853,11 @@ body.shiba-layout.shib-card-layout:not(.is-mobile) .workspace-split.mod-left-spl
     font-size: var(--table-font-size, 16px);
 }
 .shib-card-layout .markdown-source-view.mod-cm6 .cm-table-widget{
-    padding:0px 10px;
+    padding:0px 20px;
 }
-
+.shib-card-layout .markdown-rendered tbody tr:last-child > td{
+    vertical-align: middle;
+}
 
 .shib-card-layout .callout[data-callout="info"]{
     background: none !important;
@@ -937,3 +902,4 @@ a.footnote-link {
     }
     
 }
+

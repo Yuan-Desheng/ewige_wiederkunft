@@ -1,6 +1,6 @@
 /*──────────────────────────────────────────────────────────────────
 其他排版样式优化
-Version 0.5.0
+Version 0.6.0
 Created by @ytmaps_鱼先生
 
 authorurl:
@@ -120,12 +120,6 @@ settings:
         type: heading
         level: 2
         collapsed: false
-    -
-        id: table-line-number
-        title: 表格行号显示
-        description: 来自 minimal 主题
-        type: class-toggle
-        default: true
     -
         id: table-drag-fix
         title: 表格拖拽异常修复
@@ -328,34 +322,14 @@ settings:
 }
 
 
-
-/* 表格行号显示 */
-.table-line-number table:not(.calendar) {
-  counter-reset: section
-}
-
-.table-line-number table:not(.calendar)>thead>tr>th:first-child::before {
-  content: " ";
-  padding-right: .5em;
-  display: inline-block;
-  min-width: 2em
-}
-
-.table-line-number table:not(.calendar)>tbody>tr>td:first-child::before {
-  counter-increment: section;
-  content: counter(section) " ";
-  text-align: center;
-  padding-right: .5em;
-  display: inline-block;
-  min-width: 2em;
-/*  color: var(#6c6e70);*/
-  font-variant-numeric: tabular-nums
-}
-
-
-
 .table-drag-fix :is(.markdown-preview-section,.markdown-rendered) table:not(.dataview.table-view-table) {
   overflow: auto;
+  box-shadow: none;
+}
+
+.table-drag-fix :is(.markdown-preview-section,.markdown-rendered) table:not(.dataview.table-view-table) .cm-content,
+.table-drag-fix :is(.markdown-preview-section,.markdown-rendered) table:not(.dataview.table-view-table) .cm-line{
+  padding:0;
 }
 
 
@@ -463,43 +437,59 @@ body.scrollbar-hover-accent {
   --setting-scrollbar-hover: hsla(var(--color-accent-hsl), 40%);
 }
 
-
-@property --scrollbar-color {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: rgba(0, 0, 0, 0);
-}
-::-webkit-scrollbar {
-  width: var(--size-4-3) !important;
-  height: var(--size-4-3) !important;
-  background-color: transparent !important;
-}
-::-webkit-scrollbar-track {
-  background-color: transparent !important;
-  box-shadow: none !important;
-}
-::-webkit-scrollbar-thumb {
-  border-radius: var(--size-2-3) !important;
-  border: 3.6px solid transparent !important;
-  background-color: var(--scrollbar-color) !important;
-}
-::-webkit-scrollbar-thumb:hover {
-  --scrollbar-color: var(--setting-scrollbar-hover);
-}
-::-webkit-scrollbar-thumb:active {
-  --scrollbar-color: hsla(var(--color-accent-hsl), 64%);
+body {
+  --anp-scrollbar-idle: hsla(var(--color-accent-hsl), 24%);
+  --anp-scrollbar-hover: var(--setting-scrollbar-hover, hsla(var(--color-accent-hsl), 40%));
+  --anp-scrollbar-active: hsla(var(--color-accent-hsl), 64%);
+  --anp-scrollbar-track: transparent;
+  --anp-scrollbar-size-legacy: var(--size-4-3);
 }
 
-body:not(.scrollbar-movein-animation) {
-  --scrollbar-color: hsla(var(--color-accent-hsl), 24%);
+body:not(.scrollbar-movein-animation) :is(.vertical-tab-header, .vertical-tab-content, .vertical-tab-content-container, .modal-content, .nav-files-container, .view-content, .search-result-container, .git-view-body, .suggestion-container .suggestion, .prompt-results, .community-modal-search-results-wrapper, .community-modal-search-results, .community-modal-info, .community-modal-readme, .modal:not(.mod-community-theme, .mod-community-plugin), .tag-container, .backlink-pane, .workspace-leaf-content[data-type=markdown] .cm-scroller, .markdown-preview-view, .workspace .mod-root .workspace-tabs.mod-stacked .workspace-tab-container, mjx-container, .markdown-embed-content .markdown-rendered, pre code, .workspace-leaf-content[data-type=calendar] .view-content, .janitor-scan-results, .workspace-drawer-active-tab-content, .workspace-drawer-active-tab-content .view-content, .workspace-drawer-active-tab-content .nav-files-container, .graph-controls, .search-params, .document-search-container, .excalidraw-wrapper :is(.App-mobile-menu, .App-menu .Stack .Island.App-menu__left, .scrollbar), .excalidraw-contextMenuContainer .popover, .kanban-plugin__board, .kanban-plugin__lane-items) {
+  --anp-scrollbar-thumb-color: var(--anp-scrollbar-idle);
+  scrollbar-gutter: var(--setting-scrollbar-gutter, auto);
 }
 
-body.scrollbar-movein-animation :is(.vertical-tab-header, .vertical-tab-content, .nav-files-container, .view-content, .search-result-container, .git-view-body, .suggestion-container .suggestion, .prompt-results, .community-modal-search-results-wrapper, .community-modal-info, .modal:not(.mod-settings, .mod-community-theme, .mod-community-plugin), .tag-container, .backlink-pane, .workspace-leaf-content[data-type=markdown] .cm-scroller, .markdown-preview-view, .workspace .mod-root .workspace-tabs.mod-stacked .workspace-tab-container, mjx-container, .markdown-embed-content .markdown-rendered, pre code, .workspace-leaf-content[data-type=calendar] .view-content, .janitor-scan-results, .excalidraw-wrapper :is(.App-mobile-menu, .App-menu .Stack .Island.App-menu__left, .scrollbar), .excalidraw-contextMenuContainer .popover, .kanban-plugin__board, .kanban-plugin__lane-items) {
-  transition: --scrollbar-color var(--animation);
-  scrollbar-gutter: var(--setting-scrollbar-gutter, initial);
+body.scrollbar-movein-animation :is(.vertical-tab-header, .vertical-tab-content, .vertical-tab-content-container, .modal-content, .nav-files-container, .view-content, .search-result-container, .git-view-body, .suggestion-container .suggestion, .prompt-results, .community-modal-search-results-wrapper, .community-modal-search-results, .community-modal-info, .community-modal-readme, .modal:not(.mod-community-theme, .mod-community-plugin), .tag-container, .backlink-pane, .workspace-leaf-content[data-type=markdown] .cm-scroller, .markdown-preview-view, .workspace .mod-root .workspace-tabs.mod-stacked .workspace-tab-container, mjx-container, .markdown-embed-content .markdown-rendered, pre code, .workspace-leaf-content[data-type=calendar] .view-content, .janitor-scan-results, .workspace-drawer-active-tab-content, .workspace-drawer-active-tab-content .view-content, .workspace-drawer-active-tab-content .nav-files-container, .graph-controls, .search-params, .document-search-container, .excalidraw-wrapper :is(.App-mobile-menu, .App-menu .Stack .Island.App-menu__left, .scrollbar), .excalidraw-contextMenuContainer .popover, .kanban-plugin__board, .kanban-plugin__lane-items) {
+  --anp-scrollbar-thumb-color: transparent;
+  scrollbar-gutter: var(--setting-scrollbar-gutter, auto);
 }
-body.scrollbar-movein-animation :is(.vertical-tab-header, .vertical-tab-content, .nav-files-container, .view-content, .search-result-container, .git-view-body, .suggestion-container .suggestion, .prompt-results, .community-modal-search-results-wrapper, .community-modal-info, .modal:not(.mod-settings, .mod-community-theme, .mod-community-plugin), .tag-container, .backlink-pane, .workspace-leaf-content[data-type=markdown] .cm-scroller, .markdown-preview-view, .workspace .mod-root .workspace-tabs.mod-stacked .workspace-tab-container, mjx-container, .markdown-embed-content .markdown-rendered, pre code, .workspace-leaf-content[data-type=calendar] .view-content, .janitor-scan-results, .excalidraw-wrapper :is(.App-mobile-menu, .App-menu .Stack .Island.App-menu__left, .scrollbar), .excalidraw-contextMenuContainer .popover, .kanban-plugin__board, .kanban-plugin__lane-items):hover {
-  --scrollbar-color: hsla(var(--color-accent-hsl), 24%);
+
+body.scrollbar-movein-animation :is(.vertical-tab-header, .vertical-tab-content, .vertical-tab-content-container, .modal-content, .nav-files-container, .view-content, .search-result-container, .git-view-body, .suggestion-container .suggestion, .prompt-results, .community-modal-search-results-wrapper, .community-modal-search-results, .community-modal-info, .community-modal-readme, .modal:not(.mod-community-theme, .mod-community-plugin), .tag-container, .backlink-pane, .workspace-leaf-content[data-type=markdown] .cm-scroller, .markdown-preview-view, .workspace .mod-root .workspace-tabs.mod-stacked .workspace-tab-container, mjx-container, .markdown-embed-content .markdown-rendered, pre code, .workspace-leaf-content[data-type=calendar] .view-content, .janitor-scan-results, .workspace-drawer-active-tab-content, .workspace-drawer-active-tab-content .view-content, .workspace-drawer-active-tab-content .nav-files-container, .graph-controls, .search-params, .document-search-container, .excalidraw-wrapper :is(.App-mobile-menu, .App-menu .Stack .Island.App-menu__left, .scrollbar), .excalidraw-contextMenuContainer .popover, .kanban-plugin__board, .kanban-plugin__lane-items):hover {
+  --anp-scrollbar-thumb-color: var(--anp-scrollbar-idle);
+}
+
+body :is(.vertical-tab-header, .vertical-tab-content, .vertical-tab-content-container, .modal-content, .nav-files-container, .view-content, .search-result-container, .git-view-body, .suggestion-container .suggestion, .prompt-results, .community-modal-search-results-wrapper, .community-modal-search-results, .community-modal-info, .community-modal-readme, .modal:not(.mod-community-theme, .mod-community-plugin), .tag-container, .backlink-pane, .workspace-leaf-content[data-type=markdown] .cm-scroller, .markdown-preview-view, .workspace .mod-root .workspace-tabs.mod-stacked .workspace-tab-container, mjx-container, .markdown-embed-content .markdown-rendered, pre code, .workspace-leaf-content[data-type=calendar] .view-content, .janitor-scan-results, .workspace-drawer-active-tab-content, .workspace-drawer-active-tab-content .view-content, .workspace-drawer-active-tab-content .nav-files-container, .graph-controls, .search-params, .document-search-container, .excalidraw-wrapper :is(.App-mobile-menu, .App-menu .Stack .Island.App-menu__left, .scrollbar), .excalidraw-contextMenuContainer .popover, .kanban-plugin__board, .kanban-plugin__lane-items):active {
+  --anp-scrollbar-thumb-color: var(--anp-scrollbar-active);
+}
+
+@supports (scrollbar-width: thin) {
+  body :is(.vertical-tab-header, .vertical-tab-content, .vertical-tab-content-container, .modal-content, .nav-files-container, .view-content, .search-result-container, .git-view-body, .suggestion-container .suggestion, .prompt-results, .community-modal-search-results-wrapper, .community-modal-search-results, .community-modal-info, .community-modal-readme, .modal:not(.mod-community-theme, .mod-community-plugin), .tag-container, .backlink-pane, .workspace-leaf-content[data-type=markdown] .cm-scroller, .markdown-preview-view, .workspace .mod-root .workspace-tabs.mod-stacked .workspace-tab-container, mjx-container, .markdown-embed-content .markdown-rendered, pre code, .workspace-leaf-content[data-type=calendar] .view-content, .janitor-scan-results, .workspace-drawer-active-tab-content, .workspace-drawer-active-tab-content .view-content, .workspace-drawer-active-tab-content .nav-files-container, .graph-controls, .search-params, .document-search-container, .excalidraw-wrapper :is(.App-mobile-menu, .App-menu .Stack .Island.App-menu__left, .scrollbar), .excalidraw-contextMenuContainer .popover, .kanban-plugin__board, .kanban-plugin__lane-items) {
+    scrollbar-width: thin;
+    scrollbar-color: var(--anp-scrollbar-thumb-color) var(--anp-scrollbar-track);
+  }
+}
+
+@supports selector(::-webkit-scrollbar) {
+  body :is(.vertical-tab-header, .vertical-tab-content, .vertical-tab-content-container, .modal-content, .nav-files-container, .view-content, .search-result-container, .git-view-body, .suggestion-container .suggestion, .prompt-results, .community-modal-search-results-wrapper, .community-modal-search-results, .community-modal-info, .community-modal-readme, .modal:not(.mod-community-theme, .mod-community-plugin), .tag-container, .backlink-pane, .workspace-leaf-content[data-type=markdown] .cm-scroller, .markdown-preview-view, .workspace .mod-root .workspace-tabs.mod-stacked .workspace-tab-container, mjx-container, .markdown-embed-content .markdown-rendered, pre code, .workspace-leaf-content[data-type=calendar] .view-content, .janitor-scan-results, .workspace-drawer-active-tab-content, .workspace-drawer-active-tab-content .view-content, .workspace-drawer-active-tab-content .nav-files-container, .graph-controls, .search-params, .document-search-container, .excalidraw-wrapper :is(.App-mobile-menu, .App-menu .Stack .Island.App-menu__left, .scrollbar), .excalidraw-contextMenuContainer .popover, .kanban-plugin__board, .kanban-plugin__lane-items)::-webkit-scrollbar {
+    width: var(--anp-scrollbar-size-legacy) !important;
+    height: var(--anp-scrollbar-size-legacy) !important;
+    background-color: transparent !important;
+  }
+
+  body :is(.vertical-tab-header, .vertical-tab-content, .vertical-tab-content-container, .modal-content, .nav-files-container, .view-content, .search-result-container, .git-view-body, .suggestion-container .suggestion, .prompt-results, .community-modal-search-results-wrapper, .community-modal-search-results, .community-modal-info, .community-modal-readme, .modal:not(.mod-community-theme, .mod-community-plugin), .tag-container, .backlink-pane, .workspace-leaf-content[data-type=markdown] .cm-scroller, .markdown-preview-view, .workspace .mod-root .workspace-tabs.mod-stacked .workspace-tab-container, mjx-container, .markdown-embed-content .markdown-rendered, pre code, .workspace-leaf-content[data-type=calendar] .view-content, .janitor-scan-results, .workspace-drawer-active-tab-content, .workspace-drawer-active-tab-content .view-content, .workspace-drawer-active-tab-content .nav-files-container, .graph-controls, .search-params, .document-search-container, .excalidraw-wrapper :is(.App-mobile-menu, .App-menu .Stack .Island.App-menu__left, .scrollbar), .excalidraw-contextMenuContainer .popover, .kanban-plugin__board, .kanban-plugin__lane-items)::-webkit-scrollbar-track,
+  body :is(.vertical-tab-header, .vertical-tab-content, .vertical-tab-content-container, .modal-content, .nav-files-container, .view-content, .search-result-container, .git-view-body, .suggestion-container .suggestion, .prompt-results, .community-modal-search-results-wrapper, .community-modal-search-results, .community-modal-info, .community-modal-readme, .modal:not(.mod-community-theme, .mod-community-plugin), .tag-container, .backlink-pane, .workspace-leaf-content[data-type=markdown] .cm-scroller, .markdown-preview-view, .workspace .mod-root .workspace-tabs.mod-stacked .workspace-tab-container, mjx-container, .markdown-embed-content .markdown-rendered, pre code, .workspace-leaf-content[data-type=calendar] .view-content, .janitor-scan-results, .workspace-drawer-active-tab-content, .workspace-drawer-active-tab-content .view-content, .workspace-drawer-active-tab-content .nav-files-container, .graph-controls, .search-params, .document-search-container, .excalidraw-wrapper :is(.App-mobile-menu, .App-menu .Stack .Island.App-menu__left, .scrollbar), .excalidraw-contextMenuContainer .popover, .kanban-plugin__board, .kanban-plugin__lane-items)::-webkit-scrollbar-corner {
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+
+  body :is(.vertical-tab-header, .vertical-tab-content, .vertical-tab-content-container, .modal-content, .nav-files-container, .view-content, .search-result-container, .git-view-body, .suggestion-container .suggestion, .prompt-results, .community-modal-search-results-wrapper, .community-modal-search-results, .community-modal-info, .community-modal-readme, .modal:not(.mod-community-theme, .mod-community-plugin), .tag-container, .backlink-pane, .workspace-leaf-content[data-type=markdown] .cm-scroller, .markdown-preview-view, .workspace .mod-root .workspace-tabs.mod-stacked .workspace-tab-container, mjx-container, .markdown-embed-content .markdown-rendered, pre code, .workspace-leaf-content[data-type=calendar] .view-content, .janitor-scan-results, .workspace-drawer-active-tab-content, .workspace-drawer-active-tab-content .view-content, .workspace-drawer-active-tab-content .nav-files-container, .graph-controls, .search-params, .document-search-container, .excalidraw-wrapper :is(.App-mobile-menu, .App-menu .Stack .Island.App-menu__left, .scrollbar), .excalidraw-contextMenuContainer .popover, .kanban-plugin__board, .kanban-plugin__lane-items)::-webkit-scrollbar-thumb {
+    border-radius: var(--size-2-3) !important;
+    border: 3.6px solid transparent !important;
+    background-clip: padding-box !important;
+    background-color: var(--anp-scrollbar-thumb-color) !important;
+    transition: background-color var(--animation) !important;
+  }
 }
 
 body.scrollbar-smooth.scrollbar-smooth-editor .workspace-leaf-content[data-type=markdown] .cm-scroller, .markdown-preview-view,
@@ -885,9 +875,7 @@ progress{
 .modal.mod-settings .vertical-tab-header{
   padding:var(--size-4-3);
 }
-.vertical-tab-content .setting-item{
-  padding:var(--setting-items-padding) !important;
-}
+
 .theme-light .setting-group .setting-items{
   background-color: #bababa30 !important;
 }
@@ -895,62 +883,122 @@ progress{
   background-color: #3434346e !important;
 }
 
-
-.theme-dark:not(.graph-control-section) .setting-item{
-  background-color: #34343429 !important;
-  border: none;
+.vertical-tab-nav-item-icon{
+  background:rgba(78, 205, 196, 0.7);
+  border-radius: 8px;
+  padding: 4px;
+  color: white;
 }
-.theme-light:not(.graph-control-section) .setting-item{
-  background-color: #bababa30 !important;
+
+.vertical-tab-nav-item-icon svg:hover{
+  color: var(--color-accent) !important;
+}
+
+.vertical-tab-nav-item{
+  align-items: center;
+}
+.suggestion-highlight{
+  color: var(--text-accent);
+}
+
+/* 9个垂直标签页图标的不同背景色（带透明度） */
+.vertical-tab-nav-item:nth-child(1) .vertical-tab-nav-item-icon {
+  background-color: rgba(255, 107, 107);
+}
+
+.vertical-tab-nav-item:nth-child(2) .vertical-tab-nav-item-icon {
+  background-color: rgba(78, 205, 196);
+}
+
+.vertical-tab-nav-item:nth-child(3) .vertical-tab-nav-item-icon {
+  background-color: rgba(69, 183, 209);
+}
+
+.vertical-tab-nav-item:nth-child(4) .vertical-tab-nav-item-icon {
+  background-color: rgba(150, 206, 180);
+}
+
+.vertical-tab-nav-item:nth-child(5) .vertical-tab-nav-item-icon {
+  background-color: rgba(254, 202, 87);
+}
+
+.vertical-tab-nav-item:nth-child(6) .vertical-tab-nav-item-icon {
+  background-color: rgba(191, 85, 236);
+}
+
+.vertical-tab-nav-item:nth-child(7) .vertical-tab-nav-item-icon {
+  background-color: rgba(236, 112, 99);
+}
+
+.vertical-tab-nav-item:nth-child(8) .vertical-tab-nav-item-icon {
+  background-color: rgba(76, 175, 80);
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.vertical-tab-nav-item:nth-child(9) .vertical-tab-nav-item-icon {
+  background-color: rgba(255, 152, 0);
+}
+.vertical-tab-nav-item:nth-child(10) .vertical-tab-nav-item-icon {
+  background-color: rgba(80, 80, 80);
+}
+
+.vertical-tab-nav-item:nth-child(11) .vertical-tab-nav-item-icon {
+  background-color: rgba(55, 152, 140);
+}
+
+
+.theme-dark:not(.graph-control-section) .setting-item:not(.setting-item-heading){
+  background-color: #6a6a6a29 !important;
   border: none;
+  padding: 10px;
+}
+.theme-light:not(.graph-control-section) .setting-item.setting-item:not(.setting-item-heading){
+  background-color: #827e7e10 !important;
+  border: none;
+  padding: 10px;
 }
 
 .horizontal-tab-content, .vertical-tab-content{
   background-color: transparent !important;
 }
 
-.vertical-tab-content .setting-item ~ :is(h1, h2, h3, h4, .setting-item-heading){
+.vertical-tab-content h1, .vertical-tab-content h2, .vertical-tab-content h3, .vertical-tab-content h4{
   padding:0;
 }
 
 .style-settings-heading:not([data-level="0"],[data-id=shiba-inu-support-header])+.style-settings-container{
   background-color: transparent;
 }
+
 .theme-light .dropdown,
 .theme-light .dropdown{
   border:1px solid rgba(0, 0, 0, 0.1);
   background-color: transparent;
   box-shadow: inherit;
 }
+.dropdown:hover{
+  box-shadow: none !important;
+}
+
 .theme-light .setting-group .setting-group-search{
-  background-color: #bababa30 !important;
+  background-color: #ffffff10 !important;
 }
 .theme-dark .setting-group .setting-group-search{
-  background-color: #3434346e !important;
+  background-color: #6a6a6a29 !important;
 }
 .theme-light .modal .modal-content .vertical-tab-header-group-items .vertical-tab-nav-item.is-active,
 .theme-dark .modal .modal-content .vertical-tab-header-group-items .vertical-tab-nav-item.is-active
 {
   background-color:#a3a3a330 !important;
-  backdrop-filter: blur(10px);
   border: none !important;
+  color: var(--text-accent) !important;
+  box-shadow: none !important;
+
+}
+.community-item-name{
   color: var(--text-accent);
-
-}
-
-
-/* 插件市场&主题市场 */
-.community-item{
-  background: #f6f5f214;
-  border: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
-  border-left: 1px solid rgba(255, 255, 255, 0.2) !important;
-  box-shadow: 2px 2px 5px rgba(26, 26, 26, 0.2) !important;
-}
-body:not(.is-phone) .community-item.is-selected, body:not(.is-phone) .community-item.is-selected:hover{
-  background: var(--color-accent);
-
-}
+} 
 
 
 /* 侧边栏设置按钮常驻显示*/
@@ -971,4 +1019,16 @@ body:not(.is-mobile) .workspace-split.mod-left-split .workspace-sidedock-vault-p
 body:not(.is-mobile) .workspace-split.mod-left-split.is-sidedock-collapsed .workspace-sidedock-vault-profile {
   bottom: 100px;
   position: relative;
+}
+
+
+.image-embed {
+  display: flex;
+  flex-direction: column !important;
+}
+
+/* 开关样式*/
+.theme-light .checkbox-container.is-enabled{
+  box-shadow:none !important;
+  border: none !important;
 }
