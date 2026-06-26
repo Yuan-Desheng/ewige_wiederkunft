@@ -36,6 +36,33 @@
       "y": 100,
       "width": 440,
       "height": 500
+    },
+    {
+      "id": "note-1782450381004-1177",
+      "x": 100,
+      "y": 650,
+      "width": 440,
+      "height": 500,
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-06-18.md"
+    },
+    {
+      "id": "note-1782450381005-6033",
+      "x": 590,
+      "y": 650,
+      "width": 440,
+      "height": 500,
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-06-22.md"
+    },
+    {
+      "id": "note-1782450381006-4519",
+      "x": 1080,
+      "y": 650,
+      "width": 440,
+      "height": 500,
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-06-23.md"
     }
   ]
 }

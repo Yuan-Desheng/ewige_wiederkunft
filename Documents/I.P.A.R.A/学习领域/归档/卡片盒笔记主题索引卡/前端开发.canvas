@@ -27,6 +27,33 @@
       "y": 100,
       "width": 440,
       "height": 500
+    },
+    {
+      "id": "note-1782450381001-3471",
+      "x": 1570,
+      "y": 100,
+      "width": 440,
+      "height": 500,
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/ECharts 图表踩坑合集.md"
+    },
+    {
+      "id": "note-1782450381002-8852",
+      "x": 100,
+      "y": 650,
+      "width": 440,
+      "height": 500,
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/前端页面加载速度优化.md"
+    },
+    {
+      "id": "note-1782450381003-2940",
+      "x": 590,
+      "y": 650,
+      "width": 440,
+      "height": 500,
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/HTML 原型转 Vue 页面重绘工作流.md"
     }
   ]
 }

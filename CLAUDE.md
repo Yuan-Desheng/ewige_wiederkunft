@@ -118,21 +118,45 @@ Key fields:
 - Person photos → `Extras/人物/`
 - Task management → Use Dida Sync (滴答清单), NOT Tasks plugin or Dataview task queries
 - AI-generated/rewritten content → Use `笔记类型: AI整理` and `cssclasses: ai-note` to distinguish from hand-written notes
-- AI daily notes → `Documents/I.P.A.R.A/0-收集箱/AI笔记/YYYY-MM-DD.md`
+- AI daily notes (Layer 1 digest) → `Documents/I.P.A.R.A/0-收集箱/AI笔记/YYYY-MM-DD.md`
+- 复现主题篇 (Layer 2, extracted from AI sessions) → the relevant area's `收集/` (e.g. `Documents/I.P.A.R.A/学习领域/收集/<主题>.md`), as a normal `收集笔记` — see AI Conversation Organization Rules
 - Douban media entries → `Documents/Douban/` (via Douban plugin)
 
 ## AI Conversation Organization Rules
 
-When organizing AI conversations into notes (`0-收集箱/AI笔记/YYYY-MM-DD.md`):
+**Purpose (this drives the whole format):** AI notes exist to make it easy to **复现操作 later** (rebuild the same feature / redo the same setup), NOT to archive what was said. So do not dump transcripts — distill each session into something you could rebuild from without rereading the conversation. Canonical model: `Documents/I.P.A.R.A/学习领域/收集/MinIO 视频直传.md`.
 
-**Note format:** frontmatter (Required Frontmatter with `笔记类型: AI整理`, `cssclasses: ai-note`) → `## YYYY-MM-DD` title → `meta-bind-embed [[笔记抬头模块]]` block → content (per Note Body Structure above).
+Output is **two layers**:
 
-**Theme (fixed):** every AI daily note uses the `AI笔记` theme — NOT a per-content/project theme:
-```yaml
-卡片盒笔记主题:
-  - "[[Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/AI笔记.canvas|AI笔记]]"
-```
-When creating a new daily AI note, also append its `file` node to `AI笔记.canvas`.
+### Layer 1 — 日 AI 笔记（捞取 / 索引层）
+
+`Documents/I.P.A.R.A/0-收集箱/AI笔记/YYYY-MM-DD.md` — a **lightweight per-day digest**, NOT a verbatim transcript.
+
+- **Note format:** frontmatter (Required Frontmatter with `笔记类型: AI整理`, `cssclasses: ai-note`) → `## YYYY-MM-DD` title → `meta-bind-embed [[笔记抬头模块]]` block → content (per Note Body Structure above).
+- **Theme (fixed):** every daily AI note uses the `AI笔记` theme — NOT a per-content/project theme:
+  ```yaml
+  卡片盒笔记主题:
+    - "[[Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/AI笔记.canvas|AI笔记]]"
+  ```
+  When creating a new daily AI note, also append its `file` node to `AI笔记.canvas`.
+- **Per session, record concisely** (a `###` block per session): 项目 / 会话标识 + 日期范围 → 做了什么（任务一句话）→ 关键结论与决策 → 改动文件清单 → 一句话踩坑。**Do NOT paste the full Q&A.**
+- For each session that produced reproducible work, **link to its 复现篇** (Layer 2) with `[[...]]`. A pure Q&A / 概念讨论 session with nothing to reproduce stays digest-only (no Layer 2 note) — but if it taught a reusable concept, a short `知识点` bullet list here is fine.
+
+### Layer 2 — 复现主题篇（the real deliverable）
+
+One standalone topic note **per reproducible outcome**, placed in the relevant area's `收集/` (e.g. `Documents/I.P.A.R.A/学习领域/收集/<主题>.md` — cross-area allowed), named by the real topic. **Template = the MinIO note above.**
+
+- **笔记类型:** `收集笔记` (an ordinary collection note — NOT `AI整理`); no `ai-note` cssclass.
+- **Theme:** the relevant 领域 theme (e.g. `前端开发`), NOT `AI笔记`. Reference an existing canvas per the 卡片盒笔记主题 rules.
+- **Lead blockquote:** one-line 定位 + 来源项目 / 技术栈 + 「用于复现到其他项目」+ 脱敏声明 (if any).
+- **Structure (复现导向 — adapt headings to the topic):**
+  1. `## 一、原理` — 目标（要解决什么）+ 流程图（ASCII）/ 关键设计
+  2. `## 二、代码` — **完整、可直接复制的代码，逐字保留，不裁剪、不省略、不缩成"关键片段"** (this verbatim-completeness rule is the one thing carried over from the old format)
+  3. `## 三、配置 / 命令` — 服务器 / 环境 / 依赖配置，可直接执行
+  4. `## 四、复现 Checklist` — `[ ]` 勾选项，按 前端 / 服务器 / 验证 分组
+  5. `## 五、踩坑记录` — 现象 → 原因 → 解决，复现时对照（这一节吸收了旧格式 `知识点解析` 的「为什么 / 坑」职责）
+  6. `## 六、文件清单` — 复现需 copy / 改的文件表（必须 / 视情况 / 修改）
+- Replaces the old「对话原文照搬 + 知识点解析」format. Keep underlying-concept explanations and official doc links where they aid reproduction (inline in 原理/踩坑, or a short 延伸阅读), but do not reproduce the conversation.
 
 **Markdown-safe formatting (rendering-critical):** all code MUST be wrapped in fenced code blocks (` ``` ` with a language tag) or inline backticks. Never leave raw angle-bracket tokens bare in prose — e.g. `<IndustryDetailVO>`, `<div ...>`, generics, HTML/Vue fragments — Obsidian parses bare `<...>` as HTML and breaks the rendering of everything after it. This applies especially to verbatim user pastes (DOM dumps, JSON+HTML mixes, garbled OCR code): keep the content verbatim but wrap the code portion in a fence, leaving surrounding prose outside.
 
@@ -149,18 +173,15 @@ When creating a new daily AI note, also append its `file` node to `AI笔记.canv
 - The user's own terminal commands appear as `<bash-input>`/`<bash-stdout>` messages — keep their content (unescape HTML entities like `&gt;`), but NEVER write the raw tags into the note (they break rendering): reformat as 终端命令：`<inline code>` and 终端输出： + fenced ` ```text ` block. Same for `/`-command injections (`<command-message>`/`<command-name>`): replace with a one-line description like （用户执行 `/init` 命令）.
 - Sessions spanning multiple days are allowed in one daily note — label each session's actual date range; timestamps in jsonl are UTC (local is UTC+8).
 
-**All conversations (code and non-code):**
-- Preserve the original conversation (user question + AI response) as-is, not just summarized
-- Code blocks: preserve complete code verbatim, do not trim, summarize, or reduce to "key snippets"
-- After the verbatim conversation, add a `### 知识点解析` section that explains:
-  - **Why** each change was made (reasoning behind the decision)
-  - **Underlying concepts** (basic knowledge points the user may have forgotten due to AI-assisted coding)
-  - **Official documentation links** (Chinese or English) for further reading
+**Distillation (replaces the old verbatim-transcript rule):**
+- Do NOT paste the original Q&A. Read the session, then write the Layer-1 digest and, for reproducible work, the Layer-2 复现篇.
+- The ONE thing kept verbatim is **code**: in the 复现篇, preserve complete code as-is — do not trim, summarize, or reduce to "key snippets". A reproduction note with abridged code is useless.
+- Capture the「为什么 / 坑 / 概念」that the old `知识点解析` carried — but inside 原理 / 踩坑记录, framed as "what you need to know to redo this", not as a post-hoc explainer.
 
 **When content is too large for one pass:**
-- Create a prioritized plan listing all topics found
-- Ask the user which parts need detailed/verbatim organization, which can be summarized
-- Do not silently skip or truncate content
+- Create a prioritized plan: list every session found, and which ones look worth a 复现篇 vs. digest-only.
+- Ask the user which topics need a full 复现篇 now, which can stay digest-only for now.
+- Do not silently skip or truncate content.
 
 **Cross-conversation scanning:**
 - Source: `~/.claude/projects/<project>/<session>.jsonl` — by default only the user's own projects (see Scan scope above), files modified within 24h (`find -mtime 0`; this is a rolling 24h window, NOT calendar-today — a `.organized.json` watermark mechanism is planned to replace it, see 待办① in the Hermes note)
