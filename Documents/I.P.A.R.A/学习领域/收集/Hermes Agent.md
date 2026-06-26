@@ -67,6 +67,11 @@ hermes sessions browse
 hermes dashboard
 ```
 
+接入消息平台
+```
+hermes gateway setup
+```
+
 ### 配置
 
 **配置文件位置**

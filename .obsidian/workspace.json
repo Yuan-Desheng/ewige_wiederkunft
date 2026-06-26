@@ -23,21 +23,6 @@
             }
           },
           {
-            "id": "09d2f8517d137e7f",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Documents/I.P.A.R.A/工作领域/项目/知塘晓物-APP端开发.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "知塘晓物-APP端开发"
-            }
-          },
-          {
             "id": "db1430eeb17f9d79",
             "type": "leaf",
             "state": {
@@ -53,48 +38,18 @@
             }
           },
           {
-            "id": "56bc166ddcee16f1",
+            "id": "0ee38560cc8e953f",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md",
+                "file": "Documents/I.P.A.R.A/学习领域/收集/使用 computed 计算属性处理稍复杂的业务逻辑.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "Hermes Agent + LLM Wiki知识库 + Obsidian图谱"
-            }
-          },
-          {
-            "id": "649f2a034dcef1c5",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Documents/I.P.A.R.A/学习领域/收集/项目开发需求画图.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "项目开发需求画图"
-            }
-          },
-          {
-            "id": "876c0dd386d2620b",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Documents/I.P.A.R.A/工作领域/项目/前台门户网站.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "前台门户网站"
+              "title": "使用 computed 计算属性处理稍复杂的业务逻辑"
             }
           },
           {
@@ -113,18 +68,18 @@
             }
           },
           {
-            "id": "f848549dea33adaf",
+            "id": "84f15b76e9f89362",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
+                "file": "Documents/I.P.A.R.A/工作领域/收集/Engineering.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "融合大模型智能体的虚拟电厂仿真系统"
+              "title": "Engineering"
             }
           },
           {
@@ -141,16 +96,9 @@
               "icon": "lucide-file",
               "title": "自媒体平台数据爬取"
             }
-          }
-        ],
-        "currentTab": 8
-      },
-      {
-        "id": "b4369fdf03dedae4",
-        "type": "tabs",
-        "children": [
+          },
           {
-            "id": "3eb5bcd20af33c1e",
+            "id": "a844eba75d0a2e0b",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -163,8 +111,39 @@
               "icon": "lucide-file",
               "title": "融合大模型智能体的虚拟电厂仿真系统"
             }
+          },
+          {
+            "id": "b836f1c98ef531a5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documents/I.P.A.R.A/学习领域/收集/MinIO 视频直传.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "MinIO 视频直传"
+            }
+          },
+          {
+            "id": "1471a8ea8ca5048f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documents/I.P.A.R.A/工作领域/项目/OpenCLI-Facebook 博主数据采集方案.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "OpenCLI-Facebook 博主数据采集方案"
+            }
           }
-        ]
+        ],
+        "currentTab": 7
       }
     ],
     "direction": "vertical"
@@ -196,7 +175,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "AI笔记",
+                "query": "飞书",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -301,13 +280,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Documents/I.P.A.R.A/工作领域/项目/自媒体平台数据爬取.md",
+                "file": "Documents/I.P.A.R.A/学习领域/收集/MinIO 视频直传.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "自媒体平台数据爬取 的大纲"
+              "title": "MinIO 视频直传 的大纲"
             }
           },
           {
@@ -435,20 +414,35 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "3eb5bcd20af33c1e",
+  "active": "b836f1c98ef531a5",
   "lastOpenFiles": [
+    "数据库与导航.md",
+    "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
+    "Documents/I.P.A.R.A/工作领域/收集/Engineering.md",
+    "Documents/I.P.A.R.A/工作领域/项目/OpenCLI-Facebook 博主数据采集方案.md",
+    "Documents/I.P.A.R.A/工作领域/项目/自媒体平台数据爬取.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Linux.md",
+    "Documents/I.P.A.R.A/工作领域/项目/前台门户网站.md",
+    "Documents/I.P.A.R.A/学习领域/收集/使用 computed 计算属性处理稍复杂的业务逻辑.md",
+    "Documents/I.P.A.R.A/学习领域/收集/项目开发需求画图.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent.md",
+    "Documents/I.P.A.R.A/工作领域/项目/知塘晓物-APP端开发.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Claude Code.md",
+    "Documents/I.P.A.R.A/学习领域/收集/frontend-dev Agent Claude Code 集成方案.md",
+    "Assistants/Templater/主页/homepage-侧页.md",
+    "Documents/I.P.A.R.A/0-收集箱/Pasted image 20260625151228.png.md",
+    "Extras/附件/Pasted image 20260625151228.png",
+    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/峰华Vue3.canvas",
+    "Documents/I.P.A.R.A/学习领域/归档/openclaw提示词-04-01.md",
+    "Documents/I.P.A.R.A/学习领域/收集/OpenClaw.md",
+    "Documents/I.P.A.R.A/学习领域/收集/OpenClaw安装、部署&使用教程.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Octos安装和配置.md",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/前端开发.canvas.tmp.22205.885fd8a74026",
     "Documents/I.P.A.R.A/学习领域/收集/MinIO 视频直传.md.tmp.22205.da444c496370",
     "Documents/I.P.A.R.A/学习领域/收集/MinIO 视频直传.md",
     "Documents/I.P.A.R.A/学习领域/收集/MinIO 视频直传.md.tmp.22205.b4d8f8e5d1cd",
-    "Documents/I.P.A.R.A/工作领域/项目/自媒体平台数据爬取.md",
-    "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Linux.md",
-    "Documents/I.P.A.R.A/工作领域/项目/前台门户网站.md",
     "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-06-12.md",
     "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md",
-    "数据库与导航.md",
-    "Assistants/Templater/主页/homepage-侧页.md",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/Artificial Intelligence.canvas",
     "Documents/I.P.A.R.A/学习领域/归档/openclaw提示词-04-07.md",
     "Documents/I.P.A.R.A/学习领域/归档/openclaw提示词-04-08.md",
@@ -460,10 +454,7 @@
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/ThingsBoard.canvas",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/软件工程.canvas",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/英语学习.canvas",
-    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/算法刷题.canvas",
     "快速上手打卡任务（完成后，请删除）.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent.md",
-    "Documents/I.P.A.R.A/学习领域/收集/frontend-dev Agent Claude Code 集成方案.md",
     "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md.tmp.9096.a52380d75e61",
     "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md.tmp.9096.d796599360d4",
     "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md.tmp.9096.fab39e7a6e55",
@@ -471,18 +462,7 @@
     "CLAUDE.md.tmp.9096.5045bea3da32",
     "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md.tmp.9096.3d6f641ced52",
     "CLAUDE.md.tmp.9096.477065ae2ab2",
-    "Documents/I.P.A.R.A/学习领域/收集/项目开发需求画图.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md.tmp.21707.a06ee2688d6e",
     "CLAUDE.md",
-    "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-05-28.md",
-    "Documents/I.P.A.R.A/0-收集箱/X平台数据缺失诊断报告.md",
-    "Documents/I.P.A.R.A/工作领域/项目/知塘晓物-APP端开发.md",
-    "Documents/I.P.A.R.A/0-收集箱/未命名.md",
-    "Documents/I.P.A.R.A/0-收集箱/docs/youtube_api.md",
-    "Documents/I.P.A.R.A/0-收集箱/docs/x_api.md",
-    "Documents/I.P.A.R.A/0-收集箱/docs/instagram_api.md",
-    "Documents/I.P.A.R.A/0-收集箱/docs/tiktok_api.md",
-    "Documents/I.P.A.R.A/0-收集箱/docs/execution_commands.md",
     "Extras/附件/Pasted image 20260424164725.png",
     "Extras/附件/Pasted image 20251229151116.png",
     "Extras/附件/Pasted image 20260424164618.png",
@@ -491,7 +471,6 @@
     "Extras/附件/Pasted image 20260317152119.png",
     "Extras/附件/Pasted image 20260317152004.png",
     "Extras/附件/Pasted image 20260317151934.png",
-    "Extras/附件/Pasted image 20260304112617.png",
-    "Extras/附件/Pasted image 20260304110144.png"
+    "Extras/附件/Pasted image 20260304112617.png"
   ]
 }
