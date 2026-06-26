@@ -3,14 +3,14 @@ createTime: 2026-06-26 10:30
 笔记ID: 20260626103035
 multiFile:
 multiMedia:
-description: 运维小组与多云（火山/华为/阿里）服务器统一管理方案：现状风险（弱密码复用/root直连/宝塔公网暴露）→ 开源自托管栈（资产台账+Ansible/Semaphore+1Panel+Uptime Kuma+Prometheus/Loki+JumpServer+Vaultwarden）→ 安全整改 P0/P1/P2 → 只读运维智能体 → 分阶段路线图。
+description: 运维小组与多云（火山/华为/阿里）服务器统一管理方案。初期主张「飞书在线文档/多维表格 + Hermes 智能体 + 一个巡检脚本」极简起步，重工具（Ansible/1Panel/Prometheus/Loki/JumpServer）降级为阶段2+按需扩展；含现状风险、安全整改 P0/P1/P2、巡检脚本与 Hermes 只读护栏。
 笔记类型: 收集笔记
 阐述日期:
 tags:
   - 运维
   - DevOps
   - 多云
-  - 监控告警
+  - 飞书
   - 安全基线
 aliases:
 cssclasses:
@@ -25,36 +25,39 @@ cssclasses:
 <progress value="25" max="100" style="width: 100%;"></progress>
 
 > 本篇是「运维小组 + 多云服务器统一管理」的可行性方案（2026-06-26 整理，含联网调研）。
-> ⚠️ **安全**：本仓库推送到公开 GitHub。原始资料里的明文密码、宝塔安全入口、手机号、云账号 ID **一律不入库**，下方以 `【已脱敏】` 记录；完整 IP 与凭据只进**私有密码管理器（Vaultwarden）+ 私有资产台账（NocoDB）**。
+> **初期主张：别堆工具。用「飞书文档/多维表格 + Hermes 智能体 + 一个巡检脚本」起步（见 §三）；Ansible/1Panel/Prometheus/Loki/JumpServer 等重工具降级为阶段 2+ 按需扩展（§四）。**
+> ⚠️ **安全**：本仓库推送到公开 GitHub。原始资料里的明文密码、宝塔安全入口、手机号、云账号 ID **一律不入库**，下方以 `【已脱敏】` 记录；完整 IP 与凭据只进**私有密码管理器 / 受限飞书表**。
 
 ---
 
 ## 待办
 
+> [!success] 初期方案搭建（飞书 + Hermes，与安全 P0 并行，详见 §三）
+> - [ ] 建飞书运维空间：多维表格（服务器资产 / 项目映射 / 故障记录）+ 文档库（规范 / runbook）+ 值班排期
+> - [ ] 配飞书**自定义机器人**，拿到群 Webhook（告警/巡检结果的统一落点）
+> - [ ] 部署巡检脚本 `ops-probe.sh`（cron 每 3 分钟），把分销小程序后端 / 官网 / 关键端口加进去
+> - [ ] 配 **Hermes 只读运维账号 + 命令白名单 + 审计**，跑通「飞书报红 → Hermes 排障 → 回飞书」
+> - [ ] 沉淀第一条 runbook（以分销小程序为例）
+
 > [!danger] P0 · 安全止血（本周内必须做完）
 > - [ ] 全部服务器 root/登录密码改为**强随机且每台唯一**（杜绝当前那种弱口令跨机跨云复用）
-> - [ ] 部署 **Vaultwarden**，唯一强口令统一入库；从此不在任何文档/聊天里贴明文
+> - [ ] 部署 **Vaultwarden**（或先用受限飞书表过渡），唯一强口令统一入库；从此不在任何文档/聊天里贴明文
 > - [ ] SSH 改**密钥登录 + 禁用密码**（`PasswordAuthentication no`），先验证密钥可登录再关
 > - [ ] **禁用 root 直接 SSH**（`PermitRootLogin no`），改普通用户 + sudo
 > - [ ] **宝塔面板从公网收敛**：改高位端口 + 限可信 IP + 开 2FA + 强制 HTTPS
 > - [ ] 火山/阿里/华为**主账号开启 MFA**，停止用主账号做日常运维
 
-> [!todo] P1 · 一周内（加固 + 账号体系 + 第一道监控）
+> [!todo] P1 · 一周内（加固 + 账号体系）
 > - [ ] 各云安全组**最小开放**，SSH 仅放行可信 IP；主机内 `ufw`/`nftables` 双层
 > - [ ] 每台装 **fail2ban**（SSH 暴破封禁）
-> - [ ] 上 **Uptime Kuma**（拨测：分销小程序后端/官网/各 API/端口/证书到期 → 钉钉/飞书/企微告警）
-> - [ ] 建**资产台账**（哪台机器跑哪个项目/负责人/用途），先用 NocoDB 或本库一张表
 > - [ ] 多云建 **RAM/IAM 子账号**最小权限替代主账号，子账号强制 MFA，开启操作审计
 
-> [!note] P2 · 一月内（统一运维能力 + 纵深防御）
-> - [ ] **Ansible + Semaphore UI** 跨云批量装/查/改（同一套 playbook 管三朵云）
-> - [ ] 每台装 **1Panel 社区版** 或 **Cockpit**（单机管理）
-> - [ ] 指标监控 **Netdata**（最轻）或 **Prometheus + Grafana + node_exporter**
-> - [ ] 日志聚合 **Loki + Grafana Alloy**（出故障翻日志定根因）
-> - [ ] 告警统一收口（**PrometheusAlert** 汇钉钉/飞书/企微）
-> - [ ] 按需上 **JumpServer**（统一入口 + 操作审计/录屏 + 离职回收）
+> [!note] P2 · 一月内 / 飞书+脚本扛不住再上（→ §四）
+> - [ ] 拨测升级为 **Uptime Kuma**（要历史曲线/证书到期/状态页时）
+> - [ ] **Ansible + Semaphore** 批量运维；每台 **1Panel/Cockpit** 单机面板
+> - [ ] 指标 **Netdata / Prometheus+Grafana**；日志 **Loki + Alloy**；告警统一 **PrometheusAlert**
+> - [ ] 按需 **JumpServer**（统一入口 + 审计录屏 + 离职回收）
 > - [ ] 系统自动安全更新；云上用 **STS/RAM 角色** 替代明文 AccessKey
-> - [ ] 起步级**只读运维智能体**（见下文）+ 沉淀 runbook 到本知识库
 
 ---
 
@@ -85,120 +88,193 @@ cssclasses:
 
 ### 一、原始需求拆解（→ 6 条工作线）
 
-| 原话 | 拆解为 | 对应方案 |
+| 原话 | 拆解为 | 初期怎么做（§三） |
 |---|---|---|
-| 需要一个运维小组 | 角色与职责、值班、变更/上线规范 | 规范先行（§三·0） |
-| 服务器统一规划、统一管理 | 统一登录、批量运维、单机面板 | Ansible+Semaphore / 1Panel（§三） |
-| 交付项目纳入运维体系 | 资产台账：哪台跑哪个项目/负责人 | NocoDB 资产表（§三） |
-| 分销小程序挂了能很快排查 | 拨测告警 + 指标 + 日志三层 | Uptime Kuma → Prometheus/Netdata → Loki（§三·监控） |
-| 搞个运维智能体 / 或用 hermes | LLM 只读排障助手 + runbook | §五 |
-| 已有火山/华为/阿里，保持多平台 | 多云统一**规范**而非一个大平台 | §三·多云结论 |
+| 需要一个运维小组 | 角色与职责、值班、变更/上线规范 | 飞书文档 + 排班表 |
+| 服务器统一规划、统一管理 | 统一登录、批量运维、单机面板 | 先统一规范；批量/面板放阶段 2+（§四） |
+| 交付项目纳入运维体系 | 资产台账：哪台跑哪个项目/负责人 | 飞书**多维表格**（现成 CMDB） |
+| 分销小程序挂了能很快排查 | 拨测告警（检测）+ 排障（诊断） | 巡检脚本 → 飞书告警；Hermes 诊断 |
+| 搞个运维智能体 / 或用 hermes | LLM 只读排障助手 + runbook | Hermes 只读 + 飞书 runbook 库 |
+| 已有火山/华为/阿里，保持多平台 | 多云统一**规范**而非一个大平台 | 台账标厂商；Hermes 跨云 SSH |
 
 ### 二、核心判断
 
-> **5 台机、几个人、三朵云 —— 不要追求"一个系统管所有云"。**
+> **5 台机、几个人、三朵云——别追求"一个系统管所有云"，更别一上来堆一长串工具。**
 
-阿里/华为/火山的控制台、API、计费、网络模型各不相同，开源的多云管理大平台（CMP）对小团队是**维护负担 > 收益**。真正能跨云统一的是**服务器层面的操作**（登录、批量执行、监控），不是云资源编排。结论：**统一规范 + 轻量工具组合**，全部可自托管、对 5 台机无负担。
+阿里/华为/火山的控制台、API、网络模型各不相同，开源多云大平台（CMP）对小团队是**维护负担 > 收益**。真正能跨云统一的是**服务器层面的操作**（登录、巡检、排障），不是云资源编排。
 
-### 三、推荐技术栈（开源 / 自托管 / 轻量）
+**初期落地的最优解 = 飞书（文档/多维表格 + 机器人）+ Hermes（只读排障）+ 一个巡检脚本**。它覆盖了"资产台账 / 规范 / runbook / 告警通道 / 排障"五件事，几乎零额外平台；唯一需要补的是"持续探活"（一个 cron 脚本即可）。重工具等飞书 + 脚本**真的扛不住了再上**（§四给了升级触发条件）。
 
-**0. 规范先行（零成本，最重要）**
-统一 SSH 公钥登录、禁密码、各云安全组只放必要端口；一张资产台账记清"机器 ↔ 项目 ↔ 负责人 ↔ 用途"。工具都是放大器，规范是地基。
+### 三、★ 初期极简方案（飞书 + Hermes）—— 先做这个
 
-**1. 资产台账（CMDB）—— NocoDB**
-小团队记"哪台跑哪个项目"最轻量就是 **NocoDB**（把数据库变 Airtable 式表格，自托管，几分钟搭好），或先用本知识库一张 Markdown 表起步。资产多到要条码盘点再上 Snipe-IT。iTop/NetBox 对 5 台机属过度工程。
+#### 3.1 架构
 
-**2. 批量运维（跨云统一的真正落地层）—— Ansible + Semaphore UI**
-Ansible **无需被控端装 agent**、纯 SSH、剧本化；Semaphore 是单个 Go 二进制 + SQLite，几分钟装好，给可视化/定时/RBAC。一套 playbook 管三朵云。**不建议**为 5 台上 AWX（要 K8s 且开发暂停）或 SaltStack（偏大规模）。
+```
+飞书多维表格  →  服务器资产台账（厂商/IP指针/项目/负责人/凭据位置） + 项目映射 + 故障记录 + 排班
+飞书文档库    →  运维规范 + runbook（排障手册）
+飞书机器人    →  告警 / 巡检结果 / Hermes 报告 的统一群通知（Webhook）
+ops-probe.sh  →  cron 每几分钟探活关键服务，挂了/恢复推飞书   ← 唯一的“检测”
+Hermes        →  飞书报红后按需/定时排障：只读 SSH 读日志、查状态、对照 runbook 出建议
+密码管理器    →  真实凭据（Vaultwarden；或受限飞书表过渡）
+```
 
-**3. 单机面板 —— 1Panel 社区版 / Cockpit**
-- **1Panel**：Go + 容器化现代面板，GPLv3 全开源、不绑手机号、内存省、UI 现代；适合要 Docker/建站。注意**多机节点管理是专业版付费**，社区版偏单机（5 台各装一套分别登录）。
-- **Cockpit**：Red Hat 出品，随系统自带、零额外架构、可从一台 SSH 连多台，只做系统级管理（不做应用商店那套）。
-- 宝塔：功能全、中文生态好，但仅部分开源、需绑手机号、历史安全争议多——**逐步用 1Panel 替代，存量宝塔按 P0 收敛**。
+分工记忆：**脚本负责"知道挂了"，Hermes 负责"为什么挂了/怎么修"，飞书负责"记录 + 通知 + 知识库"。**
 
-**4. 监控告警日志（三层，对应"挂了能很快排查"）**
+#### 3.2 需求 → 工具 映射
 
-| 层 | 解决 | 选型 | 何时上 |
-|---|---|---|---|
-| **L0 拨测/存活** | "挂了第一时间知道" | **Uptime Kuma**（HTTP/端口/关键字/证书到期，被监控端**免装 agent**） | 今天 |
-| **L1 指标** | CPU/内存/磁盘趋势、容量预警 | **Netdata**（最轻，一行装）或 **Prometheus+Grafana+node_exporter**（可扩展、与 Loki 共用 Grafana） | 第二步 |
-| **L2 日志** | 出问题翻日志定根因 | **Loki + Grafana Alloy**（比 ELK 轻得多；⚠️ Promtail 已 EOL，新项目直接用 **Alloy**） | 第三步 |
+| 需求 | 谁来做 | 够不够 |
+|---|---|---|
+| 运维小组/规范/值班 | 飞书文档 + 多维表格排班 | ✅ |
+| 服务器台账（哪台跑哪个项目） | 飞书多维表格（替代 NocoDB） | ✅ |
+| runbook / 故障记录 | 飞书文档库 + Hermes 检索 | ✅ |
+| 「挂了第一时间知道」（检测） | `ops-probe.sh` + 飞书机器人 | ✅ |
+| 「挂了很快排查」（诊断） | Hermes 只读 SSH + runbook | ✅（强项） |
+| 多云保持 | 台账标厂商 + Hermes 跨云 SSH | ✅ |
 
-- **关键字监控**很重要：很多"假活"（进程在、接口返 500/空）只有关键字/JSON 断言能发现——分销小程序这种最该配。
-- **Uptime Kuma 自己也要被监控**（放非业务机，或外部免费拨测反向盯）。
-- **告警通道**：Uptime Kuma 内置钉钉/企微、飞书走自定义机器人 Webhook；Prometheus 侧用 **PrometheusAlert** 统一转发钉钉/飞书/企微。
-- **跨云抓取**：exporter/Loki 端口**别裸暴公网**，走内网/VPC 或 WireGuard 隧道，否则安全组只放行中心机 IP。
+> 诚实缺口：飞书不会主动探活，Hermes 也不适合当 7×24 探针（LLM 按分钟轮询又慢又贵又不稳）。所以**检测交给下面这个十几行的脚本**，Hermes 只在"红了"之后去诊断。
 
-**5. 堡垒机（按需）—— JumpServer 社区版**
-5 台机几个人，纯技术必要性不强（SSH 密钥 + 禁密码 + 安全组白名单已够）。但若要**集中收口入口 / 操作审计录屏 / 离职统一回收权限**，首选 JumpServer 社区版（全开源、中文）。Teleport 技术先进但 v16 后社区版有商业许可门槛，谨慎。
+#### 3.3 巡检脚本 `ops-probe.sh`（检测，唯一要写的代码）
 
-**6. 密码管理 —— Vaultwarden**
-小团队首选 **Vaultwarden**（Bitwarden 协议 Rust 重写，<50MB 内存，Docker 5 分钟起，用官方 Bitwarden 客户端）。纯离线可 KeePassXC；要 SSO/RBAC 用官方 Bitwarden 或 Passbolt。
+放一台**非业务、常开**的机器，`crontab -e` 加：`*/3 * * * * /opt/ops/ops-probe.sh >> /var/log/ops-probe.log 2>&1`
 
-> **推荐组合一句话**：统一规范 +（Ansible+Semaphore 批量）+（1Panel/Cockpit 单机）+ 一张 NocoDB 资产表 + Uptime Kuma→Prometheus/Loki 三层监控 + Vaultwarden 存密码，按需补 JumpServer。
+```bash
+#!/usr/bin/env bash
+# ops-probe.sh —— 极简巡检：探活关键服务，状态变化时推送飞书机器人
+# 只在“可用↔不可用”状态翻转时告警（含恢复通知），避免每轮刷屏
+set -uo pipefail
 
-### 四、安全整改 Checklist
+FEISHU_WEBHOOK="【已脱敏-飞书自定义机器人 webhook】"
+STATE_DIR="/var/tmp/ops-probe"; mkdir -p "$STATE_DIR"
 
-按 P0/P1/P2 已列入上方「待办」。要点重述：**先断"一破全破"链条**（唯一强口令 + 密码管理器 + 密钥登录 + 禁 root + 收敛宝塔 + 主账号 MFA），再做主机加固（安全组最小化 + fail2ban + 面板挪内网/堡垒机后）与账号体系（RAM/IAM 最小权限 + 子账号 MFA + 操作审计），最后纵深防御（自动补丁 + STS 临时凭据替代明文 AK + 定期轮换/离职回收）。
+# 监控目标：名称|类型(http/tcp)|目标|关键字(http 可选：校验响应体是否含此串；空=只看状态码)
+TARGETS=(
+  "分销小程序后端|http|https://api.你的域名.com/health|ok"
+  "机智视达官网|http|https://www.jizhishida.com/|"
+  "核心数据库|tcp|10.0.0.5:3306|"
+)
 
-### 五、运维智能体（务实路线）
+notify() { # $1=emoji $2=标题 $3=详情
+  local text
+  printf -v text '%s %s\n%s\n时间：%s' "$1" "$2" "$3" "$(date '+%F %T')"
+  curl -s -m 10 -X POST "$FEISHU_WEBHOOK" -H 'Content-Type: application/json' \
+    --data "$(printf '{"msg_type":"text","content":{"text":%s}}' "$(printf '%s' "$text" | python3 -c 'import json,sys;print(json.dumps(sys.stdin.read()))')")" >/dev/null
+}
 
-**现实边界**：把能跑 shell 的 LLM agent（Claude Code / 类 Hermes）用于运维，本质是"挂了语言模型的脚本"——会幻觉根因和命令，**只适合"出假设 + 给建议"，不适合无人值守自动改生产**。
+check_http() { # url, keyword
+  local out code
+  out=$(curl -sS -m 10 -w $'\n%{http_code}' "$1" 2>&1) || return 1
+  code=${out##*$'\n'}; [[ $code =~ ^(2|3) ]] || return 1
+  [[ -z $2 ]] || grep -q -- "$2" <<<"$out"
+}
+check_tcp() { # host:port
+  local h=${1%:*} p=${1##*:}
+  timeout 5 bash -c "exec 3<>/dev/tcp/$h/$p" 2>/dev/null
+}
 
-**第一步只让它做（只读排障助手 + 知识库）**：
-- 以 **plan / 只读模式** 运行，命令走**白名单**（`systemctl status *`、`journalctl *`、`grep 日志`、`kubectl get/describe *` 这类只读子命令），危险命令默认拒绝或需人工审批。
-- 用**专用低权限账号**接入，密钥不放进 agent 可见目录，生产场景容器隔离，**全量审计**每条命令。
-- 让它读日志/查状态、给"根因假设 + 建议命令"，**由人按回车**执行。
-- **runbook 知识库**：本 Obsidian vault 天然就是——把历史故障与排障步骤沉淀成 runbook（参考本库[[ECharts 图表踩坑合集]]那种"现象→原因→解决"的复现篇格式），让 agent 检索后给建议。
+for t in "${TARGETS[@]}"; do
+  IFS='|' read -r name typ target kw <<<"$t"
+  flag="$STATE_DIR/$(printf '%s' "$name" | md5sum | cut -c1-8).down"
+  if [[ $typ == http ]]; then check_http "$target" "$kw"; else check_tcp "$target"; fi
+  if [[ $? -eq 0 ]]; then
+    [[ -f $flag ]] && { notify "✅" "$name 已恢复" "$target"; rm -f "$flag"; }
+  else
+    [[ -f $flag ]] || { notify "🔴" "$name 不可用" "$target"; : > "$flag"; }
+  fi
+done
+```
+
+要点：① `TARGETS` 一行加一个监控项；② **关键字校验**能识破"假活"（进程在、接口返 500/空）；③ 状态文件做去抖，只在翻转时通知 + 自动报恢复；④ 这台巡检机自己也要被盯（用第二台 cron 互探，或外部免费拨测）。
+
+#### 3.4 Hermes 只读护栏（诊断）
+
+让 Hermes 接运维，**第一阶段只读**，护栏分层叠加（详见 §六）：
+
+- **专用低权限账号**：每台建 `ops-readonly`（无 sudo / 不属 wheel；为读日志可加入 `adm`、`systemd-journal` 组），密钥单独管理，**绝不用 root**。
+- **命令白名单（默认拒绝）**——只放只读：
+  - 允许：`systemctl status/list-units *`、`journalctl *`、`tail/less/grep` 日志、`df`/`free`/`top`/`ss`/`ps`、`docker ps`/`docker logs`、`curl http://127.0.0.1:*/health`、`nginx -t`。
+  - 拒绝：`rm`/`mv`/重定向写、`systemctl restart|stop`、`kill`、`reboot`、`apt`/`yum`、`git push`、任何 `sudo`。
+- **全量审计**：记录 Hermes 跑过的每条命令；写操作（重启/改配置/删除）一律**人工确认后再由人执行**，不给 agent。
+- **闭环用法**：飞书报红 → 触发 Hermes 用 `ops-readonly` 上对应机器，读日志/查状态 → 对照飞书 runbook → 把「根因假设 + 建议命令」发回飞书群 → 人确认后处置 → 故障记录回填多维表格、补 runbook。
+
+#### 3.5 飞书多维表格字段建议
+
+- **服务器资产**：主机名 / 云厂商(单选) / 公网IP / 内网IP / 用途项目 / 负责人 / 系统 / 配置 / 登录方式 / **凭据位置**(指向密码库条目，**不存明文**) / 监控状态 / 到期日 / 备注。
+- **项目映射**：项目 / 所在主机 / 域名 / 健康检查URL（喂给 `ops-probe.sh`）/ 负责人。
+- **故障记录**：时间 / 影响项目 / 现象 / 根因 / 处理 / runbook链接（Hermes 排障后回填，越攒越值钱）。
+
+#### 3.6 密码红线
+
+**真实口令不要存进飞书普通文档**。台账只记"谁负责 / 在哪个密码库"这种**指针**；真实密码进 Vaultwarden（一个容器）。若初期就想省到底，至少把存密码的飞书表设成**单独受限、不给全员**——但这只是过渡，不是终态。
+
+### 四、进阶技术栈（阶段 2+：飞书 + 脚本扛不住再上）
+
+> 下列工具初期**都不用上**。每条给出"什么时候才需要"。全部开源、可自托管、轻量。
+
+- **拨测升级 → Uptime Kuma**：当你想要历史可用率曲线、证书/域名到期提醒、对外状态页时，把 `ops-probe.sh` 换成它（一个容器，被监控端免装 agent）。
+- **批量运维 → Ansible + Semaphore UI**：当"挨个 SSH 装/查/改"开始累人（机器变多、要批量打补丁/改配置）时上。Ansible 无 agent 纯 SSH，Semaphore 单二进制给可视化/定时/权限。
+- **单机面板 → 1Panel 社区版 / Cockpit**：要可视化管 Docker/网站/计划任务时，每台装一个；**逐步替代宝塔**（宝塔仅部分开源、需绑手机号、历史安全争议多）。
+- **指标监控 → Netdata（最轻）/ Prometheus+Grafana**：当需要看 CPU/内存/磁盘趋势、容量预警、定位"为什么变慢"时。Netdata 一行装即用；P+G 可扩展且与下面 Loki 共用 Grafana。
+- **日志聚合 → Loki + Grafana Alloy**：当排障需要跨机集中翻日志时（比 ELK 轻得多；⚠️ Promtail 已 EOL，直接用 Alloy）。
+- **告警统一 → PrometheusAlert**：上了 Prometheus 后，把指标告警也汇到钉钉/飞书/企微，与脚本/Kuma 告警合流。
+- **堡垒机 → JumpServer 社区版**：当要集中收口入口、操作审计录屏、人员离职统一回收权限时（否则 SSH 密钥 + 安全组白名单已够）。
+- **多云大平台（CMP）**：**不建议**。需要可复现建云资源时用 Terraform/OpenTofu 即可，别追求"一个系统管所有云"。
+
+### 五、安全整改 Checklist
+
+按 P0/P1/P2 见上方「待办」。要点：**先断"一破全破"链条**（唯一强口令 + 密码管理器 + 密钥登录 + 禁 root + 收敛宝塔 + 主账号 MFA），再做主机加固（安全组最小化 + fail2ban + 面板挪内网/堡垒机后）与账号体系（RAM/IAM 最小权限 + 子账号 MFA + 操作审计），最后纵深防御（自动补丁 + STS 临时凭据替代明文 AK + 定期轮换/离职回收）。**安全与工具选型无关，无论初期用不用飞书都要做。**
+
+### 六、运维智能体（务实路线）
+
+**现实边界**：能跑 shell 的 LLM agent（Claude Code / Hermes）会幻觉根因和命令，**只适合"出假设 + 给建议"，不适合无人值守自动改生产**。
+
+**第一步只做只读排障助手 + runbook**（护栏配置见 §3.4）：plan/只读模式、命令白名单、专用低权限账号、密钥隔离、全量审计；让它读日志/查状态给"根因假设 + 建议命令"，**由人按回车**。runbook 知识库直接用飞书文档库（或本 Obsidian 库，参考[[ECharts 图表踩坑合集]]那种"现象→原因→解决"格式）。
 
 **别干**：别给 root/生产写权限、别无人值守自动重启/删除/改配置、别裸跑（不挂权限/不隔离/不审计）、别盲信置信度。
 
-**可选增强**：上 K8s 后可加 **K8sGPT**（规则扫描 + LLM 翻译成人话，零执行风险）做首线体检；要完整根因调查再看 **HolmesGPT**（CNCF Sandbox，接 Prometheus/Grafana/Loki 的 agentic 调查）。
+**可选增强（阶段 2+）**：上 K8s 后加 **K8sGPT**（规则扫描 + LLM 翻译，零执行风险）；要完整根因调查再看 **HolmesGPT**（CNCF Sandbox，接 Prometheus/Grafana/Loki 的 agentic 调查）。
 
-### 六、分阶段路线图
+### 七、分阶段路线图
 
-- **阶段 0 · 安全止血（本周）**：完成 P0 全部 + 上 Uptime Kuma + 建资产台账初版。**先保命，再谈体系。**
-- **阶段 1 · 打底（2-4 周）**：Ansible+Semaphore + 每台 1Panel/Cockpit + Netdata/Prometheus + Vaultwarden 全员用 + 完成 P1。
-- **阶段 2 · 成体系（1-3 月）**：Loki+Alloy 日志 + 告警统一收口 + 按需 JumpServer + 起步级只读运维 agent + 完成 P2。华为云若上线，按同规范纳管。
+- **阶段 0 · 安全止血 + 极简起步（本周）**：完成 P0 全部；建飞书运维空间（台账/runbook/排班）+ 配机器人 + 上 `ops-probe.sh` + 配 Hermes 只读护栏。**先保命 + 先能"知道挂了、查得动"。**
+- **阶段 1 · 跑顺（2-4 周）**：完成 P1；台账填全、runbook 攒起来、巡检覆盖所有交付项目、Hermes 排障闭环固化、密码全进 Vaultwarden。
+- **阶段 2 · 按需扩展（1-3 月，§四）**：飞书+脚本扛不住的那一项先上（多半是拨测→Uptime Kuma 或批量→Ansible），逐步补监控/日志/面板/堡垒机；完成 P2。华为云上线按同规范纳管。
 - **阶段 3 · 长效（持续）**：runbook 持续沉淀、故障演练、定期巡检与凭据轮换、季度安全复查。
 
-### 七、工具选型速查
+### 八、工具选型速查
 
-| 能力 | 首选（小团队） | 备选 | 不建议 |
+| 能力 | 初期（推荐） | 阶段 2+ 扩展 | 不建议 |
 |---|---|---|---|
-| 资产台账 | NocoDB / 本库表 | Snipe-IT | iTop / NetBox |
-| 批量运维 | Ansible + Semaphore | — | AWX（要 K8s）/ SaltStack |
-| 单机面板 | 1Panel 社区版 / Cockpit | — | 宝塔（逐步替代） |
-| 拨测告警 | Uptime Kuma | — | — |
-| 指标 | Netdata | Prometheus+Grafana | Zabbix（过重） |
-| 日志 | Loki + Alloy | — | ELK（过重）/ Promtail（已EOL） |
-| 告警转发 | PrometheusAlert | webhook-dingtalk | — |
-| 堡垒机 | JumpServer 社区版（按需） | Teleport（许可注意） | — |
-| 密码管理 | Vaultwarden | Bitwarden/Passbolt/KeePassXC | 文档/聊天明文 |
-| 运维 agent | Claude Code/Hermes 只读 + runbook | K8sGPT / HolmesGPT | 无人值守写生产 |
+| 资产台账 | 飞书多维表格 | NocoDB / Snipe-IT | iTop / NetBox |
+| 知识库/runbook | 飞书文档 / 本库 | — | — |
+| 检测拨测 | `ops-probe.sh` + 飞书机器人 | Uptime Kuma | — |
+| 排障诊断 | Hermes 只读 + runbook | + K8sGPT / HolmesGPT | 无人值守写生产 |
+| 告警通道 | 飞书自定义机器人 | PrometheusAlert | 文档/聊天明文 |
+| 批量运维 | （暂不做，挨个 SSH） | Ansible + Semaphore | AWX / SaltStack |
+| 单机面板 | （暂不做） | 1Panel / Cockpit | 宝塔（逐步替代） |
+| 指标/日志 | （暂不做） | Netdata / Prometheus + Loki+Alloy | Zabbix / ELK（过重） |
+| 堡垒机 | （暂不做） | JumpServer 社区版 | Teleport（许可注意） |
+| 密码管理 | Vaultwarden / 受限飞书表 | Bitwarden/Passbolt/KeePassXC | 明文 |
 
-### 八、参考链接
+### 九、参考链接
 
-**面板 / 批量 / 资产**
-- 1Panel：https://github.com/1Panel-dev/1Panel ｜ 节点管理（专业版）https://1panel.cn/docs/v2/user_manual/xpack/node/
-- Cockpit：https://cockpit-project.org/ ｜ 多机 https://cockpit-project.org/guide/latest/feature-machines.html
-- Ansible：https://www.ansible.com/ ｜ Semaphore UI：https://semaphoreui.com/ （AWX 对比 https://semaphoreui.com/blog/awx-vs-semaphore ）
-- JumpServer：https://github.com/jumpserver/jumpserver ｜ Teleport v16 许可变更 https://goteleport.com/blog/teleport-community-license/
-- NocoDB：https://github.com/nocodb/nocodb ｜ Snipe-IT：https://github.com/snipe/snipe-it
+**飞书（初期方案用）**
+- 飞书自定义机器人 / 群 Webhook：https://open.feishu.cn/document/client-docs/bot-v3/add-custom-bot
+- 飞书多维表格（Base）：https://www.feishu.cn/product/base
 
-**监控 / 告警 / 日志**
+**进阶工具（阶段 2+）**
 - Uptime Kuma：https://uptimekuma.org/ ｜ 证书到期监控 https://devopsdaily.eu/articles/2025/monitoring-tls-certificates-with-uptime-kuma/
-- Netdata vs Prometheus：https://www.netdata.cloud/netdata-vs-prometheus/
-- 自托管监控对比 2026：https://blog.canadianwebhosting.com/self-hosted-monitoring-comparison-2026/
-- Loki vs ELK：https://www.wallarm.com/cloud-native-products-101/grafana-loki-vs-elk-logging-stacks ｜ Promtail→Alloy 迁移 https://grafana.com/docs/alloy/latest/set-up/migrate/from-promtail/
-- PrometheusAlert（钉钉/飞书/企微）：https://github.com/feiyu563/PrometheusAlert ｜ webhook-dingtalk https://github.com/timonwong/prometheus-webhook-dingtalk
+- Ansible：https://www.ansible.com/ ｜ Semaphore UI：https://semaphoreui.com/
+- 1Panel：https://github.com/1Panel-dev/1Panel ｜ Cockpit：https://cockpit-project.org/
+- Netdata vs Prometheus：https://www.netdata.cloud/netdata-vs-prometheus/ ｜ 自托管监控对比 https://blog.canadianwebhosting.com/self-hosted-monitoring-comparison-2026/
+- Loki vs ELK：https://www.wallarm.com/cloud-native-products-101/grafana-loki-vs-elk-logging-stacks ｜ Promtail→Alloy https://grafana.com/docs/alloy/latest/set-up/migrate/from-promtail/
+- JumpServer：https://github.com/jumpserver/jumpserver ｜ NocoDB：https://github.com/nocodb/nocodb
 
 **运维智能体 / 安全**
-- HolmesGPT（CNCF）：https://www.cncf.io/blog/2026/01/07/holmesgpt-agentic-troubleshooting-built-for-the-cloud-native-era/ ｜ AI SRE 工具清单 https://github.com/agamm/awesome-ai-sre
+- HolmesGPT（CNCF）：https://www.cncf.io/blog/2026/01/07/holmesgpt-agentic-troubleshooting-built-for-the-cloud-native-era/ ｜ AI SRE 清单 https://github.com/agamm/awesome-ai-sre
 - Claude Code 权限/护栏：https://www.claudedirectory.org/blog/claude-code-permissions-guide ｜ Hermes 安全 https://hermes-agent.nousresearch.com/docs/user-guide/security
 - SSH 加固：https://www.digitalocean.com/community/tutorials/hardening-ssh-fail2ban ｜ 宝塔安全加固 https://docs.bt.cn/practical-tutorials/security-hardening
 - 自托管密码管理器：https://kubedo.com/blog-best-self-hosted-password-managers-2025/
-- 阿里云 RAM 最佳实践：https://help.aliyun.com/zh/ram/use-cases/ensure-security-of-alibaba-cloud-resources ｜ 仅 MFA 用户可访问 https://help.aliyun.com/zh/ram/use-cases/allow-only-mfa-enabled-ram-users-to-access-cloud-resources
+- 阿里云 RAM 最佳实践：https://help.aliyun.com/zh/ram/use-cases/ensure-security-of-alibaba-cloud-resources
 
 ## 提示词
 ```
@@ -210,4 +286,10 @@ Ansible **无需被控端装 agent**、纯 SSH、剧本化；Semaphore 是单个
 大家把服务器整理起来，比如分销小程序真不能用了，我们能很快排查
 可以搞一个运维智能体（或者直接用hermes）
 已知的服务器目前咱们有火山、华为、阿里。 规划上保持多平台
+```
+```
+初期收敛：能否用 飞书在线文档 + Hermes 智能体 实现需求？
+→ 可以。飞书（多维表格台账 / 文档 runbook / 机器人告警）+ Hermes（只读排障）
+  + 一个巡检脚本 ops-probe.sh（检测），覆盖资产/规范/runbook/告警/排障五件事；
+  重工具（Ansible/1Panel/Prometheus/Loki/JumpServer）降级为阶段 2+ 按需扩展。见 §三。
 ```
