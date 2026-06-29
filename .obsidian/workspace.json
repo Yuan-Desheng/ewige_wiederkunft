@@ -68,33 +68,18 @@
             }
           },
           {
-            "id": "84f15b76e9f89362",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Documents/I.P.A.R.A/工作领域/收集/Engineering.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "Engineering"
-            }
-          },
-          {
             "id": "a9ca0938dcbedc35",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Documents/I.P.A.R.A/工作领域/项目/自媒体平台数据爬取.md",
+                "file": "Documents/I.P.A.R.A/工作领域/项目/OpenCLI-Facebook 博主数据采集方案.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "自媒体平台数据爬取"
+              "title": "OpenCLI-Facebook 博主数据采集方案"
             }
           },
           {
@@ -113,18 +98,33 @@
             }
           },
           {
-            "id": "b836f1c98ef531a5",
+            "id": "07d6bde1c9b7175b",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Documents/I.P.A.R.A/学习领域/收集/MinIO 视频直传.md",
+                "file": "Documents/I.P.A.R.A/工作领域/收集/运维体系建设方案.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "MinIO 视频直传"
+              "title": "运维体系建设方案"
+            }
+          },
+          {
+            "id": "5e8c27136913dfbe",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documents/I.P.A.R.A/工作领域/收集/项目开发规范.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "项目开发规范"
             }
           },
           {
@@ -141,9 +141,24 @@
               "icon": "lucide-file",
               "title": "OpenCLI-Facebook 博主数据采集方案"
             }
+          },
+          {
+            "id": "0e61764d9040308a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documents/I.P.A.R.A/工作领域/项目/自媒体平台数据爬取.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "自媒体平台数据爬取"
+            }
           }
         ],
-        "currentTab": 7
+        "currentTab": 6
       }
     ],
     "direction": "vertical"
@@ -175,7 +190,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "飞书",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -206,7 +221,8 @@
               "title": "CLI Commander"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -280,13 +296,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Documents/I.P.A.R.A/学习领域/收集/MinIO 视频直传.md",
+                "file": "Documents/I.P.A.R.A/工作领域/收集/运维体系建设方案.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "MinIO 视频直传 的大纲"
+              "title": "运维体系建设方案 的大纲"
             }
           },
           {
@@ -414,38 +430,41 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "b836f1c98ef531a5",
+  "active": "07d6bde1c9b7175b",
   "lastOpenFiles": [
+    "Documents/I.P.A.R.A/工作领域/收集/项目开发规范.md",
+    "Assistants/Templater/主页/homepage-侧页.md",
+    "Documents/I.P.A.R.A/工作领域/收集/运维体系建设方案.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent.md",
+    "Documents/I.P.A.R.A/学习领域/收集/使用 computed 计算属性处理稍复杂的业务逻辑.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Hollow Knight Silksong BepInEx 皮肤 mod 安装笔记.md",
     "数据库与导航.md",
+    "Documents/I.P.A.R.A/工作领域/项目/自媒体平台数据爬取.md",
+    "Documents/I.P.A.R.A/工作领域/项目/OpenCLI-Facebook 博主数据采集方案.md",
+    "Documents/I.P.A.R.A/学习领域/收集/MinIO 视频直传.md",
     "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
     "Documents/I.P.A.R.A/工作领域/收集/Engineering.md",
-    "Documents/I.P.A.R.A/工作领域/项目/OpenCLI-Facebook 博主数据采集方案.md",
-    "Documents/I.P.A.R.A/工作领域/项目/自媒体平台数据爬取.md",
+    "Documents/I.P.A.R.A/工作领域/收集/Engineering.md~",
+    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md",
+    "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-06-23.md",
+    "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-06-22.md",
+    "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-06-18.md",
+    "Documents/I.P.A.R.A/学习领域/收集/前端页面加载速度优化.md",
+    "Documents/I.P.A.R.A/学习领域/收集/HTML 原型转 Vue 页面重绘工作流.md",
+    "Documents/I.P.A.R.A/学习领域/收集/ECharts 图表踩坑合集.md",
     "Documents/I.P.A.R.A/学习领域/收集/Linux.md",
     "Documents/I.P.A.R.A/工作领域/项目/前台门户网站.md",
-    "Documents/I.P.A.R.A/学习领域/收集/使用 computed 计算属性处理稍复杂的业务逻辑.md",
     "Documents/I.P.A.R.A/学习领域/收集/项目开发需求画图.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent.md",
     "Documents/I.P.A.R.A/工作领域/项目/知塘晓物-APP端开发.md",
     "Documents/I.P.A.R.A/学习领域/收集/Claude Code.md",
     "Documents/I.P.A.R.A/学习领域/收集/frontend-dev Agent Claude Code 集成方案.md",
-    "Assistants/Templater/主页/homepage-侧页.md",
     "Documents/I.P.A.R.A/0-收集箱/Pasted image 20260625151228.png.md",
     "Extras/附件/Pasted image 20260625151228.png",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/峰华Vue3.canvas",
-    "Documents/I.P.A.R.A/学习领域/归档/openclaw提示词-04-01.md",
-    "Documents/I.P.A.R.A/学习领域/收集/OpenClaw.md",
-    "Documents/I.P.A.R.A/学习领域/收集/OpenClaw安装、部署&使用教程.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Octos安装和配置.md",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/前端开发.canvas.tmp.22205.885fd8a74026",
     "Documents/I.P.A.R.A/学习领域/收集/MinIO 视频直传.md.tmp.22205.da444c496370",
-    "Documents/I.P.A.R.A/学习领域/收集/MinIO 视频直传.md",
     "Documents/I.P.A.R.A/学习领域/收集/MinIO 视频直传.md.tmp.22205.b4d8f8e5d1cd",
-    "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-06-12.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/Artificial Intelligence.canvas",
-    "Documents/I.P.A.R.A/学习领域/归档/openclaw提示词-04-07.md",
-    "Documents/I.P.A.R.A/学习领域/归档/openclaw提示词-04-08.md",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/AI笔记.canvas",
     "Documents/I.P.A.R.A/生活领域/归档/卡片盒笔记主题索引卡/跑步.canvas",
     "Documents/I.P.A.R.A/生活领域/归档/卡片盒笔记主题索引卡/MAD剪辑.canvas",
@@ -454,15 +473,12 @@
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/ThingsBoard.canvas",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/软件工程.canvas",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/英语学习.canvas",
-    "快速上手打卡任务（完成后，请删除）.md",
     "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md.tmp.9096.a52380d75e61",
     "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md.tmp.9096.d796599360d4",
     "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md.tmp.9096.fab39e7a6e55",
     "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md.tmp.9096.a47000c30988",
     "CLAUDE.md.tmp.9096.5045bea3da32",
     "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md.tmp.9096.3d6f641ced52",
-    "CLAUDE.md.tmp.9096.477065ae2ab2",
-    "CLAUDE.md",
     "Extras/附件/Pasted image 20260424164725.png",
     "Extras/附件/Pasted image 20251229151116.png",
     "Extras/附件/Pasted image 20260424164618.png",
