@@ -1,0 +1,293 @@
+{
+  "edges": [],
+  "nodes": [
+    {
+      "id": "note-1782731363194-0000",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/typescript封装LocalStorage并支持过期时间.md",
+      "x": -880,
+      "y": -600,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1782731363199-0005",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/学习TypeScrip1（基础类型）.md",
+      "x": -390,
+      "y": -600,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1782731363200-0006",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/学习TypeScrip2（任意类型）.md",
+      "x": 100,
+      "y": -600,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1782731363201-0007",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/学习TypeScrip3（接口和对象类型）.md",
+      "x": 590,
+      "y": -600,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1782731363202-0008",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/学习TypeScrip4（数组类型）.md",
+      "x": -880,
+      "y": -50,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1782731363203-0009",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/学习TypeScrip5（函数扩展）.md",
+      "x": -390,
+      "y": -50,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1782731363204-0010",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/学习TypeScrip6（类型断言 | 联合类型 | 交叉类型）.md",
+      "x": 100,
+      "y": -50,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1782731363205-0011",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/学习TypeScrip7（内置对象）.md",
+      "x": 590,
+      "y": -50,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1782731363206-0012",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/学习TypeScrip8（Class类）.md",
+      "x": -880,
+      "y": 500,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1782731363207-0013",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/学习TypeScrip9（元组类型）.md",
+      "x": -390,
+      "y": 500,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1782731363195-0001",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/学习TypeScrip10（枚举类型）.md",
+      "x": 100,
+      "y": 500,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1782731363196-0002",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/学习TypeScrip11（类型推论|类型别名）.md",
+      "x": 590,
+      "y": 500,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1782731363197-0003",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/学习TypeScrip12（never类型）.md",
+      "x": -880,
+      "y": 1050,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1782731363198-0004",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/学习TypeScrip13（symbol类型）.md",
+      "x": -390,
+      "y": 1050,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1782731363209-0015",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/学习TypeScript14（泛型）.md",
+      "x": 100,
+      "y": 1050,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1782731363210-0016",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/学习TypeScript15（tsconfig.json配置文件）.md",
+      "x": 590,
+      "y": 1050,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1782731363211-0017",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/学习TypeScript16（namespace命名空间）.md",
+      "x": -880,
+      "y": 1600,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1782731363212-0018",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/学习TypeScript17（模块解析）.md",
+      "x": -390,
+      "y": 1600,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1782731363213-0019",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/学习TypeScript18（声明文件d.ts）.md",
+      "x": 100,
+      "y": 1600,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1782731363214-0020",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/学习TypeScript19（Mixins混入）.md",
+      "x": 590,
+      "y": 1600,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1782731363215-0021",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/学习TypeScript20（装饰器Decorator）.md",
+      "x": -880,
+      "y": 2150,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1782731363216-0022",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/学习TypeScript21（webpack构建ts+vue3项目）.md",
+      "x": -390,
+      "y": 2150,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1782731363217-0023",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/学习TypeScript22（实战TS编写发布订阅模式）.md",
+      "x": 100,
+      "y": 2150,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1782731363218-0024",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/学习TypeScript23（TS进阶用法proxy & Reflect）.md",
+      "x": 590,
+      "y": 2150,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1782731363219-0025",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/学习TypeScript24（TS进阶用法-泛型工具）.md",
+      "x": -880,
+      "y": 2700,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1782731363220-0026",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/学习TypeScript25（TS进阶用法-泛型工具2）.md",
+      "x": -390,
+      "y": 2700,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1782731363221-0027",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/学习TypeScript26（TS进阶用法infer ）.md",
+      "x": 100,
+      "y": 2700,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1782731363222-0028",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/学习TypeScript27（infer 类型提取）.md",
+      "x": 590,
+      "y": 2700,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1782731363223-0029",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/学习TypeScript28（infer 递归）.md",
+      "x": -880,
+      "y": 3250,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1782731363208-0014",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/学习TypeScript 加餐环节.md",
+      "x": -390,
+      "y": 3250,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1782731363224-0030",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/学习TypeScript类型守卫.md",
+      "x": 100,
+      "y": 3250,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1782731363225-0031",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/学习TypeScript进阶类型兼容.md",
+      "x": 590,
+      "y": 3250,
+      "width": 440,
+      "height": 500
+    }
+  ]
+}
