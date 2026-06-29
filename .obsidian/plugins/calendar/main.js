@@ -31,6 +31,11 @@ async function computeSHA256Hex(message) {
 const DEFAULT_DAILY_NOTE_FORMAT = "YYYY-MM-DD";
 const DEFAULT_WEEKLY_NOTE_FORMAT = "gggg-[W]ww";
 const DEFAULT_MONTHLY_NOTE_FORMAT = "YYYY-MM";
+const DEFAULT_YEARLY_NOTE_FORMAT = "YYYY";
+const DEFAULT_MONTHLY_NOTE_TEMPLATE = "Assistants/Templater/日记/月记模板1.md";
+const DEFAULT_YEARLY_NOTE_TEMPLATE = "Assistants/Templater/日记/年记模板1.md";
+const DEFAULT_MONTHLY_NOTE_FOLDER = "Documents/Dailynote/月记";
+const DEFAULT_YEARLY_NOTE_FOLDER = "Documents/Dailynote/年记";
 
 function shouldUsePeriodicNotesSettings(periodicity) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -62,7 +67,17 @@ function getDailyNoteSettings() {
     }
     catch (err) {
         console.info("No custom daily note settings found!", err);
+        return {
+            format: DEFAULT_DAILY_NOTE_FORMAT,
+            folder: "",
+            template: "",
+        };
     }
+    return {
+        format: DEFAULT_DAILY_NOTE_FORMAT,
+        folder: "",
+        template: "",
+    };
 }
 /**
  * Read the user settings for the `weekly-notes` plugin
@@ -91,28 +106,87 @@ function getWeeklyNoteSettings() {
     }
     catch (err) {
         console.info("No custom weekly note settings found!", err);
+        return {
+            format: DEFAULT_WEEKLY_NOTE_FORMAT,
+            folder: "",
+            template: "",
+        };
     }
+    return {
+        format: DEFAULT_WEEKLY_NOTE_FORMAT,
+        folder: "",
+        template: "",
+    };
 }
 /**
  * Read the user settings for the `periodic-notes` plugin
  * to keep behavior of creating a new note in-sync.
  */
 function getMonthlyNoteSettings() {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const pluginManager = window.app.plugins;
     try {
-        const settings = (shouldUsePeriodicNotesSettings("monthly") &&
-            pluginManager.getPlugin("periodic-notes")?.settings?.monthly) ||
-            {};
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const pluginManager = window.app.plugins;
+        const calendarSettings = pluginManager.getPlugin("calendar")?.options || {};
+        const periodicNotesSettings = pluginManager.getPlugin("periodic-notes")
+            ?.settings?.monthly;
         return {
-            format: settings.format || DEFAULT_MONTHLY_NOTE_FORMAT,
-            folder: settings.folder?.trim() || "",
-            template: settings.template?.trim() || "",
+            format: calendarSettings.monthlyNoteFormat ||
+                periodicNotesSettings?.format ||
+                DEFAULT_MONTHLY_NOTE_FORMAT,
+            folder: calendarSettings.monthlyNoteFolder?.trim() ||
+                periodicNotesSettings?.folder?.trim() ||
+                DEFAULT_MONTHLY_NOTE_FOLDER,
+            template: calendarSettings.monthlyNoteTemplate?.trim() ||
+                periodicNotesSettings?.template?.trim() ||
+                DEFAULT_MONTHLY_NOTE_TEMPLATE,
         };
     }
     catch (err) {
         console.info("No custom monthly note settings found!", err);
+        return {
+            format: DEFAULT_MONTHLY_NOTE_FORMAT,
+            folder: DEFAULT_MONTHLY_NOTE_FOLDER,
+            template: DEFAULT_MONTHLY_NOTE_TEMPLATE,
+        };
     }
+    return {
+        format: DEFAULT_MONTHLY_NOTE_FORMAT,
+        folder: DEFAULT_MONTHLY_NOTE_FOLDER,
+        template: DEFAULT_MONTHLY_NOTE_TEMPLATE,
+    };
+}
+function getYearlyNoteSettings() {
+    try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const pluginManager = window.app.plugins;
+        const calendarSettings = pluginManager.getPlugin("calendar")?.options || {};
+        const periodicNotesSettings = pluginManager.getPlugin("periodic-notes")
+            ?.settings?.yearly;
+        return {
+            format: calendarSettings.yearlyNoteFormat ||
+                periodicNotesSettings?.format ||
+                DEFAULT_YEARLY_NOTE_FORMAT,
+            folder: calendarSettings.yearlyNoteFolder?.trim() ||
+                periodicNotesSettings?.folder?.trim() ||
+                DEFAULT_YEARLY_NOTE_FOLDER,
+            template: calendarSettings.yearlyNoteTemplate?.trim() ||
+                periodicNotesSettings?.template?.trim() ||
+                DEFAULT_YEARLY_NOTE_TEMPLATE,
+        };
+    }
+    catch (err) {
+        console.info("No custom yearly note settings found!", err);
+        return {
+            format: DEFAULT_YEARLY_NOTE_FORMAT,
+            folder: DEFAULT_YEARLY_NOTE_FOLDER,
+            template: DEFAULT_YEARLY_NOTE_TEMPLATE,
+        };
+    }
+    return {
+        format: DEFAULT_YEARLY_NOTE_FORMAT,
+        folder: DEFAULT_YEARLY_NOTE_FOLDER,
+        template: DEFAULT_YEARLY_NOTE_TEMPLATE,
+    };
 }
 
 /**
@@ -144,6 +218,7 @@ function getDateFromFile(file, granularity) {
         day: getDailyNoteSettings,
         week: getWeeklyNoteSettings,
         month: getMonthlyNoteSettings,
+        year: getYearlyNoteSettings,
     };
     const format = getSettings[granularity]().format.split("/").pop();
     const noteDate = window.moment(file.basename, format, true);
@@ -198,11 +273,14 @@ async function ensureFolderExists(path) {
         }
     }
 }
-async function getNotePath(directory, filename) {
+function getNormalizedNotePath(directory, filename) {
     if (!filename.endsWith(".md")) {
         filename += ".md";
     }
-    const path = obsidian__default['default'].normalizePath(join(directory, filename));
+    return obsidian__default['default'].normalizePath(join(directory, filename));
+}
+async function getNotePath(directory, filename) {
+    const path = getNormalizedNotePath(directory, filename);
     await ensureFolderExists(path);
     return path;
 }
@@ -225,6 +303,33 @@ async function getTemplateInfo(template) {
         return ["", null];
     }
 }
+async function getRequiredTemplateInfo(template, templateMissingNotice) {
+    const templatePath = obsidian__default['default'].normalizePath((template || "").trim());
+    if (!templatePath || templatePath === "/") {
+        new obsidian__default['default'].Notice(templateMissingNotice);
+        return null;
+    }
+    const templateFile = window.app.metadataCache.getFirstLinkpathDest(templatePath, "");
+    if (!templateFile) {
+        new obsidian__default['default'].Notice(templateMissingNotice);
+        return null;
+    }
+    const [templateContents, IFoldInfo] = await getTemplateInfo(templatePath);
+    if (!templateContents) {
+        new obsidian__default['default'].Notice(templateMissingNotice);
+        return null;
+    }
+    return [templateContents, IFoldInfo];
+}
+function replaceCalendarPeriodPlaceholders(contents, date) {
+    const { format: monthlyFormat } = getMonthlyNoteSettings();
+    const { format: weeklyFormat } = getWeeklyNoteSettings();
+    const { format: yearlyFormat } = getYearlyNoteSettings();
+    return contents
+        .replace(/{{\s*calendar-month\s*}}/gi, date.format(monthlyFormat))
+        .replace(/{{\s*calendar-week\s*}}/gi, date.format(weeklyFormat))
+        .replace(/{{\s*calendar-year\s*}}/gi, date.format(yearlyFormat));
+}
 
 class DailyNotesFolderMissingError extends Error {
 }
@@ -244,7 +349,93 @@ async function createDailyNote(date) {
     const filename = date.format(format);
     const normalizedPath = await getNotePath(folder, filename);
     try {
-        const createdFile = await vault.create(normalizedPath, templateContents
+        const createdFile = await vault.create(normalizedPath, replaceCalendarPeriodPlaceholders(templateContents, date)
+            .replace(/{{\s*date\s*}}/gi, filename)
+            .replace(/{{\s*time\s*}}/gi, moment().format("HH:mm"))
+            .replace(/{{\s*title\s*}}/gi, filename)
+            .replace(/{{\s*(date|time)\s*(([+-]\d+)([yqmwdhs]))?\s*(:.+?)?}}/gi, (_, _timeOrDate, calc, timeDelta, unit, momentFormat) => {
+            const now = moment();
+            const currentDate = date.clone().set({
+                hour: now.get("hour"),
+                minute: now.get("minute"),
+                second: now.get("second"),
+            });
+            if (calc) {
+                currentDate.add(parseInt(timeDelta, 10), unit);
+            }
+            if (momentFormat) {
+                return currentDate.format(momentFormat.substring(1).trim());
+            }
+            return currentDate.format(format);
+        })
+            .replace(/{{\s*yesterday\s*}}/gi, date.clone().subtract(1, "day").format(format))
+            .replace(/{{\s*tomorrow\s*}}/gi, date.clone().add(1, "d").format(format)));
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        app.foldManager.save(createdFile, IFoldInfo);
+        return createdFile;
+    }
+    catch (err) {
+        console.error(`Failed to create file: '${normalizedPath}'`, err);
+        new obsidian__default['default'].Notice("Unable to create new file.");
+    }
+}
+async function createMonthlyNote(date) {
+    const app = window.app;
+    const { vault } = app;
+    const moment = window.moment;
+    const { template, format, folder } = getMonthlyNoteSettings();
+    const templateInfo = await getRequiredTemplateInfo(template, "未找到月记模板文件，请先设置模板");
+    if (!templateInfo) {
+        return null;
+    }
+    const [templateContents, IFoldInfo] = templateInfo;
+    const filename = date.format(format);
+    const normalizedPath = await getNotePath(folder, filename);
+    try {
+        const createdFile = await vault.create(normalizedPath, replaceCalendarPeriodPlaceholders(templateContents, date)
+            .replace(/{{\s*date\s*}}/gi, filename)
+            .replace(/{{\s*time\s*}}/gi, moment().format("HH:mm"))
+            .replace(/{{\s*title\s*}}/gi, filename)
+            .replace(/{{\s*(date|time)\s*(([+-]\d+)([yqmwdhs]))?\s*(:.+?)?}}/gi, (_, _timeOrDate, calc, timeDelta, unit, momentFormat) => {
+            const now = moment();
+            const currentDate = date.clone().set({
+                hour: now.get("hour"),
+                minute: now.get("minute"),
+                second: now.get("second"),
+            });
+            if (calc) {
+                currentDate.add(parseInt(timeDelta, 10), unit);
+            }
+            if (momentFormat) {
+                return currentDate.format(momentFormat.substring(1).trim());
+            }
+            return currentDate.format(format);
+        })
+            .replace(/{{\s*yesterday\s*}}/gi, date.clone().subtract(1, "day").format(format))
+            .replace(/{{\s*tomorrow\s*}}/gi, date.clone().add(1, "d").format(format)));
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        app.foldManager.save(createdFile, IFoldInfo);
+        return createdFile;
+    }
+    catch (err) {
+        console.error(`Failed to create file: '${normalizedPath}'`, err);
+        new obsidian__default['default'].Notice("Unable to create new file.");
+    }
+}
+async function createYearlyNote(date) {
+    const app = window.app;
+    const { vault } = app;
+    const moment = window.moment;
+    const { template, format, folder } = getYearlyNoteSettings();
+    const templateInfo = await getRequiredTemplateInfo(template, "未找到年记模板文件，请先设置模板");
+    if (!templateInfo) {
+        return null;
+    }
+    const [templateContents, IFoldInfo] = templateInfo;
+    const filename = date.format(format);
+    const normalizedPath = await getNotePath(folder, filename);
+    try {
+        const createdFile = await vault.create(normalizedPath, replaceCalendarPeriodPlaceholders(templateContents, date)
             .replace(/{{\s*date\s*}}/gi, filename)
             .replace(/{{\s*time\s*}}/gi, moment().format("HH:mm"))
             .replace(/{{\s*title\s*}}/gi, filename)
@@ -331,7 +522,7 @@ async function createWeeklyNote(date) {
     const filename = date.format(format);
     const normalizedPath = await getNotePath(folder, filename);
     try {
-        const createdFile = await vault.create(normalizedPath, templateContents
+        const createdFile = await vault.create(normalizedPath, replaceCalendarPeriodPlaceholders(templateContents, date)
             .replace(/{{\s*(date|time)\s*(([+-]\d+)([yqmwdhs]))?\s*(:.+?)?}}/gi, (_, _timeOrDate, calc, timeDelta, unit, momentFormat) => {
             const now = window.moment();
             const currentDate = date.clone().set({
@@ -398,15 +589,19 @@ function appHasDailyNotesPluginLoaded() {
 }
 var appHasDailyNotesPluginLoaded_1 = appHasDailyNotesPluginLoaded;
 var createDailyNote_1 = createDailyNote;
+var createMonthlyNote_1 = createMonthlyNote;
 var createWeeklyNote_1 = createWeeklyNote;
+var createYearlyNote_1 = createYearlyNote;
 var getAllDailyNotes_1 = getAllDailyNotes;
 var getAllWeeklyNotes_1 = getAllWeeklyNotes;
 var getDailyNote_1 = getDailyNote;
 var getDailyNoteSettings_1 = getDailyNoteSettings;
 var getDateFromFile_1 = getDateFromFile;
 var getDateUID_1$1 = getDateUID$1;
+var getMonthlyNoteSettings_1 = getMonthlyNoteSettings;
 var getWeeklyNote_1 = getWeeklyNote;
 var getWeeklyNoteSettings_1 = getWeeklyNoteSettings;
+var getYearlyNoteSettings_1 = getYearlyNoteSettings;
 
 function noop$1() { }
 function run$1(fn) {
@@ -759,6 +954,12 @@ const defaultSettings = Object.freeze({
     weeklyNoteFormat: "",
     weeklyNoteTemplate: "",
     weeklyNoteFolder: "",
+    monthlyNoteFormat: DEFAULT_MONTHLY_NOTE_FORMAT,
+    monthlyNoteTemplate: DEFAULT_MONTHLY_NOTE_TEMPLATE,
+    monthlyNoteFolder: DEFAULT_MONTHLY_NOTE_FOLDER,
+    yearlyNoteFormat: DEFAULT_YEARLY_NOTE_FORMAT,
+    yearlyNoteTemplate: DEFAULT_YEARLY_NOTE_TEMPLATE,
+    yearlyNoteFolder: DEFAULT_YEARLY_NOTE_FOLDER,
     localeOverride: "system-default",
     weatherEnabled: true,
     weatherApiPublicKey: "",
@@ -804,6 +1005,18 @@ class CalendarSettingsTab extends obsidian.PluginSettingTab {
             this.addWeeklyNoteTemplateSetting();
             this.addWeeklyNoteFolderSetting();
         }
+        this.containerEl.createEl("h3", {
+            text: "每月笔记设置",
+        });
+        this.addMonthlyNoteFormatSetting();
+        this.addMonthlyNoteTemplateSetting();
+        this.addMonthlyNoteFolderSetting();
+        this.containerEl.createEl("h3", {
+            text: "每年笔记设置",
+        });
+        this.addYearlyNoteFormatSetting();
+        this.addYearlyNoteTemplateSetting();
+        this.addYearlyNoteFolderSetting();
         this.containerEl.createEl("h3", {
             text: "高级设置",
         });
@@ -913,6 +1126,74 @@ class CalendarSettingsTab extends obsidian.PluginSettingTab {
             textfield.setValue(this.plugin.options.weeklyNoteFolder);
             textfield.onChange(async (value) => {
                 this.plugin.writeOptions(() => ({ weeklyNoteFolder: value }));
+            });
+        });
+    }
+    addMonthlyNoteFormatSetting() {
+        new obsidian.Setting(this.containerEl)
+            .setName("每月笔记格式")
+            .setDesc("如需更多语法帮助，请参阅格式参考。")
+            .addText((textfield) => {
+            textfield.setValue(this.plugin.options.monthlyNoteFormat);
+            textfield.setPlaceholder(DEFAULT_MONTHLY_NOTE_FORMAT);
+            textfield.onChange(async (value) => {
+                this.plugin.writeOptions(() => ({ monthlyNoteFormat: value }));
+            });
+        });
+    }
+    addMonthlyNoteTemplateSetting() {
+        new obsidian.Setting(this.containerEl)
+            .setName("每月笔记模板")
+            .setDesc("选择你想用作每月笔记模板的文件。")
+            .addText((textfield) => {
+            textfield.setValue(this.plugin.options.monthlyNoteTemplate);
+            textfield.onChange(async (value) => {
+                this.plugin.writeOptions(() => ({ monthlyNoteTemplate: value }));
+            });
+        });
+    }
+    addMonthlyNoteFolderSetting() {
+        new obsidian.Setting(this.containerEl)
+            .setName("每月笔记文件夹")
+            .setDesc("新的月记将创建在此处。")
+            .addText((textfield) => {
+            textfield.setValue(this.plugin.options.monthlyNoteFolder);
+            textfield.onChange(async (value) => {
+                this.plugin.writeOptions(() => ({ monthlyNoteFolder: value }));
+            });
+        });
+    }
+    addYearlyNoteFormatSetting() {
+        new obsidian.Setting(this.containerEl)
+            .setName("每年笔记格式")
+            .setDesc("如需更多语法帮助，请参阅格式参考。")
+            .addText((textfield) => {
+            textfield.setValue(this.plugin.options.yearlyNoteFormat);
+            textfield.setPlaceholder(DEFAULT_YEARLY_NOTE_FORMAT);
+            textfield.onChange(async (value) => {
+                this.plugin.writeOptions(() => ({ yearlyNoteFormat: value }));
+            });
+        });
+    }
+    addYearlyNoteTemplateSetting() {
+        new obsidian.Setting(this.containerEl)
+            .setName("每年笔记模板")
+            .setDesc("选择你想用作每年笔记模板的文件。")
+            .addText((textfield) => {
+            textfield.setValue(this.plugin.options.yearlyNoteTemplate);
+            textfield.onChange(async (value) => {
+                this.plugin.writeOptions(() => ({ yearlyNoteTemplate: value }));
+            });
+        });
+    }
+    addYearlyNoteFolderSetting() {
+        new obsidian.Setting(this.containerEl)
+            .setName("每年笔记文件夹")
+            .setDesc("新的年记将创建在此处。")
+            .addText((textfield) => {
+            textfield.setValue(this.plugin.options.yearlyNoteFolder);
+            textfield.onChange(async (value) => {
+                this.plugin.writeOptions(() => ({ yearlyNoteFolder: value }));
             });
         });
     }
@@ -1152,6 +1433,60 @@ async function tryToCreateWeeklyNote(date, inNewSplit, settings, cb) {
             onAccept: createFile,
             text: `File ${filename} does not exist. Would you like to create it?`,
             title: "New Weekly Note",
+        });
+    }
+    else {
+        await createFile();
+    }
+}
+async function tryToCreateMonthlyNote(date, inNewSplit, settings, cb) {
+    const { workspace } = window.app;
+    const { format } = getMonthlyNoteSettings_1();
+    const filename = date.format(format);
+    const createFile = async () => {
+        const monthlyNote = await createMonthlyNote_1(date);
+        if (!monthlyNote) {
+            return;
+        }
+        const leaf = inNewSplit
+            ? workspace.splitActiveLeaf()
+            : workspace.getUnpinnedLeaf();
+        await leaf.openFile(monthlyNote);
+        cb === null || cb === void 0 ? void 0 : cb(monthlyNote);
+    };
+    if (settings.shouldConfirmBeforeCreate) {
+        createConfirmationDialog({
+            cta: "Create",
+            onAccept: createFile,
+            text: `File ${filename} does not exist. Would you like to create it?`,
+            title: "New Monthly Note",
+        });
+    }
+    else {
+        await createFile();
+    }
+}
+async function tryToCreateYearlyNote(date, inNewSplit, settings, cb) {
+    const { workspace } = window.app;
+    const { format } = getYearlyNoteSettings_1();
+    const filename = date.format(format);
+    const createFile = async () => {
+        const yearlyNote = await createYearlyNote_1(date);
+        if (!yearlyNote) {
+            return;
+        }
+        const leaf = inNewSplit
+            ? workspace.splitActiveLeaf()
+            : workspace.getUnpinnedLeaf();
+        await leaf.openFile(yearlyNote);
+        cb === null || cb === void 0 ? void 0 : cb(yearlyNote);
+    };
+    if (settings.shouldConfirmBeforeCreate) {
+        createConfirmationDialog({
+            cta: "Create",
+            onAccept: createFile,
+            text: `File ${filename} does not exist. Would you like to create it?`,
+            title: "New Yearly Note",
         });
     }
     else {
@@ -1743,7 +2078,7 @@ var getDateUID_1 = getDateUID;
 function add_css$5() {
 	var style = element("style");
 	style.id = "svelte-1widvzq-style";
-	style.textContent = ".dot.svelte-1widvzq,.hollow.svelte-1widvzq{display:inline-block;height:6px;width:6px;margin:0 1px}.filled.svelte-1widvzq{fill:var(--color-accent);z-index:1;}.active.filled.svelte-1widvzq{fill:var(--text-on-accent)}.hollow.svelte-1widvzq{fill:none;stroke:var(--color-dot)}.active.hollow.svelte-1widvzq{fill:none;stroke:var(--text-on-accent)}";
+	style.textContent = ".dot.svelte-1widvzq,.hollow.svelte-1widvzq{display:inline-block;height:6px;width:6px;margin:0 1px}.filled.svelte-1widvzq{fill:var(--color-orange);z-index:1;}.active.filled.svelte-1widvzq{fill:var(--text-on-accent)}.hollow.svelte-1widvzq{fill:none;stroke:var(--color-dot)}.active.hollow.svelte-1widvzq{fill:none;stroke:var(--text-on-accent)}";
 	append(document.head, style);
 }
 
@@ -2617,7 +2952,7 @@ class Arrow extends SvelteComponent {
 function add_css$2() {
 	var style = element("style");
 	style.id = "svelte-1vwr9dd-style";
-	style.textContent = ".nav.svelte-1vwr9dd.svelte-1vwr9dd{align-items:center;display:flex;margin:0.6em 0 1em;padding:0 8px;width:100%}.nav.is-mobile.svelte-1vwr9dd.svelte-1vwr9dd{padding:0}.title.svelte-1vwr9dd.svelte-1vwr9dd{color:var(--color-text-title);font-size:1.5em;margin:0}.is-mobile.svelte-1vwr9dd .title.svelte-1vwr9dd{font-size:1.3em}.month.svelte-1vwr9dd.svelte-1vwr9dd{font-weight:500;text-transform:capitalize}.year.svelte-1vwr9dd.svelte-1vwr9dd{color:var(--interactive-accent)}.right-nav.svelte-1vwr9dd.svelte-1vwr9dd{display:flex;justify-content:center;margin-left:auto}.reset-button.svelte-1vwr9dd.svelte-1vwr9dd{cursor:pointer;border-radius:4px;color:var(--text-muted);font-size:0.7em;font-weight:600;letter-spacing:1px;margin:0 4px;padding:0px 4px;text-transform:uppercase}.is-mobile.svelte-1vwr9dd .reset-button.svelte-1vwr9dd{display:none}";
+	style.textContent = ".nav.svelte-1vwr9dd.svelte-1vwr9dd{align-items:center;display:flex;margin:0.6em 0 1em;padding:0 8px;width:100%}.nav.is-mobile.svelte-1vwr9dd.svelte-1vwr9dd{padding:0}.title.svelte-1vwr9dd.svelte-1vwr9dd{color:var(--color-text-title);font-size:1.5em;margin:0}.is-mobile.svelte-1vwr9dd .title.svelte-1vwr9dd{font-size:1.3em}.month.svelte-1vwr9dd.svelte-1vwr9dd{cursor:pointer;font-weight:500;text-transform:capitalize}.month.svelte-1vwr9dd.svelte-1vwr9dd:hover{text-decoration:underline}.year.svelte-1vwr9dd.svelte-1vwr9dd{color:var(--interactive-accent);cursor:pointer}.year.svelte-1vwr9dd.svelte-1vwr9dd:hover{text-decoration:underline}.right-nav.svelte-1vwr9dd.svelte-1vwr9dd{display:flex;justify-content:center;margin-left:auto}.reset-button.svelte-1vwr9dd.svelte-1vwr9dd{cursor:pointer;border-radius:4px;color:var(--text-muted);font-size:0.7em;font-weight:600;letter-spacing:1px;margin:0 4px;padding:0px 4px;text-transform:uppercase}.is-mobile.svelte-1vwr9dd .reset-button.svelte-1vwr9dd{display:none}";
 	append(document.head, style);
 }
 
@@ -3824,6 +4159,10 @@ class Calendar$1 extends SvelteComponent {
 		return this.$$.ctx[11];
 	}
 
+	get displayedMonth() {
+		return this.$$.ctx[0];
+	}
+
 	get decrementDisplayedMonth() {
 		return this.$$.ctx[12];
 	}
@@ -4095,6 +4434,10 @@ class Calendar extends SvelteComponent$1 {
 	get tick() {
 		return this.$$.ctx[11];
 	}
+
+	get displayedMonth() {
+		return this.$$.ctx[0] || this.$$.ctx[9] || window.moment();
+	}
 }
 
 function showFileMenu(app, file, position) {
@@ -4350,6 +4693,9 @@ async function fetchWeatherForecast() {
             });
     };
     const fetching = (async () => {
+        const previousMap = weatherCache.byDate && Object.keys(weatherCache.byDate).length
+            ? weatherCache.byDate
+            : {};
         let map = {};
         if (opts.weatherLocation) {
             map = await fetchByLocation(opts.weatherLocation);
@@ -4363,8 +4709,8 @@ async function fetchWeatherForecast() {
         else {
             map = await fetchByLocation("ip");
         }
-        weatherCache.byDate = map || {};
         if (map && Object.keys(map).length) {
+            weatherCache.byDate = map;
             weatherCache.lastFetchTime = Date.now();
             weatherCache.lastFetchDate = todayStr;
             try {
@@ -4378,6 +4724,9 @@ async function fetchWeatherForecast() {
             }
             catch (e) {
             }
+        }
+        else if (previousMap && Object.keys(previousMap).length) {
+            weatherCache.byDate = previousMap;
         }
         weatherCache.fetching = null;
         return weatherCache.byDate;
@@ -4502,6 +4851,8 @@ class CalendarView extends obsidian.ItemView {
         super(leaf);
         this.openOrCreateDailyNote = this.openOrCreateDailyNote.bind(this);
         this.openOrCreateWeeklyNote = this.openOrCreateWeeklyNote.bind(this);
+        this.openOrCreateMonthlyNote = this.openOrCreateMonthlyNote.bind(this);
+        this.openOrCreateYearlyNote = this.openOrCreateYearlyNote.bind(this);
         this.onNoteSettingsUpdate = this.onNoteSettingsUpdate.bind(this);
         this.onFileCreated = this.onFileCreated.bind(this);
         this.onFileDeleted = this.onFileDeleted.bind(this);
@@ -4511,6 +4862,7 @@ class CalendarView extends obsidian.ItemView {
         this.onHoverWeek = this.onHoverWeek.bind(this);
         this.onContextMenuDay = this.onContextMenuDay.bind(this);
         this.onContextMenuWeek = this.onContextMenuWeek.bind(this);
+        this.onHeaderClick = this.onHeaderClick.bind(this);
         this.registerEvent(
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         this.app.workspace.on("periodic-notes:settings-updated", this.onNoteSettingsUpdate));
@@ -4519,6 +4871,7 @@ class CalendarView extends obsidian.ItemView {
         this.registerEvent(this.app.vault.on("modify", this.onFileModified));
         this.registerEvent(this.app.workspace.on("file-open", this.onFileOpen));
         this.settings = null;
+        this.headerClickHandler = null;
         settings.subscribe((val) => {
             this.settings = val;
             // Refresh the calendar if settings change
@@ -4537,6 +4890,10 @@ class CalendarView extends obsidian.ItemView {
         return "calendar-with-checkmark";
     }
     onClose() {
+        if (this.headerClickHandler) {
+            this.contentEl.removeEventListener("click", this.headerClickHandler, true);
+            this.headerClickHandler = null;
+        }
         if (this.calendar) {
             this.calendar.$destroy();
         }
@@ -4557,6 +4914,7 @@ class CalendarView extends obsidian.ItemView {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             target: this.contentEl,
             props: {
+                displayedMonth: window.moment(),
                 onClickDay: this.openOrCreateDailyNote,
                 onClickWeek: this.openOrCreateWeeklyNote,
                 onHoverDay: this.onHoverDay,
@@ -4566,6 +4924,8 @@ class CalendarView extends obsidian.ItemView {
                 sources,
             },
         });
+        this.headerClickHandler = this.onHeaderClick;
+        this.contentEl.addEventListener("click", this.headerClickHandler, true);
         // 在后台预取天气数据：不阻塞日历渲染，完成后刷新一次以填充天气信息
         try {
             const p = fetchWeatherForecast();
@@ -4618,6 +4978,27 @@ class CalendarView extends obsidian.ItemView {
             x: event.pageX,
             y: event.pageY,
         });
+    }
+    async onHeaderClick(event) {
+        const rawTarget = event.target;
+        const target = rawTarget instanceof HTMLElement
+            ? rawTarget
+            : rawTarget instanceof Node
+                ? rawTarget.parentElement
+                : null;
+        if (!target || !this.calendar) {
+            return;
+        }
+        if (target.closest("span.month.svelte-1vwr9dd")) {
+            event.preventDefault();
+            event.stopPropagation();
+            await this.openOrCreateMonthlyNote(this.calendar.displayedMonth || window.moment(), false);
+        }
+        else if (target.closest("span.year.svelte-1vwr9dd")) {
+            event.preventDefault();
+            event.stopPropagation();
+            await this.openOrCreateYearlyNote(this.calendar.displayedMonth || window.moment(), false);
+        }
     }
     onNoteSettingsUpdate() {
         dailyNotes.reindex();
@@ -4685,6 +5066,16 @@ class CalendarView extends obsidian.ItemView {
                 this.calendar.$set({ displayedMonth: date });
                 return;
             }
+            date = getDateFromFile_1(activeLeaf.view.file, "month");
+            if (date) {
+                this.calendar.$set({ displayedMonth: date });
+                return;
+            }
+            date = getDateFromFile_1(activeLeaf.view.file, "year");
+            if (date) {
+                this.calendar.$set({ displayedMonth: date });
+                return;
+            }
         }
     }
     async writeWeatherToDailyNote(file, date) {
@@ -4710,6 +5101,42 @@ class CalendarView extends obsidian.ItemView {
         if (!existingFile) {
             // File doesn't exist
             tryToCreateWeeklyNote(startOfWeek, inNewSplit, this.settings, (file) => {
+                activeFile.setFile(file);
+            });
+            return;
+        }
+        const leaf = inNewSplit
+            ? workspace.splitActiveLeaf()
+            : workspace.getUnpinnedLeaf();
+        await leaf.openFile(existingFile);
+        activeFile.setFile(existingFile);
+    }
+    async openOrCreateMonthlyNote(date, inNewSplit) {
+        const { workspace, vault } = this.app;
+        const { format, folder } = getMonthlyNoteSettings_1();
+        const filename = date.format(format);
+        const normalizedPath = getNormalizedNotePath(folder, filename);
+        const existingFile = vault.getAbstractFileByPath(normalizedPath);
+        if (!(existingFile instanceof obsidian.TFile)) {
+            tryToCreateMonthlyNote(date.clone().startOf("month"), inNewSplit, this.settings, (file) => {
+                activeFile.setFile(file);
+            });
+            return;
+        }
+        const leaf = inNewSplit
+            ? workspace.splitActiveLeaf()
+            : workspace.getUnpinnedLeaf();
+        await leaf.openFile(existingFile);
+        activeFile.setFile(existingFile);
+    }
+    async openOrCreateYearlyNote(date, inNewSplit) {
+        const { workspace, vault } = this.app;
+        const { format, folder } = getYearlyNoteSettings_1();
+        const filename = date.format(format);
+        const normalizedPath = getNormalizedNotePath(folder, filename);
+        const existingFile = vault.getAbstractFileByPath(normalizedPath);
+        if (!(existingFile instanceof obsidian.TFile)) {
+            tryToCreateYearlyNote(date.clone().startOf("year"), inNewSplit, this.settings, (file) => {
                 activeFile.setFile(file);
             });
             return;
@@ -4797,6 +5224,7 @@ class CalendarPlugin extends obsidian.Plugin {
         this.register(settings.subscribe((value) => {
             this.options = value;
         }));
+        await this.loadOptions();
         this.registerView(VIEW_TYPE_CALENDAR, (leaf) => (this.view = new CalendarView(leaf)));
         this.addCommand({
             id: "show-calendar-view",
@@ -4841,14 +5269,17 @@ class CalendarPlugin extends obsidian.Plugin {
                 this.view.revealActiveNote();
             },
         });
-        await this.loadOptions();
-        this.addSettingTab(new CalendarSettingsTab(this.app, this));
         if (this.app.workspace.layoutReady) {
             this.initLeaf();
         }
         else {
             this.registerEvent(this.app.workspace.on("layout-ready", this.initLeaf.bind(this)));
         }
+        this.app.workspace.trigger("calendar:plugin-ready");
+        this.app.workspace.trigger("calendar:settings-ready");
+        this.settingTab = new CalendarSettingsTab(this.app, this);
+        this.addSettingTab(this.settingTab);
+        this.settingTab.display();
     }
     initLeaf() {
         if (this.app.workspace.getLeavesOfType(VIEW_TYPE_CALENDAR).length) {
@@ -4859,15 +5290,34 @@ class CalendarPlugin extends obsidian.Plugin {
         });
     }
     async loadOptions() {
-        const options = await this.loadData();
-        settings.update((old) => {
-            return Object.assign(Object.assign({}, old), (options || {}));
-        });
-        await this.saveData(this.options);
+        const saved = await this.loadData();
+        const nextOptions = Object.assign(Object.assign({}, defaultSettings), (saved || {}));
+        const periodicDefaults = [
+            ["monthlyNoteFormat", DEFAULT_MONTHLY_NOTE_FORMAT],
+            ["monthlyNoteTemplate", DEFAULT_MONTHLY_NOTE_TEMPLATE],
+            ["monthlyNoteFolder", DEFAULT_MONTHLY_NOTE_FOLDER],
+            ["yearlyNoteFormat", DEFAULT_YEARLY_NOTE_FORMAT],
+            ["yearlyNoteTemplate", DEFAULT_YEARLY_NOTE_TEMPLATE],
+            ["yearlyNoteFolder", DEFAULT_YEARLY_NOTE_FOLDER],
+        ];
+        let migrated = false;
+        for (const [key, defaultVal] of periodicDefaults) {
+            if (!nextOptions[key]?.trim()) {
+                nextOptions[key] = defaultVal;
+                migrated = true;
+            }
+        }
+        this.options = nextOptions;
+        settings.set(nextOptions);
+        if (!saved || migrated) {
+            await this.saveData(nextOptions);
+        }
     }
     async writeOptions(changeOpts) {
-        settings.update((old) => (Object.assign(Object.assign({}, old), changeOpts(old))));
-        await this.saveData(this.options);
+        const nextOptions = Object.assign(Object.assign({}, this.options || defaultSettings), changeOpts(this.options || defaultSettings));
+        this.options = nextOptions;
+        settings.set(nextOptions);
+        await this.saveData(nextOptions);
     }
     async checkContentProtectionStatus() {
         try {

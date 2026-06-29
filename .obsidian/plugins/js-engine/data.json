@@ -1,0 +1,6 @@
+{
+  "startupScripts": [
+    "Assistants/Templater/辅助/JS辅助脚本/daily-stats.js"
+  ],
+  "disableStatusbar": false
+}

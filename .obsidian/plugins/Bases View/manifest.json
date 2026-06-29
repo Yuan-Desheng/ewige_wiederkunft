@@ -1,7 +1,7 @@
 {
     "id": "bases-view",
     "name": "Bases View",
-    "version": "0.3.2",
+    "version": "0.3.3",
     "minAppVersion": "1.10.0",
     "description": "增强Obsidian Bases原生基础视图，并提供折线图、柱状图、饼图等自定义视图",
     "author": "ytmaps_鱼先生",

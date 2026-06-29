@@ -15,5 +15,8 @@
   },
   "showDataPoints": true,
   "basesTableWrapByBasePath": {},
-  "basesTableCellAlignByBasePath": {}
+  "basesTableCellAlignByBasePath": {},
+  "lineLegendPosition": "right-top",
+  "barLegendPosition": "right-top",
+  "pieLegendPosition": "right"
 }

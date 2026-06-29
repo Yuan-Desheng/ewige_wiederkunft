@@ -1466,10 +1466,14 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
   min-width: 200px;
   max-width: 300px;
+  max-height: min(300px, calc(100vh - 20px));
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .flowtext-suggestions-header {
+  flex-shrink: 0;
   padding: 8px 12px;
   background: var(--background-secondary);
   border-bottom: 1px solid var(--background-modifier-border);
@@ -1479,8 +1483,11 @@
 }
 
 .flowtext-suggestions-list {
-  max-height: 300px;
+  flex: 1;
+  min-height: 0;
+  overflow-x: hidden;
   overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 /* 列表/历史/提示词弹层：统一细滚动条（减少重复规则） */
@@ -1966,6 +1973,13 @@
   background: var(--background-modifier-hover);
   color: var(--text-normal);
 }
+.flowtext-agent-header-actions .flowtext-agent-history-btn.is-active {
+  color: var(--color-accent);
+  opacity: 1;
+}
+.flowtext-agent-header-actions .flowtext-agent-history-btn.is-active:hover {
+  color: var(--color-accent);
+}
 /* 日志区域 */
 .flowtext-agent-body {
   flex: 1;
@@ -2397,7 +2411,7 @@
 }
 
 
-/* 按钮组（final 步骤右上角：反馈 + 复制） */
+/* 按钮组（final 步骤右上角：复制） */
 .flowtext-agent-final-btns {
   position: absolute;
   top: 6px;
@@ -2407,40 +2421,6 @@
   gap: 2px;
 
   transition: opacity 0.15s;
-}
-
-
-/* 经验反馈按钮 */
-.flowtext-agent-feedback-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  border-radius: 4px;
-  cursor: pointer;
-  color: var(--text-faint);
-  transition: background 0.15s, color 0.15s, opacity 0.15s;
-}
-.flowtext-agent-feedback-btn svg {
-  width: 13px;
-  height: 13px;
-}
-.flowtext-agent-feedback-btn:hover {
-  background: var(--background-modifier-hover);
-  color: var(--text-normal);
-}
-.flowtext-agent-feedback-btn.is-voted {
-  opacity: 0.35;
-  pointer-events: none;
-}
-.flowtext-agent-feedback-btn.is-voted.is-positive {
-  opacity: 1;
-  color: var(--text-success, #0b0);
-}
-.flowtext-agent-feedback-btn.is-voted.is-negative {
-  opacity: 1;
-  color: var(--text-error, #e33);
 }
 
 /* 复制按钮（悬停显示） */
@@ -2733,7 +2713,7 @@
   font-size: 13px;
   color: var(--text-muted);
   cursor: default;
-  max-width: 300px;
+  max-width: 250px;
   transition: opacity 0.15s;
 }
 .flowtext-agent-note-ref-icon {
@@ -2989,6 +2969,11 @@
   color: var(--text-on-accent);
   padding: 2.5px;
 }
+.flowtext-agent-btn-send.is-stop-mode .flowtext-agent-btn-send-icon svg rect,
+.flowtext-agent-btn-send.is-stop-mode .flowtext-agent-btn-send-icon svg path {
+  fill: currentColor;
+  stroke: none;
+}
 .flowtext-agent-btn-send:hover {
   opacity: 0.85;
 }
@@ -3039,6 +3024,7 @@
   cursor: pointer;
   transition: background 0.15s, opacity 0.15s;
   height: 22px;
+  box-shadow: none !important;
 }
 
 .flowtext-agent-rollback-btn-all:disabled {
@@ -3198,6 +3184,7 @@
   margin-right: 6px;
   align-self: center;
   flex-shrink: 0;
+  box-shadow: none !important;
 }
 .flowtext-agent-session-clear-all.is-confirm {
   color: var(--text-error);

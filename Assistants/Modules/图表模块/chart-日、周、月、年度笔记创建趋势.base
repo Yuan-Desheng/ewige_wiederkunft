@@ -5,7 +5,7 @@ formulas:
   年度笔记创建趋势: file.ctime.format("YYYY")
   日度笔记创建趋势: file.ctime.format("YYYY-MM-DD")
 views:
-  - type: line-chart
+  - type: bar-chart
     name: 日度笔记创建趋势
     filters:
       and:
@@ -16,8 +16,8 @@ views:
     multiChartMode: group
     enableAggregation: true
     aggregateBy: file.ctime
-    height: "300"
-  - type: line-chart
+    height: "200"
+  - type: bar-chart
     name: 周度笔记创建趋势
     filters:
       and:
@@ -28,8 +28,8 @@ views:
     multiChartMode: group
     enableAggregation: true
     aggregateBy: file.ctime
-    height: "300"
-  - type: line-chart
+    height: "200"
+  - type: bar-chart
     name: 月度笔记创建趋势
     filters:
       and:
@@ -40,17 +40,16 @@ views:
     multiChartMode: group
     enableAggregation: true
     aggregateBy: file.ctime
-    height: "300"
-  - type: line-chart
+    height: "200"
+  - type: bar-chart
     name: 年度笔记创建趋势
     filters:
       and:
         - file.folder.startsWith("Documents")
     order:
       - file.ctime
-      - formula.日度笔记创建趋势
     x: formula.年度笔记创建趋势
-    multiChartMode: group
+    multiChartMode: property
     enableAggregation: true
     aggregateBy: file.ctime
-    height: "300"
+    height: "200"

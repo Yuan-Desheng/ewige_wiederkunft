@@ -395,8 +395,6 @@
     }
 }
 
-/* ========== 官方 Bases 搜索：按属性字段筛选（UI：图标 + 下拉；筛选走核心 applySearchQuery） ========== */
-
 .search-input-container.document-search-input.mod-bases-property-scope {
     position: relative;
     display: flex;
@@ -413,30 +411,44 @@
     padding-left: 5px;
 }
 
-.bases-search-scope-current-field {
-    flex: 0 1 auto;
-    max-width: 42%;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+.bases-search-file-extension-filter,.bases-search-scope-current-field {
+    flex: 0 0 auto;
+    max-width: 128px;
+    height: 24px;
     font-size: var(--font-ui-smaller, 0.85em);
-    line-height: var(--line-height-tight);
-    color: var(--color-accent);
-    font-weight: 500;
-    pointer-events: none;
-    z-index: 1;
+    color: var(--text-normal);
+    background-color: transparent !important;
+    padding: 0 24px 0 8px;
+    cursor: pointer;
+    background-image:
+        linear-gradient(45deg, transparent 50%, var(--text-muted) 50%),
+        linear-gradient(135deg, var(--text-muted) 50%, transparent 50%);
+    background-position:
+        calc(100% - 12px) 50%,
+        calc(100% - 7px) 50%;
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+    box-shadow: none !important;
+    border: 0.5px solid var(--background-modifier-border);
 }
+
 
 .search-input-container.document-search-input.mod-bases-property-scope::before {
     content: "";
     position: absolute;
     inset-block-start: 50%;
-    inset-inline-start: 8px;
-    width: 18px;
-    height: 18px;
+    inset-inline-start: 3px;
     margin-block-start: -9px;
     background-color: var(--text-muted);
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m21 21-4.34-4.34'/%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m21 21-4.34-4.34'/%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3C/svg%3E");
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: 18px 18px;
+    mask-size: 18px 18px;
     pointer-events: none;
-    z-index: 2;
 }
 
 .search-input-container.document-search-input.mod-bases-property-scope:hover::before {
@@ -445,25 +457,32 @@
 
 .bases-property-search-scope-menu {
     position: fixed;
-    z-index: var(--layer-popover, 65);
-    min-width: 180px;
-    max-width: min(320px, 90vw);
-    max-height: min(360px, 50vh);
     overflow-y: auto;
-    padding: 4px;
+    padding: 3px;
     margin: 0;
-    border-radius: var(--radius-m, 6px);
+    border-radius: var(--radius-s, 4px);
     border: 1px solid var(--background-modifier-border);
     background-color: var(--background-primary);
-    box-shadow: var(--shadow-l, 0 4px 16px rgba(0, 0, 0, 0.12));
+    box-shadow: var(--shadow-s, 0 2px 8px rgba(0, 0, 0, 0.12));
 }
 
 .bases-property-search-scope-item {
-    display: block;
-    text-align: start;
+    display: flex;
+    gap: 6px;
     background: transparent !important;
     cursor: pointer;
     box-shadow: none !important;
+    white-space: nowrap;
+    justify-content: flex-start;
+}
+
+.bases-property-search-scope-item::before {
+    content: "";
+    flex: 0 0 16px;
+    width: 16px;
+    height: 16px;
+    color: var(--text-accent);
+    background-color: transparent;
 }
 
 .bases-property-search-scope-item:hover {
@@ -471,14 +490,24 @@
 }
 
 .bases-property-search-scope-item.is-active {
-    color: var(--text-accent);
-    font-weight: 500;
+    color: var(--text-normal);
+    font-weight: 400;
     background-color: var(--background-modifier-hover);
 }
 
-/* ========== Bases 表格 tags 列：彩色胶囊标签（颜色由 main.js 写入 CSS 变量） ========== */
+.bases-property-search-scope-item.is-active::before {
+    content: "";
+    background-color: var(--text-accent);
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: 14px 14px;
+    mask-size: 14px 14px;
+}
 
-/* tags 列：让容器受列宽约束（min-width:0），flex-wrap 才能折到下一行 */
 .bases-view .bases-td .metadata-property-value[data-property-type="tags"],
 .bases-view .bases-table-cell .metadata-property-value[data-property-type="tags"] {
     display: block;
@@ -488,7 +517,7 @@
     box-sizing: border-box;
 }
 
-/* 多个 pill 在容器内换行；每个 pill 内文本不换行 */
+
 .bases-view .metadata-property-value[data-property-type="tags"] .multi-select-container {
     display: flex;
     flex-wrap: wrap;
@@ -516,7 +545,12 @@
     line-height: 1;
     border-radius: var(--tag-radius);
     cursor: pointer;
-    color: #2c3e50;
+}
+
+.bases-view .metadata-property-value[data-property-type="tags"] .multi-select-pill.mod-bases-colored-tag-pill {
+    color: var(--text-normal) !important; 
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: none;
     background-color: var(--bases-tag-bg, hsl(200, 45%, 85%));
 }
 
@@ -525,32 +559,45 @@
     white-space: nowrap;
 }
 
-/* 深色模式：main.js 仍写入偏浅的 hsl，此处与 --background-primary 混色并统一描边/阴影 */
 .theme-dark .bases-view .metadata-property-value[data-property-type="tags"] .multi-select-pill.mod-bases-colored-tag-pill {
     color: var(--text-normal);
-    border: 1px solid var(--background-modifier-border);
-    box-shadow:
-        0 1px 3px rgba(0, 0, 0, 0.45),
-        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: none;
     background-color: var(--bases-tag-bg, hsl(200, 35%, 32%));
 }
 
 @supports (background: color-mix(in srgb, red, blue)) {
-    .theme-dark .bases-view .metadata-property-value[data-property-type="tags"] .multi-select-pill.mod-bases-colored-tag-pill {
-        background-color: color-mix(in srgb, var(--bases-tag-bg) 38%, var(--background-primary));
-
+    .bases-view .metadata-property-value[data-property-type="tags"] .multi-select-pill.mod-bases-colored-tag-pill {
+        color: color-mix(in srgb, var(--bases-tag-bg) 55%, #2c3e50);
+        background-color: color-mix(in srgb, var(--bases-tag-bg) 28%, transparent);
+        border-color: color-mix(in srgb, var(--bases-tag-border, var(--bases-tag-bg)) 35%, transparent);
     }
 
+    .bases-view .metadata-property-value[data-property-type="tags"] .multi-select-pill.mod-bases-colored-tag-pill:hover {
+        background-color: color-mix(in srgb, var(--bases-tag-hover, var(--bases-tag-bg)) 38%, transparent);
+        border-color: color-mix(in srgb, var(--bases-tag-border, var(--bases-tag-bg)) 45%, transparent);
+    }
+
+    .theme-dark .bases-view .metadata-property-value[data-property-type="tags"] .multi-select-pill.mod-bases-colored-tag-pill {
+        color: color-mix(in srgb, var(--bases-tag-bg) 45%, var(--text-normal));
+        background-color: color-mix(in srgb, var(--bases-tag-bg) 22%, transparent);
+        border-color: color-mix(in srgb, var(--bases-tag-border, var(--bases-tag-bg)) 30%, transparent);
+    }
+
+    .theme-dark .bases-view .metadata-property-value[data-property-type="tags"] .multi-select-pill.mod-bases-colored-tag-pill:hover {
+        background-color: color-mix(in srgb, var(--bases-tag-hover, var(--bases-tag-bg)) 32%, transparent);
+        border-color: color-mix(in srgb, var(--bases-tag-border, var(--bases-tag-bg)) 42%, transparent);
+    }
 }
 
-/* Bases 表格：插件「布局」— 单元格内换行（与官方 rowHeight 多行模式配合更佳） */
+
 .bases-table-container.mod-bases-plugin-table-cell-wrap .bases-table-cell {
     white-space: normal;
     word-break: break-word;
     overflow-wrap: anywhere;
 }
 
-/* tags 列：整格可换行，但每个标签药丸内不换行；药丸之间由 .multi-select-container 的 flex-wrap 换行 */
+
 .bases-table-container.mod-bases-plugin-table-cell-wrap
     .metadata-property-value[data-property-type="tags"]
     .multi-select-pill,
@@ -571,9 +618,7 @@
     flex-shrink: 0;
 }
 
-/* ---------- 水平对齐（按 Base 持久化；不作用于「文件名」列 file.name） ---------- */
 
-/* 未选「单元格对齐」时：数字列默认居左（覆盖官方数字 input 常见 text-align: end） */
 .bases-table-container:not(.mod-bases-plugin-cell-align-left):not(.mod-bases-plugin-cell-align-center):not(
         .mod-bases-plugin-cell-align-right
     )
@@ -653,7 +698,7 @@
     text-align: right;
 }
 
-/* 官方可能把 .bases-table-cell 做成 flex：用主轴对齐整块内容 */
+
 .bases-table-container.mod-bases-plugin-cell-align-left
     .bases-tbody
     .bases-td:not([data-property="file.name"])
@@ -675,7 +720,7 @@
     justify-content: flex-end;
 }
 
-/* 常见内层（DOM：markdown-rendered / bases-rendered-value / metadata 长文本 / 日期 span） */
+
 .bases-table-container.mod-bases-plugin-cell-align-left
     .bases-tbody
     .bases-td:not([data-property="file.name"])
@@ -820,7 +865,7 @@
     text-align: right;
 }
 
-/* multitext / tags 等：flex 的 .multi-select-container 不能仅靠 text-align，需主轴对齐 + 占满列宽 */
+
 .bases-table-container.mod-bases-plugin-cell-align-left
     .bases-tbody
     .bases-td:not([data-property="file.name"])
@@ -845,7 +890,6 @@
     width: 100%;
 }
 
-/* number：官方 .metadata-input-number 常为 flex，需与 multitext 一样拉满列宽并设主轴对齐 */
 .bases-table-container.mod-bases-plugin-cell-align-left
     .bases-tbody
     .bases-td:not([data-property="file.name"])
@@ -884,4 +928,3 @@
     justify-content: flex-end;
     width: 100%;
 }
-
