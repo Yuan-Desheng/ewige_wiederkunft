@@ -44,6 +44,7 @@ TS是JS的超集，所以JS基础的类型都包含在内
 
 **运行tsc 文件名**
 
+**在 Node.js 22.20.0 版本中，你可以直接使用 `node index.ts` 命令来运行 TypeScript 文件，无需任何额外标志或配置**
 
 
 基础类型：Boolean、Number、String、`null`、`undefined` 以及 ES6 的  [Symbol](http://es6.ruanyifeng.com/#docs/symbol) 和 ES10 的 [BigInt](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/BigInt)。
