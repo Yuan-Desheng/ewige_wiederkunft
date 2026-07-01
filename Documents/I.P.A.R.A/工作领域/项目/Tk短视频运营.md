@@ -563,9 +563,18 @@ https://zcnd0itivyi2.feishu.cn/drive/folder/N4zyfbMNolJ2Wpd9wZ5cHpFZnEb?fromShar
 https://www.fastmoss.com/zh/market/market-category
 
 
+## 开发
+```  
+sshpass -p '8888' ssh -p 22 apple@100.98.66.122  
+cd /Users/apple/yuandesheng/viral-forge  
+生成完成。  
+          类型       ed25519 (256-bit)      私钥       /Users/apple/.ssh/id_ed25519  (已保存在服务器本地)  
+      公钥       /Users/apple/.ssh/id_ed25519.pub      指纹       SHA256:Yz/b2EsWH/Ft8HnJOvPKQDjNa5qHA72RJ2J8VzHmzig      注释       apple@100.98.66.122    公钥内容（一行，整段复制）：  
+      ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL3m10HsSRpZRILVHGs8px1k8AjSYNng0ZPZPSLhgiJr apple@100.98.66.122```
+```
+
 ## 原始需求
 
-一
 ```
 2026年07月01日 13:50
 
