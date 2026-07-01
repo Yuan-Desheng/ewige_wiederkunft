@@ -12,10 +12,130 @@ multiMedia:
 ```meta-bind-embed
 [[笔记抬头模块]]
 ```
-<progress value="10" max="100" style="width: 100%;"></progress>
+<progress value="45" max="100" style="width: 100%;"></progress>
 
 ## 待办
 
+### Phase 1 · 找爆款（已完成）
+- [x] 搭好 `viral-forge` 仓库骨架（Python 包 + FastAPI + SQLite）
+- [x] `.env` 配置 TikHub API Key（按决定纳入版本管理，用完轮换）
+- [x] 关键词池落成 `config/keywords.yaml`（搬本文档 SOP 的五类词）
+- [x] 封装 TikHub 客户端：关键词搜索 / 视频详情 / 达人视频列表
+- [x] 爆款筛选规则（播放量 / 点赞率 / 时长 / 发布时间）
+- [x] 去重 + 入 SQLite 对标库
+- [x] React + Ant Design 后台：对标库列表 + 审核「能否复现」
+- [ ] 校准阈值（默认对猫零食偏严，需跑几轮定合理线）
+
+### 部署 / 运维
+- [x] 部署到 Mac `imac-headless`（FastAPI 同源托管前端，端口 8791，已打通访问）
+- [ ] 配 launchd 开机自启（现为 nohup，Mac 重启不自动拉起）
+- [ ] 轮换 TikHub Key（已入库 / 入部署机，用完更换）
+
+### 后续
+- [ ] Phase 2 拆解（视频直链 → 大模型 → 拆解表）
+- [ ] Phase 3 仿拍脚本生成
+- [ ] Phase 4 数据复盘回流 → 对标库自动迭代
+- [ ] Phase 5 对接 TK云大师批量发布
+
+## 技术方案（自建系统 viral-forge）
+
+> 前期不接飞书多维表格，从头自建系统。核心闭环：TikHub 拉数 → 筛爆款 → 建对标库 →（二期）拆解 / 仿拍 / 复盘回流。数据源用 TikHub API，相当于买现成的商务接口，省掉自研对接 TikTok 的周期。
+
+### 关键决策
+- **数据源**：TikHub API（按量付费，约 `$0.001/请求`），放弃前期用 FastMoss 界面工具。
+- **一个现实**：完播率 / 3 秒停留率是账号后台私有数据，任何第三方工具（含 FastMoss / TikHub）都拿不到 → 筛选口径改用公开指标（播放量 + 点赞率 + 互动率 + 时长 + 发布时间）近似判断爆款；完播率留到自己账号发布后在 TK云大师 / 后台看。
+- **拆解**：TikHub 只给原始数据、不带 AI 拆解；二期用「视频直链 → 大模型」自建拆解层。
+
+### 技术栈
+
+| 层 | 选型 | 说明 |
+|---|---|---|
+| 前端 | **React + Ant Design**（Vite） | 表格密集的后台管理系统；Ant Design Pro 现成脚手架 |
+| 后端 | **FastAPI**（Python 3.9） | 异步、贴合 TikHub 异步 SDK、自带 Swagger 文档 |
+| 数据管道 | 自建 `viralforge` Python 包 | 发现 / 筛选 / 入库，被后端 API 复用 |
+| 存储 | **SQLite**（先） | 零配置单文件对标库；量大了再换 Postgres |
+| 数据源 | TikHub 官方 SDK `tikhub` | 关键词搜索 / 视频详情 / 达人视频 / 热榜 |
+| 配置 | `pydantic` + `python-dotenv` | `.env` 存 TikHub Key（不提交） |
+
+### 仓库
+- 本机路径：`/home/work/yuandesheng/hotmill/viral-forge`
+- 远程：私有 Aliyun Codeup 仓库 `hotmill/viral-forge`（`master` 分支，SSH 访问）
+
+### 进展
+- **Phase 1 找爆款管道已跑通**（TikHub 实时数据端到端验证）：关键词搜索 → 公开指标筛爆款 → 去重入 SQLite → CLI + CSV 导出。实测「产品」维度 6 词，看过 60 条 / 达标 11 / 去重生效。
+- **后台已完成并联调通过**：
+  - 后端 `FastAPI`（`backend/`）：对标库分页/筛选/排序、单条详情、「能否复现」审核、触发抓取（后台任务 + 进度轮询）、Swagger 文档 `/docs`。
+  - 前端 `React + Ant Design`（`frontend/`）：对标库 / 抓取爆款 / 关键词池 三页；生产构建通过。
+- 首版已**本地提交**（源码 + `.env`；`node_modules` / `.venv` / `*.db` / `dist` 已忽略），未推送。
+
+### 本地运行（两个终端）
+
+```bash
+# 终端1 后端
+cd /home/work/yuandesheng/hotmill/viral-forge
+source .venv/bin/activate
+uvicorn backend.app:app --host 0.0.0.0 --port 8000 --reload   # 文档 /docs
+
+# 终端2 前端
+cd frontend
+npm run dev                                                   # http://<本机IP>:5173
+```
+
+CLI 直接用（不经前端）：
+
+```bash
+source .venv/bin/activate
+python -m viralforge.cli discover --category 产品 --per-keyword 40
+python -m viralforge.cli list --limit 20
+python -m viralforge.cli export --out exports/duibiao.csv
+```
+
+### 部署
+- 部署机：tailnet 内的 Mac `imac-headless`（`100.98.66.122`），代码在 `/Users/apple/yuandesheng/viral-forge`。
+- 该机**无 node**：前端在开发机构建 `dist/` 传过去，由 FastAPI **同源托管**（单进程、单端口，Mac 上只需 Python）。
+- 端口 **8791**（避开常用 8000），`nohup` 常驻：
+
+```bash
+cd /Users/apple/yuandesheng/viral-forge
+lsof -ti tcp:8791 | xargs kill 2>/dev/null
+nohup .venv/bin/uvicorn backend.app:app --host 0.0.0.0 --port 8791 > server.log 2>&1 </dev/null &
+```
+
+- 访问方式：
+  - **SSH 隧道（最稳，推荐）**：`ssh -L 8791:localhost:8791 apple@100.98.66.122` → 浏览器开 `http://localhost:8791`
+  - **直连** `http://100.98.66.122:8791`：需在同一 tailnet（`zhanwei.cui@` / `tail4a6da9.ts.net`）+ 让本机代理**放行 `100.64.0.0/10`**，否则 Clash 代理（`7890`）会返回 502。
+- 踩坑：访问不通排查顺序 —— 先 `curl -v` 看有没有 `http_proxy` 环境变量在劫持，再谈防火墙 / tailnet。本机 `no_proxy` 缺 tailscale 段是本次打不开的真因。
+
+### 目录骨架
+
+```text
+viral-forge/
+├── .env.example          # TIKHUB_API_KEY=  （真 .env 进 .gitignore）
+├── .gitignore
+├── README.md
+├── requirements.txt
+├── config/
+│   └── keywords.yaml     # 关键词池（五类：大类目/产品/功能/情绪/训练）
+├── viralforge/
+│   ├── config.py         # 读 .env + 爆款阈值
+│   ├── tikhub_client.py  # 封装 TikHub：关键词搜索/视频详情/达人视频
+│   ├── models.py         # Video 数据模型（公开指标）
+│   ├── db.py             # SQLite 对标库
+│   ├── discover.py       # ① 关键词 → 搜索 → 原始视频
+│   ├── filters.py        # ② 爆款筛选（播放/点赞率/时长/发布时间）
+│   ├── pipeline.py       # 编排：发现 → 筛选 → 去重 → 入库
+│   └── cli.py            # 命令行入口
+└── tests/
+```
+
+### 爆款筛选默认阈值（可调）
+
+```yaml
+min_play_count: 500000     # 播放 ≥ 50万
+min_like_rate: 0.03        # 点赞率（点赞/播放） ≥ 3%
+max_duration_sec: 60       # 时长 ≤ 60秒
+published_within_days: 90  # 近90天
+```
 
 ## 资料
 
