@@ -12,7 +12,7 @@ multiMedia:
 ```meta-bind-embed
 [[笔记抬头模块]]
 ```
-<progress value="60" max="100" style="width: 100%;"></progress>
+<progress value="78" max="100" style="width: 100%;"></progress>
 
 ## 待办
 
@@ -24,10 +24,22 @@ multiMedia:
 - [x] 爆款筛选规则（播放量 / 点赞率 / 时长 / 发布时间）
 - [x] 去重 + 入 SQLite 对标库
 - [x] React + Ant Design 后台：对标库列表 + 审核「能否复现」
-- [ ] 校准阈值（默认对猫零食偏严，需跑几轮定合理线）
+- [x] 阈值偏严问题：改为**非爆款也入库**（记未达标原因）+ 参数默认值可视化配置，对标库可切「爆款/非爆款」回看
+
+### Phase 1 · 打磨增量（均已上线）
+- [x] 关键词池**维度父子 CRUD**；抓取词必填/多选/自由输入，新词自动入「其他」维度
+- [x] **爆款维度扩展**：带货识别（`has_cart`）+ 关联商品（`product_id/title`）+ 商品级销量 + 销量涨速 velocity（历史快照）；投流/ROAS 属私域拿不到，留 P4
+- [x] **选品页**（搜商品 → 按销量排 → 反哺关键词池）
+- [x] **对标分加破圈系数**（低粉爆播放加权）；可复制性**结构化审核**（对齐 SOP 流程04）
+- [x] **媒体存 MinIO**：封面/头像抓取期下，视频首次预览懒下载；`/api/videos/{id}/file|cover`、`/api/avatars` 走代理流式
+- [x] 视频**预览 + 下载**（TikHub 直链 + MinIO 代理，支持 HTTP Range，修 Safari 卡顿）
+- [x] **历史抓取记录**落库 + 详情弹窗（完整参数 + 本次视频清单）
+- [x] **流程总览页**作默认落地 + 左侧导航按 SOP 流程顺序重排
+- [x] 深/浅主题（圆形扩散动画 + 日月图标）、全站 Tooltip、布局多轮优化
+- [x] **文档按流程规范 §8.2 统一目录重构**（`docs/00~99` + README 导航）
 
 ### 部署 / 运维
-- [x] 部署到 Mac `imac-headless`（FastAPI 同源托管前端，端口 8791，已打通访问）
+- [x] 部署到 tailnet 内 Mac `100.98.66.122`（FastAPI 同源托管前端，端口 8791，SSH 免密 + 已打通访问）
 - [ ] 配 launchd 开机自启（现为 nohup，Mac 重启不自动拉起）
 - [ ] 轮换 TikHub Key（已入库 / 入部署机，用完更换）
 
@@ -53,13 +65,14 @@ multiMedia:
 | 前端 | **React + Ant Design**（Vite） | 表格密集的后台管理系统；Ant Design Pro 现成脚手架 |
 | 后端 | **FastAPI**（Python 3.9） | 异步、贴合 TikHub 异步 SDK、自带 Swagger 文档 |
 | 数据管道 | 自建 `viralforge` Python 包 | 发现 / 筛选 / 入库，被后端 API 复用 |
-| 存储 | **SQLite**（先） | 零配置单文件对标库；量大了再换 Postgres |
+| 存储 | **SQLite** + **MinIO** | SQLite 存元数据（12 张表）；MinIO 存媒体（视频/封面/头像），代理流式回放 |
 | 数据源 | TikHub 官方 SDK `tikhub` | 关键词搜索 / 视频详情 / 达人视频 / 热榜 |
 | 配置 | `pydantic` + `python-dotenv` | `.env` 存 TikHub Key（不提交） |
 
 ### 仓库
-- 本机路径：`/home/work/yuandesheng/hotmill/viral-forge`
+- 开发机路径：`/Users/cuizhanwei/yuandesheng/viral-forge`
 - 远程：私有 Aliyun Codeup 仓库 `hotmill/viral-forge`（`master` 分支，SSH 访问）
+- **`.env` 纳入版本管理**（私有 Codeup，非 gitignore）；用完轮换 Key
 
 ### 进展
 - **Phase 1 找爆款管道已跑通**（TikHub 实时数据端到端验证）：关键词搜索 → 公开指标筛爆款 → 去重入 SQLite → CLI + CSV 导出。实测「产品」维度 6 词，看过 60 条 / 达标 11 / 去重生效。
@@ -72,15 +85,17 @@ multiMedia:
   - **参数默认值**（每词条数/地区/发布窗口+阈值）可视化配置（抓取卡右上角齿轮弹窗），抓取自动带出。
   - **非爆款也保存**（`is_viral`+未达标原因），对标库按「爆款/非爆款」筛选、列头排序，解决阈值偏严丢好视频。
   - **历史抓取记录**落库 + 详情弹窗（完整参数 + 本次抓到的视频清单）。
-  - 深/浅色主题、全站问号 Tooltip、固定侧栏顶栏、表格与布局多轮优化。
-  - 文档齐备：`需求文档` / `使用手册` / `部署运维手册` / `DB_SCHEMA` / `CLAUDE.md`。
-- **待办**：视频预览+下载（yt-dlp，需给 Mac 装 VPN 直连 TikTok）；Phase 2 拆解。
+  - **爆款维度扩展**：带货识别 + 关联商品 + 商品级销量 + 销量涨速 velocity；选品页（搜商品→按销量→反哺词池）；对标分加破圈系数；可复制性结构化审核。
+  - **媒体存 MinIO** + 视频预览/下载（TikHub 直链代理，支持 Range，修 Safari 卡顿）；历史抓取记录落库 + 详情弹窗。
+  - 深/浅色主题（圆形扩散动画 + 日月图标）、全站 Tooltip、固定侧栏顶栏、流程总览页作默认落地、导航按 SOP 重排、表格与布局多轮优化。
+  - 文档按流程规范 §8.2 统一目录重构（`docs/00~99` + README 导航）：`需求文档` / `使用手册` / `部署运维手册` / `DB_SCHEMA` / `TikHub接口说明` / `CLAUDE.md`。
+- **待办**：Phase 2 拆解（视频直链 → 大模型 → 拆解表）；测试固化进 CI；交付前跑 `/security-review`。
 
 ### 本地运行（两个终端）
 
 ```bash
 # 终端1 后端
-cd /home/work/yuandesheng/hotmill/viral-forge
+cd /Users/cuizhanwei/yuandesheng/viral-forge
 source .venv/bin/activate
 uvicorn backend.app:app --host 0.0.0.0 --port 8000 --reload   # 文档 /docs
 
@@ -118,22 +133,33 @@ nohup .venv/bin/uvicorn backend.app:app --host 0.0.0.0 --port 8791 > server.log 
 
 ```text
 viral-forge/
-├── .env.example          # TIKHUB_API_KEY=  （真 .env 进 .gitignore）
-├── .gitignore
-├── README.md
+├── .env                  # TIKHUB_API_KEY / MINIO_* （纳入私有版本管理，用完轮换）
 ├── requirements.txt
 ├── config/
-│   └── keywords.yaml     # 关键词池（五类：大类目/产品/功能/情绪/训练）
-├── viralforge/
-│   ├── config.py         # 读 .env + 爆款阈值
-│   ├── tikhub_client.py  # 封装 TikHub：关键词搜索/视频详情/达人视频
-│   ├── models.py         # Video 数据模型（公开指标）
-│   ├── db.py             # SQLite 对标库
-│   ├── discover.py       # ① 关键词 → 搜索 → 原始视频
-│   ├── filters.py        # ② 爆款筛选（播放/点赞率/时长/发布时间）
-│   ├── pipeline.py       # 编排：发现 → 筛选 → 去重 → 入库
-│   └── cli.py            # 命令行入口
-└── tests/
+│   ├── keywords.yaml     # 关键词池种子（五类：大类目/产品/功能/情绪/训练）
+│   └── thresholds.yaml   # 爆款阈值默认
+├── viralforge/           # 核心包（后端与 CLI 复用）
+│   ├── config.py         # 读 .env + 阈值
+│   ├── schema.sql/.py    # 全量表结构（唯一真源在 .sql，12 张表）
+│   ├── db.py             # SQLite 封装（建表+幂等迁移+各表 CRUD）
+│   ├── models.py         # Video 模型 + aweme_info 解析
+│   ├── tikhub_client.py  # 封装 TikHub 端点
+│   ├── keywords.py       # 关键词池（yaml 播种 + DB 读取）
+│   ├── filters.py        # 爆款筛选 + 对标打分（含破圈系数）
+│   ├── discover.py       # 关键词 → 搜索
+│   ├── pipeline.py       # 发现 → 筛选 → 去重入库
+│   ├── storage.py        # MinIO 媒体存储
+│   ├── media_migrate.py  # 媒体迁移
+│   └── cli.py            # CLI：discover/list/export/review/keywords/initdb/refresh-sales/migrate-media
+├── backend/              # FastAPI
+│   ├── app.py            # 路由(videos/keywords/dimensions/discover/jobs/settings/discovery-runs)
+│   ├── jobs.py           # 抓取后台任务（轮询 + 落库 discovery_runs）
+│   ├── media.py          # 媒体代理（StreamingResponse）
+│   └── settings_store.py # 抓取默认参数（DB 覆盖 yaml）
+├── frontend/src/         # React + Ant Design（Vite）
+│   └── pages/            # Overview(流程总览) / Videos(对标库) / Discover(抓取) / Sourcing(选品) / Keywords / Settings
+├── docs/                 # 00~99 统一目录（§8.2）
+└── tests/                # pytest（11 个测试文件）
 ```
 
 ### 爆款筛选默认阈值（可调）
