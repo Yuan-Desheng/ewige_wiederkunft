@@ -8,22 +8,7 @@
         "type": "tabs",
         "children": [
           {
-            "id": "0ee38560cc8e953f",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Documents/I.P.A.R.A/学习领域/收集/使用 computed 计算属性处理稍复杂的业务逻辑.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "使用 computed 计算属性处理稍复杂的业务逻辑"
-            }
-          },
-          {
-            "id": "db1430eeb17f9d79",
+            "id": "68b40ca571ffcabb",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -83,21 +68,6 @@
             }
           },
           {
-            "id": "d105c040cb8a8907",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Documents/I.P.A.R.A/工作领域/收集/运维体系建设方案.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "运维体系建设方案"
-            }
-          },
-          {
             "id": "aa2a4d41188579dd",
             "type": "leaf",
             "state": {
@@ -110,21 +80,6 @@
               },
               "icon": "lucide-file",
               "title": "小红书运营"
-            }
-          },
-          {
-            "id": "5e4856ca66de5e71",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Documents/I.P.A.R.A/工作领域/收集/工作流技能.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "工作流技能"
             }
           },
           {
@@ -158,21 +113,6 @@
             }
           },
           {
-            "id": "c3038fc01a0f7fab",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Documents/I.P.A.R.A/工作领域/项目/前台门户网站.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "前台门户网站"
-            }
-          },
-          {
             "id": "b3317559ff0f577a",
             "type": "leaf",
             "state": {
@@ -188,6 +128,36 @@
             }
           },
           {
+            "id": "b9b725d4e5fc8b25",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documents/I.P.A.R.A/工作领域/项目/自动化选品上品.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "自动化选品上品"
+            }
+          },
+          {
+            "id": "0d156848cef4dbcb",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documents/I.P.A.R.A/工作领域/项目/认证机构erp系统.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "认证机构erp系统"
+            }
+          },
+          {
             "id": "db4d04467dcf0afb",
             "type": "leaf",
             "state": {
@@ -200,6 +170,21 @@
               },
               "icon": "lucide-file",
               "title": "Hermes Agent"
+            }
+          },
+          {
+            "id": "aa1676247dba8195",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documents/I.P.A.R.A/工作领域/收集/运维体系建设方案.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "运维体系建设方案"
             }
           },
           {
@@ -233,7 +218,7 @@
             }
           }
         ],
-        "currentTab": 8
+        "currentTab": 9
       }
     ],
     "direction": "vertical"
@@ -371,13 +356,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Documents/I.P.A.R.A/工作领域/项目/Tk短视频运营.md",
+                "file": "Documents/I.P.A.R.A/学习领域/收集/计算属性、方法、watch监听器的区别.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Tk短视频运营 的大纲"
+              "title": "计算属性、方法、watch监听器的区别 的大纲"
             }
           },
           {
@@ -396,10 +381,10 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent.md"
+                "file": "Documents/I.P.A.R.A/工作领域/项目/认证机构erp系统.md"
               },
               "icon": "lucide-info",
-              "title": "Hermes Agent的笔记属性"
+              "title": "认证机构erp系统的笔记属性"
             }
           },
           {
@@ -474,12 +459,12 @@
               "title": "单词助手"
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
-    "width": 387,
-    "collapsed": true
+    "width": 387
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -505,43 +490,54 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "314dc0d134b7d797",
+  "active": "0d156848cef4dbcb",
   "lastOpenFiles": [
-    "Documents/I.P.A.R.A/工作领域/项目/Tk短视频运营.md",
-    "Documents/I.P.A.R.A/工作领域/项目/海外社交媒体传播动态分析系统资料汇总.md",
-    "Documents/I.P.A.R.A/工作领域/项目/前台门户网站.md",
-    "Documents/I.P.A.R.A/工作领域/收集/工作流技能.md",
-    "Documents/I.P.A.R.A/工作领域/收集/项目立项与研发流程规范.md",
+    "Documents/I.P.A.R.A/工作领域/收集/运维体系建设方案.md",
     "数据库与导航.md",
-    "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
     "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent.md",
+    "Documents/I.P.A.R.A/工作领域/项目/海外社交媒体传播动态分析系统资料汇总.md",
+    "Documents/I.P.A.R.A/工作领域/项目/自动化选品上品.md",
+    "Documents/I.P.A.R.A/工作领域/项目/认证机构erp系统.md",
+    "Documents/I.P.A.R.A/工作领域/收集/工作流技能.md",
+    "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Linux.md",
+    "Documents/I.P.A.R.A/工作领域/项目/xhs-coze-prd.md",
+    "Documents/I.P.A.R.A/工作领域/项目/xhs-coze-prd.md.tmp.6215.78e5b563a1bb",
+    "Documents/I.P.A.R.A/工作领域/项目/Tk短视频运营.md",
     "Documents/I.P.A.R.A/工作领域/项目/xhs-setup-notes.md",
+    "Documents/I.P.A.R.A/工作领域/收集/项目立项与研发流程规范.md",
+    "Assistants/Templater/主页/homepage-侧页.md",
+    "Extras/附件/Pasted image 20260710171713.png",
+    "Extras/附件/Pasted image 20260710171608.png",
+    "Extras/附件/Pasted image 20260710171431.png",
+    "Extras/附件/Pasted image 20260710171403.png",
+    "Extras/附件/Pasted image 20260710171303.png",
+    "Extras/附件/Pasted image 20260710170118.png",
+    "Documents/I.P.A.R.A/工作领域/项目/前台门户网站.md",
+    "Documents/I.P.A.R.A/工作领域/项目/小红书运营.md",
+    "Documents/I.P.A.R.A/学习领域/收集/计算属性、方法、watch监听器的区别.md",
+    "Documents/I.P.A.R.A/学习领域/收集/使用 watch 监听数据的变化.md",
+    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/峰华Vue3.canvas",
+    "Extras/附件/Pasted image 20260709192927.png",
+    "Extras/附件/Pasted image 20260709192836.png",
+    "Extras/附件/Pasted image 20260709192818.png",
+    "Extras/附件/Pasted image 20260709191241.png",
+    "Documents/I.P.A.R.A/学习领域/收集/峰华Vue 3.x完全指南与实战.md",
+    "Documents/I.P.A.R.A/学习领域/收集/使用 methods 方法处理事件.md",
+    "Documents/I.P.A.R.A/学习领域/收集/使用 computed 计算属性处理稍复杂的业务逻辑.md",
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/海媒传播分析系统.canvas",
     "Documents/I.P.A.R.A/工作领域/项目/xhs-setup-notes.md.tmp.60808.eda90a0186a9",
     "Documents/I.P.A.R.A/工作领域/项目/xhs-setup-notes.md.tmp.60808.18056a4281ba",
-    "Assistants/Templater/主页/homepage-侧页.md",
-    "Documents/I.P.A.R.A/工作领域/收集/运维体系建设方案.md",
-    "Documents/I.P.A.R.A/工作领域/项目/小红书运营.md",
     "Documents/I.P.A.R.A/学习领域/收集/APP打包上架.md",
     "Documents/I.P.A.R.A/工作领域/项目/OpenCLI-Facebook 博主数据采集方案.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Linux.md",
-    "Documents/I.P.A.R.A/学习领域/收集/使用 computed 计算属性处理稍复杂的业务逻辑.md",
     "Documents/I.P.A.R.A/学习领域/收集/Claude Code.md",
     "Documents/I.P.A.R.A/工作领域/项目/自媒体平台数据爬取.md",
     "Documents/I.P.A.R.A/学习领域/收集/Octos安装和配置.md",
     "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md~",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/小满zs-typescript.canvas",
-    "Documents/I.P.A.R.A/学习领域/收集/学习TypeScrip1（基础类型）.md",
-    "Documents/I.P.A.R.A/学习领域/收集/学习TypeScrip2（任意类型）.md",
-    "Documents/I.P.A.R.A/学习领域/收集/学习TypeScript1（基础类型）.md",
-    "Documents/I.P.A.R.A/学习领域/收集/学习TypeScript 加餐环节.md",
-    "Documents/I.P.A.R.A/学习领域/收集/学习TypeScrip3（接口和对象类型）.md",
-    "Documents/I.P.A.R.A/学习领域/收集/学习TypeScrip4（数组类型）.md",
     "Documents/I.P.A.R.A/0-收集箱/未命名 1.base",
     "Assistants/Templater/辅助/JS辅助脚本/daily-stats.js",
     "Documents/I.P.A.R.A/工作领域/收集/Engineering.md~",
-    "Extras/附件/Pasted image 20260625151228.png",
-    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/峰华Vue3.canvas",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/前端开发.canvas.tmp.22205.885fd8a74026",
     "Documents/I.P.A.R.A/学习领域/收集/MinIO 视频直传.md.tmp.22205.da444c496370",
     "Documents/I.P.A.R.A/学习领域/收集/MinIO 视频直传.md.tmp.22205.b4d8f8e5d1cd",
@@ -551,16 +547,6 @@
     "Documents/I.P.A.R.A/生活领域/归档/卡片盒笔记主题索引卡/MAD剪辑.canvas",
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/空军推门听课交接.canvas",
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/工业数据采集公司官网.canvas",
-    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/ThingsBoard.canvas",
-    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md.tmp.9096.a52380d75e61",
-    "Extras/附件/Pasted image 20260424164725.png",
-    "Extras/附件/Pasted image 20251229151116.png",
-    "Extras/附件/Pasted image 20260424164618.png",
-    "Extras/附件/Pasted image 20260403105218.png",
-    "Extras/附件/Pasted image 20260317152414.png",
-    "Extras/附件/Pasted image 20260317152119.png",
-    "Extras/附件/Pasted image 20260317152004.png",
-    "Extras/附件/Pasted image 20260317151934.png",
-    "Extras/附件/Pasted image 20260304112617.png"
+    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/ThingsBoard.canvas"
   ]
 }

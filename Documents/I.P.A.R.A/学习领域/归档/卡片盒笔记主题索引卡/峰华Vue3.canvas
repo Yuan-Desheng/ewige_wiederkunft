@@ -2,6 +2,10 @@
 	"edges":[],
 	"nodes":[
 		{"id":"note-1767841316765-7705","type":"file","file":"Documents/I.P.A.R.A/学习领域/收集/峰华Vue 3.x完全指南与实战.md","x":100,"y":100,"width":440,"height":500},
-		{"id":"note-1767841569600-3673","type":"file","file":"Documents/I.P.A.R.A/学习领域/收集/快速入门.md","x":590,"y":100,"width":440,"height":500}
+		{"id":"note-1767841569600-3673","type":"file","file":"Documents/I.P.A.R.A/学习领域/收集/快速入门.md","x":590,"y":100,"width":440,"height":500},
+		{"id":"note-1783593419114-7554","type":"file","file":"Documents/I.P.A.R.A/学习领域/收集/使用 computed 计算属性处理稍复杂的业务逻辑.md","x":1080,"y":100,"width":440,"height":500},
+		{"id":"note-1783593491260-3197","type":"file","file":"Documents/I.P.A.R.A/学习领域/收集/使用 methods 方法处理事件.md","x":1570,"y":100,"width":440,"height":500},
+		{"id":"note-1783595428610-8331","type":"file","file":"Documents/I.P.A.R.A/学习领域/收集/使用 watch 监听数据的变化.md","x":2060,"y":100,"width":440,"height":500},
+		{"id":"note-1783596439842-2674","type":"file","file":"Documents/I.P.A.R.A/学习领域/收集/计算属性、方法、watch监听器的区别.md","x":100,"y":700,"width":440,"height":500}
 	]
 }
