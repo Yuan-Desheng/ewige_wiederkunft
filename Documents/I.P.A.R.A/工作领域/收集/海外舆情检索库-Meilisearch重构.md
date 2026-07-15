@@ -65,11 +65,11 @@ yuqing_person / yuqing_post_info / yuqing_event_info (+ tag 关联表)   ← MyS
 
 **索引设计**（三个 typed index，异构实体分开、相关性更干净；`tags` 字段既 searchable 又 filterable）：
 
-| index | searchable（全文） | filterable（facet/过滤） | sortable |
-|---|---|---|---|
-| `yuqing_persons` | name, introduction, subject, domain, interestTopic, occupation | type, country | （无） |
-| `yuqing_posts` | postTitle(+译), postContent(+译), postKeywords(+译), postTopic, postTheme, postAuthor, postPersonName, **tags** | type, platform, country, postTimeTs, tags | postHeat, postTimeTs |
-| `yuqing_events` | title, detail, subject, field, **tags** | type, platform, country, beginTimeTs, tags | beginTimeTs |
+| index            | searchable（全文）                                                                                               | filterable（facet/过滤）                       | sortable             |
+| ---------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------ | -------------------- |
+| `yuqing_persons` | name, introduction, subject, domain, interestTopic, occupation                                               | type, country                              | （无）                  |
+| `yuqing_posts`   | postTitle(+译), postContent(+译), postKeywords(+译), postTopic, postTheme, postAuthor, postPersonName, **tags** | type, platform, country, postTimeTs, tags  | postHeat, postTimeTs |
+| `yuqing_events`  | title, detail, subject, field, **tags**                                                                      | type, platform, country, beginTimeTs, tags | beginTimeTs          |
 
 - 时间过滤需数值：帖子/事件时间存 epoch 秒（`postTimeTs`/`beginTimeTs`）；**人物无时间字段，时间筛选对人物不生效**。
 - `total` 是被查 index 的 `estimatedTotalHits` 之和（真实总数，非当前页三类 size 相加）。
