@@ -1,0 +1,239 @@
+{
+	"edges": [],
+	"nodes": [
+		{
+			"id": "note-1782731500000-0000",
+			"type": "file",
+			"file": "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【入门】Android环境搭建.md",
+			"x": -880,
+			"y": -600,
+			"width": 440,
+			"height": 500
+		},
+		{
+			"id": "note-1782731500000-0001",
+			"type": "file",
+			"file": "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【入门】iOS环境搭建.md",
+			"x": -390,
+			"y": -600,
+			"width": 440,
+			"height": 500
+		},
+		{
+			"id": "note-1782731500000-0002",
+			"type": "file",
+			"file": "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【入门】目录结构.md",
+			"x": 100,
+			"y": -600,
+			"width": 440,
+			"height": 500
+		},
+		{
+			"id": "note-1782731500000-0003",
+			"type": "file",
+			"file": "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【入门】简介.md",
+			"x": 590,
+			"y": -600,
+			"width": 440,
+			"height": 500
+		},
+		{
+			"id": "note-1782731500000-0004",
+			"type": "file",
+			"file": "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【原理】架构.md",
+			"x": -880,
+			"y": -50,
+			"width": 440,
+			"height": 500
+		},
+		{
+			"id": "note-1782731500000-0005",
+			"type": "file",
+			"file": "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【原理】渲染.md",
+			"x": -390,
+			"y": -50,
+			"width": 440,
+			"height": 500
+		},
+		{
+			"id": "note-1782731500000-0006",
+			"type": "file",
+			"file": "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【原理】通讯.md",
+			"x": 100,
+			"y": -50,
+			"width": 440,
+			"height": 500
+		},
+		{
+			"id": "note-1782731500000-0007",
+			"type": "file",
+			"file": "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】事件.md",
+			"x": 590,
+			"y": -50,
+			"width": 440,
+			"height": 500
+		},
+		{
+			"id": "note-1782731500000-0008",
+			"type": "file",
+			"file": "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】动画.md",
+			"x": -880,
+			"y": 500,
+			"width": 440,
+			"height": 500
+		},
+		{
+			"id": "note-1782731500000-0009",
+			"type": "file",
+			"file": "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】图片.md",
+			"x": -390,
+			"y": 500,
+			"width": 440,
+			"height": 500
+		},
+		{
+			"id": "note-1782731500000-0010",
+			"type": "file",
+			"file": "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】布局.md",
+			"x": 100,
+			"y": 500,
+			"width": 440,
+			"height": 500
+		},
+		{
+			"id": "note-1782731500000-0011",
+			"type": "file",
+			"file": "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】样式.md",
+			"x": 590,
+			"y": 500,
+			"width": 440,
+			"height": 500
+		},
+		{
+			"id": "note-1782731500000-0012",
+			"type": "file",
+			"file": "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】网络.md",
+			"x": -880,
+			"y": 1050,
+			"width": 440,
+			"height": 500
+		},
+		{
+			"id": "note-1782731500000-0013",
+			"type": "file",
+			"file": "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【组件】button.md",
+			"x": -390,
+			"y": 1050,
+			"width": 440,
+			"height": 500
+		},
+		{
+			"id": "note-1782731500000-0014",
+			"type": "file",
+			"file": "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【组件】image.md",
+			"x": 100,
+			"y": 1050,
+			"width": 440,
+			"height": 500
+		},
+		{
+			"id": "note-1782731500000-0015",
+			"type": "file",
+			"file": "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【组件】imageBackground.md",
+			"x": 590,
+			"y": 1050,
+			"width": 440,
+			"height": 500
+		},
+		{
+			"id": "note-1782731500000-0016",
+			"type": "file",
+			"file": "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【组件】keyboardAvoidingView.md",
+			"x": -880,
+			"y": 1600,
+			"width": 440,
+			"height": 500
+		},
+		{
+			"id": "note-1782731500000-0017",
+			"type": "file",
+			"file": "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【组件】modal.md",
+			"x": -390,
+			"y": 1600,
+			"width": 440,
+			"height": 500
+		},
+		{
+			"id": "note-1782731500000-0018",
+			"type": "file",
+			"file": "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【组件】scrollView.md",
+			"x": 100,
+			"y": 1600,
+			"width": 440,
+			"height": 500
+		},
+		{
+			"id": "note-1782731500000-0019",
+			"type": "file",
+			"file": "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【组件】switch.md",
+			"x": 590,
+			"y": 1600,
+			"width": 440,
+			"height": 500
+		},
+		{
+			"id": "note-1782731500000-0020",
+			"type": "file",
+			"file": "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【组件】text.md",
+			"x": -880,
+			"y": 2150,
+			"width": 440,
+			"height": 500
+		},
+		{
+			"id": "note-1782731500000-0021",
+			"type": "file",
+			"file": "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【组件】textInput.md",
+			"x": -390,
+			"y": 2150,
+			"width": 440,
+			"height": 500
+		},
+		{
+			"id": "note-1782731500000-0022",
+			"type": "file",
+			"file": "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【组件】view.md",
+			"x": 100,
+			"y": 2150,
+			"width": 440,
+			"height": 500
+		},
+		{
+			"id": "note-1782731500000-0023",
+			"type": "file",
+			"file": "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【发布】Android上架.md",
+			"x": 590,
+			"y": 2150,
+			"width": 440,
+			"height": 500
+		},
+		{
+			"id": "note-1782731500000-0024",
+			"type": "file",
+			"file": "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【发布】iOS上架.md",
+			"x": -880,
+			"y": 2700,
+			"width": 440,
+			"height": 500
+		},
+		{
+			"id": "note-1782731500000-0025",
+			"type": "file",
+			"file": "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【发布】打包.md",
+			"x": -390,
+			"y": 2700,
+			"width": 440,
+			"height": 500
+		}
+	]
+}
