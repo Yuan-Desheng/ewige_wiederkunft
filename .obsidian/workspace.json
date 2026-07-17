@@ -23,38 +23,6 @@
             }
           },
           {
-            "id": "209db33fad887603",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Documents/I.P.A.R.A/学习领域/项目/Interactive Tech Tutorial Platform.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "Interactive Tech Tutorial Platform"
-            }
-          },
-          {
-            "id": "c9eb99651040f567",
-            "type": "leaf",
-            "state": {
-              "type": "canvas",
-              "state": {
-                "file": "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/小满zs-react.canvas",
-                "viewState": {
-                  "x": 75,
-                  "y": 3775,
-                  "zoom": -3.126662316785831
-                }
-              },
-              "icon": "lucide-layout-dashboard",
-              "title": "小满zs-react"
-            }
-          },
-          {
             "id": "15fa4bd1e597b080",
             "type": "leaf",
             "state": {
@@ -127,23 +95,6 @@
               },
               "icon": "lucide-file",
               "title": "Hermes Agent + LLM Wiki知识库 + Obsidian图谱"
-            }
-          },
-          {
-            "id": "5cf88b32d576e6d8",
-            "type": "leaf",
-            "state": {
-              "type": "canvas",
-              "state": {
-                "file": "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/小满zs-react.canvas",
-                "viewState": {
-                  "x": -450.5462559183503,
-                  "y": -377.87129737022144,
-                  "zoom": 0.8733376832141687
-                }
-              },
-              "icon": "lucide-layout-dashboard",
-              "title": "小满zs-react"
             }
           },
           {
@@ -250,9 +201,24 @@
               "icon": "lucide-file",
               "title": "海外社交媒体传播动态分析系统资料汇总"
             }
+          },
+          {
+            "id": "209db33fad887603",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documents/I.P.A.R.A/学习领域/项目/Interactive Tech Tutorial Platform.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "Interactive Tech Tutorial Platform"
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 13
       }
     ],
     "direction": "vertical"
@@ -320,7 +286,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 274
+    "width": 274,
+    "collapsed": true
   },
   "right": {
     "id": "128c55eacc93ffde",
@@ -496,7 +463,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 387
+    "width": 387,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -524,16 +492,27 @@
   },
   "active": "209db33fad887603",
   "lastOpenFiles": [
-    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/小满zs-react.canvas",
-    "数据库与导航.md",
-    "Documents/I.P.A.R.A/学习领域/项目/Interactive Tech Tutorial Platform.md",
-    "Assistants/Templater/主页/homepage-侧页.md",
     "Documents/I.P.A.R.A/工作领域/收集/工作流技能.md",
+    "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
+    "Documents/I.P.A.R.A/工作领域/项目/开发人员转产品经理.md",
+    "Documents/I.P.A.R.A/工作领域/收集/项目立项与研发流程规范.md",
+    "Documents/I.P.A.R.A/工作领域/项目/ultracode.md",
+    "Documents/I.P.A.R.A/学习领域/项目/Interactive Tech Tutorial Platform.md",
+    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/小满zs-react.canvas",
+    "Documents/I.P.A.R.A/工作领域/项目/海外社交媒体传播动态分析系统资料汇总.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent.md",
+    "Documents/I.P.A.R.A/工作领域/项目/认证机构erp系统.md",
+    "Documents/I.P.A.R.A/工作领域/项目/前台门户网站.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Linux.md",
+    "Documents/I.P.A.R.A/工作领域/项目/ 自动化选品上品.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md",
+    "Documents/I.P.A.R.A/工作领域/项目/自动化选品上品（原始需求）（目前可行方案）.md",
+    "数据库与导航.md",
+    "Assistants/Templater/主页/homepage-侧页.md",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/AI笔记.canvas.tmp.47216.fec61d90dd10",
     "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-07-16.md",
     "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-07-16.md.tmp.47216.ba8332195340",
     "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【发布】Android上架.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/小满zs-react-native.canvas",
     "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【发布】Android上架.md.tmp.47216.ebd6d88f553b",
     "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【发布】iOS上架.md",
@@ -551,16 +530,6 @@
     "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】布局.md",
     "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】布局.md.tmp.47216.7f1a5357918a",
     "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】样式.md",
-    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【组件】keyboardAvoidingView.md",
-    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【组件】modal.md",
-    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【组件】switch.md",
-    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【组件】scrollView.md",
-    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【组件】view.md",
-    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【组件】textInput.md",
-    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【组件】imageBackground.md",
-    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【组件】image.md",
-    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【组件】text.md",
-    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【组件】button.md",
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/海媒传播分析系统.canvas",
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/ultracode.canvas",
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/自动化选品上品.canvas",
