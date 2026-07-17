@@ -23,6 +23,38 @@
             }
           },
           {
+            "id": "209db33fad887603",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documents/I.P.A.R.A/学习领域/项目/Interactive Tech Tutorial Platform.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "Interactive Tech Tutorial Platform"
+            }
+          },
+          {
+            "id": "c9eb99651040f567",
+            "type": "leaf",
+            "state": {
+              "type": "canvas",
+              "state": {
+                "file": "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/小满zs-react.canvas",
+                "viewState": {
+                  "x": 75,
+                  "y": 3775,
+                  "zoom": -3.126662316785831
+                }
+              },
+              "icon": "lucide-layout-dashboard",
+              "title": "小满zs-react"
+            }
+          },
+          {
             "id": "15fa4bd1e597b080",
             "type": "leaf",
             "state": {
@@ -95,6 +127,23 @@
               },
               "icon": "lucide-file",
               "title": "Hermes Agent + LLM Wiki知识库 + Obsidian图谱"
+            }
+          },
+          {
+            "id": "5cf88b32d576e6d8",
+            "type": "leaf",
+            "state": {
+              "type": "canvas",
+              "state": {
+                "file": "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/小满zs-react.canvas",
+                "viewState": {
+                  "x": -450.5462559183503,
+                  "y": -377.87129737022144,
+                  "zoom": 0.8733376832141687
+                }
+              },
+              "icon": "lucide-layout-dashboard",
+              "title": "小满zs-react"
             }
           },
           {
@@ -203,7 +252,7 @@
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -235,7 +284,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "`cc`",
+                "query": "短信",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -271,8 +320,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 274,
-    "collapsed": true
+    "width": 274
   },
   "right": {
     "id": "128c55eacc93ffde",
@@ -341,13 +389,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md",
+                "file": "Documents/I.P.A.R.A/学习领域/项目/Interactive Tech Tutorial Platform.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Hermes Agent + LLM Wiki知识库 + Obsidian图谱 的大纲"
+              "title": "Interactive Tech Tutorial Platform 的大纲"
             }
           },
           {
@@ -448,8 +496,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 387,
-    "collapsed": true
+    "width": 387
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -475,30 +522,47 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "7f3faae097433d9f",
+  "active": "209db33fad887603",
   "lastOpenFiles": [
-    "Documents/I.P.A.R.A/工作领域/收集/工作流技能.md",
-    "Documents/I.P.A.R.A/工作领域/项目/海外社交媒体传播动态分析系统资料汇总.md",
-    "Documents/I.P.A.R.A/工作领域/项目/ultracode.md",
-    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/海媒传播分析系统.canvas",
+    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/小满zs-react.canvas",
     "数据库与导航.md",
-    "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
-    "Documents/I.P.A.R.A/工作领域/收集/工作流技能.md.tmp.37122.559153ccf08c",
-    "Documents/I.P.A.R.A/工作领域/收集/工作流技能.md.tmp.37122.c50125ef12e5",
-    "Documents/I.P.A.R.A/工作领域/收集/工作流技能.md.tmp.37122.b3f6bf176a6f",
-    "Documents/I.P.A.R.A/工作领域/收集/工作流技能.md.tmp.37122.0adfea4e1e99",
-    "Documents/I.P.A.R.A/工作领域/项目/ 自动化选品上品.md",
-    "Documents/I.P.A.R.A/工作领域/项目/自动化选品上品（原始需求）（目前可行方案）.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md",
-    "Documents/I.P.A.R.A/工作领域/收集/项目立项与研发流程规范.md",
-    "Documents/I.P.A.R.A/工作领域/项目/开发人员转产品经理.md",
-    "Documents/I.P.A.R.A/工作领域/项目/自动化选品上品（废弃）（需求过度）.md",
+    "Documents/I.P.A.R.A/学习领域/项目/Interactive Tech Tutorial Platform.md",
     "Assistants/Templater/主页/homepage-侧页.md",
-    "Documents/I.P.A.R.A/工作领域/收集/海外舆情检索库-Meilisearch重构.md",
-    "Documents/I.P.A.R.A/工作领域/项目/认证机构erp系统.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent.md",
+    "Documents/I.P.A.R.A/工作领域/收集/工作流技能.md",
+    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/AI笔记.canvas.tmp.47216.fec61d90dd10",
+    "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-07-16.md",
+    "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-07-16.md.tmp.47216.ba8332195340",
+    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【发布】Android上架.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md",
+    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/小满zs-react-native.canvas",
+    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【发布】Android上架.md.tmp.47216.ebd6d88f553b",
+    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【发布】iOS上架.md",
+    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【发布】iOS上架.md.tmp.47216.07fdbe00711a",
+    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【发布】打包.md",
+    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【发布】打包.md.tmp.47216.3e62c8ff7895",
+    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】网络.md",
+    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】网络.md.tmp.47216.f0571b7b0063",
+    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】动画.md",
+    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】动画.md.tmp.47216.1549079a9d40",
+    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】事件.md",
+    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】事件.md.tmp.47216.caea9ef7160a",
+    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】图片.md",
+    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】图片.md.tmp.47216.b277d2539ed9",
+    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】布局.md",
+    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】布局.md.tmp.47216.7f1a5357918a",
+    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】样式.md",
+    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【组件】keyboardAvoidingView.md",
+    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【组件】modal.md",
+    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【组件】switch.md",
+    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【组件】scrollView.md",
+    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【组件】view.md",
+    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【组件】textInput.md",
+    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【组件】imageBackground.md",
+    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【组件】image.md",
+    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【组件】text.md",
+    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【组件】button.md",
+    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/海媒传播分析系统.canvas",
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/ultracode.canvas",
-    "数据库与导航.md~",
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/自动化选品上品.canvas",
     "Extras/附件/Pasted image 20260714142823.png",
     "Extras/附件/Pasted image 20260714142623.png",
@@ -510,27 +574,10 @@
     "Extras/附件/Pasted image 20260714141337.png",
     "Extras/附件/Pasted image 20260714141213.png",
     "Extras/附件/Pasted image 20260714141104.png",
-    "Documents/I.P.A.R.A/学习领域/收集/Linux.md",
-    "Documents/I.P.A.R.A/工作领域/项目/小红书运营.md",
-    "Documents/I.P.A.R.A/工作领域/项目/xhs-setup-notes.md",
-    "Documents/I.P.A.R.A/工作领域/项目/xhs-coze-prd.md",
-    "Documents/I.P.A.R.A/工作领域/项目/Tk短视频运营.md",
-    "Documents/I.P.A.R.A/工作领域/收集/运维体系建设方案.md",
-    "Documents/I.P.A.R.A/工作领域/收集",
-    "Documents/I.P.A.R.A/学习领域/收集/计算属性、方法、watch监听器的区别.md",
-    "Documents/I.P.A.R.A/学习领域/收集/学习typeScript（weakMap，weakSet，set，map）.md",
-    "Documents/I.P.A.R.A/学习领域/收集/学习TypeScript进阶类型兼容.md",
-    "Documents/I.P.A.R.A/学习领域/收集/学习TypeScript类型守卫.md",
-    "Documents/I.P.A.R.A/工作领域/项目/小红书运营.md.tmp.61335.5a6acc5dca93",
-    "Documents/I.P.A.R.A/工作领域/项目/小红书运营.md.tmp.61335.6ed6add1207d",
-    "Documents/I.P.A.R.A/工作领域/项目/xhs-coze-prd.md.tmp.6215.78e5b563a1bb",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/峰华Vue3.canvas",
-    "Documents/I.P.A.R.A/工作领域/项目/xhs-setup-notes.md.tmp.60808.eda90a0186a9",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/小满zs-typescript.canvas",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/Artificial Intelligence.canvas",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/AI笔记.canvas",
-    "Documents/I.P.A.R.A/生活领域/归档/卡片盒笔记主题索引卡/跑步.canvas",
-    "Documents/I.P.A.R.A/生活领域/归档/卡片盒笔记主题索引卡/MAD剪辑.canvas",
-    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/空军推门听课交接.canvas"
+    "Documents/I.P.A.R.A/生活领域/归档/卡片盒笔记主题索引卡/跑步.canvas"
   ]
 }
