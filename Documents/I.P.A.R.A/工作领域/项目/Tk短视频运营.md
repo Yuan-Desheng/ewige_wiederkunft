@@ -599,7 +599,7 @@ https://www.fastmoss.com/zh/market/market-category
 
 ## 开发
 ```  
-sshpass -p '8888' ssh -p 22 apple@100.98.66.122  
+sshpass -p '8888' ssh -p 22 apple@100.98.66.122
 cd /Users/apple/yuandesheng/viral-forge  
 生成完成。  
           类型       ed25519 (256-bit)      私钥       /Users/apple/.ssh/id_ed25519  (已保存在服务器本地)  

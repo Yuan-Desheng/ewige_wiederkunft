@@ -23,21 +23,6 @@
             }
           },
           {
-            "id": "15fa4bd1e597b080",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Documents/I.P.A.R.A/工作领域/项目/ultracode.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "ultracode"
-            }
-          },
-          {
             "id": "fb01d1adb7d2f709",
             "type": "leaf",
             "state": {
@@ -68,63 +53,18 @@
             }
           },
           {
-            "id": "5f40aa60f703ccb6",
+            "id": "15fa4bd1e597b080",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
+                "file": "Documents/I.P.A.R.A/工作领域/项目/ultracode.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "融合大模型智能体的虚拟电厂仿真系统"
-            }
-          },
-          {
-            "id": "7f3faae097433d9f",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "Hermes Agent + LLM Wiki知识库 + Obsidian图谱"
-            }
-          },
-          {
-            "id": "6e081450c8935896",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Documents/I.P.A.R.A/工作领域/项目/自动化选品上品（原始需求）（目前可行方案）.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "自动化选品上品（原始需求）（目前可行方案）"
-            }
-          },
-          {
-            "id": "b460826ca0512eb6",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Documents/I.P.A.R.A/工作领域/项目/ 自动化选品上品.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "自动化选品上品"
+              "title": "ultracode"
             }
           },
           {
@@ -143,18 +83,63 @@
             }
           },
           {
-            "id": "0c8e87486129c489",
+            "id": "db4d04467dcf0afb",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Documents/I.P.A.R.A/工作领域/项目/前台门户网站.md",
+                "file": "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "前台门户网站"
+              "title": "Hermes Agent"
+            }
+          },
+          {
+            "id": "5f40aa60f703ccb6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "融合大模型智能体的虚拟电厂仿真系统"
+            }
+          },
+          {
+            "id": "6e081450c8935896",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documents/I.P.A.R.A/工作领域/项目/Tk短视频运营.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "Tk短视频运营"
+            }
+          },
+          {
+            "id": "b460826ca0512eb6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documents/I.P.A.R.A/工作领域/项目/ 自动化选品上品.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "自动化选品上品"
             }
           },
           {
@@ -170,21 +155,6 @@
               },
               "icon": "lucide-file",
               "title": "认证机构erp系统"
-            }
-          },
-          {
-            "id": "db4d04467dcf0afb",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "Hermes Agent"
             }
           },
           {
@@ -218,7 +188,7 @@
             }
           }
         ],
-        "currentTab": 13
+        "currentTab": 6
       }
     ],
     "direction": "vertical"
@@ -250,7 +220,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "短信",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -490,24 +460,29 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "209db33fad887603",
+  "active": "5f40aa60f703ccb6",
   "lastOpenFiles": [
+    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Linux.md",
     "Documents/I.P.A.R.A/工作领域/收集/工作流技能.md",
     "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
-    "Documents/I.P.A.R.A/工作领域/项目/开发人员转产品经理.md",
-    "Documents/I.P.A.R.A/工作领域/收集/项目立项与研发流程规范.md",
+    "Documents/I.P.A.R.A/工作领域/项目/Tk短视频运营.md",
+    "Documents/I.P.A.R.A/工作领域/收集/运维体系建设方案.md",
+    "Documents/I.P.A.R.A/工作领域/项目/自动化选品上品（原始需求）（目前可行方案）.md",
+    "Documents/I.P.A.R.A/工作领域/项目/ 自动化选品上品.md",
+    "Documents/I.P.A.R.A/工作领域/项目/认证机构erp系统.md",
+    "Documents/I.P.A.R.A/工作领域/项目/海外社交媒体传播动态分析系统资料汇总.md",
     "Documents/I.P.A.R.A/工作领域/项目/ultracode.md",
     "Documents/I.P.A.R.A/学习领域/项目/Interactive Tech Tutorial Platform.md",
-    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/小满zs-react.canvas",
-    "Documents/I.P.A.R.A/工作领域/项目/海外社交媒体传播动态分析系统资料汇总.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent.md",
-    "Documents/I.P.A.R.A/工作领域/项目/认证机构erp系统.md",
+    "Documents/I.P.A.R.A/学习领域/收集/NAS SMB 网络磁盘挂载.md",
     "Documents/I.P.A.R.A/工作领域/项目/前台门户网站.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Linux.md",
-    "Documents/I.P.A.R.A/工作领域/项目/ 自动化选品上品.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md",
-    "Documents/I.P.A.R.A/工作领域/项目/自动化选品上品（原始需求）（目前可行方案）.md",
+    "Documents/I.P.A.R.A/工作领域/项目/开发人员转产品经理.md",
+    "Documents/I.P.A.R.A/工作领域/收集/项目立项与研发流程规范.md",
     "数据库与导航.md",
+    "Documents/I.P.A.R.A/学习领域/收集/NAS SMB 网络磁盘挂载.md.bak.20260724_172949",
+    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md",
+    "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-07-23.md",
+    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/小满zs-react.canvas",
     "Assistants/Templater/主页/homepage-侧页.md",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/AI笔记.canvas.tmp.47216.fec61d90dd10",
     "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-07-16.md",
@@ -523,13 +498,8 @@
     "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】网络.md.tmp.47216.f0571b7b0063",
     "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】动画.md",
     "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】动画.md.tmp.47216.1549079a9d40",
-    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】事件.md",
     "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】事件.md.tmp.47216.caea9ef7160a",
-    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】图片.md",
     "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】图片.md.tmp.47216.b277d2539ed9",
-    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】布局.md",
-    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】布局.md.tmp.47216.7f1a5357918a",
-    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】样式.md",
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/海媒传播分析系统.canvas",
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/ultracode.canvas",
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/自动化选品上品.canvas",

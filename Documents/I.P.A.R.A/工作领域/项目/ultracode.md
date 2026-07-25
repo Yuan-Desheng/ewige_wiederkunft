@@ -509,4 +509,34 @@ Deploy（你的）
 ”
 对我的工作流提出优化方案
 
+
+## 07-19
+
+| slash 命令  | 引擎              | 环   | 参数        |
+| --------- | --------------- | --- | --------- |
+| `/proto`  | req-to-proto    | 原型  | 可研/需求文件路径 |
+| `/design` | proto-to-design | 设计  | 原始文件（可省）  |
+| `/build`  | design-to-code  | 开发  | 无         |
+| `/test`   | code-to-test    | 测试  | 无         |
+| `/deploy` | app-to-deploy   | 部署  | 无         |
+```
+ultracode 先讲一下：“
+/proto
+/design
+/build
+/test
+/deploy
+”
+六个阶段会做什么
+根据本次实际跑流水线搭建项目的情况，帮我制定一份优化流水线的方案，我现在认为：“
+应当优化 /proto 阶段只根据原始需求和资料整理文字性的需求
+/design 确认前后端和数据库技术栈，
+/build 阶段应该拆开，先做mock数据的前端，确认之后再开始做后端”你认为怎么样，请帮我制定一份优化流水线的计划。
+```
+
+## 07-21
+```
+前端技术架构选择：“React 19 + TypeScript + Tailwind CSS + shadcn/ui”
+样式主题、动效果和交互方式参考网站demo：https://system-builder.aura.build/docs
+
 ```
