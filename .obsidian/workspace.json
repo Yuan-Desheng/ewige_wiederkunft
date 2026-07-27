@@ -128,18 +128,18 @@
             }
           },
           {
-            "id": "b460826ca0512eb6",
+            "id": "fd74da6e27d70d22",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Documents/I.P.A.R.A/工作领域/项目/ 自动化选品上品.md",
+                "file": "Documents/I.P.A.R.A/工作领域/项目/自动化选品上品（原始需求）（目前可行方案）.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "自动化选品上品"
+              "title": "自动化选品上品（原始需求）（目前可行方案）"
             }
           },
           {
@@ -173,6 +173,21 @@
             }
           },
           {
+            "id": "c98591314de64e23",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documents/I.P.A.R.A/工作领域/项目/海外社交媒体传播动态分析系统_二期.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "海外社交媒体传播动态分析系统_二期"
+            }
+          },
+          {
             "id": "209db33fad887603",
             "type": "leaf",
             "state": {
@@ -187,8 +202,7 @@
               "title": "Interactive Tech Tutorial Platform"
             }
           }
-        ],
-        "currentTab": 6
+        ]
       }
     ],
     "direction": "vertical"
@@ -326,13 +340,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Documents/I.P.A.R.A/学习领域/项目/Interactive Tech Tutorial Platform.md",
+                "file": "Documents/I.P.A.R.A/工作领域/项目/自动化选品上品（原始需求）（目前可行方案）.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Interactive Tech Tutorial Platform 的大纲"
+              "title": "自动化选品上品（原始需求）（目前可行方案） 的大纲"
             }
           },
           {
@@ -460,30 +474,34 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "5f40aa60f703ccb6",
+  "active": "9d29dee5b830d73d",
   "lastOpenFiles": [
-    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Linux.md",
-    "Documents/I.P.A.R.A/工作领域/收集/工作流技能.md",
-    "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
-    "Documents/I.P.A.R.A/工作领域/项目/Tk短视频运营.md",
-    "Documents/I.P.A.R.A/工作领域/收集/运维体系建设方案.md",
     "Documents/I.P.A.R.A/工作领域/项目/自动化选品上品（原始需求）（目前可行方案）.md",
-    "Documents/I.P.A.R.A/工作领域/项目/ 自动化选品上品.md",
-    "Documents/I.P.A.R.A/工作领域/项目/认证机构erp系统.md",
-    "Documents/I.P.A.R.A/工作领域/项目/海外社交媒体传播动态分析系统资料汇总.md",
+    "Documents/I.P.A.R.A/工作领域/项目/Tk短视频运营.md",
+    "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
     "Documents/I.P.A.R.A/工作领域/项目/ultracode.md",
+    "Documents/I.P.A.R.A/工作领域/收集/项目立项与研发流程规范.md",
+    "Documents/I.P.A.R.A/工作领域/收集/工作流技能.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent.md",
+    "Documents/I.P.A.R.A/工作领域/项目/海外社交媒体传播动态分析系统_二期.md",
+    "Documents/I.P.A.R.A/工作领域/项目/海外社交媒体传播动态分析系统资料汇总.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Linux.md",
+    "Documents/I.P.A.R.A/工作领域/项目/认证机构erp系统.md",
     "Documents/I.P.A.R.A/学习领域/项目/Interactive Tech Tutorial Platform.md",
+    "Documents/I.P.A.R.A/工作领域/项目/OpenCLI-Facebook 博主数据采集方案.md",
+    "数据库与导航.md",
+    "Documents/I.P.A.R.A/工作领域/项目/自媒体平台数据爬取.md",
+    "Assistants/Templater/主页/homepage-侧页.md",
+    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/自动化选品上品.canvas",
+    "Documents/I.P.A.R.A/工作领域/项目/ 自动化选品上品.md",
+    "Documents/I.P.A.R.A/工作领域/收集/运维体系建设方案.md",
     "Documents/I.P.A.R.A/学习领域/收集/NAS SMB 网络磁盘挂载.md",
     "Documents/I.P.A.R.A/工作领域/项目/前台门户网站.md",
     "Documents/I.P.A.R.A/工作领域/项目/开发人员转产品经理.md",
-    "Documents/I.P.A.R.A/工作领域/收集/项目立项与研发流程规范.md",
-    "数据库与导航.md",
     "Documents/I.P.A.R.A/学习领域/收集/NAS SMB 网络磁盘挂载.md.bak.20260724_172949",
     "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md",
     "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-07-23.md",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/小满zs-react.canvas",
-    "Assistants/Templater/主页/homepage-侧页.md",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/AI笔记.canvas.tmp.47216.fec61d90dd10",
     "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-07-16.md",
     "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-07-16.md.tmp.47216.ba8332195340",
@@ -492,17 +510,13 @@
     "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【发布】Android上架.md.tmp.47216.ebd6d88f553b",
     "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【发布】iOS上架.md",
     "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【发布】iOS上架.md.tmp.47216.07fdbe00711a",
-    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【发布】打包.md",
     "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【发布】打包.md.tmp.47216.3e62c8ff7895",
-    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】网络.md",
     "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】网络.md.tmp.47216.f0571b7b0063",
-    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】动画.md",
     "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】动画.md.tmp.47216.1549079a9d40",
     "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】事件.md.tmp.47216.caea9ef7160a",
     "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】图片.md.tmp.47216.b277d2539ed9",
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/海媒传播分析系统.canvas",
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/ultracode.canvas",
-    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/自动化选品上品.canvas",
     "Extras/附件/Pasted image 20260714142823.png",
     "Extras/附件/Pasted image 20260714142623.png",
     "Extras/附件/Pasted image 20260714142311.png",
