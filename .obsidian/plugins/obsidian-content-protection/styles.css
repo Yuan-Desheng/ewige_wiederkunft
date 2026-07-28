@@ -1,22 +1,4 @@
 
-.protected-content {
-    padding: 20px;
-    margin: 10px 0;
-    background-color: #f5f6f7;
-    border-radius: 4px;
-    text-align: center;
-    color: #666;
-}
-
-.protected-content p {
-    margin: 5px 0;
-}
-
-.protected-content p:first-child {
-    font-weight: bold;
-    color: #333;
-}
-
 .admonition-disabled {
     padding: 15px;
     margin: 10px 0;
@@ -72,24 +54,25 @@
 
 .tab-navigation {
     display: flex;
+    flex-wrap: wrap;
     background: transparent;
-    border-radius: 8px;
-    padding: 4px;
-    margin-bottom: 20px;
+    border-radius: 6px;
+    padding: 2px;
+    margin-bottom: 10px;
     gap: 2px;
 }
 
 .tab-button {
     display: flex;
     align-items: center;
-    padding: 12px 16px;
+    padding: 6px 10px;
     cursor: pointer;
     transition: all 0.2s ease;
     background: transparent;
     color: var(--text-muted);
-    min-width: 100px;
+    min-width: auto;
     justify-content: center;
-    gap: 8px;
+    gap: 4px;
 }
 
 .tab-button:hover {
@@ -101,29 +84,114 @@
     background: transparent;
     color: var(--font-default);
     font-weight: 500;
-    border-bottom: 3px solid rebeccapurple;
+    border-bottom: 2px solid rebeccapurple;
 }
 
 .tab-icon {
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .tab-name {
-    font-size: 13px;
+    font-size: 12px;
 }
 
 .tab-content-container {
     background: var(--background-modifier-hover);
-    border-radius: 8px;
-    padding: 20px;
+    border-radius: 6px;
+    padding: 10px 12px;
 }
 
 .content-section {
-    margin-bottom: 30px;
+    margin-bottom: 14px;
 }
 
 .content-section:last-child {
     margin-bottom: 0;
+}
+
+.content-protection-settings .cp-settings-title {
+    margin: 0 0 8px;
+    font-size: 1.05em;
+}
+
+.content-protection-settings .content-section h3 {
+    margin: 0 0 8px;
+    font-size: 1em;
+}
+
+.content-protection-settings .setting-subsection-title,
+.content-protection-settings h4 {
+    margin: 8px 0 4px;
+    font-size: 0.95em;
+}
+
+.content-protection-settings .cp-settings-hint {
+    margin: 0 0 8px;
+}
+
+.content-protection-settings .setting-item {
+    padding: 6px 0;
+    border-top: none;
+}
+
+.content-protection-settings .setting-item-heading {
+    padding-bottom: 2px;
+}
+
+.content-protection-settings .setting-item-info {
+    gap: 2px;
+}
+
+.content-protection-settings .setting-item-name {
+    font-size: var(--font-ui-small);
+}
+
+.content-protection-settings .setting-item-description {
+    font-size: var(--font-ui-smaller);
+    padding-top: 0;
+}
+
+.content-protection-settings .setting-item-control {
+    padding-top: 2px;
+}
+
+.content-protection-settings ul {
+    margin: 4px 0 8px;
+    padding-left: 1.2em;
+}
+
+.content-protection-settings li {
+    margin: 2px 0;
+    font-size: var(--font-ui-small);
+}
+
+.content-protection-settings .lucide-icon-list {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 6px;
+    margin-top: 6px;
+    padding: 6px;
+    max-height: 280px;
+}
+
+.content-protection-settings .lucide-icon-item {
+    padding: 4px 6px;
+    gap: 6px;
+}
+
+.content-protection-settings .area-step-section {
+    padding: 10px 12px;
+    margin-bottom: 12px;
+}
+
+.content-protection-settings .area-step-section h4 {
+    margin: 0 0 8px;
+    font-size: 14px;
+}
+
+.content-protection-settings .canvas-collapse-settings h3 {
+    margin-top: 12px;
+    margin-bottom: 8px;
+    font-size: 1em;
 }
 
 .setting-item .activation-status {
@@ -265,7 +333,6 @@
     z-index: 100;
     user-select: none;
     opacity: 0.9;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   }
   
   .canvas-collapse-button:hover {
@@ -400,14 +467,7 @@
   }
   
 
-  .theme-dark .canvas-collapse-button {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-  }
-  
-  .theme-dark .canvas-collapse-button:hover {
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-  }
-  
+
 
   @media (max-width: 768px) {
     .canvas-collapse-button {
@@ -434,13 +494,12 @@
   .canvas-group-collapse-button {
     position: absolute;
     left: 0;
-    top: calc(-1* var(--size-4-1)* var(--zoom-multiplier));
     padding: var(--size-4-1) var(--size-4-2);
     transform-origin: bottom left;
     transform: translateY(-100%);
     border-radius: var(--size-2-3) !important;
-    color: var(--text-muted) !important;
-    background-color: rgba(var(--canvas-color), 0.7) !important;
+    color: white;
+    background-color: var(--canvas-color);
     font-size: 1.5em;
     line-height: 24px;
     pointer-events: initial;
@@ -492,8 +551,7 @@
   }
   
   .canvas-title-display {
-    background: rgba(var(--canvas-color), 1);
-    border: 1px solid var(--background-modifier-border);
+    background: var(--canvas-color);
     border-radius: 4px;
     padding: 4px 8px;
     color: var(--color-white);
@@ -504,7 +562,7 @@
     text-overflow: ellipsis;
     min-width: 80px;
     max-width: 500px;
-    transition: all 0.2s ease;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
     font-size: var(--h2-size);
   }
   
@@ -963,6 +1021,15 @@
     white-space: nowrap;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     border: 1px solid var(--background-modifier-border);
+}
+
+.cp-validity-expired-status {
+    cursor: pointer;
+    color: #e03131;
+}
+
+.cp-validity-expired-status svg {
+    color: #e03131;
 }
 
 /* 错误和空状态 */
@@ -2040,13 +2107,6 @@
 /* 设置界面中的图标列表样式 */
 .lucide-icon-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 10px;
-    margin-top: 10px;
-    padding: 10px;
-    border: 1px solid var(--background-modifier-border);
-    border-radius: 5px;
-    max-height: 400px;
     overflow-y: auto;
 }
 
@@ -2069,8 +2129,8 @@
 }
 
 .lucide-icon-item .icon-preview svg {
-    width: 24px;
-    height: 24px;
+    width: 18px;
+    height: 18px;
 }
 
 .lucide-icon-item .icon-name-text {
@@ -2135,81 +2195,80 @@
                 border-bottom: 1px solid var(--background-modifier-border-hover);
                 transition: background-color 0.1s ease;
 }
-/* 洋牡丹 */
-.theme-light.shib-card-layout.ranunculus{
-    --background-primary:#f7f1e8 !important;
-    --background-secondary:#f7f1e8 !important;
-    --card-background-color:#f2e4d4 !important;
-    --background-secondary-alt: transparent !important;
-}
-.theme-dark.shib-card-layout.ranunculus{
-    --background-primary:#39342d !important;
-    --background-secondary:#39342d !important;
-    --card-background-color:#2e2824 !important;
-    --background-secondary-alt: transparent !important;
-}
-/* 绣球 */
-.theme-light.shib-card-layout.hydrangea{
-    --background-primary:#dce3e4 !important;
-    --background-secondary:#dce3e4 !important;
-    --card-background-color:#ccd6d9 !important;
-    --background-secondary-alt: transparent !important;
-    --bold-color:rgb(21, 45, 122) !important;
-}
-.theme-dark.shib-card-layout.hydrangea{
-    --background-primary:#2f383e !important;
-    --background-secondary:#2f383e !important;
-    --card-background-color:#293137  !important;
-    --background-secondary-alt: transparent !important;
-    --bold-color:rgb(82, 132, 190)!important;
-}
-/* 香雪兰 */
-.theme-light.shib-card-layout.freesia{
---background-primary: #e8efe3  !important;
---background-secondary: #e8efe3   !important;
---card-background-color:#d2ddc4 !important;
---background-secondary-alt: transparent !important;
---bold-color:rgb(35, 131, 73) !important;
+/* 卡片配色主题颜色由插件设置动态注入（#content-protection-layout-colors） */
 
-}
-.theme-dark.shib-card-layout.freesia{
-    --background-primary:#3f443c !important;
-    --background-secondary:#3f443c !important;
-    --card-background-color:#2b2f29   !important;
-    --background-secondary-alt: transparent !important;
-    --bold-color:rgb(35, 131, 73) !important;
+@property --background-primary {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: transparent;
 }
 
-/* 风铃 */
-
-.theme-light.shib-card-layout.campanula{
-    --background-primary:#fcf9f4 !important;
-    --background-secondary:#fcf8f4 !important;
-    --card-background-color:#f7e4e9 !important;
-    --bold-color:rgb(35, 131, 73) !important;
-}
-.theme-dark.shib-card-layout.campanula{
---background-primary: #303631  !important;
---background-secondary: #303631   !important;
---card-background-color:#1f221d !important;
---background-secondary-alt: transparent !important;
---bold-color:rgb(35, 131, 73) !important;
+@property --background-secondary {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: transparent;
 }
 
-/* 玫瑰 */
-
-.theme-light.shib-card-layout.rose{
-    --background-primary:#fff5f5 !important;
-    --background-secondary:#fff5f5 !important;
-    --card-background-color:#df7a93 !important; 
-    --background-secondary-alt: transparent !important;
-    --tab-text-color-focused-active-current:#cecede !important;
-    --icon-color-focused:#cecede !important;
-
+@property --card-background-color {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: transparent;
 }
-.theme-dark.shib-card-layout.rose{
---background-primary: #4b2e34 !important;
---background-secondary: #4b2e34 !important;
---card-background-color:#8b2317!important;
---background-secondary-alt: transparent !important;
+
+body.shib-card-layout {
+    transition:
+        --background-primary 0.1s ease,
+        --background-secondary 0.1s ease,
+        --card-background-color 0.1s ease;
+}
+
+.cp-layout-color-theme {
+    margin-top: 8px;
+    padding-top: 6px;
+    border-top: 1px solid var(--background-modifier-border);
+}
+
+.cp-layout-color-theme-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.cp-layout-color-theme-title {
+    margin: 0;
+    font-size: var(--font-ui-small);
+    font-weight: 600;
+}
+
+
+.cp-layout-color-reset-btn:hover {
+    color: var(--text-normal);
+    border-color: var(--interactive-accent);
+}
+
+.cp-layout-color-mode-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.cp-layout-color-mode-block {
+    padding: 6px 8px;
+}
+
+.cp-layout-color-mode-title {
+    margin: 0 0 4px;
+    color: var(--text-muted);
+    font-size: var(--font-ui-smaller);
+    font-weight: 600;
+}
+
+.cp-layout-color-mode-block .setting-item {
+    padding: 4px 0;
+}
+
+.cp-layout-color-mode-block .setting-item-name {
+    font-size: var(--font-ui-smaller);
 }

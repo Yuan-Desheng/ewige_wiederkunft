@@ -418,7 +418,7 @@
 }
 
 .flowtext-config-table th {
-  background: var(--background-secondary);
+  background: var(--background-modifier-hover);
   color: var(--text-normal);
   font-weight: 500;
   padding: 8px 12px;
@@ -719,12 +719,19 @@
 }
 
 .flowtext-inline-tag-icon {
-  font-size: 13px;
-  line-height: 1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 14px;
+  height: 14px;
+  color: var(--text-muted);
   transition: opacity 0.08s ease;
+}
+
+.flowtext-inline-tag-icon svg {
+  width: 14px;
+  height: 14px;
+  stroke-width: 1.8;
 }
 
 .flowtext-inline-tag:hover .flowtext-inline-tag-icon {
@@ -789,6 +796,20 @@
 .flowtext-inline-tag-remove:hover {
   background: var(--background-modifier-error-hover);
   color: var(--text-error);
+}
+
+/* 已发送任务中的只读资源标签：保持输入框标签外观，不显示可编辑态反馈。 */
+.flowtext-agent-goal-rich-content {
+  white-space: pre-wrap;
+}
+
+.flowtext-agent-step--goal .flowtext-inline-tag--readonly {
+  margin: 0 2px;
+  cursor: default;
+}
+
+.flowtext-agent-step--goal .flowtext-inline-tag--readonly:hover .flowtext-inline-tag-icon {
+  opacity: 1;
 }
 
 .flowtext-popup-header {
@@ -1474,12 +1495,72 @@
 
 .flowtext-suggestions-header {
   flex-shrink: 0;
-  padding: 8px 12px;
+  padding: 6px 10px;
   background: var(--background-secondary);
   border-bottom: 1px solid var(--background-modifier-border);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   color: var(--text-muted);
+}
+
+.flowtext-suggestions-filters {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  padding: 5px 8px;
+}
+
+.flowtext-suggestions-filter {
+  -webkit-appearance: none;
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  width: 26px;
+  height: 24px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: transparent !important;
+  color: var(--text-muted);
+  box-shadow: none !important;
+  cursor: pointer;
+}
+
+.flowtext-suggestions-filter.is-text {
+  width: auto;
+  min-width: 38px;
+  padding: 0 7px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.flowtext-suggestions-filter:hover {
+  background: var(--background-modifier-hover) !important;
+  color: var(--text-normal);
+}
+
+.flowtext-suggestions-filter.is-active {
+  background: var(--background-modifier-active-hover) !important;
+  color: var(--text-accent);
+  border-radius: var(--button-radius);
+}
+
+.flowtext-suggestions-filter-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+}
+
+.flowtext-suggestions-filter-icon svg {
+  width: 14px;
+  height: 14px;
+  stroke-width: 1.8;
 }
 
 .flowtext-suggestions-list {
@@ -1488,6 +1569,13 @@
   overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior: contain;
+}
+
+.flowtext-suggestions-empty {
+  padding: 12px 10px;
+  color: var(--text-muted);
+  font-size: 11px;
+  text-align: center;
 }
 
 /* 列表/历史/提示词弹层：统一细滚动条（减少重复规则） */
@@ -1520,10 +1608,11 @@
 .flowtext-suggestion-item {
   display: flex;
   align-items: center;
-  padding: 8px 12px;
+  min-height: 30px;
+  padding: 5px 10px;
   cursor: pointer;
   transition: background-color 0.15s ease;
-  gap: 10px;
+  gap: 8px;
 }
 
 .flowtext-suggestion-item:hover {
@@ -1535,31 +1624,38 @@
 }
 
 .flowtext-suggestion-icon {
-  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
   flex-shrink: 0;
+  color: var(--text-muted);
+}
+
+.flowtext-suggestion-icon svg {
+  width: 14px;
+  height: 14px;
+  stroke-width: 1.8;
 }
 
 .flowtext-suggestion-content {
+  display: flex;
+  align-items: center;
   flex: 1;
   min-width: 0;
-}
-
-.flowtext-suggestion-name {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-normal);
-  white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .flowtext-suggestion-path {
-  font-size: 11px;
-  color: var(--text-muted);
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 12px;
+  color: var(--text-normal);
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
-  margin-top: 2px;
+  text-overflow: clip;
 }
 
 /* 多轮对话相关样式 */
@@ -2094,9 +2190,190 @@
   color: var(--color-purple);
 }
 
+/* 整库感知：固定在任务后面的单一卡片 */
+
+.flowtext-agent-step--vault-search .flowtext-agent-step-icon {
+  padding-top: 2px;
+  color: var(--text-accent);
+}
+.flowtext-agent-vault-result {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 7px;
+  color: var(--text-normal);
+}
+.flowtext-agent-vault-result-loading,
+.flowtext-agent-vault-result-message {
+  padding: 2px 0;
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+.flowtext-agent-step--vault-search.is-loading .flowtext-agent-vault-result-loading {
+  animation: flowtextVaultSearchPulse 1.4s ease-in-out infinite;
+}
+@keyframes flowtextVaultSearchPulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+.flowtext-agent-step--vault-search.is-error {
+  border-color: var(--background-modifier-error);
+}
+.flowtext-agent-step--vault-search.is-error .flowtext-agent-step-icon,
+.flowtext-agent-step--vault-search.is-error .flowtext-agent-vault-result-message {
+  color: var(--text-error);
+}
+.flowtext-agent-vault-result-summary {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.flowtext-agent-vault-result-summary-text {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text-normal);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.flowtext-agent-vault-result-summary-detail {
+  flex: 0 0 auto;
+  color: var(--text-muted);
+  font-size: 10px;
+  line-height: 1.4;
+}
+.flowtext-agent-vault-confidence {
+  flex: 0 0 auto;
+  margin-left: auto;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: var(--background-modifier-hover);
+  color: var(--text-accent);
+  font-size: 10px;
+  font-weight: 650;
+  line-height: 1.6;
+}
+.flowtext-agent-vault-meta-row {
+  display: flex;
+  min-width: 0;
+  align-items: flex-start;
+  gap: 7px;
+  font-size: 11px;
+  line-height: 1.5;
+}
+.flowtext-agent-vault-meta-label {
+  flex: 0 0 34px;
+  padding-top: 1px;
+  color: var(--text-faint);
+  white-space: nowrap;
+}
+.flowtext-agent-vault-meta-value {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text-muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.flowtext-agent-vault-topic-count {
+  flex: 0 0 auto;
+  margin-left: auto;
+  color: var(--text-faint);
+  white-space: nowrap;
+}
+.flowtext-agent-vault-keywords {
+  display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.flowtext-agent-vault-keyword {
+  max-width: 140px;
+  overflow: hidden;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: var(--background-modifier-hover);
+  color: var(--text-muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.flowtext-agent-vault-files {
+  display: grid;
+  min-width: 0;
+  gap: 2px;
+  padding-top: 2px;
+}
+.flowtext-agent-vault-files.is-scrollable {
+  max-height: 360px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-right: 3px;
+  scrollbar-width: thin;
+}
+button.flowtext-agent-vault-file {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  height: auto;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 7px;
+  margin: 0;
+  padding: 4px 0px;
+  border: 0;
+  border-radius: 5px;
+  box-shadow: none;
+  background: transparent;
+  color: var(--text-normal);
+  font: inherit;
+  text-align: left;
+}
+button.flowtext-agent-vault-file:hover {
+  background: var(--background-modifier-hover);
+  color: var(--text-accent);
+}
+.flowtext-agent-vault-file-index {
+  display: inline-flex;
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--background-modifier-hover);
+  color: var(--text-faint);
+  font-size: 9px;
+  line-height: 1;
+}
+.flowtext-agent-vault-file-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  font-size: 12px;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.flowtext-agent-vault-file-tier {
+  flex: 0 0 auto;
+  padding: 1px 5px;
+  border-radius: 999px;
+  background: var(--background-modifier-hover);
+  color: var(--text-faint);
+  font-size: 9px;
+  line-height: 1.45;
+}
+button.flowtext-agent-vault-file.is-supplementary {
+  color: var(--text-muted);
+}
 /* MarkdownRenderer 输出：避免 pre-wrap 破坏块级排版，并约束宽内容 */
 .flowtext-agent-step-text.flowtext-agent-step-text--markdown,
 .flowtext-agent-turn-plan.flowtext-agent-turn-plan--markdown {
+  position: relative;
   white-space: normal;
 }
 .flowtext-agent-step-text.flowtext-agent-step-text--markdown img,
@@ -2112,6 +2389,30 @@
   display: block;
   max-width: 100%;
   overflow-x: auto;
+  border-collapse: collapse;
+}
+
+/* 思考区（轮次规划 Markdown）：工具名 inline 标签（Lucide + 中文） */
+.flowtext-agent-turn-plan.flowtext-agent-turn-plan--markdown .flowtext-agent-tool-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin: 0 1px;
+  padding: 0 5px 0 3px;
+  white-space: nowrap;
+}
+.flowtext-agent-turn-plan.flowtext-agent-turn-plan--markdown .flowtext-agent-tool-tag-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--text-muted);
+}
+.flowtext-agent-turn-plan.flowtext-agent-turn-plan--markdown .flowtext-agent-tool-tag-icon svg {
+  width: 12px;
+  height: 12px;
+}
+.flowtext-agent-turn-plan.flowtext-agent-turn-plan--markdown .flowtext-agent-tool-tag-label {
+  font-size: 0.92em;
+  color: var(--color-orange);
 }
 
 /* Agent 单轮 LLM：父级规划 + 子任务执行/验证 */
@@ -2145,6 +2446,12 @@
   height: 14px;
 }
 
+.flowtext-agent-turn-card--preflight .flowtext-agent-turn-plan {
+  color: var(--text-muted);
+}
+.flowtext-agent-turn-card .flowtext-agent-turn-head-icon svg {
+  animation: flowtext-spin 1s linear infinite;
+}
 .flowtext-agent-turn-card--reasoning-done .flowtext-agent-turn-head-icon svg {
   animation: none;
 }
@@ -2154,21 +2461,25 @@
   color: var(--text-normal);
 }
 .flowtext-agent-turn-timer {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   font-size: 11px;
   color: var(--color-orange);
   font-variant-numeric: tabular-nums;
   flex-shrink: 0;
 }
-.flowtext-agent-turn-section {
-  margin-top: 6px;
+.flowtext-agent-turn-timer-icon {
+  display: flex;
+  color: var(--color-orange);
+  flex-shrink: 0;
 }
-.flowtext-agent-turn-section-title {
-  font-size: 10px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--text-faint);
-  margin-bottom: 4px;
+.flowtext-agent-turn-timer-icon svg {
+  width: 12px;
+  height: 12px;
+}
+.flowtext-agent-turn-timer-text {
+  line-height: 1;
 }
 .flowtext-agent-turn-plan {
   font-size: 13px;
@@ -2180,6 +2491,18 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
+}
+.flowtext-agent-turn-clarification-wrap {
+  margin-top: 4px;
+}
+.flowtext-agent-turn-clarification .flowtext-agent-step-text {
+  margin-bottom: 4px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.flowtext-agent-turn-card--awaiting-clarification .flowtext-agent-turn-plan {
+  color: var(--text-muted);
+  font-size: 12px;
 }
 .flowtext-agent-subtask {
   display: flex;
@@ -2271,6 +2594,19 @@
   padding: 0 8px 8px;
   margin: 0;
   border-top: 1px dashed var(--background-modifier-border);
+}
+
+.flowtext-agent-parallel-group-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+.flowtext-agent-parallel-group-list .flowtext-agent-subtask {
+  margin-bottom: 4px;
+}
+.flowtext-agent-parallel-group-list .flowtext-agent-subtask:last-child {
+  margin-bottom: 0;
 }
 
 /* -- 按类型着色 -- */
@@ -2400,33 +2736,10 @@
   cursor: default;
 }
 
-/* 完成 */
-.flowtext-agent-step--final {
-  background: rgba(0, 180, 80, 0.06);
-  margin-top: 4px;
-  position: relative;
-}
-.flowtext-agent-step--final .flowtext-agent-step-icon {
-  color: var(--text-success, #0b0);
-}
-
-
-/* 按钮组（final 步骤右上角：复制） */
-.flowtext-agent-final-btns {
-  position: absolute;
-  top: 6px;
-  right: 6px;
-  display: flex;
-  align-items: center;
-  gap: 2px;
-
-  transition: opacity 0.15s;
-}
-
 /* 复制按钮（悬停显示） */
 .flowtext-agent-copy-btn {
   position: absolute;
-  top: 6px;
+  top: 0px;
   right: 6px;
   display: flex;
   align-items: center;
@@ -2439,16 +2752,12 @@
   opacity: 0;
   transition: opacity 0.15s, background 0.15s, color 0.15s;
 }
-/* 按钮组内的复制按钮：不需要绝对定位 */
-.flowtext-agent-final-btns .flowtext-agent-copy-btn {
-  position: static;
-  opacity: 1;
-}
 .flowtext-agent-copy-btn svg {
   width: 13px;
   height: 13px;
 }
-.flowtext-agent-step--goal:hover .flowtext-agent-copy-btn {
+.flowtext-agent-step-text.flowtext-agent-step-text--markdown:hover .flowtext-agent-copy-btn,
+.flowtext-agent-turn-plan.flowtext-agent-turn-plan--markdown:hover .flowtext-agent-copy-btn {
   opacity: 1;
 }
 .flowtext-agent-copy-btn:hover {
@@ -2463,31 +2772,41 @@
 /* Agent 追问：可点击选项 */
 .flowtext-agent-followup-choices {
   margin-top: 8px;
-  padding-top: 8px;
-  border-top: 1px solid var(--background-modifier-border);
+}
+.flowtext-agent-followup-hint {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 20px;
+  line-height: 1.4;
 }
 .flowtext-agent-choice-row {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  gap: 6px;
   width: 100%;
 }
 .flowtext-agent-choice-chip {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 8px;
+  width: 100%;
+  box-sizing: border-box;
   text-align: left;
-  font-size: 12px;
+  font-size: 13px;
+  line-height: 1.45;
   background: transparent !important;
   cursor: pointer;
-  padding: 0;
+  padding: 8px 10px;
   box-shadow: none !important;
 }
 .flowtext-agent-choice-chip-icon {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   flex-shrink: 0;
+  width: 14px;
+  margin-top: 3px;
   color: var(--text-muted);
 }
 .flowtext-agent-choice-chip-icon svg {
@@ -2495,9 +2814,11 @@
   height: 14px;
 }
 .flowtext-agent-choice-chip-label {
-  flex: 1;
+  flex: 1 1 auto;
   min-width: 0;
   white-space: normal;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 .flowtext-agent-choice-chip:hover:not(:disabled) {
   background: var(--background-modifier-hover);
@@ -2509,6 +2830,9 @@
 .flowtext-agent-choice-chip:disabled {
   opacity: 0.55;
   cursor: default;
+}
+.flowtext-agent-step--clarification .flowtext-agent-step-text {
+  margin-bottom: 2px;
 }
 
 /* 错误 */
@@ -2832,40 +3156,84 @@
   gap: 6px;
 }
 
-/* Agent 上下文用量条（5 段，与设置「上下文总长度上限」一致） */
+/* Agent 工作上下文已使用量（圆环 + 百分比；接近压缩阈值时变色） */
 .flowtext-agent-context-meter {
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 4px;
+  min-width: 58px;
 }
 .flowtext-agent-context-bars {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0;
-  font-size: 8px;
-  line-height: 1;
-  letter-spacing: -0.04em;
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
   user-select: none;
 }
-.flowtext-agent-context-bar.is-empty {
-  color: var(--background-modifier-border);
-  opacity: 0.4;
+.flowtext-agent-context-ring {
+  position: absolute;
+  inset: 0;
+  width: 18px;
+  height: 18px;
+  overflow: visible;
+  transform: rotate(-90deg);
 }
-.flowtext-agent-context-meter--safe .flowtext-agent-context-bar.is-filled {
+.flowtext-agent-context-ring-track,
+.flowtext-agent-context-ring-progress {
+  fill: none;
+  cx: 12;
+  cy: 12;
+  r: 9;
+  stroke-width: 2.4;
+}
+.flowtext-agent-context-ring-track {
+  stroke: var(--background-modifier-border);
+  opacity: 0.45;
+}
+.flowtext-agent-context-ring-progress {
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  pathLength: 100;
+  transition: stroke-dashoffset 0.18s ease, stroke 0.18s ease;
+}
+.flowtext-agent-context-meter--safe .flowtext-agent-context-ring-progress {
   color: var(--color-green, #2ea043);
 }
-.flowtext-agent-context-meter--warn .flowtext-agent-context-bar.is-filled {
+.flowtext-agent-context-meter--warn .flowtext-agent-context-ring-progress {
   color: var(--interactive-accent);
 }
-.flowtext-agent-context-meter--orange .flowtext-agent-context-bar.is-filled {
+.flowtext-agent-context-meter--orange .flowtext-agent-context-ring-progress {
   color: var(--color-orange);
 }
-.flowtext-agent-context-meter--red .flowtext-agent-context-bar.is-filled {
+.flowtext-agent-context-meter--red .flowtext-agent-context-ring-progress {
   color: var(--color-red);
 }
-.flowtext-agent-context-meter--over .flowtext-agent-context-bar.is-filled {
+.flowtext-agent-context-meter--over .flowtext-agent-context-ring-progress {
   color: var(--color-red);
+}
+.flowtext-agent-context-percent {
+  color: var(--text-muted);
+  font-size: 10px;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.flowtext-agent-context-percent.is-compact {
+  font-size: 8px;
+}
+.flowtext-agent-context-meter--orange .flowtext-agent-context-percent,
+.flowtext-agent-context-meter--red .flowtext-agent-context-percent {
+  color: var(--text-normal);
+}
+.flowtext-agent-context-meter--over .flowtext-agent-context-percent {
+  color: var(--color-red);
+  font-weight: 600;
 }
 
 /* 选项行：加号上传 → 模型下拉 → 思考开关 */
@@ -3393,8 +3761,7 @@
   justify-content: space-between;
   padding: 10px;
   margin-bottom: 8px;
-  border-left: 4px solid gray;
-  border-radius: 6px;
+  border-radius: 8px;
   background: var(--background-modifier-hover);
 }
 .flowtext-settings-managed-item-info {
@@ -3414,4 +3781,49 @@
   display: flex;
   gap: 8px;
   flex-shrink: 0;
+}
+.flowtext-agent-step-text p{
+  margin: 0 !important;
+}
+
+.flowtext-agent-turn-plan.flowtext-agent-turn-plan--markdown table td{
+  border: 1px solid var(--table-border-color);
+  font-size: smaller;
+  padding: 4px;
+}
+
+.flowtext-agent-turn-plan.flowtext-agent-turn-plan--markdown table th{
+  border: 1px solid var(--table-border-color);
+  background-color: var(--background-modifier-hover);
+  font-size: small;
+}
+
+
+.flowtext-agent-turn-plan.flowtext-agent-turn-plan--markdown pre{
+  position: relative;
+  padding: 10px;
+  border-radius: var(--code-radius);
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%2300681a' fill-opacity='0.22' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+}
+
+.flowtext-agent-turn-plan.flowtext-agent-turn-plan--markdown .copy-code-button {
+  position: absolute;
+  top: -3px;
+  right: -5px;
+  z-index: 10;
+  background: transparent;
+  box-shadow: none;
+  cursor: pointer;
+}
+.flowtext-agent-turn-plan.flowtext-agent-turn-plan--markdown .copy-code-button svg.svg-icon{
+  width: 10x;
+}
+.flowtext-agent-turn-plan.flowtext-agent-turn-plan--markdown ol,
+.flowtext-agent-turn-plan.flowtext-agent-turn-plan--markdown ul{
+  padding-left: 15px;
+}
+.flowtext-agent-turn-plan.flowtext-agent-turn-plan--markdown blockquote{
+  margin: 15px;
+  border-left: 2px solid var(--callout-quote);
+  padding-left: 10px;
 }

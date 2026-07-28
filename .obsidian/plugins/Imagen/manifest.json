@@ -1,7 +1,7 @@
 {
 	"id": "imagen",
 	"name": "Imagen",
-	"version": "0.6.8",
+	"version": "0.6.9",
 	"minAppVersion": "0.15.0",
 	"description": "Imagen是一款图像管理插件，支持调整图片大小、滚轮缩放查看图片、图片编辑器（马赛克、画笔、矩形、圆形、箭头、高亮等）、图片重命名、云端储存等功能。",
 	"author": "ytmaps_鱼先生",

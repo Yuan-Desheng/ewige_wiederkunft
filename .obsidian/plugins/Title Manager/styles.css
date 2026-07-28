@@ -144,19 +144,14 @@
     color: var(--text-faint);
 }
 
-/* ==================== 大纲迷你地图样式 ==================== */
+/* ==================== 标题导航样式 ==================== */
 
-/* 迷你地图主容器 */
+/* 标题导航主容器 */
 .title-manager-minimap {
     position: fixed;
     z-index: 1000;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.2s ease;
     user-select: none;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
     will-change: transform;
     overflow: hidden; /* 基础状态下隐藏溢出内容 */
 }
@@ -168,17 +163,6 @@
     overflow: hidden; /* 基础状态下隐藏溢出内容 */
 }
 
-/* 悬停时允许内容溢出 */
-.title-manager-minimap:hover {
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
-    border-color: rgba(255, 255, 255, 0.12);
-    overflow: visible !important; /* 悬停时允许溢出 */
-}
-
-.title-manager-minimap:hover .minimap-content {
-    overflow: visible !important; /* 悬停时允许溢出 */
-
-}
 
 /* 标题容器基础状态和悬停状态 */
 .minimap-headings {
@@ -198,14 +182,9 @@
 
 
 
-/* 右侧位置的迷你地图 - 标题块使用 flex-direction: row-reverse */
-.title-manager-minimap[style*="right"] .heading-block {
+/* 标题块靠右对齐 */
+.title-manager-minimap .heading-block {
     flex-direction: row-reverse;
-}
-
-/* 左侧位置的迷你地图 - 标题块使用默认 flex-direction */
-.title-manager-minimap[style*="left"] .heading-block {
-    flex-direction: row;
 }
 
 /* 标题块悬停效果 - 优化右对齐阶梯样式 */
@@ -215,107 +194,105 @@
 
 }
 
-/* 放大悬停效果 - 确保文字完全可见 */
+/* 悬停时显示更长的波峰刻度 */
 .heading-block-hover {
-    transform: scale(1.3) !important;
+    width: var(--heading-block-current-width, var(--heading-block-hover-width)) !important;
     z-index: 10001 !important;
     opacity: 1 !important;
-    background: transparent !important;
-    white-space: nowrap !important;
-    overflow: visible !important;
-    text-overflow: unset !important;
-    min-width: max-content !important;
-    width: auto !important;
-    height: auto !important;
-    font-size: 12px !important;
+    transform: none !important;
 }
 
-/* 右侧位置的放大效果 - 从右边开始放大 */
-.title-manager-minimap[style*="right"] .heading-block-hover {
+/* 悬停放大效果 - 从右边开始放大 */
+.title-manager-minimap .heading-block-hover {
     transform-origin: center right !important;
-}
-
-/* 左侧位置的放大效果 - 从左边开始放大 */
-.title-manager-minimap[style*="left"] .heading-block-hover {
-    transform-origin: center left !important;
 }
 
 /* 深色主题适配 */
 .theme-dark .heading-block-hover {
-    background: var(--background-secondary) !important;
     border-color: var(--background-modifier-border-focus) !important;
 }
 
-/* 默认：标题块显示为横条（隐藏字体） */
+/* 默认：标题块显示为等长横条（隐藏字体） */
 .minimap-headings .heading-block {
     background: var(--background-modifier-border);
     border-radius: 2px;
     color: transparent;
-    transition: color 0.12s ease, background-color 0.12s ease;
+    min-width: 0;
+    transition: width 0.04s linear, opacity 0.08s ease, background-color 0.08s ease;
+    will-change: width;
 }
 
-/* 悬浮在标题容器时：显示文字，移除横条背景，呈现当前样式 */
+/* 悬浮在标题容器时：保留刻度形态，不在条形内展开标题文字 */
 .minimap-headings:hover .heading-block {
-    background: transparent !important;
-    overflow: visible !important;
-    text-overflow: unset !important;
+    color: transparent !important;
+    overflow: hidden !important;
+    text-overflow: clip !important;
     white-space: nowrap !important;
     will-change: opacity, transform;
     transform: translateZ(0);
 }
 
-/* 右侧迷你地图：悬浮在标题容器时，文本右对齐，盒子靠右锚定，超长只向左侧溢出 */
-.title-manager-minimap[style*="right"] .minimap-headings:hover .heading-block {
+/* 刻度靠右锚定，悬停时向左延展 */
+.title-manager-minimap .minimap-headings:hover .heading-block {
     right: 4px;      
     left: auto;               
-    width: auto !important;   
     justify-content: flex-end; 
     padding-right: 0;        
 }
 
-/* 悬浮时：为不同级别标题提供独立的文字颜色控制 */
-.minimap-headings:hover .heading-block.h1 {
-    color: var(--h1-color);
+.heading-block.current-heading {
+    background: red !important;
+    border: none !important;
 }
 
-.minimap-headings:hover .heading-block.h2 {
-    color: var(--h2-color);
+.heading-block-preview {
+    position: fixed;
+    width: min(360px, calc(100vw - 24px));
+    max-height: 180px;
+    padding: 12px 14px;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 8px;
+    background: var(--background-primary);
+    color: var(--text-normal);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+    opacity: 0;
+    transform: translateY(2px);
+    transition: opacity 0.12s ease, transform 0.12s ease;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 10050;
 }
 
-.minimap-headings:hover .heading-block.h3 {
-    color: var(--h3-color);
+.heading-block-preview.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.minimap-headings:hover .heading-block.h4 {
-    color: var(--h4-color);
+.heading-block-preview-title {
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--text-normal);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.minimap-headings:hover .heading-block.h5 {
-    color: var(--h5-color);
+.heading-block-preview-content {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 13px;
+    line-height: 1.45;
+    color: var(--text-muted);
 }
 
-.minimap-headings:hover .heading-block.h6 {
-    color: var(--h6-color);
-}
-
-
-
-.title-manager-minimap[style*="right"] .heading-block.current-heading,
-.title-manager-minimap[style*="right"] .heading-block.h3.current-heading,
-.title-manager-minimap[style*="right"] .heading-block.h4.current-heading,
-.title-manager-minimap[style*="right"] .heading-block.h5.current-heading,
-.title-manager-minimap[style*="right"] .heading-block.h6.current-heading {
-    border-left: none !important;
-    border-right: 5px solid red !important;
-}
-
-.title-manager-minimap[style*="left"] .heading-block.current-heading,
-.title-manager-minimap[style*="left"] .heading-block.h3.current-heading,
-.title-manager-minimap[style*="left"] .heading-block.h4.current-heading,
-.title-manager-minimap[style*="left"] .heading-block.h5.current-heading,
-.title-manager-minimap[style*="left"] .heading-block.h6.current-heading {
-    border-right: none !important;
-    border-left: 5px solid red !important;
+.theme-dark .heading-block-preview {
+    background: var(--background-secondary);
+    border-color: var(--background-modifier-border-focus);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
 }
 
 
@@ -328,84 +305,11 @@
 .title-manager-minimap.auto-hide:hover {
     opacity: 1;
 }
-
-/* 迷你地图把手样式 */
-.minimap-handle {
-    z-index: 1001;
-    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    opacity: 0; /* 默认隐藏，在 hover 或 collapsed 状态下显示 */
-    will-change: transform, opacity;
-}
-
-/* 右侧位置的把手样式（把手在左边） */
-.title-manager-minimap[style*="right"] .minimap-handle {
-    left: -10px;
-    border-right: none;
-}
-
-/* 左侧位置的把手样式（把手在右边） */
-.title-manager-minimap[style*="left"] .minimap-handle {
-    right: -10px;
-    border-left: none;
-}
-
-/* 把手图标样式 */
-.minimap-handle svg {
-    width: 6px;
-    height: 10px;
-    fill: none;
-    stroke: var(--text-muted);
-    stroke-width: 1.5;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    transition: stroke 0.2s ease;
-}
-
-/* 迷你地图悬停时显示把手 */
-.title-manager-minimap:hover .minimap-handle {
-    opacity: 1;
-}
-
-/* 把手悬停效果 */
-.minimap-handle:hover {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    border-color: rgba(255, 255, 255, 0.2);
-    background: rgba(var(--background-secondary-rgb), 1);
-}
-
-/* 右侧位置把手的悬停效果 */
-.title-manager-minimap[style*="right"] .minimap-handle:hover {
-    transform: translateY(-50%) translateX(-1px);
-}
-
-/* 左侧位置把手的悬停效果 */
-.title-manager-minimap[style*="left"] .minimap-handle:hover {
-    transform: translateY(-50%) translateX(1px);
-}
-
-.minimap-handle:hover svg {
-    stroke: var(--text-normal);
-}
-
-/* 把手激活效果 */
-.minimap-handle:active {
-    transform: translateY(-50%) translateX(0);
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-}
-
-/* 折叠状态下的把手样式 */
-.title-manager-minimap.collapsed .minimap-handle {
-    opacity: 1;
-    background: rgba(var(--background-secondary-rgb), 0.95);
-    border-color: rgba(255, 255, 255, 0.15);
-}
-
-
 /* 响应式设计 */
 @media (max-width: 768px) {
     .title-manager-minimap {
         width: 80px !important;
-        right: 10px !important;
+        right: 5px !important;
     }
     
     .heading-block {

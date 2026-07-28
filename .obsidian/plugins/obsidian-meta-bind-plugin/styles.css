@@ -889,35 +889,31 @@ th.mb-html-table-button-cell {
 }
 
 .mb-recent-tag-item {
-	padding: 2px 8px;
+	padding: 4px 10px;
 	background-color: var(--tag-background) !important;
-	border: 1px solid var(--tag-border-color);
-	border-radius: 12px;
+	border-radius: 999px;
 	cursor: pointer;
-	font-size: 0.7em;
+	font-size: 0.85em;
 	transition: all 0.15s ease;
 }
 
-.mb-recent-tag-item:hover {
-	background-color: var(--background-modifier-hover);
-	border-color: var(--interactive-accent);
-	color: var(--interactive-accent);
-}
 
-.mb-custom-tag-button {
+.mb-recent-tag-item.mb-recent-tag-item-selected {
+	background-color: var(--interactive-accent) !important;
 	border-color: var(--interactive-accent);
-}
-
-.mb-custom-tag-button:hover {
-	background-color: var(--interactive-accent-hover);
-	border-color: var(--interactive-accent-hover);
 	color: var(--text-on-accent);
 }
 
-.mb-custom-tag {
-	background-color: var(--background-secondary);
+
+.mb-custom-tag-button {
+	color: var(--text-on-accent);
 	border-color: var(--interactive-accent);
-	color: var(--text-normal);
+	font-weight: 500;
+}
+
+
+.mb-custom-tag {
+	border: 1px solid green !important;
 }
 
 div.setting-item.mb-vertical {

@@ -87,7 +87,8 @@
     }
     
     .pdfflow-last-highlight-btn,
-    .pdfflow-new-doc-btn {
+    .pdfflow-new-doc-btn,
+    .pdfflow-chapter-hierarchy-btn {
         padding: 4px !important;
         min-width: 28px !important;
         min-height: 24px !important;
@@ -205,10 +206,6 @@
     background: var(--background-primary);
     border-color: var(--background-modifier-border);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-}
-
-.theme-dark .pdfflow-comment-input-container {
-    border-top-color: var(--background-modifier-border);
 }
 
 .theme-dark .pdfflow-comment-input {
@@ -738,20 +735,20 @@
 
 /* 拖拽辅助按钮基础样式 */
 .pdfflow-drag-assist-button {
-    width: 25px !important;
-    height: 25px !important;
-    background: rgba(0, 122, 204, 0.9) !important;
-    border: 2px solid white !important;
-    border-radius: 50% !important;
-    color: white !important;
-    cursor: grab !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
-    transition: all 0.2s ease !important;
-    backdrop-filter: blur(8px) !important;
-
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  color: orangered;
+  background: white !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: flowtext-sparkles-appear 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  pointer-events: auto;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 /* 拖拽辅助按钮悬停状态 */
@@ -1130,50 +1127,92 @@
 
 
 
-/* 评论弹窗样式 */
+/* 评论弹窗 */
 .pdfflow-comment-popup {
-    position: fixed;
+    display: flex;
+    flex-direction: column;
+    width: 260px;
+    max-height: 360px;
     background: var(--background-primary);
-    border: 1px solid var(--background-modifier-border);
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-    padding: 12px;
-    padding-top: 5px;
-    max-width: 300px;
-    max-height: 400px;
-    overflow-y: auto;
-    z-index: 10000 !important;
-    line-height: 0.5;
-    animation: commentPopupSlideIn 0.2s ease-out;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    font-size: 12px;
+    line-height: 1.4;
 }
 
-@keyframes commentPopupSlideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px) scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
+.pdfflow-comment-header {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 8px;
+    flex-shrink: 0;
+    background: var(--background-secondary-alt);
+    cursor: grab;
+    user-select: none;
+    touch-action: none;
+}
+
+.pdfflow-comment-header button,
+.pdfflow-comment-header .pdfflow-color-dot {
+    cursor: pointer;
+}
+
+.pdfflow-comment-popup.pdfflow-comment-dragging .pdfflow-comment-header {
+    cursor: grabbing;
+}
+
+.pdfflow-comment-color-dot {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+}
+
+.pdfflow-comment-header .pdfflow-tags-container {
+    flex: 1;
+    min-width: 0;
+    margin-right: 0;
+}
+
+.pdfflow-comment-header .pdfflow-tag {
+    padding: 1px 6px !important;
+    font-size: 10px;
+    border-radius: var(--tag-radius) !important;
+}
+
+.pdfflow-comment-close {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 15px;
+    line-height: 1;
+    border-radius: 50%;
+}
+
+.pdfflow-comment-close:hover {
+    background: var(--background-modifier-hover);
+    color: var(--text-normal);
+}
+
+.pdfflow-comment-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 6px 8px;
+    min-height: 0;
 }
 
 .pdfflow-comment-popup::-webkit-scrollbar {
     width: 4px;
 }
 
-.pdfflow-comment-popup::-webkit-scrollbar-track {
-    background: var(--scrollbar-bg);
-    border-radius: 2px;
-}
-
 .pdfflow-comment-popup::-webkit-scrollbar-thumb {
     background: var(--scrollbar-thumb-bg);
     border-radius: 2px;
-}
-
-.pdfflow-comment-popup::-webkit-scrollbar-thumb:hover {
-    background: var(--scrollbar-thumb-bg-hover);
 }
 
 
@@ -1296,10 +1335,11 @@
     align-items: center;
     background: var(--tag-background);
     color: var(--tag-color);
-    border-radius: 12px;
+    border-radius: var(--tag-radius) !important;
     font-size: 11px;
     transition: all 0.2s ease;
     padding: 5px !important;
+    
 }
 
 .pdfflow-tag:hover {
@@ -1446,6 +1486,26 @@
     cursor: pointer;
 }
 
+/* Canvas 章节弹窗：限制归属章节下拉框不溢出 */
+.pdfflow-chapter-modal .modal-content {
+    overflow-x: hidden;
+}
+
+.pdfflow-chapter-modal .setting-item-control {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.pdfflow-chapter-modal .setting-item-control select.dropdown,
+.pdfflow-chapter-modal .setting-item-control .pdfflow-chapter-parent-select {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 /* 外部 PDF 虚拟链接弹窗说明 */
 .pdfflow-dummy-modal-desc {
     font-size: var(--font-ui-small);
@@ -1466,18 +1526,18 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 8px;
-    margin: 0 0 8px 0;
-    padding: 8px 10px;
-    border-radius: 6px;
-    border: 1px solid red;
+    gap: 6px;
+    margin: 0;
+    padding: 6px 8px;
+    background: var(--background-modifier-error-hover, rgba(200, 60, 60, 0.08));
+    border-bottom: 1px solid var(--background-modifier-border);
 }
 
 .pdfflow-delete-confirm-text {
-    flex: 1 1 160px;
-    font-size: 12px;
-    line-height: 1.35;
-    color: var(--text-normal);
+    flex: 1 1 120px;
+    font-size: 11px;
+    line-height: 1.3;
+    color: var(--text-muted);
 }
 
 .pdfflow-delete-confirm-actions {
@@ -1488,12 +1548,12 @@
 
 .pdfflow-delete-confirm-cancel,
 .pdfflow-delete-confirm-yes {
-    padding: 4px 10px;
-    font-size: 12px;
-    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 11px;
+    border-radius: 3px;
     cursor: pointer;
     border: 1px solid var(--background-modifier-border);
-    background: var(--background-secondary);
+    background: var(--background-primary);
     color: var(--text-normal);
 }
 
@@ -1543,142 +1603,80 @@
     }
 }
 
-/* 评论列表样式 */
+/* 评论列表 */
 .pdfflow-comment-list {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 4px;
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-/* 评论项样式 - 无序列表样式 */
 .pdfflow-comment-item {
     position: relative;
-    padding: 2px 12px 2px 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 4px 6px;
     background: var(--background-secondary);
-    border-radius: 6px;
-    word-break: break-word;
-    margin-bottom: 1px;
-    line-height: 14px;
-    transition: background-color 0.2s ease;
-    list-style: none;
+    border-radius: 4px;
     font-size: 12px;
+    line-height: 1.4;
+    list-style: none;
 }
 
-.pdfflow-comment-item::before {
-    content: "•";
-    position: absolute;
-    left: 8px;
-    top: 4px;
-    color: var(--interactive-accent);
-    font-weight: bold;
-    font-size: 16px;
-    line-height: 0.5;
+.pdfflow-comment-text {
+    flex: 1;
+    word-break: break-word;
+    white-space: pre-wrap;
 }
 
-.pdfflow-comment-item:hover {
-    background: var(--background-modifier-hover);
+.pdfflow-comment-empty {
+    padding: 8px 4px;
+    font-size: 11px;
+    color: var(--text-muted);
+    list-style: none;
+    opacity: 0.6;
 }
 
-/* 评论项删除按钮样式 */
 .pdfflow-comment-delete-btn {
-    position: absolute;
-    top: -6px;
-    right: -6px;
-    width: 18px;
-    height: 18px;
-    background: var(--background-modifier-error);
-    border-radius: 50%;
-    display: none;
-    align-items: center;
-    justify-content: center;
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    border: none;
+    border-radius: 3px;
+    background: transparent !important;
     cursor: pointer;
-    z-index: 25;
     opacity: 0;
-    transition: all 0.2s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    color: white;
-    font-size: 10px;
-    font-weight: bold;
-    line-height: 1;
+    box-shadow: none !important;
 }
 
 .pdfflow-comment-delete-btn::before {
     content: "×";
-    color: white;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: bold;
-    line-height: 1;
 }
 
 .pdfflow-comment-delete-btn:hover {
-    background: #dc2626;
-    transform: scale(1.1);
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
-}
-
-.pdfflow-comment-delete-btn:active {
-    transform: scale(0.95);
-}
-
-/* 鼠标悬浮时显示删除按钮 */
-.pdfflow-comment-item:hover .pdfflow-comment-delete-btn {
-    display: flex;
+    background: var(--background-modifier-error-hover, rgba(200, 60, 60, 0.15));
+    color: var(--text-error, #c44);
     opacity: 1;
 }
 
-/* 触摸设备优化 - 始终显示删除按钮 */
+.pdfflow-comment-item:hover .pdfflow-comment-delete-btn {
+    opacity: 0.7;
+}
+
 @media (pointer: coarse) {
     .pdfflow-comment-delete-btn {
-        display: flex !important;
-        opacity: 1 !important;
-        width: 20px !important;
-        height: 20px !important;
-        top: -4px !important;
-        left: -4px !important;
+        opacity: 0.7 !important;
     }
-    
-    .pdfflow-comment-delete-btn::before {
-        font-size: 14px !important;
-    }
-    
-    .pdfflow-comment-delete-btn:hover {
-        transform: scale(1.15) !important;
-    }
-}
-
-/* 评论关闭按钮样式 */
-.pdfflow-comment-close {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: var(--text-muted);
-    font-size: 16px;
-    border-radius: 50%;
-    transition: background-color 0.2s ease;
-}
-
-.pdfflow-comment-close:hover {
-    background-color: var(--background-modifier-hover);
 }
 
 /* 响应式设计 */
 @media (max-width: 600px) {
-    .pdfflow-comment-popup {
-        max-width: 90vw;
-        max-height: 60vh;
-        left: 5vw !important;
-        right: 5vw;
-    }
-    
     .pdfflow-comment-button {
         width: 24px;
         height: 24px;
@@ -1690,65 +1688,93 @@
     }
 }
 
-/* 评论输入框样式 */
-.pdfflow-comment-input-container {
-    display: flex;
-    gap: 8px;
-    padding-top: 12px;
-    background: var(--background-secondary);
+/* 评论输入区 */
+.pdfflow-comment-footer {
+    padding: 6px 8px 8px;
+    flex-shrink: 0;
+}
+
+.pdfflow-comment-input-wrap {
+    position: relative;
+    width: 100%;
 }
 
 .pdfflow-comment-input {
-    flex: 1;
+    display: block;
+    width: 100%;
+    min-height: 44px;
+    padding: 6px 34px 6px 8px;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 6px;
+    background: var(--background-secondary);
+    color: var(--text-normal);
+    font-size: 12px;
+    line-height: 1.4;
+    font-family: inherit;
+    resize: none;
+    outline: none;
+    box-sizing: border-box;
 }
 
+.pdfflow-comment-input:focus {
+    border-color: var(--interactive-accent);
+}
 
 .pdfflow-comment-input::placeholder {
     color: var(--text-muted);
+    font-size: 11px;
 }
 
 .pdfflow-comment-add-btn {
-    padding: 8px 16px;
-    background: transparent !important;
-    color: var(--text-on-accent);
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
+    width: 24px;
+    height: 24px;
+    padding: 0;
     border: none;
     border-radius: 4px;
-    font-size: 14px;
-    font-weight: 500;
-    width: 14px;
+    background: transparent !important;
     cursor: pointer;
-    transition: background-color 0.2s ease;
-    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     box-shadow: none !important;
-    
 }
 
+.pdfflow-comment-add-btn:hover {
+    filter: brightness(1.08);
+}
 
-/* 深色主题适配 */
-.theme-dark .pdfflow-comment-input-container {
-    border-top-color: var(--background-modifier-border);
+.pdfflow-comment-add-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pdfflow-comment-add-icon svg {
+    width: 13px;
+    height: 13px;
 }
 
 .theme-dark .pdfflow-comment-input {
     background: var(--background-primary);
-    border-color: var(--background-modifier-border);
-    color: var(--text-normal);
 }
 
 /* 移动端适配 */
 @media (max-width: 600px) {
-    .pdfflow-comment-input-container {
-        padding: 8px;
-        gap: 6px;
+    .pdfflow-comment-popup {
+        width: 90vw;
+        max-height: 60vh;
+        left: 5vw !important;
+        right: 5vw;
     }
-    
+
+    .pdfflow-comment-footer {
+        padding: 6px;
+    }
+
     .pdfflow-comment-input {
-        padding: 6px 10px;
-        font-size: 13px;
-    }
-    
-    .pdfflow-comment-add-btn {
-        padding: 6px 12px;
         font-size: 13px;
     }
 }
@@ -1874,7 +1900,8 @@
 
 /* 按钮样式优化 */
 .pdfflow-last-highlight-btn,
-.pdfflow-new-doc-btn {
+.pdfflow-new-doc-btn,
+.pdfflow-chapter-hierarchy-btn {
     flex-shrink: 0 !important;
     min-width: 32px !important;
     min-height: 28px !important;
@@ -2043,4 +2070,148 @@ button:not(.clickable-icon) .pdfflow-tag-filter-btn {
 }
 .pdf-toolbar-left{
     gap: 2px !important;
+}
+
+/* 章节层级编辑弹窗 */
+.pdfflow-hier-desc {
+    color: var(--text-muted);
+    font-size: 12px;
+    margin: 4px 0 8px;
+}
+.pdfflow-hier-tree {
+    --pdfflow-hier-indent: 20px;
+    --pdfflow-hier-pad: 8px;
+    --pdfflow-hier-line: var(--background-modifier-border);
+    max-height: 55vh;
+    overflow: auto;
+    padding: 4px 0;
+    margin: 8px 0;
+}
+.pdfflow-hier-row {
+    display: flex;
+    align-items: stretch;
+    cursor: grab;
+    border-radius: 4px;
+    user-select: none;
+    white-space: nowrap;
+}
+.pdfflow-hier-toggle {
+    flex-shrink: 0;
+    width: 16px;
+    text-align: center;
+    cursor: pointer;
+    color: var(--text-muted);
+    line-height: 1;
+    align-self: center;
+}
+.pdfflow-hier-toggle:hover {
+    color: var(--text-normal);
+}
+.pdfflow-hier-toggle-empty {
+    visibility: hidden;
+    pointer-events: none;
+}
+.pdfflow-hier-row[data-level="0"] {
+    padding-left: var(--pdfflow-hier-pad);
+}
+.pdfflow-hier-guides {
+    display: flex;
+    flex-shrink: 0;
+    align-items: stretch;
+    margin-left: var(--pdfflow-hier-pad);
+}
+.pdfflow-hier-guide {
+    width: var(--pdfflow-hier-indent);
+    flex-shrink: 0;
+    align-self: stretch;
+    position: relative;
+}
+.pdfflow-hier-guide::before {
+    content: '';
+    position: absolute;
+    left: calc(var(--pdfflow-hier-indent) / 2 - 0.5px);
+    top: 0;
+    bottom: 0;
+    border-left: 1px solid var(--pdfflow-hier-line);
+    opacity: 0.55;
+}
+.pdfflow-hier-guide.continue::before {
+    bottom: 0;
+}
+.pdfflow-hier-guide.is-last:not(.continue)::before {
+    bottom: 50%;
+}
+.pdfflow-hier-guide.is-last::after {
+    content: '';
+    position: absolute;
+    left: calc(var(--pdfflow-hier-indent) / 2 - 0.5px);
+    top: 50%;
+    width: calc(var(--pdfflow-hier-indent) / 2);
+    border-top: 1px solid var(--pdfflow-hier-line);
+    opacity: 0.55;
+}
+.pdfflow-hier-label {
+    flex: 1;
+    min-width: 0;
+    padding-left: 2px;
+    line-height: 1.5;
+    align-self: center;
+    font-size: small;
+}
+.pdfflow-hier-label-clickable {
+    cursor: pointer;
+}
+.pdfflow-hier-label-clickable:hover {
+    color: var(--text-accent);
+    text-decoration: underline;
+}
+.pdfflow-hier-delete {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    width: 22px;
+    height: 22px;
+    margin-right: 4px;
+    opacity: 0;
+    cursor: pointer;
+    color: var(--text-muted);
+    border-radius: 4px;
+}
+.pdfflow-hier-delete svg {
+    width: 14px;
+    height: 14px;
+}
+.pdfflow-hier-row:hover .pdfflow-hier-delete {
+    opacity: 1;
+}
+.pdfflow-hier-delete:hover {
+    color: var(--text-error);
+    background: var(--background-modifier-hover);
+}
+.pdfflow-hier-row:hover {
+    background: var(--background-modifier-hover);
+}
+.pdfflow-hier-row.drag-over {
+    background: var(--background-modifier-active-hover);
+    outline: 1px dashed var(--interactive-accent);
+    outline-offset: -1px;
+}
+
+/* 左侧 leaf 章节层级面板 */
+.pdfflow-hier-view {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 12px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.pdfflow-hier-view .pdfflow-hier-tree {
+    max-height: none;
+    flex: 1;
+    min-height: 0;
+    margin-bottom: 0;
+    overflow-x: hidden;
 }

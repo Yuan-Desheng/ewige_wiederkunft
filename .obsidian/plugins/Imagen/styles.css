@@ -54,13 +54,142 @@
 
 
 /* 颜色选择器 */
+.imagen-color-picker {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
 
-.imagen-toolbar input[type="color"]:hover {
-    border-color: rgba(255, 255, 255, 0.3);
+.imagen-color-btn {
+    width: var(--input-height);
+    height: var(--input-height);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+
+
+.imagen-color-palette {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%);
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    padding: 6px;
+    background: hsl(0deg 0% 86.75%);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    z-index: 10;
+}
+
+.imagen-color-palette.is-open {
+    display: grid;
+}
+
+.imagen-color-swatch {
+    width: 22px;
+    height: 22px;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 0;
+}
+
+.imagen-color-swatch:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.imagen-color-swatch.active {
+    border-color: #fff;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3);
 }
 
 /* 画笔大小控制 */
+.imagen-size-control {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
 
+.imagen-size-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+
+.imagen-size-dot {
+    display: block;
+    border-radius: 50%;
+    min-width: 2px;
+    min-height: 2px;
+}
+
+.imagen-size-value {
+    min-width: 16px;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}
+
+.imagen-size-slider {
+    width: 72px !important;
+}
+
+.imagen-size-popup {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: var(--color-black);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    z-index: 10;
+    pointer-events: none;
+}
+
+.imagen-size-popup.is-open {
+    display: flex;
+}
+
+.imagen-size-popup-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+}
+
+.imagen-size-popup-dot {
+    display: block;
+    border-radius: 50%;
+}
+
+.imagen-size-popup-value {
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
 
 .imagen-toolbar input[type="range"]::-webkit-slider-thumb {
     appearance: none;
@@ -71,6 +200,43 @@
     cursor: pointer;
     border: 2px solid rgba(100, 150, 255, 0.8);
     transform: translateY(-2px);
+}
+
+.imagen-text-input {
+    position: fixed;
+    z-index: 10001;
+    min-width: 100px;
+    padding: 0;
+    margin: 0;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    background: transparent;
+    font-family: var(--font-text);
+    font-weight: normal;
+    line-height: 1;
+    box-sizing: content-box;
+    white-space: pre;
+    overflow: visible;
+    display: inline-block;
+    vertical-align: top;
+    caret-color: currentColor;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.imagen-text-input:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.imagen-text-input:empty::before {
+    content: attr(data-placeholder);
+    color: rgba(255, 255, 255, 0.45);
+    -webkit-text-stroke: 0 transparent;
+    text-shadow: none;
+    pointer-events: none;
 }
 
 /* 画布容器 */
@@ -117,6 +283,7 @@
     color: rgba(255, 255, 255, 0.7);
     font-size: 16px;
     font-weight: 500;
+    white-space: nowrap;
 }
 
 /* 工具栏分组分隔符 */
@@ -173,14 +340,26 @@
         height: 14px;
     }
     
+
+    .imagen-size-preview {
+        width: 22px;
+        height: 22px;
+    }
+
+    .imagen-size-value {
+        font-size: 11px;
+        min-width: 14px;
+    }
+
     .imagen-toolbar input[type="range"] {
         width: 40px;
         height: 16px;
     }
     
-    .imagen-toolbar input[type="color"] {
-        width: 28px;
-        height: 28px;
+
+    .imagen-color-swatch {
+        width: 20px;
+        height: 20px;
     }
     
     .imagen-toolbar .separator {
@@ -296,7 +475,7 @@
 }
 
 .imagen-wrap-right-circle img {
-    border-radius: 50%;
+    border-radius: 50% !important;
     aspect-ratio: 1 / 1;
     object-fit: cover;
 }
@@ -388,4 +567,129 @@
 
 .imagen-wrap-toolbar-btn:hover {
     background: var(--interactive-accent, #007acc);
+}
+
+/* ========== 阅读视图文字环绕 ========== */
+
+.markdown-preview-view .imagen-text-wrap,
+.markdown-rendered .imagen-text-wrap {
+    display: block;
+    width: fit-content;
+}
+
+.markdown-preview-view .imagen-text-wrap .image-wrapper,
+.markdown-rendered .imagen-text-wrap .image-wrapper {
+    display: block;
+}
+
+/* ========== PDF 导出 / 打印样式 ========== */
+
+@media print {
+    .imagen-wrap-toolbar {
+        display: none !important;
+    }
+
+    .imagen-wrap-alt-label {
+        cursor: default !important;
+        pointer-events: none !important;
+        -webkit-user-modify: read-only !important;
+    }
+
+    .imagen-wrap-alt-label:empty::before {
+        content: none !important;
+    }
+
+    .imagen-wrap-alt-label:hover,
+    .imagen-wrap-alt-label:focus {
+        background: transparent !important;
+        color: inherit !important;
+    }
+
+    .imagen-text-wrap,
+    .print .imagen-text-wrap {
+        display: block !important;
+        width: fit-content !important;
+        max-width: 100%;
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    .imagen-wrap-left-rounded,
+    .imagen-wrap-left-circle,
+    .print .imagen-wrap-left-rounded,
+    .print .imagen-wrap-left-circle,
+    .print .internal-embed.image-embed[src*="#LR"],
+    .print .internal-embed.image-embed[src*="#LC"] {
+        float: left !important;
+        margin-right: 15px !important;
+        margin-bottom: 10px !important;
+        margin-top: 4px !important;
+        overflow: hidden !important;
+    }
+
+    .imagen-wrap-right-rounded,
+    .imagen-wrap-right-circle,
+    .print .imagen-wrap-right-rounded,
+    .print .imagen-wrap-right-circle,
+    .print .internal-embed.image-embed[src*="#RR"],
+    .print .internal-embed.image-embed[src*="#RC"] {
+        float: right !important;
+        margin-left: 15px !important;
+        margin-bottom: 10px !important;
+        margin-top: 4px !important;
+        overflow: hidden !important;
+    }
+
+    .imagen-wrap-left-rounded img,
+    .imagen-wrap-right-rounded img,
+    .print .internal-embed.image-embed[src*="#LR"] img,
+    .print .internal-embed.image-embed[src*="#RR"] img {
+        border-radius: 8px !important;
+        display: block !important;
+        max-width: 100% !important;
+        object-fit: cover !important;
+    }
+
+    .imagen-wrap-left-circle img,
+    .imagen-wrap-right-circle img,
+    .print .internal-embed.image-embed[src*="#LC"] img,
+    .print .internal-embed.image-embed[src*="#RC"] img {
+        border-radius: 50% !important;
+        aspect-ratio: 1 / 1 !important;
+        object-fit: cover !important;
+        display: block !important;
+        max-width: 100% !important;
+    }
+
+    .imagen-text-wrap img,
+    .print .imagen-text-wrap img {
+        object-fit: cover !important;
+    }
+
+    .imagen-wrap-left-rounded .imagen-wrap-alt-label,
+    .imagen-wrap-left-circle .imagen-wrap-alt-label,
+    .print .imagen-wrap-left-rounded .imagen-wrap-alt-label,
+    .print .imagen-wrap-left-circle .imagen-wrap-alt-label {
+        clear: both !important;
+        text-align: center !important;
+    }
+
+    .imagen-wrap-right-rounded .imagen-wrap-alt-label,
+    .imagen-wrap-right-circle .imagen-wrap-alt-label,
+    .print .imagen-wrap-right-rounded .imagen-wrap-alt-label,
+    .print .imagen-wrap-right-circle .imagen-wrap-alt-label {
+        clear: both !important;
+        text-align: center !important;
+    }
+}
+
+/* 禁用 Obsidian 1.13+ 内置灯箱（由 Imagen 大图查看接管） */
+body.imagen-disable-obsidian-lightbox .lightbox {
+    display: none !important;
+    pointer-events: none !important;
+}
+
+/* 隐藏整个操作栏（保留编辑按钮） */
+.embed-actions .embed-action:not(.edit-block-button) {
+    display: none !important;
 }
