@@ -3,3 +3,6 @@
 # Editor / plugin backup files (e.g. note.md.bak.20260724_172949)
 *.bak.*
 *.bak
+
+# JetBrains IDE config
+.idea/

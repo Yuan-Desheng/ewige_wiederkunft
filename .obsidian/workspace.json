@@ -23,18 +23,18 @@
             }
           },
           {
-            "id": "ab725adf63991be1",
+            "id": "2d566f3d0867a0e3",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Documents/I.P.A.R.A/工作领域/项目/自动化选品上品（原始需求）（目前可行方案）.md",
+                "file": "Documents/I.P.A.R.A/工作领域/项目/ultracode.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "自动化选品上品（原始需求）（目前可行方案）"
+              "title": "ultracode"
             }
           },
           {
@@ -50,21 +50,6 @@
               },
               "icon": "lucide-file",
               "title": "项目立项与研发流程规范"
-            }
-          },
-          {
-            "id": "2d566f3d0867a0e3",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Documents/I.P.A.R.A/工作领域/项目/ultracode.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "ultracode"
             }
           },
           {
@@ -110,6 +95,21 @@
               },
               "icon": "lucide-file",
               "title": "Hermes Agent"
+            }
+          },
+          {
+            "id": "112282e5f7051740",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documents/I.P.A.R.A/学习领域/收集/Claude Code.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "Claude Code"
             }
           },
           {
@@ -173,7 +173,22 @@
             }
           },
           {
-            "id": "86d5feaaf9de5288",
+            "id": "58e7b8b813c4ba14",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documents/I.P.A.R.A/工作领域/项目/Seerfar 关键词导出 —— 图文教程.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "Seerfar 关键词导出 —— 图文教程"
+            }
+          },
+          {
+            "id": "ab725adf63991be1",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -188,21 +203,37 @@
             }
           },
           {
-            "id": "58e7b8b813c4ba14",
+            "id": "d537035bd933bd7e",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Documents/I.P.A.R.A/工作领域/项目/Seerfar关键词导出-图文教程.md",
+                "file": "Documents/I.P.A.R.A/工作领域/项目/国网培训.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "Seerfar关键词导出-图文教程"
+              "title": "国网培训"
+            }
+          },
+          {
+            "id": "d53dbbc41b8c0290",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documents/I.P.A.R.A/学习领域/收集/Ultralytics 安装与使用笔记.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "Ultralytics 安装与使用笔记"
             }
           }
-        ]
+        ],
+        "currentTab": 14
       }
     ],
     "direction": "vertical"
@@ -222,7 +253,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
               "title": "文件列表"
@@ -234,7 +267,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "`cc`",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -265,8 +298,7 @@
               "title": "CLI Commander"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -340,13 +372,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Documents/I.P.A.R.A/工作领域/收集/工作流技能.md",
+                "file": "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "工作流技能 的大纲"
+              "title": "大纲"
             }
           },
           {
@@ -474,12 +506,36 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "30a7adbc7eab39c5",
+  "active": "d53dbbc41b8c0290",
   "lastOpenFiles": [
-    "Documents/I.P.A.R.A/工作领域/项目/Seerfar关键词导出-图文教程.md",
     "数据库与导航.md",
-    "Documents/I.P.A.R.A/工作领域/项目/自动化选品上品（原始需求）（目前可行方案）.md",
+    "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-08-03.md",
+    "Documents/I.P.A.R.A/工作领域/项目/国网培训.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Ultralytics 安装与使用笔记.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent.md",
+    "Documents/I.P.A.R.A/工作领域/收集/工作流技能.md",
+    "Documents/I.P.A.R.A/学习领域/项目/Interactive Tech Tutorial Platform.md",
+    "Documents/I.P.A.R.A/工作领域/项目/认证机构erp系统.md",
     "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Claude Code.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Linux.md",
+    "Documents/I.P.A.R.A/工作领域/项目/开发人员转产品经理.md",
+    "Documents/I.P.A.R.A/工作领域/收集/项目立项与研发流程规范.md",
+    "Documents/I.P.A.R.A/工作领域/项目/ultracode.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Claude Code + Blender + Unity + Flutter.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Claude Code-指令.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Claude Code-命令.md",
+    "Assistants/Templater/主页/homepage-侧页.md",
+    "Documents/I.P.A.R.A/工作领域/项目/自动化选品上品（原始需求）（目前可行方案）.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Hollow Knight Silksong BepInEx 皮肤 mod 安装笔记.md",
+    "Documents/I.P.A.R.A/工作领域/收集/团队负责人 岗位职责.md",
+    "Documents/I.P.A.R.A/工作领域/收集/Agent Harness 岗位职责.md",
+    "Documents/I.P.A.R.A/工作领域/项目/海外社交媒体传播动态分析系统_二期.md",
+    "Documents/I.P.A.R.A/工作领域/项目/Seerfar 关键词导出 —— 图文教程.md",
+    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/自动化选品上品.canvas",
+    "Documents/I.P.A.R.A/学习领域/收集/aura.md",
+    "Documents/I.P.A.R.A/工作领域/项目/Seerfar 关键词导出 —— 图文教程.md.tmp.21991.b858fb728d1b",
+    "Documents/I.P.A.R.A/工作领域/项目/Seerfar 关键词导出 —— 图文教程.md.tmp.21991.34dae3639cce",
     "Documents/I.P.A.R.A/工作领域/项目/Seerfar关键词导出-图文教程.md.tmp.21991.88004bbb8d56",
     "Extras/附件/Seerfar关键词导出-06-数据导出弹窗.png",
     "Extras/附件/Seerfar关键词导出-05-导出格式下拉.png",
@@ -487,36 +543,14 @@
     "Extras/附件/Seerfar关键词导出-03-查询结果1709条.png",
     "Extras/附件/Seerfar关键词导出-02-填好筛选条件.png",
     "Extras/附件/Seerfar关键词导出-01-市场热词初始页.png",
-    "Documents/I.P.A.R.A/工作领域/收集/工作流技能.md",
-    "Documents/I.P.A.R.A/工作领域/项目/ultracode.md",
-    "Documents/I.P.A.R.A/工作领域/收集/项目立项与研发流程规范.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent.md",
-    "Documents/I.P.A.R.A/工作领域/项目/海外社交媒体传播动态分析系统_二期.md",
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/海媒传播分析系统.canvas",
     "Documents/I.P.A.R.A/工作领域/收集/海外舆情检索库-Meilisearch重构.md",
-    "Documents/I.P.A.R.A/工作领域/项目/ 自动化选品上品.md",
     "Extras/附件/Pasted image 20260714142823.png",
     "Extras/附件/Pasted image 20260714142623.png",
     "Extras/附件/Pasted image 20260714142311.png",
     "Extras/附件/Pasted image 20260714141925.png",
-    "Documents/I.P.A.R.A/工作领域/项目/认证机构erp系统.md",
-    "Documents/I.P.A.R.A/工作领域/项目/自动化选品上品（废弃）（需求过度）.md",
-    "Documents/I.P.A.R.A/工作领域/项目/海外社交媒体传播动态分析系统资料汇总.md",
-    "Documents/I.P.A.R.A/工作领域/项目/开发人员转产品经理.md",
-    "Documents/I.P.A.R.A/工作领域/项目/小红书运营.md",
-    "Documents/I.P.A.R.A/工作领域/项目/xhs-setup-notes.md",
-    "Documents/I.P.A.R.A/工作领域/项目/xhs-coze-prd.md",
-    "Documents/I.P.A.R.A/工作领域/项目/Tk短视频运营.md",
-    "Documents/I.P.A.R.A/工作领域/收集/运维体系建设方案.md",
     "Documents/I.P.A.R.A/工作领域/收集",
-    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/自动化选品上品.canvas",
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/ultracode.canvas",
-    "Documents/I.P.A.R.A/学习领域/项目/Interactive Tech Tutorial Platform.md",
-    "Documents/I.P.A.R.A/学习领域/收集/计算属性、方法、watch监听器的区别.md",
-    "Documents/I.P.A.R.A/学习领域/收集/学习typeScript（weakMap，weakSet，set，map）.md",
-    "Documents/I.P.A.R.A/学习领域/收集/学习TypeScript进阶类型兼容.md",
-    "Documents/I.P.A.R.A/学习领域/收集/学习TypeScript类型守卫.md",
-    "Documents/I.P.A.R.A/学习领域/收集/学习TypeScript28（infer 递归）.md",
     "Documents/I.P.A.R.A/学习领域/收集/NAS SMB 网络磁盘挂载.md.bak.20260724_172949",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/小满zs-react.canvas",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/AI笔记.canvas.tmp.47216.fec61d90dd10",
@@ -525,8 +559,6 @@
     "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【发布】Android上架.md.tmp.47216.ebd6d88f553b",
     "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【发布】iOS上架.md.tmp.47216.07fdbe00711a",
     "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【发布】打包.md.tmp.47216.3e62c8ff7895",
-    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】网络.md.tmp.47216.f0571b7b0063",
-    "Documents/I.P.A.R.A/学习领域/收集/学习ReactNative【界面交互】动画.md.tmp.47216.1549079a9d40",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/峰华Vue3.canvas",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/小满zs-typescript.canvas",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/Artificial Intelligence.canvas",
