@@ -216,24 +216,8 @@
               "icon": "lucide-file",
               "title": "国网培训"
             }
-          },
-          {
-            "id": "d53dbbc41b8c0290",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Documents/I.P.A.R.A/学习领域/收集/Ultralytics 安装与使用笔记.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "Ultralytics 安装与使用笔记"
-            }
           }
-        ],
-        "currentTab": 14
+        ]
       }
     ],
     "direction": "vertical"
@@ -506,22 +490,22 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "d53dbbc41b8c0290",
+  "active": "30a7adbc7eab39c5",
   "lastOpenFiles": [
+    "Documents/I.P.A.R.A/工作领域/项目/国网培训.md",
+    "Documents/I.P.A.R.A/工作领域/项目/ultracode.md",
+    "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
+    "Documents/I.P.A.R.A/工作领域/收集/工作流技能.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Ultralytics 安装与使用笔记.md",
     "数据库与导航.md",
     "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-08-03.md",
-    "Documents/I.P.A.R.A/工作领域/项目/国网培训.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Ultralytics 安装与使用笔记.md",
     "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent.md",
-    "Documents/I.P.A.R.A/工作领域/收集/工作流技能.md",
     "Documents/I.P.A.R.A/学习领域/项目/Interactive Tech Tutorial Platform.md",
     "Documents/I.P.A.R.A/工作领域/项目/认证机构erp系统.md",
-    "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
     "Documents/I.P.A.R.A/学习领域/收集/Claude Code.md",
     "Documents/I.P.A.R.A/学习领域/收集/Linux.md",
     "Documents/I.P.A.R.A/工作领域/项目/开发人员转产品经理.md",
     "Documents/I.P.A.R.A/工作领域/收集/项目立项与研发流程规范.md",
-    "Documents/I.P.A.R.A/工作领域/项目/ultracode.md",
     "Documents/I.P.A.R.A/学习领域/收集/Claude Code + Blender + Unity + Flutter.md",
     "Documents/I.P.A.R.A/学习领域/收集/Claude Code-指令.md",
     "Documents/I.P.A.R.A/学习领域/收集/Claude Code-命令.md",
