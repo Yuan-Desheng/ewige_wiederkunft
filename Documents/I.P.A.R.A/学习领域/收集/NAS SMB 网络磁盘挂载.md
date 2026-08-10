@@ -389,24 +389,62 @@ mount_smbfs -N //nas-admin:<已脱敏>@192.168.66.170/personal_folder ~/NAS
 
 ⚠️ **Owner 陷阱**：SSH session 里 mount 出来的 SMB 卷，owner 是 `root:wheel`，普通用户不能写。如果一定要用 `/Volumes/NAS`（不是 ~/NAS），**必须在 mac 桌面 Finder 手动挂**，GUI 挂的卷 owner 是当前登录用户（cuizhanwei:staff），可读写。
 
-### macOS 开机自动挂（launchd plist）
+### macOS 开机自动挂 + watchdog（launchd plist）
 
-macOS 用 launchd 而不是 systemd。写到用户级 LaunchAgent：
+macOS 用 launchd 而不是 systemd。写到用户级 LaunchAgent。
+
+⚠️ **重要演进 (2026-08-10)**：初版用 `mount_smbfs` 直接挂，SSH session 里挂出来 owner 是 `root:wheel`，普通用户写不了（见踩坑 #10）。**改为用 `open` 命令触发 Finder 挂载**，owner 自动是当前 GUI 登录用户。同时加了 **watchdog 脚本**：launchd 每 5 分钟跑一次，挂载掉了自动补回（LAN 优先 → Tailscale），彻底解决 plist 丢失 / 挂载掉线后不自动恢复的问题。
+
+#### watchdog 脚本 `~/bin/nas-watchdog.sh`
+
+```bash
+#!/bin/bash
+# nas-watchdog.sh — 检查 NAS 挂载，掉了自动补
+# LAN 优先，不通走 Tailscale；已挂载则跳过
+MOUNT="/Volumes/personal_folder"
+SHARE="personal_folder"
+USER="nas-admin"
+PASS="<已脱敏>"
+LAN_IP="192.168.66.170"
+TS_IP="100.92.228.2"
+
+# 已挂载就跳过（不弹窗、不重复操作）
+if mount | grep -q "on ${MOUNT}"; then
+    exit 0
+fi
+
+# 选最佳后端（LAN 优先）
+if nc -z -w 2 "$LAN_IP" 445 >/dev/null 2>&1; then
+    IP="$LAN_IP"
+elif nc -z -w 2 "$TS_IP" 445 >/dev/null 2>&1; then
+    IP="$TS_IP"
+else
+    logger -t nas-watchdog "NAS 不可达，跳过"
+    exit 0
+fi
+
+logger -t nas-watchdog "重新挂载 ${IP}"
+open "smb://${USER}:${PASS}@${IP}/${SHARE}"
+```
+
+#### launchd plist `~/Library/LaunchAgents/com.cuizhanwei.nas-mount.plist`
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-  <key>Label</key><string>com.cuizhanwei.nas-mount</string>
+  <key>Label</key>
+  <string>com.cuizhanwei.nas-mount</string>
   <key>ProgramArguments</key>
   <array>
     <string>/bin/bash</string>
-    <string>-c</string>
-    <string>/bin/mkdir -p /Volumes/NAS && /sbin/mount_smbfs -N //nas-admin:<已脱敏>@192.168.66.170/personal_folder /Volumes/NAS</string>
+    <string>/Users/cuizhanwei/bin/nas-watchdog.sh</string>
   </array>
-  <key>RunAtLoad</key><true/>
-  <key>KeepAlive</key><false/>
+  <key>RunAtLoad</key>
+  <true/>
+  <key>StartInterval</key>
+  <integer>300</integer>
 </dict>
 </plist>
 ```
@@ -414,11 +452,23 @@ macOS 用 launchd 而不是 systemd。写到用户级 LaunchAgent：
 存放：`~/Library/LaunchAgents/com.cuizhanwei.nas-mount.plist`
 加载：`launchctl load ~/Library/LaunchAgents/com.cuizhanwei.nas-mount.plist`
 
-⚠️ **安全提醒**：密码 `<已脱敏>` 明文写在了 plist 文件里。要更安全用 Keychain：
+关键配置项：
+- `RunAtLoad: true` — 开机登录时立刻跑一次
+- `StartInterval: 300` — 之后每 300 秒（5 分钟）跑一次 watchdog
+- `KeepAlive: false` — 不需要常驻（脚本本身是幂等的，靠 StartInterval 定时跑就够了）
+
+⚠️ **安全提醒**：密码 `<已脱敏>` 明文写在了脚本里。要更安全用 Keychain：
 
 ```bash
 security add-internet-password -a nas-admin -s 192.168.66.170 -w '<已脱敏>' -r 'smb ' ~/Library/Keychains/login.keychain-db
 # mount_smbfs 会自动读 Keychain，不需要 -N 也不需要 URL 里带密码
+```
+
+⚠️ **plist 备份**：plist 可能被系统清理工具或 macOS 更新误删。备份一份到 `~/bin/nas-mount.plist.bak`，丢了之后一条命令恢复：
+
+```bash
+cp ~/bin/nas-mount.plist.bak ~/Library/LaunchAgents/com.cuizhanwei.nas-mount.plist
+launchctl load ~/Library/LaunchAgents/com.cuizhanwei.nas-mount.plist
 ```
 
 ### 找不回来的时候怎么排查
@@ -489,6 +539,31 @@ cat /etc/ssh/sshd_config | grep -i auth  # 看 sshd 用哪种认证
 - Finder 边栏手动拖到 Favorites（Settings → Sidebar）
 - 接受 "personal_folder" 这个名字（不影响功能）
 
+### 12. launchd plist 文件丢失导致 NAS 不再自动挂载 (2026-08-10)
+
+**现象**：Mac 重启后 `/Volumes/personal_folder` 不出现，Finder 边栏也没有 NAS 卷。`launchctl list | grep nas` 能看到条目但退出码是 1，且 `~/Library/LaunchAgents/com.cuizhanwei.nas-mount.plist` 文件不存在（No such file or directory）。
+
+**原因**：plist 文件被某次 macOS 更新或系统清理工具删除，但 launchd 的注册条目残留（变成空壳，反复报退出码 1）。NAS 本身正常（LAN + Tailscale 都能 ping 通）。
+
+**解决**：
+1. `launchctl remove com.cuizhanwei.nas-mount` 清掉旧壳
+2. 重新写 plist（用 `open` 命令替代原来的 `mount_smbfs`，见踩坑 #10）
+3. `launchctl load` 重新加载
+4. 加 watchdog 脚本 + `StartInterval: 300`，每 5 分钟检查一次，掉了自动补
+5. 备份 plist 到 `~/bin/nas-mount.plist.bak`
+
+**预防**：watchdog 已经就位，即使 plist 再丢、挂载掉线、NAS 重启，最多 5 分钟自动恢复。
+
+### 13. SSH session 里 mount_smbfs 挂的卷普通用户不能读写 (2026-08-10)
+
+**现象**：`sudo mount_smbfs //nas-admin@192.168.66.170/personal_folder /Volumes/personal_folder` 成功挂载，但 `ls /Volumes/personal_folder` 报 Permission denied，owner 是 `root:wheel`。尝试 `chown -R cuizhanwei:staff` 在 SMB 网络卷上超时卡死（180 秒无响应）。
+
+**原因**：SSH session 没有 GUI 上下文，`mount_smbfs` 挂的卷 owner 固定 root。SMB 卷上跑递归 chown 不靠谱（网络文件系统上逐个 inode 改 owner 极慢）。
+
+**解决**：改用 `open "smb://nas-admin:<密码>@192.168.66.170/personal_folder"` 触发 Finder 挂载。Finder 挂的卷 owner 自动是当前 GUI 登录用户（cuizhanwei:staff），可读写。
+
+**注意**：用 `open` 挂载前必须先卸载旧的 root 挂载，否则 macOS 会自动用 `-1` 后缀挂到 `/Volumes/personal_folder-1`。卸载命令：`diskutil unmount force /Volumes/personal_folder`（`umount` 会报 `Resource busy`，用 `diskutil` 更可靠）。
+
 ## 九、新增文件清单（macOS 端）
 
 ### 必须创建
@@ -496,7 +571,9 @@ cat /etc/ssh/sshd_config | grep -i auth  # 看 sshd 用哪种认证
 | 路径 | 权限 | 用途 |
 |---|---|---|
 | `/Users/cuizhanwei/NAS` | 755 cuizhanwei | symlink 到 `/Volumes/personal_folder`，命令行访问 |
-| `/Users/cuizhanwei/Library/LaunchAgents/com.cuizhanwei.nas-mount.plist` | 644 cuizhanwei | mac 开机自动挂 NAS |
+| `/Users/cuizhanwei/Library/LaunchAgents/com.cuizhanwei.nas-mount.plist` | 644 cuizhanwei | mac 开机自动挂 NAS + watchdog（RunAtLoad + 每5分钟检查） |
+| `/Users/cuizhanwei/bin/nas-watchdog.sh` | 755 cuizhanwei | watchdog 脚本：检查挂载状态，掉了自动补（LAN 优先→Tailscale） |
+| `/Users/cuizhanwei/bin/nas-mount.plist.bak` | 644 cuizhanwei | plist 备份，防 plist 丢失后无法恢复 |
 
 ### 不要碰
 
