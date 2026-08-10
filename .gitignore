@@ -6,3 +6,6 @@
 
 # JetBrains IDE config
 .idea/
+
+# Obsidian plugin config carrying live session tokens — local only, never publish
+.obsidian/plugins/Dida Sync/data.json
