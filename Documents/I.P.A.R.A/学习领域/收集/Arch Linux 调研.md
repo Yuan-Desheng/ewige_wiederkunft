@@ -3,7 +3,7 @@ createTime: 2026-08-17 11:17
 笔记ID: 20260817111738
 multiFile:
 multiMedia:
-description: 把一台 Windows 电脑全盘换成 Arch Linux 的调研与实操：硬件登记、备份清单、BIOS 设置、archinstall 安装、驱动与中文环境、pacman/AUR 维护、风险与选型
+description: Legion Y7000 IRX9 双盘双系统换 Arch 的调研与实操：硬件登记、认盘与备份、BIOS 设置、archinstall 安装、NVIDIA 混合显卡与中文环境、pacman/AUR 维护、风险与选型
 笔记类型: 收集笔记
 阐述日期:
 tags:
@@ -44,7 +44,7 @@ cssclasses:
 | 6 | 内存容量 | `Get-CimInstance Win32_PhysicalMemory \| Select Capacity,Speed` | 决定 swap 大小、要不要开休眠（hibernate 需 swap ≥ 内存） | **24GB（2×12GB DDR5-4800，Ramaxel，两个插槽已占满）**；swap 用 zram 即可，要休眠才需 ≥24GB 真实 swap（建议放弃休眠） |
 | 7 | 硬盘（型号/容量/接口） | `Get-PhysicalDisk \| Select FriendlyName,MediaType,Size` + `Get-Disk \| Select Number,FriendlyName,PartitionStyle` | 分区方案；**多块盘时务必确认要格式化的是哪块**（`Number` 列） | 两块 NVMe SSD 各 512GB：**Disk 0 YMTC = Windows 系统盘（C+D+恢复分区），全程不碰；Disk 1 SDHSJ-MA500 = 现 Ubuntu 盘，即 Arch 目标盘**。序列号见下方双盘对号表 |
 | 8 | BIOS 模式（UEFI / Legacy） | `msinfo32` → 看「BIOS 模式」一行 | UEFI 才能用 systemd-boot；Legacy 只能 GRUB + MBR | **UEFI** ✅（Win11 26200）；**Secure Boot 当前已是关闭状态** ✅（注册表 UEFISecureBootEnabled=0） |
-| 9 | 无线网卡型号 | `Get-NetAdapter \| Select Name,InterfaceDescription` | Broadcom / 部分 Realtek 网卡需要额外固件，**装之前必须确认**，否则装完没网 | **Realtek RTL8852BE WiFi 6** → 内核 `rtw89` 驱动原生支持，固件在 `linux-firmware` 里自带，**无需额外折腾** ✅ |
+| 9 | 无线网卡型号 | `Get-NetAdapter \| Select Name,InterfaceDescription` | Broadcom / 部分 Realtek 网卡需要额外固件，**装之前必须确认**，否则装完没网 | **Realtek RTL8852BE WiFi 6** → 内核 `rtw89` 驱动原生支持、固件 `linux-firmware` 自带 ✅，但这块卡在 Arch 上有**断流 / 睡眠唤醒后掉卡 / 速度慢**的通病，装完照第五节第 4 项加一行 modprobe 配置即可根治 |
 | 10 | 有线网口 | 同上 | 有网口就是保险绳：无线驱动挂了还能插网线救 | 有：Realtek PCIe GbE 千兆网口（当前未插线，装机时插上即是保险绳） |
 | 11 | 蓝牙 | `Get-PnpDevice -Class Bluetooth \| Select FriendlyName,Status` | 是否需要 `bluez` + 固件 | 有：Realtek 蓝牙（RTL8852BE 二合一）→ `bluez` + `bluez-utils`，固件 `linux-firmware` 自带 |
 | 12 | 显示器分辨率 / 刷新率 / 几块屏 | `Get-CimInstance Win32_VideoController \| Select CurrentHorizontalResolution,CurrentVerticalResolution,CurrentRefreshRate` | HiDPI 缩放、多屏、高刷是否要走 Wayland | 双屏：内屏 **1920×1080@144Hz**（核显输出）+ 外接 **3440×1440@60Hz** 带鱼屏（独显输出）；均非 HiDPI，X11/Wayland 皆可 |
@@ -82,25 +82,29 @@ inxi -Fxz           # 一把梭总览（Live 环境自带）
 
 ---
 
-## 一、迁移前置：Windows 上要先做的事
+## 一、迁移前置：动手之前要先做的事
 
 ### 1. 数据备份（**不可逆操作，这步做完才能动手**）
 
-全盘覆盖 = Windows 分区和数据**全部消失，无法恢复**。逐项确认：
+本机是**双盘双系统**：Windows 盘（Disk 0）不动，要格的只有 Ubuntu 盘（Disk 1）。所以真正要抢救的是 **Ubuntu 盘上的东西**：
 
 | 类别 | 具体内容 | 备注 |
 |------|----------|------|
-| 文档 / 照片 / 下载 | `C:\Users\用户名\` 下的 桌面、文档、图片、下载、视频 | 最容易漏「桌面」和「下载」 |
-| 浏览器 | 书签导出成 HTML、确认已登录账号同步 | Chrome/Edge 密码要单独导出 CSV |
-| 微信 / QQ 聊天记录 | 微信「备份与迁移」→ 备份到手机；或直接拷 `我的文档\WeChat Files\` | **Linux 上恢复不了 Windows 的聊天备份，只能靠手机端** |
-| 开发环境 | `.ssh` 私钥、`.gitconfig`、各种 token / `.env`、本地未 push 的仓库 | `git status` 每个项目扫一遍有没有未提交的改动 |
-| 软件授权 | Office / Adobe / IDEA 等的账号和授权码 | |
-| 系统凭据 | 浏览器/系统里存的 WiFi 密码、各类登录 | 装完 Arch 要重新连 WiFi，**先把 WiFi 密码记下来** |
-| 驱动备份（可选） | 无线网卡的 Windows 驱动 | 万一要回滚 Windows |
+| **Ubuntu 家目录** | `~/文档`、`~/下载`、`~/桌面`、自己建的工作目录 | 格盘后全没，且无法恢复 |
+| **`~/.ssh`** | 私钥 + `config` | 最容易漏、丢了最疼的东西 |
+| **本地仓库** | 每个项目跑一遍 `git status` / `git log origin/master..HEAD` | 未 commit 的改动、未 push 的分支 |
+| **各类配置** | `~/.gitconfig`、`~/.bashrc` / `~/.zshrc`、`~/.config/` 下在意的、各种 `.env` 和 token | `.env` 里的密钥另存密码管理器 |
+| **数据库 / 容器数据** | 本地 MySQL/PG 数据目录、Docker volume（`docker volume ls`） | 跑过本地服务就要确认 |
+| **浏览器** | 书签导出 HTML、确认账号已同步 | |
+| **WiFi 密码** | 装完 Arch 要重新连 | 先记到手机 |
 
-备份去向：外置硬盘 / NAS / 云盘。**本机双盘场景：要清空的只是 Ubuntu 盘**——把 Ubuntu 盘上的数据（重点 `~/.ssh`、各项目未 push 的仓库、各类配置）搬走即可；Windows 盘不动，但为防格错盘，关键数据顺手多备一份不亏。
+Windows 盘虽然不动，但**误格盘是这套流程里唯一的灾难性风险**，所以：
+- 备份去向选**外置硬盘 / NAS / 云**，不要往 Windows 盘的 D 盘里塞（万一手抖选错盘就一起没了）
+- Windows 那边的关键数据（微信记录、文档）顺手也备一份，纯属买保险
 
-### 2. Windows 软件的 Linux 处境（决定要不要真换）
+> 双系统的好处：网银 U 盾、Office、带反作弊的网游这些 Linux 无解的场景，**开机 F12 切回 Windows 就行**，不需要为了换系统做任何取舍。
+
+### 2. Windows 软件在 Linux 这边怎么办（切回 Windows 之外的选项）
 
 | Windows 软件 | Linux 上怎么办 |
 |--------------|----------------|
@@ -113,21 +117,28 @@ inxi -Fxz           # 一把梭总览（Live 环境自带）
 | 游戏 | Steam + Proton 兼容层，大部分单机能跑；**带反作弊的网游（如部分竞技游戏）跑不了** |
 | 网银 / U 盾 / 税务系统 | 基本全灭，需要保留一台 Windows 或虚拟机 |
 
-> ⚠️ **如果这台机器有网银、U 盾、Office 强需求或带反作弊的网游，全盘覆盖前要想清楚**——这些在 Linux 上是真的没有替代方案。
+> 表里这些「Linux 无解」的项，在本机都不构成问题——**留着 Windows 盘就是答案**。真正需要在 Arch 这边解决的，只有日常开发和上网。
 
-### 3. BIOS / UEFI 设置
+### 3. BIOS / UEFI 设置（Legion：开机按 `F2`，或关机状态按机身侧面的小孔 Novo 键）
 
-进 BIOS（开机狂按 `Del` / `F2` / `F12`，看厂商），改这几项：
+| 设置项 | 本机现状 | 要不要动 |
+|--------|----------|----------|
+| Secure Boot | **已关闭** ✅（注册表实测 `UEFISecureBootEnabled=0`） | 不用动 |
+| BIOS 模式 | **UEFI** ✅ | 不用动 |
+| Intel VMD / RST | 当前 Ubuntu 能正常跑在 Disk 1 上 → **Linux 已能看到两块 NVMe** ✅ | 不用动。装机时若 archinstall 只列出一块盘，回 BIOS 关掉 VMD |
+| Fast Boot / 快速启动 | 未知 | **关掉**，否则 U 盘可能启不来 |
+| 显卡模式（Hybrid / 独显直连 MUX） | 未知，默认多为 Hybrid | **保持 Hybrid**。切「独显直连」后核显被断开，Linux 下功耗和续航会明显变差；外接屏的问题用第五节的 PRIME 方案解，不要靠切 MUX |
+| 启动顺序 | — | 装机时按 `F12` 临时选 U 盘即可，不用改默认顺序 |
 
-| 设置项 | 改成 | 原因 |
-|--------|------|------|
-| Secure Boot（安全启动） | **关闭** | Arch 默认不签名，开着装不了（后期可用 `sbctl` 自己签名再打开） |
-| Fast Boot / 快速启动 | 关闭 | 会跳过 USB 设备检测，U 盘启不来 |
-| SATA Mode | **AHCI**（不要 RAID/Intel RST） | RST 模式下 Linux 直接看不到硬盘，这是最常见的「装机时找不到硬盘」原因 |
-| Boot Mode | UEFI | 除非是十年以上的老机器 |
-| TPM | 无所谓 | 不做双系统就不用管 BitLocker |
+> ⚠️ **改 BIOS 前先把 Windows 的 BitLocker 恢复密钥找出来**（`https://aka.ms/myrecoverykey`，或 Windows 里运行 `manage-bde -status` 看 C 盘是否加密）。本机 Secure Boot 本来就是关的、也不会动 Windows 分区，触发恢复的概率很低，但改任何固件设置都有可能让 BitLocker 要密钥，手上有密钥就是零风险。
 
-同时在 Boot 菜单里把 U 盘调到第一启动项，或开机按 `F12` 临时选。
+**双系统的时间差 8 小时问题（装完必处理）**：Linux 认为主板时钟是 UTC，Windows 认为是本地时间，两个系统轮流改，导致时间一直错 8 小时。**统一让 Windows 也用 UTC** 是最干净的解法——在 Windows 管理员 PowerShell 里执行：
+
+```powershell
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneInformation" /v RealTimeIsUniversal /t REG_DWORD /d 1 /f
+```
+
+Arch 这边保持默认（`timedatectl set-local-rtc 0`，即用 UTC）即可，两边都开 NTP 自动同步。
 
 ---
 
@@ -146,7 +157,7 @@ inxi -Fxz           # 一把梭总览（Live 环境自带）
 
 ---
 
-## 三、制作安装 U 盘（在现在这台能用的电脑上做）
+## 三、制作安装 U 盘（在本机 Windows 下做）
 
 需要一个 **≥ 4GB 的 U 盘**（会被格式化）。
 
@@ -167,7 +178,22 @@ inxi -Fxz           # 一把梭总览（Live 环境自带）
 
 ---
 
-## 四、安装（全盘覆盖）
+## 四、安装（只格 Disk 1，Windows 盘全程不碰）
+
+### 装之前：认盘（**这一步做错就是灾难，做两遍**）
+
+进 Live 环境第一件事，不是装系统，是确认哪块盘是 Ubuntu 盘：
+
+```bash
+lsblk -o NAME,MODEL,SERIAL,SIZE,FSTYPE,MOUNTPOINTS
+```
+
+对照第〇节的双盘对号表：
+
+- **目标盘 = `SDHSJ-MA500`，Serial `0000_0030_3735_3738`** —— 上面只有一个 Linux 分区，没有 EFI 分区
+- **禁区 = `YMTC YMSS2ED06D25MC`，Serial `A428_B75E_56F8_0049`** —— 上面有 4 个分区（260M EFI + 175G NTFS + 300G NTFS + 恢复分区），看到 `ntfs` 就说明认错了
+
+Linux 下的 `/dev/nvme0n1` 和 `/dev/nvme1n1` **不保证**对应 Windows 的 Disk 0 / Disk 1，**只认型号和序列号，不认编号**。
 
 ### 路线 A：archinstall（推荐，约 15 分钟）
 
@@ -203,22 +229,31 @@ pacman -Sy archinstall
 archinstall
 ```
 
-TUI 里逐项选（**全盘覆盖场景的推荐值**）：
+TUI 里逐项选（**本机 Legion Y7000 IRX9 双盘场景的推荐值**）：
 
 | 菜单项 | 选什么 |
 |--------|--------|
 | Mirror region | China |
-| Disk configuration | **Use a best-effort default partition layout** → 选中目标硬盘 → 文件系统选 **btrfs**（为快照做准备，勾上 "use compression"） |
-| Disk encryption | 笔记本建议开 LUKS2；台式机自己权衡（开了每次开机要输密码） |
-| Bootloader | **systemd-boot**（UEFI 下最省事）；Legacy BIOS 只能 GRUB |
-| Swap | 开（zram 或 swapfile）；要休眠则 swap ≥ 内存容量 |
-| Hostname / Root password / User account | 建立普通用户并勾 **superuser (sudo)** |
-| Profile | **Desktop** → 选桌面环境（见下） |
+| **Disk configuration** ⚠️ | **只勾 SDHSJ-MA500 那块盘**（务必核对序列号）→ **Use a best-effort default partition layout** → 文件系统选 **btrfs**，勾上 "use compression"。它会在这块盘上新建自己的 ESP，**不会碰 Windows 盘的 ESP** |
+| Disk encryption | 可开可不开。开 LUKS2 = 笔记本丢了数据安全，代价是每次开机多输一次密码。**开发机建议开** |
+| Bootloader | **systemd-boot**（见下方「双系统怎么切」） |
+| Swap | 开 **zram**（24GB 内存够用，不做休眠就不需要真实 swap 分区） |
+| Hostname / Root password / User account | 建普通用户并勾 **superuser (sudo)** |
+| Profile | **Desktop** → **KDE Plasma**（多屏 + 144Hz + 带鱼屏，Plasma 支持最好） |
 | Audio | **pipewire** |
-| Kernels | 勾上 `linux` **和** `linux-lts`（保底内核，新内核起不来时切它） |
+| Kernels | 勾上 `linux` **和** `linux-lts`；**再勾上 `linux-headers` 和 `linux-lts-headers`**（NVIDIA 的 dkms 驱动必需，漏了装完没显卡驱动） |
 | Network configuration | **NetworkManager**（不要选 "copy ISO config"） |
 | Additional packages | 见下方清单 |
 | Timezone | Asia/Shanghai |
+
+**双系统怎么切（两块盘各有自己的 ESP，所以有两条路）**：
+
+| 方案 | 怎么用 | 取舍 |
+|------|--------|------|
+| **systemd-boot + `F12`**（推荐） | Arch 装在自己盘的 ESP 上，开机按 `F12` 选进哪块盘 | 两个系统**完全隔离**：Windows 大版本更新重写自己的 ESP 也绝对动不了 Arch 的引导。代价是每次进 Windows 要按一下 F12 |
+| GRUB + os-prober | 装 `grub` `os-prober`，在 `/etc/default/grub` 里放开 `GRUB_DISABLE_OS_PROBER=false`，再 `grub-mkconfig -o /boot/grub/grub.cfg` | 一个统一菜单，开机直接选。代价是 Windows 更新偶尔会把引导顺序抢回去，需要重新修 |
+
+> 本机建议走 **systemd-boot + F12**：Windows 是「偶尔切回去办事」的备胎，不值得为它引入引导被抢的风险。
 
 **桌面环境选哪个**：
 
@@ -315,27 +350,111 @@ reboot
 
 ## 五、装完第一件事：驱动与中文环境
 
-### 1. 显卡驱动（**按第〇节表格第 4 项对号入座**）
+> 本节已按本机实际硬件（i7-13650HX + Intel UHD 核显 + RTX 4060 Laptop + RTL8852BE）写成可直接抄的命令，不用再对号入座。
+
+### 1. 显卡：Intel 核显 + RTX 4060 混合输出（本机最复杂的一块）
+
+本机是 **muxless 混合显卡**：桌面跑在核显上省电，独显按需拉起来干重活。**关键事实：Legion Y7000/Y7000P IRX9 的 HDMI / DP / USB-C 视频口全部硬连到独显**——所以那块 3440×1440 带鱼屏想点亮，NVIDIA 驱动必须先装好、装对。
+
+**第一步：开 multilib 仓库**（`lib32-*` 包需要，游戏和 Wine 也需要）
 
 ```bash
-# ── Intel 核显 ──（最省心）
-sudo pacman -S mesa vulkan-intel intel-media-driver
-
-# ── AMD 显卡 / 核显 ──（同样省心，驱动在内核里）
-sudo pacman -S mesa vulkan-radeon libva-mesa-driver
-
-# ── NVIDIA 独显 ──（最麻烦，三选一）
-# a) Turing（GTX 16 / RTX 20 系）及更新 → 推荐开源内核模块
-sudo pacman -S nvidia-open-dkms nvidia-utils lib32-nvidia-utils
-
-# b) Maxwell / Pascal（GTX 9 系 / 10 系）→ 用闭源版
-sudo pacman -S nvidia-dkms nvidia-utils lib32-nvidia-utils
-
-# c) 更老的卡（Kepler 及以前）→ 只能上旧分支 AUR 包，如 nvidia-470xx-dkms
+sudo vim /etc/pacman.conf
+# 取消这两行的注释：
+# [multilib]
+# Include = /etc/pacman.d/mirrorlist
+sudo pacman -Syu
 ```
 
-> ⚠️ **NVIDIA 590 驱动起已停止支持 Pascal（GTX 10 系）及更早的卡**，老卡必须锁旧分支。装 NVIDIA 后要把 `nvidia_drm.modeset=1` 加进内核参数，Wayland 才正常。
-> 装 `*-dkms` 版的前提是装了 `linux-headers` 和 `linux-lts-headers`。
+**第二步：装驱动**（RTX 4060 是 Ada 架构，属于 Turing 之后，走开源内核模块 `nvidia-open`）
+
+```bash
+# 核显（Intel）
+sudo pacman -S mesa lib32-mesa vulkan-intel lib32-vulkan-intel intel-media-driver
+
+# 独显（NVIDIA）—— dkms 版才能同时伺候 linux 和 linux-lts 两个内核
+sudo pacman -S nvidia-open-dkms nvidia-utils lib32-nvidia-utils \
+               nvidia-settings nvidia-prime \
+               linux-headers linux-lts-headers
+
+# 微码（Intel CPU）
+sudo pacman -S intel-ucode
+```
+
+**第三步：内核参数 + 早期加载**（不做这步，Wayland 下会花屏 / 外接屏点不亮）
+
+```bash
+# 1) 内核参数：systemd-boot 编辑 /boot/loader/entries/ 下的 .conf，
+#    在 options 那一行末尾追加：
+#    nvidia_drm.modeset=1 nvidia_drm.fbdev=1
+sudo vim /boot/loader/entries/2026-*.conf
+
+# 2) initramfs 里早期加载 nvidia 模块
+sudo vim /etc/mkinitcpio.conf
+#    MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm)
+#    HOOKS 里如果有 kms，把它删掉（否则会抢先加载 nouveau）
+sudo mkinitcpio -P
+```
+
+**第四步：修好「合盖睡眠后花屏 / 黑屏」**（笔记本 + NVIDIA 的经典坑，必做）
+
+```bash
+# 睡眠时保留显存内容
+echo 'options nvidia NVreg_PreserveVideoMemoryAllocations=1 NVreg_TemporaryFilePath=/var/tmp' \
+  | sudo tee /etc/modprobe.d/nvidia-power.conf
+
+sudo systemctl enable nvidia-suspend.service nvidia-hibernate.service nvidia-resume.service
+sudo reboot
+```
+
+**第五步：验证**
+
+```bash
+nvidia-smi                       # 能列出 RTX 4060 = 驱动装好了
+lspci -nnk | grep -A3 VGA        # 看两块 GPU 各自绑定的驱动（i915 / nvidia）
+prime-run glxinfo | grep "OpenGL renderer"   # 应显示 NVIDIA，说明按需卸载生效
+glxinfo | grep "OpenGL renderer"             # 不加 prime-run 应显示 Intel
+```
+
+**日常怎么用**：
+
+```bash
+prime-run 程序名        # 让这个程序跑在独显上（游戏、CUDA、视频渲染）
+# 不加 prime-run 就跑核显，省电
+```
+
+**外接 3440×1440 带鱼屏**：
+- 视频口硬连独显，所以**必须**先完成上面的第三步（`nvidia_drm.modeset=1`），否则插上没信号
+- KDE Plasma 6 + Wayland 下，跨 GPU 输出是原生支持的，正常情况插上直接点亮
+- 如果 Wayland 下外接屏依然黑屏，两个后备方案：① 登录界面切 **X11** 会话，再 `xrandr --setprovideroutputsource NVIDIA-G0 modesetting`；② 让独显当主 GPU 全程驱动桌面（外接屏最省事，代价是续航明显变差）
+- **不建议**去 BIOS 里切「独显直连 / MUX」来解决——切了核显被彻底断开，笔记本续航会崩
+
+> 补充：`nvidia-open` 从 610 版起 **Runtime D3 电源管理默认全开**，独显闲时能真正断电，混合显卡的续航问题基本已经不是问题了。
+
+### 1.5 无线网卡 RTL8852BE 稳定性（**装完立刻做，不然会怀疑人生**）
+
+这块卡内核原生支持，但 ASPM 省电和 power save 会导致**随机断流、速度突然掉到几百 K、睡眠唤醒后网卡直接消失**。一个配置文件根治：
+
+```bash
+sudo tee /etc/modprobe.d/rtw89.conf <<'EOF'
+options rtw89_pci disable_aspm_l1=y disable_aspm_l1ss=y
+options rtw89_core disable_ps_mode=y
+EOF
+
+sudo reboot
+```
+
+> 有线千兆网口是保险绳：万一无线出问题，插网线照样能上网修。装机时建议**全程插着网线**。
+
+### 1.6 Legion 专属工具（可选，装不上不影响用）
+
+风扇曲线和性能模式（安静 / 均衡 / 野兽）在 Linux 下默认调不了，社区项目 [LenovoLegionLinux](https://github.com/johnfanv2/LenovoLegionLinux) 提供内核模块 + 控制工具：
+
+```bash
+paru -S lenovolegionlinux-dkms-git legion-dpm-git
+```
+
+> ⚠️ 该项目官方声明的支持范围是 **2020–2023 款 Legion**，本机 IRX9 是 2024 款，**属于「试试看」而非「保证可用」**。装完 `cat /sys/kernel/legion_laptop/*` 有输出才算认到；认不到就卸掉，用默认的散热策略照样能用，只是没法自定义风扇曲线。
 
 ### 2. 中文输入法（fcitx5）
 
@@ -370,14 +489,31 @@ sudo systemctl enable --now bluetooth
 sudo pacman -S pipewire pipewire-pulse pipewire-alsa wireplumber
 ```
 
-### 5. 笔记本额外项（如果是笔记本）
+### 5. 笔记本电源与显示（本机 Legion）
+
+**电源管理二选一，不能同时装**（两者抢同一套接口，装两个必冲突）：
 
 ```bash
-sudo pacman -S tlp powertop           # 电源管理，显著延长续航
+# 方案 A：power-profiles-daemon（推荐给 KDE）
+#   Plasma 电源面板里直接切 省电/平衡/性能，开箱即用
+sudo pacman -S power-profiles-daemon
+sudo systemctl enable --now power-profiles-daemon
+
+# 方案 B：tlp（更激进，续航更好，但要自己调参）
+sudo pacman -S tlp
 sudo systemctl enable --now tlp
-sudo pacman -S brightnessctl          # 亮度调节
-# 触控板手势：KDE/GNOME 在 Wayland 下开箱即用
+sudo systemctl mask power-profiles-daemon    # 二者互斥
 ```
+
+其它：
+
+```bash
+sudo pacman -S powertop brightnessctl    # 功耗诊断 / 亮度调节
+```
+
+**内屏 144Hz 别忘了手动开**：KDE 系统设置 → 显示和监视器 → 刷新率，默认可能停在 60Hz。带鱼屏那台是 60Hz，两块屏刷新率不同时，Wayland 下各自独立刷新（X11 下会互相拖累，这也是建议用 Wayland 的原因之一）。
+
+**触控板手势**：KDE/GNOME 在 Wayland 下开箱即用，不用装 libinput-gestures。
 
 ### 6. 常用软件
 
@@ -494,39 +630,51 @@ sudo pacman -Rns $(pacman -Qtdq)    # 清孤儿包
 | **CachyOS** | 性能向：按 CPU 架构（x86-64-v3/v4）重编译全部包、自研调度器（BORE/sched-ext）、多内核可选 | 游戏、跑重 IDE、编译密集型；目前上升最快的 Arch 系 |
 | **Manjaro** | 官方仓库**延迟约两周**发布以求稳，自研安装器和内核管理器 | 纯新手。但延迟发布 + AUR 按最新 Arch 写 → **两者混用易出依赖冲突**，是它最被诟病的点 |
 
-**针对这台 Windows 机器的建议**：
+**针对本机（Legion Y7000 IRX9，替换掉 Disk 1 上的 Ubuntu）的建议**：
 
-- 目的是**换个能用的系统** → **EndeavourOS**。图形安装器（Calamares）全程点点点，装完自带驱动、桌面、网络，学习曲线最平缓，而底层就是纯 Arch，ArchWiki 全部适用
-- 目的是**顺便学 Linux** → 原版 Arch 走路线 B 手动装一遍，装崩了大不了重来（反正数据已备份）
-- 目的是**打游戏** → **CachyOS**
+- **首选 EndeavourOS**：图形安装器（Calamares）里能直接勾 NVIDIA 驱动，把本节第五章最麻烦的显卡部分在装机时就办了；底层纯 Arch，ArchWiki 全部适用。**要注意**：Calamares 选盘界面同样要认准 SDHSJ-MA500，别选错
+- **想顺便学 Linux** → 原版 Arch 走路线 B 手动装一遍。反正 Windows 盘不动、Ubuntu 盘数据已备份，装崩了重来的成本就是一小时
+- **主要拿来打游戏** → CachyOS：i7-13650HX 支持 x86-64-v3，能吃到它的架构优化包；Steam + Proton 在 RTX 4060 上表现不错
+- **别选 Manjaro**：延迟两周的仓库 + 按最新 Arch 写的 AUR，混用容易出依赖冲突
 - **服务器场景（比如阿里云 ECS）绝对不要用 Arch**：滚动更新没有 LTS 承诺、一年数次需要人工干预、无长期安全支持分支、云厂商内核模块不适配。服务器继续用 Debian / Ubuntu LTS / Rocky
 
 ---
 
 ## 九、执行 Checklist
 
-**装机前（在 Windows 上）**
+**装机前**
 - [x] 填完第〇节硬件登记表（2026-08-17 本机实测）
-- [x] 确认无线网卡型号在 Linux 下有驱动（RTL8852BE 内核 rtw89 原生支持），另有千兆网口兜底
-- [ ] 数据全部备份到外置硬盘 / 云，并**在另一台机器上验证能打开**
+- [x] 确认无线网卡在 Linux 下能用（RTL8852BE / rtw89 原生支持，另需一行 modprobe 调优），另有千兆网口兜底
+- [x] Secure Boot 已是关闭状态，BIOS 为 UEFI，Linux 已能看到两块 NVMe（现有 Ubuntu 在跑）
+- [ ] **Ubuntu 盘数据全部备份**（`~/.ssh`、未 push 的仓库、`.env`、Docker volume）到外置硬盘 / NAS，并**在另一台机器上验证能打开**
 - [ ] WiFi 密码、各类账号密码已记录到手机 / 密码管理器
-- [ ] 确认没有网银 U 盾 / Office / 反作弊网游这类无解需求
+- [ ] 找出 Windows 的 BitLocker 恢复密钥备用
 - [ ] 制作 U 盘（Ventoy 或 Rufus），校验 ISO 哈希
-- [ ] BIOS：关 Secure Boot、关 Fast Boot、SATA 改 AHCI
+- [ ] BIOS：关 Fast Boot；显卡模式保持 Hybrid（**不要**切独显直连）
+- [ ] Windows 侧写入 `RealTimeIsUniversal=1`，避免双系统时间差 8 小时
 
 **装机中**
+- [ ] 插上网线（无线出问题时的保险绳）
 - [ ] Live 环境跑 `lspci -nnk` / `inxi -Fxz` 确认硬件识别
-- [ ] `lsblk -o NAME,MODEL,SERIAL` 确认目标硬盘盘符（**多块盘时别格错**；目标盘：SDHSJ-MA500，Serial `0000_0030_3735_3738`）
+- [ ] **`lsblk -o NAME,MODEL,SERIAL,FSTYPE` 认盘两遍**：目标 = SDHSJ-MA500 / Serial `0000_0030_3735_3738`；看到 `ntfs` 立刻停手
 - [ ] 换国内镜像源
-- [ ] archinstall：btrfs + systemd-boot + pipewire + NetworkManager + linux & linux-lts
-- [ ] 附加包勾上 fcitx5 全家桶 + noto CJK 字体 + firefox
+- [ ] archinstall：**只勾目标盘** + btrfs + systemd-boot + zram + pipewire + NetworkManager
+- [ ] 内核勾 `linux` `linux-lts` **+ `linux-headers` `linux-lts-headers`**（NVIDIA dkms 必需）
+- [ ] Profile 选 KDE Plasma；附加包勾 fcitx5 全家桶 + noto CJK 字体 + firefox
 
-**装机后**
+**装机后（按顺序）**
+- [ ] 开机按 `F12` 能分别进 Arch 和 Windows，两个系统都正常
 - [ ] 联网：`nmtui` 连 WiFi
-- [ ] 装显卡驱动（按硬件表第 4 项）
-- [ ] 配 fcitx5 输入法环境变量并重登录
+- [ ] 写 `/etc/modprobe.d/rtw89.conf` 修 WiFi 断流，重启验证
+- [ ] 开 multilib 仓库
+- [ ] 装 NVIDIA：`nvidia-open-dkms` + 内核参数 `nvidia_drm.modeset=1` + mkinitcpio MODULES + 睡眠三件套 service
+- [ ] `nvidia-smi` 有输出、`prime-run glxinfo` 显示 NVIDIA
+- [ ] 插上带鱼屏验证能点亮；内屏刷新率手动调到 144Hz
+- [ ] 配 fcitx5 输入法环境变量并重登录，中文能打出来
 - [ ] 装 snapper + snap-pac + grub-btrfs 快照兜底
+- [ ] 电源管理二选一（power-profiles-daemon 或 tlp），验证合盖睡眠 → 唤醒不花屏
 - [ ] 装 paru，再装 AUR 软件
+- [ ] 跑一次 `sudo pacman -Syu` 确认更新链路通畅
 - [ ] 笔记本：装 tlp 并 enable
 - [ ] 跑一次 `sudo pacman -Syu` 确认更新链路通畅
 
@@ -539,6 +687,10 @@ sudo pacman -Rns $(pacman -Qtdq)    # 清孤儿包
 - [Arch Linux News](https://archlinux.org/news/) — 更新前必看，可订阅 RSS
 - [Arch Linux 官方公告：Active AUR malicious packages incident](https://archlinux.org/news/active-aur-malicious-packages-incident/)
 - [ArchWiki: NVIDIA](https://wiki.archlinux.org/title/NVIDIA) / [Fcitx5](https://wiki.archlinux.org/title/Fcitx5) / [Snapper](https://wiki.archlinux.org/title/Snapper) / [Laptop](https://wiki.archlinux.org/title/Laptop)
+- **本机相关**：[ArchWiki: PRIME](https://wiki.archlinux.org/title/PRIME) / [NVIDIA Optimus](https://wiki.archlinux.org/title/NVIDIA_Optimus)（混合显卡按需卸载）
+- [LenovoLegionLinux](https://github.com/johnfanv2/LenovoLegionLinux)（Legion 风扇曲线 / 性能模式，官方支持列表止于 2023 款）
+- [Arch 论坛：RTL8852BE 断流合集](https://bbs.archlinux.org/viewtopic.php?id=298372)（`disable_aspm` 解法出处）
+- [linux-on-lenovo-legion 笔记](https://github.com/cszach/linux-on-lenovo-legion)
 - [EndeavourOS 官网](https://endeavouros.com/) / [CachyOS 官网](https://cachyos.org/)
 - [Ventoy](https://ventoy.net) — 多系统启动 U 盘
 - [Arch Linux 2026.07.01 ISO 发布说明](https://www.linuxcompatible.org/story/arch-linux-20260701-iso-released-with-kernel-7010-and-archinstall-44/)
