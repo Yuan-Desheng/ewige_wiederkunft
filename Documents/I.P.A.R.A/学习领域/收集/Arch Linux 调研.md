@@ -23,32 +23,43 @@ cssclasses:
 ```meta-bind-embed
 [[笔记抬头模块]]
 ```
-<progress value="20" max="100" style="width: 100%;"></progress>
+<progress value="30" max="100" style="width: 100%;"></progress>
 
-> 调研时间 2026-08-17。**目标场景：另一台 Windows 电脑，全盘覆盖，只留 Arch，不做双系统。**
+> 调研时间 2026-08-17。**目标场景（2026-08-17 按本机实测定稿）：本机 Lenovo Legion Y7000 IRX9 笔记本，双 NVMe 硬盘——Windows 盘不动，另一块 Ubuntu 盘整盘换成 Arch，双硬盘双系统。**
 > 结论先行：可行，全程约 1-2 小时。真正的风险不在装系统（archinstall 已经很成熟），而在**装之前的数据备份**和**装之后的硬件驱动 + 中文环境**。发行版选择上，除非就是想折腾，否则建议直接上 **EndeavourOS**（原版 Arch + 图形安装器，装完即用）。
 
 ---
 
-## 〇、硬件信息登记表（**待填** ⬅ 先填这张表，后面所有方案都按它定）
+## 〇、硬件信息登记表（✅ 已填，2026-08-17 本机 Windows 实测）
 
-在**那台 Windows 机器**上按下表查一遍，填进「实际值」列。填完我按硬件出针对性的驱动 / 安装方案。
+已于 2026-08-17 在本机 Windows 下逐项实测填入「实际值」列。一句话结论：**微码选 `intel-ucode`、显卡走 `nvidia-open`、无线网卡内核原生支持、UEFI 且 Secure Boot 已是关的**——四件最容易翻车的事全部绿灯。
 
 | # | 项目 | Windows 下怎么查 | 这项决定什么 | 实际值 |
 |---|------|------------------|--------------|--------|
-| 1 | 台式 / 笔记本 | 自己看 | 笔记本要额外配电源管理、触控板、亮度键、休眠 | |
-| 2 | 厂商 + 型号 | `Get-CimInstance Win32_ComputerSystem \| Select Manufacturer,Model` | 能否在 ArchWiki 搜到专属页面（很多机型有现成踩坑记录） | |
-| 3 | CPU | `Get-CimInstance Win32_Processor \| Select Name,NumberOfCores` | 微码包选 `intel-ucode` 还是 `amd-ucode`；CachyOS 的 v3/v4 优化包能否用 | |
-| 4 | **显卡（最关键）** | `Get-CimInstance Win32_VideoController \| Select Name,AdapterRAM,DriverVersion` | NVIDIA / AMD / Intel 三条完全不同的驱动路线，见第五节 | |
-| 5 | 是否双显卡（核显+独显） | 上一条如果列出两个设备 | 笔记本混合显卡要配 PRIME / optimus-manager | |
-| 6 | 内存容量 | `Get-CimInstance Win32_PhysicalMemory \| Select Capacity,Speed` | 决定 swap 大小、要不要开休眠（hibernate 需 swap ≥ 内存） | |
-| 7 | 硬盘（型号/容量/接口） | `Get-PhysicalDisk \| Select FriendlyName,MediaType,Size` + `Get-Disk \| Select Number,FriendlyName,PartitionStyle` | 分区方案；**多块盘时务必确认要格式化的是哪块**（`Number` 列） | |
-| 8 | BIOS 模式（UEFI / Legacy） | `msinfo32` → 看「BIOS 模式」一行 | UEFI 才能用 systemd-boot；Legacy 只能 GRUB + MBR | |
-| 9 | 无线网卡型号 | `Get-NetAdapter \| Select Name,InterfaceDescription` | Broadcom / 部分 Realtek 网卡需要额外固件，**装之前必须确认**，否则装完没网 | |
-| 10 | 有线网口 | 同上 | 有网口就是保险绳：无线驱动挂了还能插网线救 | |
-| 11 | 蓝牙 | `Get-PnpDevice -Class Bluetooth \| Select FriendlyName,Status` | 是否需要 `bluez` + 固件 | |
-| 12 | 显示器分辨率 / 刷新率 / 几块屏 | `Get-CimInstance Win32_VideoController \| Select CurrentHorizontalResolution,CurrentVerticalResolution,CurrentRefreshRate` | HiDPI 缩放、多屏、高刷是否要走 Wayland | |
-| 13 | 指纹 / 摄像头 / 读卡器等特殊外设 | 设备管理器里翻一遍 | 指纹在 Linux 上支持率很低，提前有心理预期 | |
+| 1 | 台式 / 笔记本 | 自己看 | 笔记本要额外配电源管理、触控板、亮度键、休眠 | **笔记本**（Chassis Type 10）→ 装完要配电源管理、亮度键 |
+| 2 | 厂商 + 型号 | `Get-CimInstance Win32_ComputerSystem \| Select Manufacturer,Model` | 能否在 ArchWiki 搜到专属页面（很多机型有现成踩坑记录） | **Lenovo Legion Y7000 IRX9**（机型码 83JJ，BIOS PTCN14WW） |
+| 3 | CPU | `Get-CimInstance Win32_Processor \| Select Name,NumberOfCores` | 微码包选 `intel-ucode` 还是 `amd-ucode`；CachyOS 的 v3/v4 优化包能否用 | Intel Core **i7-13650HX**，14 核 20 线程（Raptor Lake-HX）→ 装 `intel-ucode`；支持 x86-64-v3（无 AVX-512，v4 用不了） |
+| 4 | **显卡（最关键）** | `Get-CimInstance Win32_VideoController \| Select Name,AdapterRAM,DriverVersion` | NVIDIA / AMD / Intel 三条完全不同的驱动路线，见第五节 | **NVIDIA RTX 4060 Laptop GPU（8GB，Ada 架构）** → 第五节走 `nvidia-open-dkms` 路线 |
+| 5 | 是否双显卡（核显+独显） | 上一条如果列出两个设备 | 笔记本混合显卡要配 PRIME / optimus-manager | 是：Intel UHD 核显 + RTX 4060 独显 → 混合显卡，要配 PRIME |
+| 6 | 内存容量 | `Get-CimInstance Win32_PhysicalMemory \| Select Capacity,Speed` | 决定 swap 大小、要不要开休眠（hibernate 需 swap ≥ 内存） | **24GB（2×12GB DDR5-4800，Ramaxel，两个插槽已占满）**；swap 用 zram 即可，要休眠才需 ≥24GB 真实 swap（建议放弃休眠） |
+| 7 | 硬盘（型号/容量/接口） | `Get-PhysicalDisk \| Select FriendlyName,MediaType,Size` + `Get-Disk \| Select Number,FriendlyName,PartitionStyle` | 分区方案；**多块盘时务必确认要格式化的是哪块**（`Number` 列） | 两块 NVMe SSD 各 512GB：**Disk 0 YMTC = Windows 系统盘（C+D+恢复分区），全程不碰；Disk 1 SDHSJ-MA500 = 现 Ubuntu 盘，即 Arch 目标盘**。序列号见下方双盘对号表 |
+| 8 | BIOS 模式（UEFI / Legacy） | `msinfo32` → 看「BIOS 模式」一行 | UEFI 才能用 systemd-boot；Legacy 只能 GRUB + MBR | **UEFI** ✅（Win11 26200）；**Secure Boot 当前已是关闭状态** ✅（注册表 UEFISecureBootEnabled=0） |
+| 9 | 无线网卡型号 | `Get-NetAdapter \| Select Name,InterfaceDescription` | Broadcom / 部分 Realtek 网卡需要额外固件，**装之前必须确认**，否则装完没网 | **Realtek RTL8852BE WiFi 6** → 内核 `rtw89` 驱动原生支持，固件在 `linux-firmware` 里自带，**无需额外折腾** ✅ |
+| 10 | 有线网口 | 同上 | 有网口就是保险绳：无线驱动挂了还能插网线救 | 有：Realtek PCIe GbE 千兆网口（当前未插线，装机时插上即是保险绳） |
+| 11 | 蓝牙 | `Get-PnpDevice -Class Bluetooth \| Select FriendlyName,Status` | 是否需要 `bluez` + 固件 | 有：Realtek 蓝牙（RTL8852BE 二合一）→ `bluez` + `bluez-utils`，固件 `linux-firmware` 自带 |
+| 12 | 显示器分辨率 / 刷新率 / 几块屏 | `Get-CimInstance Win32_VideoController \| Select CurrentHorizontalResolution,CurrentVerticalResolution,CurrentRefreshRate` | HiDPI 缩放、多屏、高刷是否要走 Wayland | 双屏：内屏 **1920×1080@144Hz**（核显输出）+ 外接 **3440×1440@60Hz** 带鱼屏（独显输出）；均非 HiDPI，X11/Wayland 皆可 |
+| 13 | 指纹 / 摄像头 / 读卡器等特殊外设 | 设备管理器里翻一遍 | 指纹在 Linux 上支持率很低，提前有心理预期 | 摄像头 ×2（Integrated Camera + TranScreen Camera）；**未检测到指纹**；未见读卡器 |
+
+**本机双盘对号（装前必读）**：
+
+| 盘 | 型号 / 序列号 | 现状 | 动作 |
+|----|---------------|------|------|
+| Disk 0 | YMTC YMSS2ED06D25MC（Serial `A428_B75E_56F8_0049`） | Windows：EFI 260M + C 175G + D 300G + 恢复分区 | **全程不碰** |
+| Disk 1 | SDHSJ-MA500（Serial `0000_0030_3735_3738`） | Ubuntu：单个 Linux 分区占满整盘（无自己的 EFI 分区） | **格掉装 Arch** |
+
+- Windows 和 Linux 的磁盘编号**不保证一致**（Linux 下可能是 `/dev/nvme0n1` 也可能是 `/dev/nvme1n1`）。进 Live 环境后用 `lsblk -o NAME,MODEL,SERIAL,SIZE` 按**型号/序列号**认盘，认准 SDHSJ-MA500 再动手。
+- Ubuntu 盘上没有自己的 EFI 分区，说明现在 Ubuntu 的 GRUB 大概率装在 Windows 盘的 ESP 里。格盘后旧引导项残留但无害（进 Arch 后 `efibootmgr` 可清）；给 Arch 分区时让 archinstall **在目标盘上新建 ESP**（best-effort default layout 就是这么做的），Windows 盘一个字节都不用动。
+- 双系统切换：Legion 开机按 `F12` 进启动菜单选盘，或在 BIOS 里调启动顺序。
 
 **懒人一把梭（推荐）**：不用逐条敲命令，直接出两份报告：
 
@@ -87,7 +98,7 @@ inxi -Fxz           # 一把梭总览（Live 环境自带）
 | 系统凭据 | 浏览器/系统里存的 WiFi 密码、各类登录 | 装完 Arch 要重新连 WiFi，**先把 WiFi 密码记下来** |
 | 驱动备份（可选） | 无线网卡的 Windows 驱动 | 万一要回滚 Windows |
 
-备份去向：外置硬盘 / NAS / 云盘，**不要备份到本机另一个分区**（全盘覆盖会一起删）。
+备份去向：外置硬盘 / NAS / 云盘。**本机双盘场景：要清空的只是 Ubuntu 盘**——把 Ubuntu 盘上的数据（重点 `~/.ssh`、各项目未 push 的仓库、各类配置）搬走即可；Windows 盘不动，但为防格错盘，关键数据顺手多备一份不亏。
 
 ### 2. Windows 软件的 Linux 处境（决定要不要真换）
 
@@ -495,8 +506,8 @@ sudo pacman -Rns $(pacman -Qtdq)    # 清孤儿包
 ## 九、执行 Checklist
 
 **装机前（在 Windows 上）**
-- [ ] 填完第〇节硬件登记表
-- [ ] 确认无线网卡型号在 Linux 下有驱动（或确认有网口做保险）
+- [x] 填完第〇节硬件登记表（2026-08-17 本机实测）
+- [x] 确认无线网卡型号在 Linux 下有驱动（RTL8852BE 内核 rtw89 原生支持），另有千兆网口兜底
 - [ ] 数据全部备份到外置硬盘 / 云，并**在另一台机器上验证能打开**
 - [ ] WiFi 密码、各类账号密码已记录到手机 / 密码管理器
 - [ ] 确认没有网银 U 盾 / Office / 反作弊网游这类无解需求
@@ -505,7 +516,7 @@ sudo pacman -Rns $(pacman -Qtdq)    # 清孤儿包
 
 **装机中**
 - [ ] Live 环境跑 `lspci -nnk` / `inxi -Fxz` 确认硬件识别
-- [ ] `lsblk` 确认目标硬盘盘符（**多块盘时别格错**）
+- [ ] `lsblk -o NAME,MODEL,SERIAL` 确认目标硬盘盘符（**多块盘时别格错**；目标盘：SDHSJ-MA500，Serial `0000_0030_3735_3738`）
 - [ ] 换国内镜像源
 - [ ] archinstall：btrfs + systemd-boot + pipewire + NetworkManager + linux & linux-lts
 - [ ] 附加包勾上 fcitx5 全家桶 + noto CJK 字体 + firefox
