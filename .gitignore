@@ -9,3 +9,6 @@
 
 # Obsidian plugin config carrying live session tokens — local only, never publish
 .obsidian/plugins/Dida Sync/data.json
+
+# Same policy as Dida Sync — this plugin config carries a live sessionToken that rotates every session
+.obsidian/plugins/obsidian-content-protection/data.json
