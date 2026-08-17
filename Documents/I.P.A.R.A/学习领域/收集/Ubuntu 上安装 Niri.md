@@ -22,7 +22,7 @@ cssclasses:
 ```meta-bind-embed
 [[笔记抬头模块]]
 ```
-<progress value="20" max="100" style="width: 100%;"></progress>
+<progress value="40" max="100" style="width: 100%;"></progress>
 
 > **本笔记要办两件事**（都不需要换发行版）：
 > 1. **在现有 Ubuntu 上装 Niri**，把 GNOME 那套桌面换成滚动平铺；
@@ -71,7 +71,7 @@ Rust 写的 **scrollable-tiling（滚动平铺）Wayland 合成器**，灵感来
 
 > 本机双屏（内屏 1920×1080@144 + 外接 3440×1440 带鱼屏）其实很契合：带鱼屏一屏能并排放 3 列，横向滚动的交互本来就是为宽屏设计的。
 
-## 二、Niri 能换掉什么、换不掉什么（顺便清理 Ubuntu 糟粕）
+## 二、动手前：Niri 能换掉哪一层、Ubuntu 糟粕清多少、要不要留快照
 
 一句话：**Niri 只动「桌面」这一层。你最想清掉的东西里，有一半和 Niri 无关但能顺手清，另一半结构上就清不掉。**
 
@@ -345,6 +345,20 @@ sudo apt install virt-manager qemu-kvm
 
 配置文件在 `~/.config/niri/config.kdl`，**保存即生效，不用重启**（live reload）——这点是 Niri 体验最好的地方之一，改配置的反馈是实时的。
 
+### 起不来时的排查速查
+
+| 现象 | 原因 | 怎么办 |
+|------|------|--------|
+| **登录界面没有 Niri 选项** | 会话文件没装到位 | `ls /usr/share/wayland-sessions/` 看有没有 `niri.desktop`；源码装的话是路线 B 第 5 步漏了。装完 `sudo systemctl restart gdm3` 刷新 |
+| 选了 Niri，闪一下弹回登录界面 | 启动就崩了 | 切 TTY（`Ctrl+Alt+F3`）跑 `journalctl --user -b -u niri` 或 `journalctl -b | grep -i niri` 看报错 |
+| 进去后**全黑**，键盘有反应 | 渲染设备挑错了（NVIDIA 常见） | 见第六节第 2 点，手动配 `render-drm-device` |
+| 进去后全黑，键盘也没反应 | 彻底挂了 | `Ctrl+Alt+F3` 进 TTY，改配置或 `sudo systemctl restart gdm3` |
+| 空屏但 `Super+T` 没反应 | 终端没装 | 回 TTY 装 `alacritty`，或改 config 里的终端命令 |
+| 什么都正常，但**没有状态栏 / 启动器** | 第七节的配套组件没装 | 那些不是 Niri 自带的，要自己装 |
+| 应用图标全是灰白方块 | 图标主题缺失 | `sudo apt install papirus-icon-theme` 之类 |
+
+> **保命前提**：`Ctrl+Alt+F3` 永远能切到 TTY 文字终端，在那里可以改配置、卸包、重启显示管理器。**试玩期间不会有真正回不去的情况。**
+
 ## 六、NVIDIA 混合显卡（本机必看）
 
 本机是 Intel 核显 + RTX 4060 的 muxless 混合显卡，Wayland 下有几个已知点：
@@ -567,6 +581,29 @@ rm -rf ~/.config/niri
 ```
 
 登录界面选回 GNOME（或你原来的会话）即可。**现有桌面环境全程没被动过。**
+
+### 如果连 snap 也想装回来
+
+第二节说过「软件能装回来，数据删了才没了」，这是把软件装回来的命令：
+
+```bash
+# 1. 先去掉那条阻止 apt 装 snapd 的 pin
+sudo rm /etc/apt/preferences.d/nosnap.pref
+
+# 2. 装回 snapd
+sudo apt update && sudo apt install snapd
+sudo systemctl enable --now snapd.service snapd.socket
+
+# 3. 想把 Firefox 也换回 snap 版（一般没必要，deb 版更好用）
+sudo rm /etc/apt/preferences.d/mozilla /etc/apt/sources.list.d/mozilla.list
+sudo apt update && sudo apt install --reinstall firefox
+
+# 4. 按第二节存下的清单，把当初的 snap 应用装回来
+cat ~/snaplist-*.txt
+sudo snap install <包名>
+```
+
+> ⚠️ 应用**数据**装不回来——这就是第二节 0 要你先导出的原因。Firefox 的配置如果已经 `cp -a` 到了 `~/.mozilla`，deb 版会直接读到，不需要回滚。
 
 ## 十二、延伸阅读
 
