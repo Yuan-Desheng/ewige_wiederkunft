@@ -348,6 +348,32 @@ pkill waybar
 # 然后编辑 ~/.config/niri/config.kdl，删掉那行 spawn-at-startup "waybar"
 ```
 
+### 主题与外观：视频里那套在 Ubuntu 上能不能装？
+
+**结论先说：[NyxNiri](https://github.com/ech678/NyxNiri) 在 Ubuntu 上装不了，别试。**
+
+| 事实 | 依据 |
+|------|------|
+| NyxNiri README 第一行就写明支持范围是 **「Arch Linux / CachyOS」**，全文没有一处提到 Ubuntu / Debian | 仓库 README |
+| 它的安装脚本用 **pacman + AUR**，找不到 AUR helper 时会自己装 `paru` | 同上 |
+| 核心依赖 **Noctalia shell** 需要一个**定制版 quickshell（noctalia-qs）**，发行版仓库里的 quickshell 不兼容；Debian/Ubuntu 上只能从源码编 | Noctalia 官方文档 |
+
+所以在 Ubuntu 上，主题这件事分三档：
+
+| 档位 | 做什么 | 适用 |
+|------|--------|------|
+| **① 裸 Niri（推荐给试玩期）** | 只装第七节那套 waybar + fuzzel + mako，不碰任何主题 | **试玩阶段就该这样**——你要判断的是「滚动平铺这套交互适不适合我」，不是「配色好不好看」。主题只会增加故障面 |
+| **② DMS（DankMaterialShell）** | Ubuntu 25.10+ 的 PPA 里直接有：`sudo apt install dms`。这是 Niri 官方 Getting Started 里配套推荐的 shell，Material 风格，观感最接近视频 | 想要点样子、又不想编译。**24.04 没有这个包** |
+| **③ 抄 NyxNiri 的片段** | 它仓库里**发行版无关**的部分照抄：`config.kdl` 的布局和键位、fcitx5 皮肤、Starship / Fastfetch 配置。**发行版相关的部分**（pacman 装包、Noctalia、AUR 依赖）跳过 | 想要它的具体某个效果时 |
+
+**给你的建议**：
+
+1. 试玩期走 **① 裸 Niri**。先确认交互本身你受得了
+2. 确认喜欢之后，Ubuntu 25.10+ 就 `apt install dms`；24.04 就先用 waybar 凑合，别为了外观去编 quickshell
+3. **NyxNiri 整套留到换 Arch/CachyOS 之后再说**——那时候它才是一条命令的事。而且到那天也建议先读脚本再跑（理由见 [[Arch Linux 调研]] 第二节）
+
+> ⚠️ 顺带一提，NyxNiri 自己的 README 就记着一条坑：**Noctalia 启动时 ddcutil 扫 I2C 总线会卡住，「NVIDIA 常见」——正好是你这台机器**。这也是建议试玩期别碰主题的实际理由之一。
+
 ## 八、中文输入法（fcitx5）
 
 Niri 是纯 Wayland，输入法走 `text-input-v3` 协议，配置和 GNOME 下略有不同：
@@ -483,6 +509,8 @@ rm -rf ~/.config/niri
 - [It's FOSS：Niri 上手评测](https://itsfoss.com/niri-window-manager/)
 - [MakeUseOf：试了 Niri 但不适合我](https://www.makeuseof.com/every-linux-user-told-me-to-try-niri-so-i-finally-did-and-it-wasnt-for-me/)（反面视角，值得先看）
 - [Exploring Niri（Debian 13 安装记）](https://weiyichen.me/blog/niri_exploration)
-- [NyxNiri](https://github.com/ech678/NyxNiri) —— 视频里那套配置，**当参考抄，别一键跑**（理由见 [[Arch Linux 调研]] 第二节）
+- [NyxNiri](https://github.com/ech678/NyxNiri) —— 视频里那套配置。**只支持 Arch / CachyOS，Ubuntu 上装不了**；能抄的只有发行版无关的片段，详见第七节末尾
+- [Noctalia 官网](https://noctalia.dev/) / [文档](https://docs.noctalia.dev/) —— NyxNiri 用的 shell，Debian 系需自行编译 noctalia-qs
+- [DankMaterialShell（DMS）](https://github.com/AvengeMedia/DankMaterialShell) —— Ubuntu 25.10+ 可 apt 直装的替代选择
 
 相关笔记：[[Arch Linux 调研]]、[[Linux]]
