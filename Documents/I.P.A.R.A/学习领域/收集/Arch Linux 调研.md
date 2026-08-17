@@ -191,6 +191,82 @@ Arch 这边保持默认（`timedatectl set-local-rtc 0`，即用 UTC）即可，
 
 **什么情况下不该换**：如果这台机器上的 Ubuntu 现在跑得好好的、你也不想每周花 5 分钟维护，那**没有换的必要**——Arch 的收益（新版本 + AUR + 干净包管理）对「机器只是拿来跑活」的人是不够抵消维护成本的。反过来，如果你已经在被 apt 的旧版本、snap 的怪毛病、PPA 冲突折磨，那换过去是对症的。
 
+### 社区的两种声音：推荐和劝退各自在说什么
+
+促成这次调研的三个来源，逐个还原成事实。
+
+#### 推荐侧：NyxNiri（桌面美化配置）
+
+| 项 | 事实 |
+|----|------|
+| 来源 | B 站 [BV1nxby6NEhc](https://www.bilibili.com/video/BV1nxby6NEhc)，UP 主 **Echoes678**，2026-08-15 发布，标题《NyxNiri v2.3.0 \| 星环更新 \| 一键脚本》 |
+| 仓库 | [github.com/ech678/NyxNiri](https://github.com/ech678/NyxNiri)，**282 star / 24 fork** |
+| 它是什么 | **不是发行版，是一套 dotfiles + 一键安装脚本**。技术栈 = CachyOS + **Niri** 窗口管理器 + **Noctalia V5** shell，Material You 风格 |
+| 包含什么 | Niri 配置、Noctalia 主题同步、Kitty 终端、Fish 别名、Starship、Fastfetch、Zed 编辑器、NyxMellow fcitx5 输入法皮肤 |
+| 贴心处 | 装前自动备份现有配置；国内走 gh-proxy 镜像；`*__custom__*` 命名的文件更新时不被覆盖 |
+
+**Niri 值得单独说**——它是这套东西里真正有价值的部分：Rust 写的 **scrollable-tiling（滚动平铺）Wayland 合成器**，灵感来自 PaperWM。窗口排成一条**无限长的横向条带**，你横向滚动浏览：
+
+- **开新窗口不会重排 / 缩放已有窗口**（i3、Sway 会），不会「一开新窗口全乱了」
+- **多显示器是一等公民**，工作区按显示器独立
+- 2026 年游戏也没问题：Steam 走 xwayland-satellite，Proton、VRR 都支持
+
+对**你的双屏配置**其实很契合：3440×1440 带鱼屏一屏能并排放 3 列，横向滚动的交互正是为宽屏设计的。
+
+**不适合谁**：习惯浮动窗口的人；想要 Hyprland 那种模糊和重动画的人；肌肉记忆绑死「固定编号工作区」的人。
+
+#### 劝退侧：那个批评视频
+
+| 项 | 事实 |
+|----|------|
+| 来源 | B 站 [BV14tNi6tEVN](https://www.bilibili.com/video/BV14tNi6tEVN)，UP 主 **Fangcat_Dev**，2026-07-14，标题《Arch 嘉豪们的底线，到底在哪里？【补档】》 |
+| 性质 | **主要是讽刺社区风气，不是技术评测**（"嘉豪" = 网络梗，指装逼/炫耀的人）。简介原话「如果你觉得被冒犯了，那么对不起，我们就是在骂你」 |
+| 汇编的观点 | Arch 被当作炫耀资本、系统不稳、AUR 安全漏洞，正反两面用户体验 |
+
+同期英文圈也有一批《Why I Stopped Using Arch Linux》《I Quit Arch After 794 Days》《Stop Using Arch Linux》，理由集中在：更新滚挂、需要持续维护、AUR 安全（2026-06 投毒）、Fedora/Mint 更省心。
+
+**把情绪剥掉，真正成立的技术批评只有三条**（前两条本笔记第九节已有对策）：
+
+1. **需要持续维护** —— 每周更新 + 一年数次读 news 手动干预。这是事实，接受不了就别换
+2. **AUR 的信任模型是「你自己审 PKGBUILD」** —— 2026-06 投毒事件证明了这不是理论风险
+3. **一键美化脚本会让系统变成你不理解的黑盒** —— 出问题时既不知道哪一层坏了，也不知道该问谁
+
+而「Arch 用来炫耀」是社区文化问题，跟你无关——你要的是新版本工具链和干净包管理，不是社交货币。
+
+#### 关键的解耦：**视频里好看的东西，跟 Arch 没有必然关系**
+
+这是这一节最重要的一句话。你被种草的是 **Niri + Noctalia 的桌面观感**，不是 Arch 本身。而：
+
+- **Niri 在 Ubuntu 上也能装**（24.04+ 加官方 PPA，或自己 `cargo build`）
+- 换窗口管理器 ≠ 换发行版
+
+不过这件事本身恰好也是个例证：**Arch 上 `pacman -S niri` 一条命令搞定**（在官方 extra 仓库里），Ubuntu 要加 PPA 或自己编译。这正是第二节表格里「软件版本 / 覆盖面」那两行在现实中的样子。
+
+#### 对「一键美化脚本」的诚实评估
+
+社区的普遍共识是：**用别人的 dotfiles 之前先 fork、先读代码，不懂就别用**。具体到 NyxNiri：
+
+| 风险 | 说明 |
+|------|------|
+| 项目体量 | 282 star 的**个人项目**，还在 v2 阶段，维护者一人 |
+| 影响面 | 脚本会改你的 shell、终端、编辑器、输入法配置——正是开发环境的核心 |
+| 供应链 | 一键脚本 = 把 root/家目录的写权限交给一个陌生仓库。这和 AUR 投毒事件是同一类信任问题 |
+| 已知坑（README 自己写的） | Noctalia 启动时 ddcutil 扫 I2C 总线会卡住，**"NVIDIA 常见"——正好是你这台机器**；插件仓库损坏要手动 `git reset` 修 |
+
+**建议的用法**：
+
+- ✅ 把 NyxNiri 当**参考配置抄**：看它的 niri config 怎么写、Noctalia 怎么配、fcitx5 皮肤怎么做，抄你要的部分
+- ✅ 想整套跑，就在**虚拟机或刚装完还没配开发环境的系统**上跑，别在已经配好 SSH key、token、项目的机器上直接跑
+- ❌ 不要在装完开发环境之后，为了好看跑一遍一键脚本
+
+#### 给你的行动建议
+
+1. **先在现在的 Ubuntu 上装 Niri 玩两天**（加 PPA），确认你是真喜欢这套滚动平铺交互，还是只是视频剪得好看。**这一步零成本、零风险**
+2. 喜欢 → 再按本笔记换 Arch；换完**手动配 Niri**（`pacman -S niri`），NyxNiri 当抄袭对象
+3. 不喜欢 → 那换 Arch 的理由就只剩「新版本工具链 + AUR + 干净包管理」这一条。**这一条本身也够，但要你自己认可它值那点维护成本**，别因为桌面好看去换系统
+
+> 一句话总结：**桌面美化是换发行版之后的糖，不该是换发行版的理由。**
+
 ---
 
 ## 三、制作安装 U 盘（在本机 Windows 下做）
@@ -945,6 +1021,9 @@ sudo pacman -Rns $(pacman -Qtdq)    # 清孤儿包
 - **开发环境**：[mise 官网](https://mise.jdx.dev/) / [ArchWiki: Distrobox](https://wiki.archlinux.org/title/Distrobox) / [uv](https://docs.astral.sh/uv/)
 - **游戏**：[ArchWiki: Steam](https://wiki.archlinux.org/title/Steam) / [ArchWiki: Gaming](https://wiki.archlinux.org/title/Gaming) / [ProtonDB](https://www.protondb.com/) / [Are We Anti-Cheat Yet?](https://areweanticheatyet.com/) / [GamingOnLinux](https://www.gamingonlinux.com/)
 - [Arch vs Ubuntu 2026 对比](https://www.golinuxcloud.com/arch-linux-vs-ubuntu/)（滚动 vs LTS、pacman vs apt、AUR vs snap）
+- **本次调研的三个来源**：[NyxNiri 仓库](https://github.com/ech678/NyxNiri) / [推荐视频 BV1nxby6NEhc](https://www.bilibili.com/video/BV1nxby6NEhc) / [批评视频 BV14tNi6tEVN](https://www.bilibili.com/video/BV14tNi6tEVN)
+- **Niri**：[官方仓库](https://github.com/niri-wm/niri) / [Getting Started](https://niri-wm.github.io/niri/Getting-Started.html) / [It's FOSS 上手评测](https://itsfoss.com/niri-window-manager/)
+- **其它成熟的 Arch 桌面配置**（比 NyxNiri 体量大、维护者多，可作对比）：[Omarchy](https://omarchy.org/)（DHH 做的 Arch+Hyprland 完整系统）、[HyDE](https://github.com/HyDE-Project/HyDE)、[end-4 dots-hyprland](https://github.com/end-4/dots-hyprland)
 - [EndeavourOS 官网](https://endeavouros.com/) / [CachyOS 官网](https://cachyos.org/)
 - [Ventoy](https://ventoy.net) — 多系统启动 U 盘
 - [Arch Linux 2026.07.01 ISO 发布说明](https://www.linuxcompatible.org/story/arch-linux-20260701-iso-released-with-kernel-7010-and-archinstall-44/)
