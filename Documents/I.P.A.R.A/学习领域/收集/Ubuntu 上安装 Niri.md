@@ -35,7 +35,8 @@ cssclasses:
 
 | 步骤 | 做什么 | 风险 | 可回退 |
 |------|--------|------|--------|
-| **1** | 清 snap + 清遥测（第二节） | 低 | Firefox 换成 Mozilla 官方 deb，装回 snapd 也不难 |
+| **0** | **导出 snap 应用数据**（尤其 Firefox 配置）+ 过一遍数据备份清单（第二节 0） | — | 全系统快照非必需，理由见第二节 |
+| **1** | 清 snap + 清遥测（第二节） | 低 | 软件能装回来，但**数据删了就没了**——所以先做第 0 步 |
 | **2** | 装 niri 二进制 → **嵌套窗口试跑**（第四节路线 0） | **零** | 关掉窗口就没了 |
 | **3** | 手感 OK → 装配套组件 + 配 fcitx5（第七、八节） | 低 | 都是独立的包 |
 | **4** | 注销，登录界面切 Niri 会话，用一整天（第五节） | 低 | 随时切回 GNOME |
@@ -81,6 +82,67 @@ Rust 写的 **scrollable-tiling（滚动平铺）Wayland 合成器**，灵感来
 | **包管理与软件版本** | apt / dpkg、源里版本冻结两年、元包一把塞一堆东西 | ❌ **换不掉**。这就是发行版的定义 |
 
 最后一行值得盯着看：**你最初想换 Arch 的真正理由（软件版本旧、包管理乱），恰好落在 Niri 够不到的那一层。**
+
+### 0. 动手前要不要留快照？
+
+**结论：全系统快照不是必需的，但 snap 应用的数据必须先救出来。**
+
+先看每一步真实的可逆性：
+
+| 操作 | 可逆吗 | 需要快照吗 |
+|------|--------|-----------|
+| 装 niri（apt 或源码） | ✅ 完全可逆，`apt remove` / 删二进制 | ❌ 不需要 |
+| 装配套组件（waybar、fuzzel…） | ✅ 独立的包，随时卸 | ❌ 不需要 |
+| 改 `~/.config/niri/config.kdl` | ✅ 删了重新生成 | ❌ 不需要 |
+| 清遥测（`apt purge ubuntu-report` 等） | ✅ 想要再 `apt install` 回来 | ❌ 不需要 |
+| **清 snap** | ⚠️ **软件能装回来，但 snap 应用的数据删了就没了** | ⬅ **只有这一步要小心** |
+| 卸 GNOME | ❌ 难恢复 | 需要——所以第二节建议**先别做** |
+
+#### 真正的风险点：snap 应用的数据
+
+`snap remove --purge` + `rm -rf ~/snap` 会**连同应用数据一起删掉**。最要命的是 Firefox——snap 版的配置在 `~/snap/firefox/` 下，不是常规的 `~/.mozilla/`：
+
+```bash
+# 清 snap 之前，先把 Firefox 数据搬到标准位置
+ls ~/snap/firefox/common/.mozilla/firefox/          # 确认 profile 在这
+cp -a ~/snap/firefox/common/.mozilla ~/.mozilla     # 搬到 deb 版会读的位置
+
+# 顺便看看还有哪些 snap 应用存了数据
+du -sh ~/snap/*
+```
+
+对每个 `snap list` 里的应用问一句：**它的数据我在乎吗？** 在乎就先导出（浏览器书签导 HTML、编辑器配置拷出来），再删。
+
+#### 想买个保险的话（可选，30 分钟）
+
+```bash
+# 1. 先看文件系统类型
+findmnt -no FSTYPE /
+
+# 2a. 是 btrfs → 快照几秒钟，几乎不占空间
+sudo apt install timeshift
+#    Timeshift 里选 BTRFS 模式，建一个快照
+
+# 2b. 是 ext4（Ubuntu 默认）→ 只能 rsync 模式，要额外空间
+sudo apt install timeshift
+#    选 RSYNC 模式，快照目标选**外置硬盘**，别存本盘
+```
+
+另外记一份已装包清单，将来对照用（零成本）：
+
+```bash
+dpkg --get-selections > ~/pkglist-$(date +%F).txt
+snap list > ~/snaplist-$(date +%F).txt
+```
+
+#### 我的建议
+
+**不做全系统快照，但做两件事**：
+
+1. **清 snap 前把在乎的 snap 应用数据导出**（尤其 Firefox）
+2. `~/.ssh`、未 push 的仓库、`.env` 这些**本来就该有备份**——[[Arch Linux 调研]] 第一节那份清单现在就可以先过一遍
+
+理由很直白：**这块盘本来就在换 Arch 的计划里，早晚要格。** 花时间给一个待拆的系统做全盘快照，收益不如把「哪些数据不能丢」这件事一次性理清楚——后者换 Arch 时还要再用一遍。
 
 ### 值得顺手清的（收益大、风险低）
 
@@ -448,6 +510,9 @@ spawn-at-startup "waybar"
 
 ### A. 清理 Ubuntu 糟粕（和 Niri 无关，现在就能做）
 
+- [ ] **先做**：`du -sh ~/snap/*` 看哪些 snap 应用存了数据，在乎的先导出
+- [ ] **先做**：`cp -a ~/snap/firefox/common/.mozilla ~/.mozilla`（书签密码都在这）
+- [ ] **先做**：`dpkg --get-selections > ~/pkglist-$(date +%F).txt` 存一份包清单
 - [ ] `snap list` 记下装了哪些，逐个 `snap remove --purge`
 - [ ] purge `snapd`，删 `/snap` `/var/snap` `/var/lib/snapd` `~/snap`
 - [ ] 写 `/etc/apt/preferences.d/nosnap.pref` 防止 apt 装回来
