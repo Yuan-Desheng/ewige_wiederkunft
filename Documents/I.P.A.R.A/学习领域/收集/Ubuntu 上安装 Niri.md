@@ -3,7 +3,7 @@ createTime: 2026-08-17 14:11
 笔记ID: 20260817141112
 multiFile:
 multiMedia:
-description: 在现有 Ubuntu 上零风险试玩 Niri 滚动平铺窗口管理器：嵌套窗口试跑、PPA 与源码两条安装路线、NVIDIA 混合显卡配置、配套组件与中文输入法、试玩判断清单与干净卸载
+description: 在现有 Ubuntu 上零风险试玩 Niri 滚动平铺窗口管理器：Niri 能换掉哪一层与顺手清 snap/遥测、嵌套窗口试跑、PPA 与源码两条安装路线、NVIDIA 混合显卡配置、配套组件与中文输入法、试玩判断清单与干净卸载
 笔记类型: 收集笔记
 阐述日期:
 tags:
@@ -54,7 +54,114 @@ Rust 写的 **scrollable-tiling（滚动平铺）Wayland 合成器**，灵感来
 
 > 本机双屏（内屏 1920×1080@144 + 外接 3440×1440 带鱼屏）其实很契合：带鱼屏一屏能并排放 3 列，横向滚动的交互本来就是为宽屏设计的。
 
-## 二、动手前先查三件事
+## 二、Niri 能换掉什么、换不掉什么（顺便清理 Ubuntu 糟粕）
+
+一句话：**Niri 只动「桌面」这一层。你最想清掉的东西里，有一半和 Niri 无关但能顺手清，另一半结构上就清不掉。**
+
+| 层 | 具体是什么 | Niri 管不管 |
+|----|-----------|------------|
+| **桌面 / 窗口管理** | GNOME Shell、Mutter、Nautilus、GNOME 全家桶应用、gdm3 | ✅ **完全替换掉** |
+| **系统自带软件与服务** | snap、遥测上报、Ubuntu Pro 广告、崩溃上报 | ⚠️ 和 Niri 无关，但**可以另外清掉**（见下） |
+| **包管理与软件版本** | apt / dpkg、源里版本冻结两年、元包一把塞一堆东西 | ❌ **换不掉**。这就是发行版的定义 |
+
+最后一行值得盯着看：**你最初想换 Arch 的真正理由（软件版本旧、包管理乱），恰好落在 Niri 够不到的那一层。**
+
+### 值得顺手清的（收益大、风险低）
+
+#### 1. snap 全家 —— Ubuntu 最大的一块糟粕
+
+```bash
+snap list                                   # 先看装了哪些
+sudo snap remove --purge <逐个包名>          # 一个个删干净
+
+sudo systemctl disable --now snapd.service snapd.socket snapd.seeded.service
+sudo apt purge -y snapd
+sudo rm -rf /snap /var/snap /var/lib/snapd ~/snap
+
+# 关键：防止 apt 把它悄悄装回来
+sudo tee /etc/apt/preferences.d/nosnap.pref <<'EOF'
+Package: snapd
+Pin: release a=*
+Pin-Priority: -10
+EOF
+```
+
+**代价**：Ubuntu 官方源里的 Firefox 只是个「转 snap」的壳。换 Mozilla 官方 APT 源的原生 deb：
+
+```bash
+sudo install -d -m 0755 /etc/apt/keyrings
+wget -qO- https://packages.mozilla.org/apt/repo-signing-key.gpg \
+  | sudo tee /etc/apt/keyrings/packages.mozilla.org.asc > /dev/null
+echo "deb [signed-by=/etc/apt/keyrings/packages.mozilla.org.asc] https://packages.mozilla.org/apt mozilla main" \
+  | sudo tee /etc/apt/sources.list.d/mozilla.list
+
+# 优先级，防止被 Ubuntu 源的 snap 壳顶掉
+sudo tee /etc/apt/preferences.d/mozilla <<'EOF'
+Package: firefox*
+Pin: origin packages.mozilla.org
+Pin-Priority: 1000
+EOF
+
+sudo apt update && sudo apt install firefox
+```
+
+只有 snap 版的软件，用 **flatpak** 补位：`sudo apt install flatpak`。
+
+> 这一步和换不换发行版完全无关，**现在就可以做，做完 Ubuntu 会干净一大截**。
+
+#### 2. 遥测 / 广告 / 崩溃上报
+
+```bash
+sudo apt purge -y ubuntu-report popularity-contest apport whoopsie
+
+# 终端登录时那段 Ubuntu Pro 广告
+sudo pro config set apt_news=false
+sudo chmod -x /etc/update-motd.d/*
+```
+
+> 卸 `apport` 之后就没有崩溃报告弹窗了（那玩意儿也从没帮你解决过问题）。
+
+#### 3. 显示管理器 gdm3 → greetd（可选，收益小）
+
+gdm3 会拉起一整套 GNOME 会话服务。介意的话换轻量的 `greetd`。但**收益很小，优先级最低**，试玩阶段别碰。
+
+### ⚠️ GNOME 本体：建议**先别卸**
+
+这是风险最高的一步，而且现在卸没有任何好处：
+
+- **试玩期 GNOME 就是你的后路** —— 不喜欢 Niri，登录界面切回去即可
+- **卸了不省内存，只省磁盘** —— 没启动的桌面不占内存，GNOME 那几个 G 磁盘不值得冒险
+- **`ubuntu-desktop` 是元包**，卸掉之后 `do-release-upgrade` 会拒绝或降级处理，以后升级 Ubuntu 会很难受
+- **一刀切容易连坐** —— GNOME 的依赖里混着密钥环、portal、polkit 认证代理这些 Niri 也要用的东西，`autoremove` 一把梭大概率把桌面搞成半残
+
+真到了长期只用 Niri 的那天再考虑，做法也是：`apt-mark showmanual` 摸清手动装的包，一个个 `apt -s remove` 看模拟输出再动手，**永远别信 `autoremove`**。
+
+### 结构上清不掉的（这些只有换发行版才解决）
+
+| 你嫌弃的 | Ubuntu 上能做到什么程度 |
+|----------|------------------------|
+| apt 慢、输出难看 | 换个前端 `nala` 能改善观感，dpkg 内核不变 |
+| **软件版本旧** | ❌ 结构性问题。PPA / flatpak / 手动编译都只是打补丁，**补丁打得越多系统越乱** |
+| 一个软件三个来源 | 清掉 snap 能好很多，但 apt + PPA + flatpak 仍然是三套 |
+| 不知道系统里为什么有某个包 | ❌ 装的时候就是元包一把塞进来的，事后追不回来 |
+
+### 诚实提醒：削过头就是在手工重造 Arch
+
+把 Ubuntu 一点点削成「只有我装的东西」的最小系统，技术上做得到，但你会得到一个**没人测试过的 Frankenstein Ubuntu**：
+
+- 出问题时 ArchWiki 帮不了你（你不是 Arch），Ubuntu 文档也帮不了你（你不是标准 Ubuntu）
+- 官方和社区的教程都默认你有 `ubuntu-desktop`
+- **维护成本反而比直接装 Arch 高**
+
+「系统里每个包都是我自己装的」**正是 Arch 的默认状态**，不是要你逆着发行版的设计去削出来的结果。
+
+**建议的顺序**：
+
+1. **现在**：装 Niri 试玩 + 清掉 snap 和遥测。GNOME 留着当后路。这一步收益最大、风险最低，且和换不换发行版无关
+2. **试玩出结论后**：喜欢 Niri **且**认可 Arch 的维护成本 → 换 Arch，在干净系统上重建（见 [[Arch Linux 调研]]）
+3. **不要走**「在 Ubuntu 上一点点削成 Arch」这条路 —— 那是两边的缺点全占
+
+## 三、动手前先查三件事
 
 ```bash
 # 1. Ubuntu 版本 —— 决定走哪条安装路线
@@ -69,7 +176,7 @@ lspci -nnk | grep -A3 -i vga
 
 记下结果，下一节按版本分叉。
 
-## 三、安装：三条路线，按你的情况选
+## 四、安装：三条路线，按你的情况选
 
 ### 路线 0：嵌套窗口试跑（**先做这个，零风险，5 分钟**）
 
@@ -141,7 +248,7 @@ sudo apt install virt-manager qemu-kvm
 
 装个 CachyOS 或 Arch 虚拟机，`pacman -S niri` 一条命令。缺点是虚拟机里的手感（尤其多屏和动画）不能代表真机，**只适合看外观，不适合判断日常好不好用**。
 
-## 四、首次启动
+## 五、首次启动
 
 1. **注销**当前会话（不是重启）
 2. 登录界面点用户名旁边的**齿轮 / 会话选择**图标 → 选 **Niri**
@@ -160,7 +267,7 @@ sudo apt install virt-manager qemu-kvm
 
 配置文件在 `~/.config/niri/config.kdl`，**保存即生效，不用重启**（live reload）——这点是 Niri 体验最好的地方之一，改配置的反馈是实时的。
 
-## 五、NVIDIA 混合显卡（本机必看）
+## 六、NVIDIA 混合显卡（本机必看）
 
 本机是 Intel 核显 + RTX 4060 的 muxless 混合显卡，Wayland 下有几个已知点：
 
@@ -200,7 +307,7 @@ debug {
 
 > 这块如果折腾超过半小时还不顺，**先用路线 0 的嵌套窗口试玩**——嵌套模式下走的是现有会话的渲染路径，绕开所有这些问题。
 
-## 六、最小可用配套（Niri 什么都不自带）
+## 七、最小可用配套（Niri 什么都不自带）
 
 Niri 只管窗口，其余全靠自己拼。一次装齐：
 
@@ -225,7 +332,7 @@ pkill waybar
 # 然后编辑 ~/.config/niri/config.kdl，删掉那行 spawn-at-startup "waybar"
 ```
 
-## 七、中文输入法（fcitx5）
+## 八、中文输入法（fcitx5）
 
 Niri 是纯 Wayland，输入法走 `text-input-v3` 协议，配置和 GNOME 下略有不同：
 
@@ -251,7 +358,7 @@ spawn-at-startup "fcitx5" "-d"
 
 > 若 GTK 应用能打中文、Electron 应用（VSCode / 微信）不行，给那些应用加 `--enable-wayland-ime` 启动参数。
 
-## 八、配置入门：config.kdl
+## 九、配置入门：config.kdl
 
 配置是 KDL 格式（比 JSON 好读，比 YAML 严格），**保存即生效**。几个最常改的：
 
@@ -295,7 +402,7 @@ spawn-at-startup "waybar"
 
 改完保存，切回 Niri 立刻能看到效果。**这个即时反馈是它比 i3/Sway 舒服的地方**——不用每次改完重载会话。
 
-## 九、试玩判断清单（这才是这份笔记的目的）
+## 十、试玩判断清单（这才是这份笔记的目的）
 
 用两天，重点验证这几件事。**不是验证 Niri 好不好，是验证它适不适合你**：
 
@@ -316,7 +423,7 @@ spawn-at-startup "waybar"
 | 喜欢 Niri | 换不换 Arch 是**另一个独立问题**，按 [[Arch Linux 调研]] 第二节的成本收益表自己判断。Ubuntu 上继续用 Niri 完全可以 |
 | 不喜欢 Niri | 换 Arch 的理由就只剩「新版本工具链 + AUR + 干净包管理」，**这条本身也够，但别拿桌面美化当理由** |
 
-## 十、干净卸载
+## 十一、干净卸载
 
 ```bash
 # PPA 装的
@@ -335,7 +442,7 @@ rm -rf ~/.config/niri
 
 登录界面选回 GNOME（或你原来的会话）即可。**现有桌面环境全程没被动过。**
 
-## 十一、延伸阅读
+## 十二、延伸阅读
 
 - [Niri 官方仓库](https://github.com/niri-wm/niri) / [Getting Started](https://niri-wm.github.io/niri/Getting-Started.html) / [Wiki](https://github.com/niri-wm/niri/wiki/Getting-Started)
 - [It's FOSS：Niri 上手评测](https://itsfoss.com/niri-window-manager/)
