@@ -24,8 +24,24 @@ cssclasses:
 ```
 <progress value="20" max="100" style="width: 100%;"></progress>
 
-> 目的：**在不换发行版、不动现有系统的前提下，花两天判断自己是不是真喜欢滚动平铺这套交互。** 配套 [[Arch Linux 调研]] 的行动建议第 1 步——先确认喜欢 Niri，再决定要不要为它折腾发行版。
-> 全程可逆：装了不喜欢，`apt remove` 掉就行，现有 GNOME 桌面一根毛都不会少。
+> **本笔记要办两件事**（都不需要换发行版）：
+> 1. **在现有 Ubuntu 上装 Niri**，把 GNOME 那套桌面换成滚动平铺；
+> 2. **顺手清掉 Ubuntu 的糟粕**——snap 全家、遥测、Ubuntu Pro 广告。
+>
+> 两件事互相独立：清糟粕现在就能做、和 Niri 无关；Niri 装了不喜欢 `apt remove` 掉就行，GNOME 留着当后路。
+> 关联 [[Arch Linux 调研]]：**先在这里确认喜不喜欢 Niri，再决定要不要为它折腾发行版**——第二节讲清楚了哪些糟粕在 Ubuntu 上清不掉、只有换发行版才解决。
+
+### 执行顺序（照这个走，每步都可回退）
+
+| 步骤 | 做什么 | 风险 | 可回退 |
+|------|--------|------|--------|
+| **1** | 清 snap + 清遥测（第二节） | 低 | Firefox 换成 Mozilla 官方 deb，装回 snapd 也不难 |
+| **2** | 装 niri 二进制 → **嵌套窗口试跑**（第四节路线 0） | **零** | 关掉窗口就没了 |
+| **3** | 手感 OK → 装配套组件 + 配 fcitx5（第七、八节） | 低 | 都是独立的包 |
+| **4** | 注销，登录界面切 Niri 会话，用一整天（第五节） | 低 | 随时切回 GNOME |
+| **5** | 调 `config.kdl`，把带鱼屏三列布局配出来（第九节） | 无 | 改配置保存即生效 |
+| **6** | 两天后按第十节清单下结论 | — | 不喜欢 → 第十一节干净卸载 |
+| **7** | ⚠️ 卸 GNOME —— **暂时别做**，理由见第二节 | 高 | 难 |
 
 ## 一、Niri 是什么（30 秒版）
 
@@ -402,9 +418,28 @@ spawn-at-startup "waybar"
 
 改完保存，切回 Niri 立刻能看到效果。**这个即时反馈是它比 i3/Sway 舒服的地方**——不用每次改完重载会话。
 
-## 十、试玩判断清单（这才是这份笔记的目的）
+## 十、执行清单
 
-用两天，重点验证这几件事。**不是验证 Niri 好不好，是验证它适不适合你**：
+### A. 清理 Ubuntu 糟粕（和 Niri 无关，现在就能做）
+
+- [ ] `snap list` 记下装了哪些，逐个 `snap remove --purge`
+- [ ] purge `snapd`，删 `/snap` `/var/snap` `/var/lib/snapd` `~/snap`
+- [ ] 写 `/etc/apt/preferences.d/nosnap.pref` 防止 apt 装回来
+- [ ] 加 Mozilla 官方 APT 源 + pin，装原生 deb 版 Firefox，确认书签和登录状态还在
+- [ ] `apt purge ubuntu-report popularity-contest apport whoopsie`
+- [ ] `pro config set apt_news=false` + `chmod -x /etc/update-motd.d/*`
+- [ ] （按需）装 flatpak 补位那些只有 snap 的软件
+- [ ] ⚠️ **GNOME 本体不要卸** —— 试玩期它是后路，理由见第二节
+
+### B. 装 Niri
+
+- [ ] `lsb_release -a` 确认版本 → 选路线 A（25.10+ PPA）还是路线 B（24.04 源码）
+- [ ] 装上 `niri` 二进制
+- [ ] 装配套：fuzzel / waybar / mako / swaylock / swaybg / **xwayland-satellite** / **portal 两个包**
+- [ ] 配 fcitx5 环境变量 + `spawn-at-startup`
+- [ ] NVIDIA：确认 `nvidia_drm.modeset=1`；黑屏则配 `render-drm-device`
+
+### C. 试玩判断（用两天，**不是验证 Niri 好不好，是验证它适不适合你**）
 
 - [ ] 嵌套窗口跑一遍（路线 0），第一印象是「有意思」还是「别扭」
 - [ ] 正式进会话，用它做**一整天真实工作**（写代码 + 开浏览器 + 开终端 + 聊天工具）
