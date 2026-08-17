@@ -3,7 +3,7 @@ createTime: 2026-08-17 11:17
 笔记ID: 20260817111738
 multiFile:
 multiMedia:
-description: Legion Y7000 IRX9 双盘双系统换 Arch 的调研与实操：硬件登记、认盘与备份、BIOS 设置、archinstall 安装、NVIDIA 混合显卡与中文环境、pacman/AUR 维护、风险与选型
+description: Legion Y7000 IRX9 双盘双系统换 Arch 的调研与实操：硬件登记、认盘与备份、BIOS 设置、archinstall 安装、NVIDIA 混合显卡与中文环境、与 Ubuntu 的取舍对比、开发环境三层结构、Steam 游戏配置、pacman/AUR 维护与选型
 笔记类型: 收集笔记
 阐述日期:
 tags:
@@ -11,6 +11,8 @@ tags:
   - ArchLinux
   - 调研
   - 装机
+  - 开发环境
+  - 游戏
 aliases:
   - Arch
   - Windows换Arch
@@ -23,7 +25,7 @@ cssclasses:
 ```meta-bind-embed
 [[笔记抬头模块]]
 ```
-<progress value="30" max="100" style="width: 100%;"></progress>
+<progress value="50" max="100" style="width: 100%;"></progress>
 
 > 调研时间 2026-08-17。**目标场景（2026-08-17 按本机实测定稿）：本机 Lenovo Legion Y7000 IRX9 笔记本，双 NVMe 硬盘——Windows 盘不动，另一块 Ubuntu 盘整盘换成 Arch，双硬盘双系统。**
 > 结论先行：可行，全程约 1-2 小时。真正的风险不在装系统（archinstall 已经很成熟），而在**装之前的数据备份**和**装之后的硬件驱动 + 中文环境**。发行版选择上，除非就是想折腾，否则建议直接上 **EndeavourOS**（原版 Arch + 图形安装器，装完即用）。
@@ -153,7 +155,41 @@ Arch 这边保持默认（`timedatectl set-local-rtc 0`，即用 UTC）即可，
 | 装完默认是什么 | 手动装的话是一个**没有桌面、没有网络管理器、没有声音**的裸命令行系统；用 archinstall 可以一次配齐 |
 | 杀手锏 | **ArchWiki**——全 Linux 生态公认最好的文档，连 Ubuntu/Debian 用户都在查 |
 
-**2026 年现状**：最新 ISO `2026.07.01`，内核 **Linux 7.0.x**，`archinstall` **4.4**（基于 Python 3.14+ 和 Textual TUI，支持全盘 LUKS2 加密、firewalld 菜单、GRUB UKI 引导项）。官方立场不变：archinstall **不会**帮你装 yay / paru，官方认为用户应自己审 PKGBUILD——这点在 6 月的 AUR 投毒事件后显得很有先见之明（见第七节）。
+**2026 年现状**：最新 ISO `2026.07.01`，内核 **Linux 7.0.x**，`archinstall` **4.4**（基于 Python 3.14+ 和 Textual TUI，支持全盘 LUKS2 加密、firewalld 菜单、GRUB UKI 引导项）。官方立场不变：archinstall **不会**帮你装 yay / paru，官方认为用户应自己审 PKGBUILD——这点在 6 月的 AUR 投毒事件后显得很有先见之明（见第九节）。
+
+### 装完之后，日常是什么样子
+
+以推荐配置（KDE Plasma + Wayland + btrfs 快照）为例，一个普通工作日：
+
+- **开机**：按 `F12` 选盘（不选就默认进 Arch）→ 约 10 秒到登录界面 → 进桌面。Plasma 的观感和 Windows 很接近：左下角开始菜单、任务栏、系统托盘，不需要重新学交互
+- **装软件**：`sudo pacman -S 包名`，几秒装完，**没有 snap 那种首次启动转半天的情况**
+- **更新**：每周自己找个时间 `sudo pacman -Syu`，一两分钟。**不会有弹窗催你更新，也不会有「重启以完成更新」**——更新完照常用，只有内核更新时才建议重启
+- **出问题**：GRUB/systemd-boot 菜单里选上一个 btrfs 快照进系统，两分钟回到出问题前的状态
+- **心智负担**：装完稳定运行后，日常和 Ubuntu 没有区别。区别在于**你知道系统里每个包为什么在那儿**——因为都是你自己装的
+
+一句话：**Arch 的成本集中在头两天，Ubuntu 的成本摊在每次大版本升级**。
+
+### 对比现在的 Ubuntu：换过去到底得到什么、失去什么
+
+（以 Ubuntu LTS 为基准。两者都是 Linux，桌面、终端、开发工具链、Docker 全部通用，**换过去不需要重新学 Linux**。）
+
+| 维度 | Ubuntu LTS | Arch | 谁赢 |
+|------|-----------|------|------|
+| **软件版本** | 冻结在发行时的版本，两年一次大更新。想要新版 Node/Python/Go 要靠 PPA、snap、手动编译 | 官方仓库永远是上游最新稳定版 | **Arch**，对开发者是最大的差别 |
+| **大版本升级** | `do-release-upgrade` 每两年一次，是**高风险操作**，PPA 和第三方源经常在这一步炸掉 | 没有大版本，`-Syu` 一直滚 | **Arch**：把「两年一次的大风险」换成「每周一次的小风险」 |
+| **包管理干净度** | apt + snap + flatpak + PPA 四套并存，同一个软件可能有三个来源，`snap` 强制自动更新还塞进系统 | pacman 一套，AUR 是明确的补充 | **Arch** |
+| **软件覆盖面** | 官方源大 + PPA 生态 | 官方源 + **AUR 十万级包，几乎「你想到的都有」** | **Arch**（AUR 覆盖面明显更广） |
+| **稳定性 / 省心** | 打了补丁的稳定版本，长期不管也不会坏；有厂商级 QA | 需要每周更新、一年数次读 news 手动干预 | **Ubuntu** |
+| **出问题的性质** | 少但难查（发行版自己打的补丁、snap 沙箱怪事） | 多一点但**好查**（ArchWiki + 论坛 + 包就是上游原版） | 平手，Arch 的问题更「讲道理」 |
+| **文档** | 教程多但质量参差，且大量过期 | **ArchWiki，公认最好** | **Arch** |
+| **硬件新支持** | LTS 内核较旧，新硬件要等 HWE 内核 | 永远最新内核 | **Arch**（本机 13 代 HX + RTX 4060 都不算新，两边都没问题） |
+| **商业软件 / 客户支持** | Ubuntu 是事实标准，很多商业软件只出 `.deb` | 要靠 AUR 打包或自己解 | **Ubuntu** |
+| **和生产服务器一致** | 服务器用 Ubuntu → 本地环境完全一致 | 本地 Arch、服务器 Debian 系，**glibc / 包版本会有差异** | **Ubuntu** |
+| **装机 / 维护时间** | 装机 20 分钟，之后基本不管 | 装机 1-2 小时，每周 5 分钟 | **Ubuntu** |
+
+**最后一行值得单独说**：你的生产环境是阿里云 ECS（Debian 系）。本地换成 Arch 后，本地跑通不等于服务器跑通——**解法是把服务开发放进 Docker/Podman 容器里**（本来也应该这么做），容器内的基础镜像和线上一致，宿主机是什么发行版就无所谓了。见第六节。
+
+**什么情况下不该换**：如果这台机器上的 Ubuntu 现在跑得好好的、你也不想每周花 5 分钟维护，那**没有换的必要**——Arch 的收益（新版本 + AUR + 干净包管理）对「机器只是拿来跑活」的人是不够抵消维护成本的。反过来，如果你已经在被 apt 的旧版本、snap 的怪毛病、PPA 冲突折磨，那换过去是对症的。
 
 ---
 
@@ -519,17 +555,216 @@ sudo pacman -S powertop brightnessctl    # 功耗诊断 / 亮度调节
 
 ```bash
 # 官方仓库
-sudo pacman -S firefox chromium code neovim docker docker-compose \
-               obsidian vlc gimp libreoffice-fresh flameshot
+sudo pacman -S firefox chromium obsidian vlc gimp libreoffice-fresh flameshot
 
-# AUR（先装 helper，见第六节）
-paru -S google-chrome visual-studio-code-bin wechat linuxqq \
-        wps-office-cn ttf-ms-fonts
+# AUR（先装 helper，见第八节）
+paru -S google-chrome wechat linuxqq wps-office-cn ttf-ms-fonts
+```
+
+> 开发工具链见**第六节**，Steam 和游戏见**第七节**——那两节按「系统层 / 运行时层 / 项目层」分好了，别在这里混着装。
+
+---
+
+## 六、开发环境最佳实践
+
+核心原则一句话：**系统级只装「工具」，项目级的运行时和依赖全部隔离**。Arch 滚得快，你不希望某天 `-Syu` 把系统 Python 从 3.14 滚到 3.15，把你所有虚拟环境干碎。
+
+### 1. 三层结构（照这个分，后面所有问题都不会出现）
+
+| 层 | 放什么 | 用什么装 |
+|----|--------|----------|
+| **系统层** | 编辑器、git、终端、Docker/Podman 本体、字体 | `pacman` |
+| **运行时层** | Node / Python / Go / Java 的**多版本共存** | **`mise`**（原 rtx），不要用系统包 |
+| **项目层** | 数据库、Redis、消息队列、和线上一致的运行环境 | **容器**（Podman / Docker） |
+
+### 2. 系统层
+
+```bash
+sudo pacman -S --needed \
+  git git-delta lazygit gh \
+  neovim visual-studio-code-bin \
+  zsh starship fzf ripgrep fd bat eza zoxide jq yq httpie \
+  tmux direnv openssh rsync \
+  base-devel cmake pkgconf \
+  docker docker-compose podman \
+  ttf-jetbrains-mono-nerd
+```
+
+> `visual-studio-code-bin` 在 AUR（微软官方构建，带遥测和 marketplace）；官方仓库的 `code` 是开源版 Code-OSS，**装不了 marketplace 上的部分闭源插件**（比如远程开发套件）。要用 Remote-SSH / Dev Containers 就得装 AUR 那个。
+
+Docker 免 sudo + 开机自启：
+
+```bash
+sudo systemctl enable --now docker
+sudo usermod -aG docker $USER    # 重新登录生效
+```
+
+> ⚠️ 加进 `docker` 组等价于给了 root 权限（能挂载宿主任意目录）。介意的话用 **rootless Podman** 替代，命令基本兼容（`alias docker=podman`），且默认不以 root 跑容器。
+
+### 3. 运行时层：用 mise 管所有语言版本
+
+**不要**用 `pacman -S nodejs python go` 来跑项目——系统包会跟着系统滚，版本不由你控制。用 `mise` 一个工具管全部：
+
+```bash
+paru -S mise
+echo 'eval "$(mise activate zsh)"' >> ~/.zshrc    # bash 就换成 bash
+exec zsh
+```
+
+用法：
+
+```bash
+mise use -g node@22 python@3.12 go@1.23    # 全局默认版本
+cd ~/项目A && mise use node@18             # 这个项目锁 18，写进 .mise.toml
+mise install                                # 别人的项目：按 .mise.toml 一键装齐
+```
+
+好处：进目录自动切版本、`.mise.toml` 可以 commit 进仓库、同时替代 nvm/pyenv/gvm/sdkman 四个工具。
+
+**Python 项目再叠一层 `uv`**（Rust 写的，比 pip/poetry 快一个数量级）：
+
+```bash
+sudo pacman -S uv
+uv venv && uv pip install -r requirements.txt
+```
+
+> 记住一条铁律：**永远不要 `sudo pip install`**。Arch 的系统 Python 归 pacman 管，`sudo pip` 会污染它，滚更新时必炸。真要装全局 CLI 工具用 `uv tool install` 或 `pipx`。
+
+### 4. 项目层：容器解决「本地 Arch、线上 Debian」的不一致
+
+你的生产环境是阿里云 ECS（Debian 系），本地换 Arch 后 glibc 和包版本都不同。**解法不是不用 Arch，是把服务放进容器**——本来也该这么做：
+
+```bash
+# 本地依赖服务全部容器化，别装到系统里
+docker run -d --name pg -e POSTGRES_PASSWORD=dev -p 5432:5432 postgres:16
+docker run -d --name redis -p 6379:6379 redis:7
+```
+
+需要一个**完整的 Ubuntu/Debian 用户空间**来编译或复现线上问题时，用 **distrobox**（Podman 封装，家目录直通、GUI 和编辑器都能用，体验就是一个普通 shell）：
+
+```bash
+paru -S distrobox
+distrobox create --name ubuntu --image ubuntu:24.04
+distrobox enter ubuntu
+# 进去之后就是完整 Ubuntu，apt 随便用，家目录还是同一个
+```
+
+用途：跑只有 `.deb` 的软件、验证线上 glibc 行为、编译需要旧工具链的项目。
+
+### 5. 系统级隔离与保命
+
+```bash
+# dotfiles 用 git 裸仓库管理，换机器一条命令还原
+git init --bare ~/.dotfiles
+alias dot='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+
+# 快照：更新前自动打，滚挂了菜单里回滚（第九节已详述）
+sudo pacman -S snapper snap-pac grub-btrfs
+```
+
+**给开发机的额外建议**：
+
+| 事项 | 做法 | 为什么 |
+|------|------|--------|
+| SSH key | 从 Ubuntu 盘备份的 `~/.ssh` 拷回来，`chmod 600` | 权限不对 ssh 直接拒绝 |
+| 密钥/凭据 | 别散在 `.env` 里，用 `pass` 或 `keepassxc` + `direnv` 注入 | 呼应 AUR 投毒事件：开发机上的长期凭据是最大资产 |
+| AUR 包 | 开发机上**尤其**要审 PKGBUILD | 同上，投毒目标就是开发机和 CI |
+| 编译加速 | `/etc/makepkg.conf` 里设 `MAKEFLAGS="-j20"`、开 `ccache` | i7-13650HX 有 20 线程，默认只用 1 个，编译 AUR 大包差别巨大 |
+| 内存盘编译 | `makepkg.conf` 设 `BUILDDIR=/tmp/makepkg` | 24GB 内存够，编译不磨 SSD |
+
+---
+
+## 七、Steam 与游戏（RTX 4060 Laptop）
+
+### 1. 现状：能玩到什么程度
+
+- ProtonDB 的数据是 **接近 90% 的 Windows 游戏能在 Linux 上以某种形式跑起来**
+- **单机 / 3A / 独立游戏**：基本无脑能玩，很多还有官方 Steam Deck Verified 认证
+- **卡死的只有一类：内核级反作弊的竞技网游**。EAC 和 BattlEye 都已经支持 Linux，但**要开发商主动勾选启用**，很多就是不勾。国产竞技网游几乎全灭
+- 结论对你正好：**这台是双系统**，反作弊网游按 `F12` 回 Windows 就行，Arch 这边负责单机
+
+**买之前先查**（三个地方，都免费）：
+
+| 站点 | 查什么 |
+|------|--------|
+| [ProtonDB](https://www.protondb.com/) | 单个游戏在 Linux 上的实测评级和启动参数 |
+| [Are We Anti-Cheat Yet?](https://areweanticheatyet.com/) | 这个游戏的反作弊在 Linux 上到底通不通 |
+| Steam 库里的 "Deck Verified" 标 | Valve 官方认证，绿标基本等于开箱即玩 |
+
+### 2. 安装
+
+前提：**multilib 仓库已开、NVIDIA 驱动已装好**（第五节第 1 项，`lib32-nvidia-utils` 必须装）。
+
+```bash
+sudo pacman -S steam \
+               gamemode lib32-gamemode \
+               mangohud lib32-mangohud \
+               gamescope \
+               lib32-vulkan-intel vulkan-tools
+```
+
+| 包 | 作用 |
+|----|------|
+| `gamemode` | 游戏运行时自动切 CPU 性能模式、提高 I/O 优先级 |
+| `mangohud` | 屏幕角落显示 FPS / 帧生成时间 / GPU 占用 / 温度 |
+| `gamescope` | Valve 的微型合成器，解决分辨率缩放、HDR、多屏下的各种怪问题 |
+
+### 3. 混合显卡的关键：让 Steam 走独显
+
+本机是 muxless 混合显卡，**默认启动的 Steam 会跑在核显上**，游戏帧数会很难看。两种做法：
+
+```bash
+# 做法 A：整个 Steam 都用独显（推荐，一劳永逸）
+prime-run steam
+# 想让桌面图标也生效：复制 steam.desktop 到 ~/.local/share/applications/
+# 把 Exec= 那行改成  Exec=prime-run /usr/bin/steam %U
+```
+
+```
+# 做法 B：只让单个游戏用独显 —— 在 Steam 里右键游戏 → 属性 → 启动选项，填：
+prime-run gamemoderun mangohud %command%
+```
+
+> 推荐组合：Steam 用 `prime-run steam` 启动，单个游戏的启动选项里填 `gamemoderun mangohud %command%`。
+
+### 4. 开启 Proton
+
+Steam → 设置 → 兼容性 → 勾上：
+
+- ✅ **为受支持的游戏启用 Steam Play**
+- ✅ **为所有其他游戏启用 Steam Play**（这条不勾，Steam 会说游戏不兼容而拒绝安装）
+- 版本选 **Proton Experimental**（最新修复最多）或最新稳定版 Proton
+
+**Proton-GE**（社区增强版，多媒体编解码和部分游戏兼容性更好）：
+
+```bash
+paru -S protonup-qt     # 图形界面，一键下载/切换 Proton-GE
+```
+
+装完在游戏属性 → 兼容性里单独指定用 GE 版本。
+
+### 5. 本机专属注意
+
+| 事项 | 说明 |
+|------|------|
+| **VRAM 8GB** | RTX 4060 Laptop 是 8GB 显存，1080p 高画质够用；那块 **3440×1440 带鱼屏跑 3A 会吃紧**，开 DLSS 质量模式 |
+| **游戏在哪块屏** | 带鱼屏硬连独显，游戏放那块屏上反而路径更短、性能更好 |
+| **144Hz 内屏** | KDE 里手动确认刷新率已是 144，游戏里也要单独设 |
+| **散热** | Legion 的性能模式在 Linux 下默认调不了（见第五节 1.6），高负载时可能跑不满。风扇噪音和性能不满意时再折腾 LenovoLegionLinux |
+| **游戏盘空间** | Arch 盘只有 512GB，Steam 库建议单独建目录并留意剩余空间；也可以挂载 Windows 盘的 D 盘共用游戏库（NTFS 只读挂载更安全） |
+| **Wayland vs X11** | Plasma 6 + Wayland 下游戏基本没问题；个别老游戏有输入延迟或全屏异常，切 X11 会话即可 |
+
+### 6. 验证
+
+```bash
+vulkaninfo | grep deviceName      # 应能看到 RTX 4060
+prime-run vkcube                  # 转起来的方块 = 独显 Vulkan 通了
+mangohud vkcube                   # 左上角出现监控叠加 = mangohud 通了
 ```
 
 ---
 
-## 六、包管理：pacman 与 AUR
+## 八、包管理：pacman 与 AUR
 
 ### pacman 常用命令 / 与 Windows 习惯对照
 
@@ -567,7 +802,7 @@ paru -Sua        # 只更新 AUR 包
 
 ---
 
-## 七、日常维护：怎么不「滚挂」
+## 九、日常维护：怎么不「滚挂」
 
 滚动更新本身不会挂，**挂的都是操作不当**。四条铁律：
 
@@ -621,7 +856,7 @@ sudo pacman -Rns $(pacman -Qtdq)    # 清孤儿包
 
 ---
 
-## 八、发行版选型：原版 Arch 还是 Arch 系？
+## 十、发行版选型：原版 Arch 还是 Arch 系？
 
 | 发行版 | 定位 | 适合谁 |
 |--------|------|--------|
@@ -640,7 +875,7 @@ sudo pacman -Rns $(pacman -Qtdq)    # 清孤儿包
 
 ---
 
-## 九、执行 Checklist
+## 十一、执行 Checklist
 
 **装机前**
 - [x] 填完第〇节硬件登记表（2026-08-17 本机实测）
@@ -675,12 +910,28 @@ sudo pacman -Rns $(pacman -Qtdq)    # 清孤儿包
 - [ ] 电源管理二选一（power-profiles-daemon 或 tlp），验证合盖睡眠 → 唤醒不花屏
 - [ ] 装 paru，再装 AUR 软件
 - [ ] 跑一次 `sudo pacman -Syu` 确认更新链路通畅
+
+**开发环境（第六节）**
+- [ ] 系统层工具一把装（git / neovim / vscode / 终端工具 / docker）
+- [ ] `~/.ssh` 从备份恢复并 `chmod 600`，`ssh -T git@github.com` 通
+- [ ] 装 mise，`mise use -g` 设好 node / python / go 版本
+- [ ] Docker 起来，本地依赖服务（PG / Redis）跑在容器里
+- [ ] `makepkg.conf` 设 `MAKEFLAGS="-j20"` + `BUILDDIR=/tmp/makepkg`
+- [ ] （按需）distrobox 建一个 Ubuntu 容器，用于复现线上环境
+
+**游戏（第七节）**
+- [ ] 确认 multilib 已开、`lib32-nvidia-utils` 已装
+- [ ] 装 steam + gamemode + mangohud + gamescope
+- [ ] Steam 用 `prime-run steam` 启动（改 .desktop 一劳永逸）
+- [ ] 设置 → 兼容性：两个 Steam Play 开关都勾上
+- [ ] `prime-run vkcube` 转起来 = 独显 Vulkan 通了
+- [ ] 想玩的网游先上 ProtonDB / Are We Anti-Cheat Yet 查一遍
 - [ ] 笔记本：装 tlp 并 enable
 - [ ] 跑一次 `sudo pacman -Syu` 确认更新链路通畅
 
 ---
 
-## 十、延伸阅读
+## 十二、延伸阅读
 
 - [ArchWiki Installation Guide](https://wiki.archlinux.org/title/Installation_guide) — 唯一权威安装文档
 - [ArchWiki General recommendations](https://wiki.archlinux.org/title/General_recommendations) — 装完之后该干什么，全部在这
@@ -691,6 +942,9 @@ sudo pacman -Rns $(pacman -Qtdq)    # 清孤儿包
 - [LenovoLegionLinux](https://github.com/johnfanv2/LenovoLegionLinux)（Legion 风扇曲线 / 性能模式，官方支持列表止于 2023 款）
 - [Arch 论坛：RTL8852BE 断流合集](https://bbs.archlinux.org/viewtopic.php?id=298372)（`disable_aspm` 解法出处）
 - [linux-on-lenovo-legion 笔记](https://github.com/cszach/linux-on-lenovo-legion)
+- **开发环境**：[mise 官网](https://mise.jdx.dev/) / [ArchWiki: Distrobox](https://wiki.archlinux.org/title/Distrobox) / [uv](https://docs.astral.sh/uv/)
+- **游戏**：[ArchWiki: Steam](https://wiki.archlinux.org/title/Steam) / [ArchWiki: Gaming](https://wiki.archlinux.org/title/Gaming) / [ProtonDB](https://www.protondb.com/) / [Are We Anti-Cheat Yet?](https://areweanticheatyet.com/) / [GamingOnLinux](https://www.gamingonlinux.com/)
+- [Arch vs Ubuntu 2026 对比](https://www.golinuxcloud.com/arch-linux-vs-ubuntu/)（滚动 vs LTS、pacman vs apt、AUR vs snap）
 - [EndeavourOS 官网](https://endeavouros.com/) / [CachyOS 官网](https://cachyos.org/)
 - [Ventoy](https://ventoy.net) — 多系统启动 U 盘
 - [Arch Linux 2026.07.01 ISO 发布说明](https://www.linuxcompatible.org/story/arch-linux-20260701-iso-released-with-kernel-7010-and-archinstall-44/)
