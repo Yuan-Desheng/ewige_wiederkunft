@@ -22,7 +22,9 @@ cssclasses:
 ```meta-bind-embed
 [[笔记抬头模块]]
 ```
-<progress value="40" max="100" style="width: 100%;"></progress>
+<progress value="70" max="100" style="width: 100%;"></progress>
+
+> **✅ 2026-08-22 已实际执行到第 5 步**（执行结果与踩坑见第十三节「执行记录」）：编译安装 niri 26.04、配套组件与 fcitx5 全装齐、NVIDIA modeset 已配、双屏与主题已写进 config.kdl 并 validate 通过。日常使用键位见 [[Niri 使用速查]]。
 
 > **本笔记要办两件事**（都不需要换发行版）：
 > 1. **在现有 Ubuntu 上装 Niri**，把 GNOME 那套桌面换成滚动平铺；
@@ -605,7 +607,69 @@ sudo snap install <包名>
 
 > ⚠️ 应用**数据**装不回来——这就是第二节 0 要你先导出的原因。Firefox 的配置如果已经 `cp -a` 到了 `~/.mozilla`，deb 版会直接读到，不需要回滚。
 
-## 十二、延伸阅读
+## 十二、执行记录（2026-08-22 实际走了一遍）
+
+### 实际环境与路线选择
+
+| 项 | 实际值 | 结论 |
+|----|--------|------|
+| 系统 | Ubuntu **24.04.4 LTS**（内核 6.8.0-138） | 走路线 B 源码编译 |
+| Rust | 已有 rustup 装的 1.95（`~/.cargo`） | **rustup 安装步骤直接跳过** |
+| 显卡 | Intel UHD（i915）+ RTX 4060 Max-Q（nvidia 驱动） | 与第六节预设一致 |
+| 当前会话 | X11（modeset 未开导致 GNOME 回退 X11） | 正好验证了第六节的必要性 |
+| 带鱼屏 | **当天未连接**（HDMI-A-1 disconnected） | output 配置先写好，插上即生效 |
+
+### 执行结果
+
+- 编译 `cargo build --release`：**10m25s**，产物 136M，版本 niri 26.04 (dd75865)
+- 装到系统：`/usr/local/bin/niri` + `niri-session`、`/usr/share/wayland-sessions/niri.desktop`、`/usr/share/xdg-desktop-portal/niri-portals.conf`
+- 配套：fuzzel / waybar / mako / swaylock / swayidle / swaybg / portal×2 / alacritty / fcitx5 全家 / grim+slurp+wl-clipboard / papirus-icon-theme
+- GRUB：`nvidia-drm.modeset=1` 已加（原文件备份 `/etc/default/grub.bak-niri`），**待重启生效**
+- fcitx5：`~/.config/environment.d/im.conf` + config.kdl 自启；**装包时 profile 已自动带拼音**，无需再跑 configtool
+- config.kdl：双屏 output、gaps 8、列宽档 1/4~2/3、fcitx5/xwayland-satellite/swaybg 自启、Mocha 配色、`Mod+Shift+S` 区域截图进剪贴板，`niri validate` 通过
+
+### 踩坑（复现时对照）
+
+| 现象 | 原因 | 解决 |
+|------|------|------|
+| `apt install A B C ...` 整批失败 | 列表里混了 24.04 源没有的 `xwayland-satellite`，apt 一个定位不到全部中止 | **拆开装**；xwayland-satellite 单独源码编译 |
+| xwayland-satellite release 无预编译资产（assets: 0） | 上游只发源码 | `git clone Supreeeme/xwayland-satellite` + cargo 编译，7 秒完事 |
+| xwayland-satellite 编译报 `pkg-config 找不到 xcb-cursor` | 缺 xcb 侧开发头文件 | `apt install libxcb-cursor-dev` |
+| `sudo` 在脚本里报 "a terminal is required" | 非交互环境无法弹密码 | `sudo -S` 从 stdin 读，或用户 `!` 前缀自己跑 |
+| GitHub 下载慢 / 超时 | 直连限速 | 开 VPN 后重试即成 |
+| waybar 没有工作区模块 | apt 版 waybar 0.9.24，`niri/workspaces` 模块 0.10+ 才有 | 用 `wlr/taskbar` 显示窗口图标（niri 支持 wlr-foreign-toplevel），想要真模块得编 waybar 0.11+ |
+
+### 主题（GitHub 社区主流实践的可移植版）
+
+社区调研（官方 Showcase 讨论帖 #325 + niri-rice topic）：主流组合是 **waybar + fuzzel + Catppuccin Mocha**；AGS / quickshell / Noctalia 更炫但 24.04 要编译，按第七节结论不碰。先落地了一套 Mocha（备份在 `~/niri-mocha-backup-1252/`）。
+
+**第二轮：改用 dotfriedrice 观感（Tokyonight Moon）**。用户觉得 Mocha 版「不够好看好用」后，调研了 GitHub 星数最高的 niri dotfiles：
+
+| 仓库 | 星数 | Ubuntu 24.04 可用性 |
+|------|------|---------------------|
+| [snowarch/iNiR](https://github.com/snowarch/iNiR) | 1456★ | ❌ Arch 系 |
+| [nickjj/dotfriedrice](https://github.com/nickjj/dotfriedrice) | 1315★ | ⚠️ **桌面部分也是 Arch-only**（见下） |
+| [folke/dot](https://github.com/folke/dot) | 1284★ | ⚠️ Arch 为主，配置片段可抄 |
+
+**dotfriedrice 的 Arch 墙（源码级确认）**：README 说支持 Ubuntu 只指 CLI 部分（zsh/tmux/neovim）；`bootstrap:209` 里 `GUI_ELIGIBLE=1` 的唯一条件是 `OS_DISTRO_LIKE=arch`；`_install/default/packages/debian` 清单里 grep niri/waybar/walker 零命中。桌面粉依赖 Walker（AUR）等包。
+
+**最终方案：手工移植 dotfriedrice 观感**（发行版无关的部分全搬）：
+
+| 件 | 来源与做法 |
+|----|-----------|
+| **Walker 启动器 2.17.0** | 官方 release 二进制直装；依赖 gtk4-layer-shell 无 deb → 源码编译 v1.3.0（需 meson + libgtk-4-dev + gobject-introspection + valac，编译时把 Android SDK 的 cmake 从 PATH 里让位给系统 cmake） |
+| **waybar** | dotfriedrice 同款布局：左「菜单+任务栏」/ 中时钟 / 右「托盘+音量+网络+CPU+电池+电源」；黑白极简、纯色无圆角（Ubuntu 组件版：无 niri/workspaces 模块仍用 wlr/taskbar，无 mpd） |
+| **niri** | Tokyonight 渐变焦点环（`#33ccff→#00ff99` 45°）、背景 `#14151f`、2px 圆角窗口规则、overview 背景色 |
+| **Walker 主题** | 抄它的 style.css + theme.css 分层结构（`~/.config/walker/themes/base/`），换主题只改 theme.css 一个文件 |
+| **mako / swaylock / alacritty** | 色板从 Mocha 全量映射到 Tokyonight Moon |
+| **壁纸** | PIL 重新生成 Tokyonight 光斑渐变（`~/Pictures/Wallpapers/tokyonight-gradient.png`） |
+| **键位** | `Mod+D`→Walker（应用+runner+计算合一，常驻 `--gapplication-service` 加速首弹）；`Mod+Shift+D`→fuzzel 后备；`Mod+O`→概览（默认配置已有，勿重复添加——重复键位会 validate 报错） |
+
+移植中新踩的坑：niri 配置**不允许重复键位**（`Mod+O` 默认已绑定 toggle-overview，再写一遍 validate 直接报 duplicate keybind）；meson 会误用 `/opt/android-sdk` 里的 cmake 导致 gobject-introspection 探测失败，`export PATH=/usr/bin:$PATH` 解决；`ninja install` 后的 `ldconfig` 需要 root 单独跑。
+
+各配置文件位置与调整入口见 [[Niri 使用速查]] 第七节（该笔记已同步更新为 Tokyonight 版）。
+
+## 十三、延伸阅读
 
 - [Niri 官方仓库](https://github.com/niri-wm/niri) / [Getting Started](https://niri-wm.github.io/niri/Getting-Started.html) / [Wiki](https://github.com/niri-wm/niri/wiki/Getting-Started)
 - [It's FOSS：Niri 上手评测](https://itsfoss.com/niri-window-manager/)
@@ -614,5 +678,9 @@ sudo snap install <包名>
 - [NyxNiri](https://github.com/ech678/NyxNiri) —— 视频里那套配置。**只支持 Arch / CachyOS，Ubuntu 上装不了**；能抄的只有发行版无关的片段，详见第七节末尾
 - [Noctalia 官网](https://noctalia.dev/) / [文档](https://docs.noctalia.dev/) —— NyxNiri 用的 shell，Debian 系需自行编译 noctalia-qs
 - [DankMaterialShell（DMS）](https://github.com/AvengeMedia/DankMaterialShell) —— Ubuntu 25.10+ 可 apt 直装的替代选择
+- [nickjj/dotfriedrice](https://github.com/nickjj/dotfriedrice) —— 1315★，桌面 Arch-only 但配置可移植（本机主题的出处，见第十二节）
+- [folke/dot](https://github.com/folke/dot) —— 1284★，LazyVim 作者的 niri 配置
+- [Walker 启动器](https://github.com/abenz1267/walker) —— 已装 2.17.0，官方二进制
+- [niri 官方 Showcase 讨论](https://github.com/niri-wm/niri/discussions/325) / [niri-rice topic](https://github.com/topics/niri-rice) —— 配置灵感池
 
-相关笔记：[[Arch Linux 调研]]、[[Linux]]
+相关笔记：[[Niri 使用速查]]、[[Arch Linux 调研]]、[[Linux]]
