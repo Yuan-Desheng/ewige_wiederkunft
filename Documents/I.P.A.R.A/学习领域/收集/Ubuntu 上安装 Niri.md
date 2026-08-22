@@ -25,6 +25,7 @@ cssclasses:
 <progress value="70" max="100" style="width: 100%;"></progress>
 
 > **✅ 2026-08-22 已实际执行到第 5 步**（执行结果与踩坑见第十三节「执行记录」）：编译安装 niri 26.04、配套组件与 fcitx5 全装齐、NVIDIA modeset 已配、双屏与主题已写进 config.kdl 并 validate 通过。日常使用键位见 [[Niri 使用速查]]。
+> **✅ 同日晚：系统升级 Ubuntu 26.04 LTS 并复刻「NIRI + Dank Linux Magic」视频方案**（DMS shell + greeter，源码版 niri 换成 PPA 包）——过程与踩坑见第十四节。
 
 > **本笔记要办两件事**（都不需要换发行版）：
 > 1. **在现有 Ubuntu 上装 Niri**，把 GNOME 那套桌面换成滚动平铺；
@@ -669,7 +670,83 @@ sudo snap install <包名>
 
 各配置文件位置与调整入口见 [[Niri 使用速查]] 第七节（该笔记已同步更新为 Tokyonight 版）。
 
-## 十三、延伸阅读
+## 十三、升级 Ubuntu 26.04 与 DMS 复刻（2026-08-22 第二阶段）
+
+### 0. 为什么升：视频解锁了 DMS 路线
+
+视频《Ubuntu 26.04 is FINALLY BEAUTIFUL: NIRI + Dank Linux Magic》（https://www.youtube.com/watch?v=d7eUqk7tQOU ，Dank Linux 官网 https://danklinux.com/ ）的方案 = **niri + DMS（DankMaterialShell）**。24.04 上 DMS 无包（第七节的结论）；26.04 的 avengemedia PPA 直接有全套。
+
+**升级前调研的三份资料**：
+- ubuntu.fan 升级文档——标准流程 + 关键细节「26.04 发布初期需 `do-release-upgrade -d`」（LTS 通道要等 26.04.1，本文执行时还没开）
+- jiacai2050 的 gist——升级后两大高发坑：壁纸变黑 + Chrome 文件框弹不出（AppArmor/bwrap 沙盒冲突），预防方：`~/.config/xdg-desktop-portal/portals.conf` 强制 FileChooser 走 gtk。**已提前配置，升级后未触发**
+- lixx.cn 深度文——26.04 大变更：GNOME 50 全面 Wayland-only、内核 7.0、sudo 换 sudo-rs、coreutils 换 rust 版、NVIDIA Wayland 大幅改善
+
+### 1. 升级执行（分权模式）
+
+```
+阶段0 备份 ~/upgrade-2604-backup/（桌面配置+包清单+壁纸）
+阶段1 apt 基线拉平至 0 待升级 —— ⚠️ 地雷：deadsnakes PPA 的 jammy 版 python3.12
+      全家残留导致依赖死锁，需 --allow-downgrades 降回 noble 官方版
+阶段2 用户在 GNOME/TTY 的 tmux 里跑 do-release-upgrade -d（Claude 会话会断，交互
+      要点：配置冲突一律选包维护者版本，GRUB 被问到才保留本地）
+阶段3 验证：26.04 LTS / 内核 7.0 / GRUB modeset 未被冲掉 / 0 失败服务
+```
+
+**升级后的系统级坑（都修了）**：
+
+| 现象 | 原因 | 解决 |
+|------|------|------|
+| sudo 全挂，报 sudoers 语法错误 | 26.04 默认 **sudo-rs**，比旧 sudo 严格：`/etc/sudoers.d/nas-mount` 缺行尾换行符 | `sudo sh -c 'echo >> /etc/sudoers.d/nas-mount'`（需 TTY 或 pkexec，Claude 的 bash 传不了密码时让用户在终端跑） |
+| 源码装的 niri/walker/elephant 还能用但脱离包管理 | `/usr/local` 升级不碰 | 见下节换 apt 版 |
+
+### 2. DMS 复刻（视频方案落地）
+
+| 包 | 版本 | 说明 |
+|----|------|------|
+| niri | 26.04ppa3 | PPA 版替换源码版：`rm /usr/local/bin/niri*` 后 apt 装；**手装的 `~/.config/systemd/user/niri*.service` 必须删**（包自带同名单元，冲突） |
+| dms | 1.5.3ppa1 | Material 风格 shell，接管 waybar/mako/swaybg 的职责 |
+| dms-greeter | 1.5.3ppa1 | 登录界面（配 greetd） |
+| ghostty | 1.3.1ppa11 | 视频同款 GPU 终端 |
+| cliphist / danksearch / dankcalendar | — | Dank 生态工具 |
+
+PPA：`add-apt-repository ppa:avengemedia/danklinux` + `ppa:avengemedia/dms`（niri 主包在 danklinux 源里）。
+
+**niri 配置改动**（`~/.config/niri/config.kdl` 全部继承，只改自启）：
+
+```kdl
+// waybar → DMS 接管
+spawn-at-startup "dms" "run"
+// swaybg 注释掉（壁纸交给 DMS）
+// 保留：fcitx5 -d、xwayland-satellite、walker --gapplication-service
+```
+
+`dms doctor` 自检全绿（quickshell/matugen/dgop/cava 依赖随包装好）。DMS 首次运行自动从壁纸取色生成 Material 主题（matugen）；`dms matugen generate` 手动喂参数很繁琐，不必。
+
+### 3. dms-greeter 替换 gdm3
+
+`dms greeter install` 内部要调 sudo（非交互环境拿不到 TTY 会 FATAL）——**它要做的 sudo 步骤可全部手动做**：建 `greeter` 组加用户、`setfacl -m g:greeter:rX ~/.local/state ~/.local/share`、`/var/cache/dms-greeter` 属主 greeter:greeter。greetd 的 `/etc/greetd/config.toml` 它已写好（`dms-greeter --command niri`）。
+
+切显示管理器（gdm3 完整保留可回退）：
+
+```bash
+sudo systemctl disable gdm3 && sudo systemctl enable greetd
+sudo bash -c 'echo /usr/sbin/greetd > /etc/X11/default-display-manager'
+```
+
+**回退**：`sudo systemctl disable greetd && sudo systemctl enable gdm3`。
+
+遗留小项：`dms greeter sync` 的 AppArmor profile 需要真机交互 sudo 跑一次（非阻塞警告）。
+
+### 4. 视频观感对照结论
+
+| 视频内容 | 落地 |
+|----------|------|
+| NIRI on 26.04 | ✅ PPA 包版 |
+| Scrolling Tiling | ✅ 键位/双屏/动画/阴影全继承 |
+| Dank theming | ✅ DMS shell + greeter + ghostty + matugen 自动取色 |
+| 登录界面 | ✅ dms-greeter（下次重启生效） |
+
+## 十四、延伸阅读
 
 - [Niri 官方仓库](https://github.com/niri-wm/niri) / [Getting Started](https://niri-wm.github.io/niri/Getting-Started.html) / [Wiki](https://github.com/niri-wm/niri/wiki/Getting-Started)
 - [It's FOSS：Niri 上手评测](https://itsfoss.com/niri-window-manager/)

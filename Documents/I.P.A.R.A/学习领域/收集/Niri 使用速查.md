@@ -3,7 +3,7 @@ createTime: 2026-08-22 12:40
 笔记ID: 20260822124000
 multiFile:
 multiMedia:
-description: Niri 滚动平铺窗口管理器的日常使用速查：核心心智模型、按实际 config.kdl 核对的完整键位表（窗口/列/工作区/显示器/截图/电源）、GNOME 迁移差异、Tokyonight Moon 主题套件（dotfriedrice 移植）的文件位置与调整入口、Walker 启动器、常见症状对照
+description: Niri 滚动平铺窗口管理器的日常使用速查（Ubuntu 26.04 + DMS 版）：核心心智模型、按实际 config.kdl 核对的完整键位表（窗口/列/工作区/显示器/截图/电源）、GNOME 迁移差异、DMS（DankMaterialShell）主题系统调整入口、Walker 启动器、常见症状对照
 笔记类型: 收集笔记
 阐述日期:
 tags:
@@ -47,7 +47,7 @@ cssclasses:
 | `Mod+T`                 | 开终端（alacritty）             |
 | `Mod+D`                 | 应用启动器（**Walker**：应用+命令+计算） |
 | `Mod+Shift+D`           | 备用启动器（fuzzel）              |
-| `Mod+O`                 | 概览模式（缩放看全部窗口）             |
+| `Mod+O`                 | 概览模式（缩放看全部窗口）              |
 | `Mod+Q`                 | 关窗口                        |
 | `Mod+Shift+/`           | **快捷键面板**（忘了就按它）           |
 | `Mod+R`                 | 循环列宽 1/4 → 1/3 → 1/2 → 2/3 |
@@ -111,21 +111,23 @@ cssclasses:
 | 工作区在所有屏共享 | **每屏独立**，编号各自从 1 开始 |
 | 截图工具 | `Print` / `Mod+Shift+S`（剪贴板） |
 
-### 7. 主题套件：改哪里（Tokyonight Moon · dotfriedrice 移植版）
+### 7. 主题套件：改哪里（26.04 + DMS 版）
 
-| 想改什么 | 文件 |
-|----------|------|
-| 状态栏模块/样式 | `~/.config/waybar/config.jsonc` + `style.css` |
-| 启动器外观 | `~/.config/walker/themes/base/theme.css`（只动色板；布局在 style.css） |
-| 通知气泡 | `~/.config/mako/config`（改完 `makoctl dismiss -a` 生效） |
-| 锁屏配色 | `~/.config/swaylock/config` |
-| 终端配色 | `~/.config/alacritty/alacritty.toml` |
-| 焦点环渐变 / gaps / 列宽档 | `~/.config/niri/config.kdl`（**保存即热重载**） |
-| 壁纸 | 换图后改 config.kdl 里 swaybg 那行的路径 |
-| 电源菜单脚本 | `~/.local/bin/power-menu`（锁屏/注销/重启/关机） |
-| 旧 Mocha 主题回滚 | `~/niri-mocha-backup-1252/`（整套旧配置） |
+**2026-08-22 起桌面 shell 换成 DMS（DankMaterialShell）**，顶栏/通知/壁纸/控制中心/锁屏都归它管，改外观优先走 DMS 设置 GUI（顶栏右键，或 `dms ipc open settings`）。
 
-> Tokyonight Moon 常用色：青 `#33ccff` 蓝 `#7aa2f7` 绿 `#9ece6a` 橙 `#e0af68` 粉红 `#ff007c` 紫 `#bb9af7` 底 `#1a1b26`/`#1e2030` 深底 `#14151f`。
+| 想改什么 | 去哪改 |
+|----------|--------|
+| 顶栏模块 / 圆角 / 模糊 / 主题色 | **DMS 设置 GUI**（`dms ipc open settings`） |
+| DMS 主题色来源 | 换壁纸后 DMS 用 matugen 自动取色重新生成 |
+| 启动器外观 | `~/.config/walker/themes/base/theme.css`（Walker 仍是默认启动器） |
+| 终端 | ghostty（视频同款，DMS 已接管其配色）；alacritty 配置保留备用 |
+| 焦点环渐变 / gaps / 列宽档 / 动画 | `~/.config/niri/config.kdl`（**保存即热重载**） |
+| DMS CLI 瑞士军刀 | `dms doctor`（自检）/ `dms ipc`（控制）/ `dms greeter`（登录界面） |
+| 登录界面 | dms-greeter + greetd（gdm3 保留，`sudo systemctl disable greetd && sudo systemctl enable gdm3` 可切回） |
+| 旧组件回滚 | waybar/mako/swaybg 配置都还在 `~/.config/`，niri config.kdl 里取消 DMS 的 spawn、恢复注释掉的 swaybg 行即可 |
+
+> Tokyonight Moon 常用色（niri 配置仍用）：青 `#33ccff` 蓝 `#7aa2f7` 绿 `#9ece6a` 橙 `#e0af68` 粉红 `#ff007c` 紫 `#bb9af7` 底 `#1a1b26`/`#1e2030` 深底 `#14151f`。
+> 备份链：`~/niri-mocha-backup-1252/`（Mocha 版）→ `~/upgrade-2604-backup/`（升级 26.04 前）。
 
 ### 7.5 Walker：比 fuzzel 强在哪
 
@@ -140,10 +142,14 @@ cssclasses:
 
 | 症状 | 原因 / 解决 |
 |------|-------------|
-| 浏览器上传不弹文件框 | portal 没跑：`pgrep xdg-desktop-portal`，装的是 `xdg-desktop-portal-gnome/gtk` |
+| DMS 顶栏没起来 | `dms doctor` 自检；手动 `dms run` 看报错 |
+| DMS 行为怪异 | `dms restart` 重启 shell（配置不动） |
+| 嵌套试跑按键无效 | 嵌套模式 `Mod` = `Alt` 不是 `Super`（niri 设计如此） |
+| Walker 弹不出 | elephant 服务挂了：`systemctl --user status elephant`；或配置文件颜色格式错（fuzzel/walker 对色值格式挑剔，看 `~/.local/state` 下日志） |
+| 浏览器上传不弹文件框 | 26.04 已预防性配好 portals.conf；若仍触发见 [[Ubuntu 上安装 Niri]] 十三章 gist 方案 |
 | VSCode / 微信打不了中文 | 启动参数加 `--enable-wayland-ime` |
-| 顶栏图标是方块 | Nerd Font 丢了：`fc-list \| grep -i nerd`，重装 `~/.local/share/fonts` |
-| 出现两条状态栏 | config.kdl 里重复 spawn waybar，或手动又起了一个 |
+| 顶栏图标是方块 | Nerd Font 丢了：`fc-list \| grep -i nerd`，字体在 `~/.local/share/fonts` |
+| 登录界面起不来（greetd） | `Ctrl+Alt+F3` 进 TTY：`sudo systemctl disable greetd && sudo systemctl enable gdm3` |
 | X11 老程序起不来（Steam 等） | xwayland-satellite 没跑：`pgrep xwayland-satellite` |
 | 想看 niri 眼里的屏幕/窗口 | `niri msg outputs` / `niri msg windows` |
 
