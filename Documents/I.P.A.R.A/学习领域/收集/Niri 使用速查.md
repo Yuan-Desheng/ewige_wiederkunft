@@ -46,14 +46,19 @@ cssclasses:
 | ----------------------- | -------------------------- |
 | `Mod+T`                 | 开终端（alacritty）             |
 | `Mod+D`                 | 应用启动器（**Walker**：应用+命令+计算） |
+| `Mod+Space`             | **DMS spotlight**（应用+剪贴板+计算） |
+| `Mod+V`                 | 剪贴板历史（cliphist）           |
+| `Mod+Comma`             | **DMS 设置 GUI**             |
+| `Mod+N` / `Mod+M`       | 通知中心 / 任务管理器               |
+| `Mod+Y`                 | 壁纸浏览                       |
 | `Mod+Shift+D`           | 备用启动器（fuzzel）              |
-| `Mod+O`                 | 概览模式（缩放看全部窗口）              |
+| `Mod+O`                 | 概览模式（缩放看全部窗口，带壁纸背景）       |
 | `Mod+Q`                 | 关窗口                        |
 | `Mod+Shift+/`           | **快捷键面板**（忘了就按它）           |
 | `Mod+R`                 | 循环列宽 1/4 → 1/3 → 1/2 → 2/3 |
 | `Mod+F` / `Mod+Shift+F` | 列最大化（仍并排）/ 窗口真全屏           |
 | `Mod+Shift+E`           | 退出 Niri 回登录界面              |
-| `Super+Alt+L`           | 锁屏（swaylock）               |
+| `Mod+Alt+L`             | 锁屏（DMS 锁屏，桌面同主题）           |
 
 ### 2. 焦点移动（`Mod` = Super 键）
 
@@ -74,9 +79,9 @@ cssclasses:
 | `Mod+-` / `Mod+=` | 列宽 ±10% |
 | `Mod+Shift+=` / `Mod+Shift+-` | 窗口高度 ±10% |
 | `Mod+Ctrl+R` | 循环预设窗口高度 |
-| `Mod+V` | 浮动 / 平铺切换 |
+| `Mod+Ctrl+V` | 浮动 / 平铺切换（原 `Mod+V` 让给剪贴板） |
 | `Mod+W` | 列内 tab 页模式切换 |
-| `Mod+Comma` | 把下方窗口吞进当前列（堆叠）；`Mod+[` `Mod+]` 吞/吐左右列 |
+| `Mod+Shift+Comma` | 把下方窗口吞进当前列（堆叠）；`Mod+[` `Mod+]` 吞/吐左右列 |
 
 ### 4. 工作区与双屏
 
@@ -117,12 +122,14 @@ cssclasses:
 
 | 想改什么 | 去哪改 |
 |----------|--------|
-| 顶栏模块 / 圆角 / 模糊 / 主题色 | **DMS 设置 GUI**（`dms ipc open settings`） |
-| DMS 主题色来源 | 换壁纸后 DMS 用 matugen 自动取色重新生成 |
-| 启动器外观 | `~/.config/walker/themes/base/theme.css`（Walker 仍是默认启动器） |
+| 顶栏模块 / 圆角 / 模糊 / 主题色 | **DMS 设置 GUI**（`Mod+Comma` 或 `dms ipc open settings`）|
+| DMS 主题色来源 | 换壁纸后 DMS 用 matugen 自动取色重新生成（`Mod+Y` 壁纸浏览） |
+| niri 的 gaps/圆角/焦点环颜色 | **DMS 设置 GUI → Compositor**（经 `include "dms/*.kdl"` 实时同步，别再手改主配置的这些段） |
+| 启动器 | Walker 在 `Mod+D`；DMS spotlight 在 `Mod+Space`（应用+剪贴板+计算），剪贴板历史 `Mod+V` |
+| 输入法皮肤 | `~/.config/fcitx5/conf/classicui.conf` 的 `Theme=`（现用 Tokyonight-Storm，主题在 `~/.local/share/fcitx5/themes/`，改完 `fcitx5-remote -r` 重载） |
 | 终端 | ghostty（视频同款，DMS 已接管其配色）；alacritty 配置保留备用 |
-| 焦点环渐变 / gaps / 列宽档 / 动画 | `~/.config/niri/config.kdl`（**保存即热重载**） |
-| DMS CLI 瑞士军刀 | `dms doctor`（自检）/ `dms ipc`（控制）/ `dms greeter`（登录界面） |
+| 动画 / 阴影 / 键位 / 双屏 | `~/.config/niri/config.kdl`（**保存即热重载**）；DMS 键位在 `~/.config/niri/dms/binds.kdl` |
+| DMS CLI 瑞士军刀 | `dms doctor`（自检）/ `dms ipc`（控制）/ `dms restart`（shell 重启） |
 | 登录界面 | dms-greeter + greetd（gdm3 保留，`sudo systemctl disable greetd && sudo systemctl enable gdm3` 可切回） |
 | 旧组件回滚 | waybar/mako/swaybg 配置都还在 `~/.config/`，niri config.kdl 里取消 DMS 的 spawn、恢复注释掉的 swaybg 行即可 |
 
