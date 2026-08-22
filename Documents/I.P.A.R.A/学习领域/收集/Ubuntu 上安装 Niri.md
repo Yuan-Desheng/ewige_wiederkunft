@@ -737,6 +737,24 @@ sudo bash -c 'echo /usr/sbin/greetd > /etc/X11/default-display-manager'
 
 遗留小项：`dms greeter sync` 的 AppArmor profile 需要真机交互 sudo 跑一次（非阻塞警告）。
 
+### 3.5 ⚠️ 大坑：dms greeter install 会删 niri.desktop（登录页只剩 ubuntu）
+
+**现象**：重启后 dms-greeter 登录页的会话选择器只有 Ubuntu，没有 Niri。
+
+**原因**（journal 里有铁证）：`dms greeter install` 运行中会「清理」`/usr/share/wayland-sessions/` 里它不认识的会话文件——把 `niri.desktop` 和 `niri-portals.conf` 删了，且 `dpkg -V niri` 显示 missing 但 apt 状态仍是 ii（静默损坏）。
+
+**修复**：
+
+```bash
+sudo apt install --reinstall niri    # 恢复 niri.desktop
+```
+
+**预防**：每次跑完 `dms greeter install` / `sync` / `uninstall` 后检查：
+
+```bash
+ls /usr/share/wayland-sessions/ | grep niri || sudo apt install --reinstall niri
+```
+
 ### 4. 视频观感对照结论
 
 | 视频内容 | 落地 |

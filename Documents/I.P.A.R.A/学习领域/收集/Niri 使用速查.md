@@ -150,6 +150,7 @@ cssclasses:
 | VSCode / 微信打不了中文 | 启动参数加 `--enable-wayland-ime` |
 | 顶栏图标是方块 | Nerd Font 丢了：`fc-list \| grep -i nerd`，字体在 `~/.local/share/fonts` |
 | 登录界面起不来（greetd） | `Ctrl+Alt+F3` 进 TTY：`sudo systemctl disable greetd && sudo systemctl enable gdm3` |
+| **登录页没有 Niri 选项** | `dms greeter install/sync` 会删 `niri.desktop`：`sudo apt install --reinstall niri` 恢复，跑完 greeter 相关命令必检查 |
 | X11 老程序起不来（Steam 等） | xwayland-satellite 没跑：`pgrep xwayland-satellite` |
 | 想看 niri 眼里的屏幕/窗口 | `niri msg outputs` / `niri msg windows` |
 
