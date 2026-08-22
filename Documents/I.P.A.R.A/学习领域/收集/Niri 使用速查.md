@@ -126,7 +126,7 @@ cssclasses:
 | DMS 主题色来源 | 换壁纸后 DMS 用 matugen 自动取色重新生成（`Mod+Y` 壁纸浏览） |
 | niri 的 gaps/圆角/焦点环颜色 | **DMS 设置 GUI → Compositor**（经 `include "dms/*.kdl"` 实时同步，别再手改主配置的这些段） |
 | 启动器 | Walker 在 `Mod+D`；DMS spotlight 在 `Mod+Space`（应用+剪贴板+计算），剪贴板历史 `Mod+V` |
-| 输入法皮肤 | `~/.config/fcitx5/conf/classicui.conf` 的 `Theme=`（现用 Tokyonight-Storm，主题在 `~/.local/share/fcitx5/themes/`，改完 `fcitx5-remote -r` 重载） |
+| 输入法皮肤 | `~/.config/fcitx5/conf/classicui.conf` 的 `Theme=`（现用 **Tokyonight-Storm**：深蓝底 `#222436` + 亮蓝高亮 `#82aaff`，与桌面全套配色同族）；主题文件在 `~/.local/share/fcitx5/themes/`（含 60 个 Catppuccin 变体可随时换）；改完 `fcitx5-remote -r` 重载，彻底重启用 `pkill fcitx5 && fcitx5 -d` |
 | 终端 | ghostty（视频同款，DMS 已接管其配色）；alacritty 配置保留备用 |
 | 动画 / 阴影 / 键位 / 双屏 | `~/.config/niri/config.kdl`（**保存即热重载**）；DMS 键位在 `~/.config/niri/dms/binds.kdl` |
 | DMS CLI 瑞士军刀 | `dms doctor`（自检）/ `dms ipc`（控制）/ `dms restart`（shell 重启） |

@@ -762,7 +762,45 @@ ls /usr/share/wayland-sessions/ | grep niri || sudo apt install --reinstall niri
 | NIRI on 26.04 | ✅ PPA 包版 |
 | Scrolling Tiling | ✅ 键位/双屏/动画/阴影全继承 |
 | Dank theming | ✅ DMS shell + greeter + ghostty + matugen 自动取色 |
-| 登录界面 | ✅ dms-greeter（下次重启生效） |
+| 登录界面 | ✅ dms-greeter |
+
+### 5. DMS 深度集成（官方 compositor 指南落地）
+
+按 danklinux.com/docs/dankmaterialshell/compositors 的 niri 章节，把 DMS 从「跑着」升级到「与 niri 联动」：
+
+```kdl
+// config.kdl 末尾
+include "dms/colors.kdl"    // 颜色/背景，DMS 设置 GUI 实时改写
+include "dms/layout.kdl"    // gaps/圆角
+include "dms/alttab.kdl"
+include "dms/binds.kdl"     // DMS 键位（GUI 改键后自动重写）
+```
+
+要点：**目录 `~/.config/niri/dms/` 由 DMS 自动生成维护**（含 colors/layout/wpblur 等自动生成的文件，头注释标明 DO NOT EDIT）；layout 的 `background-color` 改 `transparent` + `layer-rule place-within-backdrop` 才能让壁纸/模糊出现在 overview；官方推荐窗口规则：圆角 12px、非活动窗口 opacity 0.9、DMS 窗口（`org.quickshell`）浮动。
+
+**键位让位表**（DMS 官方键要占位，原功能挪 Shift/Ctrl）：
+
+| 键 | 现在 | 原功能去哪 |
+|----|------|-----------|
+| `Mod+Space` | DMS spotlight | —（新功能：应用+剪贴板+计算）|
+| `Mod+V` | 剪贴板历史 | 浮动切换 → `Mod+Ctrl+V`（注意 `Mod+Shift+V` 已被「焦点浮动/平铺切换」占用）|
+| `Mod+Comma` | DMS 设置 | 吞窗口进列 → `Mod+Shift+Comma` |
+| `Mod+Alt+L` | DMS 锁屏 | swaylock 退役（配置保留）|
+
+另加：cliphist 剪贴板历史（`spawn-at-startup "bash" "-c" "wl-paste --watch cliphist store &"`）、QT/ELECTRON 平台环境变量。
+
+### 6. 输入法皮肤统一 Tokyonight
+
+fcitx5 皮肤换 [ch4xer/fcitx5-Tokyonight](https://github.com/ch4xer/fcitx5-Tokyonight) 的 **Tokyonight-Storm**（深蓝底 `#222436`、高亮 `#82aaff`，与桌面/锁屏/登录界面全套配色同族）：
+
+```bash
+git clone https://github.com/ch4xer/fcitx5-Tokyonight /tmp/fcitx5-tn
+cp -r /tmp/fcitx5-tn/Tokyonight-Storm ~/.local/share/fcitx5/themes/
+# classicui.conf: Theme=Tokyonight-Storm，Font 换 Noto Sans CJK SC 11
+fcitx5-remote -r   # 重载；无效则 pkill fcitx5 && fcitx5 -d 彻底重启
+```
+
+排查经验：改完「没变化」先确认是否真的触发过候选框（`Ctrl+Space` 打拼音），别对着 DMS spotlight 的内嵌搜索框找皮肤——那不是 fcitx5 的 UI。
 
 ## 十四、延伸阅读
 
