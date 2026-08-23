@@ -24,7 +24,7 @@ cssclasses:
 ```
 <progress value="60" max="100" style="width: 100%;"></progress>
 
-> **定位**：[[Ubuntu 上安装 Niri]] 的姊妹篇——那篇管「装」，这篇管「用」。键位全部按本机 `~/.config/niri/config.kdl`（2026-08-22 版）核对过，非官方文档照抄。安装、排障、卸载请回原笔记。
+> **定位**：[[Ubuntu 上安装 Niri]] 的姊妹篇——那篇管「装」，这篇管「用」。键位全部按本机 `~/.config/niri/config.kdl`（2026-08-23 版）核对过，非官方文档照抄。安装、排障、卸载请回原笔记。
 
 ### 0. 核心心智：一条无限长的横向条带
 
@@ -37,13 +37,15 @@ cssclasses:
 
 - **开新窗口不重排**：追加到条带右侧，现有窗口纹丝不动（和 i3/GNOME 最大的区别）
 - **没有「最小化」**：窗口一直活着，滚出视野而已。找回：滚动 / `Mod+D` 搜 / 顶栏任务栏图标点击
-- **列（column）是基本单位**：一个窗口默认一列；`Mod+Comma` 把窗口吞进左列变多行堆叠
+- **列（column）是基本单位**：一个窗口默认一列；`Mod+Shift+Comma` 把窗口吞进左列变多行堆叠
 - **忘了任何键 → `Mod+Shift+/` 弹快捷键面板**，这是唯一需要背的键
 
 ### 1. 日常高频（先练熟这一组）
 
 | 键                       | 作用                         |
 | ----------------------- | -------------------------- |
+| `Mod+1`                 | **Obsidian**（开过聚焦/没开启动）    |
+| `Mod+2`                 | **XQNetwork**（开过聚焦/缩托盘拉起）  |
 | `Mod+T`                 | 开终端（alacritty）             |
 | `Mod+D`                 | 应用启动器（**Walker**：应用+命令+计算） |
 | `Mod+Space`             | **DMS spotlight**（应用+剪贴板+计算） |
@@ -68,7 +70,7 @@ cssclasses:
 | `Mod+↑/↓` 或 `Mod+K/J` | 焦点上下移（列内堆叠窗口间） |
 | `Mod+Home` / `Mod+End` | 跳到条带最左 / 最右 |
 | `Mod+U` / `Mod+I` | 上 / 下一个工作区 |
-| `Mod+1..9` | 直达工作区（每显示器独立编号） |
+| `Mod+3..9` | 直达工作区（⚠️ 1、2 已让位给 Obsidian/XQNetwork；每显示器独立编号） |
 | `Mod+WheelScroll↑/↓` | 滚轮切工作区；`←/→` 滚轮切列 |
 
 ### 3. 移动窗口 / 调整大小
@@ -145,20 +147,36 @@ cssclasses:
 - 备用启动器 fuzzel 在 `Mod+Shift+D`（Walker 出问题时用）
 - 配置：`~/.config/walker/config.toml`（providers 决定搜什么）
 
+### 7.8 应用专属键与「找回窗口」编程范式
+
+`Mod+数字` 被用作常用应用直达键（1=Obsidian、2=XQNetwork）。XQNetwork 的 `~/.local/bin/xq-toggle` 示范了 niri IPC 的窗口管理范式，任何「应用缩托盘/窗口丢了」都能照抄：
+
+```bash
+# 找窗口 ID → 聚焦；找不到 → 拉起
+ID=$(niri msg --json windows | python3 -c "
+import json,sys
+for w in json.load(sys.stdin):
+    if '关键词' in w.get('title','').lower(): print(w['id']); break")
+[ -n "$ID" ] && niri msg action focus-window --id "$ID" || 启动命令
+```
+
+> 起因：XQNetwork 是 Flutter 应用，托盘不实现 `Activate` 协议（DBus 铁证）、窗口隐藏是协议层 unmap——任何外部 shell 都唤不回，只能这样从 compositor 侧补。Electron 应用（如 Obsidian）自带单实例唤醒，直接 `spawn` 即可，不需要 toggle 脚本。
+
 ### 8. 常见症状速查
 
-| 症状 | 原因 / 解决 |
-|------|-------------|
-| DMS 顶栏没起来 | `dms doctor` 自检；手动 `dms run` 看报错 |
-| DMS 行为怪异 | `dms restart` 重启 shell（配置不动） |
-| 嵌套试跑按键无效 | 嵌套模式 `Mod` = `Alt` 不是 `Super`（niri 设计如此） |
-| Walker 弹不出 | elephant 服务挂了：`systemctl --user status elephant`；或配置文件颜色格式错（fuzzel/walker 对色值格式挑剔，看 `~/.local/state` 下日志） |
-| 浏览器上传不弹文件框 | 26.04 已预防性配好 portals.conf；若仍触发见 [[Ubuntu 上安装 Niri]] 十三章 gist 方案 |
-| VSCode / 微信打不了中文 | 启动参数加 `--enable-wayland-ime` |
-| 顶栏图标是方块 | Nerd Font 丢了：`fc-list \| grep -i nerd`，字体在 `~/.local/share/fonts` |
-| 登录界面起不来（greetd） | `Ctrl+Alt+F3` 进 TTY：`sudo systemctl disable greetd && sudo systemctl enable gdm3` |
-| **登录页没有 Niri 选项** | `dms greeter install/sync` 会删 `niri.desktop`：`sudo apt install --reinstall niri` 恢复，跑完 greeter 相关命令必检查 |
-| X11 老程序起不来（Steam 等） | xwayland-satellite 没跑：`pgrep xwayland-satellite` |
-| 想看 niri 眼里的屏幕/窗口 | `niri msg outputs` / `niri msg windows` |
+| 症状                  | 原因 / 解决                                                                                                   |
+| ------------------- | --------------------------------------------------------------------------------------------------------- |
+| DMS 顶栏没起来           | `dms doctor` 自检；手动 `dms run` 看报错                                                                          |
+| DMS 行为怪异            | `dms restart` 重启 shell（配置不动）                                                                              |
+| 嵌套试跑按键无效            | 嵌套模式 `Mod` = `Alt` 不是 `Super`（niri 设计如此）                                                                  |
+| Walker 弹不出          | elephant 服务挂了：`systemctl --user status elephant`；或配置文件颜色格式错（fuzzel/walker 对色值格式挑剔，看 `~/.local/state` 下日志） |
+| 浏览器上传不弹文件框          | 26.04 已预防性配好 portals.conf；若仍触发见 [[Ubuntu 上安装 Niri]] 十三章 gist 方案                                           |
+| VSCode / 微信打不了中文    | 启动参数加 `--enable-wayland-ime`                                                                              |
+| 顶栏图标是方块             | Nerd Font 丢了：`fc-list \| grep -i nerd`，字体在 `~/.local/share/fonts`                                         |
+| 登录界面起不来（greetd）     | `Ctrl+Alt+F3` 进 TTY：`sudo systemctl disable greetd && sudo systemctl enable gdm3`                         |
+| **登录页没有 Niri 选项**   | `dms greeter install/sync` 会删 `niri.desktop`：`sudo apt install --reinstall niri` 恢复，跑完 greeter 相关命令必检查    |
+| X11 老程序起不来（Steam 等） | xwayland-satellite 没跑：`pgrep xwayland-satellite`                                                          |
+| 想看 niri 眼里的屏幕/窗口    | `niri msg outputs` / `niri msg windows`                                                                   |
+| **托盘应用点击唤不回窗口**     | Flutter 应用通病（托盘无 `Activate`、窗口 unmap）：配 toggle 键（见 7.8 节范式），应急 `pkill -x 应用名 && 重启命令`  |
 
 相关笔记：[[Ubuntu 上安装 Niri]]、[[Arch Linux 调研]]、[[Linux]]
