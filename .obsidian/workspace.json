@@ -216,39 +216,9 @@
               "icon": "lucide-file",
               "title": "国网培训"
             }
-          },
-          {
-            "id": "59fcf12c0647c681",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Documents/I.P.A.R.A/学习领域/收集/Qwen Code 安装与配置.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "Qwen Code 安装与配置"
-            }
-          },
-          {
-            "id": "25dadfb2e4d2d113",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Documents/I.P.A.R.A/学习领域/收集/Arch Linux 调研.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "Arch Linux 调研"
-            }
           }
         ],
-        "currentTab": 15
+        "currentTab": 13
       }
     ],
     "direction": "vertical"
@@ -521,29 +491,29 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "25dadfb2e4d2d113",
+  "active": "d537035bd933bd7e",
   "lastOpenFiles": [
-    "Documents/I.P.A.R.A/学习领域/收集/Arch Linux 调研.md.tmp.3736.f445c55cf246",
-    "Documents/I.P.A.R.A/学习领域/收集/Arch Linux 调研.md.tmp.3736.2063533e02b7",
-    "Documents/I.P.A.R.A/学习领域/收集/Arch Linux 调研.md.tmp.3736.23c196dad016",
-    "Documents/I.P.A.R.A/学习领域/收集/Arch Linux 调研.md.tmp.3736.954262c5d31f",
-    "Documents/I.P.A.R.A/学习领域/收集/Arch Linux 调研.md.tmp.3736.1748c24050cf",
-    "Documents/I.P.A.R.A/学习领域/收集/Arch Linux 调研.md.tmp.3736.fb0d358ac0de",
-    "Documents/I.P.A.R.A/学习领域/收集/Arch Linux 调研.md.tmp.3736.7c432ad9d9d8",
-    "数据库与导航.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Niri 使用速查.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Arch Linux 调研.md",
     "Documents/I.P.A.R.A/学习领域/收集/Qwen Code 安装与配置.md",
     "Documents/I.P.A.R.A/工作领域/收集/工作流技能.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Arch Linux 调研.md",
     "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Niri 使用速查.md.tmp.17657.d74d8377e8c6",
+    "Documents/I.P.A.R.A/学习领域/收集/Niri 使用速查.md.tmp.17657.51f06c6e61bd",
+    "Documents/I.P.A.R.A/学习领域/收集/Niri 使用速查.md.tmp.17657.41510719ae14",
+    "Documents/I.P.A.R.A/学习领域/收集/Niri 使用速查.md.tmp.17657.9ba3086c407d",
+    "Documents/I.P.A.R.A/学习领域/收集/Niri 使用速查.md.tmp.10763.585c115aed01",
+    "Documents/I.P.A.R.A/学习领域/收集/Niri 使用速查.md.tmp.10763.b0b7c2451a75",
+    "Documents/I.P.A.R.A/学习领域/收集/Niri 使用速查.md.tmp.10763.fff5ff7a880d",
+    "Documents/I.P.A.R.A/学习领域/收集/Ubuntu 上安装 Niri.md.tmp.10763.4a239180f576",
+    "Documents/I.P.A.R.A/学习领域/收集/Ubuntu 上安装 Niri.md.tmp.10763.6eefa3236e39",
+    "数据库与导航.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Arch Linux 调研.md.tmp.3736.f445c55cf246",
     "Documents/I.P.A.R.A/学习领域/收集/Claude Code.md",
     "Documents/I.P.A.R.A/工作领域/项目/国网培训.md",
     "Documents/I.P.A.R.A/工作领域/项目/ultracode.md",
     "Documents/I.P.A.R.A/0-收集箱/未命名.md",
     "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Qwen Code 安装与配置.md.tmp.28036.1786365778587",
-    "Documents/I.P.A.R.A/学习领域/收集/Qwen Code 安装与配置.md.tmp.28036.1786365776502",
-    "Documents/I.P.A.R.A/学习领域/收集/Qwen Code 安装与配置.md.tmp.28036.1786365771857",
-    "Documents/I.P.A.R.A/学习领域/收集/Qwen Code 安装与配置.md.tmp.28036.1786365767865",
     "Documents/I.P.A.R.A/学习领域/收集/NAS SMB 网络磁盘挂载.md",
     "Documents/I.P.A.R.A/学习领域/项目/Interactive Tech Tutorial Platform.md",
     "Documents/I.P.A.R.A/学习领域/收集/Linux.md",
@@ -558,7 +528,6 @@
     "Assistants/Templater/主页/homepage-侧页.md",
     "Documents/I.P.A.R.A/工作领域/项目/自动化选品上品（原始需求）（目前可行方案）.md",
     "Documents/I.P.A.R.A/学习领域/收集/Hollow Knight Silksong BepInEx 皮肤 mod 安装笔记.md",
-    "Documents/I.P.A.R.A/工作领域/收集/团队负责人 岗位职责.md",
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/自动化选品上品.canvas",
     "Extras/附件/Seerfar关键词导出-06-数据导出弹窗.png",
     "Extras/附件/Seerfar关键词导出-05-导出格式下拉.png",
