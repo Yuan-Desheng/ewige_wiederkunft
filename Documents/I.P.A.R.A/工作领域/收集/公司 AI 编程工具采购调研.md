@@ -32,6 +32,8 @@ cssclasses:
 > **月度用量报表是个短板——个人订阅拿不到集中后台，只能让每人跑 `ccusage` 自报。**
 > 价格为 2026-08 官网实抓，每张表下面附了出处；标 ⚠️ 的是二手数字，下单前以支付页为准。完整来源见文末第六节。
 
+**给老板的一页汇报**：https://claude.ai/code/artifact/27b5b681-7163-4550-a0b7-790864d58de4 （2026-08-23 出，Claude Artifact 私有页，需登录本人账号访问）
+
 ## 一、三家价格（只列决策要用的）
 
 **Claude Code（美元）** — 出处：[claude.com/pricing](https://claude.com/pricing)
