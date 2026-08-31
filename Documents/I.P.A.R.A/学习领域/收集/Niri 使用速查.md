@@ -3,7 +3,7 @@ createTime: 2026-08-22 12:40
 笔记ID: 20260822124000
 multiFile:
 multiMedia:
-description: Niri 滚动平铺窗口管理器的日常使用速查（Ubuntu 26.04 + DMS 版）：核心心智模型、按实际 config.kdl 核对的完整键位表（窗口/列/工作区/显示器/截图/电源）、GNOME 迁移差异、DMS（DankMaterialShell）主题系统调整入口、Walker 启动器、常见症状对照
+description: Niri 滚动平铺窗口管理器的日常使用速查（Ubuntu 26.04 + DMS 版）：核心心智模型、按实际 config.kdl 核对的完整键位表（窗口/列/工作区/显示器/截图/电源）、GNOME 迁移差异、DMS（DankMaterialShell）主题系统调整入口、Walker 启动器、双屏排布与镜像、终端按键坑（SSH 退格/小键盘 Enter）、常见症状对照
 笔记类型: 收集笔记
 阐述日期:
 tags:
@@ -22,7 +22,7 @@ cssclasses:
 ```meta-bind-embed
 [[笔记抬头模块]]
 ```
-<progress value="60" max="100" style="width: 100%;"></progress>
+<progress value="70" max="100" style="width: 100%;"></progress>
 
 > **定位**：[[Ubuntu 上安装 Niri]] 的姊妹篇——那篇管「装」，这篇管「用」。键位全部按本机 `~/.config/niri/config.kdl`（2026-08-23 版）核对过，非官方文档照抄。安装、排障、卸载请回原笔记。
 
@@ -96,12 +96,37 @@ cssclasses:
 
 > 双屏心法：**工作区属于各自的显示器**，插上带鱼屏后两边独立滚动，互不干扰。
 
+### 4.5 双屏排布与镜像
+
+**排布（扩展模式）**：`~/.config/niri/config.kdl` 的 `output` 块用 `position x= y=` 定位各屏，**保存即热重载**；只想临时试摆位用运行时命令（重启即丢，且改配置文件会被覆盖）：
+
+```bash
+niri msg outputs                                # 看当前屏 / 模式 / 逻辑坐标
+niri msg output HDMI-A-1 position x=1920 y=0    # 挪到内屏右边
+niri msg output HDMI-A-1 mode 3440x1440@100     # 换刷新率
+```
+
+本机两块屏：内屏 eDP-1 1920×1080@144、带鱼屏 HDMI-A-1 3440×1440@100（带鱼屏在上 (0,0)、内屏在正下方 (742,1440)）。经常拔插显示器的话可配 kanshi 自动切换排布（niri 官方 wiki 推荐）。
+
+**镜像**：niri **无原生镜像**（IPC 无 mirror 动作，官方确认未实现）。社区方案 wl-mirror——把一块屏的画面镜像成一个全屏窗口：
+
+```bash
+sudo apt install wl-mirror
+wl-mirror eDP-1    # 开一个实时镜像内屏的窗口
+# 然后 Mod+Shift+方向 把窗口扔到带鱼屏 → Mod+Shift+F 全屏，即完成镜像
+```
+
+16:9 内屏镜像到 21:9 带鱼屏两侧会有黑边（比例不同）。
+
 ### 5. 截图 / 多媒体（本机加配）
 
 | 键 | 作用 |
 |----|------|
-| `Print` | 交互式截图（niri 内置：选窗口/区域，存 `~/Pictures/Screenshots/`） |
-| `Mod+Shift+S` | **区域截图直接进剪贴板**（本机加配，grim+slurp+wl-copy） |
+| `Win+A` | **冻结画面 → 在冻结图上框选 → Satty 标注**（箭头/框/文字；保存到 `~/Pictures/Screenshots/` + 进剪贴板）。实现：`~/.local/bin/shot-annotate`（grim 抓聚焦屏 → imv 全屏铺冻结图 → slurp 框选 → PIL 裁剪 → satty） |
+| `Win+S` | niri 内置截图：立即冻结，选区域/窗口（不能标注） |
+| `Win+P` / `Win+Print` | DMS 截图 |
+| `Win+Shift+S` | 框选后静默直接进剪贴板（grim+slurp+wl-copy，无标注） |
+| `Print`（有此键的键盘） | 同 niri 内置交互式截图 |
 | `Ctrl+Print` / `Alt+Print` | 整屏 / 当前窗口截图存文件 |
 | 音量/亮度/播放 | 键盘 FN 多媒体键直通（wpctl / brightnessctl / playerctl） |
 
@@ -162,6 +187,15 @@ for w in json.load(sys.stdin):
 
 > 起因：XQNetwork 是 Flutter 应用，托盘不实现 `Activate` 协议（DBus 铁证）、窗口隐藏是协议层 unmap——任何外部 shell 都唤不回，只能这样从 compositor 侧补。Electron 应用（如 Obsidian）自带单实例唤醒，直接 `spawn` 即可，不需要 toggle 脚本。
 
+### 7.9 终端两个按键坑：SSH 退格变空格 / 小键盘 Enter 失灵（已修）
+
+| 症状 | 原因 | 修复 |
+|------|------|------|
+| SSH 到服务器后按退格键「加一个空格」而不是删除 | alacritty / ghostty 给远端发的是 `TERM=alacritty` / `xterm-ghostty`，服务器上没有这些 terminfo 条目，退格字节被错误回显成前移一格 | 统一发通用的 `xterm-256color`：`~/.config/alacritty/alacritty.toml` 的 `[env]` 段 + `~/.config/ghostty/config` 的 `term`（真彩色走 `COLORTERM`，不受影响） |
+| 小键盘 Enter「有时候」按了没反应 | vim / htop / Claude Code 等 TUI 会把终端切到应用键盘模式，此模式下小键盘 Enter 发的是 `ESC O M` 序列，不认识的程序直接忽略 | 强制永远发 `\r` 与主 Enter 一致：alacritty 加 `[[keyboard.bindings]]`（`NumpadEnter` → `chars = "\r"`）；ghostty 加 `keybind = numpad_enter=text:\r` |
+
+> 已连着的 SSH 会话里执行 `export TERM=xterm-256color` 可立即恢复退格。IDEA 内置终端 / Obsidian 里的小键盘 Enter 走各自的按键转发，与这两处配置无关。
+
 ### 8. 常见症状速查
 
 | 症状                  | 原因 / 解决                                                                                                   |
@@ -171,12 +205,17 @@ for w in json.load(sys.stdin):
 | 嵌套试跑按键无效            | 嵌套模式 `Mod` = `Alt` 不是 `Super`（niri 设计如此）                                                                  |
 | Walker 弹不出          | elephant 服务挂了：`systemctl --user status elephant`；或配置文件颜色格式错（fuzzel/walker 对色值格式挑剔，看 `~/.local/state` 下日志） |
 | 浏览器上传不弹文件框          | 26.04 已预防性配好 portals.conf；若仍触发见 [[Ubuntu 上安装 Niri]] 十三章 gist 方案                                           |
-| VSCode / 微信打不了中文    | 启动参数加 `--enable-wayland-ime`                                                                              |
+| VSCode / 微信打不了中文    | 启动参数加 `--enable-wayland-ime`；**Electron 应用若外壳太老则无解**（见下一行）                                  |
+| **Obsidian 切不了中文输入法** | deb 里的 Electron 外壳太老（本机曾装 1.7.7 = Electron 32/Chromium 128，只会 text-input **v1**，而 niri 只提供 **v3**，参数救不了）；且应用内自更新只升 JS 不换外壳（界面显示 1.13.7 但外壳仍是 2024 年的）。**解法：装官方最新 deb**（1.13.7 起 = Electron 43，默认走 v3），启动带 `--enable-wayland-ime --wayland-text-input-version=3`（已配在 `Mod+1`）。判别法：`strings /opt/Obsidian/obsidian \| grep Electron/` 看外壳版本；`timeout 2 env WAYLAND_DEBUG=1 wl-copy x 2>&1 \| grep text_input` 看 compositor 提供的协议版本 |
 | 顶栏图标是方块             | Nerd Font 丢了：`fc-list \| grep -i nerd`，字体在 `~/.local/share/fonts`                                         |
 | 登录界面起不来（greetd）     | `Ctrl+Alt+F3` 进 TTY：`sudo systemctl disable greetd && sudo systemctl enable gdm3`                         |
 | **登录页没有 Niri 选项**   | `dms greeter install/sync` 会删 `niri.desktop`：`sudo apt install --reinstall niri` 恢复，跑完 greeter 相关命令必检查    |
 | X11 老程序起不来（Steam 等） | xwayland-satellite 没跑：`pgrep xwayland-satellite`                                                          |
 | 想看 niri 眼里的屏幕/窗口    | `niri msg outputs` / `niri msg windows`                                                                   |
 | **托盘应用点击唤不回窗口**     | Flutter 应用通病（托盘无 `Activate`、窗口 unmap）：配 toggle 键（见 7.8 节范式），应急 `pkill -x 应用名 && 重启命令`  |
+| SSH 后退格变「加一个空格」      | 远端没有 alacritty / ghostty 的 terminfo；已改发 `xterm-256color`（见 7.9） |
+| 小键盘 Enter 时灵时不灵        | 应用键盘模式下发 `ESC O M`；已绑定为永远发 `\r`（见 7.9） |
+| 想镜像屏幕                      | niri 无原生镜像，用 wl-mirror 开全屏窗口（见 4.5） |
+| **蓝牙开不了**（设置开关灰/无反应） | `rfkill list` 看 Soft blocked——多半是按过飞机模式，退出时蓝牙没跟着恢复；`rfkill unblock bluetooth` 即解 |
 
 相关笔记：[[Ubuntu 上安装 Niri]]、[[Arch Linux 调研]]、[[Linux]]

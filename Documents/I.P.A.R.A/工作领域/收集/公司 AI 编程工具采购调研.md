@@ -51,12 +51,12 @@ Free 档不含 Claude Code，网上说免费能跑的是老信息——官方帮
 
 **OpenAI Codex（美元）** — 出处：[openai.com/chatgpt/pricing](https://openai.com/chatgpt/pricing/) + [Codex 定价页](https://developers.openai.com/codex/pricing)
 
-| 档位 | 价格 |
-|---|---|
-| Plus | $20/月 |
-| Pro | $100/月（5x）/ $200/月（20x） |
-| [Business](https://help.openai.com/en/articles/8792536-managing-billing-and-seats-in-chatgpt-business) | $20/席·月年付、$25 月付，2 席起 |
-| Enterprise | 不公开，得联系销售 |
+| 档位                                                                                                     | 价格                      |
+| ------------------------------------------------------------------------------------------------------ | ----------------------- |
+| Plus                                                                                                   | $20/月                   |
+| Pro                                                                                                    | $100/月（5x）/ $200/月（20x） |
+| [Business](https://help.openai.com/en/articles/8792536-managing-billing-and-seats-in-chatgpt-business) | $20/席·月年付、$25 月付，2 席起   |
+| Enterprise                                                                                             | 不公开，得联系销售               |
 
 **这里有个坑**：Business 的 Codex 额度和 $20 的 Plus 完全一样，[官方额度表](https://developers.openai.com/codex/enterprise/usage-limits) 逐格相同。多花的钱买的是 SSO、不拿数据训练、统一账单，**不包含用量报表**（见 [workspace analytics 页](https://developers.openai.com/codex/enterprise/workspace-analytics)）。
 

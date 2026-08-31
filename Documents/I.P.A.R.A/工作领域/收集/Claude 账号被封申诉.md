@@ -127,7 +127,7 @@ that is what it was — one person running Claude Code on real engineering tasks
 ### Q2: Anything else we should know?
 
 ```text
-On Mar 15 I was doing my normal work — 【填当天实际在做的事】. I wasn't doing
+On Mar 15 I was doing my normal work. I wasn't doing
 anything I knew to be outside the Terms of Service, and I was the only person
 using the account.
 
