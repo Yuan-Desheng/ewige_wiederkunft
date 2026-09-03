@@ -216,9 +216,24 @@
               "icon": "lucide-file",
               "title": "tiktok_跨境电商"
             }
+          },
+          {
+            "id": "bebd6ce07070c396",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documents/I.P.A.R.A/工作领域/项目/tiktok带货视频.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "tiktok带货视频"
+            }
           }
         ],
-        "currentTab": 13
+        "currentTab": 14
       }
     ],
     "direction": "vertical"
@@ -279,8 +294,8 @@
             "state": {
               "type": "cli-commander-view",
               "state": {},
-              "icon": "lucide-ghost",
-              "title": "cli-commander-view"
+              "icon": "waypoints",
+              "title": "CLI Commander"
             }
           }
         ]
@@ -321,8 +336,8 @@
             "state": {
               "type": "dida-task-view",
               "state": {},
-              "icon": "lucide-ghost",
-              "title": "dida-task-view"
+              "icon": "check-square",
+              "title": "滴答任务清单"
             }
           },
           {
@@ -331,8 +346,8 @@
             "state": {
               "type": "flowtext-agent-view",
               "state": {},
-              "icon": "lucide-ghost",
-              "title": "flowtext-agent-view"
+              "icon": "sparkles",
+              "title": "AI Agent"
             }
           },
           {
@@ -341,8 +356,8 @@
             "state": {
               "type": "eme-flashcard-view",
               "state": {},
-              "icon": "lucide-ghost",
-              "title": "eme-flashcard-view"
+              "icon": "brain",
+              "title": "闪卡复习"
             }
           }
         ]
@@ -357,7 +372,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Documents/I.P.A.R.A/工作领域/项目/tiktok_跨境电商.md",
+                "file": "Documents/I.P.A.R.A/工作领域/项目/tiktok带货视频.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -372,8 +387,8 @@
             "state": {
               "type": "calendar",
               "state": {},
-              "icon": "lucide-ghost",
-              "title": "calendar"
+              "icon": "calendar-with-checkmark",
+              "title": "Calendar"
             }
           },
           {
@@ -456,8 +471,8 @@
             "state": {
               "type": "eme-dict-view",
               "state": {},
-              "icon": "lucide-ghost",
-              "title": "eme-dict-view"
+              "icon": "book-open",
+              "title": "单词助手"
             }
           }
         ]
@@ -477,23 +492,30 @@
       "command-palette:打开命令面板": false,
       "workspaces:管理工作区布局": false,
       "templates:插入模板": false,
-      "templater-obsidian:Templater": false,
       "obsidian-weread-plugin:同步微信读书笔记": false,
+      "templater-obsidian:Templater": false,
       "obsidian-spaced-repetition:复习卡片": false,
       "obsidian-content-protection:插件市场": false,
       "obsidian-content-protection:同步数据": false,
+      "imagen:图片管理": false,
+      "dida-sync:滴答时间线视图": false,
+      "note-importer:导入笔记": false,
       "obsidian-english-made-easy:单词助手": false,
       "obsidian-english-made-easy:闪卡复习": false,
+      "obsidian-cli-gui:CLI Commander": false,
       "homepage:Open homepage": false
     }
   },
-  "active": "d499f2979043bab1",
+  "active": "bebd6ce07070c396",
   "lastOpenFiles": [
+    "Documents/I.P.A.R.A/工作领域/项目/tiktok_跨境电商.md",
+    "Documents/I.P.A.R.A/工作领域/项目/creator-commerce-studio.md",
+    "Documents/I.P.A.R.A/工作领域/项目/tiktok带货视频.md",
+    "Assistants/Templater/主页/homepage-侧页.md",
+    "Documents/I.P.A.R.A/工作领域/收集/工作流技能.md",
     "Documents/I.P.A.R.A/工作领域/项目/tiktok_跨境电商（优化版）.md",
     "数据库与导航.md",
-    "Documents/I.P.A.R.A/工作领域/项目/tiktok_跨境电商.md",
-    "Documents/I.P.A.R.A/工作领域/收集/项目立项与研发流程规范.md",
-    "AGENTS.md",
+    "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
     "Extras/附件/Pasted image 20260831175057.png",
     "Extras/附件/Pasted image 20260831174753.png",
     "Extras/附件/Pasted image 20260831174701.png",
@@ -503,13 +525,12 @@
     "Extras/附件/Pasted image 20260831173920.png",
     "Extras/附件/Pasted image 20260831173727.png",
     "Extras/附件/Pasted image 20260831173403.png",
-    "Extras/附件/Pasted image 20260831172717.png",
-    "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
+    "Extras/附件/Pasted image 20260831172559.png",
+    "Documents/I.P.A.R.A/工作领域/项目/OpenCLI-TikTok自动选品上品执行计划.md",
+    "AGENTS.md",
     "Documents/I.P.A.R.A/工作领域/项目/tiktok_跨境电商.md.tmp.19480.57f2b69652de",
     "Documents/I.P.A.R.A/学习领域/收集/Niri 使用速查.md.tmp.50014.a46b018d6697",
-    "Documents/I.P.A.R.A/工作领域/项目/creator-commerce-studio.md",
     "Documents/I.P.A.R.A/工作领域/收集/华为云服务器降本迁移方案.md",
-    "Assistants/Templater/主页/homepage-侧页.md",
     "Documents/I.P.A.R.A/工作领域/项目/国网培训.md",
     "Documents/I.P.A.R.A/工作领域/项目/自动化选品上品（原始需求）（目前可行方案）.md",
     "Documents/I.P.A.R.A/工作领域/项目/Seerfar 关键词导出 —— 图文教程.md",
@@ -518,8 +539,8 @@
     "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent.md",
     "Documents/I.P.A.R.A/学习领域/收集/Linux.md",
     "Documents/I.P.A.R.A/工作领域/项目/开发人员转产品经理.md",
+    "Documents/I.P.A.R.A/工作领域/收集/项目立项与研发流程规范.md",
     "Documents/I.P.A.R.A/工作领域/收集/公司 AI 编程工具采购调研.md",
-    "Documents/I.P.A.R.A/工作领域/收集/工作流技能.md",
     "Documents/I.P.A.R.A/学习领域/收集/Niri 使用速查.md.tmp.238199.e362bec06583",
     "Documents/I.P.A.R.A/工作领域/收集/华为云服务器降本迁移方案.md~",
     "Documents/I.P.A.R.A/学习领域/收集/Niri 使用速查.md.tmp.281463.cb348cb9683c",
@@ -529,13 +550,11 @@
     "Documents/I.P.A.R.A/工作领域/项目/海外社交媒体传播动态分析系统_二期.md",
     "Documents/I.P.A.R.A/工作领域/项目/ultracode.md",
     "Documents/I.P.A.R.A/学习领域/收集/Claude Code.md",
-    "Documents/I.P.A.R.A/工作领域/收集/Claude 账号被封申诉.md",
     "Documents/I.P.A.R.A/学习领域/收集/Niri 使用速查.md~",
     "Documents/I.P.A.R.A/学习领域/收集/Niri 使用速查.md.tmp.9073.77cb87138e95",
     "Documents/I.P.A.R.A/学习领域/收集/Niri 使用速查.md.tmp.9073.98475affac00",
     "Documents/I.P.A.R.A/学习领域/收集/Niri 使用速查.md.tmp.9073.13d3700325cc",
     "Documents/I.P.A.R.A/学习领域/收集/Niri 使用速查.md.tmp.9073.adbc94791a04",
-    "Documents/I.P.A.R.A/学习领域/收集/Niri 使用速查.md",
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/海媒传播分析系统.canvas",
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/ultracode.canvas",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/小满zs-react.canvas",
