@@ -27,6 +27,10 @@ updated: 2026-09-03
 
 > 目标：在 Ubuntu 的新 Codex 对话中，使用 OpenCLI 控制一个已登录的专用 Chrome／Chromium Profile，跑通「FastMoss／商品机会选品 → 1688 核实货源并核价 → 跳转 TikTok Shop 原商品页采集 → 妙手 ERP 创建商品 → TikTok Seller Center 核对和设置 → 本地保存商品与货源映射」闭环。业务规则以 [[tiktok_跨境电商（优化版）]] 为准。
 
+> [!important] 2026-09-04 采集口径更正
+> 采集不再用「打开 shop.tiktok.com 原页 → 点跨境ERP助手扩展"采集此商品"」（扩展注入按钮需 isTrusted 真实手势、opencli 点不动，且是阶段5动态ref/弹窗陷阱最多的一步）。
+> **改用妙手网页「链接采集」**：`erp.91miaoshou.com/common_collect_box/index?fetchType=linkCopy` 粘贴 `shop.tiktok.com` 商品链接（妙手后端抓取，带 trackParams 的联盟分享链接也能解析），勾「自动认领到平台(TikTok)」点「采集并自动认领」，采集后到 TikTok 采集箱校正目标店。采集收敛到妙手一个域、身份闸门只需妙手 PASS。实操权威见 tk-sea-seller 仓库 `automation/AI选品上品-可复现流程指南.md`。
+
 > [!warning] 先统一认识
 > 页面操作跨 Windows／Linux，但流程并非完全与环境无关。Ubuntu 上的 Chrome 登录状态、扩展、本地核价文件、图片路径和下载目录都要重新准备。账号安全更依赖正确的浏览器 Profile、稳定的既有网络方案和正确店铺；不要在普通 Chrome、陌生网络或错误店铺中直接执行写操作。
 
@@ -39,7 +43,7 @@ updated: 2026-09-03
 3. 从 FastMoss 和 Seller Center“商品机会”提取候选品，按需求、供需差、可比性、履约与合规条件排序。
 4. 到 1688 查找对应货源，记录 SKU、采购价、供应条件、货源链接以及缺失信息。
 5. 使用本地、可审计的核价脚本计算各国目标成交价和规划挂牌价。
-6. 从 FastMoss 商品详情跳转到 `https://shop.tiktok.com/` 的原商品页，通过跨境 ERP 助手采集；在妙手建立商品草稿并完成核验和定价。
+6. 取候选的 `shop.tiktok.com` 商品链接，在妙手网页「链接采集」(`common_collect_box/index?fetchType=linkCopy`) 粘贴链接采集(采集并自动认领)；在妙手建立商品草稿并完成核验和定价。不用在原页点跨境ERP助手扩展。
 7. 经一次发布确认后提交；到 Seller Center 核对发布状态并设置通过核价的国家、SKU、库存和物流。
 8. 把每个已发布 TikTok 商品、TikTok 来源商品、1688 货源、SKU 映射、核价和发布结果保存到本地台账，使流程可以查重、中断后继续并长期追溯。
 
@@ -466,10 +470,10 @@ Agent 完成所有可做的只读分析后，一次性给出：
 
 ### 3. 按顺序操作
 
-1. 在 FastMoss 候选详情中打开已确认的 `tiktok_source_url`；商品机会候选则打开其已记录的 TikTok Shop 原商品页。
-2. 重新核对地址栏域名必须为 `shop.tiktok.com`，页面商品、国家和 SKU 与候选记录一致。
-3. 在该 TikTok Shop 商品页使用跨境 ERP 助手采集到妙手公共采集箱；**不再从 1688 商品页采集**。
-4. 回到妙手采集箱，按来源链接、标题和采集时间找到本次商品，再关联身份清单指定的 TikTok 店铺。
+1. 取 Checkpoint A 已确认候选的 `shop.tiktok.com` 商品链接（FastMoss 详情/商品机会记录里的 `tiktok_source_url`）。**无需在浏览器打开该原页、无需过滑块**——妙手后端按链接自行抓取。
+2. 打开妙手网页「链接采集」：`erp.91miaoshou.com/common_collect_box/index?fetchType=linkCopy`，把 `shop.tiktok.com/view/product/<ID>?region=..` 链接粘入输入框（多个换行；带完整 trackParams 的联盟分享链接也能解析）。
+3. 采集设置里勾选「自动认领(发布)到平台」并确认认领目标平台为 TikTok；点「**采集并自动认领**」（**禁用「采集并自动发布」**，会跳过 Checkpoint B）。**不用**在 shop.tiktok.com 原页点跨境ERP助手扩展"采集此商品"（扩展需 isTrusted 真实手势，opencli 点不动，且是阶段5动态ref/弹窗陷阱最多的一步）。
+4. 到 TikTok 采集箱按来源链接/标题定位本次商品，**核对并把发布店铺校正为身份清单指定的目标店**（自动认领可能落默认错店）。
 5. 选择真实类目，并核对英文标题、描述和图片。来源为英文只能减少翻译步骤，不能跳过事实、授权和合规检查。
 6. 删除无授权品牌／IP 声明；不能用遮挡 Logo 规避审核。
 7. 用已确认的 1688 实际供货信息修正标题和详情，并保留中文核对稿。
@@ -622,7 +626,7 @@ SKU → 采购价 → 完整重量 → 目标成交价 → 挂牌价 → 库存
 - 候选品同时来自 FastMoss 跨境店和 Seller Center 商品机会／SEO；合并去重并保留各自证据。每个准备上品的候选都必须取得可核实的 shop.tiktok.com 原商品页链接。
 - 到 1688 只做货源、SKU、采购价、包装重量尺寸、库存、授权和核价核实，并保存最终链接及备选链接；不要从 1688 页面采集到妙手。
 - 自动完成所有只读研究后，在检查点 A 一次性给我候选表、TikTok Shop 原商品页、1688 货源和推荐商品；由我确认商品、供应商、SKU 和国家后再建妙手草稿。
-- 从已确认的 shop.tiktok.com 原商品页使用跨境 ERP 助手采集到妙手。妙手只保存完整草稿，并保存 TikTok 来源 SKU、妙手 SKU 与 1688 采购 SKU 的映射。把账号、店铺、两个来源链接、SKU、图片、属性、价格、库存、重量、尺寸和风险全部回读并展示后，在检查点 B 等我回复“批准发布 <RUN_ID>”。没有该批准不得发布。
+- 采集用妙手网页「链接采集」(`common_collect_box/index?fetchType=linkCopy` 粘贴已确认的 shop.tiktok.com 商品链接，采集并自动认领；不用原页扩展)。妙手只保存完整草稿，并保存 TikTok 来源 SKU、妙手 SKU 与 1688 采购 SKU 的映射。把账号、店铺、两个来源链接、SKU、图片、属性、价格、库存、重量、尺寸和风险全部回读并展示后，在检查点 B 等我回复“批准发布 <RUN_ID>”。没有该批准不得发布。
 - 发布后到 TikTok Seller Center 再核对一次店铺、国家和商品，只开启核价与物流通过的国家，并逐 SKU 校验价格、库存、重量和物流。
 - 每个商品发布后必须更新 runs/<RUN_ID>/product-record.json 和 automation/data/product-ledger.local.jsonl，至少保存选品来源、TikTok Shop 原商品页、最终 1688 链接、SKU 映射、核价快照、发布商品 ID／链接与审核状态。台账写入和逐行解析未通过时不得宣布完成。
 - 本次不自动开启促销、平台活动、达人佣金或广告。

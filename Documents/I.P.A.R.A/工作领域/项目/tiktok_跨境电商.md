@@ -99,6 +99,9 @@ todo：需要详细了解一下如何计算，以及平台的费率
 
 ## 二、AI上品、进行产品的编辑
 
+> [!important] 2026-09-04 采集口径更正（自动化优先）
+> 下面截图记录的是"装跨境ERP助手扩展→在原页点采集"的**手动**流程（人工可用）。但**自动化(OpenCLI)采集请改用妙手网页「链接采集」**：`erp.91miaoshou.com/common_collect_box/index?fetchType=linkCopy` 粘贴 `shop.tiktok.com` 商品链接（后端抓取，联盟分享链接也能解析），勾「自动认领到平台(TikTok)」点「采集并自动认领」，采集后到 TikTok 采集箱校正目标店。扩展注入按钮需真实手势、opencli 点不动。实操权威见 tk-sea-seller 仓库 `automation/AI选品上品-可复现流程指南.md`。
+
 安装并使用浏览器插件[跨境ERP助手](https://erp.91miaoshou.com/help_center/article_3250.html)
 ![[Pasted image 20260830171915.png]]
 
