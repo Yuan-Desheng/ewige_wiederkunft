@@ -217,5 +217,7 @@ for w in json.load(sys.stdin):
 | 小键盘 Enter 时灵时不灵        | 应用键盘模式下发 `ESC O M`；已绑定为永远发 `\r`（见 7.9） |
 | 想镜像屏幕                      | niri 无原生镜像，用 wl-mirror 开全屏窗口（见 4.5） |
 | **蓝牙开不了**（设置开关灰/无反应） | `rfkill list` 看 Soft blocked——多半是按过飞机模式，退出时蓝牙没跟着恢复；`rfkill unblock bluetooth` 即解 |
+| **蓝牙连着但没声音** | 界面全绿（RUNNING/A2DP/未静音）也可能传输层半死：`paplay --device=<sink>` 推 3 秒提示音，播不完就是链路死——`sudo systemctl restart bluetooth` 后重连即解（重连设备没用） |
+| **Chrome 视频加载不动**（B站等，页面正常仅视频转圈） | 网络/无痕都正常时是 QUIC 的锅：代理客户端 TCP 正常但 UDP 443 转发不通，CDN 支持 HTTP/3 时 Chrome 优先走 QUIC 就卡死。解法：`/etc/opt/chrome/policies/managed/quic-off.json` 写入 `{"QuicAllowed": false}` 重启 Chrome 强制走 TCP |
 
 相关笔记：[[Ubuntu 上安装 Niri]]、[[Arch Linux 调研]]、[[Linux]]
