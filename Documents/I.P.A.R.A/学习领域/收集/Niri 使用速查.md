@@ -3,7 +3,7 @@ createTime: 2026-08-22 12:40
 笔记ID: 20260822124000
 multiFile:
 multiMedia:
-description: Niri 滚动平铺窗口管理器的日常使用速查（Ubuntu 26.04 + DMS 版）：核心心智模型、按实际 config.kdl 核对的完整键位表（窗口/列/工作区/显示器/截图/电源）、GNOME 迁移差异、DMS（DankMaterialShell）主题系统调整入口、Walker 启动器、双屏排布与镜像、终端按键坑（SSH 退格/小键盘 Enter）、常见症状对照
+description: Niri 滚动平铺窗口管理器的日常使用速查（Ubuntu 26.04 + DMS 版）：核心心智模型、按实际 config.kdl 核对的完整键位表（窗口/列/工作区/显示器/截图/电源）、GNOME 迁移差异、DMS（DankMaterialShell）主题系统调整入口、Walker 启动器、双屏排布与镜像、终端按键坑（SSH 退格/小键盘 Enter）、远程桌面键位透传（Win+Esc）、常见症状对照
 笔记类型: 收集笔记
 阐述日期:
 tags:
@@ -196,6 +196,28 @@ for w in json.load(sys.stdin):
 
 > 已连着的 SSH 会话里执行 `export TERM=xterm-256color` 可立即恢复退格。IDEA 内置终端 / Obsidian 里的小键盘 Enter 走各自的按键转发，与这两处配置无关。
 
+### 7.10 远程桌面里 Win 键被 niri 抢走：`Win+Esc` 一键透传（ToDesk 实测场景）
+
+**症状**：在 ToDesk / 向日葵等远程桌面里按 `Win+R`，远程 Windows 的「运行」没弹出来，反而是本机 niri 把列宽改了——所有 Win 组合键都被 niri 键位拦截。
+
+**两层修复**：
+
+1. **`Mod+R` 让位试验（后已还原）**：把列宽循环挪走后裸 `Win+R` 确实直达远程「运行」框；但 ToDesk 屏幕正中那个「logo+红色感叹号」徽章**照样弹**——150 秒监听器证明徽章与按键拦截、列宽变化都无关，它是 **ToDesk 自己的连接质量警告**（连接建立、中继节点抖动时弹，有时自动消失有时挂着）。用户要求还原 `Mod+R`。
+2. **其余 Win 组合键用透传开关**：Wayland 有 keyboard-shortcuts-inhibit 协议让客户端申请「别抢我的键」，但 ToDesk 是 X11 窗口（走 xwayland-satellite），申请不了。niri 提供了**手动开关**：`toggle-keyboard-shortcuts-inhibit` 动作，config.kdl 默认绑在 `Mod+Escape`（带 `allow-inhibiting=false`，保证抑制状态下这把钥匙仍有效，不会被锁死在外面）。
+
+**用法**（远程办公标配三步）：
+
+1. 点一下 ToDesk 会话窗口（确保焦点在里面）
+2. 按 **`Win+Esc`** → niri 停止拦截，`Win+R`/`Win+E`/`Win+D`… 全部透传给远程 Windows
+3. 用完再按 **`Win+Esc`** 关闭透传；或者**直接点本机任何其他窗口**——透传是按「聚焦窗口」生效的，焦点一离开 ToDesk 自动恢复 niri 键位，不会把自己锁死
+
+| 补充 | 说明 |
+|------|------|
+| CLI 等价 | `niri msg action toggle-keyboard-shortcuts-inhibit`（作用于当前聚焦窗口） |
+| 本版本没有的 | window-rule 形式的 `inhibit-keybinds`（26.04 niri validate 报 unexpected node），没法「ToDesk 一聚焦就自动透传」，只能手动 Win+Esc |
+| 排障注意 | `wtype`/`ydotool` 等**虚拟键盘不触发 niri 键位**（直达到客户端），不能用它们做 inhibit 的行为验证；`niri msg -j windows` 也不显示 inhibit 状态 |
+| 误改列宽恢复 | 预设循环只有 4 档（1/4→1/3→1/2→2/3）**不含全宽**，CLI 恢复全宽用 `niri msg action set-column-width '100%'`（注意带引号的百分号写法；裸数字会被当像素） |
+
 ### 8. 常见症状速查
 
 | 症状                  | 原因 / 解决                                                                                                   |
@@ -219,5 +241,7 @@ for w in json.load(sys.stdin):
 | **蓝牙开不了**（设置开关灰/无反应） | `rfkill list` 看 Soft blocked——多半是按过飞机模式，退出时蓝牙没跟着恢复；`rfkill unblock bluetooth` 即解 |
 | **蓝牙连着但没声音** | 界面全绿（RUNNING/A2DP/未静音）也可能传输层半死：`paplay --device=<sink>` 推 3 秒提示音，播不完就是链路死——`sudo systemctl restart bluetooth` 后重连即解（重连设备没用） |
 | **Chrome 视频加载不动**（B站等，页面正常仅视频转圈） | 网络/无痕都正常时是 QUIC 的锅：代理客户端 TCP 正常但 UDP 443 转发不通，CDN 支持 HTTP/3 时 Chrome 优先走 QUIC 就卡死。解法：`/etc/opt/chrome/policies/managed/quic-off.json` 写入 `{"QuicAllowed": false}` 重启 Chrome 强制走 TCP |
+| **远程桌面里 Win 键全被 niri 抢走**（ToDesk 里按 Win+R 变成改列宽） | compositor 拦截在应用之前，X11 的 ToDesk 申请不了 inhibit 协议。聚焦 ToDesk 按 **`Win+Esc`** 开透传（再按关闭；焦点离开自动恢复），见 7.10 |
+| **ToDesk 屏幕正中弹「logo+！」方形徽章** | ToDesk 自己的连接质量警告（连接建立/中继节点抖动时弹），与按键、列宽、compositor 无关——监听器证明零按键也会弹。设置界面若有「异常提醒」类开关可关；面板是失焦即隐的 X11 托盘窗，自动化点不到 |
 
 相关笔记：[[Ubuntu 上安装 Niri]]、[[Arch Linux 调研]]、[[Linux]]

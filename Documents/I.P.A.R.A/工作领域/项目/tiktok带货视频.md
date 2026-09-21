@@ -194,3 +194,15 @@ ultracode 请读取ozon-flow，制定将当前tiktok跨境电商流程改造为�
 - 前端模板参考：`Slash Admin`、`react-shadcn-admin-starter`
 - 全栈参考：`gin-react-monorepo`”
 ```
+
+```
+ultracode 请分析实际情况帮我优化并制定计划执行提示词：“
+选择合适的技术栈，搭建项目。
+我想要的生成视频的流程是类似 https://www.oumomo.ai/zh/url-to-video 的fastmoss链接生成视频（你可以使用opencli操作浏览器访问，如果需要登录的话我可以帮忙登陆）
+我之前在 h3VsFalStudy 项目中使用代码生成的视频效果是比较符合我的要求的，
+并且我后续还获取了一些提示词资料 @oumomo_export 用于参考生成的效果感觉会更好（我想要的效果是我输入商品的关键词和商品简介等信息，你做的系统帮我生成类似的提示词）
+你帮我想想要做好这个项目，达到 oumomo 平台的要求，还有需要哪些准备
+”
+```
+
+

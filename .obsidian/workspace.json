@@ -188,22 +188,22 @@
             }
           },
           {
-            "id": "7296f0cf51bf188f",
+            "id": "f58943100f19047b",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Documents/I.P.A.R.A/工作领域/收集/华为云服务器降本迁移方案.md",
+                "file": "Documents/I.P.A.R.A/工作领域/项目/tk-sea-seller.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "华为云服务器降本迁移方案"
+              "title": "tk-sea-seller"
             }
           },
           {
-            "id": "f58943100f19047b",
+            "id": "02da5f22b9a70957",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -248,22 +248,66 @@
             }
           },
           {
-            "id": "fe12dc75f8ab3972",
+            "id": "e82cd7e54bd08a11",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Documents/I.P.A.R.A/工作领域/项目/认证机构erp系统.md",
+                "file": "Documents/I.P.A.R.A/工作领域/项目/跨境电商-知识付费.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "认证机构erp系统"
+              "title": "跨境电商-知识付费"
+            }
+          },
+          {
+            "id": "e61d7df7d30ae083",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documents/I.P.A.R.A/工作领域/项目/海外社交媒体传播动态分析系统_二期.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "海外社交媒体传播动态分析系统_二期"
+            }
+          },
+          {
+            "id": "708e7fdc33eeab24",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documents/I.P.A.R.A/工作领域/项目/【影视飓风】AI实战课.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "【影视飓风】AI实战课"
+            }
+          },
+          {
+            "id": "5d5adb2f8a677129",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documents/I.P.A.R.A/工作领域/收集/华为云服务器降本迁移方案.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "华为云服务器降本迁移方案"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -297,7 +341,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "技术栈",
+                "query": "",
                 "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -403,7 +447,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Documents/I.P.A.R.A/工作领域/项目/跨境电商-知识付费.md",
+                "file": "Documents/I.P.A.R.A/工作领域/收集/华为云服务器降本迁移方案.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -537,55 +581,56 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "222a25ec996d5b3b",
+  "active": "30a7adbc7eab39c5",
   "lastOpenFiles": [
-    "Documents/I.P.A.R.A/工作领域/项目/tiktok带货视频.md.tmp.284589.f35f8e7654df",
-    "Documents/I.P.A.R.A/工作领域/收集/项目立项与研发流程规范.md",
+    "Documents/I.P.A.R.A/学习领域/收集/NAS SMB 网络磁盘挂载.md.tmp.20113.ffbf32ffc588",
     "Documents/I.P.A.R.A/工作领域/项目/跨境电商-知识付费.md",
-    "Assistants/Templater/主页/homepage-侧页.md",
     "Documents/I.P.A.R.A/工作领域/收集/工作流技能.md",
-    "Documents/I.P.A.R.A/工作领域/项目/tiktok带货视频.md",
     "Documents/I.P.A.R.A/工作领域/收集/华为云服务器降本迁移方案.md",
     "数据库与导航.md",
-    "Documents/I.P.A.R.A/工作领域/项目/tiktok_跨境电商.md",
-    "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Niri 使用速查.md.tmp.293519.ee11713bd4df",
-    "Documents/I.P.A.R.A/工作领域/项目/认证机构erp系统.md",
-    "Documents/I.P.A.R.A/工作领域/项目/Tk短视频运营.md",
-    "Documents/I.P.A.R.A/工作领域/项目/海外社交媒体传播动态分析系统_二期.md",
-    "Documents/I.P.A.R.A/工作领域/项目/自动化选品上品（原始需求）（目前可行方案）.md",
-    "Extras/附件/Pasted image 20260903154810.png",
-    "Extras/附件/Pasted image 20260903154554.png",
-    "Extras/附件/Pasted image 20260903154523.png",
-    "Extras/附件/Pasted image 20260903154435.png",
-    "Extras/附件/Pasted image 20260903153956.png",
-    "Extras/附件/Pasted image 20260903153220.png",
-    "Extras/附件/Pasted image 20260903153118.png",
-    "Extras/附件/Pasted image 20260903152635.png",
-    "Extras/附件/Pasted image 20260903152447.png",
-    "Extras/附件/Pasted image 20260903145652.png",
-    "Documents/I.P.A.R.A/工作领域/项目/tiktok_跨境电商.md~",
+    "Documents/I.P.A.R.A/工作领域/项目/【影视飓风】AI实战课.md",
+    "Documents/I.P.A.R.A/工作领域/项目/tk-sea-seller.md",
+    "Documents/I.P.A.R.A/工作领域/项目/国网培训.md",
     "Documents/I.P.A.R.A/工作领域/项目/creator-commerce-studio.md",
+    "Documents/I.P.A.R.A/工作领域/项目/tiktok_跨境电商.md",
+    "Documents/I.P.A.R.A/工作领域/项目/tiktok带货视频.md",
+    "Documents/I.P.A.R.A/工作领域/项目/海外社交媒体传播动态分析系统_二期.md",
+    "Extras/附件/Pasted image 20260920143603.png",
+    "Extras/附件/Pasted image 20260920143334.png",
+    "Extras/附件/Pasted image 20260920143312.png",
+    "Extras/附件/Pasted image 20260920142922.png",
+    "Extras/附件/Pasted image 20260920142844.png",
+    "Extras/附件/Pasted image 20260920142822.png",
+    "Extras/附件/Pasted image 20260920142801.png",
+    "Extras/附件/Pasted image 20260920142739.png",
+    "Extras/附件/Pasted image 20260920142612.png",
+    "Extras/附件/Pasted image 20260920142528.png",
+    "Assistants/Templater/主页/homepage-侧页.md",
+    "Documents/I.P.A.R.A/学习领域/收集/NAS SMB 网络磁盘挂载.md",
+    "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
+    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/Linux.canvas.tmp.11164.af1d57adee59",
+    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/AI笔记.canvas.tmp.11164.2150e13960c1",
+    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/AfterEffects.canvas",
+    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/AfterEffects.canvas.tmp.11164.abc2624ef6fd",
+    "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-09-17.md",
+    "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-09-17.md.tmp.11164.a2497de2aa80",
+    "Documents/I.P.A.R.A/学习领域/收集/Niri 剪贴板镜像卡死排障.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Niri 剪贴板镜像卡死排障.md.tmp.11164.8ef54d241863",
+    "Documents/I.P.A.R.A/学习领域/收集/AE 字符延迟拖尾动画脚本.md",
+    "Documents/I.P.A.R.A/学习领域/收集/AE 字符延迟拖尾动画脚本.md.tmp.11164.7830a7927ee6",
+    "CharDelayAnimator.jsx.tmp.11164.e41805b5d0b9",
+    "CharDelayAnimator.jsx.tmp.11164.2ce96f627277",
+    "CharDelayAnimator.jsx.tmp.11164.8334f1678831",
+    "CharDelayAnimator.jsx",
+    "Documents/I.P.A.R.A/工作领域/项目/自动化选品上品（原始需求）（目前可行方案）.md",
+    "Documents/I.P.A.R.A/工作领域/项目/认证机构erp系统.md",
+    "Documents/I.P.A.R.A/工作领域/收集/项目立项与研发流程规范.md",
+    "Documents/I.P.A.R.A/工作领域/项目/Tk短视频运营.md",
     "Documents/I.P.A.R.A/工作领域/项目/tiktok_跨境电商（优化版）.md",
     "Documents/I.P.A.R.A/工作领域/项目/OpenCLI-TikTok自动选品上品执行计划.md",
     "AGENTS.md",
-    "Documents/I.P.A.R.A/工作领域/项目/tiktok_跨境电商.md.tmp.19480.57f2b69652de",
-    "Documents/I.P.A.R.A/学习领域/收集/Niri 使用速查.md.tmp.50014.a46b018d6697",
-    "Documents/I.P.A.R.A/工作领域/项目/国网培训.md",
     "Documents/I.P.A.R.A/工作领域/项目/Seerfar 关键词导出 —— 图文教程.md",
-    "Documents/I.P.A.R.A/学习领域/项目/Interactive Tech Tutorial Platform.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Linux.md",
-    "Documents/I.P.A.R.A/工作领域/项目/开发人员转产品经理.md",
-    "Documents/I.P.A.R.A/工作领域/收集/公司 AI 编程工具采购调研.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Niri 使用速查.md.tmp.238199.e362bec06583",
-    "Documents/I.P.A.R.A/工作领域/收集/华为云服务器降本迁移方案.md~",
-    "Documents/I.P.A.R.A/学习领域/收集/Niri 使用速查.md.tmp.281463.cb348cb9683c",
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/自动化选品上品.canvas",
-    "Documents/I.P.A.R.A/工作领域/项目/ 自动化选品上品.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Niri 使用速查.md~",
-    "Documents/I.P.A.R.A/学习领域/收集/Niri 使用速查.md.tmp.9073.77cb87138e95",
-    "Documents/I.P.A.R.A/学习领域/收集/Niri 使用速查.md.tmp.9073.98475affac00",
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/海媒传播分析系统.canvas",
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/ultracode.canvas",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/小满zs-react.canvas",
@@ -593,7 +638,6 @@
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/峰华Vue3.canvas",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/小满zs-typescript.canvas",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/Artificial Intelligence.canvas",
-    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/AI笔记.canvas",
-    "Documents/I.P.A.R.A/生活领域/归档/卡片盒笔记主题索引卡/跑步.canvas"
+    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/AI笔记.canvas"
   ]
 }

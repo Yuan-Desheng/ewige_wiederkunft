@@ -3,7 +3,7 @@ createTime: 2026-06-28 22:07
 笔记ID: 20260628220700
 multiFile:
 multiMedia:
-description: 在 Steam Linux 版 Hollow Knight: Silksong 上通过 BepInEx + SSCustomizer 加载器安装第三方皮肤 mod(以「星见雅皮肤 1.5」为例)的完整复现步骤。
+description: 在 Steam Linux 版 Hollow Knight: Silksong 上通过 BepInEx + SSCustomizer 加载器安装第三方皮肤 mod(以「星见雅皮肤 1.5」为例)的完整复现步骤;附 2026-09-12 Steam 本体打不开排障——steam 包装脚本强制走 127.0.0.1:7890 代理、加速器没开导致秒退,已改自动探测并补完 457MB 客户端更新。
 笔记类型: 收集笔记
 阐述日期:
 tags:
@@ -14,6 +14,8 @@ tags:
   - BepInEx
   - Modding
   - SSCustomizer
+  - Clash
+  - 排障
 aliases:
 cssclasses:
 卡片盒笔记主题:
@@ -191,6 +193,8 @@ zip 文件下载不完整。**162MB 的 GitHub release zip 通过云端代理下
 ### Steam failed to initialize / Couldn't find a Game Manager
 Steam 客户端**必须在线**。检查 `~/.steam/steam/steam.pid` 存在、Steam 主窗口已登录。
 
+> 注意分层:这条是「客户端已起来、游戏内 SteamAPI 没连上」;**连客户端本体都点不开**是另一层问题,见文末「Steam 本体打不开排障(2026-09-12)」。
+
 ### BepInEx 不 hook / 没有 LogOutput.log
 检查 `doorstop_config.ini` 指向 `BepInEx\core\BepInEx.Preloader.dll`、`<game_root>/run_bepinex.sh` +x、`<game_root>/libdoorstop.so` 存在。
 
@@ -334,3 +338,93 @@ SSCustomizer 的设计是**两条加载路径并行**:
 ---
 
 **1.0 版本备份保留**:`Mods/Customizer/XJY-Zycl_dhth.v1.0.bak/`(108 MB,可回滚)。
+
+---
+
+## 🛠️ Steam 本体打不开排障(2026-09-12)
+
+**现象**:Steam 点开秒退,Silksong「打不开」。**游戏本体、存档、BepInEx、皮肤 mod 全部无损**——命令行直接跑 `run_bepinex.sh` 实测能进中文主菜单,问题只在 Steam 客户端这一层。
+
+### 根因链
+
+```
+~/.local/bin/steam   ← 自定义包装脚本(当初为 Watt Toolkit/Clash 加速而写)
+  └─ 无条件 export http_proxy/https_proxy=127.0.0.1:7890
+       └─ 加速器没开 → 7890 端口无人监听
+            └─ Steam bootstrap 自更新检查调 curl 访问 repo.steampowered.com
+                 └─ curl exit 7(连接被拒) → Steam 瞬间退出
+```
+
+`which steam` 命中的是 `~/.local/bin/steam`(包装脚本),真正的客户端在 `/usr/games/steam`——**先分清这俩,排障时才不会绕晕**。
+
+### 排障命令速查(下次照抄)
+
+| 步骤 | 命令 | 看什么 |
+|------|------|--------|
+| 1. 排除游戏本体 | `cd "$GAME_DIR" && timeout 30 ./run_bepinex.sh` | `exit 124` + 日志到 `Menu_Title` = 游戏没问题 |
+| 2. 复现 Steam 死因 | 前台跑 `~/.local/bin/steam` | `curl: (7) Failed to connect ... via 127.0.0.1` |
+| 3. 找代理来源 | `cat ~/.local/bin/steam ~/.curlrc` | 包装脚本里写死的 7890 |
+| 4. 探测代理端口 | `(exec 3<>/dev/tcp/127.0.0.1/7890) 2>/dev/null && echo OPEN` | OPEN = 加速器在跑 |
+| 5. 测直连可用性 | `curl --noproxy '*' -sI https://repo.steampowered.com/` | 更新源直连其实通(HTTP 200) |
+| 6. 盯下载进度 | `tail -f ~/.steam/steam/logs/bootstrap_log.txt` | 「正在下载更新 (已下载 N,共 M KB)」 |
+
+### 修复:`~/.local/bin/steam` 改为自动探测
+
+代理在线走代理,离线自动直连,「加速器没开就秒退」从此不存在。原脚本备份在 `~/.local/bin/steam.bak-20260912`:
+
+```bash
+#!/usr/bin/env bash
+# Steam launcher: use Watt Toolkit / Clash accel (127.0.0.1:7890) only when it is
+# actually running; otherwise launch directly. Fixes "Steam exits instantly / game
+# won't open" when the proxy client is off (curl exit 7 on bootstrap update check).
+if (exec 3<>/dev/tcp/127.0.0.1/7890) 2>/dev/null; then
+  echo "[steam-wrapper] proxy 127.0.0.1:7890 up -> launching Steam via proxy" >&2
+  exec /usr/bin/env \
+    http_proxy=http://127.0.0.1:7890 \
+    https_proxy=http://127.0.0.1:7890 \
+    HTTP_PROXY=http://127.0.0.1:7890 \
+    HTTPS_PROXY=http://127.0.0.1:7890 \
+    NO_PROXY=localhost,127.0.0.1,*.local,192.168.0.0/16 \
+    /usr/games/steam "$@"
+else
+  echo "[steam-wrapper] proxy 127.0.0.1:7890 down -> launching Steam directly" >&2
+  exec /usr/games/steam "$@"
+fi
+```
+
+### 连带坑:积压 457MB 客户端更新,直连会卡死
+
+包装脚本修好后 Steam 才暴露下一个问题:上次更新(7 月 9 日)之后积压的 **457MB 客户端更新**。实测两条通道:
+
+| 通道 | 速度 | 结论 |
+|------|------|------|
+| 直连 fastly/akamai CDN | ~100KB/s 起步,几分钟内掉到 **0 卡死** | 国内直连 Steam CDN 不可用 |
+| Clash 代理 | **~1.5MB/s**,3 分钟下完 | 大更新必须开加速器 |
+
+→ **加速器不是可选优化,是 Steam 在这台机器上的必需品**。自动探测只保证「不开加速器至少能进客户端」;下大更新、逛商店还是得开。
+
+### 修复后的启动方式(2026-09-12 22:25 验证)
+
+| 方式 | 入口 | 加载皮肤 mod? |
+|------|------|--------------|
+| BepInEx(推荐) | `~/文档/Hollow Knight Silksong/启动丝之歌.sh`(或同名 .desktop) | ✅ |
+| Steam 点「开始」 | Steam → Silksong → 开始 | ❌ 原版(Steam 里没设启动参数) |
+| Steam 内带 mod(备查,未执行) | 游戏属性 → 启动选项填 `bash run_bepinex.sh %command%` | ✅ |
+
+### 踩坑表
+
+| 现象 | 原因 | 解决 |
+|------|------|------|
+| Steam 前台跑报 curl exit 7 后退出 | 包装脚本强制代理但加速器没开 | 自动探测版包装脚本(见上) |
+| 直连下载「已下载 N」长时间不动 | 国内直连 Steam CDN 被限速到 0 | 开 Clash 重启 Steam(bootstrap 会续传) |
+| `grep -oE '[0-9]+'` 从「已下载 191,627」抠出 191 | 千分位逗号截断数字;行首时间戳的 2026 还会抢先被匹配 | 直接看 `tail` 原始行,别用脚本抠数算 ETA |
+| `ps aux \| grep steam` 抓不到进程 | bootstrap 阶段进程名是 `steam.sh` / `ubuntu12_32/steam`,模式太窄 | `grep -iE "steam"` 且不要加 `$` 锚 |
+
+### 时间线(2026-09-12)
+
+1. 22:04 命令行直启游戏 → 进主菜单,排除游戏本体/驱动/存档
+2. 22:06 Steam 前台复现 → `curl exit 7 via 127.0.0.1`,锁定包装脚本强制代理
+3. 22:09 包装脚本改自动探测(备份 `steam.bak-20260912`)
+4. 22:11 直连试跑 → 自更新检查过了,但撞出 457MB 积压更新,直连卡死在 0
+5. 22:18 用户开 Clash → 重启 Steam 走代理,~1.5MB/s
+6. 22:25 457MB 装完、验证通过(新版客户端 1788652215),Steam 正常起来

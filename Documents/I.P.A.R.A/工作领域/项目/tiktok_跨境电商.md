@@ -407,3 +407,24 @@ fastmoss选品，只改变必须选择跨境店
 
 搜索次数和在售商品差距大的话，就可以上这个品
 ![[Pasted image 20260903154810.png]]
+
+## 绑定tiktok账号
+进入 tiktok shop 商家中心 https://seller.tiktokshopglobalselling.com/homepage?shop_region=SG
+
+选择设置
+![[Pasted image 20260914102041.png]]
+
+设置店铺中，选择一绑定的TikTok账号
+![[Pasted image 20260914102238.png]]
+
+![[Pasted image 20260914102258.png]]
+
+
+新建TikTok账号
+![[Pasted image 20260914102406.png]]
+
+填写用户名，然后继续，完成
+![[Pasted image 20260914103731.png]]
+![[Pasted image 20260914103840.png]]
+
+获取登陆码
