@@ -1,23 +1,41 @@
 {
- "edges": [],
- "nodes": [
-  {
-   "id": "note-1777790097623-8788",
-   "type": "file",
-   "file": "Documents/I.P.A.R.A/学习领域/收集/从零构建大模型.md",
-   "x": 100,
-   "y": 100,
-   "width": 440,
-   "height": 500
-  },
-  {
-   "id": "note-1787472119350-4271",
-   "type": "file",
-   "file": "Documents/I.P.A.R.A/工作领域/收集/公司 AI 编程工具采购调研.md",
-   "x": 590,
-   "y": 100,
-   "width": 440,
-   "height": 500
-  }
- ]
+	"edges": [],
+	"nodes": [
+		{
+			"id": "note-1777790097623-8788",
+			"type": "file",
+			"file": "Documents/I.P.A.R.A/学习领域/收集/从零构建大模型.md",
+			"x": 100,
+			"y": 100,
+			"width": 440,
+			"height": 500
+		},
+		{
+			"id": "note-1787472119350-4271",
+			"type": "file",
+			"file": "Documents/I.P.A.R.A/工作领域/收集/公司 AI 编程工具采购调研.md",
+			"x": 590,
+			"y": 100,
+			"width": 440,
+			"height": 500
+		},
+		{
+			"id": "note-1787990000000-5120",
+			"type": "file",
+			"file": "Documents/I.P.A.R.A/学习领域/收集/GPT 订阅与 Codex 登录使用.md",
+			"x": 1080,
+			"y": 100,
+			"width": 440,
+			"height": 500
+		},
+		{
+			"id": "note-1790219312039-4919",
+			"type": "file",
+			"file": "Documents/I.P.A.R.A/学习领域/收集/Claude Code 用量诊断 tare 使用手册.md",
+			"x": 1570,
+			"y": 100,
+			"width": 440,
+			"height": 500
+		}
+	]
 }
