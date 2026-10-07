@@ -1,6 +1,6 @@
 /*──────────────────────────────────────────────────────────────────
 Shiba inu主题优化
-Version 0.6.1
+Version 0.7.1
 Created by @ytmaps_鱼先生
 
 authorurl:
@@ -81,6 +81,18 @@ settings:
         format: hex
         default: '#247B1D'
     - 
+        id: file-list
+        title: 文件列表
+        type: heading
+        level: 2
+        collapsed: false
+    -   
+        id: file-list-color
+        title: 彩色文件列表
+        description: 彩色文件列表开关
+        type: class-toggle
+        default: true
+    - 
         id: workspace
         title: 工作区布局
         type: heading
@@ -99,7 +111,7 @@ settings:
           - label: Bord布局
             value: border-layout
  */
- /* 洋牡丹 */
+
 
 
 
@@ -107,7 +119,11 @@ settings:
     --checkbox-radius:6px;
     --glass-bg-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23000000' fill-opacity='0.05' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
     --glass-bg-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23ffffff' fill-opacity='0.2' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
- }
+    --inline-code-color-light: #DC20AF;
+    --inline-code-color-dark: #A5458E;
+    --block-code-color-light: #247B1D;
+    --block-code-color-dark: #247B1D;
+}
 
 
 /* datacore表格字体大小 */
@@ -408,9 +424,6 @@ body:not(.is-mobile).theme-dark.default-dark-theme .workspace-split.mod-left-spl
 .shib-default-tab, .shib-floating-animated-tab-toggle, .shib-floating-tab-toggle, .shib-solid-tab-toggle{
     --header-height:var(--shib-alt-tab-custom-height, 38px);
 }
-body.shib-card-layout {
-    --ribbon-width:38px;
-}
 
 /* quickadd弹窗 */
 @media screen and (min-width: 781px){
@@ -418,7 +431,9 @@ body.shib-card-layout {
         height:2rem;
     }
 }
-
+.shib-card-layout .workspace-leaf .markdown-source-view.mod-cm6 .cm-content{
+    padding: 15px;
+}
 
 /* 其他 */
 .shib-card-layout .cm-hmd-internal-link:hover {
@@ -440,10 +455,6 @@ body.shib-card-layout {
 .shib-card-layout .markdown-source-view.mod-cm6 .cm-url .cm-underline:hover {
     
     text-decoration: underline dashed rgb(241, 157, 88)  4px !important;
-}
-
-.shib-card-layout .markdown-source-view.mod-cm6 .cm-content{
-    padding: 10px;
 }
 
 .shib-callout-toggle.shib-callout-style-2 .callout, 
@@ -469,15 +480,15 @@ Blue Topaz 彩色文件列表样式
 来源：Blue Topaz主题基础上修改
 */
 
-.theme-light.default-light-theme,
-.theme-light.lily-light,
-.theme-light.ivory-light,
-.theme-light.sky-light,
-.theme-light.stone-light,
-.theme-dark.default-dark-theme,
-.theme-dark.pure-dark,
-.theme-dark.Lilac-dark,
-.theme-dark.warm-dark {
+.shib-card-layout.file-list-color.theme-light.default-light-theme,
+.shib-card-layout.file-list-color.theme-light.lily-light,
+.shib-card-layout.file-list-color.theme-light.ivory-light,
+.shib-card-layout.file-list-color.theme-light.sky-light,
+.shib-card-layout.file-list-color.theme-light.stone-light,
+.shib-card-layout.file-list-color.theme-dark.default-dark-theme,
+.shib-card-layout.file-list-color.theme-dark.pure-dark,
+.shib-card-layout.file-list-color.theme-dark.Lilac-dark,
+.shib-card-layout.file-list-color.theme-dark.warm-dark {
     --folder-color-1: #ff6b6b; /* 红色 */
     --folder-color-2: #4ecdc4; /* 青色 */
     --folder-color-3: #45b7d1; /* 蓝色 */
@@ -547,7 +558,7 @@ Blue Topaz 彩色文件列表样式
     /* 应用彩色边框和卡片样式 */
     .nav-files-container > div > .nav-folder,
     .nav-folder.mod-root > .nav-folder-children > .nav-folder {
-        border: 1px solid var(--divider-color);
+        border: 0.5px solid var(--divider-color);
         border-left: 4px solid var(--folder-color, var(--folder-color-1));
         border-radius: var(--radius-s);
         margin: var(--size-2-2) 0;
@@ -637,13 +648,13 @@ body.shib-card-layout.css-settings-manager{
 body.shib-card-layout.theme-light .cm-s-obsidian span.cm-inline-code:not(.cm-formatting):not(.cm-hmd-indented-code):not(.obsidian-search-match-highlight):not(.mb-input-inline):not(:is(code, span).mb-view:has(> div.mb-view-wrapper)){
     background: var(--inline-code-background-light) !important;
     background-size: 4px 4px !important;
-    color: var(--inline-code-color-light, #DC20AF) !important;
+    color: var(--inline-code-color-light) !important;
 }
 
 body.shib-card-layout.theme-dark .cm-s-obsidian span.cm-inline-code:not(.cm-formatting):not(.cm-hmd-indented-code):not(.obsidian-search-match-highlight):not(.mb-input-inline):not(:is(code, span).mb-view:has(> div.mb-view-wrapper)) {
     background: var(--inline-code-background-dark) !important;
     background-size: 4px 4px !important;
-    color: var(--inline-code-color-dark, #A5458E) !important;
+    color: var(--inline-code-color-dark) !important;
 
 }
 
@@ -662,7 +673,7 @@ body.shib-card-layout.theme-light .cm-s-obsidian div.HyperMD-codeblock-bg,
 body.shib-card-layout.theme-light .markdown-rendered pre {
     background: var(--code-background-light) !important;
     background-size: 4px 4px !important;
-    color: var(--block-code-color-light, #247B1D) !important;
+    color: var(--block-code-color-light) !important;
 }
 
 body.shib-card-layout.theme-dark .cm-s-obsidian div.HyperMD-codeblock-begin-bg,
@@ -671,7 +682,21 @@ body.shib-card-layout.theme-dark .cm-s-obsidian div.HyperMD-codeblock-bg,
 body.shib-card-layout.theme-dark .markdown-rendered pre {
     background: var(--code-background-dark) !important;
     background-size: 4px 4px !important;
-    color: var(--block-code-color-dark, #247B1D) !important;
+    color: var(--block-code-color-dark) !important;
+}
+
+/* Style Settings 取色预览：避免整组共用 --pcr-color 导致按钮都显示最后一个颜色 */
+.setting-item[data-id="inline-code-color-light"] .pcr-button {
+    --pcr-color: var(--inline-code-color-light);
+}
+.setting-item[data-id="inline-code-color-dark"] .pcr-button {
+    --pcr-color: var(--inline-code-color-dark);
+}
+.setting-item[data-id="block-code-color-light"] .pcr-button {
+    --pcr-color: var(--block-code-color-light);
+}
+.setting-item[data-id="block-code-color-dark"] .pcr-button {
+    --pcr-color: var(--block-code-color-dark);
 }
 
 /* 定义变量 */
@@ -685,16 +710,10 @@ body.shib-card-layout.theme-dark {
     --code-border-dark: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* 正文内容增加边距 */
-.shib-card-layout .markdown-source-view.mod-cm6 .cm-content{
-    padding: 15px;
-}
-
 /* 隐藏侧边栏标签页顶部锁定图标，避免误触解锁 */
 .shib-card-layout .workspace-tab-header-status-container{
         display: none;
 }
-
 
 /* =======12.19日更新内容========= */
 
@@ -763,7 +782,7 @@ body.shiba-layout.shib-card-layout:not(.is-mobile) .workspace-split.mod-left-spl
 }
 
 .border-layout.shib-card-layout:not(.is-mobile) .mod-vertical .workspace-tab-container {
-    border: 1px solid var(--tab-outline-color);
+    border: 0.5px solid var(--tab-outline-color);
 }
 
 .border-layout.shib-card-layout:not(.is-mobile) .is-right-sidedock-open:not(.is-left-sidedock-open) .mod-vertical .workspace-tab-container {
@@ -780,8 +799,8 @@ body.shiba-layout.shib-card-layout:not(.is-mobile) .workspace-split.mod-left-spl
 }
 
 .border-layout.shib-card-layout:not(.is-mobile) .workspace-split.mod-left-split .workspace-sidedock-vault-profile {
-    border: 1px solid var(--tab-outline-color);
-    border-top: 1px dashed var(--tab-outline-color);
+    border: 0.5px solid var(--tab-outline-color);
+    border-top: 0.5px dashed var(--tab-outline-color);
     border-right: none;
     padding-top: 3px;
     padding-bottom: 3px;
@@ -789,21 +808,21 @@ body.shiba-layout.shib-card-layout:not(.is-mobile) .workspace-split.mod-left-spl
 }
 
 .border-layout.shib-card-layout  .mod-top-right-space  .workspace-tab-container {
-    border-top: 1px solid var(--tab-outline-color);
-    border-bottom: 1px solid var(--tab-outline-color);
-    border-right: 1px solid var(--tab-outline-color);
+    border-top: 0.5px solid var(--tab-outline-color);
+    border-bottom: 0.5px solid var(--tab-outline-color);
+    border-right: 0.5px solid var(--tab-outline-color);
     border-top-right-radius: 10px;
 }
 
 .border-layout.shib-card-layout .mod-right-split .workspace-tabs:not(.mod-top-right-space) .workspace-tab-header-container {
-    border-right: 1px solid var(--tab-outline-color);
-    border-bottom: 1px solid var(--tab-outline-color);
+    border-right: 0.5px solid var(--tab-outline-color);
+    border-bottom: 0.5px solid var(--tab-outline-color);
     background-color: var(--background-primary) !important;
 }
 
 .border-layout.shib-card-layout .mod-right-split .workspace-tabs:not(.mod-top-right-space) .workspace-tab-container {
-    border-right: 1px solid var(--tab-outline-color);
-    border-bottom: 1px solid var(--tab-outline-color);
+    border-right: 0.5px solid var(--tab-outline-color);
+    border-bottom: 0.5px solid var(--tab-outline-color);
     border-bottom-right-radius: 10px !important;
 }
 
@@ -814,15 +833,15 @@ body.shiba-layout.shib-card-layout:not(.is-mobile) .workspace-split.mod-left-spl
 }
 .border-layout.shib-card-layout .mod-left-split  .workspace-tabs:not(.mod-top-left-space)  .workspace-tab-header-container{
     background-color: var(--background-primary) !important;
-    border-top: 1px solid var(--tab-outline-color);
-    border-bottom: 1px solid var(--tab-outline-color);
+    border-top: 0.5px solid var(--tab-outline-color);
+    border-bottom: 0.5px solid var(--tab-outline-color);
 }
 .border-layout.shib-card-layout .is-left-sidedock-open .mod-left-split .workspace-tabs:not(.mod-top-left-space){
-    border-left: 1px solid var(--tab-outline-color) !important;
+    border-left: 0.5px solid var(--tab-outline-color) !important;
 }
 .border-layout.shib-card-layout .is-left-sidedock-open .mod-left-split .mod-top-left-space .workspace-tab-container{
-    border-left: 1px solid var(--tab-outline-color) !important;
-    border-top: 1px solid var(--tab-outline-color) !important;
+    border-left: 0.5px solid var(--tab-outline-color) !important;
+    border-top: 0.5px solid var(--tab-outline-color) !important;
     border-top-left-radius: 10px !important;
 }
 
@@ -859,21 +878,6 @@ body.shiba-layout.shib-card-layout:not(.is-mobile) .workspace-split.mod-left-spl
     vertical-align: middle;
 }
 
-.shib-card-layout .callout[data-callout="info"]{
-    background: none !important;
-    border: none;
-    box-shadow: none;
-}
-.shib-card-layout .callout[data-callout="info"] .callout-title{
-    background: none !important;
-    padding: 5px 3px !important;
-}
-
-
-.shib-card-layout .callout.is-collapsible:not(.is-collapsed) .callout-content .callout[data-callout="info"] .admonition-content>*:first-child{
-    margin-top:0;
-}
-
 
 /* 修复移动端引用格式的行间距异常问题 */
 
@@ -902,4 +906,3 @@ a.footnote-link {
     }
     
 }
-

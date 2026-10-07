@@ -323,7 +323,6 @@
     padding: 10px 12px;
     transition: all 0.15s;
     background: var(--background-modifier-hover);
-    overflow: hidden;
 }
 .cli-preset-card:hover {
     border-color: var(--interactive-accent-hover);

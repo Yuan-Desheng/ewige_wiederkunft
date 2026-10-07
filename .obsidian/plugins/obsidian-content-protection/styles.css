@@ -96,8 +96,6 @@
 }
 
 .tab-content-container {
-    background: var(--background-modifier-hover);
-    border-radius: 6px;
     padding: 10px 12px;
 }
 
@@ -107,6 +105,7 @@
 
 .content-section:last-child {
     margin-bottom: 0;
+    font-size: 12px;
 }
 
 .content-protection-settings .cp-settings-title {
@@ -129,10 +128,6 @@
     margin: 0 0 8px;
 }
 
-.content-protection-settings .setting-item {
-    padding: 6px 0;
-    border-top: none;
-}
 
 .content-protection-settings .setting-item-heading {
     padding-bottom: 2px;
@@ -176,16 +171,6 @@
 .content-protection-settings .lucide-icon-item {
     padding: 4px 6px;
     gap: 6px;
-}
-
-.content-protection-settings .area-step-section {
-    padding: 10px 12px;
-    margin-bottom: 12px;
-}
-
-.content-protection-settings .area-step-section h4 {
-    margin: 0 0 8px;
-    font-size: 14px;
 }
 
 .content-protection-settings .canvas-collapse-settings h3 {
@@ -335,7 +320,8 @@
     opacity: 0.9;
   }
   
-  .canvas-collapse-button:hover {
+  .canvas-collapse-button:hover,
+  .canvas-collapse-button.canvas-collapse-button-proxy-hover {
     background: var(--background-modifier-hover);
     opacity: 1;
     transform: scale(1.15);
@@ -351,7 +337,8 @@
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
   }
   
-  .canvas-collapse-button.collapsed:hover {
+  .canvas-collapse-button.collapsed:hover,
+  .canvas-collapse-button.collapsed.canvas-collapse-button-proxy-hover {
     background: var(--interactive-accent-hover);
     border-color: var(--interactive-accent-hover);
     transform: scale(1.2);
@@ -492,16 +479,16 @@
   
   /* 分组折叠按钮样式 - 使用固定定位 */
   .canvas-group-collapse-button {
-    position: absolute;
-    left: 0;
+    position: relative;
+    left: auto;
+    top: auto;
     padding: var(--size-4-1) var(--size-4-2);
-    transform-origin: bottom left;
-    transform: translateY(-100%);
+    transform: none;
     border-radius: var(--size-2-3) !important;
     color: white;
     background-color: var(--canvas-color);
     font-size: 1.5em;
-    line-height: 24px;
+    line-height: 1;
     pointer-events: initial;
     cursor: pointer;
     transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
@@ -509,8 +496,8 @@
   }
 
   .canvas-group-collapse-button.collapsed {
-    background: rgba(var(--canvas-color), 0.1);
-    color: var(--text-muted) !important;
+    background: var(--canvas-color);
+    color: white;
   }
   
 
@@ -522,7 +509,8 @@
     box-shadow: 0 2px 8px rgba(var(--color-blue-rgb), 0.3);
   }
   
-  .canvas-node[data-type="group"] .canvas-collapse-button:hover {
+  .canvas-node[data-type="group"] .canvas-collapse-button:hover,
+  .canvas-node[data-type="group"] .canvas-collapse-button.canvas-collapse-button-proxy-hover {
     background: var(--color-blue-dark);
     border-color: var(--color-blue-dark);
     box-shadow: 0 4px 12px rgba(var(--color-blue-rgb), 0.4);
@@ -535,7 +523,8 @@
     box-shadow: 0 3px 10px rgba(var(--color-orange-rgb), 0.4);
   }
   
-  .canvas-node[data-type="group"] .canvas-collapse-button.collapsed:hover {
+  .canvas-node[data-type="group"] .canvas-collapse-button.collapsed:hover,
+  .canvas-node[data-type="group"] .canvas-collapse-button.collapsed.canvas-collapse-button-proxy-hover {
     background: var(--color-orange-dark);
     border-color: var(--color-orange-dark);
     box-shadow: 0 5px 15px rgba(var(--color-orange-rgb), 0.5);
@@ -1009,18 +998,12 @@
 }
 
 .plugin-market-validity-info {
-    position: fixed;
-    bottom: 20px;
-    right: 30px;
     font-size: 12px;
     color: var(--text-muted);
-    padding: 6px 12px;
+    padding-top: 6px;
     background: var(--background-secondary);
     border-radius: 4px;
-    z-index: 1000;
     white-space: nowrap;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    border: 1px solid var(--background-modifier-border);
 }
 
 .cp-validity-expired-status {
@@ -1137,6 +1120,21 @@
 .plugin-market-modal-header h2 {
     margin: 0;
     color: var(--text-normal);
+}
+
+.plugin-market-modal-header-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+}
+
+.plugin-market-modal-header-info h6 {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 3px;
+    margin: 0;
 }
 
 .plugin-market-modal .modal-header-actions {
@@ -1589,7 +1587,7 @@
 
 /* 自定义CSS窗口样式 */
 .vika-custom-window {
-    position: fixed;
+    position: fixed !important;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -1724,81 +1722,49 @@
 }
 
 /* 领域管理样式 */
-.area-step-section {
-    background: var(--background-modifier-hover);
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
-    border: 1px solid var(--background-modifier-border);
-    position: relative;
+.area-management-compact {
+    max-width: 720px;
+}
+
+.area-page-header {
     display: flex;
     align-items: flex-start;
-    gap: 16px;
+    justify-content: space-between;
+    margin-bottom: 12px;
 }
 
-.step-number {
-    background: var(--interactive-accent);
-    color: var(--text-on-accent);
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
+.area-page-header h3 {
+    margin: 0 0 2px;
+}
+
+.area-page-header .setting-item-description {
+    margin: 0;
+}
+
+.area-compact-panel {
+    margin-bottom: 10px;
+    background: transparent;
+}
+
+.area-templater-panel .setting-item {
+    padding: 10px 12px 0 12px;
+    margin: 0;
+}
+
+.area-templater-panel .setting-item-name {
     display: flex;
     align-items: center;
-    justify-content: center;
-    font-weight: 600;
-    font-size: 14px;
-    flex-shrink: 0;
-    margin-top: 2px;
-}
-
-.area-step-section h4 {
-    color: var(--text-accent);
-    margin: 0 0 12px 0;
-    font-size: 16px;
-    font-weight: 600;
-}
-
-.area-step-section .setting-item {
-    margin-bottom: 0;
-}
-
-.area-step-section .setting-item:last-child {
-    margin-bottom: 0;
-}
-
-/* 步骤之间的连接线 */
-.area-step-section:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    left: 16px;
-    top: 100%;
-    width: 2px;
-    height: 20px;
-    background: var(--interactive-accent);
-    opacity: 0.3;
-}
-
-/* 步骤悬停效果 */
-.area-step-section:hover {
-    border-color: var(--interactive-accent);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* 步骤内容区域 */
-.area-step-content {
-    flex: 1;
-    min-width: 0;
+    gap: 8px;
 }
 
 .area-status-indicator {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: 500;
-    margin-bottom: 12px;
+    padding: 2px 6px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.4;
 }
 
 .area-status-indicator.enabled {
@@ -1811,79 +1777,260 @@
     color: var(--text-success);
 }
 
-.area-create-button {
-    background: var(--interactive-accent) !important;
-    color: var(--text-on-accent) !important;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
-    transition: all 0.2s ease;
-    margin-top: 8px;
+.area-create-panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-top: 10px;
 }
 
-.area-create-button:hover {
-    background: var(--interactive-accent-hover);
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+.area-action-info {
+    min-width: 0;
 }
 
-.area-create-button:active {
-    transform: translateY(0);
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-}
-
-
-
-.area-instructions {
-    background: var(--background-modifier-hover);
-    border: 1px solid var(--background-modifier-border);
-    border-radius: 6px;
-    padding: 12px;
-    margin-top: 16px;
-}
-
-.area-instructions h4 {
-    color: var(--text-accent);
-    margin-bottom: 8px;
+.area-action-title {
+    color: var(--text-normal);
     font-size: 13px;
     font-weight: 600;
 }
 
-.area-instructions ul {
-    margin: 0;
-    padding-left: 20px;
+.area-action-description {
+    margin-top: 2px;
+    color: var(--text-muted);
+    font-size: 11px;
+    line-height: 1.35;
 }
 
-.area-instructions li {
+.area-create-button {
+    flex-shrink: 0;
+    min-width: 82px;
+}
+
+.area-list-panel {
+    overflow: hidden;
+}
+
+.area-list-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 36px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.area-list-title {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--text-normal);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.area-count-badge {
+    min-width: 18px;
+    padding: 1px 5px;
+    color: var(--text-muted);
+    background: var(--background-modifier-hover);
+    border-radius: 999px;
+    font-size: 10px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.area-refresh-button {
+    flex-shrink: 0;
+    padding: 3px 9px;
+    font-size: 11px;
+}
+
+.area-existing-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.area-existing-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 42px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--background-modifier-border-hover);
+}
+
+.area-existing-item:last-child {
+    border-bottom: 0;
+}
+
+.area-existing-item:hover {
+    background: var(--background-modifier-hover);
+}
+
+.area-existing-info {
+    min-width: 0;
+}
+
+.area-existing-name-line {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.area-existing-name {
     color: var(--text-normal);
     font-size: 12px;
-    line-height: 1.5;
-    margin-bottom: 4px;
+    font-weight: 600;
+    overflow-wrap: anywhere;
 }
 
-.area-instructions li:last-child {
-    margin-bottom: 0;
+.area-domain-badge {
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 9px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.area-domain-badge.is-ready {
+    color: var(--text-success);
+    background: rgba(var(--color-green-rgb), 0.08);
+}
+
+.area-domain-badge.is-orphan {
+    color: var(--text-error);
+    background: rgba(var(--color-red-rgb), 0.08);
+}
+
+.area-existing-status,
+.area-list-loading,
+.area-list-empty {
+    margin-top: 1px;
+    color: var(--text-muted);
+    font-size: 10px;
+}
+
+.area-list-loading,
+.area-list-empty,
+.area-list-error {
+    padding: 14px 12px;
+    margin: 0;
+}
+
+.area-list-error,
+.area-delete-warning {
+    color: var(--text-error);
+    font-size: small;
+}
+
+.area-delete-button {
+    flex-shrink: 0;
+    padding: 3px 8px;
+    color: var(--text-error);
+    border-color: var(--text-error);
+    font-size: 10px;
+}
+
+.area-delete-button:hover:not(:disabled) {
+    color: var(--text-on-accent);
+    background: var(--text-error);
+}
+
+.area-delete-warning {
+    font-weight: 600;
+}
+
+.area-delete-confirm-input {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 10px 0 18px;
+}
+
+.area-delete-confirm-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.area-safety-note {
+    background-color: var(--color-orange);
+    color: var(--text-on-accent);
+    font-size: 12px;
+    border-radius: var(--radius-s);
+    padding: 10px;
+}
+
+.area-safety-note span {
+    margin-right: 3px;
+    font-weight: 600;
 }
 
 /* 响应式设计 */
 @media (max-width: 768px) {
-    .area-management-section {
-        padding: 12px;
+    .area-create-panel {
+        align-items: flex-start;
     }
-    
+
+    .area-action-description {
+        display: none;
+    }
+
+    .area-existing-item {
+        gap: 8px;
+    }
+
     .area-create-button {
-        width: 100%;
-        padding: 10px 20px;
+        width: auto;
+        padding: 5px 10px;
     }
 }
 
+.canvas-menu > .canvas-node-shortcut-hint {
+  position: absolute;
+  left: calc(100% + 6px);
+  top: 50%;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  background: transparent;
+  line-height: 1;
+  transform: translateY(-50%);
+  pointer-events: none;
+  user-select: none;
+}
 
-/* canvas选项上移，以留出足够的标题空间 */
-.canvas-menu{
-  top:-20px;
+/* Canvas 原生 Ctrl/Cmd+A 运行期间，阻止浏览器把其他标签页文本加入 DOM 选区。 */
+body.cp-canvas-select-all-guard .workspace {
+  -webkit-user-select: none !important;
+  user-select: none !important;
+}
+
+.canvas-menu > .canvas-node-shortcut-hint .canvas-node-shortcut-hint-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+}
+
+.canvas-menu > .canvas-node-shortcut-hint .canvas-node-shortcut-hint-icon svg {
+  width: 14px;
+  height: 14px;
+  stroke-width: 2;
+}
+
+.canvas-menu > .canvas-node-shortcut-hint kbd {
+  padding: 1px 4px;
+  border: 1px solid var(--background-modifier-border-hover);
+  border-bottom-width: 2px;
+  background: transparent;
+  text-align: center;
+  box-shadow: 0 1px 1px var(--background-modifier-box-shadow);
+  font-size: 10px;
 }
 
 /* Canvas分组折叠按钮样式 */
@@ -1936,16 +2083,10 @@
 
 /* 分组标签容器的固定定位，确保按钮正确定位 */
 .canvas-group-label {
-    position: absolute;
-    left: 32px;
-    top: calc(-1 * var(--size-4-1) * var(--zoom-multiplier));
-    max-width: calc(100% - 34px);
     box-sizing: border-box;
-    transform: translateY(-100%);
-    z-index: 1000;
-    padding-bottom: 5px;
+    padding-bottom: 5px !important;
     border-radius: var(--size-2-3) !important;
-    background-color: rgba(var(--canvas-color), 0.1) !important;
+    background-color: color-mix(in oklch, var(--canvas-color) 10%, transparent) !important;
     color: var(--text-muted) !important;
   }
 /* 响应式设计 */
@@ -1958,24 +2099,81 @@
     }
 }
 
-/* CSS自动应用topStyle - 通过data属性选择器 */
-.canvas-group-label[data-top-style="32px"] {
-    top: 32px !important;
-}
-
-/* 默认状态保持原有的calc值 */
-.canvas-group-label:not([data-top-style]) {
+.canvas-group-collapse-controls {
+    position: absolute;
+    left: 0;
     top: calc(-1 * var(--size-4-1) * var(--zoom-multiplier));
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    width: max-content;
+    max-width: none;
+    transform-origin: bottom left;
+    transform: translate(0, -100%) scale(var(--zoom-multiplier));
+    transition: none !important;
+    z-index: 1001;
+    pointer-events: none;
 }
 
-/* 折叠按钮也要向下偏移32px */
-.canvas-group-collapse-button[data-top-style="32px"] {
-    top: 32px !important;
+.canvas-group-collapse-controls > .canvas-group-collapse-button,
+.canvas-group-collapse-controls > .canvas-group-label,
+.canvas-group-collapse-controls > .canvas-collapse-button {
+    pointer-events: auto;
+    transition-property: background-color, border-color, box-shadow, color, opacity !important;
 }
 
-/* 默认状态保持原有的calc值 */
-.canvas-group-collapse-button:not([data-top-style]) {
-    top: calc(-1 * var(--size-4-1) * var(--zoom-multiplier));
+.canvas-group-collapse-controls > .canvas-group-label {
+    position: relative;
+    left: auto;
+    top: auto;
+    max-width: none;
+    transform: none;
+    padding-bottom: 0;
+}
+
+.canvas-node[data-collapsed] .canvas-node-container {
+    display: none;
+}
+
+.canvas-group-collapse-restoring .canvas {
+    visibility: hidden !important;
+}
+
+.canvas-group-collapse-startup-pending .workspace-leaf-content[data-type="canvas"] .canvas {
+    visibility: hidden !important;
+}
+
+.canvas-node-interaction-layer[data-target-collapsed] .canvas-node-resizer {
+    pointer-events: none;
+    cursor: inherit;
+}
+
+.canvas-node-interaction-layer[data-target-collapsed] .canvas-node-resizer .canvas-node-connection-point {
+    display: none;
+    pointer-events: none;
+}
+
+.canvas-node[data-collapsed] .canvas-group-label {
+    max-width: initial;
+}
+
+.canvas-node.canvas-node-group[data-collapsed] > .canvas-collapse-button.canvas-collapse-button-group-attached {
+    display: flex !important;
+    right: auto;
+    pointer-events: auto !important;
+    touch-action: none;
+    z-index: 1002;
+}
+
+.canvas-node.canvas-node-group[data-collapsed] > .canvas-group-collapse-controls > .canvas-collapse-button.canvas-collapse-button-group-attached {
+    position: relative;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    flex: 0 0 auto;
+    pointer-events: auto !important;
+    touch-action: none;
+    z-index: 1;
 }
 
 

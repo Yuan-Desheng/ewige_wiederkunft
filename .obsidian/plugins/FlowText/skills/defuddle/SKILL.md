@@ -1,64 +1,54 @@
 ---
 name: defuddle
-description: 网页内容获取与搜索引擎查询。用户要求搜索、查找资料、了解某个话题时：先 search:，再对前列结果批量 fetch: 抓取正文（2–4 个页面）。用户提供 URL 时直接用 fetch:。**禁止仅凭搜索摘要或记忆回答需要联网的事实。**
+description: 网页搜索与正文获取。用户明确要求联网、查询最新信息、核验外部资料或提供 URL 时使用。只调用原生 search / fetch
 ---
 
-# 网页访问：search → 多页 fetch（标准流程）
+# 网页访问
 
-## ⚡ 标准流程（必须遵守）
 
-1. **`search:`** — 获取候选链接与摘要  
-2. **`fetch:` × 2～4** — 对搜索结果中 **最相关的 2～4 个外链** 抓取正文（同一轮可连续多条 `[Action] fetch:`）  
-3. 基于 **fetch 到的正文** 再写 `[Final Answer]` 或 `edit:`
+| 目标       | Agent 调用    | 主通道                 | 仅在主通道不可用时的回退 |
+| -------- | ----------- | ------------------- | ------------ |
+| 搜索网络     | 原生 `search` | `metaso_web_search` | `web_search` |
+| 读取已知 URL | 原生 `fetch`  | `metaso_web_reader` | `web_fetch`  |
 
-> 插件在 `search:` 成功后会 **自动跟抓** 结果中的前列外链（最多 4 个）；你仍应在下一轮核对是否还需补抓特定 URL。
 
-| 场景 | 使用 Action |
-|------|------------|
-| 用户说「搜索一下」「查一下」「帮我找」「了解最新」 | 先 `search:`，再 **多条** `fetch:` |
-| 用户提供了具体 URL | 直接 `fetch:`（可多条 URL） |
-| 已有 search 的 Observation，需要深入阅读 | 同轮或下一轮输出多条 `fetch:` |
+- 只发起一次原生 `search` 或 `fetch` function call。主通道选择和回退由插件运行时自动完成。
+- 不要手动调用、输出或模拟 `metaso_web_search`、`metaso_web_reader`、`web_search` 或 `web_fetch`。
 
----
+## 决策流程
 
-## search: 搜索引擎查询
+1. 需要发现来源时，调用原生 `search`，传入清晰的 `query`。
+2. 按目标选择 `scope`：普通网页或时效信息用 `webpage`，报告、手册或 PDF 类资料用 `document`，论文与期刊用 `scholar`。
+3. 先判断搜索 Observation 是否已足以回答；足够就立即收尾。
+4. 只有关键事实必须依赖页面正文时，才对少量最相关的正文链接调用原生 `fetch`。
+5. 用户已提供具体 URL 时，直接调用原生 `fetch`，无需先搜索。
 
-默认 **百度**；可选 `engine=bing|sogou|360|ddg`。
 
-```
-[Action] search: 关键词
-[Action] search: 关键词 engine=bing
-```
 
----
+## 调用约束
 
-## fetch: 获取网页正文（可批量）
 
-```
-[Action] fetch: https://example.com/article-a
-[Action] fetch: https://example.com/article-b
-[Action] fetch: https://example.com/article-c
-```
 
-- 同一轮可连续多条 `fetch:`（与 `read` / `cli` 一样属于只读批量）  
-- 优先抓 **官网文档、权威媒体、与问题最相关的条目**，跳过搜索引擎跳转链  
-- 单页超 12000 字会截断；失败时可换链接或缩小范围  
+### search
 
----
+- 使用原生 function call，必填 `query`，按需传入 `scope`。
+- 互不依赖的查询可在同一轮并列调用；需要根据首轮结果细化时，先等待 Observation。
+- 不要用 Obsidian vault 搜索代替互联网搜索。
 
-## 示例（推荐写法）
 
-```
-[Thought] 先搜索主题，再抓取前几条的完整正文。
-[Action] search: Obsidian 1.7 新特性
-[Action] fetch: https://obsidian.md/blog/...
-[Action] fetch: https://...
-```
 
-若首轮只有 `search:`，系统会自动跟抓；你收到正文 Observation 后再总结回答。
+### fetch
 
-## 注意事项
+- 使用原生 function call，必填完整的 `http://` 或 `https://` URL。
+- 优先读取官方文档、权威来源和与问题最相关的正文页；不要抓取搜索引擎跳转页。
+- 多个独立来源可在同一轮分别调用 `fetch`，不要把多个 URL 拼进一个参数。
+- 单页正文可能被截断；已有内容足够时不再追加读取。
 
-- **禁止** 用 `cli: obsidian search query=...` 代替互联网 `search:`  
-- **禁止** 只看 search 摘要就写 Final Answer（除非用户明确只要链接列表）  
-- URL 可省略 `https://` 前缀（会自动补全）
+
+
+## 失败处理
+
+- 若回退后仍遇到拒绝访问、超时、登录限制或 robots 限制，跳过该来源；关键事实仍缺失时可换一个独立来源。
+- 已有证据足够时直接谨慎回答，必要时说明资料限制。
+- 网页访问失败是可降级结果，不需要“修复”，也不得通过无关的 vault 写入消除失败状态。
+

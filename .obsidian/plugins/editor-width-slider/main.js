@@ -92,6 +92,19 @@ var EditorWidthSlider = class extends import_obsidian3.Plugin {
         this.updateEditorStyleYAML();
       })
     );
+    this.registerEvent(
+      this.app.workspace.on("active-leaf-change", () => {
+        this.updateEditorStyleYAML();
+      })
+    );
+    this.registerEvent(
+      this.app.metadataCache.on("changed", (file) => {
+        const activeFile = this.app.workspace.getActiveFile();
+        if (activeFile && file.path === activeFile.path) {
+          this.updateEditorStyleYAML();
+        }
+      })
+    );
     this.createSlider();
     this.addSettingTab(new EditorWidthSliderSettingTab(this.app, this));
     this.updateEditorStyleYAML();
@@ -111,41 +124,11 @@ var EditorWidthSlider = class extends import_obsidian3.Plugin {
     slider.max = "100";
     slider.value = this.settings.sliderPercentage;
     slider.style.width = this.settings.sliderWidth + "px";
-    
-    // 设置圆形滑块样式
-    slider.style.webkitAppearance = "none";
-    slider.style.appearance = "none";
-    slider.style.height = "2px";
-    slider.style.borderRadius = "3px";
-    slider.style.background = "var(--background-modifier-border)";
-    slider.style.outline = "none";
-    
-    // WebKit浏览器的thumb样式
-    const style = document.createElement('style');
-    style.textContent = `
-      #editor-width-slider::-webkit-slider-thumb {
-        width: 12px ;
-        height: 12px ;
-        border-radius: 50% ;
-        margin-top: 1px ;
-      }
-      #editor-width-slider::-webkit-slider-thumb:hover {
-        transform: scale(1.1);
-        background: var(--interactive-accent-hover);
-      }
-      #editor-width-slider::-moz-range-thumb {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        margin-top: 1px ;
-      }
-      #editor-width-slider::-moz-range-thumb:hover {
-        transform: scale(1.1);
-        background: var(--interactive-accent-hover);
-      }
-    `;
-    document.head.appendChild(style);
     slider.addEventListener("input", (event) => {
+      if (this.noteWidthLocked) {
+        this.showLockedNotice();
+        return;
+      }
       const value = parseInt(slider.value);
       this.settings.sliderPercentage = value.toString();
       this.saveSettings();
@@ -156,30 +139,118 @@ var EditorWidthSlider = class extends import_obsidian3.Plugin {
     sliderValueText.textContent = slider.value;
     sliderValueText.classList.add("editor-width-slider-value");
     sliderValueText.id = "editor-width-slider-value";
-    sliderValueText.style.color = "var(--code-normal)";
-    sliderValueText.style.padding = "8px 2px";
-    sliderValueText.style.display = "inline";
-    sliderValueText.style.margin = "0px 2px";
-    sliderValueText.style.background = "transparent";
-    sliderValueText.style.fontSize = "10px";
-    sliderValueText.style.lineHeight = "50%";
-    sliderValueText.style.width = "auto";
-    sliderValueText.style.height = "auto";
-    sliderValueText.style.boxSizing = "content-box";
-    sliderValueText.style.transition = "background 0.3s";
-    sliderValueText.style.cursor = "pointer";
-    sliderValueText.addEventListener("mouseenter", function() {
-      sliderValueText.style.background = "red";
-    });
-    sliderValueText.addEventListener("mouseleave", function() {
-      sliderValueText.style.background = "transparent";
-    });
     sliderValueText.addEventListener("click", () => {
+      if (this.noteWidthLocked) {
+        this.showLockedNotice();
+        return;
+      }
       this.resetEditorWidth();
     });
+    this.registerDomEvent(sliderValueText, "contextmenu", (event) => {
+      event.preventDefault();
+      this.showWidthContextMenu(event);
+    });
+    const sliderContainer = document.createElement("span");
+    sliderContainer.classList.add("editor-width-slider-container");
+    sliderContainer.appendChild(slider);
+    this.registerDomEvent(sliderContainer, "pointerdown", () => {
+      if (this.noteWidthLocked) {
+        this.showLockedNotice();
+      }
+    });
     const statusBarItemEl = this.addStatusBarItem();
-    statusBarItemEl.appendChild(slider);
+    statusBarItemEl.appendChild(sliderContainer);
     statusBarItemEl.appendChild(sliderValueText);
+  }
+  showLockedNotice() {
+    new import_obsidian3.Notice("当前笔记宽度已锁定，请右键状态栏锁形图标并选择“恢复全局宽度”");
+  }
+  setSliderLocked(locked, width) {
+    this.noteWidthLocked = locked;
+    const slider = document.getElementById("editor-width-slider");
+    const sliderValue = document.getElementById("editor-width-slider-value");
+    if (slider) {
+      slider.disabled = locked;
+      slider.setAttribute("aria-disabled", locked ? "true" : "false");
+      if (width !== void 0) {
+        slider.value = width.toString();
+      }
+    }
+    if (sliderValue) {
+      sliderValue.empty();
+      if (locked) {
+        import_obsidian3.setIcon(sliderValue, "lock");
+        sliderValue.setAttribute("aria-label", "当前笔记宽度已锁定，右键可恢复全局宽度");
+      } else {
+        sliderValue.textContent = (width !== void 0 ? width : this.settings.sliderPercentage).toString();
+        sliderValue.setAttribute("aria-label", "编辑器宽度");
+      }
+    }
+  }
+  showWidthContextMenu(event) {
+    const menu = new import_obsidian3.Menu();
+    menu.addItem((item) => {
+      item.setTitle("保存为当前笔记宽度").setIcon("save").onClick(async () => {
+        await this.saveWidthToCurrentNote();
+      });
+    });
+    menu.addItem((item) => {
+      item.setTitle("恢复全局宽度").setIcon("rotate-ccw").onClick(async () => {
+        await this.restoreGlobalWidth();
+      });
+    });
+    menu.showAtMouseEvent(event);
+  }
+  async saveWidthToCurrentNote() {
+    const file = this.app.workspace.getActiveFile();
+    if (!file || file.extension !== "md") {
+      new import_obsidian3.Notice("请先打开一篇 Markdown 笔记");
+      return;
+    }
+    const slider = document.getElementById("editor-width-slider");
+    const width = slider ? slider.value : this.settings.sliderPercentage;
+    if (!this.validateString(width)) {
+      new WarningModal(this.app).open();
+      return;
+    }
+    try {
+      await this.app.fileManager.processFrontMatter(file, (frontmatter) => {
+        frontmatter["editor-width"] = Number(width);
+      });
+      // 当前值保存到笔记后，全局值恢复为插件设置的默认百分比。
+      // 当前笔记继续通过视图级 CSS 变量使用保存时的宽度。
+      this.settings.sliderPercentage = this.settings.sliderPercentageDefault;
+      await this.saveSettings();
+      this.updateEditorStyle();
+      this.updateEditorStyleYAMLHelper(width);
+      this.setSliderLocked(true, width);
+      new import_obsidian3.Notice(`已将当前笔记宽度保存为 ${width}`);
+    } catch (error) {
+      console.error("Failed to save editor-width frontmatter:", error);
+      new import_obsidian3.Notice("保存当前笔记宽度失败");
+    }
+  }
+  async restoreGlobalWidth() {
+    const file = this.app.workspace.getActiveFile();
+    if (!file || file.extension !== "md") {
+      new import_obsidian3.Notice("请先打开一篇 Markdown 笔记");
+      return;
+    }
+    try {
+      await this.app.fileManager.processFrontMatter(file, (frontmatter) => {
+        delete frontmatter["editor-width"];
+      });
+      this.clearActiveEditorWidthOverride();
+      this.resetEditorWidth();
+      // 元数据缓存可能尚未完成刷新，直接应用全局默认样式，避免旧值残留。
+      this.updateEditorStyle();
+      this.clearActiveEditorWidthOverride();
+      this.setSliderLocked(false, this.settings.sliderPercentageDefault);
+      new import_obsidian3.Notice("已移除当前笔记宽度，并恢复全局默认宽度");
+    } catch (error) {
+      console.error("Failed to remove editor-width frontmatter:", error);
+      new import_obsidian3.Notice("恢复全局宽度失败");
+    }
   }
   // ---------------------------- SLIDER -------------------------------------
   cleanUpResources() {
@@ -221,44 +292,45 @@ var EditorWidthSlider = class extends import_obsidian3.Plugin {
   }
   // update the styles (at the start, or as the result of a settings change)
   updateEditorStyleYAMLHelper(editorWidth) {
-    const styleElement = document.getElementById("additional-editor-css");
-    if (!styleElement)
-      throw "additional-editor-css element not found!";
-    else {
-      styleElement.innerText = `
-			body {
-			  	--file-line-width: calc(100px + ${editorWidth}vw) !important;
-			}
-		`;
+    const leaf = this.app.workspace.activeLeaf;
+    if (leaf && leaf.view && leaf.view.containerEl) {
+      leaf.view.containerEl.style.setProperty(
+        "--file-line-width",
+        `calc(700px + 10 * ${editorWidth}px)`,
+        "important"
+      );
+    }
+  }
+  clearActiveEditorWidthOverride() {
+    const leaf = this.app.workspace.activeLeaf;
+    if (leaf && leaf.view && leaf.view.containerEl) {
+      leaf.view.containerEl.style.removeProperty("--file-line-width");
     }
   }
   validateString(inputString) {
     return this.pattern.test(inputString);
   }
   updateEditorStyleYAML() {
+    // 全局宽度始终写在 body，当前笔记的 editor-width 只覆盖当前视图。
+    this.updateEditorStyle();
+    this.clearActiveEditorWidthOverride();
     const file = this.app.workspace.getActiveFile();
     if (file && file.name) {
       const metadata = this.app.metadataCache.getFileCache(file);
-      if (metadata) {
-        if (metadata.frontmatter) {
-          try {
-            if (metadata.frontmatter["editor-width"]) {
-              if (this.validateString(metadata.frontmatter["editor-width"])) {
-                this.updateEditorStyleYAMLHelper(metadata.frontmatter["editor-width"]);
-              } else {
-                new WarningModal(this.app).open();
-                throw new Error("Editor width must be a number from 0 to 100.");
-              }
-            } else {
-              this.updateEditorStyle();
-            }
-          } catch (e) {
-          }
-        } else {
-          this.updateEditorStyle();
+      const frontmatter = metadata && metadata.frontmatter;
+      if (frontmatter && Object.prototype.hasOwnProperty.call(frontmatter, "editor-width")) {
+        const editorWidth = frontmatter["editor-width"];
+        if (this.validateString(editorWidth)) {
+          this.updateEditorStyleYAMLHelper(editorWidth);
+          this.setSliderLocked(true, editorWidth);
+          return;
         }
+        this.setSliderLocked(false, this.settings.sliderPercentage);
+        new WarningModal(this.app).open();
+        return;
       }
     }
+    this.setSliderLocked(false, this.settings.sliderPercentage);
   }
   // update the styles (at the start, or as the result of a settings change)
   updateSliderStyle() {

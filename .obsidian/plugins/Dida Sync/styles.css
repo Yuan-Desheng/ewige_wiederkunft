@@ -162,13 +162,18 @@
     align-items: center;
     margin-bottom: 2px;
     padding-bottom: 2px;
-    border-bottom: 1px solid var(--background-modifier-border);
+    border-bottom: 0.5px solid var(--background-modifier-border);
 }
 
 .dida-task-header h3 {
     margin: 0px;
     margin-left: 5px !important;
     flex-grow: 1;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    gap: 5px;
 }
 
 .dida-task-header button {
@@ -190,9 +195,12 @@
 }
 
 .dida-search-input {
-    width: 100%;
+    flex: 1;
+    min-width: 0;
+    width: auto;
     font-size: 10px !important;
     height: 25px !important;
+    padding-right: 52px;
 }
 
 .dida-search-input::placeholder {
@@ -202,7 +210,7 @@
 
 .dida-search-clear-btn {
     position: absolute;
-    right: 12px;
+    right: 38px;
     width: 20px;
     height: 20px;
     padding: 0;
@@ -227,7 +235,7 @@
 /* 日期筛选清除按钮：与搜索清除按钮并列，稍微靠左 */
 .dida-date-clear-btn {
     position: absolute;
-    right: 12px;
+    right: 38px;
     width: 20px;
     height: 20px;
     padding: 0;
@@ -247,6 +255,33 @@
 .dida-date-clear-btn svg {
     width: 14px;
     height: 14px;
+}
+
+.dida-search-add-project-btn {
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    border: none;
+    border-radius: 4px;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.dida-search-add-project-btn:hover {
+    color: var(--text-normal);
+    background: var(--background-modifier-hover) !important;
+}
+
+.dida-search-add-project-btn svg {
+    width: 16px;
+    height: 16px;
+    stroke-opacity: 0.8;
 }
 
 .dida-task-list {
@@ -283,12 +318,7 @@
 
 .dida-task-item input[type="checkbox"] {
     margin: 0;
-    flex-shrink: 0;
-    height: var(--checkbox-size);
-    width: var(--checkbox-size);
-    border-radius: 50%;
-    /* 调整复选框内勾的大小 */
-    transform: scale(0.8);
+    transform: scale(0.9);
 }
 
 
@@ -461,6 +491,86 @@
 
 .dida-icon-picker-modal {
     min-width: 520px;
+}
+
+.dida-project-color-picker-modal {
+    min-width: 390px;
+}
+
+.dida-project-color-palette {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 18px 4px 22px;
+}
+
+.dida-project-color-swatch {
+    position: relative;
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    padding: 0;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    background: var(--dida-project-swatch-color) !important;
+    box-shadow: none;
+    cursor: pointer;
+}
+
+.dida-project-color-swatch:hover,
+.dida-project-color-swatch:focus-visible {
+    transform: scale(1.08);
+    box-shadow: 0 0 0 2px var(--background-primary), 0 0 0 4px var(--background-modifier-border-hover);
+}
+
+.dida-project-color-swatch.is-selected {
+    box-shadow: 0 0 0 2px var(--background-primary), 0 0 0 4px var(--interactive-accent);
+}
+
+.dida-project-color-swatch.is-none {
+    overflow: hidden;
+    border-color: var(--background-modifier-border);
+    background: var(--background-primary);
+}
+
+.dida-project-color-swatch.is-none::after {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 15px;
+    width: 28px;
+    height: 3px;
+    border-radius: 2px;
+    background: #ff6161;
+    transform: rotate(-45deg);
+    transform-origin: center;
+}
+
+.dida-project-color-swatch.is-custom {
+    background: conic-gradient(
+        #ff6161,
+        #ffac38,
+        #ffd324,
+        #e6ea49,
+        #35d870,
+        #4ca1ff,
+        #b96bff,
+        #ff6161
+    ) !important;
+}
+
+.dida-project-custom-color-input {
+    position: fixed;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.dida-project-color-actions {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .dida-icon-search-container {
@@ -1113,61 +1223,150 @@
 }
 
 .dida-calendar-popup {
+    --dida-calendar-cell-size: 28px;
+    --dida-calendar-time-column-width: 40px;
     background: var(--background-primary);
     border: 1px solid var(--background-modifier-border);
     border-radius: 8px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-    padding: 16px;
-    width: 320px;
+    padding: 14px;
+    width: min(324px, calc(100vw - 20px));
+    box-sizing: border-box;
     max-height: 90vh;
     overflow-y: auto;
 }
 
-.dida-calendar-title {
-    margin: 0;
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--text-normal);
-    text-align: center;
-    border-bottom: 1px solid var(--background-modifier-border);
-    padding-bottom: 8px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    position: relative; /* 作为提醒面板的定位父元素 */
-}
-
-/* 日历标题文本样式 */
-.dida-calendar-title > span {
-    flex-grow: 1;
-    text-align: right;
-    font-size: 15px;
-}
-
 .dida-calendar-popup .dida-calendar-container {
+    position: relative;
     padding: 0;
     max-width: none;
     margin: 0;
 }
 
+.dida-calendar-date-panel {
+    min-width: 0;
+    width: 216px;
+    padding-right: 8px;
+    box-sizing: border-box;
+}
+
+.dida-calendar-end-time-panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: calc(var(--dida-calendar-time-column-width) + var(--dida-calendar-time-column-width));
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: 24px minmax(0, 1fr);
+    min-width: 0;
+    border-left: 1px solid var(--background-modifier-border);
+    overflow: hidden;
+}
+
+.dida-calendar-time-wheel {
+    grid-row: 2;
+    min-width: 0;
+    height: 100%;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scroll-snap-type: y proximity;
+    scrollbar-width: none;
+}
+
+.dida-calendar-time-wheel + .dida-calendar-time-wheel {
+    border-left: 1px dashed var(--background-modifier-border);
+}
+
+.dida-calendar-time-wheel::-webkit-scrollbar {
+    display: none;
+}
+
+.dida-calendar-time-wheel-option {
+    display: block;
+    width: 100%;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    border-radius: 5px;
+    background: transparent !important;
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+    text-align: center;
+    scroll-snap-align: center;
+    cursor: pointer;
+}
+
+.dida-calendar-time-wheel-option:hover {
+    background: var(--background-modifier-hover);
+    color: var(--text-normal);
+}
+
+.dida-calendar-time-wheel-option.is-selected {
+    background: color-mix(in srgb, var(--interactive-accent) 12%, transparent);
+    color: var(--interactive-accent);
+    font-weight: 600;
+}
+
+
+.dida-calendar-time-wheel-option:focus-visible,
+.dida-calendar-popup button:focus-visible {
+    outline: 0.5px solid var(--interactive-accent);
+    border-radius: 0;
+
+}
+
+.dida-calendar-keyboard-hint {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0 2px;
+    color: var(--text-muted);
+    font-size: 9px;
+    line-height: 1.1;
+    text-align: center;
+    user-select: none;
+}
 
 .dida-calendar-popup .dida-calendar-nav button {
     padding: 4px 8px;
     font-size: 14px;
+    background-color: transparent;
 }
 
 .dida-calendar-popup .dida-calendar-month-label {
     font-size: 14px;
 }
 
-.dida-calendar-popup .dida-calendar-day {
-    min-height: 28px;
+.dida-calendar-popup .dida-calendar-grid .dida-calendar-day {
+    width: var(--dida-calendar-cell-size);
+    height: var(--dida-calendar-cell-size);
+    min-height: var(--dida-calendar-cell-size);
+    padding: 0;
+    box-sizing: border-box;
     font-size: 13px;
 }
 
+.dida-calendar-popup .dida-calendar-week-header,
+.dida-calendar-popup .dida-calendar-grid {
+    grid-template-columns: repeat(7, var(--dida-calendar-cell-size));
+}
+
+.dida-calendar-popup .dida-calendar-week-day {
+    width: var(--dida-calendar-cell-size);
+    padding-right: 0;
+    padding-left: 0;
+}
+
 .dida-calendar-popup .dida-calendar-buttons {
-    margin-top: 3px;
-    gap: 3px;
+    margin-top: 6px;
+    gap: 4px;
+    flex-wrap: wrap;
 }
 
 .dida-calendar-popup .dida-calendar-buttons button {
@@ -1176,17 +1375,27 @@
 }
 
 
-.dida-calendar-popup .dida-allday-container {
-    margin: 0;
-    flex-shrink: 0;
-    align-items: center;
-    gap: 4px;
-}
+@media (max-width: 540px) {
+    .dida-calendar-popup {
+        padding: 12px;
+    }
 
-/* 在日历弹窗中的全天标签样式 */
-.dida-calendar-popup .dida-allday-label {
-    font-size: 12px;
-    cursor: pointer;
+    .dida-calendar-date-panel {
+        padding-right: 8px;
+    }
+
+    .dida-calendar-end-time-panel {
+        width: calc(var(--dida-calendar-time-column-width) + var(--dida-calendar-time-column-width));
+    }
+
+    .dida-calendar-time-wheel {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .dida-calendar-time-wheel-option {
+        font-size: 12px;
+    }
 }
 
 .dida-calendar-nav {
@@ -1231,6 +1440,7 @@
     grid-template-columns: repeat(7, 1fr);
     gap: 2px;
     margin-bottom: 10px;
+    justify-items: center;
 }
 
 .dida-calendar-day {
@@ -1568,42 +1778,66 @@
 
 /* 标签页样式 */
 .dida-task-tab-nav {
+    --tab-curve: 8px;
     display: flex;
+    align-items: flex-end;
     margin-bottom: 5px;
-    background-color: transparent;
+    padding: 0 calc(var(--tab-curve) * 2);
+    background-color: var(--background-secondary);
+    border-bottom: 1px solid var(--background-modifier-border);
+    isolation: isolate;
 }
 
 .dida-tab-btn {
+    position: relative;
+    overflow: visible;
     flex: 1;
-    padding: 10px 15px;
+    padding: 4px 15px;
     background: transparent !important;
     border: none;
     cursor: pointer;
     font-size: 12px;
-    height: 25px;
-    border-radius: 0px;
-    border-bottom-right-radius: 6px;
-    border-bottom-left-radius: 6px;
-    border-bottom: solid #0066cc;
+    height: 32px;
+    border-radius: 0;
     box-shadow: none !important;
 }
 
-.dida-tab-btn:hover {
-    background-color: transparent;
-    height: 25px;
+.dida-tab-btn.active::before,
+.dida-tab-btn.active::after {
+    position: absolute;
+    bottom: -1px;
+    width: calc(var(--tab-curve) * 2);
+    height: calc(var(--tab-curve) * 2);
+    content: "";
+    border-radius: 50%;
+    background-color: var(--background-secondary);
+    border: 1px solid var(--background-modifier-border);
+    box-shadow: 0 0 0 calc(var(--tab-curve) * 4) var(--background-primary) !important;
+    box-sizing: border-box;
+    pointer-events: none;
 }
+
 
 .dida-tab-btn.active {
     color: #0066cc;
-    background-color: transparent;
-    height:25px;
-    border: none;
-    border-top: solid;
-    border-top-right-radius: 6px;
-    border-top-left-radius: 6px;
-    border-bottom-right-radius: 0px;
-    border-bottom-left-radius: 0px;
+    z-index: 1;
+    background-color: var(--background-primary) !important;
+    margin-bottom: -1px;
+    border: 1px solid var(--background-modifier-border);
+    border-bottom-color: var(--background-primary);
+    border-radius: var(--tab-curve) var(--tab-curve) 0 0;
     box-shadow: none !important;
+}
+
+
+.dida-tab-btn.active::before {
+    left: calc(var(--tab-curve) * -2);
+    clip-path: inset(50% calc(var(--tab-curve) * -1) 0 50%);
+}
+
+.dida-tab-btn.active::after {
+    right: calc(var(--tab-curve) * -2);
+    clip-path: inset(50% 50% 0 calc(var(--tab-curve) * -1));
 }
 
 .dida-task-content-area {
@@ -1631,7 +1865,7 @@
     display: flex !important;
     flex-direction: column;
     align-items: stretch;
-    gap: 6px;
+    gap: 3px;
     max-height: min(42vh, 280px);
     overflow-y: auto;
     overflow-x: hidden;
@@ -1716,27 +1950,24 @@
 
 .dida-task-item.dida-check-item input[type="checkbox"],
 .dida-task-item.dida-subtask-item input[type="checkbox"] {
-    margin: 0;
     cursor: pointer;
     flex-shrink: 0;
     width: 14px;
     height: 14px;
     border-radius: 4px;
     position: static !important;
-    top: auto !important;
-    right: auto !important;
     transform: none !important;
-    z-index: auto !important;
-    background: var(--background-primary);
-    border: 1px solid var(--background-modifier-border);
-    box-shadow: none !important;
     margin-right: 8px;
 }
 
 .dida-task-item.dida-check-item input[type="checkbox"]:checked,
 .dida-task-item.dida-subtask-item input[type="checkbox"]:checked {
-    background: var(--interactive-accent);
-    border-color: var(--interactive-accent);
+    background-color: grey;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M3 7.2 5.8 10 11 4.5' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 12px 12px;
+    border-color: grey !important;
 }
 
 /* 时间线任务详情中的检查项和子任务复选框样式 - 更具体的规则 */
@@ -1760,7 +1991,11 @@
 
 .dida-timeline-task-item .dida-task-details .dida-task-item.dida-check-item input[type="checkbox"]:checked,
 .dida-timeline-task-item .dida-task-details .dida-task-item.dida-subtask-item input[type="checkbox"]:checked {
-    background: var(--interactive-accent) !important;
+    background-color: var(--interactive-accent) !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M3 7.2 5.8 10 11 4.5' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: 12px 12px !important;
     border-color: var(--interactive-accent) !important;
 }
 
@@ -1770,8 +2005,6 @@
     margin: 0;
     background-color: transparent;
     min-width: 0;
-    font-size: 12px;
-    border: none;
     outline: none;
     padding: 2px 4px;
     border-radius: 4px;
@@ -1853,6 +2086,36 @@
 .dida-project-select + label,
 label + .dida-project-select {
     margin-top: 10px;
+}
+
+.dida-project-create-icon-row {
+    margin: 0 0 12px;
+}
+
+.dida-project-create-icon-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 6px;
+    background: var(--background-primary);
+    color: var(--text-normal);
+    cursor: pointer;
+    font-size: 13px;
+    padding: 6px 10px;
+}
+
+.dida-project-create-icon-btn:hover {
+    background: var(--background-modifier-hover);
+}
+
+.dida-project-create-icon-preview,
+.dida-project-create-icon-preview svg {
+    width: 16px;
+    height: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* 项目选择模态框标题样式 */
@@ -2357,11 +2620,11 @@ label + .dida-project-select {
 
 
 .dida-timeline-custom-window-header {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: minmax(210px, 1fr) auto minmax(210px, 1fr);
     align-items: center;
+    gap: 12px;
     padding: 16px 20px;
-    border-bottom: 1px solid var(--background-modifier-border);
     background: var(--background-primary);
     flex-shrink: 0;
 }
@@ -2374,6 +2637,65 @@ label + .dida-project-select {
     display: flex;
     align-items: center;
     gap: 8px;
+    min-width: 0;
+    white-space: nowrap;
+}
+
+.dida-timeline-custom-window-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.dida-timeline-custom-window-header .dida-timeline-header-month-nav {
+    width: 290px;
+    min-width: 0;
+    margin: 0;
+    gap: 4px;
+}
+
+.dida-timeline-custom-window-header .dida-timeline-header-month-nav .dida-timeline-month-display {
+    min-width: 108px;
+    font-size: 14px;
+}
+
+.dida-timeline-view-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 32px;
+    padding: 5px 10px;
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 7px;
+    background: var(--background-secondary);
+    color: var(--text-muted);
+    box-shadow: none !important;
+    font-size: 12px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.dida-timeline-view-toggle:hover,
+.dida-timeline-view-toggle.is-active {
+    border-color: var(--interactive-accent);
+    background: rgba(var(--interactive-accent-rgb), 0.12);
+    color: var(--interactive-accent);
+}
+
+.dida-timeline-view-toggle svg {
+    flex: 0 0 auto;
+}
+
+.dida-timeline-custom-window.dida-timeline-calendar-task-mode {
+    width: min(1120px, 94vw);
+    max-width: 1120px;
+    max-height: 86vh;
+}
+
+.dida-timeline-custom-window-content.dida-timeline-calendar-task-mode {
+    padding: 0 18px 20px;
 }
 
 .dida-timeline-custom-window-close {
@@ -2392,6 +2714,7 @@ label + .dida-project-select {
     overflow-y: auto;
     padding: 20px;
     background: var(--background-primary);
+    scrollbar-width: none;
 }
 
 .dida-timeline-header {
@@ -2468,11 +2791,9 @@ label + .dida-project-select {
 
 .dida-timeline-nav-btn {
     background: transparent!important;
-    padding: 4px;
     cursor: pointer;
-    transition: all 0.2s ease;
     box-shadow:none !important;
-    font-size: 16px;
+    font-size: 20px;
 }
 
 
@@ -2487,7 +2808,6 @@ label + .dida-project-select {
 
 
 .dida-timeline-month-display {
-    font-size: 16px;
     font-weight: 600;
     color: var(--text-normal);
     flex-grow: 1;
@@ -2512,8 +2832,259 @@ label + .dida-project-select {
 .dida-timeline-date-picker {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 8px;
     margin-bottom: 5px;
+}
+
+/* 月历任务模式：仿系统日历的紧凑月网格 */
+.dida-timeline-calendar-task-mode .dida-timeline-week-header {
+    gap: 0;
+    margin: 0;
+    border: 1px solid var(--background-modifier-border);
+    border-bottom: 0;
+    border-radius: 8px 8px 0 0;
+    overflow: hidden;
+    background: var(--background-secondary-alt);
+}
+
+.dida-timeline-calendar-task-mode .dida-timeline-week-day {
+    padding: 6px 4px;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+}
+
+.dida-timeline-calendar-task-mode .dida-timeline-week-day:last-child {
+    border-right: 0;
+}
+
+.dida-timeline-calendar-task-mode .dida-timeline-date-picker {
+    gap: 0;
+    margin: 0;
+    border-top: 1px solid var(--background-modifier-border);
+    border-left: 1px solid var(--background-modifier-border);
+}
+
+.dida-timeline-calendar-task-mode .dida-timeline-date-item.dida-timeline-calendar-task-date {
+    align-items: stretch;
+    justify-content: flex-start;
+    min-width: 0;
+    min-height: 150px;
+    padding: 5px;
+    border-right: 1px solid var(--background-modifier-border);
+    border-bottom: 1px solid var(--background-modifier-border);
+    border-radius: 0;
+    background: var(--background-primary);
+    overflow: hidden;
+}
+
+.dida-timeline-calendar-task-mode .dida-timeline-calendar-task-date:hover {
+    background: var(--background-secondary-alt);
+}
+
+.dida-timeline-calendar-task-mode .dida-timeline-calendar-task-date > .dida-timeline-date-number {
+    align-self: flex-end;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    margin-bottom: 3px;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.dida-timeline-calendar-task-mode .dida-timeline-date-item.dida-timeline-today,
+.dida-timeline-calendar-task-mode .dida-timeline-date-item.dida-timeline-selected {
+    background: var(--background-primary);
+}
+
+.dida-timeline-calendar-task-mode .dida-timeline-date-item.dida-timeline-today > .dida-timeline-date-number {
+    background: var(--interactive-accent);
+    color: var(--text-on-accent);
+}
+
+.dida-timeline-calendar-task-mode .dida-timeline-date-item.dida-timeline-selected {
+    box-shadow: inset 0 0 0 2px rgba(var(--interactive-accent-rgb), 0.55);
+}
+
+.dida-timeline-calendar-task-mode .dida-timeline-date-item.dida-timeline-selected > .dida-timeline-date-number {
+    color: var(--interactive-accent);
+}
+
+.dida-timeline-calendar-task-mode .dida-timeline-date-item.dida-timeline-today.dida-timeline-selected > .dida-timeline-date-number {
+    color: var(--text-on-accent);
+}
+
+.dida-timeline-calendar-task-mode .dida-timeline-other-month {
+    opacity: 0.48;
+    background: var(--background-secondary-alt);
+}
+
+.dida-timeline-calendar-cell-tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    width: 100%;
+    min-width: 0;
+}
+
+.dida-timeline-calendar-task {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    width: 100%;
+    min-width: 0;
+    height: 16px;
+    padding: 1px 4px;
+    border-radius: 3px;
+    /* 兼容项目色为 hex、hsl 或其他 CSS 变量的情况。 */
+    background: color-mix(
+        in srgb,
+        var(--dida-calendar-task-color) var(--dida-calendar-task-opacity, 24%),
+        transparent
+    );
+    color: var(--text-normal);
+    font-size: 10px;
+    line-height: 14px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.dida-timeline-calendar-task-checkbox {
+    flex: 0 0 auto;
+    width: 11px !important;
+    height: 11px !important;
+    min-width: 11px;
+    min-height: 11px;
+    margin: 0 !important;
+    border-radius: 3px !important;
+    cursor: pointer;
+}
+.dida-timeline-calendar-task-checkbox::after{
+    width: 11px !important;
+    height: 11px !important;
+    min-width: 11px;
+    min-height: 11px;
+}
+
+.dida-timeline-calendar-task-checkbox:disabled {
+    cursor: wait;
+    opacity: 0.6;
+}
+
+.dida-timeline-calendar-task.is-repeat-completion-snapshot .dida-timeline-calendar-task-checkbox:disabled {
+    cursor: default;
+    opacity: 1;
+}
+
+.dida-timeline-calendar-task:hover {
+    background: color-mix(
+        in srgb,
+        var(--dida-calendar-task-color) var(--dida-calendar-task-hover-opacity, 34%),
+        transparent
+    );
+    color: var(--text-normal);
+}
+
+.dida-timeline-calendar-task.is-completed {
+    opacity: 0.55;
+}
+
+.dida-timeline-calendar-task.is-completed .dida-timeline-calendar-task-title {
+    text-decoration: line-through;
+}
+
+.dida-timeline-calendar-task.is-subtask .dida-timeline-calendar-task-title::before {
+    content: '↳';
+    margin-right: 3px;
+    color: var(--text-muted);
+}
+
+.dida-timeline-calendar-task-time {
+    flex: 0 0 auto;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+}
+
+.dida-timeline-calendar-task-title {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dida-timeline-calendar-task-more-btn {
+    align-self: flex-start;
+    height: 15px;
+    min-height: 15px;
+    margin: 0;
+    padding: 0 4px;
+    border: 0;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: var(--text-muted);
+    font-size: 10px;
+    line-height: 15px;
+    cursor: pointer;
+}
+
+.dida-timeline-calendar-task-more-btn:hover {
+    color: var(--interactive-accent);
+}
+
+@media (max-width: 760px) {
+    .dida-timeline-custom-window.dida-timeline-calendar-task-mode {
+        width: 96vw;
+        max-height: 90vh;
+    }
+
+    .dida-timeline-custom-window-content.dida-timeline-calendar-task-mode {
+        padding: 10px;
+    }
+
+    .dida-timeline-custom-window-header {
+        grid-template-columns: auto minmax(140px, 1fr) auto;
+        gap: 6px;
+        padding: 10px;
+    }
+
+    .dida-timeline-custom-window-title {
+        font-size: 0;
+    }
+
+    .dida-timeline-custom-window-title svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .dida-timeline-custom-window-header .dida-timeline-header-month-nav {
+        width: 100%;
+    }
+
+    .dida-timeline-custom-window-header .dida-timeline-header-month-nav .dida-timeline-month-display {
+        min-width: 76px;
+        font-size: 12px;
+    }
+
+    .dida-timeline-calendar-task-mode .dida-timeline-date-item.dida-timeline-calendar-task-date {
+        min-height: 150px;
+        padding: 3px;
+    }
+
+    .dida-timeline-calendar-task-time {
+        display: none;
+    }
+
+    .dida-timeline-calendar-task {
+        padding-left: 4px;
+        font-size: 9px;
+    }
+
+    .dida-timeline-view-toggle span {
+        display: none;
+    }
 }
 
 .dida-timeline-date-item {
@@ -2555,7 +3126,7 @@ label + .dida-project-select {
 }
 
 .dida-timeline-date-item.dida-timeline-selected {
-    background: var(--color-accent);
+    background: var(--interactive-accent);
     color: var(--text-on-accent);
 }
 
@@ -2666,7 +3237,7 @@ label + .dida-project-select {
     right: 0;
     top: 0;
     bottom: 0;
-    width: 2px;
+    width: 1px;
     background: var(--background-modifier-border);
     z-index: 1;
 }
@@ -2707,16 +3278,20 @@ label + .dida-project-select {
     pointer-events: auto;
 }
 
+.dida-time-block-all-day.is-subtask .dida-task-title::before,
+.dida-time-block-task.is-subtask .dida-time-block-task-title::before {
+    content: '↳';
+    margin-right: 4px;
+    color: var(--text-muted);
+}
+
 .dida-timeline-task-item {
     display: flex;
     align-items: center;
     padding: 12px 15px;
     background: var(--background-primary);
-    border: 1px solid var(--background-modifier-border);
-    border-radius: 8px;
     transition: all 0.2s ease;
     margin-left: 20px;
-    margin-bottom: 8px;
     position: relative;
     min-height: 60px;
     flex-wrap: wrap;
@@ -2742,6 +3317,14 @@ label + .dida-project-select {
 
 .dida-timeline-task-item:hover::before {
     border-left-color: var(--background-modifier-hover);
+}
+
+.dida-timeline-task-item.is-subtask .dida-timeline-task-title::before,
+.dida-timeline-task-item.is-subtask .dida-timeline-task-completed::before {
+    content: '↳';
+    margin-right: 5px;
+    color: var(--text-muted);
+    text-decoration: none;
 }
 
 .dida-timeline-task-item input[type="checkbox"] {
@@ -2796,7 +3379,6 @@ label + .dida-project-select {
 /* 时间任务样式 */
 .dida-timeline-time-task {
     position: relative;
-    margin-bottom: 8px;
     min-height: 35px;
 }
 
@@ -3128,9 +3710,8 @@ label + .dida-project-select {
 }
 
 /* 重复规则显示样式 */
-.dida-task-repeat-rule {
+.dida-task-repeat-rule{
     font-size: 8px !important;
-    color: #0066cc !important;
     margin-left: 25px;
     margin-right: 8px;
     opacity: 0.8;
@@ -3139,6 +3720,13 @@ label + .dida-project-select {
     align-items: center;
     gap: 3px;
 }
+.theme-light .dida-task-repeat-rule {
+    color: #0066cc !important;
+}
+.theme-dark .dida-task-repeat-rule {
+    color: #0180ff !important;
+}
+
 
 /* 简洁紧凑的重复设置窗口样式 */
 .dida-compact-repeat-overlay {
@@ -3331,17 +3919,15 @@ label + .dida-project-select {
 
 /* 内联任务操作菜单样式 */
 .task-action-menu-inline {
-    position: fixed;
+    position: fixed !important;
     min-width: 200px;
     max-width: 300px;
     padding: 0;
     border-radius: 8px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow-l);
     background: var(--background-primary);
-    border: 1px solid var(--background-modifier-border);
     z-index: 1 !important;
     animation: fadeInScale 0.15s ease-out;
-    backdrop-filter: blur(8px);
     margin: 5px;
 }
 
@@ -3385,7 +3971,7 @@ label + .dida-project-select {
 }
 
 .task-action-menu-option:hover {
-    background: var(--background-modifier-hover);
+    background: var(--background-modifier-active-hover);
     color: var(--text-accent);
 }
 
@@ -3393,10 +3979,20 @@ label + .dida-project-select {
     background: var(--background-modifier-active);
 }
 
+.task-action-menu-option.is-disabled {
+    opacity: 0.48;
+    cursor: not-allowed;
+}
+
+.task-action-menu-option.is-disabled:hover,
+.task-action-menu-option.is-disabled.task-action-menu-option-selected {
+    background: transparent;
+    color: var(--text-muted);
+}
+
 .task-action-menu-option-selected {
-    background: var(--background-modifier-hover);
+    background: var(--background-modifier-active-hover);
     color: var(--text-accent);
-    border-left: 3px solid var(--interactive-accent);
     padding-left: 13px;
 }
 
@@ -3404,6 +4000,47 @@ label + .dida-project-select {
 .task-action-menu-inline.task-action-menu-with-calendar {
     min-width: 252px;
     max-width: 280px;
+}
+
+/* 任务操作菜单 · 同步项目选择 */
+.task-action-menu-inline.task-action-menu-with-projects {
+    min-width: 230px;
+    max-width: 320px;
+}
+
+.task-action-project-options {
+    max-height: min(320px, 45vh);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+.task-action-project-option {
+    min-width: 0;
+}
+
+.task-action-project-icon {
+    display: inline-flex;
+    flex: 0 0 18px;
+    align-items: center;
+    justify-content: center;
+}
+
+.task-action-project-icon svg {
+    width: 16px;
+    height: 16px;
+}
+
+.task-action-project-name {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.task-action-project-empty {
+    padding: 12px 16px;
+    color: var(--text-muted);
+    font-size: 12px;
 }
 
 .task-action-cal-today-hint {
@@ -3490,14 +4127,28 @@ label + .dida-project-select {
     background: var(--background-modifier-hover);
 }
 
+.task-action-cal-cell-key-selected {
+    background: var(--interactive-accent);
+    color: var(--text-on-accent);
+    box-shadow: inset 0 0 0 1px var(--interactive-accent-hover);
+}
+
 .task-action-cal-cell-today {
     font-weight: 700;
     box-shadow: inset 0 0 0 2px var(--interactive-accent);
     border-radius: 4px;
 }
 
+.task-action-cal-cell-today.task-action-cal-cell-key-selected {
+    box-shadow: inset 0 0 0 2px var(--text-on-accent);
+}
+
 .task-action-cal-cell-due {
     background: var(--background-modifier-active-hover, var(--background-modifier-hover));
+}
+
+.task-action-cal-cell-due.task-action-cal-cell-key-selected {
+    background: var(--interactive-accent);
 }
 
 /* 深色主题适配 */
@@ -3535,6 +4186,10 @@ label + .dida-project-select {
 }
 
 /* 项目拖拽样式 */
+.dida-project-group {
+    position: relative;
+}
+
 .dida-project-title[draggable="true"] {
     cursor: pointer;
     user-select: none;
@@ -3548,19 +4203,12 @@ label + .dida-project-select {
     opacity: 0.5;
 }
 
-.dida-project-header.drag-over {
-    border-top: 2px dashed var(--interactive-accent);
-    margin-top: 2px;
+.dida-project-group.drag-over-before {
+    box-shadow: inset 0 2px 0 var(--interactive-accent);
 }
 
-.dida-project-header.drag-over::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--interactive-accent);
+.dida-project-group.drag-over-after {
+    box-shadow: inset 0 -2px 0 var(--interactive-accent);
 }
 
 /* 时间段视图样式 */
@@ -3875,4 +4523,99 @@ label + .dida-project-select {
 
 .dida-time-block-resize-bottom::before {
     bottom: 2px;
+}
+
+.dida-task-context-menu,
+.dida-task-context-submenu {
+    position: fixed;
+    min-width: 180px;
+    max-width: 260px;
+    padding: 4px 0;
+    border-radius: 8px;
+    background: var(--background-primary);
+    border: 1px solid var(--background-modifier-border);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+    z-index: 10020;
+}
+
+.dida-task-context-submenu {
+    max-height: min(320px, calc(100vh - 16px));
+    overflow-y: auto;
+}
+
+.dida-task-context-menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 12px;
+    font-size: 13px;
+    color: var(--text-normal);
+    cursor: pointer;
+    user-select: none;
+}
+
+.dida-task-context-menu-item-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    flex: 1;
+}
+
+.dida-task-context-menu-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    color: var(--text-muted);
+}
+
+.dida-task-context-menu-icon svg {
+    width: 14px;
+    height: 14px;
+}
+
+.dida-task-context-menu-label {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dida-task-context-menu-item:hover {
+    background: var(--background-modifier-hover);
+    color: var(--text-accent);
+}
+
+.dida-task-context-menu-item.is-danger {
+    color: var(--text-error);
+}
+
+.dida-task-context-menu-item.is-danger:hover {
+    background: var(--background-modifier-hover);
+    color: var(--text-error);
+}
+
+.dida-task-context-menu-item.is-disabled {
+    color: var(--text-muted);
+    cursor: default;
+}
+
+.dida-task-context-menu-item.is-disabled:hover {
+    background: transparent;
+    color: var(--text-muted);
+}
+
+.dida-task-context-menu-arrow {
+    flex-shrink: 0;
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1;
+}
+
+.dida-task-context-menu-item.has-submenu:hover .dida-task-context-menu-arrow {
+    color: var(--text-accent);
 }

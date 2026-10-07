@@ -1,6 +1,6 @@
 /*──────────────────────────────────────────────────────────────────
 其他排版样式优化
-Version 0.6.0
+Version 0.7.0
 Created by @ytmaps_鱼先生
 
 authorurl:
@@ -15,16 +15,13 @@ settings:
     -   
         id: clutter-free-headings
         title: 编辑状态使用H1 H2 替代「#」(显示标题级别)
-        title.zh: 编辑状态使用H1 H2 替代「#」(显示标题级别)
         description: 来自 blue-topaz 主题
         type: class-toggle
         default: true
     - 
         id: code-line-number
-        title: Code box showing line numbers (Editing Mode)
-        title.zh: 代码显示行号 （编辑模式）
-        description: csslass declares code-line-number to be available for the current document, copy from blue-topaz theme
-        description.zh:  csslass 声明 code-line-number 可对单篇note生效，来自 blue-topaz 主题
+        title: 代码显示行号 （编辑模式）
+        description:  csslass 声明 code-line-number 可对单篇note生效，来自 blue-topaz 主题
         type: class-toggle
         default: true
     -
@@ -47,14 +44,14 @@ settings:
         default: false
     -
         id: custom-line-padding
-        title: 自定义行间距
-        description: 输入具体的行间距值(单位：px)
+        title: 自定义段落间距
+        description: 输入具体的段落间距值(单位：px)
         type: variable-number
         default: 5
         format: px
     -
         id: custom-line-padding-toggle
-        title: 启用自定义行间距
+        title: 启用自定义段落间距
         description: 开启后可通过上方选项调整行间距
         type: class-toggle
         default: true
@@ -72,16 +69,13 @@ settings:
         default: false
     -
         id: scrollbar-movein-animation
-        title: enable scrollbar movein animation
-        title.zh: 启用滚动条鼠标移入动画效果
+        title: 启用滚动条鼠标移入动画效果
         type: class-toggle
         default: true
     -
         id: scrollbar-gutter
-        title: scrollbar gutter config
-        description: scroll bar appears without squeezing the parent container❗overlay property is marked as deprecated officially
-        title.zh: 控制滚动条槽
-        description.zh: 使滚动条出现时不会对父容器产生挤压，选项：默认(default) / 悬浮滚动条(overlay) / 预留滚动条位置(reserve)❗overlay可能在后续的版本不支持
+        title: 控制滚动条槽
+        description: 使滚动条出现时不会对父容器产生挤压，选项：默认(default) / 悬浮滚动条(overlay) / 预留滚动条位置(reserve)❗overlay可能在后续的版本不支持
         type: class-select
         allowEmpty: false
         default: scrollbar-gutter-default
@@ -135,18 +129,17 @@ settings:
         collapsed: true
     -
         id: anp-pdf-blend-toggle-dark
-        title: Toggle PDF background blending - Dark Mode
+        title: 在黑暗模式下将 PDF 查看器背景与黑曜石背景融合
         desc: 在黑暗模式下将 PDF 查看器背景与黑曜石背景融合
         type: class-toggle
     -
         id: anp-pdf-blend-toggle-light
-        title: Toggle PDF background blending - Light Mode
+        title: 在浅色模式下将 PDF 查看器背景与黑曜石背景混合
         desc: 在浅色模式下将 PDF 查看器背景与黑曜石背景混合
         type: class-toggle
     -
         id: hr-for-pagination
-        title: Use hr (---) for Paging
-        title.zh: 使用分隔符（---）分页
+        title: 使用分隔符（---）分页
         type: class-toggle
         default: false
  */
@@ -872,15 +865,12 @@ progress{
 
 
 /* 软件设置面板优化显示 */
-.modal.mod-settings .vertical-tab-header{
-  padding:var(--size-4-3);
-}
 
 .theme-light .setting-group .setting-items{
-  background-color: #bababa30 !important;
+  background-color: transparent ;
 }
 .theme-dark .setting-group .setting-items{
-  background-color: #3434346e !important;
+  background-color: #343434 !important;
 }
 
 .vertical-tab-nav-item-icon{
@@ -949,14 +939,14 @@ progress{
 
 
 .theme-dark:not(.graph-control-section) .setting-item:not(.setting-item-heading){
-  background-color: #6a6a6a29 !important;
+  background-color: #343434 !important;
   border: none;
-  padding: 10px;
+  padding: 10px 20px;
 }
 .theme-light:not(.graph-control-section) .setting-item.setting-item:not(.setting-item-heading){
-  background-color: #827e7e10 !important;
+  background-color: #bababa21 !important;
   border: none;
-  padding: 10px;
+  padding: 10px 20px;
 }
 
 .horizontal-tab-content, .vertical-tab-content{
@@ -973,19 +963,28 @@ progress{
 
 .theme-light .dropdown,
 .theme-light .dropdown{
-  border:1px solid rgba(0, 0, 0, 0.1);
+  border:1px solid var(--tab-outline-color);
   background-color: transparent;
   box-shadow: inherit;
 }
 .dropdown:hover{
   box-shadow: none !important;
+  background-color: var(--dropdown-background) !important;
 }
-
+.menu,
+.prompt,
+.modal,
+.popover,
+.suggestion-container.mod-search-suggestion,
+.graph-controls:not(.is-close){
+  border: 0.5px solid var(--tab-outline-color);
+  box-shadow: var(--shadow-l) !important;
+}
 .theme-light .setting-group .setting-group-search{
-  background-color: #ffffff10 !important;
+  background-color: #bababa21 !important;
 }
 .theme-dark .setting-group .setting-group-search{
-  background-color: #6a6a6a29 !important;
+  background-color: #343434 !important;
 }
 .theme-light .modal .modal-content .vertical-tab-header-group-items .vertical-tab-nav-item.is-active,
 .theme-dark .modal .modal-content .vertical-tab-header-group-items .vertical-tab-nav-item.is-active
@@ -1031,4 +1030,79 @@ body:not(.is-mobile) .workspace-split.mod-left-split.is-sidedock-collapsed .work
 .theme-light .checkbox-container.is-enabled{
   box-shadow:none !important;
   border: none !important;
+}
+
+.u-muted{
+  color: var(--text-faint) !important;
+}
+
+/* 主题索引卡创建和选按钮居左对齐*/
+.admonition-parent.admonition-info-parent p .mb-button-group.mb-button-group {
+  & > .mb-button {
+      &:last-child:first-child {
+          & > .mb-button-inner {
+          padding-left: 0;
+          cursor: pointer;
+}}}}
+
+
+.admonition-parent.admonition-info-parent p .internal-link{
+  font-size: var(--font-text-size) !important;
+  vertical-align: text-bottom;
+}
+.admonition-parent.admonition-info-parent p .internal-link::before{
+  content: "🗃️";
+}
+
+/* 数据库看板视图 */
+.bases-kanban-card-property.mod-title .bases-kanban-card-line{
+  font-size: small !important;
+}
+.bases-kanban-column-count{
+  min-width: 30px;
+  background: var(--background-modifier-box-shadow);
+  border-radius: 999px;
+}
+
+.bases-kanban-card {
+  box-shadow: none !important;
+  padding: 0 5px !important;
+  
+}
+.bases-kanban-card-property.mod-title:hover {
+  cursor: var(--cursor-link) !important;
+}
+
+.bases-kanban-card-property.mod-title::before{
+  content: "・";
+  width: 8px;
+}
+
+.bases-kanban-card-property{
+  display: flex;
+  align-items: center;
+}
+
+.bases-kanban-card-line {
+  font-size: smaller;
+}
+.bases-kanban-card-label{
+  background-color: var(--interactive-normal);
+  padding: 3px var(--size-4-2);
+  border-radius: 999px;
+  font-size: x-small;
+}
+.bases-kanban-column{
+  border: none !important;
+}
+.bases-kanban-container{
+  scrollbar-width: thin;
+}
+
+.bases-kanban-column-header{
+  margin-bottom: 5px;
+}
+
+.mod-right-split .workspace-tab-header-container .workspace-tab-header-container-inner{
+overflow:hidden;
 }

@@ -1,8 +1,61 @@
-/*
+.editor-width-slider-container {
+	display: inline-flex;
+	align-items: center;
+}
 
-This CSS file will be included with your plugin, and
-available in the app when your plugin is enabled.
+.editor-width-slider {
+	-webkit-appearance: none;
+	appearance: none;
+	height: 2px;
+	border-radius: 3px;
+	background: var(--background-modifier-border);
+	outline: none;
+}
 
-If your plugin does not need CSS, delete this file.
+.editor-width-slider:disabled {
+	pointer-events: none;
+	opacity: 0.55;
+}
 
-*/
+#editor-width-slider::-webkit-slider-thumb {
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	margin-top: 3px;
+}
+
+#editor-width-slider::-webkit-slider-thumb:hover {
+	transform: scale(1.1);
+	background: var(--interactive-accent-hover);
+}
+
+#editor-width-slider::-moz-range-thumb {
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	margin-top: 3px;
+}
+
+#editor-width-slider::-moz-range-thumb:hover {
+	transform: scale(1.1);
+	background: var(--interactive-accent-hover);
+}
+
+.editor-width-slider-value {
+	display: inline-flex;
+	align-items: center;
+	width: auto;
+	height: auto;
+	box-sizing: content-box;
+	margin: 0 2px;
+	padding: 3px;
+	color: var(--code-normal);
+	line-height: 50%;
+	cursor: pointer;
+	background: transparent;
+	transition: background 0.3s;
+}
+
+.editor-width-slider-value:hover {
+	background: red;
+}

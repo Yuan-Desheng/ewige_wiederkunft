@@ -408,6 +408,9 @@
     display: block;
     width: fit-content;
     margin-bottom: 10px;
+    position: relative;
+    z-index: 2;
+    pointer-events: auto;
 }
 
 .imagen-text-wrap .image-wrapper {
@@ -422,6 +425,32 @@
 .cm-content .imagen-text-wrap.image-embed {
     display: flex;
     flex-direction: column;
+}
+
+/* 编辑列表中的图片源码时，预览已由独立 tooltip 承载，无需行内等高占位。 */
+.cm-content .HyperMD-list-line > .cm-image-reveal-spacer {
+    height: 0 !important;
+}
+
+/* 不修改 CodeMirror 管理的行节点，通过图片标记定位左环绕列表起始行。 */
+.cm-content .HyperMD-list-line:has(> .imagen-text-wrap[data-imagen-left-wrap-id]) {
+    position: relative;
+}
+
+.cm-content .HyperMD-list-line:has(> .imagen-text-wrap[data-imagen-left-wrap-id])::before {
+    content: '';
+    float: left;
+    width: calc(var(--imagen-left-wrap-width, 0px) + 15px);
+    height: calc(var(--imagen-left-wrap-height, 0px) + 14px);
+}
+
+.cm-content .HyperMD-list-line:has(> .imagen-text-wrap[data-imagen-left-wrap-id]) > .imagen-wrap-left-rounded,
+.cm-content .HyperMD-list-line:has(> .imagen-text-wrap[data-imagen-left-wrap-id]) > .imagen-wrap-left-circle {
+    position: absolute !important;
+    inset-inline-start: 0;
+    top: 4px;
+    float: none !important;
+    margin: 0 !important;
 }
 
 /* #LR - 左侧圆角图文环绕 */
@@ -460,7 +489,7 @@
 }
 
 .imagen-wrap-left-circle img {
-    border-radius: 50%;
+    border-radius: 50% !important;
     aspect-ratio: 1 / 1;
     object-fit: cover;
 }
@@ -580,6 +609,13 @@
 .markdown-preview-view .imagen-text-wrap .image-wrapper,
 .markdown-rendered .imagen-text-wrap .image-wrapper {
     display: block;
+}
+
+/* 阅读模式：首个列表项目符号位于浮动图片之前，需要同步移到图片右侧。 */
+.markdown-preview-view li:has(> .imagen-wrap-left-rounded, > .imagen-wrap-left-circle) > .list-bullet,
+.markdown-rendered li:has(> .imagen-wrap-left-rounded, > .imagen-wrap-left-circle) > .list-bullet {
+    position: relative;
+    inset-inline-start: var(--imagen-reading-left-wrap-offset, 0px);
 }
 
 /* ========== PDF 导出 / 打印样式 ========== */

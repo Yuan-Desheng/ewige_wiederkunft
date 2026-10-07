@@ -405,6 +405,121 @@
   color: var(--text-normal);
 }
 
+.flowtext-settings-tabs-shell {
+  min-width: 0;
+}
+.flowtext-settings-sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 12;
+  isolation: isolate;
+  margin: 0 0 14px;
+  padding: 8px 0 0;
+  background: var(--background-primary);
+  border-bottom: 1px solid var(--background-modifier-border);
+  box-shadow: 0 8px 12px -12px var(--background-modifier-box-shadow);
+}
+.flowtext-settings-sticky-header::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: -64px;
+  right: -32px;
+  bottom: 0;
+  left: -32px;
+  background: var(--background-primary);
+  pointer-events: none;
+}
+.flowtext-settings-sticky-header > h2 {
+  margin: 0;
+  padding: 0 2px 8px;
+  font-size: var(--h3-size);
+  line-height: 1.4;
+}
+.flowtext-settings-tabs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  overflow-x: auto;
+  padding: 8px 2px 7px;
+  margin: 0;
+  background: var(--background-primary);
+  scrollbar-width: thin;
+}
+.flowtext-settings-tab {
+  flex: 0 0 auto;
+  min-height: 30px;
+  padding: 5px 10px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-s);
+  box-shadow: none !important;
+  background: transparent !important;
+  color: var(--text-muted);
+  font-size: var(--font-ui-small);
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.flowtext-settings-tab:hover {
+  color: var(--text-normal);
+  background: var(--background-modifier-hover) !important;
+}
+.flowtext-settings-tab.is-active {
+  color: var(--text-on-accent);
+  background: var(--interactive-accent) !important;
+}
+.flowtext-settings-tab:focus-visible {
+  outline: 2px solid var(--background-modifier-border-focus);
+  outline-offset: 1px;
+}
+.flowtext-settings-tab-panels,
+.flowtext-settings-tab-panel {
+  min-width: 0;
+}
+.flowtext-settings-tab-panel[hidden] {
+  display: none !important;
+}
+.flowtext-settings-tab-panel > h3:first-child {
+  margin-top: 0;
+}
+
+
+.flowtext-pageindex-python-download {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 4px 9px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--button-radius);
+  color: var(--text-accent);
+  font-size: var(--font-ui-small);
+  font-weight: 500;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.flowtext-pageindex-python-download:hover {
+  border-color: var(--interactive-accent);
+  background: var(--background-modifier-hover);
+  text-decoration: none;
+}
+.flowtext-pageindex-python-download[hidden] {
+  display: none !important;
+}
+
+.flowtext-pageindex-advanced > summary {
+  padding: 9px 12px;
+  color: var(--text-muted);
+  font-size: var(--font-ui-small);
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+}
+
+
+.flowtext-pageindex-advanced-body {
+  padding: 0 12px 4px;
+}
+
 
 /* 供应商和模型配置表格样式 - 简约紧凑版本 */
 .flowtext-config-table {
@@ -423,7 +538,7 @@
   font-weight: 500;
   padding: 8px 12px;
   text-align: left;
-  border-bottom: 2px solid var(--background-modifier-border);
+  border-bottom: 1px solid var(--background-modifier-border);
   font-size: 0.85em;
   white-space: nowrap;
 }
@@ -461,6 +576,52 @@
 .flowtext-config-table .flowtext-enable-cell {
   text-align: center;
   width: 60px;
+}
+
+.flowtext-config-table .flowtext-model-capabilities-cell {
+  min-width: 156px;
+}
+
+.flowtext-model-capabilities {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.flowtext-model-capability {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-normal) !important;
+  transition: opacity 120ms ease, color 120ms ease, border-color 120ms ease;
+}
+
+
+.flowtext-model-capability svg {
+  width: 16px;
+  height: 16px;
+}
+
+.flowtext-model-capability--supported {
+  color: var(--interactive-accent);
+  border-color: color-mix(in srgb, var(--interactive-accent) 45%, var(--background-modifier-border));
+}
+
+.flowtext-model-capability--unknown {
+  opacity: 0.38;
+}
+
+.flowtext-model-capability--unsupported {
+  opacity: 0.08;
+  filter: grayscale(1);
+}
+
+.flowtext-model-capability:hover,
+.flowtext-model-capability:focus-visible {
+  opacity: 1;
+  color: var(--interactive-accent-hover);
+  border-color: var(--interactive-accent);
 }
 
 .flowtext-config-table button {
@@ -2006,6 +2167,21 @@
   height: 100%;
   overflow: hidden;
   background: var(--background-primary);
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+/* Obsidian 侧栏默认可能继承不可选状态；Agent 的所有阅读内容均允许自由拖选。 */
+.flowtext-agent-log,
+.flowtext-agent-step-content,
+.flowtext-agent-step-text,
+.flowtext-agent-turn-plan,
+.flowtext-agent-subtask-label,
+.flowtext-agent-subtask-detail,
+.flowtext-agent-rollback-panel,
+.flowtext-agent-session-panel {
+  user-select: text;
+  -webkit-user-select: text;
 }
 .workspace-leaf-content[data-type="flowtext-agent-view"] .view-content{
   padding-bottom: 0 !important;
@@ -2079,13 +2255,20 @@
 /* 日志区域 */
 .flowtext-agent-body {
   flex: 1;
+  min-height: 0;
   overflow-y: auto;
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
+  overflow-anchor: none;
+  scrollbar-width: thin;
 }
 
 .flowtext-agent-log {
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
+  min-height: 100%;
+  box-sizing: border-box;
+  padding-bottom: 12px;
   gap: 2px;
 }
 
@@ -2095,6 +2278,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-block: auto;
   padding: 48px 16px;
   gap: 12px;
   opacity: 0.5;
@@ -2150,8 +2334,7 @@
 .flowtext-agent-step-icon {
   flex-shrink: 0;
   display: flex;
-  align-items: flex-start;
-  padding-top: 1px;
+  align-items: center;
   color: var(--text-faint);
 }
 .flowtext-agent-step-icon svg {
@@ -2169,13 +2352,8 @@
 }
 
 .flowtext-agent-step-label {
-  font-size: 10px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-size: 12px;
   color: var(--text-faint);
-  line-height: 1;
-  margin-bottom: 3px;
 }
 
 .flowtext-agent-step-text {
@@ -2357,6 +2535,8 @@ button.flowtext-agent-vault-file:hover {
   line-height: 1.35;
   text-overflow: ellipsis;
   white-space: nowrap;
+  user-select: text;
+  -webkit-user-select: text;
 }
 .flowtext-agent-vault-file-tier {
   flex: 0 0 auto;
@@ -2371,13 +2551,32 @@ button.flowtext-agent-vault-file.is-supplementary {
   color: var(--text-muted);
 }
 /* MarkdownRenderer 输出：避免 pre-wrap 破坏块级排版，并约束宽内容 */
+.flowtext-agent-file-link {
+  color: var(--text-accent);
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: color 0.15s ease;
+}
+.flowtext-agent-file-link:hover {
+  color: var(--text-accent-hover);
+  text-decoration: underline;
+}
+code .flowtext-agent-file-link {
+  color: var(--text-accent);
+}
+
 .flowtext-agent-step-text.flowtext-agent-step-text--markdown,
-.flowtext-agent-turn-plan.flowtext-agent-turn-plan--markdown {
+.flowtext-agent-turn-plan.flowtext-agent-turn-plan--markdown,
+.flowtext-agent-turn-card--markdown .flowtext-agent-subtask-label--markdown,
+.flowtext-agent-turn-card--markdown .flowtext-agent-subtask-detail--markdown {
   position: relative;
   white-space: normal;
+  line-height: 1.5em;
 }
 .flowtext-agent-step-text.flowtext-agent-step-text--markdown img,
-.flowtext-agent-turn-plan.flowtext-agent-turn-plan--markdown img {
+.flowtext-agent-turn-plan.flowtext-agent-turn-plan--markdown img,
+.flowtext-agent-turn-card--markdown .flowtext-agent-markdown-mount img {
   max-width: 100%;
   height: auto;
   vertical-align: middle;
@@ -2385,7 +2584,8 @@ button.flowtext-agent-vault-file.is-supplementary {
 .flowtext-agent-step-text.flowtext-agent-step-text--markdown .markdown-rendered table,
 .flowtext-agent-step-text.flowtext-agent-step-text--markdown table,
 .flowtext-agent-turn-plan.flowtext-agent-turn-plan--markdown .markdown-rendered table,
-.flowtext-agent-turn-plan.flowtext-agent-turn-plan--markdown table {
+.flowtext-agent-turn-plan.flowtext-agent-turn-plan--markdown table,
+.flowtext-agent-turn-card--markdown .flowtext-agent-markdown-mount table {
   display: block;
   max-width: 100%;
   overflow-x: auto;
@@ -2417,80 +2617,138 @@ button.flowtext-agent-vault-file.is-supplementary {
 
 /* Agent 单轮 LLM：父级规划 + 子任务执行/验证 */
 .flowtext-agent-turn-card {
-  margin: 6px 0 10px;
-  padding: 10px 12px;
+  padding: 0 12px;
   border-radius: 10px;
-}
-.flowtext-agent-turn-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  margin-bottom: 8px;
-  padding-bottom: 6px;
-  border-bottom: 1px solid var(--background-modifier-border);
-}
-.flowtext-agent-turn-head-left {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  min-width: 0;
-}
-.flowtext-agent-turn-head-icon {
-  display: flex;
-  color: var(--text-muted);
-  flex-shrink: 0;
-}
-.flowtext-agent-turn-head-icon svg {
-  width: 14px;
-  height: 14px;
 }
 
 .flowtext-agent-turn-card--preflight .flowtext-agent-turn-plan {
   color: var(--text-muted);
 }
-.flowtext-agent-turn-card .flowtext-agent-turn-head-icon svg {
-  animation: flowtext-spin 1s linear infinite;
-}
-.flowtext-agent-turn-card--reasoning-done .flowtext-agent-turn-head-icon svg {
-  animation: none;
-}
-.flowtext-agent-turn-iter {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text-normal);
-}
-.flowtext-agent-turn-timer {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 11px;
-  color: var(--color-orange);
-  font-variant-numeric: tabular-nums;
-  flex-shrink: 0;
-}
-.flowtext-agent-turn-timer-icon {
-  display: flex;
-  color: var(--color-orange);
-  flex-shrink: 0;
-}
-.flowtext-agent-turn-timer-icon svg {
-  width: 12px;
-  height: 12px;
-}
-.flowtext-agent-turn-timer-text {
-  line-height: 1;
-}
+
 .flowtext-agent-turn-plan {
   font-size: 13px;
-  line-height: 1.5;
   color: var(--text-normal);
   word-break: break-word;
+}
+.flowtext-agent-turn-plan--streaming {
+  position: relative;
+  white-space: pre-wrap;
+  line-height: 1.5em;
+}
+.flowtext-agent-thought-stream-preview {
+  min-height: 1.5em;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.flowtext-agent-reasoning-status {
+  display: none;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 4px;
+  color: var(--text-faint);
+  font-size: 10px;
+  line-height: 1.4;
+}
+.flowtext-agent-reasoning-status-icon {
+  display: inline-flex;
+}
+.flowtext-agent-reasoning-status-icon svg {
+  width: 11px;
+  height: 11px;
+}
+.flowtext-agent-reasoning-status.is-active {
+  color: var(--interactive-accent);
+}
+.flowtext-agent-reasoning-status.is-active .flowtext-agent-reasoning-status-icon {
+  animation: flowtext-agent-reasoning-pulse 1.2s ease-in-out infinite;
+}
+.flowtext-agent-reasoning-status.is-complete {
+  color: var(--text-success, var(--interactive-success));
+}
+.flowtext-agent-reasoning-status.is-unobserved {
+  color: var(--text-muted);
+}
+@keyframes flowtext-agent-reasoning-pulse {
+  0%, 100% { opacity: 0.45; transform: scale(0.92); }
+  50% { opacity: 1; transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flowtext-agent-reasoning-status.is-active .flowtext-agent-reasoning-status-icon {
+    animation: none;
+  }
+}
+.flowtext-agent-turn-plan--weaving {
+  min-height: 20px;
+}
+.flowtext-agent-weaving-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.flowtext-agent-weaving-orb {
+  display: block;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 20px;
+  color: var(--text-muted);
+}
+.flowtext-agent-weaving-label {
+  --flowtext-weaving-base: var(--text-muted);
+  --flowtext-weaving-edge: var(--color-accent);
+  --flowtext-weaving-shine: var(--text-normal);
+  line-height: 20px;
+  letter-spacing: 0.01em;
+  color: transparent;
+  background-image: linear-gradient(
+    135deg,
+    var(--flowtext-weaving-base) 0%,
+    var(--flowtext-weaving-base) 38%,
+    var(--flowtext-weaving-edge) 46%,
+    var(--flowtext-weaving-shine) 50%,
+    var(--flowtext-weaving-edge) 54%,
+    var(--flowtext-weaving-base) 62%,
+    var(--flowtext-weaving-base) 100%
+  );
+  background-size: 220% 100%;
+  background-position: 100% 50%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  will-change: background-position;
+  animation: flowtext-agent-weaving-shine 1.65s linear infinite;
+}
+.theme-dark .flowtext-agent-weaving-label {
+  --flowtext-weaving-base: #8f96a3;
+  --flowtext-weaving-shine: #ffffff;
+}
+.theme-light .flowtext-agent-weaving-label {
+  --flowtext-weaving-base: #6b7280;
+  --flowtext-weaving-shine: #111827;
+}
+@keyframes flowtext-agent-weaving-shine {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: -100% 50%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flowtext-agent-weaving-orb {
+    opacity: 0.9;
+  }
+  .flowtext-agent-weaving-label {
+    color: var(--text-muted);
+    background: none;
+    -webkit-text-fill-color: currentColor;
+    animation: none;
+  }
 }
 .flowtext-agent-turn-children {
   display: flex;
   flex-direction: column;
-  gap: 6px;
 }
 .flowtext-agent-turn-clarification-wrap {
   margin-top: 4px;
@@ -2509,9 +2767,6 @@ button.flowtext-agent-vault-file.is-supplementary {
   flex-direction: column;
   align-items: stretch;
   padding: 0;
-  border-radius: 6px;
-  background: var(--background-primary);
-  border: 0.5px solid var(--background-modifier-border);
   overflow: hidden;
 }
 .flowtext-agent-subtask-head {
@@ -2522,12 +2777,13 @@ button.flowtext-agent-vault-file.is-supplementary {
   gap: 8px 10px;
   padding: 6px 8px;
   cursor: pointer;
-  user-select: none;
-  -webkit-user-select: none;
+  user-select: text;
+  -webkit-user-select: text;
   transition: background 0.12s ease;
 }
 .flowtext-agent-subtask-head:hover {
   background: var(--background-modifier-hover);
+  border-radius: var(--radius-s);
 }
 /* 仅由 .is-expanded 控制：避免 collapsed+expanded 双类时 display 规则冲突导致无法收起 */
 .flowtext-agent-subtask .flowtext-agent-subtask-detail {
@@ -2538,7 +2794,7 @@ button.flowtext-agent-vault-file.is-supplementary {
 }
 .flowtext-agent-subtask-main {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 8px;
   flex: 1;
   min-width: 0;
@@ -2556,8 +2812,16 @@ button.flowtext-agent-vault-file.is-supplementary {
 .flowtext-agent-subtask-label {
   font-size: 12px;
   line-height: 1.45;
-  color: var(--text-normal);
+  color: var(--text-faint);
   word-break: break-word;
+}
+.flowtext-agent-subtask-label--markdown .flowtext-agent-markdown-mount > :first-child,
+.flowtext-agent-subtask-detail--markdown .flowtext-agent-markdown-mount > :first-child {
+  margin-top: 0;
+}
+.flowtext-agent-subtask-label--markdown .flowtext-agent-markdown-mount > :last-child,
+.flowtext-agent-subtask-detail--markdown .flowtext-agent-markdown-mount > :last-child {
+  margin-bottom: 0;
 }
 .flowtext-agent-subtask-status {
   font-size: 11px;
@@ -2567,33 +2831,75 @@ button.flowtext-agent-vault-file.is-supplementary {
   border-radius: 4px;
   line-height: 1.4;
 }
+.flowtext-agent-subtask-progress {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	margin-left: auto;
+  padding: 1px 7px;
+  border-radius: 999px;
+  color: var(--text-muted);
+  background: var(--background-modifier-hover);
+  font-size: 10px;
+  line-height: 1.5;
+  white-space: normal;
+  text-align: right;
+	max-width: min(68%, 340px);
+}
+.flowtext-agent-subtask-progress.is-active::before {
+	content: '';
+	width: 7px;
+	height: 7px;
+	box-sizing: border-box;
+	border: 1.5px solid currentColor;
+	border-right-color: transparent;
+	border-radius: 50%;
+	flex: 0 0 auto;
+	animation: flowtext-spin 0.8s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+	.flowtext-agent-subtask-progress.is-active::before {
+		animation: none;
+		border-right-color: currentColor;
+		opacity: 0.55;
+	}
+}
 .flowtext-agent-subtask--running .flowtext-agent-subtask-status {
-  background: rgba(120, 120, 200, 0.15);
   color: var(--color-purple);
 }
-.flowtext-agent-subtask--done .flowtext-agent-subtask-status.is-ok {
-  background: rgba(0, 180, 80, 0.12);
-  color: var(--text-success, #0a0);
+.flowtext-agent-subtask--done .flowtext-agent-subtask-status.is-ok,
+.flowtext-agent-subtask--fixed .flowtext-agent-subtask-status.is-ok {
+  color: var(--text-faint, #0a0);
 }
 .flowtext-agent-subtask--fail .flowtext-agent-subtask-status.is-fail {
-  background: rgba(220, 80, 80, 0.12);
   color: var(--text-error, #c00);
-}
-.flowtext-agent-subtask--fixed .flowtext-agent-subtask-status.is-fixed {
-  background: rgba(80, 140, 220, 0.14);
-  color: var(--color-blue);
 }
 .flowtext-agent-subtask-detail {
   width: 100%;
   box-sizing: border-box;
   font-size: 11px;
   line-height: 1.45;
-  color: var(--text-muted);
+  color: var(--text-faint);
   white-space: pre-wrap;
   word-break: break-word;
   padding: 0 8px 8px;
   margin: 0;
-  border-top: 1px dashed var(--background-modifier-border);
+}
+
+.flowtext-agent-subtask-detail--markdown {
+  white-space: normal;
+  font-size: 12px;
+  line-height: 1.55;
+}
+.flowtext-agent-subtask-detail--markdown .markdown-rendered > :first-child {
+  margin-top: 8px;
+}
+.flowtext-agent-subtask-detail--markdown .markdown-rendered > :last-child {
+  margin-bottom: 0;
+}
+.flowtext-agent-subtask-detail--markdown p,
+.flowtext-agent-subtask-detail--markdown li {
+  color: var(--text-muted);
 }
 
 .flowtext-agent-parallel-group-title {
@@ -2614,6 +2920,7 @@ button.flowtext-agent-vault-file.is-supplementary {
 /* 结果 */
 .flowtext-agent-step--observation {
   padding: 6px 10px;
+  display: none;
 }
 .flowtext-agent-step--observation .flowtext-agent-step-text {
   max-height: 120px;
@@ -2748,21 +3055,22 @@ button.flowtext-agent-vault-file.is-supplementary {
   height: 24px;
   border-radius: 4px;
   cursor: pointer;
-  color: var(--text-faint);
+  color: var(--text-accent);
   opacity: 0;
   transition: opacity 0.15s, background 0.15s, color 0.15s;
+  background: var(--background-secondary);
 }
 .flowtext-agent-copy-btn svg {
-  width: 13px;
-  height: 13px;
+  width: 15px;
+  height: 15px;
 }
 .flowtext-agent-step-text.flowtext-agent-step-text--markdown:hover .flowtext-agent-copy-btn,
 .flowtext-agent-turn-plan.flowtext-agent-turn-plan--markdown:hover .flowtext-agent-copy-btn {
   opacity: 1;
 }
 .flowtext-agent-copy-btn:hover {
-  background: var(--background-modifier-hover);
-  color: var(--text-normal);
+  background: var(--background-secondary);
+  color: var(--text-accent);
 }
 .flowtext-agent-copy-btn.is-copied {
   opacity: 1;
@@ -2772,6 +3080,51 @@ button.flowtext-agent-vault-file.is-supplementary {
 /* Agent 追问：可点击选项 */
 .flowtext-agent-followup-choices {
   margin-top: 8px;
+}
+.flowtext-agent-clarification-form {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-top: 3px;
+}
+.flowtext-agent-clarification-question {
+  display: flex;
+  flex-direction: column;
+}
+.flowtext-agent-clarification-question + .flowtext-agent-clarification-question {
+  padding-top: 8px;
+  border-top: 1px dashed var(--background-modifier-border);
+}
+.flowtext-agent-clarification-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  min-width: 0;
+}
+.flowtext-agent-clarification-header {
+  color: var(--text-warning);
+  flex: 0 0 auto;
+  font-size: 12px;
+  font-weight: 600;
+}
+.flowtext-agent-clarification-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 12px;
+}
+.flowtext-agent-clarification-title p{
+  margin: 0;
+}
+.flowtext-agent-clarification-title > :first-child,
+.flowtext-agent-clarification-title > :last-child,
+.flowtext-agent-clarification-detail > :first-child,
+.flowtext-agent-clarification-detail > :last-child {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.flowtext-agent-clarification-detail {
+  color: var(--text-muted);
+  font-size: 11.5px;
 }
 .flowtext-agent-followup-hint {
   font-size: 12px;
@@ -2783,22 +3136,24 @@ button.flowtext-agent-vault-file.is-supplementary {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 6px;
   width: 100%;
 }
 .flowtext-agent-choice-chip {
   display: flex;
   align-items: flex-start;
-  gap: 8px;
+  gap: 6px;
   width: 100%;
   box-sizing: border-box;
   text-align: left;
-  font-size: 13px;
-  line-height: 1.45;
+  font-size: 12px;
   background: transparent !important;
   cursor: pointer;
-  padding: 8px 10px;
+  padding: 6px 8px;
   box-shadow: none !important;
+}
+.flowtext-agent-choice-chip.is-selected {
+  background: var(--background-modifier-hover) !important;
+  border-color: var(--interactive-accent);
 }
 .flowtext-agent-choice-chip-icon {
   display: flex;
@@ -2806,7 +3161,7 @@ button.flowtext-agent-vault-file.is-supplementary {
   justify-content: center;
   flex-shrink: 0;
   width: 14px;
-  margin-top: 3px;
+  margin-top: 1px;
   color: var(--text-muted);
 }
 .flowtext-agent-choice-chip-icon svg {
@@ -2814,7 +3169,63 @@ button.flowtext-agent-vault-file.is-supplementary {
   height: 14px;
 }
 .flowtext-agent-choice-chip-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
+.flowtext-agent-choice-chip-copy {
+  display: flex;
   flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+}
+.flowtext-agent-choice-chip-description {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-normal);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.35;
+}
+.flowtext-agent-choice-recommended {
+  border-radius: 999px;
+  padding: 1px 6px;
+  background: color-mix(in srgb, var(--interactive-accent) 14%, transparent);
+  color: var(--interactive-accent);
+  font-size: 10px;
+  font-weight: 600;
+}
+.flowtext-agent-clarification-custom {
+  width: 100%;
+  resize: vertical;
+  box-sizing: border-box;
+  font-size: 12px;
+}
+.flowtext-agent-clarification-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+}
+.flowtext-agent-clarification-footer button {
+  min-height: 28px;
+  padding: 3px 9px;
+  font-size: 12px;
+}
+.flowtext-agent-clarification-error {
+  flex: 1 0 100%;
+  color: var(--text-error);
+  font-size: 12px;
+  text-align: right;
+}
+.flowtext-agent-clarification-form.is-answered,
+.flowtext-agent-clarification-form.is-cancelled {
+  opacity: 0.72;
+}
+.flowtext-agent-choice-chip-label {
   min-width: 0;
   white-space: normal;
   word-break: break-word;
@@ -2890,7 +3301,8 @@ button.flowtext-agent-vault-file.is-supplementary {
   line-height: 1.4;
   color: var(--text-muted);
   cursor: pointer;
-  user-select: none;
+  user-select: text;
+  -webkit-user-select: text;
 }
 
 .flowtext-agent-task-state-summary-toggle {
@@ -3153,7 +3565,6 @@ button.flowtext-agent-vault-file.is-supplementary {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 6px;
 }
 
 /* Agent 工作上下文已使用量（圆环 + 百分比；接近压缩阈值时变色） */
@@ -3163,7 +3574,6 @@ button.flowtext-agent-vault-file.is-supplementary {
   align-items: center;
   justify-content: center;
   gap: 4px;
-  min-width: 58px;
 }
 .flowtext-agent-context-bars {
   position: relative;
@@ -3236,71 +3646,84 @@ button.flowtext-agent-vault-file.is-supplementary {
   font-weight: 600;
 }
 
-/* 选项行：加号上传 → 模型下拉 → 思考开关 */
+/* 选项行：加号上传 → 模型/运行选项下拉 */
 .flowtext-agent-options-row {
   display: flex;
   align-items: center;
-  gap: 4px;
   flex-shrink: 0;
 }
 .flowtext-agent-options-row .flowtext-agent-upload-img-btn {
   flex-shrink: 0;
 }
 
+.flowtext-agent-web-search-mode-btn {
+	flex: 0 0 26px;
+	width: 26px;
+	height: 26px;
+	padding: 5px;
+	color: var(--text-muted);
+}
+.flowtext-agent-web-search-mode-btn svg {
+	width: 14px;
+	height: 14px;
+}
+.flowtext-agent-web-search-mode-btn.is-active {
+	color: var(--interactive-accent);
+}
+.flowtext-agent-web-search-mode-btn:hover {
+	color: var(--interactive-accent);
+	background: transparent !important;
+}
+
 .flowtext-agent-model-select {
-  padding: 2px 18px 2px 6px;
-  border-radius: 5px;
-  background: transparent;
-  color: var(--text-faint);
-  font-size: 12px;
-  max-width: 150px;
-  outline: none;
-  cursor: pointer;
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' stroke='grey' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 5px center;
-  background-size: 10px;
-  box-shadow: none !important;
+	display: inline-flex;
+	align-items: center;
+	gap: 3px;
+	padding: 2px 4px 2px 6px;
+	border: none;
+	background: transparent !important;
+	color: var(--text-faint);
+	font-size: 12px;
+	max-width: 150px;
+	outline: none;
+	cursor: pointer;
+	box-shadow: none !important;
 }
 .flowtext-agent-model-select:hover {
-  background-color: transparent;
+	background-color: transparent !important;
+	color: var(--text-muted);
+}
+.flowtext-agent-model-select-label {
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+  color: var(--text-faint);
+}
+.flowtext-agent-model-select-chevron {
+	display: inline-flex;
+	flex: 0 0 auto;
+}
+.flowtext-agent-model-select-chevron svg {
+	width: 11px;
+	height: 11px;
 }
 
-/* 思考模式开关 */
-.flowtext-agent-thinking-toggle {
-  display: inline-flex;
-  align-items: center;
-  padding: 2px 8px;
-  border-radius: 50%;
-  color: var(--text-muted);
-  cursor: pointer;
-  margin-left: 4px;
-  user-select: none;  
-  justify-content: center;  
-  transition: color 0.15s, opacity 0.15s;
-  display: none;
-}
-.flowtext-agent-thinking-icon svg{
-  width: 13px !important; 
-  height: 13px !important; 
-}
-.flowtext-agent-thinking-toggle:hover {
-  color: var(--interactive-accent);
-  opacity: 0.8;
-}
-.flowtext-agent-thinking-toggle.is-active {
-  color: var(--interactive-accent);
-  border-radius: 50%;
-}
-.flowtext-agent-thinking-icon {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
+/* 模型入口的一级菜单：左侧项目名，右侧当前值；二级菜单由 Obsidian Menu 管理。 */
+.flowtext-agent-menu-title {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 24px;
+	width: 100%;
 }
 
-.flowtext-agent-thinking-label {
-  white-space: nowrap;
+.flowtext-agent-menu-value {
+	max-width: 120px;
+	overflow: hidden;
+	color: var(--text-faint);
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 /* 发送按钮 */
@@ -3309,13 +3732,12 @@ button.flowtext-agent-vault-file.is-supplementary {
   align-items: center;
   justify-content: center;
   border: none;
-  border-radius: 8px;
   background: transparent !important;
   cursor: pointer;
   flex-shrink: 0;
   transition: opacity 0.15s;
   box-shadow: none !important;
-  padding-right:6px;
+  padding:6px;
   gap: 2px;
 }
 .flowtext-agent-btn-send-icon {
@@ -3329,7 +3751,7 @@ button.flowtext-agent-vault-file.is-supplementary {
   background: var(--checklist-done-color);
   border-radius: 50%;
   color: var(--text-on-accent);
-  padding: 1px;
+  padding: 2px;
 }
 .flowtext-agent-btn-send.is-stop-mode .flowtext-agent-btn-send-icon svg {
   background: var(--checklist-done-color);
@@ -3381,6 +3803,14 @@ button.flowtext-agent-vault-file.is-supplementary {
   font-size: 12px;
   font-weight: 500;
   color: var(--text-normal);
+}
+.flowtext-agent-rollback-duration {
+  padding-left: 6px;
+  border-left: 1px solid var(--background-modifier-border);
+  color: var(--text-faint);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 .flowtext-agent-rollback-btn-all {
   padding: 3px 5px;
@@ -3533,26 +3963,54 @@ button.flowtext-agent-vault-file.is-supplementary {
 
 /* ==================== Agent 会话管理面板 ==================== */
 .flowtext-agent-session-panel {
-  border-bottom: 1px solid var(--background-modifier-border);
-  max-height: 260px;
+  position: fixed;
+  z-index: var(--layer-popover, 1000);
+  display: flex;
+  flex-direction: column;
+  width: min(310px, calc(100vw - 16px));
+  max-height: min(380px, calc(100vh - 16px));
+  overflow: hidden;
+  border: 0.5px solid var(--background-modifier-border);
+  border-radius: 10px;
+  background: var(--background-primary);
+  box-shadow: var(--shadow-l);
+  animation: flowtext-agent-fadeIn 0.12s ease;
+}
+.flowtext-agent-session-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 38px;
+  padding: 0 8px 0 11px;
+  border-bottom: 0.5px solid var(--background-modifier-border);
+  flex-shrink: 0;
+}
+.flowtext-agent-session-panel-title {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  min-width: 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-normal);
+}
+.flowtext-agent-session-count {
+  color: var(--text-faint);
+  font-size: 10px;
+  font-weight: 400;
+}
+.flowtext-agent-session-list-host {
+  min-height: 0;
   overflow-y: auto;
-  animation: flowtext-agent-fadeIn 0.2s ease;
+  scrollbar-width: thin;
 }
 .flowtext-agent-session-clear-all {
   font-size: 11px;
-  color: var(--text-faint);
   background: none;
   border: none;
   cursor: pointer;
   padding: 2px 6px;
   border-radius: 4px;
-  box-shadow: none;
-}
-.flowtext-agent-session-clear-all--header {
-  margin-right: 6px;
-  align-self: center;
-  flex-shrink: 0;
-  box-shadow: none !important;
 }
 .flowtext-agent-session-clear-all.is-confirm {
   color: var(--text-error);
@@ -3566,30 +4024,43 @@ button.flowtext-agent-vault-file.is-supplementary {
   color: var(--text-error);
 }
 .flowtext-agent-session-list {
-  padding: 2px 6px 6px;
+  padding: 5px;
 }
 .flowtext-agent-session-item {
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 6px 8px;
-  border-radius: 6px;
+  gap: 7px;
+  height: 34px;
+  padding: 0 5px 0 8px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background 0.15s;
+  outline: none;
+  transition: background 0.12s;
 }
-.flowtext-agent-session-item:hover {
+.flowtext-agent-session-item:hover,
+.flowtext-agent-session-item:focus-visible {
   background: var(--background-modifier-hover);
 }
-.flowtext-agent-session-item.is-active {
-  background: var(--background-modifier-active-hover, rgba(var(--interactive-accent-rgb), 0.05));
+.flowtext-agent-session-item.is-active::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  flex: 0 0 6px;
+  border-radius: 50%;
+  background: var(--interactive-accent);
 }
 
 .flowtext-agent-session-info {
   flex: 1;
   min-width: 0;
-  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 .flowtext-agent-session-title {
+  flex: 1;
+  min-width: 0;
   font-size: 12px;
   font-weight: 500;
   color: var(--text-normal);
@@ -3598,9 +4069,10 @@ button.flowtext-agent-vault-file.is-supplementary {
   text-overflow: ellipsis;
 }
 .flowtext-agent-session-meta {
+  flex-shrink: 0;
   font-size: 10px;
   color: var(--text-faint);
-  margin-top: 1px;
+  white-space: nowrap;
 }
 .flowtext-agent-session-del {
   flex-shrink: 0;
@@ -3616,10 +4088,16 @@ button.flowtext-agent-vault-file.is-supplementary {
   border-radius: 4px;
   cursor: pointer;
   opacity: 0;
-  transition: opacity 0.15s, color 0.15s;
+  padding: 0;
+  transition: opacity 0.12s, color 0.12s, background 0.12s;
   box-shadow: none;
 }
-.flowtext-agent-session-item:hover .flowtext-agent-session-del {
+.flowtext-agent-session-del svg {
+  width: 13px;
+  height: 13px;
+}
+.flowtext-agent-session-item:hover .flowtext-agent-session-del,
+.flowtext-agent-session-item:focus-within .flowtext-agent-session-del {
   opacity: 1;
 }
 .flowtext-agent-session-del:hover {
@@ -3627,10 +4105,16 @@ button.flowtext-agent-vault-file.is-supplementary {
   background: var(--background-modifier-hover);
 }
 .flowtext-agent-session-empty {
-  padding: 16px;
+  padding: 22px 16px;
   text-align: center;
   font-size: 12px;
   color: var(--text-faint);
+}
+
+@media (hover: none) {
+  .flowtext-agent-session-del {
+    opacity: 0.65;
+  }
 }
 
 /* ==================== Sparkles 触发器图标 ==================== */
@@ -3769,7 +4253,6 @@ button.flowtext-agent-vault-file.is-supplementary {
   min-width: 0;
 }
 .flowtext-settings-managed-item-title {
-  font-weight: bold;
   margin-bottom: 4px;
 }
 .flowtext-settings-managed-item-sub {
@@ -3786,27 +4269,27 @@ button.flowtext-agent-vault-file.is-supplementary {
   margin: 0 !important;
 }
 
-.flowtext-agent-turn-plan.flowtext-agent-turn-plan--markdown table td{
+.flowtext-agent-turn-card--markdown .flowtext-agent-markdown-mount table td{
   border: 1px solid var(--table-border-color);
   font-size: smaller;
   padding: 4px;
 }
 
-.flowtext-agent-turn-plan.flowtext-agent-turn-plan--markdown table th{
+.flowtext-agent-turn-card--markdown .flowtext-agent-markdown-mount table th{
   border: 1px solid var(--table-border-color);
   background-color: var(--background-modifier-hover);
   font-size: small;
 }
 
 
-.flowtext-agent-turn-plan.flowtext-agent-turn-plan--markdown pre{
+.flowtext-agent-turn-card--markdown .flowtext-agent-markdown-mount pre{
   position: relative;
   padding: 10px;
   border-radius: var(--code-radius);
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%2300681a' fill-opacity='0.22' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
 }
 
-.flowtext-agent-turn-plan.flowtext-agent-turn-plan--markdown .copy-code-button {
+.flowtext-agent-turn-card--markdown .flowtext-agent-markdown-mount .copy-code-button {
   position: absolute;
   top: -3px;
   right: -5px;
@@ -3815,15 +4298,180 @@ button.flowtext-agent-vault-file.is-supplementary {
   box-shadow: none;
   cursor: pointer;
 }
-.flowtext-agent-turn-plan.flowtext-agent-turn-plan--markdown .copy-code-button svg.svg-icon{
-  width: 10x;
+.flowtext-agent-turn-card--markdown .flowtext-agent-markdown-mount .copy-code-button svg.svg-icon{
+  width: 15px !important;
 }
-.flowtext-agent-turn-plan.flowtext-agent-turn-plan--markdown ol,
-.flowtext-agent-turn-plan.flowtext-agent-turn-plan--markdown ul{
-  padding-left: 15px;
+.flowtext-agent-turn-card--markdown .flowtext-agent-markdown-mount ol,
+.flowtext-agent-subtask-detail ol,
+.flowtext-agent-subtask-detail ul,
+.flowtext-agent-turn-card--markdown .flowtext-agent-markdown-mount ul{
+  padding-left: 30px;
 }
-.flowtext-agent-turn-plan.flowtext-agent-turn-plan--markdown blockquote{
+.flowtext-agent-turn-card--markdown .flowtext-agent-markdown-mount blockquote{
   margin: 15px;
   border-left: 2px solid var(--callout-quote);
   padding-left: 10px;
+}
+
+
+.flowtext-agent-turn-card h1,
+.flowtext-agent-step--observation h1{
+  font-size: larger;
+}
+.flowtext-agent-turn-card h2,
+.flowtext-agent-turn-card h3,
+.flowtext-agent-step--observation h2,
+.flowtext-agent-step--observation h3{
+  font-size: medium;
+}
+.flowtext-agent-turn-card h4,
+.flowtext-agent-turn-card h5,
+.flowtext-agent-turn-card h6,
+.flowtext-agent-step--observation h4,
+.flowtext-agent-step--observation h5,
+.flowtext-agent-step--observation h6{
+  font-size: small;
+}
+
+/* Canvas 节点菜单 AI */
+.flowtext-canvas-ai-button {
+  border: 0;
+  color: var(--text-muted);
+  flex: 0 0 auto;
+}
+
+.flowtext-canvas-ai-button:hover:not(:disabled) {
+  color: var(--interactive-accent);
+  background: var(--background-modifier-hover);
+}
+
+.flowtext-canvas-ai-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.flowtext-canvas-ai-button .flowtext-agent-welcome-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flowtext-canvas-ai-button .flowtext-agent-welcome-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.flowtext-canvas-ai-actions {
+  position: fixed;
+  z-index: 10015;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.flowtext-canvas-ai-pending {
+  min-width: 40px;
+  min-height: 30px;
+  justify-content: center;
+  gap: 4px;
+}
+
+.flowtext-canvas-ai-pending-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  animation: flowtext-canvas-ai-pending-dot 1.05s ease-in-out infinite;
+}
+
+.flowtext-canvas-ai-pending-dot:nth-child(2) {
+  animation-delay: 0.14s;
+}
+
+.flowtext-canvas-ai-pending-dot:nth-child(3) {
+  animation-delay: 0.28s;
+}
+
+@keyframes flowtext-canvas-ai-pending-dot {
+  0%, 60%, 100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flowtext-canvas-ai-pending-dot {
+    animation: none;
+    opacity: 0.7;
+  }
+}
+
+.flowtext-canvas-ai-button.is-accept {
+  color: var(--color-green);
+}
+
+.flowtext-canvas-ai-button.is-undo {
+  color: var(--color-orange);
+}
+
+.flowtext-canvas-ai-popup {
+  z-index: 10020 !important;
+  border-radius: 8px !important;
+  overflow: visible;
+}
+
+.flowtext-canvas-ai-popup .flowtext-popup-header,
+.flowtext-canvas-ai-popup .flowtext-topics-toolbar,
+.flowtext-canvas-ai-popup .flowtext-context-section,
+.flowtext-canvas-ai-popup .flowtext-left-section,
+.flowtext-canvas-ai-popup .flowtext-image-previews {
+  display: none !important;
+}
+
+.flowtext-canvas-ai-popup .flowtext-popup-content {
+  position: relative;
+  padding: 0 !important;
+}
+
+.flowtext-canvas-ai-popup .flowtext-editable-input {
+  min-height: 34px !important;
+  height: auto;
+  max-height: 160px;
+  margin: 0;
+  padding: 7px 42px 7px 10px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent !important;
+  font-size: 13px;
+  resize: none;
+}
+
+.flowtext-canvas-ai-popup .flowtext-editable-input:focus {
+  box-shadow: inset 0 0 0 1px var(--interactive-accent);
+}
+
+.flowtext-canvas-ai-popup .flowtext-upload-section {
+  position: absolute;
+  right: 8px;
+  bottom: 2px;
+  z-index: 2;
+  display: block;
+  margin: 0;
+}
+
+.flowtext-canvas-ai-popup .flowtext-upload-section .flowtext-submit-btn {
+  padding: 5px;
+}
+
+.flowtext-canvas-ai-popup .flowtext-upload-section .flowtext-submit-btn:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.canvas-node.flowtext-canvas-ai-resizing {
+  transition: height 110ms ease-out;
 }

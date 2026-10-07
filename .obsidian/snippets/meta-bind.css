@@ -1,6 +1,6 @@
 /*──────────────────────────────────────────────────────────────────
 meta bind样式优化
-Version 0.3.0
+Version 0.3.1
 Created by @ytmaps_鱼先生
 
 authorurl:
@@ -505,7 +505,7 @@ textarea, input.metadata-input-text, input[type='date'], input[type='datetime-lo
 .qita-4col button,
 .cardnotes-4col button {
     width: 22% !important;
-}
+}   
 
 /* 3列布局的宽度 */
 .para-3col button,
@@ -790,7 +790,6 @@ textarea, input.metadata-input-text, input[type='date'], input[type='datetime-lo
 }
 .dropdown{
     border-radius: 6px !important;
-    font-size: 15px;
     line-height: 20px;
 }
 
@@ -830,3 +829,4 @@ textarea, input.metadata-input-text, input[type='date'], input[type='datetime-lo
     margin: 2px;
     font-size: var(--font-ui-small);
 }
+

@@ -1,5 +1,5 @@
 :root {
-    --obsidian-columns-gap: 20px;
+    --obsidian-columns-gap: 15px;
     --obsidian-columns-padding: 0 20px;
     --obsidian-columns-min-width: 100px;
     --obsidian-columns-def-span: 1;
@@ -18,6 +18,12 @@ div[data-callout^="col-md"].callout {
     flex-wrap: wrap;
     gap: var(--obsidian-columns-gap);
     white-space: normal;
+    overflow: visible !important;
+}
+
+/* 顶部新增列控件会超出代码块少量像素，防止被外层渲染容器裁剪。 */
+.block-language-col {
+    overflow: visible !important;
 }
 
 div[data-callout="col"].callout > div.callout-title, div[data-callout^="col-md"].callout > div.callout-title {
@@ -133,6 +139,17 @@ div[data-callout="col"].callout > div.callout-content > div[data-callout$="-10" 
     padding: 10px;
 }
 
+/* 离开整个分栏代码块时，所有可编辑列恢复透明。 */
+.columnParent:not(:hover) > .columnChild.editable-column {
+    background-color: transparent !important;
+}
+
+/* 进入分栏代码块的任意位置时，同时高亮该块内的所有可编辑列。 */
+.columnParent:not(.dragging):hover > .columnChild.editable-column:not(.editing-mode) {
+    background-color: var(--background-modifier-hover) !important;
+    border-radius: 4px;
+}
+
 
 .editable-column.editing-mode:hover {
     background-color: rgba(0, 123, 255, 0.1) !important;
@@ -224,40 +241,11 @@ div[data-callout="col"].callout > div.callout-content > div[data-callout$="-10" 
 
 
 
-.column-autocomplete {
-    position: absolute !important;
-    background: var(--background-primary) !important;
-    border: 1px solid var(--background-modifier-border) !important;
-    border-radius: 4px !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
-    max-height: 160px !important;
-    overflow-y: auto !important;
-    z-index: 1000 !important;
-    font-size: 14px !important;
-    min-width: 200px !important;
-    transform: translateZ(0);
-    will-change: transform;
-}
-
-.column-autocomplete .autocomplete-item {
-    padding: 8px 12px !important;
-    cursor: pointer !important;
-    border-bottom: 1px solid var(--background-modifier-border) !important;
-    transition: background-color 0.15s ease !important;
-    contain: layout style;
-}
-
-.column-autocomplete .autocomplete-item:hover {
-    background-color: var(--background-modifier-hover) !important;
-}
-
-.column-autocomplete .autocomplete-item:last-child {
-    border-bottom: none !important;
-}
-
-.column-autocomplete .autocomplete-item.selected {
-    background-color: var(--background-modifier-hover) !important;
-    font-weight: 500 !important;
+.column-link-suggestion {
+    position: fixed !important;
+    z-index: var(--layer-popover, 1000) !important;
+    max-height: min(320px, 50vh);
+    overflow-y: auto;
 }
 
 .columnChild.editing-mode {
@@ -273,28 +261,102 @@ div[data-callout="col"].callout > div.callout-content > div[data-callout$="-10" 
 
 .column-resize-handle {
     position: absolute !important;
-    right: -5px !important;
+    /* 具体坐标由相邻两列的实际边界中点计算。 */
+    left: 0 !important;
+    right: auto !important;
     top: 0 !important;
-    bottom: 0 !important;
+    bottom: auto !important;
     width: 10px !important;
+    height: 100%;
     cursor: col-resize !important;
     z-index: 10 !important;
     background: transparent !important;
-    transition: background-color 0.2s ease !important;
     pointer-events: auto !important;
+    touch-action: none !important;
     user-select: none !important;
     transform: translateZ(0) !important;
     will-change: auto !important;
     overflow: visible !important;
 }
 
-.column-resize-handle:hover {
-    background-color: rgba(100, 150, 255, 0.3) !important;
+.column-resize-handle::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    transform: translateX(-50%);
+    background-color: #3b82f6;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    pointer-events: none;
+    margin-top: 14px;
+}
+
+.column-resize-handle:hover::after {
+    opacity: 1;
+}
+
+.column-resize-handle.dragging::after {
+    opacity: 1;
 }
 
 .column-resize-handle.dragging {
-    background-color: rgba(100, 150, 255, 0.5) !important;
     cursor: col-resize !important;
+}
+
+.column-add-control {
+    position: absolute !important;
+    top: 0px !important;
+    left: 50% !important;
+    z-index: 2 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 14px !important;
+    min-width: 14px !important;
+    height: 14px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    border-radius: 50% !important;
+    background: var(--background-primary) !important;
+    box-shadow: none !important;
+    color: #3b82f6 !important;
+    cursor: pointer !important;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-50%) !important;
+    transition: opacity 0.15s ease, color 0.15s ease, background-color 0.15s ease !important;
+}
+
+.column-add-control::before {
+    content: "•";
+    display: block;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.column-resize-handle:hover .column-add-control {
+    opacity: 1;
+    visibility: visible;
+}
+
+.column-add-control:hover {
+    background: #3b82f6 !important;
+    color: #ffffff !important;
+}
+
+.column-add-control:hover::before {
+    content: "+";
+    font-size: 14px;
+}
+
+.column-resize-handle.dragging .column-add-control {
+    opacity: 0 !important;
+    visibility: hidden !important;
 }
 
 .columnChild {
