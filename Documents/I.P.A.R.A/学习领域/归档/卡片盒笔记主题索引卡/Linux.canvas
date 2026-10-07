@@ -81,6 +81,15 @@
       "y": 1200,
       "width": 440,
       "height": 500
+    },
+    {
+      "id": "note-1789357338000-1007",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/Redmi K60 刷机与 chroot Ubuntu 无头服务器.md",
+      "x": 590,
+      "y": 1200,
+      "width": 440,
+      "height": 500
     }
   ]
 }
