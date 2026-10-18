@@ -21,7 +21,7 @@ cssclasses:
 ```
 <progress value="10" max="100" style="width: 100%;"></progress>
 ## 待办清单
-- [ ] 购买GLM套餐，并配置到ClaudeCode [🔗Dida](obsidian://dida-task?didaId=69c62ce5e4b0a91a6f8f13d1) 
+- [x] 购买GLM套餐，并配置到ClaudeCode [🔗Dida](obsidian://dida-task?didaId=69c62ce5e4b0a91a6f8f13d1) 
 - [ ] 学习使用spec driven [🔗Dida](obsidian://dida-task?didaId=69c62d00e4b0381e3ec11dd8) 
 - [x] 学习使用skills [🔗Dida](obsidian://dida-task?didaId=69c62d09e4b047ae8c6b7bb2) 
 

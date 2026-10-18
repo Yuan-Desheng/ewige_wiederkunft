@@ -8,7 +8,22 @@
         "type": "tabs",
         "children": [
           {
-            "id": "30a7adbc7eab39c5",
+            "id": "c2b78328e59fd7a7",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documents/I.P.A.R.A/学习领域/收集/Claude Code-指令.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "Claude Code-指令"
+            }
+          },
+          {
+            "id": "96be954b814a3f30",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -23,22 +38,7 @@
             }
           },
           {
-            "id": "222a25ec996d5b3b",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Documents/I.P.A.R.A/工作领域/项目/跨境电商-知识付费.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "跨境电商-知识付费"
-            }
-          },
-          {
-            "id": "fb01d1adb7d2f709",
+            "id": "2a91be70aacd6b9c",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -110,51 +110,6 @@
               },
               "icon": "lucide-file",
               "title": "自动化选品上品（原始需求）（目前可行方案）"
-            }
-          },
-          {
-            "id": "d537035bd933bd7e",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Documents/I.P.A.R.A/工作领域/项目/国网培训.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "国网培训"
-            }
-          },
-          {
-            "id": "f58943100f19047b",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "融合大模型智能体的虚拟电厂仿真系统"
-            }
-          },
-          {
-            "id": "eda026cbdaa940f4",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Documents/I.P.A.R.A/学习领域/收集/项目开发需求画图.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "项目开发需求画图"
             }
           },
           {
@@ -278,22 +233,52 @@
             }
           },
           {
-            "id": "6eaf32ea884feb44",
+            "id": "db273058bc4da417",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Documents/I.P.A.R.A/学习领域/收集/Redmi K60 刷机与 chroot Ubuntu 无头服务器.md",
+                "file": "Documents/I.P.A.R.A/工作领域/收集/跨境短视频制作全流程操作手册.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "Redmi K60 刷机与 chroot Ubuntu 无头服务器"
+              "title": "跨境短视频制作全流程操作手册"
+            }
+          },
+          {
+            "id": "e5d7a0ff5f71b902",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documents/I.P.A.R.A/工作领域/收集/跨境短视频制作系统4090部署受阻.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "跨境短视频制作系统4090部署受阻"
+            }
+          },
+          {
+            "id": "ac810aaaf301b0c0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Documents/I.P.A.R.A/学习领域/收集/Codex CLI-终端使用.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "Codex CLI-终端使用"
             }
           }
         ],
-        "currentTab": 18
+        "currentTab": 16
       }
     ],
     "direction": "vertical"
@@ -328,7 +313,7 @@
               "type": "search",
               "state": {
                 "query": "",
-                "matchingCase": true,
+                "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
                 "extraContext": false,
@@ -433,7 +418,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Documents/I.P.A.R.A/学习领域/收集/Redmi K60 刷机与 chroot Ubuntu 无头服务器.md",
+                "file": "Documents/I.P.A.R.A/工作领域/项目/tk-sea-seller.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -545,6 +530,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "dida-sync:滴答月历视图": false,
       "bases:新建数据库": false,
       "graph:查看关系图谱": false,
       "switcher:打开快速切换": false,
@@ -559,7 +545,6 @@
       "obsidian-content-protection:插件市场": false,
       "obsidian-content-protection:同步数据": false,
       "imagen:图片管理": false,
-      "dida-sync:滴答时间线视图": false,
       "note-importer:导入笔记": false,
       "obsidian-english-made-easy:单词助手": false,
       "obsidian-english-made-easy:闪卡复习": false,
@@ -567,44 +552,45 @@
       "homepage:Open homepage": false
     }
   },
-  "active": "6eaf32ea884feb44",
+  "active": "e5d7a0ff5f71b902",
   "lastOpenFiles": [
-    "数据库与导航.md",
-    "Assistants/Templater/移动/移动至-最近使用文件夹.md",
-    "使用指南/01--进阶教程/1-快捷按钮制作、配置教程.md",
-    "使用指南/01--进阶教程",
-    "Documents/I.P.A.R.A/学习领域/收集/Grok Build.md",
-    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/Linux.canvas.tmp.79020.4b923738b884",
-    "Documents/I.P.A.R.A/学习领域/收集/Redmi K60 刷机与 chroot Ubuntu 无头服务器.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Redmi K60 刷机与 chroot Ubuntu 无头服务器.md.tmp.79020.6f9c03b74401",
-    "Documents/I.P.A.R.A/工作领域/项目/【影视飓风】AI实战课.md",
-    "Documents/I.P.A.R.A/工作领域/项目/自动化选品上品（原始需求）（目前可行方案）.md",
-    "Documents/I.P.A.R.A/工作领域/项目/海外社交媒体传播动态分析系统_二期.md",
-    "Documents/I.P.A.R.A/学习领域/项目/Interactive Tech Tutorial Platform.md",
-    "Documents/I.P.A.R.A/工作领域/项目/认证机构erp系统.md",
     "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Linux.md",
-    "Documents/I.P.A.R.A/工作领域/项目/跨境电商-知识付费.md",
-    "Documents/I.P.A.R.A/工作领域/收集/项目立项与研发流程规范.md",
+    "Documents/I.P.A.R.A/工作领域/收集/跨境短视频制作系统4090部署受阻.md.tmp.198873.b3eddc80fda0",
     "Documents/I.P.A.R.A/工作领域/收集/工作流技能.md",
+    "Documents/I.P.A.R.A/工作领域/收集/跨境短视频制作系统4090部署受阻.md.tmp.198873.8977ad45cfa1",
+    "Documents/I.P.A.R.A/工作领域/收集/跨境短视频制作系统4090部署受阻.md.tmp.198873.256434d56055",
+    "Documents/I.P.A.R.A/工作领域/收集/跨境短视频制作系统4090部署受阻.md",
+    "Documents/I.P.A.R.A/工作领域/收集/跨境短视频制作系统4090部署受阻.md.tmp.198873.3c67a96a83cb",
+    "Documents/I.P.A.R.A/工作领域/收集/跨境短视频制作系统4090部署受阻.md.tmp.198873.8a9a6f2d9157",
+    "Documents/I.P.A.R.A/工作领域/收集/项目立项与研发流程规范.md",
+    "Documents/I.P.A.R.A/工作领域/项目/开发人员转产品经理.md",
+    "Documents/I.P.A.R.A/工作领域/项目/海外社交媒体传播动态分析系统_二期.md",
+    "Documents/I.P.A.R.A/工作领域/项目/自动化选品上品（原始需求）（目前可行方案）.md",
     "Documents/I.P.A.R.A/工作领域/项目/tk-sea-seller.md",
-    "Documents/I.P.A.R.A/工作领域/项目/tiktok_跨境电商.md",
-    "Documents/I.P.A.R.A/工作领域/项目/tiktok带货视频.md",
+    "数据库与导航.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Claude Code-指令.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Grok Build.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Codex CLI-终端使用.md",
+    "Documents/I.P.A.R.A/工作领域/收集/跨境短视频制作全流程操作手册.md",
+    "Documents/I.P.A.R.A/工作领域/项目/小白手机开店选品上品全流程竞品调研.md",
+    "Documents/I.P.A.R.A/工作领域/收集/跨境短视频制作管理系统.md",
+    "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-10-15.md",
+    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/跨境短视频.canvas",
+    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/跨境短视频.canvas.tmp.197732.457138890a2f",
+    "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-10-15.md.tmp.197732.3a07799c5146",
+    "Documents/I.P.A.R.A/工作领域/收集/跨境短视频制作管理系统.md.tmp.197732.a2b5d48af5d7",
     "Documents/I.P.A.R.A/工作领域/项目/creator-commerce-studio.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Claude Code 用量诊断 tare 使用手册.md",
-    "Documents/I.P.A.R.A/工作领域/项目/tk-sea-seller 知识付费渠道合作.md",
-    "Documents/I.P.A.R.A/学习领域/收集/NAS 图片对象存储 SeaweedFS 部署.md",
-    "Documents/I.P.A.R.A/学习领域/收集/GPT 订阅与 Codex 登录使用.md",
     "Documents/I.P.A.R.A/学习领域/收集/项目开发需求画图.md",
+    "Documents/I.P.A.R.A/工作领域/项目/跨境电商-知识付费.md",
     "Documents/I.P.A.R.A/工作领域/收集/华为云服务器降本迁移方案.md",
-    "webpack-91569b26a5372ab8.js",
-    "wemeet-js-sdk-2db7bc15e400ade8.js",
-    "download-91f1382e68fefa50.js",
-    "framework-187da277fbc7f8be.js",
-    "_app-06e078f991cf245f.js",
-    "polyfills-42372ed130431b0a.js",
-    "main-07c70a88809442a1.js",
+    "Documents/I.P.A.R.A/学习领域/收集/Niri 使用速查.md",
+    "Documents/I.P.A.R.A/工作领域/项目/Tk短视频运营.md",
+    "Documents/I.P.A.R.A/工作领域/项目/tiktok带货视频.md",
+    "Documents/I.P.A.R.A/工作领域/项目/tiktok_跨境电商.md",
+    "Documents/I.P.A.R.A/工作领域/收集/AI任务邮箱使用指南.md",
+    "Documents/I.P.A.R.A/学习领域/收集/NAS SMB 网络磁盘挂载.md.tmp.134437.565fb245d7f6",
+    "Documents/I.P.A.R.A/学习领域/收集/NAS SMB 网络磁盘挂载.md.tmp.134437.b53438711abf",
+    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/AI任务邮箱.canvas",
     "Extras/附件/Pasted image 20260920143603.png",
     "Extras/附件/Pasted image 20260920143334.png",
     "Extras/附件/Pasted image 20260920143312.png",
@@ -622,8 +608,6 @@
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/小满zs-react.canvas",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/小满zs-react-native.canvas",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/峰华Vue3.canvas",
-    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/小满zs-typescript.canvas",
-    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/Artificial Intelligence.canvas",
-    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/AI笔记.canvas"
+    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/小满zs-typescript.canvas"
   ]
 }

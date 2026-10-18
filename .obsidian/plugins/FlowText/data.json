@@ -89,7 +89,29 @@
       "actualModel": "claude-3-7-sonnet-latest",
       "type": "chat",
       "enabled": true,
-      "category": "text"
+      "category": "chat",
+      "capabilities": {
+        "imageInput": {
+          "state": "supported",
+          "source": "builtin"
+        },
+        "reasoning": {
+          "state": "unknown",
+          "source": "builtin"
+        },
+        "toolCalling": {
+          "state": "supported",
+          "source": "builtin"
+        },
+        "streaming": {
+          "state": "supported",
+          "source": "builtin"
+        },
+        "imageOutput": {
+          "state": "unsupported",
+          "source": "builtin"
+        }
+      }
     },
     "claude-sonnet-4": {
       "id": "claude-sonnet-4",
@@ -99,7 +121,29 @@
       "actualModel": "claude-sonnet-4-20250514",
       "type": "chat",
       "enabled": true,
-      "category": "text"
+      "category": "chat",
+      "capabilities": {
+        "imageInput": {
+          "state": "unknown",
+          "source": "builtin"
+        },
+        "reasoning": {
+          "state": "unknown",
+          "source": "builtin"
+        },
+        "toolCalling": {
+          "state": "supported",
+          "source": "builtin"
+        },
+        "streaming": {
+          "state": "supported",
+          "source": "builtin"
+        },
+        "imageOutput": {
+          "state": "unsupported",
+          "source": "builtin"
+        }
+      }
     },
     "gpt-4.1": {
       "id": "gpt-4.1",
@@ -109,7 +153,29 @@
       "actualModel": "gpt-4.1",
       "type": "chat",
       "enabled": true,
-      "category": "text"
+      "category": "chat",
+      "capabilities": {
+        "imageInput": {
+          "state": "supported",
+          "source": "builtin"
+        },
+        "reasoning": {
+          "state": "unknown",
+          "source": "builtin"
+        },
+        "toolCalling": {
+          "state": "supported",
+          "source": "builtin"
+        },
+        "streaming": {
+          "state": "supported",
+          "source": "builtin"
+        },
+        "imageOutput": {
+          "state": "unsupported",
+          "source": "builtin"
+        }
+      }
     },
     "gpt-5": {
       "id": "gpt-5",
@@ -119,7 +185,29 @@
       "actualModel": "gpt-5",
       "type": "chat",
       "enabled": true,
-      "category": "text"
+      "category": "chat",
+      "capabilities": {
+        "imageInput": {
+          "state": "supported",
+          "source": "builtin"
+        },
+        "reasoning": {
+          "state": "unknown",
+          "source": "builtin"
+        },
+        "toolCalling": {
+          "state": "supported",
+          "source": "builtin"
+        },
+        "streaming": {
+          "state": "supported",
+          "source": "builtin"
+        },
+        "imageOutput": {
+          "state": "unsupported",
+          "source": "builtin"
+        }
+      }
     },
     "dall-e-3": {
       "id": "dall-e-3",
@@ -129,7 +217,29 @@
       "actualModel": "dall-e-3",
       "type": "image",
       "enabled": true,
-      "category": "image"
+      "category": "image",
+      "capabilities": {
+        "imageInput": {
+          "state": "unknown",
+          "source": "builtin"
+        },
+        "reasoning": {
+          "state": "unknown",
+          "source": "builtin"
+        },
+        "toolCalling": {
+          "state": "unsupported",
+          "source": "builtin"
+        },
+        "streaming": {
+          "state": "unknown",
+          "source": "builtin"
+        },
+        "imageOutput": {
+          "state": "supported",
+          "source": "builtin"
+        }
+      }
     },
     "deepseek-chat": {
       "id": "deepseek-chat",
@@ -139,7 +249,29 @@
       "actualModel": "deepseek-chat",
       "type": "chat",
       "enabled": true,
-      "category": "text"
+      "category": "chat",
+      "capabilities": {
+        "imageInput": {
+          "state": "unsupported",
+          "source": "builtin"
+        },
+        "reasoning": {
+          "state": "unknown",
+          "source": "builtin"
+        },
+        "toolCalling": {
+          "state": "unknown",
+          "source": "builtin"
+        },
+        "streaming": {
+          "state": "supported",
+          "source": "builtin"
+        },
+        "imageOutput": {
+          "state": "unsupported",
+          "source": "builtin"
+        }
+      }
     },
     "deepseek-reasoner": {
       "id": "deepseek-reasoner",
@@ -149,7 +281,29 @@
       "actualModel": "deepseek-reasoner",
       "type": "chat",
       "enabled": true,
-      "category": "thinking"
+      "category": "chat",
+      "capabilities": {
+        "imageInput": {
+          "state": "unsupported",
+          "source": "builtin"
+        },
+        "reasoning": {
+          "state": "supported",
+          "source": "builtin"
+        },
+        "toolCalling": {
+          "state": "unknown",
+          "source": "builtin"
+        },
+        "streaming": {
+          "state": "supported",
+          "source": "builtin"
+        },
+        "imageOutput": {
+          "state": "unsupported",
+          "source": "builtin"
+        }
+      }
     },
     "gemini-2.5-pro": {
       "id": "gemini-2.5-pro",
@@ -159,7 +313,29 @@
       "actualModel": "gemini-2.5-pro",
       "type": "chat",
       "enabled": true,
-      "category": "multimodal"
+      "category": "chat",
+      "capabilities": {
+        "imageInput": {
+          "state": "supported",
+          "source": "builtin"
+        },
+        "reasoning": {
+          "state": "unknown",
+          "source": "builtin"
+        },
+        "toolCalling": {
+          "state": "supported",
+          "source": "builtin"
+        },
+        "streaming": {
+          "state": "supported",
+          "source": "builtin"
+        },
+        "imageOutput": {
+          "state": "unsupported",
+          "source": "builtin"
+        }
+      }
     },
     "gemini-2.5-flash": {
       "id": "gemini-2.5-flash",
@@ -169,7 +345,29 @@
       "actualModel": "gemini-2.5-flash",
       "type": "chat",
       "enabled": true,
-      "category": "multimodal"
+      "category": "chat",
+      "capabilities": {
+        "imageInput": {
+          "state": "supported",
+          "source": "builtin"
+        },
+        "reasoning": {
+          "state": "unknown",
+          "source": "builtin"
+        },
+        "toolCalling": {
+          "state": "supported",
+          "source": "builtin"
+        },
+        "streaming": {
+          "state": "supported",
+          "source": "builtin"
+        },
+        "imageOutput": {
+          "state": "unsupported",
+          "source": "builtin"
+        }
+      }
     },
     "imagen-3.0-generate": {
       "id": "imagen-3.0-generate",
@@ -179,7 +377,29 @@
       "actualModel": "imagen-3.0-generate-002",
       "type": "image",
       "enabled": true,
-      "category": "image"
+      "category": "image",
+      "capabilities": {
+        "imageInput": {
+          "state": "unknown",
+          "source": "builtin"
+        },
+        "reasoning": {
+          "state": "unknown",
+          "source": "builtin"
+        },
+        "toolCalling": {
+          "state": "unsupported",
+          "source": "builtin"
+        },
+        "streaming": {
+          "state": "unknown",
+          "source": "builtin"
+        },
+        "imageOutput": {
+          "state": "supported",
+          "source": "builtin"
+        }
+      }
     },
     "kimi-k2-0905-preview": {
       "id": "kimi-k2-0905-preview",
@@ -189,7 +409,29 @@
       "actualModel": "kimi-k2-0905-preview",
       "type": "chat",
       "enabled": true,
-      "category": "text"
+      "category": "chat",
+      "capabilities": {
+        "imageInput": {
+          "state": "unknown",
+          "source": "builtin"
+        },
+        "reasoning": {
+          "state": "supported",
+          "source": "builtin"
+        },
+        "toolCalling": {
+          "state": "supported",
+          "source": "builtin"
+        },
+        "streaming": {
+          "state": "supported",
+          "source": "builtin"
+        },
+        "imageOutput": {
+          "state": "unsupported",
+          "source": "builtin"
+        }
+      }
     },
     "doubao-seed-1-6-250615": {
       "id": "doubao-seed-1-6-250615",
@@ -199,7 +441,29 @@
       "actualModel": "doubao-seed-1-6-250615",
       "type": "chat",
       "enabled": true,
-      "category": "thinking"
+      "category": "chat",
+      "capabilities": {
+        "imageInput": {
+          "state": "unknown",
+          "source": "builtin"
+        },
+        "reasoning": {
+          "state": "supported",
+          "source": "legacy"
+        },
+        "toolCalling": {
+          "state": "supported",
+          "source": "builtin"
+        },
+        "streaming": {
+          "state": "supported",
+          "source": "builtin"
+        },
+        "imageOutput": {
+          "state": "unsupported",
+          "source": "builtin"
+        }
+      }
     },
     "doubao-seedream-3-0-t2i-250415": {
       "id": "doubao-seedream-3-0-t2i-250415",
@@ -209,7 +473,29 @@
       "actualModel": "doubao-seedream-3-0-t2i-250415",
       "type": "image",
       "enabled": true,
-      "category": "image"
+      "category": "image",
+      "capabilities": {
+        "imageInput": {
+          "state": "unknown",
+          "source": "builtin"
+        },
+        "reasoning": {
+          "state": "unknown",
+          "source": "builtin"
+        },
+        "toolCalling": {
+          "state": "unsupported",
+          "source": "builtin"
+        },
+        "streaming": {
+          "state": "unknown",
+          "source": "builtin"
+        },
+        "imageOutput": {
+          "state": "supported",
+          "source": "builtin"
+        }
+      }
     },
     "kimi-k2-thinking": {
       "id": "kimi-k2-thinking",
@@ -217,8 +503,30 @@
       "provider": "kimi",
       "model": "kimi-k2-thinking",
       "actualModel": "kimi-k2-thinking",
-      "category": "thinking",
-      "enabled": true
+      "category": "chat",
+      "enabled": true,
+      "capabilities": {
+        "imageInput": {
+          "state": "unknown",
+          "source": "builtin"
+        },
+        "reasoning": {
+          "state": "supported",
+          "source": "builtin"
+        },
+        "toolCalling": {
+          "state": "supported",
+          "source": "builtin"
+        },
+        "streaming": {
+          "state": "supported",
+          "source": "builtin"
+        },
+        "imageOutput": {
+          "state": "unsupported",
+          "source": "builtin"
+        }
+      }
     },
     "qwen-plus": {
       "id": "qwen-plus",
@@ -226,8 +534,30 @@
       "provider": "Qwen",
       "model": "qwen-plus",
       "actualModel": "qwen-plus",
-      "category": "text",
-      "enabled": true
+      "category": "chat",
+      "enabled": true,
+      "capabilities": {
+        "imageInput": {
+          "state": "unknown",
+          "source": "builtin"
+        },
+        "reasoning": {
+          "state": "unknown",
+          "source": "builtin"
+        },
+        "toolCalling": {
+          "state": "supported",
+          "source": "builtin"
+        },
+        "streaming": {
+          "state": "supported",
+          "source": "builtin"
+        },
+        "imageOutput": {
+          "state": "unsupported",
+          "source": "builtin"
+        }
+      }
     },
     "qwen-vl-plus": {
       "id": "qwen-vl-plus",
@@ -235,8 +565,30 @@
       "provider": "Qwen",
       "model": "qwen-vl-plus",
       "actualModel": "qwen-vl-plus",
-      "category": "vision",
-      "enabled": true
+      "category": "chat",
+      "enabled": true,
+      "capabilities": {
+        "imageInput": {
+          "state": "supported",
+          "source": "builtin"
+        },
+        "reasoning": {
+          "state": "unknown",
+          "source": "builtin"
+        },
+        "toolCalling": {
+          "state": "supported",
+          "source": "builtin"
+        },
+        "streaming": {
+          "state": "supported",
+          "source": "builtin"
+        },
+        "imageOutput": {
+          "state": "unsupported",
+          "source": "builtin"
+        }
+      }
     }
   },
   "currentModel": "deepseek-chat",
@@ -401,17 +753,26 @@
   ],
   "imageSavePath": "Extras/附件",
   "defaultImageGenerationModel": "",
-  "imageSize": 300,
   "imageGenerationSize": "1024x1024",
   "maxContextLines": 20,
   "maxContextChars": 3000,
   "maxBacklinkNotes": 10,
   "agentMaxSessions": 50,
   "agentContextBudgetChars": 131072,
+  "agentConsoleDebugEnabled": false,
+  "pageIndexEnabled": true,
+  "pageIndexPythonPath": "",
+  "pageIndexModelId": "",
+  "pageIndexIndexModel": "",
+  "pageIndexDataPath": "",
+  "pageIndexMaxPagesPerRead": 10,
+  "agentGatewayEnabled": false,
+  "agentGatewayToken": "",
   "enableOpenAiPromptCacheKey": true,
   "openAiPromptCacheRetention": "",
   "enableQwenDashScopeExplicitCache": true,
   "enableMinimaxReasoningSplit": true,
+  "imageSize": 300,
   "maxTokens": 5000,
   "guidanceScale": 2.5,
   "continueMode": "balanced",

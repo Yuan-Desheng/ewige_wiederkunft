@@ -3,11 +3,12 @@ createTime: 2026-07-23 13:44
 笔记ID: 20260723134401
 multiFile:
 multiMedia:
-description: 在 Ubuntu 24.04 上把内网 NAS（DXP4800 极空间）挂为网络磁盘位置，局域网 + Tailscale 双路径智能切换，失败自动回退。
+description: 在 Ubuntu 24.04 上把内网 NAS（绿联 NASync DXP4800）挂为网络磁盘位置，局域网 + Tailscale 双路径智能切换，失败自动回退。
 笔记类型: 收集笔记
 阐述日期:
 tags:
   - NAS
+  - 绿联
   - SMB
   - Tailscale
   - cifs
@@ -22,7 +23,7 @@ cssclasses:
 
 ## NAS SMB 网络磁盘挂载
 
-> Ubuntu 24.04 笔记本挂载内网极空间 DXP4800 NAS（已自带 Tailscale `100.92.228.2`）为 `~/nas-dxp4800`；**局域网优先、挂了走 Tailscale、局域网恢复自动切回**。
+> Ubuntu 24.04 笔记本挂载内网绿联（UGREEN）NASync DXP4800 NAS（已自带 Tailscale `100.92.228.2`）为 `~/nas-dxp4800`；**局域网优先、挂了走 Tailscale、局域网恢复自动切回**。
 > 技术栈：SMB3（cifs-utils） + Tailscale（已就绪） + systemd oneshot + bash 切换脚本。
 > **用于复现到任何「带 Tailscale 的家用 NAS → Ubuntu 桌面」**。⚠️ 凭据已脱敏（nas-admin 密码占位为 `【已脱敏】`）。
 
@@ -54,7 +55,7 @@ cssclasses:
 - **凭据分离**：密码放 `/etc/samba/nas-dxp4800.cred`（600 root），fstab / 脚本都用 `credentials=...` 引用，不留明文在共享配置。
 - **sudo 限定**：sudoers 允许 yuan 无密码跑 `mount` / `umount` / `mount.cifs` 三条命令，不开 `NOPASSWD: ALL`。
 - **脱 fstab**：fstab 同 target 不能写两条 cifs entry（`mount` 命令永远选第一条，路径切换失效）。所以 fstab 不放 NAS 条目，挂载完全由脚本 + systemd 控制。
-- **`sec=ntlmssp`**：极空间 / 多数国产 NAS 默认 NTLMv2，加这个参数避免 SMB 协议协商失败。
+- **`sec=ntlmssp`**：绿联 UGOS / 多数国产 NAS 默认 NTLMv2，加这个参数避免 SMB 协议协商失败。
 
 ## 二、代码
 
@@ -282,7 +283,7 @@ nas-switch status   # 看当前是局域网还是 Tailscale
 ### 1. NAS 默认只开 web 管理，SMB 没开
 
 **现象**：`nc -zv <NAS_IP> 445` 返回 `Connection refused`。
-**原因**：极空间 DXP4800 出厂默认 SMB 服务是关闭的（保护小白用户）。
+**原因**：绿联 DXP4800 出厂默认 SMB 服务是关闭的（保护小白用户）。
 **解决**：浏览器进 NAS 后台（`http://dxp4800-fddb.local:9999`，管理员账号）→ 控制面板 → 文件服务 → 启用 SMB。
 
 ### 2. fstab 同 target 写两条 cifs entry → 切换失效
@@ -582,6 +583,33 @@ cat /etc/ssh/sshd_config | grep -i auth  # 看 sshd 用哪种认证
 | `/etc/sudoers` (mac) | cuizhanwei SSH 登录用户没 sudo NOPASSWD 配置，需要时在 mac 桌面手动输密码 |
 | `/Library/LaunchDaemons/*nas*` | 系统级 launchd 跑 mount 会变 root owner，普通用户写不进。用用户级 LaunchAgent |
 | macOS SMB 卷标 (`personal_folder`) | 协议层固定，改不了，绕道用 symlink 或接受原名 |
+
+## 十、硬盘扩展（2026-10-09 补充）
+
+> **品牌更正**：本机 NAS 实测为**绿联（UGREEN）NASync DXP4800**——后台 `:9999` 返回 UGOS Pro 系统（`/desktop/?os=ugospro`），主机名 `dxp4800-fddb.local` 均为绿联特征；极空间并无 DXP 型号，早期记录误写。**买硬盘 / 搜教程请按「绿联 DXP4800」**。
+
+### 扩展规格（官方参数页核对）
+
+| 槽位 | 数量 | 安装方式 | 单盘上限 | 用途 |
+|---|---|---|---|---|
+| 3.5"/2.5" SATA | 4 | 前面板免工具托架，**支持热插拔** | 30TB | 数据盘 |
+| M.2 2280 NVMe | 2 | **机身内部，需关机拆底盖** | 8TB | 存储池 / SSD 缓存 |
+| DDR5 内存 | 1 槽 | 拆底盖 | 16GB（4800MHz，标配 8GB） | 装 M.2 时可顺手升级 |
+
+官方参数页：[ugnas.com/products-parameter/id-40](https://www.ugnas.com/products-parameter/id-40.html)
+
+### 加盘流程
+
+1. **硬件**：SATA 盘抽托架装盘插回（免工具）；M.2 需关机拆底盖插入
+2. **系统**：UGOS Pro → 存储管理 → 存储池与空间 → 创建存储池（选 RAID 模式）→ 创建存储空间 → 新建共享即可按本笔记方式挂载
+
+⚠️ **选 RAID（基本模式以外）会清空所选硬盘数据**，选盘务必逐个核对；现有 `personal_folder` 所在存储池不动，新盘建新池互不影响。
+
+### 教程链接
+
+- 官方视频：[DXP4800 系列安装使用](https://www.ugnas.com/video-detail/id-17.html) · [M.2 硬盘安装（B站官方）](https://www.bilibili.com/video/BV1oNy3Y5EGc) · [2.5 寸硬盘安装（B站官方）](https://www.bilibili.com/video/BV1AA28YjEkr)
+- 官方图文：[硬盘安装助手](https://www.ugnas.com/tutorial-detail/id-145.html) · [创建存储池与存储空间](https://www.ugnas.com/faq-detail/id-2.html) · [存储模式/RAID 详解](https://www.ugnas.com/tutorial-detail/id-218.html) · [逐盘换大盘扩容（盘位已满时）](https://www.ugnas.com/tutorial-detail/id-148.html) · [SSD 缓存创建](https://support.ugnas.com/detail/article/zh-CN/415)
+- 合集 / 民间：[绿联官方入门教程合集](https://support.ugnas.com/detail/article/zh-CN/669) · [绿联论坛·存储使用与管理版块](https://club.ugnas.com/forum.php?mod=forumdisplay&fid=12)
 
 ## 相关
 
