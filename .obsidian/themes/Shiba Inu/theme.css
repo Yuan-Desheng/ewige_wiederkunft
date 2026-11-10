@@ -58,6 +58,7 @@ https://forum.obsidian.md/t/theme-shiba-inu/53395
 body.is-translucent {
   background-color: transparent;
 }
+
 body {
   --card-background-color: rgb(var(--exterior));
   --font-size-folder-and-file: 0.95em;
@@ -97,6 +98,8 @@ body {
   --cards-columns: repeat;
   --hr-outline-color: var(--background-modifier-border);
   --ribbon-width:38px;
+  --menu-background: var(--background-primary);
+  --nav-item-background-active: var(--background-modifier-hover);
 }
 .theme-light,
 .theme-light.default-light-theme {
@@ -492,9 +495,9 @@ body {
   --color-accent-translucent-01: hsla(var(--interactive-accent-hsl), 0.1);
   --color-accent-translucent-005: hsla(var(--interactive-accent-hsl), 0.05);
   --color-accent-translucent-001: hsla(var(--interactive-accent-hsl), 0.01);
-  --background-primary: rgb(var(--base));
-  --background-primary-alt: rgb(var(--side));
-  --background-secondary: rgb(var(--side));
+  --background-primary: var(--color-base-00);
+  --background-primary-alt: var(--color-base-10);
+  --background-secondary: var(--color-base-20);
   --background-secondary-alt: rgb(var(--exterior));
   --background-modifier-hover: rgba(var(--text), 0.075);
   --background-modifier-form-field: rgba(var(--exterior), 0.3);
@@ -516,7 +519,7 @@ body {
   --text-on-accent: rgb(var(--base));
   --text-highlight-bg: rgba(var(--orange), 0.2);
   --text-highlight-bg-active: rgba(var(--orange), 0.4);
-  --interactive-normal: rgb(var(--surface0));
+  --interactive-normal: var(--color-base-30);
   --interactive-hover: rgb(var(--surface1));
   --interactive-success: rgb(var(--green));
   --workspace-background-translucent: rgba(var(--exterior), 0.6);
@@ -5981,7 +5984,7 @@ body:not(.shiba-remove-file-icons)
 }
 .workspace-ribbon.mod-primary,
 body.is-focused .titlebar, body.is-focused .workspace-ribbon.mod-primary{
-  background-color: transparent;
+  background-color: var(--tab-container-background);
   border: none;
 }
 .workspace-ribbon.mod-primary:before{
@@ -6258,8 +6261,13 @@ body.toggle-bg-panel-page.panel-page-bg-theme-light-custom.theme-light {
 
 .tree-item-self{
   margin-bottom: 0 !important;
-}.tree-item-self.is-active{
+}
+.tree-item-self:hover{
+  z-index: 3;
+}
+.tree-item-self.is-active{
   border-radius: var(--nav-item-radius);
+  z-index: 3;
 }
 .admonitions-nested-settings[open] .setting-item-heading, 
 .admonitions-nested-settings:not(details) .setting-item-heading,
@@ -6278,6 +6286,9 @@ background-color: transparent !important;
 .canvas-control-item:hover{
   background-color: transparent !important;
 }
+
+
+
 /* @settings
 name: Shiba Inu Theme
 id: shiba-theme-settings
@@ -8448,3 +8459,5 @@ settings:
     If you enjoyed using the theme, consider sharing it with members of the community on the Discord or forum to help grow our community together!    
   markdown: true
 */
+
+

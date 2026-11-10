@@ -218,21 +218,6 @@
             }
           },
           {
-            "id": "b8f43231ab24c2ca",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Documents/I.P.A.R.A/学习领域/收集/Grok Build.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": false
-              },
-              "icon": "lucide-file",
-              "title": "Grok Build"
-            }
-          },
-          {
             "id": "db273058bc4da417",
             "type": "leaf",
             "state": {
@@ -248,22 +233,22 @@
             }
           },
           {
-            "id": "e5d7a0ff5f71b902",
+            "id": "e7a306a1c56738f1",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Documents/I.P.A.R.A/工作领域/收集/跨境短视频制作系统4090部署受阻.md",
+                "file": "Documents/I.P.A.R.A/工作领域/收集/华为云服务器降本迁移方案.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": false
               },
               "icon": "lucide-file",
-              "title": "跨境短视频制作系统4090部署受阻"
+              "title": "华为云服务器降本迁移方案"
             }
           },
           {
-            "id": "ac810aaaf301b0c0",
+            "id": "873719b5b05b71bd",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -278,7 +263,7 @@
             }
           }
         ],
-        "currentTab": 16
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -395,18 +380,9 @@
               "icon": "sparkles",
               "title": "AI Agent"
             }
-          },
-          {
-            "id": "721855254ebb3a88",
-            "type": "leaf",
-            "state": {
-              "type": "eme-flashcard-view",
-              "state": {},
-              "icon": "brain",
-              "title": "闪卡复习"
-            }
           }
-        ]
+        ],
+        "currentTab": 2
       },
       {
         "id": "0fe25eece3e4ed4c",
@@ -418,7 +394,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Documents/I.P.A.R.A/工作领域/项目/tk-sea-seller.md",
+                "file": "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -510,16 +486,6 @@
               "icon": "links-going-out",
               "title": "自媒体平台数据爬取 的出链列表"
             }
-          },
-          {
-            "id": "494d4bd66caa3bc5",
-            "type": "leaf",
-            "state": {
-              "type": "eme-dict-view",
-              "state": {},
-              "icon": "book-open",
-              "title": "单词助手"
-            }
           }
         ]
       }
@@ -546,68 +512,67 @@
       "obsidian-content-protection:同步数据": false,
       "imagen:图片管理": false,
       "note-importer:导入笔记": false,
-      "obsidian-english-made-easy:单词助手": false,
-      "obsidian-english-made-easy:闪卡复习": false,
       "obsidian-cli-gui:CLI Commander": false,
       "homepage:Open homepage": false
     }
   },
-  "active": "e5d7a0ff5f71b902",
+  "active": "5f40aa60f703ccb6",
   "lastOpenFiles": [
-    "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
-    "Documents/I.P.A.R.A/工作领域/收集/跨境短视频制作系统4090部署受阻.md.tmp.198873.b3eddc80fda0",
-    "Documents/I.P.A.R.A/工作领域/收集/工作流技能.md",
-    "Documents/I.P.A.R.A/工作领域/收集/跨境短视频制作系统4090部署受阻.md.tmp.198873.8977ad45cfa1",
-    "Documents/I.P.A.R.A/工作领域/收集/跨境短视频制作系统4090部署受阻.md.tmp.198873.256434d56055",
-    "Documents/I.P.A.R.A/工作领域/收集/跨境短视频制作系统4090部署受阻.md",
-    "Documents/I.P.A.R.A/工作领域/收集/跨境短视频制作系统4090部署受阻.md.tmp.198873.3c67a96a83cb",
-    "Documents/I.P.A.R.A/工作领域/收集/跨境短视频制作系统4090部署受阻.md.tmp.198873.8a9a6f2d9157",
-    "Documents/I.P.A.R.A/工作领域/收集/项目立项与研发流程规范.md",
+    "Extras/机器人/SO101/2026-11-09/重录准备-183722-无人但构图待调整.jpg",
+    "Extras/机器人/SO101/2026-11-09/统一机位复核-B-有人入画.jpg",
+    "Extras/机器人/SO101/2026-11-09/统一机位复核-A-有人入画.jpg",
+    "Extras/机器人/SO101/2026-11-09/记录/统一机位两条复核-准备状态.json",
+    "Extras/机器人/SO101/2026-11-09/统一机位-实际操作位置-20261109-175017.jpg",
+    "Extras/机器人/SO101/2026-11-09/机位对比_A斜侧_vs_B俯视.jpg",
+    "Extras/机器人/SO101/2026-11-09/邮件原文/1794212413-5条样片审核结果.md",
+    "Extras/机器人/SO101/2026-11-09/样片入口/installation-result.json",
+    "Extras/机器人/SO101/2026-11-09/样片入口/01_录A_红到右盘.sh",
+    "Extras/机器人/SO101/2026-11-09/样片入口/run_sample.sh",
+    "Extras/机器人/SO101/2026-11-09/样片入口/sample_tools.py",
+    "Extras/机器人/SO101/2026-11-09/样片入口/test_sample_tools.py",
+    "Extras/机器人/SO101/2026-11-09/样片入口/03_只读检查数据.sh",
+    "Extras/机器人/SO101/2026-11-09/样片入口/02_录B_蓝到左盘.sh",
+    "Extras/机器人/SO101/2026-11-09/样片入口/00_操作说明.txt",
+    "Extras/机器人/SO101/2026-11-09/样片入口/00_可达性验证.sh",
+    "Extras/机器人/SO101/2026-11-09/道具尺寸测量-2.jpg",
+    "Extras/机器人/SO101/2026-11-09/道具尺寸测量-1.jpg",
+    "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-11-09.md",
+    "Documents/I.P.A.R.A/工作领域/收集/SO101桌面归档与相机运维.md",
+    "Documents/I.P.A.R.A/工作领域/项目/SO101双色双盘采集项目.md",
+    "Extras/机器人/SO101/2026-11-09/邮件原文/1794061508-双色双盘采集任务变更.md",
+    "Extras/机器人/SO101/2026-11-09/邮件原文/1794034890-机器人基础知识与目标分段.md",
+    "Extras/机器人/SO101/2026-11-09/邮件原文/1793923037-原A臂50条任务.md",
+    "Extras/机器人/SO101/2026-11-09/现场布局-斜俯视-20261109-103444.jpg",
+    "Extras/机器人/SO101/2026-11-09/旧任务试录3-4抽帧对照.jpg",
     "Documents/I.P.A.R.A/工作领域/项目/开发人员转产品经理.md",
-    "Documents/I.P.A.R.A/工作领域/项目/海外社交媒体传播动态分析系统_二期.md",
-    "Documents/I.P.A.R.A/工作领域/项目/自动化选品上品（原始需求）（目前可行方案）.md",
     "Documents/I.P.A.R.A/工作领域/项目/tk-sea-seller.md",
-    "数据库与导航.md",
+    "Documents/I.P.A.R.A/工作领域/项目/融合大模型智能体的虚拟电厂仿真系统.md",
+    "Documents/I.P.A.R.A/工作领域/收集/工作流技能.md",
     "Documents/I.P.A.R.A/学习领域/收集/Claude Code-指令.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Grok Build.md",
+    "Documents/I.P.A.R.A/工作领域/项目/海外社交媒体传播动态分析系统_二期.md",
     "Documents/I.P.A.R.A/学习领域/收集/Codex CLI-终端使用.md",
+    "Documents/I.P.A.R.A/生活领域/收集/GameHub 运行艾尔登法环：离线启动与帧率优化.md",
+    "数据库与导航.md",
+    "Documents/I.P.A.R.A/生活领域/收集/GameHub 空洞骑士双角色 Mod 安装与触屏切换.md",
+    "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-11-06.md",
+    "file:/home/yuan/文档/2026-11-02-B-XLeRobot详细学习计划-原德胜.md",
+    "file:/home/yuan/code/smart_vision/tk-sea-seller-worktrees/master-integration-20261028/docs/开发协作/双对话并行计划-2026-11-06.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent.md",
+    "Documents/I.P.A.R.A/学习领域/收集/Hermes Agent + LLM Wiki知识库 + Obsidian图谱.md",
+    "Documents/I.P.A.R.A/工作领域/收集/项目立项与研发流程规范.md",
+    "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-11-05.md",
+    "Extras/游戏/GameHub艾尔登法环/离线主菜单.png",
+    "Extras/游戏/GameHub艾尔登法环/低画质与540p游戏画面.png",
     "Documents/I.P.A.R.A/工作领域/收集/跨境短视频制作全流程操作手册.md",
-    "Documents/I.P.A.R.A/工作领域/项目/小白手机开店选品上品全流程竞品调研.md",
-    "Documents/I.P.A.R.A/工作领域/收集/跨境短视频制作管理系统.md",
-    "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-10-15.md",
+    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/3D打印与机器人.canvas",
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/跨境短视频.canvas",
-    "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/跨境短视频.canvas.tmp.197732.457138890a2f",
-    "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-10-15.md.tmp.197732.3a07799c5146",
-    "Documents/I.P.A.R.A/工作领域/收集/跨境短视频制作管理系统.md.tmp.197732.a2b5d48af5d7",
-    "Documents/I.P.A.R.A/工作领域/项目/creator-commerce-studio.md",
-    "Documents/I.P.A.R.A/学习领域/收集/项目开发需求画图.md",
-    "Documents/I.P.A.R.A/工作领域/项目/跨境电商-知识付费.md",
-    "Documents/I.P.A.R.A/工作领域/收集/华为云服务器降本迁移方案.md",
-    "Documents/I.P.A.R.A/学习领域/收集/Niri 使用速查.md",
-    "Documents/I.P.A.R.A/工作领域/项目/Tk短视频运营.md",
-    "Documents/I.P.A.R.A/工作领域/项目/tiktok带货视频.md",
-    "Documents/I.P.A.R.A/工作领域/项目/tiktok_跨境电商.md",
-    "Documents/I.P.A.R.A/工作领域/收集/AI任务邮箱使用指南.md",
-    "Documents/I.P.A.R.A/学习领域/收集/NAS SMB 网络磁盘挂载.md.tmp.134437.565fb245d7f6",
-    "Documents/I.P.A.R.A/学习领域/收集/NAS SMB 网络磁盘挂载.md.tmp.134437.b53438711abf",
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/AI任务邮箱.canvas",
-    "Extras/附件/Pasted image 20260920143603.png",
-    "Extras/附件/Pasted image 20260920143334.png",
-    "Extras/附件/Pasted image 20260920143312.png",
-    "Extras/附件/Pasted image 20260920142922.png",
-    "Extras/附件/Pasted image 20260920142844.png",
-    "Extras/附件/Pasted image 20260920142822.png",
-    "Extras/附件/Pasted image 20260920142801.png",
-    "Extras/附件/Pasted image 20260920142739.png",
-    "Extras/附件/Pasted image 20260920142612.png",
-    "Extras/附件/Pasted image 20260920142528.png",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/AfterEffects.canvas",
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/自动化选品上品.canvas",
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/海媒传播分析系统.canvas",
     "Documents/I.P.A.R.A/工作领域/归档/卡片盒笔记主题索引卡/ultracode.canvas",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/小满zs-react.canvas",
     "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/小满zs-react-native.canvas",
-    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/峰华Vue3.canvas",
-    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/小满zs-typescript.canvas"
+    "Documents/I.P.A.R.A/学习领域/归档/卡片盒笔记主题索引卡/峰华Vue3.canvas"
   ]
 }

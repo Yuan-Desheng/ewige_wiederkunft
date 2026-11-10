@@ -1,0 +1,59 @@
+SO-ARM101 摄像头添加与使用指南
+记录日期：2026-11-02
+
+一、当前机器检查结果
+- 已识别一台 USB HD Camera。
+- /dev/video0 已测试能够读取画面，测试尺寸为 640×480。
+- /dev/video1 是同一台摄像头的另一个设备节点，不能直接当作第二台摄像头。
+- 摄像头设备编号在重新插拔或重启后可能变化，请重新检查。
+
+二、摆放摄像头
+将摄像头固定在能同时看到从臂夹爪、目标物体和操作区域的位置，尽量避免逆光和遮挡。采集训练数据时尽量保持相机位置不变。
+
+三、检测相机并查看测试图片
+在新终端中依次执行：
+
+  so101
+  cd /data/so101
+  lerobot-find-cameras opencv --output-dir /data/so101/outputs/captured_images
+
+检测后，用文件管理器打开 /data/so101/outputs/captured_images，确认图片清晰、方向正确，且夹爪和操作区域都在画面中。如果检测到多个编号，以正确拍出画面的编号为准。目前测试可用的编号是 0。
+
+四、在主从遥操作中显示画面
+当前可能已有不带摄像头的遥操作程序在运行。准备切换时，先在运行该程序的终端按 Ctrl+C 停止，避免串口被占用。
+
+注意：下方命令会启动主从遥操作，从臂可能运动。先固定机械臂，清空周围至少 1 米，人员远离运动范围；出现异常立即停止并断电。请在 Jetson 图形桌面的终端中运行：
+
+  so101
+  lerobot-teleoperate \
+    --robot.type=so101_follower \
+    --robot.port="$F" \
+    --robot.id=a_follower \
+    --robot.cameras='{ front: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30} }' \
+    --teleop.type=so101_leader \
+    --teleop.port="$L" \
+    --teleop.id=a_leader \
+    --display_data=true
+
+Ctrl+C 可停止程序。若相机编号变化，将 index_or_path: 0 改为实际可用编号。独立读取相机已验证；带显示窗口的遥操作组合尚未验证。若窗口未出现或报错，请保存完整终端输出供排查。
+
+官方教程：https://wiki.seeedstudio.com/cn/lerobot_so100m_new/
+
+五、使用 Python 命令启动摄像头预览和遥操作
+
+Jetson 就是本机 jzsd-desktop。下面的 Python 命令与第四节启动同一个 LeRobot 程序，只需要选择一种方式执行。
+
+先在原来运行遥操作的终端按 Ctrl+C 停止，避免串口占用。确认从臂固定牢靠、周围至少 1 米已清空、人员远离运动范围，然后在本机图形桌面的终端执行：
+
+  so101
+  python /data/so101/.venv/bin/lerobot-teleoperate \
+    --robot.type=so101_follower \
+    --robot.port="$F" \
+    --robot.id=a_follower \
+    --robot.cameras='{ front: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30} }' \
+    --teleop.type=so101_leader \
+    --teleop.port="$L" \
+    --teleop.id=a_leader \
+    --display_data=true
+
+运行期间会尝试持续显示摄像头画面，同时启动主从控制，从臂可能运动；画面预览不会自动保存成视频。按 Ctrl+C 停止。相机独立读取已验证，带窗口的完整命令尚未验证；如果未显示画面或报错，请保留终端输出供排查。

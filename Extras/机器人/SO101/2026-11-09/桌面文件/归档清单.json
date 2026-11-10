@@ -1,0 +1,93 @@
+{
+  "archived_at": "2026-11-09T10:57:30.795368+08:00",
+  "root": "/home/jzsd/Desktop/SO101项目",
+  "backup": "/data/so101/outputs/desktop-archive-2026-11-09/20261109-105730/desktop-project-files-before.tar.gz",
+  "moves": [
+    {
+      "source": "/home/jzsd/Desktop/SO101_camera_preview.sh",
+      "destination": "/home/jzsd/Desktop/SO101项目/01_相机预览/SO101_camera_preview.sh",
+      "sha256_before": "376fa63e4c51a46d0a5904df16261f8c2ef1dceda3fd1efdcc600fc962fcabdd",
+      "symlink": false
+    },
+    {
+      "source": "/home/jzsd/Desktop/SO101摄像头预览.desktop",
+      "destination": "/home/jzsd/Desktop/SO101项目/01_相机预览/SO101摄像头预览.desktop",
+      "sha256_before": "c262db762d9f9e100ac6baf1abd6fe536ca70dd9ce27ceab85a792cec061e604",
+      "symlink": false
+    },
+    {
+      "source": "/home/jzsd/Desktop/SO101摄像头独立预览命令.txt",
+      "destination": "/home/jzsd/Desktop/SO101项目/01_相机预览/SO101摄像头独立预览命令.txt",
+      "sha256_before": "4b18407210fceeda84c00c652513cad00fb87ad30ee57acac7b534699cdfd1d9",
+      "symlink": false
+    },
+    {
+      "source": "/home/jzsd/Desktop/A臂_不限时试录两条.sh",
+      "destination": "/home/jzsd/Desktop/SO101项目/90_历史试录_2026-11-07/A臂_不限时试录两条.sh",
+      "sha256_before": "6bd2118b539be71d25aeda72140ce3b753a9b544ac4ef850889df8aadfd6bbe7",
+      "symlink": false
+    },
+    {
+      "source": "/home/jzsd/Desktop/A臂_不限时试录两条.txt",
+      "destination": "/home/jzsd/Desktop/SO101项目/90_历史试录_2026-11-07/A臂_不限时试录两条.txt",
+      "sha256_before": "f5f49caa15ceae57f58b3e1ceb76254dc067c4f7405d0713435bb9005c87f5dd",
+      "symlink": false
+    },
+    {
+      "source": "/home/jzsd/Desktop/A臂_修复后试录两条.sh",
+      "destination": "/home/jzsd/Desktop/SO101项目/90_历史试录_2026-11-07/A臂_修复后试录两条.sh",
+      "sha256_before": "46799686b9cad5ed8cdce976ab21a6faa9621fc0842bb07d89a764772f9257b1",
+      "symlink": false
+    },
+    {
+      "source": "/home/jzsd/Desktop/A臂_修复后追加试录两条.txt",
+      "destination": "/home/jzsd/Desktop/SO101项目/90_历史试录_2026-11-07/A臂_修复后追加试录两条.txt",
+      "sha256_before": "f36c473ae03cd45d8aff6540fdb0f2902ddbdfe1abeb8566abbbfcce0f289a9c",
+      "symlink": false
+    },
+    {
+      "source": "/home/jzsd/Desktop/A臂_夹爪恢复练手.sh",
+      "destination": "/home/jzsd/Desktop/SO101项目/90_历史试录_2026-11-07/A臂_夹爪恢复练手.sh",
+      "sha256_before": "dd9a2732ee423a83341402e7766ae3e6ad0d750276f7ce4cfbab7587d1dde6f1",
+      "symlink": false
+    },
+    {
+      "source": "/home/jzsd/Desktop/A臂_夹爪恢复练手.txt",
+      "destination": "/home/jzsd/Desktop/SO101项目/90_历史试录_2026-11-07/A臂_夹爪恢复练手.txt",
+      "sha256_before": "e47fcc3f7f5794bdc56cab111474c7010a70d4219fd02ff73815814a1cac3b27",
+      "symlink": false
+    },
+    {
+      "source": "/home/jzsd/Desktop/A臂_练手与试录两条.txt",
+      "destination": "/home/jzsd/Desktop/SO101项目/90_历史试录_2026-11-07/A臂_练手与试录两条.txt",
+      "sha256_before": "89055233fbdbe2c9cda3146151a81f813a5daea9142cc86faeaf68fbb3e468e2",
+      "symlink": false
+    },
+    {
+      "source": "/home/jzsd/Desktop/A臂命令.txt",
+      "destination": "/home/jzsd/Desktop/SO101项目/91_原始命令与旧指南/A臂命令.txt",
+      "sha256_before": "5009948f9b9dbe4f2b853ab5bb448675bb139cfdf185e3a9b18e168566507934",
+      "symlink": true
+    },
+    {
+      "source": "/home/jzsd/Desktop/SO101摄像头添加与使用指南.txt",
+      "destination": "/home/jzsd/Desktop/SO101项目/91_原始命令与旧指南/SO101摄像头添加与使用指南.txt",
+      "sha256_before": "354ad64a51ed55a33d6b170e251e293adc34508d5ba1c6184880120c0667ca30",
+      "symlink": false
+    }
+  ],
+  "written_files": [
+    "/home/jzsd/Desktop/SO101项目/00_项目入口.txt",
+    "/home/jzsd/Desktop/SO101项目/02_数据与故障记录.txt",
+    "/home/jzsd/Desktop/SO101项目/03_双色双盘采集检查单.txt",
+    "/home/jzsd/Desktop/SO101项目/01_相机预览/SO101摄像头独立预览命令.txt",
+    "/home/jzsd/Desktop/SO101项目/01_相机预览/SO101摄像头预览.desktop"
+  ],
+  "launcher_trust_result": {
+    "returncode": 0,
+    "stderr": ""
+  },
+  "running_preview": "28040 /usr/bin/gst-launch-1.0 -e v4l2src device=/dev/v4l/by-id/usb-Generic_USB_HD_Camera_200910120001-video-index0 ! video/x-raw,format=YUY2,width=640,height=480,framerate=30/1 ! videoconvert ! ximagesink sync=false\n",
+  "control_processes": "",
+  "original_data_untouched": true
+}

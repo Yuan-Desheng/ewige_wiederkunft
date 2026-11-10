@@ -979,6 +979,7 @@ progress{
 .graph-controls:not(.is-close){
   border: 0.5px solid var(--tab-outline-color);
   box-shadow: var(--shadow-l) !important;
+  background-color: var(--background-primary) !important;
 }
 .theme-light .setting-group .setting-group-search{
   background-color: #bababa21 !important;
@@ -1019,11 +1020,8 @@ body:not(.is-mobile) .workspace-split.mod-left-split.is-sidedock-collapsed .work
   bottom: 100px;
   position: relative;
 }
-
-
-.image-embed {
-  display: flex;
-  flex-direction: column !important;
+.markdown-reading-view{
+  padding: 15px;
 }
 
 /* 开关样式*/
@@ -1102,7 +1100,9 @@ body:not(.is-mobile) .workspace-split.mod-left-split.is-sidedock-collapsed .work
 .bases-kanban-column-header{
   margin-bottom: 5px;
 }
-
+.bases-view[data-view-type="kanban"]{
+  scrollbar-width: thin;
+}
 .mod-right-split .workspace-tab-header-container .workspace-tab-header-container-inner{
 overflow:hidden;
 }

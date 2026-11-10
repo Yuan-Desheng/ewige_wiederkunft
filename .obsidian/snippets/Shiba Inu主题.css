@@ -92,6 +92,60 @@ settings:
         description: 彩色文件列表开关
         type: class-toggle
         default: true
+    -
+        id: file-list-style
+        title: 文件夹样式
+        description: 选择彩色文件夹的外观
+        type: class-select
+        allowEmpty: false
+        default: file-list-style-card
+        options:
+          - label: 彩色文件夹（默认）
+            value: file-list-style-card
+          - label: 极简色条
+            value: file-list-style-line
+          - label: 圆点导航
+            value: file-list-style-dot
+    -
+        id: file-list-palette
+        title: 文件夹配色
+        description: 选择彩色文件夹的色板
+        type: class-select
+        allowEmpty: false
+        default: file-list-palette-vivid
+        options:
+          - label: 活力九色
+            value: file-list-palette-vivid
+          - label: 莫兰迪
+            value: file-list-palette-morandi
+          - label: 柔和粉彩
+            value: file-list-palette-pastel
+          - label: 冷色海洋
+            value: file-list-palette-ocean
+          - label: 暖色秋日
+            value: file-list-palette-autumn
+          - label: 单色渐变
+            value: file-list-palette-mono
+    -
+        id: file-list-color-strength
+        title: 彩色背景强度
+        description: 调整背景和悬停色的浓淡
+        type: class-select
+        allowEmpty: false
+        default: file-list-strength-medium
+        options:
+          - label: 低
+            value: file-list-strength-low
+          - label: 中
+            value: file-list-strength-medium
+          - label: 高
+            value: file-list-strength-high
+    -
+        id: file-list-hover-animation
+        title: 文件夹悬停动画
+        description: 为文件夹的悬停反馈添加平滑过渡
+        type: class-toggle
+        default: true
     - 
         id: workspace
         title: 工作区布局
@@ -256,142 +310,6 @@ body:not(.shib-callout-toggle) .callout.is-collapsible:not(.is-collapsed) .callo
 
 }
 
-/* default */
-.theme-light.default-light-theme{
-    --exterior: 234,231,226;
-}
-
-.theme-light.default-light-theme.mod-linux .titlebar-button, 
-.theme-light.default-light-theme.mod-windows .titlebar-button{
-    background: var(--card-background-color);
-}
-
-/* lily */
-
-body.theme-light.lily-light.shib-card-layout{
-    --card-background-color:#dce4e0;
-}
-
-body.theme-light.lily-light.shib-card-layout,
-.theme-light.lily-light.shib-card-layout .workspace-ribbon.mod-left,
-.theme-light.lily-light.shib-card-layout .workspace-tab-header-container,
-.theme-light.lily-light.shib-card-layout .sidebar-toggle-button,
-.theme-light.lily-light.mod-macos.is-hidden-frameless:not(.is-popout-window) .sidebar-toggle-button.mod-right{
-    background-color:var(--card-background-color) ;
-}
-
-.theme-light.lily-light .style-settings-info-text.setting-item.setting-item.setting-item.setting-item,
-.theme-light.lily-light .cm-s-obsidian div.HyperMD-codeblock-bg{
-    background-color:#dce4e0ba;
-}
-.theme-light.lily-light .style-settings-heading:not([data-level="0"],[data-id=shiba-inu-support-header])+.style-settings-container{
-    background-color: #dce4e0ba;
-}
-
-body:not(.is-mobile).theme-light.lily-light .workspace-split.mod-left-split .workspace-sidedock-vault-profile {
-    background-color: var(--background-primary) !important;
-}
-.theme-light.lily-light .cm-s-obsidian span.cm-inline-code,
-.theme-light.lily-light .markdown-rendered code{
-    background-color: transparent;
-}
-.theme-light.lily-light .cm-s-obsidian span.cm-formatting-highlight, 
-.theme-light.lily-light .cm-s-obsidian span.cm-highlight{
-    background-color: #6bb28c94;
-}
-
-.theme-dark.lily-light .cm-s-obsidian span.cm-formatting-highlight, 
-.theme-dark.lily-light .cm-s-obsidian span.cm-highlight{
-    background-color: #0e683fde;
-}
-
-/* ivory */
-.theme-light.ivory-light.mod-linux .titlebar-button, 
-.theme-light.ivory-light.mod-windows .titlebar-button{
-    background: var(--card-background-color);
-}
-.theme-light.ivory-light .cm-s-obsidian span.cm-inline-code{
-    background-color: #f2e2d1a5;
-}
-
-
-/* sky */
-.theme-light.sky-light.mod-linux .titlebar-button, 
-.theme-light.sky-light.mod-windows .titlebar-button{
-    background: var(--card-background-color);
-}
-body:not(.is-mobile).theme-light.sky-light .workspace-split.mod-left-split .workspace-sidedock-vault-profile {
-    background-color: var(--background-primary) !important;
-}
-body.shib-card-layout.theme-light.sky-light, 
-body.shib-card-layout.theme-light.sky-light .sidebar-toggle-button, 
-body.shib-card-layout.theme-light.sky-light .workspace-tabs.mod-top{
-    --tab-container-background: rgb(202, 212, 223);
-}
-
-/* stone */
-.theme-light.stone-light.mod-linux .titlebar-button, 
-.theme-light.stone-light.mod-windows .titlebar-button{
-    background: var(--card-background-color);
-}
-
-/* theme-dark.pure-dark */
-.theme-dark.pure-dark{
-    --exterior: 35,35,35;
-    --overlay2: 225,225,225;
-    --surface0: 35,35,35;
-}
-
-/* theme-dark.Lilac-dark */
-.theme-dark.Lilac-dark.mod-linux .titlebar-button, 
-.theme-dark.Lilac-dark.mod-windows .titlebar-button{
-    background: var(--card-background-color);
-}
-.theme-dark.Lilac-dark{
-    --exterior: 28,21,37;
-    --overlay2: 225,225,225;
-    --surface0: 28,21,37;
-}
-
-body:not(.is-mobile).theme-dark.Lilac-dark .workspace-split.mod-left-split .workspace-sidedock-vault-profile {
-    background-color: var(--background-primary) !important;
-}
-
-
-
-
-/* theme-dark.warm-dark */
-.theme-dark.warm-dark.mod-linux .titlebar-button, 
-.theme-dark.warm-dark.mod-windows .titlebar-button{
-    background: var(--card-background-color);
-}
-.theme-dark.warm-dark{
-    --exterior: 44,38,32;
-    --overlay2: 225,225,225;
-    --surface0: 44,38,32;
-}
-
-body:not(.is-mobile).theme-dark.warm-dark .workspace-split.mod-left-split .workspace-sidedock-vault-profile {
-    background-color: var(--background-primary) !important;
-}
-
-
-
-/* theme-dark.default-dark */
-.theme-dark.default-dark-theme.mod-linux .titlebar-button, 
-.theme-dark.default-dark-theme.mod-windows .titlebar-button{
-    background: var(--card-background-color);
-}
-.theme-dark.default-dark-theme{
-    --exterior: 25,35,52;
-    --overlay2: 225,225,225;
-    --surface0: 25,35,52;
-}
-
-body:not(.is-mobile).theme-dark.default-dark-theme .workspace-split.mod-left-split .workspace-sidedock-vault-profile {
-    background-color: var(--background-primary) !important;
-}
-
 
 /* KISS复盘样式 */
 .shib-card-layout .columnChild, div[data-callout="col"].callout > div.callout-content > *{
@@ -477,148 +395,512 @@ body:not(.shib-callout-toggle) .callout:not(.is-collapsible){
 
 /*
 Blue Topaz 彩色文件列表样式
-来源：Blue Topaz主题基础上修改
+来源：Blue Topaz 主题基础上修改
 */
 
-.shib-card-layout.file-list-color.theme-light.default-light-theme,
-.shib-card-layout.file-list-color.theme-light.lily-light,
-.shib-card-layout.file-list-color.theme-light.ivory-light,
-.shib-card-layout.file-list-color.theme-light.sky-light,
-.shib-card-layout.file-list-color.theme-light.stone-light,
-.shib-card-layout.file-list-color.theme-dark.default-dark-theme,
-.shib-card-layout.file-list-color.theme-dark.pure-dark,
-.shib-card-layout.file-list-color.theme-dark.Lilac-dark,
-.shib-card-layout.file-list-color.theme-dark.warm-dark {
-    --folder-color-1: #ff6b6b; /* 红色 */
-    --folder-color-2: #4ecdc4; /* 青色 */
-    --folder-color-3: #45b7d1; /* 蓝色 */
-    --folder-color-4: #96ceb4; /* 绿色 */
-    --folder-color-5: #d6a949; /* 黄色 */
-    --folder-color-6: #c754cd; /* 粉色 */
-    --folder-color-7: #54a0ff; /* 浅蓝色 */
-    --folder-color-8: #5f27cd; /* 紫色 */
-    --folder-color-9: #00d2d3; /* 青绿色 */
-    .nav-files-container > div > .nav-folder:nth-child(9n + 1) { 
-        --folder-color: var(--folder-color-1); 
-    }
-    .nav-files-container > div > .nav-folder:nth-child(9n + 2) { 
-        --folder-color: var(--folder-color-2); 
-    }
-    .nav-files-container > div > .nav-folder:nth-child(9n + 3) { 
-        --folder-color: var(--folder-color-3); 
-    }
-    .nav-files-container > div > .nav-folder:nth-child(9n + 4) { 
-        --folder-color: var(--folder-color-4); 
-    }
-    .nav-files-container > div > .nav-folder:nth-child(9n + 5) { 
-        --folder-color: var(--folder-color-5); 
-    }
-    .nav-files-container > div > .nav-folder:nth-child(9n + 6) { 
-        --folder-color: var(--folder-color-6); 
-    }
-    .nav-files-container > div > .nav-folder:nth-child(9n + 7) { 
-        --folder-color: var(--folder-color-7); 
-    }
-    .nav-files-container > div > .nav-folder:nth-child(9n + 8) { 
-        --folder-color: var(--folder-color-8); 
-    }
-    .nav-files-container > div > .nav-folder:nth-child(9n) { 
-        --folder-color: var(--folder-color-9); 
-    }
+/* 默认色板：同时作为 Style Settings 未加载时的回退值 */
+.shib-card-layout.file-list-color,
+.shib-card-layout.file-list-color.file-list-palette-vivid {
+    --folder-color-1: #ff6b6b;
+    --folder-color-2: #4ecdc4;
+    --folder-color-3: #45b7d1;
+    --folder-color-4: #96ceb4;
+    --folder-color-5: #d6a949;
+    --folder-color-6: #c754cd;
+    --folder-color-7: #54a0ff;
+    --folder-color-8: #8662ce;
+    --folder-color-9: #00d2d3;
+    --file-list-tint-strength: 12%;
+    --file-list-hover-strength: 18%;
+}
 
-    /* 兼容旧版本选择器 */
-    .nav-folder.mod-root > .nav-folder-children > .nav-folder:nth-child(9n + 1) { 
-        --folder-color: var(--folder-color-1); 
-    }
-    .nav-folder.mod-root > .nav-folder-children > .nav-folder:nth-child(9n + 2) { 
-        --folder-color: var(--folder-color-2); 
-    }
-    .nav-folder.mod-root > .nav-folder-children > .nav-folder:nth-child(9n + 3) { 
-        --folder-color: var(--folder-color-3); 
-    }
-    .nav-folder.mod-root > .nav-folder-children > .nav-folder:nth-child(9n + 4) { 
-        --folder-color: var(--folder-color-4); 
-    }
-    .nav-folder.mod-root > .nav-folder-children > .nav-folder:nth-child(9n + 5) { 
-        --folder-color: var(--folder-color-5); 
-    }
-    .nav-folder.mod-root > .nav-folder-children > .nav-folder:nth-child(9n + 6) { 
-        --folder-color: var(--folder-color-6); 
-    }
-    .nav-folder.mod-root > .nav-folder-children > .nav-folder:nth-child(9n + 7) { 
-        --folder-color: var(--folder-color-7); 
-    }
-    .nav-folder.mod-root > .nav-folder-children > .nav-folder:nth-child(9n + 8) { 
-        --folder-color: var(--folder-color-8); 
-    }
-    .nav-folder.mod-root > .nav-folder-children > .nav-folder:nth-child(9n) { 
-        --folder-color: var(--folder-color-9); 
-    }
+/* 可选色板 */
+.shib-card-layout.file-list-color.file-list-palette-morandi {
+    --folder-color-1: #b07d7d;
+    --folder-color-2: #769b91;
+    --folder-color-3: #718ca1;
+    --folder-color-4: #8b9d83;
+    --folder-color-5: #b19a6b;
+    --folder-color-6: #a68196;
+    --folder-color-7: #7894ad;
+    --folder-color-8: #84799b;
+    --folder-color-9: #6f9998;
+}
 
-    /* 应用彩色边框和卡片样式 */
-    .nav-files-container > div > .nav-folder,
-    .nav-folder.mod-root > .nav-folder-children > .nav-folder {
-        border: 0.5px solid var(--divider-color);
-        border-left: 4px solid var(--folder-color, var(--folder-color-1));
-        border-radius: var(--radius-s);
-        margin: var(--size-2-2) 0;
+.shib-card-layout.file-list-color.file-list-palette-pastel {
+    --folder-color-1: #f28b82;
+    --folder-color-2: #78d9cf;
+    --folder-color-3: #7bbce8;
+    --folder-color-4: #91cfa7;
+    --folder-color-5: #e1b85b;
+    --folder-color-6: #dc8ecf;
+    --folder-color-7: #8aaef2;
+    --folder-color-8: #aa8bd8;
+    --folder-color-9: #63c7bb;
+}
 
-        background-color: var(--background-secondary);
-        transition: all 0.2s ease;
-    }
+.shib-card-layout.file-list-color.file-list-palette-ocean {
+    --folder-color-1: #3c91e6;
+    --folder-color-2: #00a6a6;
+    --folder-color-3: #2d7dd2;
+    --folder-color-4: #52b788;
+    --folder-color-5: #48cae4;
+    --folder-color-6: #5e60ce;
+    --folder-color-7: #4895ef;
+    --folder-color-8: #8662ce;
+    --folder-color-9: #00b4d8;
+}
 
-    /* 文件夹标题颜色 */
-    .nav-folder-title {
-        color: var(--folder-color, var(--text-normal));
-        font-weight: var(--font-weight-medium);
-    }
+.shib-card-layout.file-list-color.file-list-palette-autumn {
+    --folder-color-1: #bc4749;
+    --folder-color-2: #d66b3d;
+    --folder-color-3: #a44a3f;
+    --folder-color-4: #6a994e;
+    --folder-color-5: #d4a373;
+    --folder-color-6: #b56576;
+    --folder-color-7: #cb7b45;
+    --folder-color-8: #8f5d5d;
+    --folder-color-9: #a9844f;
+}
 
-    /* 悬停效果 */
-    .nav-files-container > div > .nav-folder:hover,
-    .nav-folder.mod-root > .nav-folder-children > .nav-folder:hover {
-        background-color: var(--background-modifier-hover);
-        border-left-width: 16px;
-    }
+.shib-card-layout.file-list-color.file-list-palette-mono {
+    --folder-color-1: #2f6f9f;
+    --folder-color-2: #397bab;
+    --folder-color-3: #4387b7;
+    --folder-color-4: #4d93c3;
+    --folder-color-5: #579fcf;
+    --folder-color-6: #61abdb;
+    --folder-color-7: #6bb7e7;
+    --folder-color-8: #75c3ed;
+    --folder-color-9: #7fcff3;
+}
 
-    /* 激活状态 */
-    .nav-files-container > div > .nav-folder.is-active,
-    .nav-folder.mod-root > .nav-folder-children > .nav-folder.is-active {
-        background-color: var(--background-modifier-active-hover);
-    }
+/* 背景色强度 */
+.shib-card-layout.file-list-color.file-list-strength-low {
+    --file-list-tint-strength: 7%;
+    --file-list-hover-strength: 12%;
+}
 
-    /* 针对子文件夹的样式调整 */
-    .nav-folder-children .nav-folder {
-        margin-left: var(--size-4-2);
-        border-left-width: 3px;
-    }
+.shib-card-layout.file-list-color.file-list-strength-medium {
+    --file-list-tint-strength: 12%;
+    --file-list-hover-strength: 18%;
+}
 
-    .nav-folder-children .nav-folder:hover {
-        border-left-width: 4px;
-    }
-    /* 调整文件列表缩进 */
-    .nav-folder-children {
-    padding-left: 0.0em !important; /* 基础缩进值 */
+.shib-card-layout.file-list-color.file-list-strength-high {
+    --file-list-tint-strength: 20%;
+    --file-list-hover-strength: 28%;
+}
+
+/* 顶级文件夹按九色循环，子文件夹继承所属顶级目录的颜色 */
+.shib-card-layout.file-list-color :is(.nav-files-container > div, .nav-folder.mod-root > .nav-folder-children) > .nav-folder:nth-child(9n + 1) {
+    --folder-color: var(--folder-color-1);
+}
+
+.shib-card-layout.file-list-color :is(.nav-files-container > div, .nav-folder.mod-root > .nav-folder-children) > .nav-folder:nth-child(9n + 2) {
+    --folder-color: var(--folder-color-2);
+}
+
+.shib-card-layout.file-list-color :is(.nav-files-container > div, .nav-folder.mod-root > .nav-folder-children) > .nav-folder:nth-child(9n + 3) {
+    --folder-color: var(--folder-color-3);
+}
+
+.shib-card-layout.file-list-color :is(.nav-files-container > div, .nav-folder.mod-root > .nav-folder-children) > .nav-folder:nth-child(9n + 4) {
+    --folder-color: var(--folder-color-4);
+}
+
+.shib-card-layout.file-list-color :is(.nav-files-container > div, .nav-folder.mod-root > .nav-folder-children) > .nav-folder:nth-child(9n + 5) {
+    --folder-color: var(--folder-color-5);
+}
+
+.shib-card-layout.file-list-color :is(.nav-files-container > div, .nav-folder.mod-root > .nav-folder-children) > .nav-folder:nth-child(9n + 6) {
+    --folder-color: var(--folder-color-6);
+}
+
+.shib-card-layout.file-list-color :is(.nav-files-container > div, .nav-folder.mod-root > .nav-folder-children) > .nav-folder:nth-child(9n + 7) {
+    --folder-color: var(--folder-color-7);
+}
+
+.shib-card-layout.file-list-color :is(.nav-files-container > div, .nav-folder.mod-root > .nav-folder-children) > .nav-folder:nth-child(9n + 8) {
+    --folder-color: var(--folder-color-8);
+}
+
+.shib-card-layout.file-list-color :is(.nav-files-container > div, .nav-folder.mod-root > .nav-folder-children) > .nav-folder:nth-child(9n) {
+    --folder-color: var(--folder-color-9);
+}
+
+/* 所有样式共享的标题、层级与激活态 */
+.shib-card-layout.file-list-color .nav-folder-title {
+    color: var(--folder-color, var(--text-normal));
+    font-weight: var(--font-weight-medium);
+}
+
+.shib-card-layout.file-list-color .nav-folder-title.is-active,
+.shib-card-layout.file-list-color .nav-folder.is-active > .nav-folder-title {
+    background-color: color-mix(
+        in srgb,
+        var(--folder-color, var(--interactive-accent)) var(--file-list-hover-strength),
+        transparent
+    );
+}
+
+.shib-card-layout.file-list-color .nav-folder-children {
+    padding-left: 0 !important;
     margin-left: 0.2em !important;
-    }
-  
-    /* 调整文件夹图标位置 */
-    .nav-folder-collapse-indicator {
-    margin-left: 0.0em !important;
-    }
-  
-    /* 优化多级嵌套缩进 */
-    .nav-folder-children .nav-folder-children {
-    padding-left: 0.0em !important; /* 次级缩进值 */
-    border-left: 0.2px solid #5a5a58b0
-    }
+}
 
-    /* 调整移动端显示 */
-    @media (max-width: 900px) {
-    .nav-folder-children {
-      padding-left: 0.0em !important;
+.shib-card-layout.file-list-color .nav-folder-collapse-indicator {
+    margin-left: 0 !important;
+}
+
+.shib-card-layout.file-list-color .nav-folder-children .nav-folder-children {
+    padding-left: 0 !important;
+}
+
+.shib-card-layout.file-list-color.file-list-hover-animation .nav-folder,
+.shib-card-layout.file-list-color.file-list-hover-animation .nav-folder-title,
+.shib-card-layout.file-list-color.file-list-hover-animation .content-protection-file-icon .svg-icon,
+.shib-card-layout.file-list-color.file-list-hover-animation .nav-folder-title:not(:has(> .content-protection-file-icon))::before {
+    transition: background-color 0.2s ease, border-color 0.2s ease,
+        border-width 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* 样式一：彩色文件夹（默认） */
+.shib-card-layout.file-list-color.file-list-style-card :is(.nav-files-container > div, .nav-folder.mod-root > .nav-folder-children) > .nav-folder {
+    border: 0.5px solid var(--divider-color);
+    border-left: 4px solid var(--folder-color, var(--folder-color-1));
+    border-radius: var(--radius-s);
+    margin: var(--size-2-2) 0;
+}
+
+.shib-card-layout.file-list-color.file-list-style-card :is(.nav-files-container > div, .nav-folder.mod-root > .nav-folder-children) > .nav-folder:hover {
+    background-color: color-mix(
+        in srgb,
+        var(--folder-color, var(--interactive-accent)) var(--file-list-tint-strength),
+        var(--background-modifier-hover)
+    );
+    border-left-width: 8px;
+}
+
+.shib-card-layout.file-list-color.file-list-style-card .nav-folder-children .nav-folder {
+    margin-left: var(--size-4-2);
+}
+
+/* 样式二：极简色条 */
+.shib-card-layout.file-list-color.file-list-style-line .nav-folder-children .nav-folder {
+    margin-left: var(--size-4-2);
+    margin-inline-start: var(--size-4-2);
+}
+
+.shib-card-layout.file-list-color.file-list-style-line .nav-folder:not(.mod-root) {
+    position: relative;
+}
+
+/*
+ * 色条锚定在稳定的文件夹节点上，避免 Obsidian 切换样式时尚未
+ * 刷新 nav-folder-title 的内联缩进，导致 border-left 瞬时错位。
+ */
+.shib-card-layout.file-list-color.file-list-style-line .nav-folder:not(.mod-root)::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 1.75em;
+    border-radius: 0 var(--radius-s) var(--radius-s) 0;
+    background-color: var(--folder-color, var(--folder-color-1));
+    pointer-events: none;
+}
+
+.shib-card-layout.file-list-color.file-list-style-line .nav-folder:not(.mod-root) > .nav-folder-title {
+    border-left: 1px solid transparent;
+    border-radius: 0 var(--radius-s) var(--radius-s) 0;
+}
+
+.shib-card-layout.file-list-color.file-list-style-line .nav-folder:not(.mod-root) > .nav-folder-title:hover {
+    background-color: color-mix(
+        in srgb,
+        var(--folder-color, var(--interactive-accent)) var(--file-list-tint-strength),
+        transparent
+    );
+}
+
+.shib-card-layout.file-list-color.file-list-style-line .nav-folder:not(.mod-root):has(> .nav-folder-title:hover)::before {
+    width: 6px;
+}
+
+.shib-card-layout.file-list-color.file-list-style-line.file-list-hover-animation .nav-folder:not(.mod-root)::before {
+    transition: width 0.2s ease;
+}
+
+/* 样式三：圆点导航，替换内容保护图标并为深层文件夹补齐圆点 */
+.shib-card-layout.file-list-color.file-list-style-dot {
+    --file-list-dot-size: 0.72em;
+    --file-list-tree-indent: calc(var(--size-4-2) * 2);
+    --file-list-file-indent: 1.5em;
+    --file-list-branch-center: 0.9em;
+    --file-list-branch-radius: 0.3em;
+    --file-list-tree-line-width: 0.6px;
+}
+
+/*
+ * 抵消运行时写入 .tree-item-self 的内联
+ * padding-inline-start: 24px !important。内联 !important 无法由片段
+ * CSS 直接覆盖，因此仅将顶层节点整体左移同等距离，不改变内部层级。
+ */
+.shib-card-layout.file-list-color.file-list-style-dot
+    :is(.nav-files-container > div, .nav-folder.mod-root > .nav-folder-children)
+    > :is(.nav-folder, .nav-file) {
+    margin-left: -24px !important;
+    margin-inline-start: -24px !important;
+}
+
+/* 同时兼容新旧文件树 DOM；第九层以后保持最小尺寸 */
+.shib-card-layout.file-list-color.file-list-style-dot :is(.nav-files-container > div, .nav-folder.mod-root > .nav-folder-children) {
+    --file-list-dot-size: 0.72em;
+}
+
+.shib-card-layout.file-list-color.file-list-style-dot :is(.nav-files-container > div, .nav-folder.mod-root > .nav-folder-children) .nav-folder-children {
+    --file-list-dot-size: 0.64em;
+}
+
+.shib-card-layout.file-list-color.file-list-style-dot :is(.nav-files-container > div, .nav-folder.mod-root > .nav-folder-children) .nav-folder-children .nav-folder-children {
+    --file-list-dot-size: 0.58em;
+}
+
+.shib-card-layout.file-list-color.file-list-style-dot :is(.nav-files-container > div, .nav-folder.mod-root > .nav-folder-children) .nav-folder-children .nav-folder-children .nav-folder-children {
+    --file-list-dot-size: 0.53em;
+}
+
+.shib-card-layout.file-list-color.file-list-style-dot :is(.nav-files-container > div, .nav-folder.mod-root > .nav-folder-children) .nav-folder-children .nav-folder-children .nav-folder-children .nav-folder-children {
+    --file-list-dot-size: 0.49em;
+}
+
+.shib-card-layout.file-list-color.file-list-style-dot :is(.nav-files-container > div, .nav-folder.mod-root > .nav-folder-children) .nav-folder-children .nav-folder-children .nav-folder-children .nav-folder-children .nav-folder-children {
+    --file-list-dot-size: 0.45em;
+}
+
+.shib-card-layout.file-list-color.file-list-style-dot :is(.nav-files-container > div, .nav-folder.mod-root > .nav-folder-children) .nav-folder-children .nav-folder-children .nav-folder-children .nav-folder-children .nav-folder-children .nav-folder-children {
+    --file-list-dot-size: 0.42em;
+}
+
+.shib-card-layout.file-list-color.file-list-style-dot :is(.nav-files-container > div, .nav-folder.mod-root > .nav-folder-children) .nav-folder-children .nav-folder-children .nav-folder-children .nav-folder-children .nav-folder-children .nav-folder-children .nav-folder-children {
+    --file-list-dot-size: 0.39em;
+}
+
+.shib-card-layout.file-list-color.file-list-style-dot :is(.nav-files-container > div, .nav-folder.mod-root > .nav-folder-children) .nav-folder-children .nav-folder-children .nav-folder-children .nav-folder-children .nav-folder-children .nav-folder-children .nav-folder-children .nav-folder-children {
+    --file-list-dot-size: 0.36em;
+}
+
+/* 仅将文件夹的内容保护图标显示为圆点，不影响普通文件 */
+.shib-card-layout.file-list-color.file-list-style-dot .nav-folder > .nav-folder-title > .content-protection-file-icon .svg-icon,
+/* 未配置图标的深层文件夹，在相同的图标槽位补一个圆点 */
+.shib-card-layout.file-list-color.file-list-style-dot .nav-folder > .nav-folder-title:not(:has(> .content-protection-file-icon))::before {
+    width: var(--file-list-dot-size);
+    height: var(--file-list-dot-size);
+    min-width: var(--file-list-dot-size);
+    margin-inline: 0.35em 0.65em;
+    padding: 0;
+    border-radius: 50%;
+    background-color: var(--folder-color, var(--folder-color-1));
+    box-shadow: 0 0 0 calc(var(--file-list-dot-size) * 0.3) color-mix(
+        in srgb,
+        var(--folder-color, var(--interactive-accent)) var(--file-list-tint-strength),
+        transparent
+    );
+    color: transparent;
+    flex: 0 0 var(--file-list-dot-size);
+}
+
+.shib-card-layout.file-list-color.file-list-style-dot .nav-folder > .nav-folder-title:not(:has(> .content-protection-file-icon))::before {
+    content: "";
+    display: block;
+    order: 1;
+}
+
+.shib-card-layout.file-list-color.file-list-style-dot .nav-folder-title > .tree-item-icon {
+    order: 0;
+}
+
+.shib-card-layout.file-list-color.file-list-style-dot .nav-folder-title > .nav-folder-title-content {
+    order: 2;
+}
+
+.shib-card-layout.file-list-color.file-list-style-dot .nav-folder > .nav-folder-title > .content-protection-file-icon .svg-icon > * {
+    display: none;
+}
+
+.shib-card-layout.file-list-color.file-list-style-dot .nav-folder > .nav-folder-title:hover > .content-protection-file-icon .svg-icon,
+.shib-card-layout.file-list-color.file-list-style-dot .nav-folder > .nav-folder-title:not(:has(> .content-protection-file-icon)):hover::before {
+    transform: scale(1.25);
+}
+
+/* 圆点模式的目录树：以中性加减号取代折叠箭头 */
+.shib-card-layout.file-list-color.file-list-style-dot .nav-folder:not(.mod-root) > .nav-folder-title > :is(.nav-folder-collapse-indicator, .tree-item-icon) {
+    position: relative;
+    inset-block-start: auto;
+    align-self: center;
+    display: block;
+    width: 1em;
+    height: 1em;
+    min-width: 1em;
+    margin-inline: 0 0.3em !important;
+    margin-block: 0 !important;
+    padding: 0 !important;
+    color: var(--text-faint);
+    flex: 0 0 1em;
+    transform: none !important;
+}
+
+.shib-card-layout.file-list-color.file-list-style-dot .nav-folder:not(.mod-root) > .nav-folder-title > :is(.nav-folder-collapse-indicator, .tree-item-icon) .svg-icon {
+    display: none;
+}
+
+.shib-card-layout.file-list-color.file-list-style-dot .nav-folder:not(.mod-root) > .nav-folder-title > :is(.nav-folder-collapse-indicator, .tree-item-icon)::before,
+.shib-card-layout.file-list-color.file-list-style-dot .nav-folder:not(.mod-root) > .nav-folder-title > :is(.nav-folder-collapse-indicator, .tree-item-icon)::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 1px;
+    background-color: currentColor;
+    transform: translate(-50%, -50%);
+}
+
+.shib-card-layout.file-list-color.file-list-style-dot.file-list-hover-animation :is(.nav-folder-collapse-indicator, .tree-item-icon)::before,
+.shib-card-layout.file-list-color.file-list-style-dot.file-list-hover-animation :is(.nav-folder-collapse-indicator, .tree-item-icon)::after {
+    transition: opacity 0.16s ease, background-color 0.16s ease;
+}
+
+.shib-card-layout.file-list-color.file-list-style-dot .nav-folder:not(.mod-root) > .nav-folder-title > :is(.nav-folder-collapse-indicator, .tree-item-icon)::before {
+    width: 0.58em;
+    height: 1.5px;
+}
+
+.shib-card-layout.file-list-color.file-list-style-dot .nav-folder:not(.mod-root) > .nav-folder-title > :is(.nav-folder-collapse-indicator, .tree-item-icon)::after {
+    width: 1.5px;
+    height: 0.58em;
+    opacity: 0;
+}
+
+.shib-card-layout.file-list-color.file-list-style-dot .nav-folder.is-collapsed:not(.mod-root) > .nav-folder-title > :is(.nav-folder-collapse-indicator, .tree-item-icon)::after {
+    opacity: 1;
+}
+
+.shib-card-layout.file-list-color.file-list-style-dot .nav-folder:not(.mod-root) > .nav-folder-title:hover > :is(.nav-folder-collapse-indicator, .tree-item-icon) {
+    color: var(--text-muted);
+}
+
+/* 竖向导轨和横向分支线，从第二层目录开始显示 */
+.shib-card-layout.file-list-color.file-list-style-dot .nav-folder:not(.mod-root) > .nav-folder-children {
+    position: relative;
+    padding-left: 0 !important;
+    padding-inline-start: 0 !important;
+    margin-left: 0 !important;
+    margin-inline-start: 0 !important;
+    border-left: 0;
+}
+
+/* 导轨绝对定位到父级 +/- 的中心线，不参与子项缩进计算 */
+.shib-card-layout.file-list-color.file-list-style-dot .nav-folder:not(.mod-root) > .nav-folder-children:has(> .nav-folder)::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 2em;
+    width: 0;
+    box-sizing: border-box;
+    border-left: var(--file-list-tree-line-width) solid
+        color-mix(in srgb, var(--text-muted) 24%, transparent);
+}
+
+.shib-card-layout.file-list-color.file-list-style-dot .nav-folder:not(.mod-root) > .nav-folder-children > .nav-folder {
+    position: relative;
+    margin-left: var(--file-list-tree-indent) !important;
+    margin-inline-start: var(--file-list-tree-indent) !important;
+}
+
+/*
+ * 普通文件不需要为目录树的 +/- 与分支线预留空间；使用与另外两种
+ * 文件夹样式相同的基础缩进，文件标题自身的层级仍由 Obsidian 负责。
+ */
+.shib-card-layout.file-list-color.file-list-style-dot .nav-folder:not(.mod-root) > .nav-folder-children > .nav-file {
+    margin-left: var(--file-list-file-indent) !important;
+    margin-inline-start: var(--file-list-file-indent) !important;
+}
+
+.shib-card-layout.file-list-color.file-list-style-dot .nav-folder:not(.mod-root) > .nav-folder-children > .nav-folder::before {
+    content: "";
+    position: absolute;
+    top: var(--file-list-branch-center);
+    left: calc(2em - var(--file-list-tree-indent));
+    width: calc(var(--file-list-tree-indent) - 0.3em);
+    height: 0;
+    box-sizing: border-box;
+    border-top: var(--file-list-tree-line-width) solid
+        color-mix(in srgb, var(--text-muted) 24%, transparent);
+}
+
+/* 最后一个子文件夹使用 └ 形收尾，并终止父级竖向导轨 */
+.shib-card-layout.file-list-color.file-list-style-dot .nav-folder:not(.mod-root) > .nav-folder-children > .nav-folder:not(:has(~ .nav-folder))::before {
+    z-index: 1;
+    top: 0;
+    height: calc(var(--file-list-branch-center) + 1px);
+    box-sizing: border-box;
+    border-top: 0;
+    border-left: var(--file-list-tree-line-width) solid
+        color-mix(in srgb, var(--text-muted) 24%, transparent);
+    border-bottom: var(--file-list-tree-line-width) solid
+        color-mix(in srgb, var(--text-muted) 24%, transparent);
+    border-bottom-left-radius: var(--file-list-branch-radius);
+    /* 先遮住后方的直导轨，避免半透明边框叠加和圆弧内透线 */
+    background-color: var(--background-primary);
+}
+
+.shib-card-layout.file-list-color.file-list-style-dot .nav-folder:not(.mod-root) > .nav-folder-children > .nav-folder:not(:has(~ .nav-folder))::after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    top: calc(var(--file-list-branch-center) - var(--file-list-branch-radius));
+    bottom: 0;
+    left: calc(2em - var(--file-list-tree-indent) - 1px);
+    width: 3px;
+    background-color: var(--background-primary);
+    pointer-events: none;
+}
+
+/* 若末级子文件夹后还有普通文件，继续遮住其后的父级导轨 */
+.shib-card-layout.file-list-color.file-list-style-dot .nav-folder:not(.mod-root) > .nav-folder-children > .nav-folder:not(:has(~ .nav-folder)) ~ .nav-file {
+    position: relative;
+}
+
+.shib-card-layout.file-list-color.file-list-style-dot .nav-folder:not(.mod-root) > .nav-folder-children > .nav-folder:not(:has(~ .nav-folder)) ~ .nav-file::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    bottom: 0;
+    left: calc(2em - var(--file-list-file-indent) - 1px);
+    width: 3px;
+    background-color: var(--background-primary);
+    pointer-events: none;
+}
+
+@media (max-width: 900px) {
+    .shib-card-layout.file-list-color .nav-folder-children {
+        padding-left: 0 !important;
     }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .shib-card-layout.file-list-color.file-list-hover-animation .nav-folder,
+    .shib-card-layout.file-list-color.file-list-hover-animation .nav-folder-title,
+    .shib-card-layout.file-list-color.file-list-hover-animation .content-protection-file-icon .svg-icon,
+    .shib-card-layout.file-list-color.file-list-hover-animation .nav-folder-title:not(:has(> .content-protection-file-icon))::before,
+    .shib-card-layout.file-list-color.file-list-style-dot.file-list-hover-animation :is(.nav-folder-collapse-indicator, .tree-item-icon)::before,
+    .shib-card-layout.file-list-color.file-list-style-dot.file-list-hover-animation :is(.nav-folder-collapse-indicator, .tree-item-icon)::after {
+        transition: none;
     }
-    
 }
 /* ==========玻璃效果========== */
 
@@ -639,11 +921,16 @@ body.shib-card-layout.css-settings-manager{
     background: none;
 }
 
-.shib-card-layout .quickcache-bar-container,.shib-card-layout .check-in-panel{
+.shib-card-layout .quickcache-bar-container,.shib-card-layout .check-in-panel,
+{
     background-color: var(--background-primary) !important;
 }
 
-
+.status-bar,
+.menu-scroll
+{
+    background-color: var(--background-primary) !important;
+}
 /* 内联代码背景 */
 body.shib-card-layout.theme-light .cm-s-obsidian span.cm-inline-code:not(.cm-formatting):not(.cm-hmd-indented-code):not(.obsidian-search-match-highlight):not(.mb-input-inline):not(:is(code, span).mb-view:has(> div.mb-view-wrapper)){
     background: var(--inline-code-background-light) !important;
@@ -747,16 +1034,17 @@ body.shib-card-layout.theme-dark {
 
 
 
-body.shiba-layout.shib-card-layout:not(.is-mobile) .workspace-split.mod-left-split .workspace-sidedock-vault-profile{
-    border-radius: 0 0 10px 10px !important;
-    border: 1px solid var(--tab-outline-color);
-    border-top: 1px dashed var(--tab-outline-color);
-    background-color: var(--background-primary) !important;
+
+.border-layout.shib-card-layout:not(.is-mobile) .workspace-split.mod-left-split .workspace-sidedock-vault-profile,
+body:not(.is-mobile) .workspace-split.mod-primary-split .workspace-sidedock-vault-profile {
+    border-left: 0.5px solid var(--tab-outline-color);
+    border-bottom: 0.5px solid var(--tab-outline-color);
+    border-top: 0.5px dashed var(--tab-outline-color);
     padding-top: 3px;
     padding-bottom: 3px;
-    margin-right: 10px;
+    border-radius: 0 0 0 10px;
+    background: var(--background-primary);
 }
-
 
 .shiba-layout.shib-card-layout:not(.is-mobile) .mod-stacked .workspace-tab-container {
     margin-bottom: 0px !important;
@@ -770,7 +1058,17 @@ body.shiba-layout.shib-card-layout:not(.is-mobile) .workspace-split.mod-left-spl
 .shiba-layout.shib-card-layout:not(.is-mobile) .workspace-tabs .workspace-leaf {
     padding-right: 10px;
 }
+.shiba-layout.shib-card-layout:not(.is-mobile)
+  .workspace-split.mod-left-split
+  .workspace-sidedock-vault-profile {
+  width: calc(100% - 10px) !important;
+  border: 1px solid var(--tab-outline-color);
+  border-top: 0.5px dashed var(--tab-outline-color);
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background-color: var(--background-primary);
 
+}
 /* 工作区-border  */
 
 .border-layout.shib-card-layout:not(.is-mobile) .workspace {
@@ -796,15 +1094,6 @@ body.shiba-layout.shib-card-layout:not(.is-mobile) .workspace-split.mod-left-spl
 
 .border-layout.shib-card-layout .workspace:not(.is-right-sidedock-open) .mod-vertical .workspace-tab-container {
     border-bottom-right-radius: 10px !important;
-}
-
-.border-layout.shib-card-layout:not(.is-mobile) .workspace-split.mod-left-split .workspace-sidedock-vault-profile {
-    border: 0.5px solid var(--tab-outline-color);
-    border-top: 0.5px dashed var(--tab-outline-color);
-    border-right: none;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    border-bottom-left-radius: 10px !important;
 }
 
 .border-layout.shib-card-layout  .mod-top-right-space  .workspace-tab-container {
@@ -858,7 +1147,7 @@ body.shiba-layout.shib-card-layout:not(.is-mobile) .workspace-split.mod-left-spl
     margin: 0px 10px 0px 0px;
     height: 20px;
     border: none;
-    background: transparent;
+    background: transparent !important;
     font-size: 12px;
 }
 .shib-card-layout .status-bar-item {

@@ -1,0 +1,42 @@
+A臂：练手与两条试录（按2026-11-05命令单摘录）
+
+1. 先准备现场
+移走调焦用字卡，保持当前焦点和相机位置。使用边长2.5–4cm、≤50g、单色不反光的方块；盒口≥10×10cm、壁高≤6cm，与桌面和方块颜色有反差。
+从臂底座用桌面夹固定，主臂及操作人的手安排在相机画面外。把方块放在盒外工作区，盒子固定在一侧。给盒子和三脚架脚位贴标记。
+相机画面中盒子前沿要留余量。调好后，在50条正式采集中保持相机、焦点、盒子、灯光不变。
+关闭独立摄像头预览，避免占用相机。本机桌面打开终端；下列命令逐段复制执行，不要整篇一次粘贴。不从SSH或远程桌面启动正式采集。
+
+2. 在这个终端先进入环境
+so101
+
+3. 带相机练手、检查五个点位和盒子能否轻松够到
+启动前两臂放到相近的稳定姿态，清空从臂运动范围，启动后先小幅移动主臂。
+lerobot-teleoperate --robot.type=so101_follower --robot.port=$F --robot.id=a_follower \
+  --robot.cameras="{ top: {type: opencv, index_or_path: /dev/video0, width: 640, height: 480, fps: 30} }" \
+  --teleop.type=so101_leader --teleop.port=$L --teleop.id=a_leader \
+  --display_data=true
+
+依次带从臂经过五个方块点位和盒子上方，确认不用把臂伸到头、夹爪全程入镜、手臂不长时间挡住抓取点或盒口。
+练习动作：到方块上方→下降夹住→抬起→移到盒子上方→松开→回起始位、张开夹爪。
+练好并放到稳定姿态后，在原终端按Ctrl+C停止本段遥操作，等待程序退出并释放相机。
+
+4. 在同一终端试录两条
+lerobot-record --robot.type=so101_follower --robot.port=$F --robot.id=a_follower \
+  --robot.cameras="{ top: {type: opencv, index_or_path: /dev/video0, width: 640, height: 480, fps: 30} }" \
+  --teleop.type=so101_leader --teleop.port=$L --teleop.id=a_leader \
+  --dataset.repo_id=jizhishida/a_test --dataset.root=/data/so101/datasets/a_test \
+  --dataset.single_task="Pick up the cube and place it in the box" \
+  --dataset.num_episodes=2 --dataset.episode_time_s=20 --dataset.reset_time_s=10 \
+  --dataset.fps=30 --dataset.push_to_hub=false --display_data=true --play_sounds=false
+
+按键：→ 当前条成功并回到起始位后提前结束；← 当前条作废重录；Esc停止并保存已录条目。
+每条20秒，复位10秒。只在复位期间摆方块，开录前把手移出画面。
+发生报错就停，把完整终端输出发回，不自行改参数、重校准或继续正式50条。
+如果提示目录已存在，不删除目录，也不反复重跑；先反馈检查已有数据。
+
+5. 试录完成后先保留数据，检查画面
+下面只查看数据，不驱动机械臂：
+lerobot-dataset-viz --repo-id jizhishida/a_test --root /data/so101/datasets/a_test --episode-index 0
+
+看第1条时将最后的0改成1。先核对抓放动作、相机、关节/动作数据是否正常，再清理试录和安排正式50条。
+正式采集仍按任务书由原德胜操作主臂，并约韦元勇或王明明一位协助。本文件没有正式50条命令，避免误启动。

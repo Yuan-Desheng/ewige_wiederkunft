@@ -1,0 +1,51 @@
+{
+  "recorded_at": "2026-11-09T11:23:25.747690+08:00",
+  "source": "原德胜现场描述和两张尺量照片；尺寸按用户提供值记录，未从照片重新反推精确数值",
+  "containers": {
+    "count": 2,
+    "length_cm": 29,
+    "width_cm": 18,
+    "height_cm": 5,
+    "reported_same_specification": true,
+    "inner_outer_measurement_convention": "用户未区分内外尺寸"
+  },
+  "cubes": {
+    "colors": [
+      "red",
+      "blue"
+    ],
+    "length_cm": 5,
+    "width_cm": 5,
+    "height_cm": 5,
+    "reported_same_size": true,
+    "material": null,
+    "mass_g_per_cube": null
+  },
+  "placement": {
+    "reported_contact_edge": "29 cm长边贴紧",
+    "gap_cm": 0,
+    "spacing_direction": "与相贴长边垂直，即18 cm宽度方向",
+    "estimated_center_distance_cm": 18,
+    "calculation": "18 + 0 = 18 cm；假设18 cm为该方向整体宽度且两盘同向对齐",
+    "measurement_status": "根据用户提供尺寸和贴边布置推算，未取得盘心到盘心直接尺量值"
+  },
+  "motion_checks_pending": [
+    "夹爪能否在5 cm高盘壁内稳定夹住5 cm方块",
+    "跨盘前方块底面、夹爪最低处及其他连杆能否避开盘沿",
+    "两方向完整抓放可达性和全过程入镜"
+  ],
+  "recommendation": "无须特意增加间隙。保持贴紧并做完整动作验证；若实测干涉再调整盘位并重新记录距离，不通过放大间隙替代抬升避障。",
+  "photos": [
+    {
+      "name": "道具尺寸测量-1.jpg",
+      "sha256": "b3c654455e4cd165cd0302cf6ffc5c237859668781aec036f8ad950fbb0902d1",
+      "bytes": 67306
+    },
+    {
+      "name": "道具尺寸测量-2.jpg",
+      "sha256": "7c3cec03d182f941b74c7e26f0e52ba12cd37a5b883451d5fc4f122001d79793",
+      "bytes": 91595
+    }
+  ],
+  "robot_motion_started": false
+}

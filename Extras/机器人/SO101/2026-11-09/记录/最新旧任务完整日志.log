@@ -1,0 +1,442 @@
+{"time": "2026-11-07T19:47:14.413013+08:00", "scope": "ping and register reads only; no torque enable/disable, no goal or configuration writes", "all_six_report_no_error_now": true, "motors": [{"id": 1, "ping": {"model": 777, "comm": 0, "error": 0}, "registers": {"Torque_Enable": {"raw": 0, "comm": 0, "error": 0, "reported_error": ""}, "Present_Voltage": {"raw": 120, "comm": 0, "error": 0, "reported_error": ""}, "Present_Temperature": {"raw": 33, "comm": 0, "error": 0, "reported_error": ""}, "Status": {"raw": 0, "comm": 0, "error": 0, "reported_error": ""}}}, {"id": 2, "ping": {"model": 777, "comm": 0, "error": 0}, "registers": {"Torque_Enable": {"raw": 0, "comm": 0, "error": 0, "reported_error": ""}, "Present_Voltage": {"raw": 119, "comm": 0, "error": 0, "reported_error": ""}, "Present_Temperature": {"raw": 32, "comm": 0, "error": 0, "reported_error": ""}, "Status": {"raw": 0, "comm": 0, "error": 0, "reported_error": ""}}}, {"id": 3, "ping": {"model": 777, "comm": 0, "error": 0}, "registers": {"Torque_Enable": {"raw": 0, "comm": 0, "error": 0, "reported_error": ""}, "Present_Voltage": {"raw": 118, "comm": 0, "error": 0, "reported_error": ""}, "Present_Temperature": {"raw": 32, "comm": 0, "error": 0, "reported_error": ""}, "Status": {"raw": 0, "comm": 0, "error": 0, "reported_error": ""}}}, {"id": 4, "ping": {"model": 777, "comm": 0, "error": 0}, "registers": {"Torque_Enable": {"raw": 0, "comm": 0, "error": 0, "reported_error": ""}, "Present_Voltage": {"raw": 118, "comm": 0, "error": 0, "reported_error": ""}, "Present_Temperature": {"raw": 33, "comm": 0, "error": 0, "reported_error": ""}, "Status": {"raw": 0, "comm": 0, "error": 0, "reported_error": ""}}}, {"id": 5, "ping": {"model": 777, "comm": 0, "error": 0}, "registers": {"Torque_Enable": {"raw": 0, "comm": 0, "error": 0, "reported_error": ""}, "Present_Voltage": {"raw": 120, "comm": 0, "error": 0, "reported_error": ""}, "Present_Temperature": {"raw": 33, "comm": 0, "error": 0, "reported_error": ""}, "Status": {"raw": 0, "comm": 0, "error": 0, "reported_error": ""}}}, {"id": 6, "ping": {"model": 777, "comm": 0, "error": 0}, "registers": {"Torque_Enable": {"raw": 0, "comm": 0, "error": 0, "reported_error": ""}, "Present_Voltage": {"raw": 119, "comm": 0, "error": 0, "reported_error": ""}, "Present_Temperature": {"raw": 34, "comm": 0, "error": 0, "reported_error": ""}, "Status": {"raw": 0, "comm": 0, "error": 0, "reported_error": ""}}}], "saved_to": "/data/so101/outputs/gripper-recovery-check-2026-11-07/read-only-20261107-194714.json"}
+INFO 2026-11-07 19:47:34 t_record.py:436 {'dataset': {'encoder_queue_maxsize': 30,
+             'encoder_threads': None,
+             'episode_time_s': inf,
+             'fps': 30,
+             'num_episodes': 2,
+             'num_image_writer_processes': 0,
+             'num_image_writer_threads_per_camera': 4,
+             'private': False,
+             'push_to_hub': False,
+             'rename_map': {},
+             'repo_id': 'jizhishida/a_test',
+             'reset_time_s': 10,
+             'root': '/data/so101/datasets/a_test',
+             'single_task': 'Pick up the cube and place it in the box',
+             'streaming_encoding': False,
+             'tags': None,
+             'vcodec': 'libsvtav1',
+             'video': True,
+             'video_encoding_batch_size': 1},
+ 'display_compressed_images': False,
+ 'display_data': True,
+ 'display_ip': None,
+ 'display_port': None,
+ 'play_sounds': False,
+ 'policy': None,
+ 'resume': True,
+ 'robot': {'calibration_dir': None,
+           'cameras': {'top': {'backend': <Cv2Backends.ANY: 0>,
+                               'color_mode': <ColorMode.RGB: 'rgb'>,
+                               'fourcc': None,
+                               'fps': 30,
+                               'height': 480,
+                               'index_or_path': PosixPath('/dev/video0'),
+                               'rotation': <Cv2Rotation.NO_ROTATION: 0>,
+                               'warmup_s': 1,
+                               'width': 640}},
+           'disable_torque_on_disconnect': True,
+           'id': 'a_follower',
+           'max_relative_target': 10.0,
+           'port': '/dev/serial/by-id/usb-1a86_USB_Single_Serial_5B79081406-if00',
+           'use_degrees': True},
+ 'teleop': {'calibration_dir': None,
+            'id': 'a_leader',
+            'port': '/dev/serial/by-id/usb-1a86_USB_Single_Serial_5B79083596-if00',
+            'use_degrees': True}}
+[2026-11-07T11:47:34Z INFO  re_grpc_server] Listening for gRPC connections on 0.0.0.0:9876. Connect by running `rerun --connect rerun+http://127.0.0.1:9876/proxy`
+[2026-11-07T11:47:34Z INFO  winit::platform_impl::linux::x11::window] Guessed window scale factor: 1
+[2026-11-07T11:47:34Z WARN  wgpu_hal::vulkan::instance] Unable to find extension: VK_EXT_physical_device_drm
+[2026-11-07T11:47:34Z WARN  wgpu_hal::vulkan::instance] Unable to find extension: VK_EXT_swapchain_colorspace
+WARNING 2026-11-07 19:47:34 eo_utils.py:121 'torchcodec' is not available in your platform, falling back to 'pyav' as a default decoder
+INFO 2026-11-07 19:47:34 eo_utils.py:106 Using video codec: libsvtav1
+[2026-11-07T11:47:34Z WARN  wgpu_hal::gles::egl] No config found!
+[2026-11-07T11:47:34Z WARN  wgpu_hal::gles::egl] EGL says it can present to the window but not natively
+[2026-11-07T11:47:34Z WARN  wgpu_hal::gles::adapter] Max vertex attribute stride unknown. Assuming it is 2048
+[2026-11-07T11:47:34Z WARN  wgpu_hal::gles::adapter] Max vertex attribute stride unknown. Assuming it is 2048
+[2026-11-07T11:47:34Z INFO  egui_wgpu] There were 2 available wgpu adapters: {backend: Vulkan, device_type: IntegratedGpu, name: "NVIDIA Tegra Orin (nvgpu)", driver: "NVIDIA", driver_info: "540.4.0", vendor: NVIDIA (0x10DE), device: 0x97BA03D7}, {backend: Gl, device_type: IntegratedGpu, name: "NVIDIA Tegra Orin (nvgpu)/integrated", driver_info: "3.3.0 NVIDIA 540.4.0", vendor: NVIDIA (0x10DE)}
+INFO 2026-11-07 19:47:36 a_opencv.py:179 OpenCVCamera(/dev/video0) connected.
+WARNING 2026-11-07 19:47:36 ors_bus.py:1106 Failed to sync write @addr=40 (length=1) on id=5 with value=1 (n_try=0): [TxRxResult] Incorrect status packet!
+INFO 2026-11-07 19:47:36 follower.py:106 a_follower SOFollower connected.
+INFO 2026-11-07 19:47:36 so_leader.py:79 a_leader SOLeader connected.
+INFO 2026-11-07 19:47:36 t_record.py:527 Streaming encoding is disabled. If you have capable hardware, consider enabling it for way faster episode saving. --dataset.streaming_encoding=true --dataset.encoder_threads=2 # --dataset.vcodec=auto. More info in the documentation: https://huggingface.co/docs/lerobot/streaming_video_encoding
+INFO 2026-11-07 19:47:36 ls/utils.py:227 Recording episode 3
+WARNING 2026-11-07 19:47:36 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'elbow_flex': {   'original goal_pos': -5.010989010989011,
+                      'safe goal_pos': -12.76923076923077},
+    'gripper': {   'original goal_pos': 85.50347222222221,
+                   'safe goal_pos': 17.884097035040433},
+    'shoulder_lift': {   'original goal_pos': -28.615384615384617,
+                         'safe goal_pos': -18.527472527472526},
+    'wrist_flex': {   'original goal_pos': 103.03296703296704,
+                      'safe goal_pos': 102.17582417582418},
+    'wrist_roll': {   'original goal_pos': 8.835164835164836,
+                      'safe goal_pos': -0.6813186813186807}}
+WARNING 2026-11-07 19:47:36 t_record.py:424 Record loop is running slower (28.0 Hz) than the target FPS (30 Hz). Dataset frames might be dropped and robot control might be unstable. Common causes are: 1) Camera FPS not keeping up 2) Policy inference taking too long 3) CPU starvation
+WARNING 2026-11-07 19:47:36 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'elbow_flex': {   'original goal_pos': -5.010989010989011,
+                      'safe goal_pos': -12.76923076923077},
+    'gripper': {   'original goal_pos': 85.50347222222221,
+                   'safe goal_pos': 17.884097035040433},
+    'shoulder_lift': {   'original goal_pos': -28.615384615384617,
+                         'safe goal_pos': -18.527472527472526},
+    'wrist_flex': {   'original goal_pos': 103.03296703296704,
+                      'safe goal_pos': 102.17582417582418},
+    'wrist_roll': {   'original goal_pos': 8.835164835164836,
+                      'safe goal_pos': -0.6813186813186807}}
+WARNING 2026-11-07 19:47:36 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'elbow_flex': {   'original goal_pos': -5.010989010989011,
+                      'safe goal_pos': -11.626373626373628},
+    'gripper': {   'original goal_pos': 85.50347222222221,
+                   'safe goal_pos': 18.423180592991912},
+    'shoulder_lift': {   'original goal_pos': -28.615384615384617,
+                         'safe goal_pos': -18.967032967032967},
+    'wrist_flex': {   'original goal_pos': 103.03296703296704,
+                      'safe goal_pos': 102.96703296703296},
+    'wrist_roll': {   'original goal_pos': 8.835164835164836,
+                      'safe goal_pos': 0.1098901098901095}}
+WARNING 2026-11-07 19:47:36 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'elbow_flex': {   'original goal_pos': -5.010989010989011,
+                      'safe goal_pos': -8.813186813186814},
+    'gripper': {   'original goal_pos': 85.50347222222221,
+                   'safe goal_pos': 20.512129380053906},
+    'shoulder_lift': {   'original goal_pos': -28.615384615384617,
+                         'safe goal_pos': -20.9010989010989},
+    'wrist_roll': {   'original goal_pos': 8.835164835164836,
+                      'safe goal_pos': 2.7472527472527473}}
+WARNING 2026-11-07 19:47:36 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'elbow_flex': {   'original goal_pos': -5.010989010989011,
+                      'safe goal_pos': -5.736263736263735},
+    'gripper': {   'original goal_pos': 85.50347222222221,
+                   'safe goal_pos': 23.140161725067387},
+    'shoulder_lift': {   'original goal_pos': -28.615384615384617,
+                         'safe goal_pos': -23.274725274725277},
+    'wrist_roll': {   'original goal_pos': 8.835164835164836,
+                      'safe goal_pos': 5.384615384615385}}
+WARNING 2026-11-07 19:47:36 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 85.50347222222221,
+                   'safe goal_pos': 25.8355795148248},
+    'shoulder_lift': {   'original goal_pos': -28.615384615384617,
+                         'safe goal_pos': -25.736263736263737},
+    'wrist_roll': {   'original goal_pos': 8.835164835164836,
+                      'safe goal_pos': 8.021978021978022}}
+WARNING 2026-11-07 19:47:36 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 85.50347222222221,
+                   'safe goal_pos': 28.39622641509434},
+    'shoulder_lift': {   'original goal_pos': -28.615384615384617,
+                         'safe goal_pos': -28.197802197802197}}
+WARNING 2026-11-07 19:47:36 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 85.50347222222221,
+                   'safe goal_pos': 31.091644204851754}}
+WARNING 2026-11-07 19:47:36 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 85.50347222222221,
+                   'safe goal_pos': 33.78706199460916}}
+WARNING 2026-11-07 19:47:36 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 85.50347222222221,
+                   'safe goal_pos': 36.41509433962264}}
+WARNING 2026-11-07 19:47:36 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 85.50347222222221,
+                   'safe goal_pos': 39.110512129380055}}
+WARNING 2026-11-07 19:47:36 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 85.50347222222221,
+                   'safe goal_pos': 41.738544474393535}}
+WARNING 2026-11-07 19:47:36 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 85.50347222222221,
+                   'safe goal_pos': 44.43396226415094}}
+WARNING 2026-11-07 19:47:36 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 85.50347222222221,
+                   'safe goal_pos': 46.99460916442048}}
+WARNING 2026-11-07 19:47:37 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 85.50347222222221,
+                   'safe goal_pos': 49.62264150943396}}
+WARNING 2026-11-07 19:47:37 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 85.50347222222221,
+                   'safe goal_pos': 52.318059299191376}}
+WARNING 2026-11-07 19:47:37 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 85.50347222222221,
+                   'safe goal_pos': 54.878706199460915}}
+WARNING 2026-11-07 19:47:37 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 85.50347222222221,
+                   'safe goal_pos': 57.64150943396226}}
+WARNING 2026-11-07 19:47:37 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 85.50347222222221,
+                   'safe goal_pos': 60.26954177897574}}
+WARNING 2026-11-07 19:47:37 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 85.50347222222221,
+                   'safe goal_pos': 62.89757412398922}}
+WARNING 2026-11-07 19:47:37 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 85.50347222222221,
+                   'safe goal_pos': 65.5256064690027}}
+WARNING 2026-11-07 19:47:37 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 85.50347222222221,
+                   'safe goal_pos': 68.22102425876011}}
+WARNING 2026-11-07 19:47:37 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 85.50347222222221,
+                   'safe goal_pos': 70.84905660377359}}
+WARNING 2026-11-07 19:47:37 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 85.50347222222221,
+                   'safe goal_pos': 73.40970350404312}}
+WARNING 2026-11-07 19:47:37 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 85.50347222222221,
+                   'safe goal_pos': 76.17250673854448}}
+WARNING 2026-11-07 19:47:37 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 85.50347222222221,
+                   'safe goal_pos': 78.73315363881402}}
+WARNING 2026-11-07 19:47:37 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 85.50347222222221,
+                   'safe goal_pos': 81.42857142857143}}
+WARNING 2026-11-07 19:47:37 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 85.50347222222221,
+                   'safe goal_pos': 84.05660377358491}}
+WARNING 2026-11-07 19:47:47 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 68.48958333333334,
+                   'safe goal_pos': 69.85175202156334}}
+WARNING 2026-11-07 19:47:47 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 65.27777777777779,
+                   'safe goal_pos': 67.22371967654986}}
+WARNING 2026-11-07 19:47:47 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 62.326388888888886,
+                   'safe goal_pos': 64.52830188679245}}
+WARNING 2026-11-07 19:47:47 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 59.80902777777778,
+                   'safe goal_pos': 61.7654986522911}}
+WARNING 2026-11-07 19:47:47 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 57.72569444444444,
+                   'safe goal_pos': 59.137466307277634}}
+WARNING 2026-11-07 19:47:47 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 56.16319444444444,
+                   'safe goal_pos': 56.509433962264154}}
+WARNING 2026-11-07 19:47:47 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 37.32638888888889,
+                   'safe goal_pos': 37.506738544474395}}
+WARNING 2026-11-07 19:47:47 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 34.63541666666667,
+                   'safe goal_pos': 35.2156334231806}}
+WARNING 2026-11-07 19:47:47 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 32.37847222222222,
+                   'safe goal_pos': 32.722371967654986}}
+WARNING 2026-11-07 19:47:49 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'elbow_flex': {   'original goal_pos': -4.21978021978022,
+                      'safe goal_pos': -4.593406593406593}}
+WARNING 2026-11-07 19:47:49 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'elbow_flex': {   'original goal_pos': -2.2857142857142856,
+                      'safe goal_pos': -2.4835164835164836}}
+WARNING 2026-11-07 19:47:55 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{'gripper': {'original goal_pos': 67.96875, 'safe goal_pos': 67.95148247978437}}
+WARNING 2026-11-07 19:47:55 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 70.65972222222221,
+                   'safe goal_pos': 70.44474393530997}}
+WARNING 2026-11-07 19:47:55 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 73.61111111111111,
+                   'safe goal_pos': 73.14016172506739}}
+WARNING 2026-11-07 19:47:55 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 76.38888888888889,
+                   'safe goal_pos': 75.83557951482479}}
+WARNING 2026-11-07 19:47:55 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 78.81944444444444,
+                   'safe goal_pos': 78.3288409703504}}
+INFO 2026-11-07 19:47:57 ls/utils.py:227 Reset the environment
+WARNING 2026-11-07 19:48:03 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'wrist_roll': {   'original goal_pos': -6.373626373626373,
+                      'safe goal_pos': -4.417582417582418}}
+WARNING 2026-11-07 19:48:04 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'wrist_roll': {   'original goal_pos': -11.12087912087912,
+                      'safe goal_pos': -7.142857142857142}}
+WARNING 2026-11-07 19:48:04 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'wrist_roll': {   'original goal_pos': -16.835164835164836,
+                      'safe goal_pos': -9.956043956043956}}
+WARNING 2026-11-07 19:48:04 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'wrist_roll': {   'original goal_pos': -21.142857142857142,
+                      'safe goal_pos': -12.68131868131868}}
+WARNING 2026-11-07 19:48:04 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'wrist_roll': {   'original goal_pos': -22.725274725274726,
+                      'safe goal_pos': -15.406593406593407}}
+WARNING 2026-11-07 19:48:04 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'wrist_roll': {   'original goal_pos': -22.9010989010989,
+                      'safe goal_pos': -18.21978021978022}}
+WARNING 2026-11-07 19:48:04 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'wrist_roll': {   'original goal_pos': -22.98901098901099,
+                      'safe goal_pos': -20.945054945054945}}
+Right arrow key pressed. Exiting loop...
+
+Map:   0%|          | 0/624 [00:00<?, ? examples/s]
+Map:  14%|█▎        | 85/624 [00:00<00:00, 831.09 examples/s]
+Map:  29%|██▊       | 178/624 [00:00<00:00, 886.84 examples/s]
+Map:  44%|████▎     | 272/624 [00:00<00:00, 903.75 examples/s]
+Map:  58%|█████▊    | 364/624 [00:00<00:00, 906.45 examples/s]
+Map:  80%|███████▉  | 498/624 [00:00<00:00, 895.27 examples/s]
+Map:  94%|█████████▍| 589/624 [00:00<00:00, 897.12 examples/s]
+Map: 100%|██████████| 624/624 [00:00<00:00, 859.57 examples/s]
+INFO 2026-11-07 19:48:11 eo_utils.py:106 Using video codec: libsvtav1
+Svt[info]: -------------------------------------------
+Svt[info]: SVT [version]:	SVT-AV1 Encoder Lib v3.0.0
+Svt[info]: SVT [build]  :	GCC 14.2.1 20250110 (Red Hat 14.2.1-7)	 64 bit
+Svt[info]: LIB Build date: Jul  3 2025 03:12:13
+Svt[info]: -------------------------------------------
+Svt[warn]: Preset M12 is mapped to M10.
+Svt[info]: Level of Parallelism: 4
+Svt[info]: Number of PPCS 59
+Svt[info]: [asm level on system : up to neon_dotprod]
+Svt[info]: [asm level selected : up to neon_dotprod]
+Svt[info]: -------------------------------------------
+Svt[info]: SVT [config]: main profile	tier (auto)	level (auto)
+Svt[info]: SVT [config]: width / height / fps numerator / fps denominator 		: 640 / 480 / 30 / 1
+Svt[info]: SVT [config]: bit-depth / color format 					: 8 / YUV420
+Svt[info]: SVT [config]: preset / tune / pred struct 					: 10 / PSNR / random access
+Svt[info]: SVT [config]: gop size / mini-gop size / key-frame type 			: 2 / 16 / key frame
+Svt[info]: SVT [config]: BRC mode / rate factor 					: CRF / 30 
+Svt[info]: SVT [config]: AQ mode / variance boost 					: 2 / 0
+Svt[info]: SVT [config]: sharpness / luminance-based QP bias 			: 0 / 0
+Svt[info]: Svt[info]: -------------------------------------------
+INFO 2026-11-07 19:48:24 ls/utils.py:227 Recording episode 4
+WARNING 2026-11-07 19:48:31 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 69.96527777777779,
+                   'safe goal_pos': 71.94070080862534}}
+WARNING 2026-11-07 19:48:31 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 65.27777777777779,
+                   'safe goal_pos': 69.38005390835579}}
+WARNING 2026-11-07 19:48:31 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 60.85069444444444,
+                   'safe goal_pos': 66.75202156334232}}
+WARNING 2026-11-07 19:48:31 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{'gripper': {'original goal_pos': 57.03125, 'safe goal_pos': 64.05660377358491}}
+WARNING 2026-11-07 19:48:31 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 53.732638888888886,
+                   'safe goal_pos': 61.3611859838275}}
+WARNING 2026-11-07 19:48:31 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 51.302083333333336,
+                   'safe goal_pos': 58.73315363881402}}
+WARNING 2026-11-07 19:48:31 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 49.39236111111111,
+                   'safe goal_pos': 56.172506738544485}}
+WARNING 2026-11-07 19:48:31 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 48.09027777777778,
+                   'safe goal_pos': 53.67924528301887}}
+WARNING 2026-11-07 19:48:31 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 47.04861111111111,
+                   'safe goal_pos': 51.118598382749326}}
+WARNING 2026-11-07 19:48:31 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 46.26736111111111,
+                   'safe goal_pos': 48.490566037735846}}
+WARNING 2026-11-07 19:48:31 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 45.48611111111111,
+                   'safe goal_pos': 46.06469002695418}}
+WARNING 2026-11-07 19:48:33 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 19.87847222222222,
+                   'safe goal_pos': 21.40161725067385}}
+WARNING 2026-11-07 19:48:33 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 13.715277777777779,
+                   'safe goal_pos': 19.17789757412399}}
+WARNING 2026-11-07 19:48:33 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 7.118055555555555,
+                   'safe goal_pos': 16.68463611859838}}
+WARNING 2026-11-07 19:48:34 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 0.1736111111111111,
+                   'safe goal_pos': 14.056603773584907}}
+WARNING 2026-11-07 19:48:34 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 0.08680555555555555,
+                   'safe goal_pos': 11.495956873315365}}
+WARNING 2026-11-07 19:48:34 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 1.3020833333333335,
+                   'safe goal_pos': 8.867924528301888}}
+WARNING 2026-11-07 19:48:34 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 0.1736111111111111,
+                   'safe goal_pos': 6.374663072776279}}
+WARNING 2026-11-07 19:48:34 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 0.08680555555555555,
+                   'safe goal_pos': 3.7466307277628044}}
+WARNING 2026-11-07 19:48:34 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 0.1736111111111111,
+                   'safe goal_pos': 0.9838274932614546}}
+WARNING 2026-11-07 19:48:37 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 16.75347222222222,
+                   'safe goal_pos': 15.525606469002696}}
+WARNING 2026-11-07 19:48:37 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 20.65972222222222,
+                   'safe goal_pos': 17.749326145552562}}
+WARNING 2026-11-07 19:48:38 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 23.78472222222222,
+                   'safe goal_pos': 20.242587601078167}}
+WARNING 2026-11-07 19:48:38 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{'gripper': {'original goal_pos': 26.5625, 'safe goal_pos': 22.938005390835578}}
+WARNING 2026-11-07 19:48:38 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 28.73263888888889,
+                   'safe goal_pos': 25.63342318059299}}
+WARNING 2026-11-07 19:48:38 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 30.729166666666668,
+                   'safe goal_pos': 28.194070080862534}}
+WARNING 2026-11-07 19:48:38 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 32.46527777777778,
+                   'safe goal_pos': 30.889487870619945}}
+WARNING 2026-11-07 19:48:38 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 33.94097222222222,
+                   'safe goal_pos': 33.45013477088949}}
+WARNING 2026-11-07 19:48:38 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 49.56597222222222,
+                   'safe goal_pos': 48.20754716981132}}
+WARNING 2026-11-07 19:48:38 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{'gripper': {'original goal_pos': 53.90625, 'safe goal_pos': 50.76819407008086}}
+WARNING 2026-11-07 19:48:38 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 59.02777777777778,
+                   'safe goal_pos': 53.93530997304582}}
+WARNING 2026-11-07 19:48:38 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 63.541666666666664,
+                   'safe goal_pos': 56.22641509433962}}
+WARNING 2026-11-07 19:48:38 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 68.05555555555556,
+                   'safe goal_pos': 58.78706199460917}}
+WARNING 2026-11-07 19:48:38 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 72.04861111111111,
+                   'safe goal_pos': 61.61725067385444}}
+WARNING 2026-11-07 19:48:38 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{'gripper': {'original goal_pos': 75.0, 'safe goal_pos': 64.17789757412399}}
+WARNING 2026-11-07 19:48:38 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{'gripper': {'original goal_pos': 77.34375, 'safe goal_pos': 66.80592991913747}}
+WARNING 2026-11-07 19:48:38 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 78.81944444444444,
+                   'safe goal_pos': 69.43396226415095}}
+WARNING 2026-11-07 19:48:38 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 79.60069444444444,
+                   'safe goal_pos': 71.9946091644205}}
+WARNING 2026-11-07 19:48:38 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 79.94791666666666,
+                   'safe goal_pos': 74.75741239892183}}
+WARNING 2026-11-07 19:48:38 ts/utils.py:113 Relative goal position magnitude had to be clamped to be safe.
+{   'gripper': {   'original goal_pos': 79.86111111111111,
+                   'safe goal_pos': 77.45283018867924}}
+Right arrow key pressed. Exiting loop...
+
+Map:   0%|          | 0/491 [00:00<?, ? examples/s]
+Map:  19%|█▊        | 92/491 [00:00<00:00, 893.49 examples/s]
+Map:  38%|███▊      | 186/491 [00:00<00:00, 914.08 examples/s]
+Map:  57%|█████▋    | 281/491 [00:00<00:00, 929.18 examples/s]
+Map:  77%|███████▋  | 377/491 [00:00<00:00, 935.67 examples/s]
+Map:  97%|█████████▋| 474/491 [00:00<00:00, 944.49 examples/s]
+Map: 100%|██████████| 491/491 [00:00<00:00, 896.06 examples/s]
+INFO 2026-11-07 19:48:44 eo_utils.py:106 Using video codec: libsvtav1
+Svt[info]: -------------------------------------------
+Svt[info]: SVT [version]:	SVT-AV1 Encoder Lib v3.0.0
+Svt[info]: SVT [build]  :	GCC 14.2.1 20250110 (Red Hat 14.2.1-7)	 64 bit
+Svt[info]: LIB Build date: Jul  3 2025 03:12:13
+Svt[info]: -------------------------------------------
+Svt[warn]: Preset M12 is mapped to M10.
+Svt[info]: Level of Parallelism: 4
+Svt[info]: Number of PPCS 59
+Svt[info]: [asm level on system : up to neon_dotprod]
+Svt[info]: [asm level selected : up to neon_dotprod]
+Svt[info]: -------------------------------------------
+Svt[info]: SVT [config]: main profile	tier (auto)	level (auto)
+Svt[info]: SVT [config]: width / height / fps numerator / fps denominator 		: 640 / 480 / 30 / 1
+Svt[info]: SVT [config]: bit-depth / color format 					: 8 / YUV420
+Svt[info]: SVT [config]: preset / tune / pred struct 					: 10 / PSNR / random access
+Svt[info]: SVT [config]: gop size / mini-gop size / key-frame type 			: 2 / 16 / key frame
+Svt[info]: SVT [config]: BRC mode / rate factor 					: CRF / 30 
+Svt[info]: SVT [config]: AQ mode / variance boost 					: 2 / 0
+Svt[info]: SVT [config]: sharpness / luminance-based QP bias 			: 0 / 0
+Svt[info]: Svt[info]: -------------------------------------------
+[mp4 @ 0xaaab2fbf3960] Starting second pass: moving the moov atom to the beginning of the file
+INFO 2026-11-07 19:48:54 ls/utils.py:227 Stop recording
+INFO 2026-11-07 19:48:54 a_opencv.py:592 OpenCVCamera(/dev/video0) disconnected.
+INFO 2026-11-07 19:48:54 follower.py:230 a_follower SOFollower disconnected.
+INFO 2026-11-07 19:48:54 o_leader.py:156 a_leader SOLeader disconnected.
+INFO 2026-11-07 19:48:54 ls/utils.py:227 Exiting

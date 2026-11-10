@@ -1,0 +1,84 @@
+{
+  "edges": [
+    {
+      "id": "edge-1793685616177-0000",
+      "fromNode": "note-1793685616177-0001",
+      "fromSide": "right",
+      "toNode": "note-1793683907683-0001",
+      "toSide": "left",
+      "label": "现场记录"
+    },
+    {
+      "id": "edge-1793685616177-0001",
+      "fromNode": "note-1793685616177-0001",
+      "fromSide": "right",
+      "toNode": "note-1793683907683-0002",
+      "toSide": "left",
+      "label": "部件与份数"
+    },
+    {
+      "id": "edge-1793685616177-0002",
+      "fromNode": "note-1793685616177-0001",
+      "fromSide": "right",
+      "toNode": "note-1793683907683-0003",
+      "toSide": "left",
+      "label": "完整技术代码"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "note-1793685616177-0001",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/工作领域/收集/3D打印入门与B样机实践.md",
+      "x": 0,
+      "y": 550,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1793683907683-0001",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/工作领域/收集/拓竹A1使用与PETG首件打印记录.md",
+      "x": 490,
+      "y": 0,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1793683907683-0002",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/工作领域/收集/B XLeRobot打印清单与配合验证.md",
+      "x": 490,
+      "y": 550,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1793683907683-0003",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/拓竹A1局域网切片与打印复现.md",
+      "x": 490,
+      "y": 1100,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1794193307149-0004",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/工作领域/项目/SO101双色双盘采集项目.md",
+      "x": 0,
+      "y": 0,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1794193307149-0005",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/工作领域/收集/SO101桌面归档与相机运维.md",
+      "x": 980,
+      "y": 0,
+      "width": 440,
+      "height": 500
+    }
+  ]
+}

@@ -2,9 +2,9 @@
 
 .check-in-panel {
   padding: 0px 0px;
-  background-color: var(--background-secondary);
+  background-color: var(--background-primary);
   border-radius: 5px;
-  margin-top: 0px 0px;
+
 }
 
 .check-in-header {
@@ -66,9 +66,7 @@
   align-items: center;
   justify-content: flex-start;
   padding: 0px 3px;
-  background-color: var(--background-primary);
   border-radius: 4px;
-  transition: background-color 0.2s;
   user-select: none;
 }
 

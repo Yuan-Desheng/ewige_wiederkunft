@@ -1,4 +1,27 @@
 
+/* default */
+.theme-light.default-light-theme{
+    --exterior: 234,231,226 !important; 
+}
+
+
+body.theme-light.css-settings-manager{
+    --background-secondary:234,231,226 !important; 
+}
+
+body.theme-dark.css-settings-manager{
+    --background-secondary:26, 33, 42 !important; 
+}
+.mod-sidedock .workspace-tab-header-container,
+.sidebar-toggle-button{
+  background-color: var(--tab-container-background) !important;
+
+}
+.border-layout.shib-card-layout:not(.is-mobile) .workspace-split.mod-left-split .workspace-sidedock-vault-profile{
+    background-color: var(--background-primary);
+}
+
+
 .admonition-disabled {
     padding: 15px;
     margin: 10px 0;

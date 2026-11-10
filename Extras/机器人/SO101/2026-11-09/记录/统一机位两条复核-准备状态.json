@@ -1,0 +1,69 @@
+{
+  "date": "2026-11-09",
+  "source_email": "1794212413；崔战伟2026-11-09 16:20样片审核结果",
+  "approved_parts": "旧5条数据/动作/道具/Enter流程合格；机位未通过，5条仅参考不计正式60条",
+  "new_review_targets": {
+    "A": 1,
+    "B": 1
+  },
+  "old_dataset_preserved": "/data/so101/datasets/a_dual_tray_sample_20261109",
+  "new_dataset": "/data/so101/datasets/a_dual_tray_camera_review_20261109",
+  "tray_dimensions_cm": [
+    29,
+    18,
+    5
+  ],
+  "cube_dimensions_cm": [
+    5,
+    5,
+    5
+  ],
+  "layout_user_report": "沿用上次，29cm长边贴紧，无间隙",
+  "estimate_is_direct_measurement": false,
+  "measured_center_distance_cm": null,
+  "tape_marks_status": "待现场确认",
+  "site_overview_photo": null,
+  "operator_position_static_check": {
+    "user_report": "已按实际操作姿势就位，未移动机械臂",
+    "frame": "/data/so101/outputs/camera-lock-review-2026-11-09/operator-position-175017.jpg",
+    "no_person_or_leader_visible": true,
+    "follower_base_gripper_trays_visible": true,
+    "dynamic_motion_view_approved": false
+  },
+  "camera_instruction": "保持当前俯视机位和操作站位；动作全过程可见性待新A/B两条核验",
+  "recording_started": true,
+  "formal_60_started": false,
+  "next": "当前选定角度A/B各1条已录完并冻结，按实际检查结果回报发件人，等待进一步意见；不自动放量。",
+  "calculated_center_distance_cm": 18,
+  "center_distance_source": "用户确认两盘精确尺寸均29×18cm，沿29cm长边无间隙贴紧；按两端对齐计算，18/2+18/2=18cm",
+  "center_distance_alignment_assumption": "两盘在29cm长度方向两端对齐；若有前后错位，18cm仅为横向中心间隔",
+  "dimensions_user_confirmed_precise": true,
+  "center_distance_user_instruction": "按用户要求采用尺寸计算值，不再要求其重复直接尺量",
+  "current_review_counts": {
+    "A": 1,
+    "B": 1
+  },
+  "current_review_frames": 1131,
+  "dynamic_motion_view_approved": false,
+  "actual_recording_findings": "两条实际录像均有人腿入画；初始夹爪开口不一致；动作状态差仍偏大；等待调整实际操作站位",
+  "user_latest_decision": "用户明确要求使用当前角度录制，不再调回参考角度",
+  "previous_review_archive": "/data/so101/outputs/camera-lock-review-2026-11-09/prepare-retake-20261109-184011/previous-two-episodes",
+  "camera_ready_for_new_recording": true,
+  "latest_camera_sequence": {
+    "path": "/data/so101/outputs/camera-lock-review-2026-11-09/operator-adjusted-183722.jpg",
+    "human_visible_in_eight_samples": false,
+    "camera_is_approved_overhead_layout": false,
+    "follower_base_fully_visible": false,
+    "issues": [
+      "相机变成斜侧构图",
+      "左下从臂底座被切到",
+      "右上瓶子等无关杂物入镜"
+    ],
+    "instruction": "先回到B俯视构图、底座完整，保持实际操作人/主臂全程镜头外；再检查画面，不启动新录制"
+  },
+  "operator_authorized_current_angle": true,
+  "camera_approved_by_sender": false,
+  "selected_angle_reference": "/data/so101/outputs/camera-lock-review-2026-11-09/user-selected-angle-184509.jpg",
+  "latest_review_entry": "/data/so101/outputs/camera-lock-review-2026-11-09/selected-angle-review/检查入口.txt",
+  "sender_approved_current_angle": false
+}

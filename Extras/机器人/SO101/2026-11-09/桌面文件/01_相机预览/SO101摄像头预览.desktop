@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=SO101 摄像头预览（仅相机）
+Comment=640x480 30fps camera-only preview; no robot control
+Exec=/bin/bash "/home/jzsd/Desktop/SO101项目/01_相机预览/SO101_camera_preview.sh"
+Path=/home/jzsd/Desktop/SO101项目/01_相机预览
+Icon=camera-web
+Terminal=true
+StartupNotify=false
+Categories=AudioVideo;Video;

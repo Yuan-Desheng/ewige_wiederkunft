@@ -1,0 +1,95 @@
+{
+  "episodes": [
+    {
+      "episode": 3,
+      "frames": 624,
+      "meta_length": 624,
+      "timestamp_last": 20.766666412353516,
+      "duration": 20.8,
+      "finite": true,
+      "continuous_frame_indices": true,
+      "monotonic_timestamps": true,
+      "action_shape": [
+        624,
+        6
+      ],
+      "state_shape": [
+        624,
+        6
+      ],
+      "action_range": [
+        11.516483306884766,
+        77.010986328125,
+        48.61538314819336,
+        21.538467407226562,
+        26.373626708984375,
+        80.72916412353516
+      ],
+      "state_range": [
+        10.373626708984375,
+        75.42857360839844,
+        47.03296661376953,
+        20.659339904785156,
+        26.373626708984375,
+        79.44744110107422
+      ],
+      "gripper_last_action": 83.24652862548828,
+      "gripper_last_state": 82.95148468017578,
+      "gripper_max_state": 85.10781860351562,
+      "video_from": 0.0,
+      "video_to": 20.8,
+      "video_path": "/data/so101/datasets/a_test/videos/observation.images.top/chunk-000/file-002.mp4"
+    },
+    {
+      "episode": 4,
+      "frames": 491,
+      "meta_length": 491,
+      "timestamp_last": 16.33333396911621,
+      "duration": 16.366666666666667,
+      "finite": true,
+      "continuous_frame_indices": true,
+      "monotonic_timestamps": true,
+      "action_shape": [
+        491,
+        6
+      ],
+      "state_shape": [
+        491,
+        6
+      ],
+      "action_range": [
+        18.72527503967285,
+        55.20879364013672,
+        83.34066009521484,
+        34.109886169433594,
+        18.373626708984375,
+        85.3298568725586
+      ],
+      "state_range": [
+        17.846153259277344,
+        54.5054931640625,
+        81.4945068359375,
+        33.142860412597656,
+        17.934066772460938,
+        81.67115783691406
+      ],
+      "gripper_last_action": 79.86111450195312,
+      "gripper_last_state": 79.58220672607422,
+      "gripper_max_state": 85.0404281616211,
+      "video_from": 20.8,
+      "video_to": 37.16666666666667,
+      "video_path": "/data/so101/datasets/a_test/videos/observation.images.top/chunk-000/file-002.mp4"
+    }
+  ],
+  "videos": [
+    {
+      "path": "/data/so101/datasets/a_test/videos/observation.images.top/chunk-000/file-002.mp4",
+      "decoded_frames": 1115,
+      "codec": "libdav1d",
+      "width": 640,
+      "height": 480,
+      "rate": "30",
+      "declared_frames": 1115
+    }
+  ]
+}

@@ -1,0 +1,219 @@
+--- a/utils/control_utils.py
++++ b/utils/control_utils.py
+@@ -19,9 +19,10 @@
+ 
+ import logging
+ import traceback
+-from contextlib import nullcontext
++from contextlib import contextmanager, nullcontext
+ from copy import copy
+ from functools import cache
++from threading import Lock
+ from typing import Any
+ 
+ import numpy as np
+@@ -115,7 +116,25 @@
+     return action
+ 
+ 
+-def init_keyboard_listener():
++@contextmanager
++def keyboard_control_scope(events):
++    """Accept directional shortcuts only inside the current control loop.
++
++    Esc stays global. Clear transient exits at both boundaries, so a key received
++    while saving cannot end the following episode before it has any frames.
++    """
++    with events["_control_keys_lock"]:
++        events["exit_early"] = events["stop_recording"]
++        events["_control_keys_enabled"] = True
++    try:
++        yield
++    finally:
++        with events["_control_keys_lock"]:
++            events["_control_keys_enabled"] = False
++            events["exit_early"] = events["stop_recording"]
++
++
++def init_keyboard_listener(*, control_keys_enabled: bool = True):
+     """
+     Initializes a non-blocking keyboard listener for real-time user interaction.
+ 
+@@ -135,6 +154,8 @@
+     events["exit_early"] = False
+     events["rerecord_episode"] = False
+     events["stop_recording"] = False
++    events["_control_keys_enabled"] = control_keys_enabled
++    events["_control_keys_lock"] = Lock()
+ 
+     if is_headless():
+         logging.warning(
+@@ -146,23 +167,38 @@
+     # Only import pynput if not in a headless environment
+     from pynput import keyboard
+ 
++    pressed_controls = set()
++
+     def on_press(key):
+         try:
+-            if key == keyboard.Key.right:
+-                print("Right arrow key pressed. Exiting loop...")
+-                events["exit_early"] = True
+-            elif key == keyboard.Key.left:
+-                print("Left arrow key pressed. Exiting loop and rerecord the last episode...")
+-                events["rerecord_episode"] = True
+-                events["exit_early"] = True
+-            elif key == keyboard.Key.esc:
+-                print("Escape key pressed. Stopping data recording...")
+-                events["stop_recording"] = True
+-                events["exit_early"] = True
++            if key not in (keyboard.Key.right, keyboard.Key.left, keyboard.Key.esc):
++                return
++            with events["_control_keys_lock"]:
++                if key in pressed_controls:
++                    return
++                pressed_controls.add(key)
++                if key == keyboard.Key.esc:
++                    print("Escape key pressed. Stopping data recording...")
++                    events["stop_recording"] = True
++                    events["exit_early"] = True
++                elif events["_control_keys_enabled"]:
++                    if key == keyboard.Key.right:
++                        print("Right arrow key pressed. Exiting loop...")
++                        events["exit_early"] = True
++                    elif key == keyboard.Key.left:
++                        print("Left arrow key pressed. Exiting loop and rerecord the last episode...")
++                        events["rerecord_episode"] = True
++                        events["exit_early"] = True
++                else:
++                    print("Directional shortcut ignored outside recording/reset; wait for the next episode.")
+         except Exception as e:
+             print(f"Error handling key press: {e}")
+ 
+-    listener = keyboard.Listener(on_press=on_press)
++    def on_release(key):
++        with events["_control_keys_lock"]:
++            pressed_controls.discard(key)
++
++    listener = keyboard.Listener(on_press=on_press, on_release=on_release)
+     listener.start()
+ 
+     return listener, events
+--- a/scripts/lerobot_record.py
++++ b/scripts/lerobot_record.py
+@@ -135,6 +135,7 @@
+ from lerobot.utils.control_utils import (
+     init_keyboard_listener,
+     is_headless,
++    keyboard_control_scope,
+     predict_action,
+     sanity_check_dataset_name,
+     sanity_check_dataset_robot_compatibility,
+@@ -340,7 +341,7 @@
+     while timestamp < control_time_s:
+         start_loop_t = time.perf_counter()
+ 
+-        if events["exit_early"]:
++        if events["stop_recording"] or events["exit_early"]:
+             events["exit_early"] = False
+             break
+ 
+@@ -520,7 +521,7 @@
+         if teleop is not None:
+             teleop.connect()
+ 
+-        listener, events = init_keyboard_listener()
++        listener, events = init_keyboard_listener(control_keys_enabled=False)
+ 
+         if not cfg.dataset.streaming_encoding:
+             logging.info(
+@@ -531,35 +532,7 @@
+             recorded_episodes = 0
+             while recorded_episodes < cfg.dataset.num_episodes and not events["stop_recording"]:
+                 log_say(f"Recording episode {dataset.num_episodes}", cfg.play_sounds)
+-                record_loop(
+-                    robot=robot,
+-                    events=events,
+-                    fps=cfg.dataset.fps,
+-                    teleop_action_processor=teleop_action_processor,
+-                    robot_action_processor=robot_action_processor,
+-                    robot_observation_processor=robot_observation_processor,
+-                    teleop=teleop,
+-                    policy=policy,
+-                    preprocessor=preprocessor,
+-                    postprocessor=postprocessor,
+-                    dataset=dataset,
+-                    control_time_s=cfg.dataset.episode_time_s,
+-                    single_task=cfg.dataset.single_task,
+-                    display_data=cfg.display_data,
+-                    display_compressed_images=display_compressed_images,
+-                )
+-
+-                # Execute a few seconds without recording to give time to manually reset the environment
+-                # Skip reset for the last episode to be recorded
+-                if not events["stop_recording"] and (
+-                    (recorded_episodes < cfg.dataset.num_episodes - 1) or events["rerecord_episode"]
+-                ):
+-                    log_say("Reset the environment", cfg.play_sounds)
+-
+-                    # reset g1 robot
+-                    if robot.name == "unitree_g1":
+-                        robot.reset()
+-
++                with keyboard_control_scope(events):
+                     record_loop(
+                         robot=robot,
+                         events=events,
+@@ -568,10 +541,51 @@
+                         robot_action_processor=robot_action_processor,
+                         robot_observation_processor=robot_observation_processor,
+                         teleop=teleop,
+-                        control_time_s=cfg.dataset.reset_time_s,
++                        policy=policy,
++                        preprocessor=preprocessor,
++                        postprocessor=postprocessor,
++                        dataset=dataset,
++                        control_time_s=cfg.dataset.episode_time_s,
+                         single_task=cfg.dataset.single_task,
+                         display_data=cfg.display_data,
++                        display_compressed_images=display_compressed_images,
+                     )
++
++                # An immediate shortcut (including Esc) may end a loop before
++                # its first frame. Do not save/count an empty episode.
++                if dataset.episode_buffer is None or dataset.episode_buffer["size"] == 0:
++                    logging.warning(
++                        "No frames recorded; skipping empty episode. "
++                        "It was not saved or counted."
++                    )
++                    dataset.clear_episode_buffer(delete_images=False)
++                    events["rerecord_episode"] = False
++                    continue
++
++                # Execute a few seconds without recording to give time to manually reset the environment
++                # Skip reset for the last episode to be recorded
++                if not events["stop_recording"] and (
++                    (recorded_episodes < cfg.dataset.num_episodes - 1) or events["rerecord_episode"]
++                ):
++                    log_say("Reset the environment", cfg.play_sounds)
++
++                    # reset g1 robot
++                    if robot.name == "unitree_g1":
++                        robot.reset()
++
++                    with keyboard_control_scope(events):
++                        record_loop(
++                            robot=robot,
++                            events=events,
++                            fps=cfg.dataset.fps,
++                            teleop_action_processor=teleop_action_processor,
++                            robot_action_processor=robot_action_processor,
++                            robot_observation_processor=robot_observation_processor,
++                            teleop=teleop,
++                            control_time_s=cfg.dataset.reset_time_s,
++                            single_task=cfg.dataset.single_task,
++                            display_data=cfg.display_data,
++                        )
+ 
+                 if events["rerecord_episode"]:
+                     log_say("Re-record episode", cfg.play_sounds)

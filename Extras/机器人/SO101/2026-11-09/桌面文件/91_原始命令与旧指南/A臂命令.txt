@@ -1,0 +1,76 @@
+# A 臂命令单（Jetson .156，LeRobot 0.4.4）—— 2026-11-05 Claude 更新：续录写法更正，加自检和看回放
+# 配套文档：《A 臂训练数据采集任务书》（邮件附件）
+# 在 Jetson 桌面开终端（不要用 ssh，录制的方向键要靠桌面键盘），先输入：
+so101
+
+# 1) 校准从臂（已做，11-02 19:27；重做才跑。按回车前托住从臂，表在刷新时把每个关节来回转到头）
+lerobot-calibrate --robot.type=so101_follower --robot.port=$F --robot.id=a_follower
+
+# 2) 校准主臂（已做，11-02 19:30）
+lerobot-calibrate --teleop.type=so101_leader --teleop.port=$L --teleop.id=a_leader
+
+# 3) 主从跟随（已跑通 11-03；从臂会动，先清空周围；Ctrl+C 停）
+lerobot-teleoperate --robot.type=so101_follower --robot.port=$F --robot.id=a_follower --robot.max_relative_target=10 --teleop.type=so101_leader --teleop.port=$L --teleop.id=a_leader
+
+
+#    11-06 改：第 3～7 条都加了 --robot.max_relative_target=10（从臂每一步最多追 10 度）。不要删：
+#      不加的话，从臂姿势和主臂差得多时一启动几个关节同时猛追，12V 电源被拉垮，全部舵机断电重启，
+#      报 There is no status packet / Incorrect status packet 退出（11-06 实测复现）
+#    启动前把从臂摆成和主臂差不多的姿势；刷屏的 Relative goal position ... clamped 是限幅在起作用，不是报错
+#    退出时报 Overload error on id_=5：腕转顶住了（主臂手柄转得比从臂能转的多），把主臂手柄转回来一点再 Ctrl+C
+
+# 4) 相机固定好以后，看一眼画面（弹出 rerun 窗口，看 top 画面里从臂、方块、盒子都在，主臂不在；Ctrl+C 停）
+lerobot-teleoperate --robot.type=so101_follower --robot.port=$F --robot.id=a_follower --robot.max_relative_target=10 \
+  --robot.cameras="{ top: {type: opencv, index_or_path: /dev/video0, width: 640, height: 480, fps: 30} }" \
+  --teleop.type=so101_leader --teleop.port=$L --teleop.id=a_leader \
+  --display_data=true
+
+# 5) 试录 2 条（走一遍流程，看懂按键；录完这个数据集不要，直接删）
+lerobot-record --robot.type=so101_follower --robot.port=$F --robot.id=a_follower --robot.max_relative_target=10 \
+  --robot.cameras="{ top: {type: opencv, index_or_path: /dev/video0, width: 640, height: 480, fps: 30} }" \
+  --teleop.type=so101_leader --teleop.port=$L --teleop.id=a_leader \
+  --dataset.repo_id=jizhishida/a_test --dataset.root=/data/so101/datasets/a_test \
+  --dataset.single_task="Pick up the cube and place it in the box" \
+  --dataset.num_episodes=2 --dataset.episode_time_s=20 --dataset.reset_time_s=10 \
+  --dataset.fps=30 --dataset.push_to_hub=false --display_data=true --play_sounds=false
+rm -rf /data/so101/datasets/a_test
+
+# 6) 正式录 50 条（约 30～40 分钟；每条 20 秒抓放 + 10 秒复位）
+lerobot-record --robot.type=so101_follower --robot.port=$F --robot.id=a_follower --robot.max_relative_target=10 \
+  --robot.cameras="{ top: {type: opencv, index_or_path: /dev/video0, width: 640, height: 480, fps: 30} }" \
+  --teleop.type=so101_leader --teleop.port=$L --teleop.id=a_leader \
+  --dataset.repo_id=jizhishida/a_pick_cube --dataset.root=/data/so101/datasets/a_pick_cube \
+  --dataset.single_task="Pick up the cube and place it in the box" \
+  --dataset.num_episodes=50 --dataset.episode_time_s=20 --dataset.reset_time_s=10 \
+  --dataset.fps=30 --dataset.push_to_hub=false --display_data=true --play_sounds=false
+
+# 7) 中途按 Esc 停了、想接着录：先跑 a_check 看「还差几条」，再跑下面这条，把 XX 换成还差的条数
+#    注意：续录时 num_episodes 是「再录几条」，不是「录到几条」；照抄 50 会多录 50 条
+#    报「目录已存在」就是该用这一条；不要删目录
+lerobot-record --robot.type=so101_follower --robot.port=$F --robot.id=a_follower --robot.max_relative_target=10 \
+  --robot.cameras="{ top: {type: opencv, index_or_path: /dev/video0, width: 640, height: 480, fps: 30} }" \
+  --teleop.type=so101_leader --teleop.port=$L --teleop.id=a_leader \
+  --dataset.repo_id=jizhishida/a_pick_cube --dataset.root=/data/so101/datasets/a_pick_cube \
+  --dataset.single_task="Pick up the cube and place it in the box" \
+  --dataset.num_episodes=XX --dataset.episode_time_s=20 --dataset.reset_time_s=10 \
+  --dataset.fps=30 --dataset.push_to_hub=false --display_data=true --play_sounds=false \
+  --resume=true
+
+# 8) 自检（只读，1 秒出结果）：条数、每条时长、有没有哪条没动 / 夹爪没开合 / 没视频。把输出贴到回信里
+a_check
+
+# 9) 看录下来的画面（不动臂；弹出 rerun 窗口，拖时间轴看第 0 条；换条改最后的数字。每条加载约 15 秒）
+lerobot-dataset-viz --repo-id jizhishida/a_pick_cube --root /data/so101/datasets/a_pick_cube --episode-index 0
+
+# ---- 录制时的按键（在终端或 rerun 窗口都行）----
+#   →  右方向键：这一条提前结束（放进盒子、臂回到起始位就按，不用等 20 秒满）
+#   ←  左方向键：这一条作废重录（抓掉了、碰倒盒子就按）
+#   Esc：停止录制，已录的条数保存
+#   每条结束后有 10 秒「复位」：把方块放回工作区里一个新位置，臂回到起始位，不用按键，倒计时完自动开始下一条
+
+# ---- 每一条怎么做（保持一致）----
+#   起始：从臂收拢在固定起始位，夹爪张开；方块放在工作区任意位置（每条换位置，前后左右都要有）；盒子位置固定不动
+#   动作：主臂带从臂过去 → 夹住方块 → 抬起 → 移到盒子上方 → 松开 → 回起始位 → 按 →
+#   节奏：平稳、一次成功；别犹豫来回试探（试探动作会被学进去）
+#   相机：固定好以后整个 50 条不碰，光线不变、不开关灯；主臂和人的手尽量不进画面
+#   数据存在 /data/so101/datasets/a_pick_cube（系统盘只剩 2.8 GB，不要改到别处）；录完跑第 8 条自检，结果回邮件

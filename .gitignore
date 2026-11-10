@@ -12,3 +12,9 @@
 
 # Same policy as Dida Sync — this plugin config carries a live sessionToken that rotates every session
 .obsidian/plugins/obsidian-content-protection/data.json
+
+# Private local server inventory; contains credentials and must never be committed
+/Documents/I.P.A.R.A/工作领域/收集/服务器账号与配置清单.md
+
+# Private local server inventory screenshots
+/Extras/服务器盘点/

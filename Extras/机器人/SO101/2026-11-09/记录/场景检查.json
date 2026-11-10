@@ -1,0 +1,33 @@
+{
+  "captured_at": "2026-11-09T10:34:44.431335+08:00",
+  "properties": {
+    "width": 640.0,
+    "height": 480.0,
+    "fps": 30.0
+  },
+  "frames": [
+    {
+      "remote_path": "/data/so101/outputs/camera-check-2026-11-09/frame-20261109-103444-29.jpg",
+      "local_path": "/home/yuan/code/smart_vision/openRobotWholeMachine/outputs/A-SO101数据采集准备/2026-11-09-红蓝方块场景检查/frame-20261109-103444-29.jpg"
+    }
+  ],
+  "preview_restored": [
+    {
+      "pid": 28040,
+      "running": true
+    }
+  ],
+  "error": null,
+  "assessment": {
+    "view": "当前为较高的斜俯视视角，两盘内部和物体落点更直观；当前静态姿态下夹爪、两物和两盘均入镜。",
+    "image_left_right": "当前画面红块在左、蓝块在右，与10:26的观察视角相反。最终task label须在固定视角及左右定义后确定，不能直接沿用此前蓝左红右的临时映射。",
+    "remaining_checks": [
+      "完整双向抓放及最高回位是否一直入镜",
+      "运动中的手臂遮挡是否影响目标可见性",
+      "左盘反光是否影响物体/夹爪观察",
+      "盘心距离和实际可达性尚未实测"
+    ],
+    "recommendation": "可以先固定此斜俯视角，在正式录制前核查完整动作覆盖。",
+    "scope": "仅相机抓图，独立预览已恢复，未驱动机械臂。"
+  }
+}

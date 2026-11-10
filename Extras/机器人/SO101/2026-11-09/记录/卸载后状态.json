@@ -1,0 +1,212 @@
+{
+  "time": "2026-11-07T19:18:28.409776+08:00",
+  "scope": "ping and register reads only; no torque enable/disable, no goal or configuration writes",
+  "all_six_report_no_error_now": true,
+  "motors": [
+    {
+      "id": 1,
+      "ping": {
+        "model": 777,
+        "comm": 0,
+        "error": 0
+      },
+      "registers": {
+        "Torque_Enable": {
+          "raw": 0,
+          "comm": 0,
+          "error": 0,
+          "reported_error": ""
+        },
+        "Present_Voltage": {
+          "raw": 120,
+          "comm": 0,
+          "error": 0,
+          "reported_error": ""
+        },
+        "Present_Temperature": {
+          "raw": 33,
+          "comm": 0,
+          "error": 0,
+          "reported_error": ""
+        },
+        "Status": {
+          "raw": 0,
+          "comm": 0,
+          "error": 0,
+          "reported_error": ""
+        }
+      }
+    },
+    {
+      "id": 2,
+      "ping": {
+        "model": 777,
+        "comm": 0,
+        "error": 0
+      },
+      "registers": {
+        "Torque_Enable": {
+          "raw": 0,
+          "comm": 0,
+          "error": 0,
+          "reported_error": ""
+        },
+        "Present_Voltage": {
+          "raw": 119,
+          "comm": 0,
+          "error": 0,
+          "reported_error": ""
+        },
+        "Present_Temperature": {
+          "raw": 33,
+          "comm": 0,
+          "error": 0,
+          "reported_error": ""
+        },
+        "Status": {
+          "raw": 0,
+          "comm": 0,
+          "error": 0,
+          "reported_error": ""
+        }
+      }
+    },
+    {
+      "id": 3,
+      "ping": {
+        "model": 777,
+        "comm": 0,
+        "error": 0
+      },
+      "registers": {
+        "Torque_Enable": {
+          "raw": 0,
+          "comm": 0,
+          "error": 0,
+          "reported_error": ""
+        },
+        "Present_Voltage": {
+          "raw": 118,
+          "comm": 0,
+          "error": 0,
+          "reported_error": ""
+        },
+        "Present_Temperature": {
+          "raw": 32,
+          "comm": 0,
+          "error": 0,
+          "reported_error": ""
+        },
+        "Status": {
+          "raw": 0,
+          "comm": 0,
+          "error": 0,
+          "reported_error": ""
+        }
+      }
+    },
+    {
+      "id": 4,
+      "ping": {
+        "model": 777,
+        "comm": 0,
+        "error": 0
+      },
+      "registers": {
+        "Torque_Enable": {
+          "raw": 0,
+          "comm": 0,
+          "error": 0,
+          "reported_error": ""
+        },
+        "Present_Voltage": {
+          "raw": 119,
+          "comm": 0,
+          "error": 0,
+          "reported_error": ""
+        },
+        "Present_Temperature": {
+          "raw": 33,
+          "comm": 0,
+          "error": 0,
+          "reported_error": ""
+        },
+        "Status": {
+          "raw": 0,
+          "comm": 0,
+          "error": 0,
+          "reported_error": ""
+        }
+      }
+    },
+    {
+      "id": 5,
+      "ping": {
+        "model": 777,
+        "comm": 0,
+        "error": 0
+      },
+      "registers": {
+        "Torque_Enable": {
+          "raw": 0,
+          "comm": 0,
+          "error": 0,
+          "reported_error": ""
+        },
+        "Present_Voltage": {
+          "raw": 120,
+          "comm": 0,
+          "error": 0,
+          "reported_error": ""
+        },
+        "Present_Temperature": {
+          "raw": 34,
+          "comm": 0,
+          "error": 0,
+          "reported_error": ""
+        },
+        "Status": {
+          "raw": 0,
+          "comm": 0,
+          "error": 0,
+          "reported_error": ""
+        }
+      }
+    },
+    {
+      "id": 6,
+      "ping": {
+        "model": 777,
+        "comm": 0,
+        "error": 0
+      },
+      "registers": {
+        "Torque_Enable": {
+          "raw": 0,
+          "comm": 0,
+          "error": 0,
+          "reported_error": ""
+        },
+        "Present_Voltage": {
+          "raw": 119,
+          "comm": 0,
+          "error": 0,
+          "reported_error": ""
+        },
+        "Present_Temperature": {
+          "raw": 34,
+          "comm": 0,
+          "error": 0,
+          "reported_error": ""
+        },
+        "Status": {
+          "raw": 0,
+          "comm": 0,
+          "error": 0,
+          "reported_error": ""
+        }
+      }
+    }
+  ],
+  "saved_to": "/data/so101/outputs/gripper-recovery-check-2026-11-07/read-only-20261107-191828.json"
+}
