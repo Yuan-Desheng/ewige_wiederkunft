@@ -108,6 +108,24 @@
       "y": 1200,
       "width": 440,
       "height": 500
+    },
+    {
+      "id": "note-1794735361997-0012",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/Windows 外置盘迁移与 Arch Nyxuri 安装交接.md",
+      "x": 0,
+      "y": 1750,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1794749083116-0001",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/学习领域/收集/Arch 桌面使用小抄.md",
+      "x": 0,
+      "y": 2300,
+      "width": 440,
+      "height": 500
     }
   ]
 }

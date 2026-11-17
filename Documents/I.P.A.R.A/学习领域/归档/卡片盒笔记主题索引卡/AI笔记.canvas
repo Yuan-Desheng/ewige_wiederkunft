@@ -180,6 +180,24 @@
       "y": 2750,
       "width": 440,
       "height": 500
+    },
+    {
+      "id": "note-1794735362001-0020",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-11-15.md",
+      "x": 0,
+      "y": 3900,
+      "width": 440,
+      "height": 500
+    },
+    {
+      "id": "note-1794792237903-0001",
+      "type": "file",
+      "file": "Documents/I.P.A.R.A/0-收集箱/AI笔记/2026-11-16.md",
+      "x": 0,
+      "y": 4450,
+      "width": 440,
+      "height": 500
     }
   ]
 }

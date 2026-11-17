@@ -33,5 +33,6 @@
   "textFontFamily": "",
   "baseFontSizeAction": true,
   "interfaceFontFamily": "",
-  "translucency": false
+  "translucency": false,
+  "showRibbon": true
 }
