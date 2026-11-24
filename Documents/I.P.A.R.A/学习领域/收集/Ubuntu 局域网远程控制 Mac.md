@@ -3,7 +3,7 @@ createTime: 2026-11-24 16:45
 笔记ID: "20261124164514"
 multiFile:
 multiMedia:
-description: 在同一局域网用 Ubuntu 通过 WireGuard 连接 Mac 的 RustDesk，配置键鼠、双向剪贴板和 SFTP 文件传输。
+description: Ubuntu 通过 WireGuard 直连 Mac、Windows 和 Ubuntu 的 RustDesk，记录连接入口、白名单排错、键鼠、剪贴板和 SFTP。
 笔记类型: 收集笔记
 阐述日期:
 tags:
@@ -25,15 +25,17 @@ cssclasses:
 [[笔记抬头模块]]
 ```
 
-> 在同一局域网从 Ubuntu 操作 Mac、复制代码和传输文件。两端使用 RustDesk 1.5.3，连接走点对点 WireGuard。实际地址、账号和凭证【已脱敏】。
+> 在同一局域网从 Ubuntu 操作 Mac、Windows 11 和 Ubuntu 24.04，复制代码并传输文件。RustDesk 1.5.3 通过各设备的点对点 WireGuard 隧道连接。实际地址、账号和凭证【已脱敏】。
 
 ### 日常使用
 
-1. 在 Ubuntu 应用菜单打开 **RustDesk**，从「最近访问过」选择 Mac，或输入 `MAC_WG_IP:21118`。如果忘了 Mac 的隧道地址，可运行 `ip -4 route show dev wgmac-lan` 查看该连接的对端路由。
-2. 输入在 Mac 端设置的 RustDesk 固定密码。也可以选择 **Request approval**，由 Mac 端点击 **Accept**。
+1. 在主控 Ubuntu 右键 **RustDesk** 应用图标，选 **Mac（局域网）**、**Windows 11（局域网）** 或 **Ubuntu 24.04（局域网）**。也可以在 RustDesk 的「控制远程桌面」输入目标的 WireGuard 地址和端口 `21118`。
+2. 输入被控端的 RustDesk 固定密码，或选 **Request approval** 请对方点击 **Accept**。连接成功后，点时钟图标进入「最近访问过」，确认卡片底部显示隧道 IP，再用 **⋮ → 添加到收藏** 保存入口。
 3. 传几个文件可以用 RustDesk 的 **File Transfer**。需要独立传目录时，在 Ubuntu 文件管理器按 `Ctrl + L`，打开 `sftp://MAC_USER@MAC_WG_IP`，用 Mac 上获准远程登录的账号登录。常用目录可以加到侧栏书签。
 
 `MAC_WG_IP` 和 `MAC_USER` 是占位符，使用时替换成实际的隧道地址和 Mac 用户名。
+
+主控机的快捷入口保存在 `~/.local/share/applications/rustdesk.desktop`。如果换了设备地址，也要更新对应菜单项的 `--connect` 参数。
 
 ### 键鼠与剪贴板
 
@@ -100,19 +102,28 @@ ip -4 route show dev wgmac-lan
 
 | 现象 | 处理 |
 | --- | --- |
-| RustDesk 连不上 | 先运行 `nmcli connection up wgmac-lan`，再检查 `ip -4 route show dev wgmac-lan`。确认 Mac 开机、局域网 IP 和 WireGuard 端点一致。 |
+| RustDesk 连不上 | 用目标机对应的 `wgmac-lan`、`wgwin-lan` 或 `wgubu-lan` 检查隧道。以 Mac 为例，先运行 `nmcli connection up wgmac-lan`，再检查 `ip -4 route show dev wgmac-lan`。确认目标机开机、局域网 IP 和 WireGuard 端点一致。 |
+| 登录错误「你的 IP 已被对方阻止」 | 检查当前会话标题。发现页卡片底部如果显示数字 ID，连接可能会走公共中继。本次日志确认了中继来源触发白名单。关闭报错标签，使用目标机的 WireGuard 地址或应用图标里的局域网入口。 |
 | 能看到画面，但无法操作键鼠 | 在 Mac 的 **Accessibility** 开启 RustDesk，并确认本次会话允许键盘和鼠标。已可通过 ToDesk 或现场操作时，从那里进入 Mac 的系统设置。 |
 | 两台电脑能操作，文字无法粘贴 | 排查 Mac 的 **Enable clipboard** 和 Ubuntu 会话的 **Disable clipboard**，双向分别测试。 |
 | 最近记录出现两张相同设备卡片 | 同一个地址写成 `MAC_WG_IP` 或 `MAC_WG_IP:21118` 会留下两条记录。保留常用那条，从另一张卡片的 **⋮ → 删除** 清理重复记录。 |
 | Mac 重启后远控不可用 | 分别检查 WireGuard 和 RustDesk。当前只配置了 WireGuard 开机启动，RustDesk 后台服务和整机重启后的远控待验收。 |
 
+对照白名单时，在主控机把 `TARGET_WG_IP` 设为目标的隧道地址，再运行以下命令。第一行输出中的 `dev` 应是目标对应的 WireGuard 接口，`src` 应是被控端 RustDesk 白名单里允许的主控地址。第二行检查 RustDesk 端口。端口可达后，再登录验证画面。
+
+```bash
+ip -4 route get "$TARGET_WG_IP"
+nc -vz -w 3 "$TARGET_WG_IP" 21118
+```
+
 ### 验收记录
 
-- [x] WireGuard 隧道已连通，RustDesk 图形会话已打开。
-- [x] Mac 补齐辅助功能授权后，键盘和鼠标可用。
-- [x] RustDesk 固定密码已保存，SFTP 上传和下载已往返比对。
-- [ ] 分别验证两个方向的文字剪贴板，以及 RustDesk 自带的文件传输。
-- [ ] 验证公网断开时能新建连接，以及 Mac 锁屏和重启后的重连。
+- [x] 三条 WireGuard 隧道和三台被控机的 RustDesk 端口均可达。
+- [x] Mac 局域网直连收到画面，补齐辅助功能授权后键盘和鼠标可用。
+- [x] Windows 11 局域网直连通过密码登录，主控机收到桌面画面。
+- [x] 三台机器均已设置 RustDesk 固定密码，Mac SFTP 上传和下载已往返比对。
+- [ ] 在 Ubuntu 24.04 的 Wayland 共享提示中选择屏幕，验收远程画面与键鼠。
+- [ ] 双向测试文字剪贴板和 RustDesk 文件传输，验证外网断开时的新建连接，以及锁屏和重启后的重连。
 
 ### 新增 Windows 和 Ubuntu 受控端
 
@@ -125,7 +136,7 @@ ip -4 route show dev wgubu-lan
 
 | 受控机 | 主控端配置 | 受控端服务和首次连接 |
 | --- | --- | --- |
-| Windows 11 | `wgwin-lan` | WireGuard 隧道服务和 RustDesk 服务均配置自动启动。首次用受控端的一次性密码，或在 Windows 接受连接请求。 |
-| Ubuntu 24.04 | `wgubu-lan` | `wg-quick@wgubu-lan.service` 和 `rustdesk.service` 均配置自动启动。Wayland 首次连接时，在受控端接受请求，再在系统共享提示里选择屏幕。 |
+| Windows 11 | `wgwin-lan` | WireGuard 隧道服务和 RustDesk 服务均配置自动启动。使用固定密码连接。 |
+| Ubuntu 24.04 | `wgubu-lan` | `wg-quick@wgubu-lan.service` 和 `rustdesk.service` 均配置自动启动。使用固定密码连接后，按 Wayland 共享提示选择屏幕。 |
 
-两台新增设备均已验证主控端能通过各自的隧道连接 RustDesk 端口。画面、键鼠、剪贴板和重启后重连需分别验收。 [WireGuard Windows 服务文档](https://git.zx2c4.com/wireguard-windows/about/docs/enterprise.md) · [RustDesk Linux 与 Wayland 说明](https://rustdesk.com/docs/en/client/linux/)
+服务启动和不同桌面会话的限制可查官方文档。 [WireGuard Windows 服务文档](https://git.zx2c4.com/wireguard-windows/about/docs/enterprise.md) · [RustDesk Linux 与 Wayland 说明](https://rustdesk.com/docs/en/client/linux/)
