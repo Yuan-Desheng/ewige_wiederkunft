@@ -3,7 +3,7 @@ createTime: 2026-11-24 16:45
 笔记ID: "20261124164514"
 multiFile:
 multiMedia:
-description: Ubuntu 通过 WireGuard 直连 Mac、Windows 和 Ubuntu 的 RustDesk，记录连接入口、白名单排错、键鼠、剪贴板和 SFTP。
+description: Ubuntu 通过 WireGuard 或局域网 IP 直连 Mac、Windows 和 Ubuntu 的 RustDesk，记录连接入口、白名单排错、键鼠、剪贴板和 SFTP。
 笔记类型: 收集笔记
 阐述日期:
 tags:
@@ -25,7 +25,7 @@ cssclasses:
 [[笔记抬头模块]]
 ```
 
-> 在同一局域网从 Ubuntu 操作 Mac、Windows 11 和 Ubuntu 24.04，复制代码并传输文件。RustDesk 1.5.3 通过各设备的点对点 WireGuard 隧道连接。实际地址、账号和凭证【已脱敏】。
+> 在同一局域网从 Ubuntu 操作 Mac、Windows 11 和 Ubuntu 24.04，复制代码并传输文件。原有设备通过点对点 WireGuard 隧道连接，新增的 Intel iMac 使用局域网 IP 直连。两种方式均使用 RustDesk 1.5.3。实际地址、账号和凭证【已脱敏】。
 
 ### 日常使用
 
@@ -36,6 +36,8 @@ cssclasses:
 `MAC_WG_IP` 和 `MAC_USER` 是占位符，使用时替换成实际的隧道地址和 Mac 用户名。
 
 主控机的快捷入口保存在 `~/.local/share/applications/rustdesk.desktop`。如果换了设备地址，也要更新对应菜单项的 `--connect` 参数。
+
+连接 Intel iMac 时，在 RustDesk 的「控制远程桌面」输入 `IMAC_LAN_IP:21118`，并使用该 iMac 的 RustDesk 固定密码。`IMAC_LAN_IP` 是 iMac 的局域网地址占位符。菜单中的 **Mac（局域网）** 入口对应原有 MacBook 的 WireGuard 地址。
 
 ### 键鼠与剪贴板
 
@@ -98,11 +100,18 @@ ip -4 route show dev wgmac-lan
 2. 在 Mac 端 **Settings → Security** 开启 **Enable direct IP access**，端口用 `21118`，在 **Use IP Whitelisting** 里只填 Ubuntu 的 WireGuard 地址。按需在 **Password** 处设置独立的 RustDesk 固定密码。直接 IP 模式由 WireGuard 提供传输加密，从 Ubuntu 连接 Mac 的隧道地址。 [RustDesk 直连设置](https://rustdesk.com/docs/en/self-host/client-configuration/advanced-settings/) · [RustDesk 维护者的加密说明](https://github.com/rustdesk/rustdesk/issues/3714)
 3. 在 Mac 的 **System Settings → General → Sharing → Remote Login** 开启远程登录，把允许范围设为指定账号。Ubuntu 可以通过端口 `22` 使用 SSH 或 SFTP。 [Apple 远程登录指南](https://support.apple.com/guide/mac-help/allow-a-remote-computer-to-access-your-mac-mchlp1066/mac)
 
+#### Intel iMac 局域网直连
+
+1. 在 iMac 上安装 RustDesk 1.5.3 的 Intel（x86-64）版。在 macOS 13 的 **System Settings → Privacy & Security** 中为 RustDesk 开启 **Screen Recording** 和 **Accessibility**，然后退出并重新打开 RustDesk。
+2. 在 iMac 上开启 **Enable direct IP access**，端口用 `21118`。**Use IP Whitelisting** 只填主控 Ubuntu 的局域网 IPv4 地址（`/32`），认证方式使用 RustDesk 固定密码。
+3. Ubuntu 先用 `ip -4 route get "$IMAC_LAN_IP"` 查看路由，核对输出中的 `src` 与 iMac 白名单一致，再用 `nc -vz -w 3 "$IMAC_LAN_IP" 21118` 检查端口。
+
 ### 常见故障
 
 | 现象 | 处理 |
 | --- | --- |
 | RustDesk 连不上 | 用目标机对应的 `wgmac-lan`、`wgwin-lan` 或 `wgubu-lan` 检查隧道。以 Mac 为例，先运行 `nmcli connection up wgmac-lan`，再检查 `ip -4 route show dev wgmac-lan`。确认目标机开机、局域网 IP 和 WireGuard 端点一致。 |
+| Intel iMac 的 RustDesk 端口拒绝连接 | 检查 iMac 上的 RustDesk 是否运行、是否开启 **Enable direct IP access**，再复测 `21118`。 |
 | 登录错误「你的 IP 已被对方阻止」 | 检查当前会话标题。发现页卡片底部如果显示数字 ID，连接可能会走公共中继。本次日志确认了中继来源触发白名单。关闭报错标签，使用目标机的 WireGuard 地址或应用图标里的局域网入口。 |
 | 能看到画面，但无法操作键鼠 | 在 Mac 的 **Accessibility** 开启 RustDesk，并确认本次会话允许键盘和鼠标。已可通过 ToDesk 或现场操作时，从那里进入 Mac 的系统设置。 |
 | 两台电脑能操作，文字无法粘贴 | 排查 Mac 的 **Enable clipboard** 和 Ubuntu 会话的 **Disable clipboard**，双向分别测试。 |
@@ -122,8 +131,9 @@ nc -vz -w 3 "$TARGET_WG_IP" 21118
 - [x] Mac 局域网直连收到画面，补齐辅助功能授权后键盘和鼠标可用。
 - [x] Windows 11 局域网直连通过密码登录，主控机收到桌面画面。
 - [x] 三台机器均已设置 RustDesk 固定密码，Mac SFTP 上传和下载已往返比对。
+- [x] 2026-11-27，Ubuntu 使用固定密码直连 Intel iMac，收到远程桌面画面。Ubuntu 与 iMac 的文字剪贴板双向实测通过，中文和换行均正常。
 - [ ] 在 Ubuntu 24.04 的 Wayland 共享提示中选择屏幕，验收远程画面与键鼠。
-- [ ] 双向测试文字剪贴板和 RustDesk 文件传输，验证外网断开时的新建连接，以及锁屏和重启后的重连。
+- [ ] 验证其余设备的双向文字剪贴板，并测试 RustDesk 文件传输、外网断开时的新建连接，以及锁屏和重启后的重连。
 
 ### 新增 Windows 和 Ubuntu 受控端
 
