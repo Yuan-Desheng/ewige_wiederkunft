@@ -111,7 +111,6 @@
 .cli-nav {
     display: flex;
     border-bottom: 1px solid var(--background-modifier-border);
-    background: var(--background-primary);
     position: sticky;
     top: 0;
     z-index: 10;
@@ -166,12 +165,16 @@
     align-items: center;
     border: 1px solid var(--background-modifier-border);
     border-radius: 8px;
-    background: var(--background-primary);
     padding: 0 10px;
     transition: border-color 0.15s;
+    background: var(--background-modifier-form-field-hover);
 }
 .cli-search-inner:focus-within {
     border-color: var(--interactive-accent);
+}
+
+.cli-search-input{
+    background-color: transparent !important;
 }
 .cli-search-icon {
     display: flex;
@@ -186,10 +189,7 @@
 }
 .cli-search-input {
     flex: 1;
-    padding: 8px 0;
     border: none !important;
-    background: var(--background-primary) !important;
-    font-size: 13px;
     outline: none !important;
     box-shadow: none !important;
     box-sizing: border-box;
@@ -411,7 +411,6 @@
     padding: 6px 10px;
     border: 1px solid var(--background-modifier-border);
     border-radius: 6px;
-    background: var(--background-primary) !important;
     font-size: 12px;
     outline: none;
     min-width: 0;

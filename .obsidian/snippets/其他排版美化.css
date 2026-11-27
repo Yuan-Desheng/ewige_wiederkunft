@@ -976,6 +976,7 @@ progress{
 .modal,
 .popover,
 .suggestion-container.mod-search-suggestion,
+.workspace-drawer-tab-options-list,
 .graph-controls:not(.is-close){
   border: 0.5px solid var(--tab-outline-color);
   box-shadow: var(--shadow-l) !important;
@@ -1105,4 +1106,8 @@ body:not(.is-mobile) .workspace-split.mod-left-split.is-sidedock-collapsed .work
 }
 .mod-right-split .workspace-tab-header-container .workspace-tab-header-container-inner{
 overflow:hidden;
+}
+
+.column-live-editor .cm-content .cm-line {
+  padding: 0 !important;
 }

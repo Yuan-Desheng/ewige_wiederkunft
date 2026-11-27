@@ -2,7 +2,6 @@
 
 .check-in-panel {
   padding: 0px 0px;
-  background-color: var(--background-primary);
   border-radius: 5px;
 
 }
@@ -58,7 +57,6 @@
 .check-in-items {
   display: flex;
   flex-direction: column;
-  gap: 8px;
 }
 
 .check-in-item {

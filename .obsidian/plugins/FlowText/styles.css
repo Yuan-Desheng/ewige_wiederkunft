@@ -52,16 +52,60 @@
 }
 
 .flowtext-message-thinking .flowtext-message-content {
+  box-sizing: border-box;
   padding: 12px;
   font-size: 0.85em;
   line-height: 1.4;
   color: var(--text-muted);
   white-space: pre-wrap;
   word-wrap: break-word;
-  max-height: 300px;
+  max-height: 160px;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: rgba(243, 156, 18, 0.3) transparent;
+}
+
+.flowtext-message-thinking > summary {
+  cursor: pointer;
+  list-style: none;
+  gap: 6px;
+  border-radius: 7px;
+}
+
+.flowtext-message-thinking > summary::-webkit-details-marker {
+  display: none;
+}
+
+.flowtext-message-thinking[open] > summary {
+  border-radius: 7px 7px 0 0;
+}
+
+.flowtext-thinking-toggle-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--text-muted);
+}
+
+.flowtext-thinking-status {
+  flex: 1;
+  min-width: 0;
+}
+
+.flowtext-message-thinking .flowtext-thinking-icon {
+  display: inline-flex;
+  color: #f39c12;
+}
+
+.flowtext-message-thinking .flowtext-copy-btn {
+  display: inline-flex;
+  background: transparent;
+  box-shadow: none;
+  padding: 2px 4px;
+}
+
+.flowtext-message-thinking summary svg {
+  width: 14px;
+  height: 14px;
 }
 
 .flowtext-message-thinking .flowtext-message-content::-webkit-scrollbar {
@@ -317,6 +361,7 @@
   appearance: auto;
   -webkit-appearance: auto;
   box-shadow: none !important;
+  padding-left: 0;
 
 }
 
@@ -724,10 +769,9 @@
 .theme-dark .flowtext-at-popup,
 .theme-dark .flowtext-modal-content {
   border-radius: 12px;
-  width: 400px;
+  width: 500px;
   background: var(--background-primary);
   box-shadow: 2px 2px 15px var(--background-modifier-box-shadow) !important;
-  /* 必须高于 .flowtext-modal-backdrop，否则移动端点击会落到背景层并误关窗 */
   position: relative;
   z-index: 1;
   border: 0.5px solid var(--background-modifier-border);
@@ -1000,6 +1044,7 @@
   gap: 12px;
   flex-wrap: wrap;
   padding: 10px;
+  margin-top: 8px;
   background: transparent;
 }
 
@@ -1088,7 +1133,7 @@
 }
 
 .flowtext-note-topics {
-  padding: 10px;
+  padding: 10px 20px;
   background: transparent;
   display: flex;
   align-items: center;
@@ -1163,6 +1208,32 @@
 .flowtext-modal-body .flowtext-upload-section .flowtext-submit-btn {
   padding: 8px 16px;
   font-size: 13px;
+}
+
+.flowtext-at-popup .flowtext-submit-btn.is-submitting::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  border: 2px solid var(--background-modifier-border);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: flowtext-spin 0.8s linear infinite;
+}
+.flowtext-at-popup .flowtext-submit-error {
+  margin: 4px 0 8px;
+  color: var(--text-error);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.flowtext-at-popup .flowtext-submit-error[hidden] {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .flowtext-at-popup .flowtext-submit-btn.is-submitting::before {
+    animation: none;
+  }
 }
 
 
@@ -1388,6 +1459,37 @@
 }
 
 /* AI文本修改模态框样式 */
+.flowtext-ai-modify-modal .flowtext-modal-content {
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  max-height: 90dvh;
+}
+
+.flowtext-ai-modify-modal .flowtext-modal-body,
+.flowtext-ai-modify-modal .flowtext-chat-container,
+.flowtext-ai-modify-modal .flowtext-chat-history-wrap {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.flowtext-ai-modify-modal .flowtext-modal-body,
+.flowtext-ai-modify-modal .flowtext-chat-container {
+  flex: 1 1 auto;
+}
+
+.flowtext-ai-modify-modal .flowtext-chat-history {
+  min-height: 0;
+}
+
+.flowtext-ai-modify-modal .flowtext-modal-header,
+.flowtext-ai-modify-modal .flowtext-initial-context,
+.flowtext-ai-modify-modal .flowtext-result-actions,
+.flowtext-ai-modify-modal .flowtext-input-container {
+  flex-shrink: 0;
+}
+
 .flowtext-ai-modify-modal {
   position: fixed;
   top: 0;
@@ -1470,10 +1572,10 @@
 .flowtext-selected-text {
   background: transparent;
   border-radius: 8px;
-  padding: 5px;
   margin-bottom: 8px;
   max-height: 200px;
   overflow-y: auto;
+  scrollbar-width: none;
 }
 
 .flowtext-selected-text-header {
@@ -1492,6 +1594,10 @@
 }
 
 .flowtext-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
   background: transparent !important;
   border: none;
   cursor: pointer;
@@ -1501,6 +1607,11 @@
   box-shadow: none !important;
 }
 
+.flowtext-toggle-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
 .flowtext-text-preview {
   font-size: 13px;
   line-height: 1.4;
@@ -1508,7 +1619,7 @@
   white-space: pre-wrap;
   word-wrap: break-word;
   transition: all 0.3s ease;
-  padding-left: 8px;
+  padding: 8px;
   border: 1px dashed var(--color-accent);
   border-radius: 6px;
 }
@@ -1826,9 +1937,52 @@
   background: transparent;
   margin-bottom: 16px;
   padding: 0px;
+  scrollbar-width: none;
 }
 
 .flowtext-chat-history:empty {
+  display: none;
+}
+
+/* 操作栏位于对话滚动区外，长回复不会把应用按钮带走。 */
+.flowtext-ai-modify-modal .flowtext-chat-history-wrap {
+  position: relative;
+  min-height: 0;
+}
+
+.flowtext-ai-modify-modal .flowtext-result-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  margin-bottom: 8px;
+  padding: 4px;
+}
+
+.flowtext-ai-modify-modal .flowtext-result-status {
+  flex: 1;
+  min-width: 0;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.flowtext-ai-modify-modal .flowtext-result-actions button {
+  flex-shrink: 0;
+  font-size: 12px;
+}
+
+.flowtext-ai-modify-modal .flowtext-jump-latest {
+  position: absolute;
+  right: 12px;
+  bottom: 10px;
+  z-index: 1;
+  border-radius: 16px;
+  font-size: 12px;
+  box-shadow: 0 2px 8px var(--background-modifier-box-shadow);
+}
+
+.flowtext-ai-modify-modal .flowtext-result-actions[hidden],
+.flowtext-ai-modify-modal .flowtext-jump-latest[hidden] {
   display: none;
 }
 
@@ -1955,16 +2109,6 @@
 .flowtext-apply-btn:hover {
   background: var(--interactive-accent-hover);
   transform: translateY(-1px);
-}
-
-.flowtext-clear-btn {
-  background: transparent !important;
-  border: 1px solid var(--background-modifier-border);
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 11px;
-  cursor: pointer;
-  box-shadow: none !important;
 }
 
 /* 响应式设计 - 多轮对话 */
@@ -2166,7 +2310,6 @@
   flex-direction: column;
   height: 100%;
   overflow: hidden;
-  background: var(--background-primary);
   user-select: text;
   -webkit-user-select: text;
 }
@@ -2484,13 +2627,6 @@
   min-width: 0;
   gap: 2px;
   padding-top: 2px;
-}
-.flowtext-agent-vault-files.is-scrollable {
-  max-height: 360px;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  padding-right: 3px;
-  scrollbar-width: thin;
 }
 button.flowtext-agent-vault-file {
   display: flex;
@@ -2968,6 +3104,78 @@ code .flowtext-agent-file-link {
 }
 .flowtext-agent-step--observation .flowtext-agent-step-text.collapsed::after {
   opacity: 1;
+}
+
+/* 本地斜杠命令必须可见，不继承普通工具结果的隐藏及限高规则。 */
+.flowtext-agent-step--observation.flowtext-agent-step--local-command {
+  display: flex;
+}
+.flowtext-agent-step--local-command .flowtext-agent-step-text {
+  max-height: none;
+  overflow: visible;
+  -webkit-mask-image: none;
+  mask-image: none;
+  cursor: auto;
+  color: var(--text-normal);
+}
+/* Long Agent lists show complete entries; hidden links/controls leave the tab order. */
+.flowtext-agent-list-item[hidden] {
+  display: none !important;
+}
+button.flowtext-agent-list-toggle {
+  display: flex;
+  width: 100%;
+  height: auto;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px;
+  margin: 2px 0 0;
+  padding: 6px 0;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: none !important;
+  background: transparent !important;
+  color: var(--text-muted);
+  font-size: 12px;
+  text-align: left;
+  white-space: normal;
+  cursor: pointer;
+}
+button.flowtext-agent-list-toggle:hover {
+  color: var(--text-normal);
+  background: var(--background-modifier-hover) !important;
+}
+button.flowtext-agent-list-toggle:focus-visible {
+  outline: 2px solid var(--interactive-accent);
+  outline-offset: 2px;
+}
+.flowtext-agent-list-toggle-icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+}
+.flowtext-agent-list-toggle-icon svg {
+  width: 14px;
+  height: 14px;
+}
+.flowtext-agent-local-command-detail {
+  margin: 5px 0;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+}
+.flowtext-agent-local-command-detail > summary {
+  padding: 7px 10px;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+.flowtext-agent-local-command-description {
+  margin-left: 6px;
+  color: var(--text-muted);
+  font-size: 11px;
+}
+.flowtext-agent-local-command-detail-body {
+  padding: 0 10px 8px;
+  overflow-wrap: anywhere;
 }
 
 /* Diff 统计展示（observation 中的 edit 结果） */
@@ -3545,7 +3753,6 @@ code .flowtext-agent-file-link {
   padding: 2px 8px;
   border-radius: 6px;
   border: 0.5px solid var(--background-modifier-border);
-  background: var(--background-primary);
   font-size: 13px;
   color: var(--text-muted);
   cursor: default;
@@ -3826,6 +4033,38 @@ code .flowtext-agent-file-link {
 .flowtext-agent-rollback-btn-icon svg {
   width: 12px;
   height: 12px;
+}
+
+.flowtext-agent-rollback-list.is-collapsed > .flowtext-agent-rollback-item:nth-child(n + 4) {
+  display: none;
+}
+.flowtext-agent-rollback-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px;
+  width: 100%;
+  height: auto;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 0;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: var(--text-muted);
+  font-size: 12px;
+  cursor: pointer;
+}
+.flowtext-agent-rollback-toggle:hover {
+  background: var(--background-modifier-hover) !important;
+  color: var(--text-normal);
+}
+.flowtext-agent-rollback-toggle-icon {
+  display: flex;
+  align-items: center;
+}
+.flowtext-agent-rollback-toggle-icon svg {
+  width: 14px;
+  height: 14px;
 }
 
 .flowtext-agent-rollback-item {
@@ -4125,6 +4364,7 @@ code .flowtext-agent-file-link {
   pointer-events: auto;
   user-select: none;
   -webkit-user-select: none;
+  touch-action: manipulation;
 }
 
 .flowtext-sparkles-trigger:hover {
@@ -4595,3 +4835,9 @@ code .flowtext-agent-file-link {
 .flow-slides-presentation-toolbar button:disabled{opacity:.35}
 @media (max-width:700px){.flow-slides-toolbar{height:auto;min-height:48px;flex-wrap:wrap;padding:7px 9px}.flow-slides-toolbar strong{flex-basis:100%}.flow-slides-stage{padding:10px 10px 102px}.flow-slides-rail{left:8px;right:8px;bottom:8px;height:80px}.flow-slides-thumb-item{width:122px;height:68px}.flow-slides-thumb-viewport{width:105.6px!important;height:59.4px!important}.flow-slides-transition-button{height:68px}}
 @media (prefers-reduced-motion:reduce){.flow-slides-enter-fade,.flow-slides-enter-push,.flow-slides-enter-wipe,.flow-slides-enter-cover{animation:none!important}.flow-slides-rail{transition:none}}
+
+.flowtext-agent-turn-plan.flowtext-agent-turn-plan--markdown hr{
+  border-top: 1px solid;
+  margin: 1rem 0;
+  border-color: var(--hr-color);
+}

@@ -31315,12 +31315,21 @@ var ObsidianColumns = class extends Plugin {
           return;
         }
         const rect = currentColumn.getBoundingClientRect();
-        if (rect.bottom <= 0 || rect.top >= ownerWindow.innerHeight) {
+        let visibleTop = 0;
+        let visibleBottom = ownerWindow.innerHeight;
+        for (let ancestor = parentElement.parentElement; ancestor; ancestor = ancestor.parentElement) {
+          if (!ancestor.matches(".view-content, .cm-scroller, .markdown-preview-view")) continue;
+          const bounds = ancestor.getBoundingClientRect();
+          visibleTop = Math.max(visibleTop, bounds.top);
+          visibleBottom = Math.min(visibleBottom, bounds.bottom);
+        }
+        const handleHalfHeight = 9;
+        if (rect.top - handleHalfHeight < visibleTop || rect.top + handleHalfHeight > visibleBottom || rect.right <= 0 || rect.left >= ownerWindow.innerWidth) {
           handle.classList.remove("is-visible");
           return;
         }
         handle.style.left = `${rect.left + rect.width / 2}px`;
-        handle.style.top = `${Math.max(11, rect.top)}px`;
+        handle.style.top = `${rect.top}px`;
         handle.style.width = `${rect.width}px`;
         handle.classList.add("is-visible");
       };

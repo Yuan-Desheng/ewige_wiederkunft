@@ -433,17 +433,27 @@ div[data-callout="col"].callout > div.callout-content > div[data-callout$="-10" 
 
 /*
  * 列拖拽 UI 挂载到 document.body，不受 Markdown 容器的
- * overflow/transform 裁切。覆盖层本身不拦截指针，只有把手可交互。
+ * overflow/transform 裁切。门户容器保持零尺寸，避免覆盖 Electron
+ * 标题栏的原生窗口拖动区域；只有把手拥有可交互的矩形。
  */
 .column-reorder-overlay {
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    min-width: 0;
+    min-height: 0;
+    padding: 0;
+    border: 0;
+    overflow: visible;
     z-index: var(--layer-popover, 1000);
     pointer-events: none;
 }
 
 .column-reorder-handle {
     position: fixed;
+    -webkit-app-region: no-drag;
     z-index: 3;
     display: flex;
     align-items: center;

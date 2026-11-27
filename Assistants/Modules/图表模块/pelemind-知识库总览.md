@@ -1,0 +1,26 @@
+
+```mermaid
+mindmap
+  root((知识库总览))
+    assistants["Assistants"]
+      moduals["模块：${folder("Assistants/Modules").files}"]
+      templates["模板：${folder("Assistants/Templater").files}"]
+    books["Books"]
+      reading["白板笔记：${folder("Books/白板笔记").files}"]
+      readingnotes["读书笔记：${folder("Books/读书笔记").files}"]
+      pdf["pdf书籍：${folder("Books/pdf书籍").files}"]
+    connections["Connections"]
+      bumen["部门：${folder("Connections/部门").files}"]
+      gongsi["公司：${folder("Connections/公司").files}"]
+      renwu["人物：${folder("Connections/人物").files}"]
+      wupin["物品：${folder("Connections/物品").files}"]
+    documents["Documents"]
+      work["I.P.A.R.A：${folder("Documents/I.P.A.R.A").files}"]
+      canvas["canvas：${folder("Documents/Canvas").files}"]
+      dailynotes["Dailynotes：${folder("Documents/Dailynote").files}"]
+      excalidraw["Excalidraw：${folder("Documents/Excalidraw").files}"]
+      office["Office：${folder("Documents/Office").files}"]
+      extras["Extras：${folder("Extras").files}"]
+    extras["Extras"]
+      extras["附件：${folder("Extras").files}"]
+```

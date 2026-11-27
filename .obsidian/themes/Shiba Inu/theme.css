@@ -2174,8 +2174,10 @@ body.buttons-workspace-style.theme-dark .workspace button:active {
   .workspace-tabs
   .workspace-leaf,
 .shib-card-layout .workspace-split.mod-vertical,
-.workspace {
+.workspace{
   background-color: var(--tab-container-background);
+
+
 }
 
 .shib-card-layout .sidebar-toggle-button,
@@ -2707,8 +2709,6 @@ body:not(.font-family-change-to-default).is-mobile
 .shib-callout-toggle.shib-callout-style-3 .callout,
 .shib-callout-toggle.shib-callout-style-3 .callout.is-collapsible.is-collapsed,
 .shib-callout-toggle.shib-callout-style-3 .callout:not(.is-collapsible),
-.shib-callout-toggle.shib-callout-style-4 .callout,
-.shib-callout-toggle.shib-callout-style-4 .callout:not(.is-collapsible),
 body:not(.shib-callout-toggle) .callout,
 body:not(.shib-callout-toggle) .callout.is-collapsible.is-collapsed,
 body:not(.shib-callout-toggle) .callout:not(.is-collapsible) {
@@ -2785,7 +2785,6 @@ body:not(.shib-callout-toggle) .callout .callout-content {
 .shib-callout-toggle.shib-callout-style-2 .callout.is-collapsible .callout-fold,
 .shib-callout-toggle.shib-callout-style-3 .callout .callout-fold,
 .shib-callout-toggle.shib-callout-style-3 .callout.is-collapsible .callout-fold,
-.shib-callout-toggle.shib-callout-style-4 .callout.is-collapsible .callout-fold,
 body:not(.shib-callout-toggle) .callout .callout-fold,
 body:not(.shib-callout-toggle) .callout.is-collapsible .callout-fold {
   padding-right: 0;
@@ -2799,10 +2798,6 @@ body:not(.shib-callout-toggle) .callout.is-collapsible .callout-fold {
   .callout-title-inner,
 .shib-callout-toggle.shib-callout-style-3 .callout .callout-title-inner,
 .shib-callout-toggle.shib-callout-style-3
-  .callout.is-collapsible
-  .callout-title-inner,
-.shib-callout-toggle.shib-callout-style-4 .callout .callout-title-inner,
-.shib-callout-toggle.shib-callout-style-4
   .callout.is-collapsible
   .callout-title-inner,
 body:not(.shib-callout-toggle) .callout .callout-title-inner,
@@ -2885,7 +2880,7 @@ body:not(.shib-callout-toggle) .callout .list-collapse-indicator {
 }
 .shib-callout-toggle.shib-callout-style-1 {
   --callout-padding: 4px;
-  --callout-radius: var(--radius-m);
+
   --callout-padding: 0px;
 }
 .shib-callout-toggle.shib-callout-style-1 .callout {
@@ -2895,10 +2890,8 @@ body:not(.shib-callout-toggle) .callout .list-collapse-indicator {
   position: relative;
   align-items: center;
   min-height: 36px;
-  border: 2px solid;
-  border-radius: 10px;
-  background-color: color-mix(in srgb, var(--callout-color) 10%, transparent);
-  border-color: color-mix(in srgb, var(--callout-color) 40%, transparent);
+
+
 }
 .shib-callout-toggle.shib-callout-style-1
   .callout
@@ -2907,35 +2900,22 @@ body:not(.shib-callout-toggle) .callout .list-collapse-indicator {
   padding: 12px;
   border-top-style: solid;
   border-top-width: 1px;
-  border-radius: 10px;
+
 }
 .shib-callout-toggle.shib-callout-style-1 .callout .callout-title-inner {
   padding: 0;
   margin: 0 var(--size-4-1);
   flex-grow: var(--shib-callout-fold-position, unset);
 }
-.shib-callout-toggle.shib-callout-style-1 .callout .callout-icon {
-  border-radius: 10px;
-}
+
 .shib-callout-toggle.shib-callout-style-1 .callout .callout-content {
   padding: 20px;
   margin-top: -8px;
-  border-color: color-mix(in srgb, var(--callout-color) 40%, transparent);
 }
-.shib-callout-toggle.shib-callout-style-1
-  .callout.is-collapsible:not(.is-collapsed)
-  .callout-content {
-  border-right: 1px solid;
-  border-bottom: 1px solid;
-  border-left: 1px solid;
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-  border-color: color-mix(in srgb, var(--callout-color) 40%, transparent);
-  padding: var(--size-4-4);
-}
+
 .shib-callout-toggle.shib-callout-block .callout.is-collapsible,
 .shib-callout-toggle.shib-callout-style-1 .callout.is-collapsible {
-  background-color: rgba(var(--side), 0.4);
+
   --bold-weight: bolder;
 }
 .shib-callout-toggle.shib-callout-style-2 .callout .callout-content {
@@ -2955,17 +2935,9 @@ body:not(.shib-callout-toggle) .callout .list-collapse-indicator {
 }
 .shib-callout-toggle.shib-callout-style-4 .callout {
   padding: 0;
-  border: 1px solid color-mix(in srgb, var(--callout-color) 20%, transparent);
   overflow: hidden;
 }
-.shib-callout-toggle.shib-callout-style-4.shib-callout-toggle.shib-callout-style-4.theme-light
-  .callout {
-  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
-}
-.shib-callout-toggle.shib-callout-style-4.shib-callout-toggle.shib-callout-style-4.theme-dark
-  .callout {
-  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
-}
+
 .shib-callout-toggle.shib-callout-style-4.theme-light .callout-title {
   background: color-mix(in srgb, var(--callout-color) 20%, transparent);
   padding: var(--callout-title-padding);
@@ -2990,13 +2962,11 @@ body:not(.shib-callout-toggle) .callout .list-collapse-indicator {
   .callout.is-collapsed:not(.is-collapsed)
   .callout-title {
   padding: 0;
-  box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.05) inset;
 }
 .shib-callout-toggle.shib-callout-style-4.theme-dark
   .callout.is-collapsed:not(.is-collapsed)
   .callout-title {
   padding: 0;
-  box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.175) inset;
 }
 .shib-callout-toggle.shib-callout-style-4
   .callout.is-collapsible:not(.is-collapsed)
@@ -3012,19 +2982,19 @@ body:not(.shib-callout-toggle) .callout .list-collapse-indicator {
 }
 .shib-callout-toggle.shib-callout-style-4.theme-light .callout-content {
   padding: var(--size-4-4);
-  background-color: rgba(var(--side), 1);
-  box-shadow: 0 -2px 0 0 rgba(0, 0, 0, 0.05) inset;
+  background-color: rgba(var(--callout-color), 0 0.5);
+
 }
 .shib-callout-toggle.shib-callout-style-4.theme-dark .callout-content {
   padding: var(--size-4-4);
-  background: var(--color-d-black);
-  box-shadow: 0 -2px 0 0 rgba(0, 0, 0, 0.175) inset;
+  background: rgba(var(--callout-color), 0 0.5);
+
 }
 .shib-callout-toggle.shib-callout-block .callout {
-  border-top: 2px solid var(--callout-color);
-  border-left: 2px solid var(--callout-color);
-  border-right: 2px solid var(--callout-color);
-  border-bottom: 2px solid var(--callout-color);
+  border-top: 1px solid var(--callout-color);
+  border-left: 1px solid var(--callout-color);
+  border-right: 1px solid var(--callout-color);
+  border-bottom: 1px solid var(--callout-color);
   border-radius: 10px;
   border-color: color-mix(in srgb, var(--callout-color) 50%, transparent);
   background-color: unset;
@@ -3033,6 +3003,7 @@ body:not(.shib-callout-toggle) .callout .list-collapse-indicator {
 .shib-callout-toggle.shib-callout-block .callout .callout-title {
   align-self: auto;
   margin-left: -15px;
+  padding: 0;
 }
 .callout-title {
   --bold-color: currentColor;
@@ -3063,6 +3034,7 @@ body:not(.shib-callout-toggle) .callout .list-collapse-indicator {
 }
 .shib-card-layout .callout[data-callout="flex"]{
   --callout-color: #21913e !important;
+  box-shadow: none;
 }
 
 .shib-card-layout .callout[data-callout="abstract"],
@@ -3071,6 +3043,7 @@ body:not(.shib-callout-toggle) .callout .list-collapse-indicator {
 .shib-card-layout .callout[data-callout="summary"],
 .shib-card-layout .callout[data-callout="tldr"] {
   --callout-color: #478fee !important;
+  box-shadow: none;
 }
 .shib-card-layout .callout[data-callout="hint"],
 .shib-card-layout .callout[data-callout="important"],
@@ -3078,6 +3051,7 @@ body:not(.shib-callout-toggle) .callout .list-collapse-indicator {
 .shib-card-layout .callout[data-callout="tip"],
 .shib-card-layout .callout[data-callout="todo"] {
   --callout-color: #179299 !important;
+  box-shadow: none;
 }
 .shib-card-layout .callout[data-callout="check"],
 .shib-card-layout .callout[data-callout="done"],
@@ -3086,23 +3060,28 @@ body:not(.shib-callout-toggle) .callout .list-collapse-indicator {
 .shib-card-layout .callout[data-callout="question"],
 .shib-card-layout .callout[data-callout="success"] {
   --callout-color: #409b28 !important;
+  box-shadow: none;
 }
 .shib-card-layout .callout[data-callout="attention"],
 .shib-card-layout .callout[data-callout="caution"],
 .shib-card-layout .callout[data-callout="warning"] {
   --callout-color: #f96632 !important;
+  box-shadow: none;
 }
 .shib-card-layout .callout[data-callout="bug"],
 .shib-card-layout .callout[data-callout="danger"],
 .shib-card-layout .callout[data-callout="error"] {
   --callout-color: #f04472 !important;
+  box-shadow: none;
 }
 .shib-card-layout .callout[data-callout="example"] {
   --callout-color: #b06ec9 !important;
+  box-shadow: none;
 }
 .shib-card-layout .callout[data-callout="cite"],
 .shib-card-layout .callout[data-callout="quote"] {
   --callout-color: #9e9e9e !important;
+  box-shadow: none;
 }
 .shib-callout-color-toggle.shiba-accent-style .callout[data-callout="note"] {
   --callout-color: #179299 !important;
@@ -5285,7 +5264,7 @@ body:not(.shib-floating-animated-tab-toggle):not(.shib-disable-newtab-align)
   .workspace-tab-header {
   border-radius: var(--tab-radius);
   border: var(--shib-floating-border-width, 1px) solid var(--tab-outline-color);
-  background-color: var(--tab-background-inactive);
+  background-color: var(--card-foreground-color);
   color: var(--text-muted);
   max-width: var(--tab-max-width);
 }
@@ -5970,7 +5949,6 @@ body:not(.shiba-remove-file-icons)
 .shib-workspace-background-image-toggle.shib-bg-fix .workspace {
   backdrop-filter: brightness(var(--shib-custom-bg-brightness, 0.5))
     blur(var(--shib-custom-bg-blur, 5px));
-  background-color: transparent;
 }
 .shib-workspace-background-image-toggle .kanban-plugin__item-title-wrapper,
 .shib-workspace-background-image-toggle.is-focused.shib-card-layout
@@ -6287,7 +6265,34 @@ background-color: transparent !important;
   background-color: transparent !important;
 }
 
+.shib-card-layout .mod-active .document-search-container{
+  background-color: transparent;
 
+}
+
+.shib-callout-toggle.shib-callout-style-2 .callout.is-collapsible:not(.is-collapsed) .callout-content .admonition-content{
+
+ padding-left: 0 !important;
+}
+
+.shib-callout-toggle.shib-callout-style-2 .callout.is-collapsible:not(.is-collapsed) .callout-content .admonition-content .mb-button-group.mb-button-group {
+  & > .mb-button {
+      &:first-child:not(:last-child) {
+          & > .mb-button-inner {
+              padding-left: 0;
+          }
+      }
+  }
+}
+.shib-callout-toggle.shib-callout-style-2 .callout.is-collapsible:not(.is-collapsed) .callout-content .admonition-content .mb-button-group.mb-button-group {
+  & > .mb-button {
+      &:last-child:not(:first-child) {
+          & > .mb-button-inner {
+              padding-left: 0;
+          }
+      }
+  }
+}
 
 /* @settings
 name: Shiba Inu Theme
@@ -6296,28 +6301,30 @@ settings:
 
 -
   id: shiba-inu-support
-  title:  ૮ ºﻌºა Welcome 
+  title:  ૮ ºﻌºა 欢迎
   type: info-text
   description:  |
-    Welcome to Shiba Inu theme for Obsidian! If you need any assistance, please [submit an issue](https://github.com/faroukx/Obsidian-shiba-inu-theme/issues) on GitHub.
+    欢迎使用 Obsidian 的 Shiba Inu 主题！插件原作者faroukx，鱼先生基于开源代码进行修改、优化，适配模块化Obsidian仓库，如有问题，可反馈至鱼先生。
     - **[Github](https://github.com/faroukx/Obsidian-shiba-inu-theme)**
-    - **[Obsidian Homepage by Farouk (Tutorial for Shiba Inu)](https://github.com/faroukx/obsidian-homepage)**    
-    - **[Obsidian forum thread for Shiba Inu (Shiba Inu Community)](https://forum.obsidian.md/t/theme-shiba-inu/53395)**     
+    - **[Farouk 的 Obsidian 主页（Shiba Inu 教程）](https://github.com/faroukx/obsidian-homepage)**    
+    - **[Obsidian 论坛 Shiba Inu 主题帖（Shiba Inu 社区）](https://forum.obsidian.md/t/theme-shiba-inu/53395)**  
+    - **[鱼先生的模块化Obsidian (小红书）](https://www.xiaohongshu.com/user/profile/63cfeb720000000026010489)**  
+    - **[鱼先生的模块化Obsidian (哔哩哔哩）](https://space.bilibili.com/2035394961?spm_id_from=333.1007.0.0)** 
   markdown: true
 
 #───────────────────────────────────── C O L O R S ──────────────────────────────────────  (Colors Settings)
 
 - 
     id: shiba-colors-header
-    title: Colors
-    description: Customize the look and feel of the theme with color palettes, accents and styling.
+    title: 颜色
+    description: 通过调色板、强调色和样式自定义主题的外观和感觉。
     type: heading
     level: 1
     collapsed: true
 - 
     id: shiba-colors-theme-light
-    title: Light Theme
-    description: Select your color palette
+    title: 浅色主题
+    description: 选择你的调色板
     type: class-select
     allowEmpty: false
     default: default-light-theme
@@ -6339,8 +6346,8 @@ settings:
             value: stone-light
 - 
     id: shiba-colors-theme-dark
-    title: Dark Theme
-    description: Select your color palette
+    title: 深色主题
+    description: 选择你的调色板
     type: class-select
     allowEmpty: false
     default: default-dark-theme
@@ -6359,14 +6366,14 @@ settings:
             value: pure-dark
 - 
     id: shiba-accent-style
-    title: Enable Accent Style
-    description: Adjust the theme style with the accents below
+    title: 启用强调样式
+    description: 使用下面的强调色调整主题样式
     type: class-toggle
     default: true
 - 
     id: shiba-accent-colors
-    title: Accent Colors
-    description: Compatible with highlight color
+    title: 强调色
+    description: 与高亮颜色兼容
     type: class-select
     allowEmpty: false
     default: accent-lily
@@ -6409,15 +6416,15 @@ settings:
             value: accent-orange
 - 
     id: shiba-custom-color-palette-header
-    title: Custom Palette 
+    title: 自定义调色板 
     type: heading
-    description: Customize your own color palette!
+    description: 自定义你自己的调色板！
     level: 2
     collapsed: true
 - 
     id: background-primary
-    title: Background Primary
-    description: Base; such as markdown, vertical tab content and active tab.
+    title: 主背景
+    description: 基础；例如 markdown、垂直标签内容以及活动标签。
     type: variable-themed-color
     opacity: true
     format: hex
@@ -6425,7 +6432,7 @@ settings:
     default-dark: '#'
 -
     id: background-primary-alt
-    title: Background Primary (alt)
+    title: 主背景（替代）
     type: variable-themed-color
     opacity: true
     format: hex
@@ -6433,8 +6440,8 @@ settings:
     default-dark: '#'
 -
     id: background-secondary
-    title: Background Secondary
-    description: Side; as in layouts, vertical tab header and inactive tabs. 
+    title: 次背景
+    description: 侧边；例如布局、垂直标签页眉和非活动标签。 
     type: variable-themed-color
     opacity: true
     format: hex
@@ -6442,7 +6449,7 @@ settings:
     default-dark: '#'
 -
     id: background-secondary-alt
-    title: Background Secondary (alt)
+    title: 次背景（替代）
     type: variable-themed-color
     opacity: true
     format: hex
@@ -6450,8 +6457,8 @@ settings:
     default-dark: '#'
 -
     id: background-modifier-border
-    title: Background Modifier Border
-    description: Surface; such as the scrollbars and the borders.
+    title: 背景修饰边框
+    description: 表面；例如滚动条和边框。
     type: variable-themed-color
     opacity: true
     format: hex
@@ -6459,8 +6466,8 @@ settings:
     default-dark: '#'
 -
     id: background-modifier-border
-    title: Background Modifier Border
-    description: Surface; such as the scrollbars and the borders.
+    title: 背景修饰边框
+    description: 表面；例如滚动条和边框。
     type: variable-themed-color
     opacity: true
     format: hex
@@ -6468,15 +6475,15 @@ settings:
     default-dark: '#'
 - 
   id: shiba-custom-color-accent-header
-  title: Custom Accents 
+  title: 自定义强调色 
   type: heading
-  description: Customize your own accent color!
+  description: 自定义你自己的强调色！
   level: 2
   collapsed: true
 - 
     id: color-accent
-    title: Accent color
-    description: Change the color of the accent.
+    title: 强调色
+    description: 更改强调色的颜色。
     type: variable-themed-color
     opacity: true
     format: hex
@@ -6487,122 +6494,122 @@ settings:
 
 - 
     id: shiba-editor-header
-    title: Editor 
+    title: 编辑器 
     type: heading
-    description: Personalize the look of headers, texts, blockquotes, callouts, and other elements in your notes.
+    description: 个性化你的笔记中标题、文本、引用块、标注和其他元素的外观。
     level: 1
     collapsed: true
 - 
     id: shiba-typography-header
-    title: Font
+    title: 字体
     type: heading
-    description: Characteristics, styles, and options of fonts.
+    description: 字体的特征、样式和选项。
     level: 2
     collapsed: true
 -
     id: fonts-family-header
-    title: Fonts family
+    title: 字体族
     type: heading
     level: 3
     collapsed: true
 -
     id: font-text-theme
-    title: Text Font
-    description: Main fonts used are not applied to the code texts.
+    title: 文本字体
+    description: 使用的主要字体不应用于代码文本。
     type: variable-text
     default: "var(--font-default)"
 -
     id: font-family-vertical-bar
-    title: Vertical Bar (Settings)
+    title: 垂直栏（设置）
     type: variable-text
     default: "var(--font-default)"
 -
     id: font-family-folder-file-title
-    title: Folder & File Title 
+    title: 文件夹和文件标题 
     type: variable-text
     default: "var(--font-default)"
 -
     id: font-monospace-theme
-    title: Codebox
+    title: 代码框
     description: "```codebox```"
     type: variable-text
     default: "var(--font-default)"
 -
     id: font-family-inline-code
-    title: Inline Code
+    title: 行内代码
     description: "`inline`"
     type: variable-text
     default: var(--font-monospace-theme)
 -
     id: font-family-tag
-    title: Tag
+    title: 标签
     type: variable-text
     default: "var(--font-default)"
 -
     id: font-family-vault
-    title: Vault Name
+    title: 库名称
     type: variable-text
     default: "var(--font-default)"
 -
     id: fonts-size-header
-    title: Fonts size
+    title: 字体大小
     type: heading
     level: 3
     collapsed: true
 -
     id: font-size-folder-and-file
-    title: Folder and File
+    title: 文件夹和文件
     type: variable-text
     default: 0.90em
 -
     id: font-size-vault-name
-    title: Vault Name
+    title: 库名称
     type: variable-text
     default: 0.95em
 -
     id: font-size-file-header-title
-    title: File Header 
-    description: doesn't work for Sliding Pane plugin.
+    title: 文件标题栏 
+    description: 不适用于 Sliding Pane 插件。
     type: variable-text
     default: 0.93em
 -
     id: font-size-code
-    title: Codeblock
+    title: 代码块
     type: variable-text
     default: 1em
 - 
     id: shiba-headers-header
-    title: Headers
+    title: 标题
     type: heading
-    description: Characteristics, colors, and fonts of headers.
+    description: 标题的特征、颜色和字体。
     level: 2
     collapsed: true
 -
     id: shib-header-color-toggle
-    title: Enable Custom Heading Colors
+    title: 启用自定义标题颜色
     type: class-toggle
     default: true
 -
     id: shiba-clutter-free-headings
-    title: Enable Clutter Free Headings
-    description: Displays formatting marks while editing, and replaces them with a muted "H1", "H2", etc. if they are not the active line.
+    title: 启用简洁标题
+    description: 编辑时显示格式标记，如果它们不是当前行，则用柔和的"H1"、"H2"等替换。
     type: class-toggle
     default: false
 -
     id: shiba-remove-heading-indicator
-    title: Disable H1-H6 Indicators
-    description: Removal of H1-H6 indicators in front of titles on mouseover.
+    title: 禁用 H1-H6 指示器
+    description: 移除鼠标悬停时标题前的 H1-H6 指示器。
     type: class-toggle
     default: true
 -
     id: shib-h1-header
-    title: H1 settings
+    title: H1 设置
     type: heading
     level: 3
     collapsed: true
 -
     id: h1-font
-    title: H1 Shiba font
+    title: H1 Shiba 字体
     type: variable-select
     default: Satoshi
     options:
@@ -6617,28 +6624,28 @@ settings:
             - Syne
 -
     id: h1-font
-    title: H1 Custom font 
+    title: H1 自定义字体 
     type: variable-text
     default: Satoshi
 - 
     id: h1-size
-    title: H1 size (em)
+    title: H1 大小（em）
     type: variable-number
     default: 1.90
     format: em
 - 
     id: h1-weight
-    title: H1 weight
+    title: H1 字重
     type: variable-number
     default: 600
 - 
     id: h1-line-height
-    title: H1 line height
+    title: H1 行高
     type: variable-number
     default: 1
 - 
     id: shib-h1-color-custom
-    title: H1 color
+    title: H1 颜色
     type: class-select
     allowEmpty: true
     default: shib-h1-red
@@ -6681,7 +6688,7 @@ settings:
             value: shib-h1-orange
 -
     id: h1-color
-    title: Custom H1 Color
+    title: 自定义 H1 颜色
     type: variable-themed-color
     opacity: true
     format: hex
@@ -6689,18 +6696,18 @@ settings:
     default-dark: '#'
 -
     id: shib-h1-underline
-    title: H1 Underline
-    description: You must have the Custom Heading Colors  enabled or, if disabled, have selected a custom color for it to work.
+    title: H1 下划线
+    description: 你必须启用自定义标题颜色，或者如果已禁用，则必须为其选择自定义颜色才能生效。
     type: class-toggle
 -
     id: shib-h2-header
-    title: H2 settings
+    title: H2 设置
     type: heading
     level: 3
     collapsed: true
 -
     id: h2-font
-    title: H2 Shiba font
+    title: H2 Shiba 字体
     type: variable-select
     default: Satoshi
     options:
@@ -6715,28 +6722,28 @@ settings:
             - Syne
 -
     id: h2-font
-    title: H2 Custom font 
+    title: H2 自定义字体 
     type: variable-text
     default: Satoshi
 - 
     id: h2-size
-    title: H2 size (em)
+    title: H2 大小（em）
     type: variable-number
     default: 1.65
     format: em
 - 
     id: h2-weight
-    title: H2 weight
+    title: H2 字重
     type: variable-number
     default: 500
 - 
     id: h2-line-height
-    title: H2 line height
+    title: H2 行高
     type: variable-number
     default: 1.2
 - 
     id: shib-h2-color-custom
-    title: H2 color
+    title: H2 颜色
     type: class-select
     allowEmpty: true
     default: shib-h2-lily
@@ -6779,7 +6786,7 @@ settings:
             value: shib-h2-orange
 -
     id: h2-color
-    title: Custom H2 Color
+    title: 自定义 H2 颜色
     type: variable-themed-color
     opacity: true
     format: hex
@@ -6787,18 +6794,18 @@ settings:
     default-dark: '#'
 -
     id: shib-h2-underline
-    title: H2 Underline
-    description: You must have the Custom Heading Colors  enabled or, if disabled, have selected a custom color for it to work.
+    title: H2 下划线
+    description: 你必须启用自定义标题颜色，或者如果已禁用，则必须为其选择自定义颜色才能生效。
     type: class-toggle
 -
     id: shib-h3-header
-    title: H3 settings
+    title: H3 设置
     type: heading
     level: 3
     collapsed: true
 -
     id: h3-font
-    title: H3 Shiba font
+    title: H3 Shiba 字体
     type: variable-select
     default: Satoshi
     options:
@@ -6813,28 +6820,28 @@ settings:
             - Syne
 -
     id: h3-font
-    title: H3 Custom font 
+    title: H3 自定义字体 
     type: variable-text
     default: Satoshi
 - 
     id: h3-size
-    title: H3 size (em)
+    title: H3 大小（em）
     type: variable-number
     default: 1.4
     format: em
 - 
     id: h3-weight
-    title: H3 weight
+    title: H3 字重
     type: variable-number
     default: 400
 - 
     id: h3-line-height
-    title: H3 line height
+    title: H3 行高
     type: variable-number
     default: 1.3
 - 
     id: shib-h3-color-custom
-    title: H3 color
+    title: H3 颜色
     type: class-select
     allowEmpty: true
     default: shib-h3-sea
@@ -6877,7 +6884,7 @@ settings:
             value: shib-h3-orange
 -
     id: h3-color
-    title: Custom H3 Color
+    title: 自定义 H3 颜色
     type: variable-themed-color
     opacity: true
     format: hex
@@ -6885,18 +6892,18 @@ settings:
     default-dark: '#'
 -
     id: shib-h3-underline
-    title: H3 Underline
-    description: You must have the Custom Heading Colors  enabled or, if disabled, have selected a custom color for it to work.
+    title: H3 下划线
+    description: 你必须启用自定义标题颜色，或者如果已禁用，则必须为其选择自定义颜色才能生效。
     type: class-toggle
 -
     id: shib-h4-header
-    title: H4 settings
+    title: H4 设置
     type: heading
     level: 3
     collapsed: true
 -
     id: h4-font
-    title: H4 Shiba font
+    title: H4 Shiba 字体
     type: variable-select
     default: Satoshi
     options:
@@ -6911,28 +6918,28 @@ settings:
             - Syne
 -
     id: h4-font
-    title: H4 Custom font 
+    title: H4 自定义字体 
     type: variable-text
     default: Satoshi
 - 
     id: h4-size
-    title: H4 size (em)
+    title: H4 大小（em）
     type: variable-number
     default: 1.25
     format: em
 - 
     id: h4-weight
-    title: H4 weight
+    title: H4 字重
     type: variable-number
     default: 300
 - 
     id: h4-line-height
-    title: H4 line height
+    title: H4 行高
     type: variable-number
     default: 1.4
 - 
     id: shib-h4-color-custom
-    title: H4 color
+    title: H4 颜色
     type: class-select
     allowEmpty: true
     default: shib-h4-cyan
@@ -6975,7 +6982,7 @@ settings:
             value: shib-h4-orange
 -
     id: h4-color
-    title: Custom H4 Color
+    title: 自定义 H4 颜色
     type: variable-themed-color
     opacity: true
     format: hex
@@ -6983,18 +6990,18 @@ settings:
     default-dark: '#'
 -
     id: shib-h4-underline
-    title: H4 Underline
-    description: You must have the Custom Heading Colors  enabled or, if disabled, have selected a custom color for it to work.
+    title: H4 下划线
+    description: 你必须启用自定义标题颜色，或者如果已禁用，则必须为其选择自定义颜色才能生效。
     type: class-toggle
 -
     id: shib-h5-header
-    title: H5 settings
+    title: H5 设置
     type: heading
     level: 3
     collapsed: true
 -
     id: h5-font
-    title: H5 Shiba font
+    title: H5 Shiba 字体
     type: variable-select
     default: Satoshi
     options:
@@ -7009,28 +7016,28 @@ settings:
             - Syne
 -
     id: h5-font
-    title: H5 Custom font 
+    title: H5 自定义字体 
     type: variable-text
     default: Satoshi
 - 
     id: h5-size
-    title: H5 size (em)
+    title: H5 大小（em）
     type: variable-number
     default: 1.20
     format: em
 - 
     id: h5-weight
-    title: H5 weight
+    title: H5 字重
     type: variable-number
     default: 200
 - 
     id: h5-line-height
-    title: H5 line height
+    title: H5 行高
     type: variable-number
     default: 1.5
 - 
     id: shib-h5-color-custom
-    title: H5 color
+    title: H5 颜色
     type: class-select
     allowEmpty: true
     default: shib-h5-blue
@@ -7073,7 +7080,7 @@ settings:
             value: shib-h5-orange
 -
     id: h5-color
-    title: Custom H5 Color
+    title: 自定义 H5 颜色
     type: variable-themed-color
     opacity: true
     format: hex
@@ -7081,18 +7088,18 @@ settings:
     default-dark: '#'
 -
     id: shib-h5-underline
-    title: H5 Underline
-    description: You must have the Custom Heading Colors  enabled or, if disabled, have selected a custom color for it to work.
+    title: H5 下划线
+    description: 你必须启用自定义标题颜色，或者如果已禁用，则必须为其选择自定义颜色才能生效。
     type: class-toggle
 -
     id: shib-h6-header
-    title: H6 settings
+    title: H6 设置
     type: heading
     level: 3
     collapsed: true
 -
     id: h6-font
-    title: H6 Shiba font
+    title: H6 Shiba 字体
     type: variable-select
     default: Satoshi
     options:
@@ -7107,28 +7114,28 @@ settings:
             - Syne
 -
     id: h6-font
-    title: H1 Custom font 
+    title: H1 自定义字体 
     type: variable-text
     default: Satoshi
 - 
     id: h6-size
-    title: H6 size (em)
+    title: H6 大小（em）
     type: variable-number
     default: 1.15
     format: em
 - 
     id: h6-weight
-    title: H6 weight
+    title: H6 字重
     type: variable-number
     default: 100
 - 
     id: h6-line-height
-    title: H6 line height
+    title: H6 行高
     type: variable-number
     default: 1.6
 - 
     id: shib-h6-color-custom
-    title: H6 color
+    title: H6 颜色
     type: class-select
     allowEmpty: true
     default: shib-h6-turquoise
@@ -7171,7 +7178,7 @@ settings:
             value: shib-h6-orange
 -
     id: h6-color
-    title: Custom H6 Color
+    title: 自定义 H6 颜色
     type: variable-themed-color
     opacity: true
     format: hex
@@ -7179,19 +7186,19 @@ settings:
     default-dark: '#'
 -
     id: shib-h6-underline
-    title: H6 Underline
-    description: You must have the Custom Heading Colors  enabled or, if disabled, have selected a custom color for it to work.
+    title: H6 下划线
+    description: 你必须启用自定义标题颜色，或者如果已禁用，则必须为其选择自定义颜色才能生效。
     type: class-toggle
 - 
     id: shiba-text-color-header
-    title: Text Colors
+    title: 文本颜色
     type: heading
-    description: Bold and Italic colors.
+    description: 粗体和斜体颜色。
     level: 2
     collapsed: true
 -
     id: text-normal
-    title: Custom Font Color
+    title: 自定义字体颜色
     type: variable-themed-color
     opacity: true
     format: hex
@@ -7199,12 +7206,12 @@ settings:
     default-dark: '#'
 - 
     id: shiba-italic-bold-style
-    title: Enable Italic and Bold Colors
+    title: 启用斜体和粗体颜色
     type: class-toggle
     default: true
 - 
     id: shiba-italic-colors
-    title: Color of *Italic*
+    title: 斜体颜色
     type: class-select
     allowEmpty: true
     default: shib-italic-green
@@ -7247,7 +7254,7 @@ settings:
             value: shib-italic-orange
 -
     id: italic-color
-    title: Custom *Italic* Color
+    title: 自定义 *斜体* 颜色
     type: variable-themed-color
     opacity: true
     format: hex
@@ -7255,7 +7262,7 @@ settings:
     default-dark: '#'
 - 
     id: shiba-bold-colors
-    title: Color of **Bold**
+    title: 粗体颜色
     type: class-select
     allowEmpty: true
     default: shib-bold-red
@@ -7298,7 +7305,7 @@ settings:
             value: shib-bold-orange
 -
     id: bold-color
-    title: Custom **Bold** Color
+    title: 自定义 **粗体** 颜色
     type: variable-themed-color
     opacity: true
     format: hex
@@ -7306,14 +7313,14 @@ settings:
     default-dark: '#'
 - 
     id: shiba-highlights-color-header
-    title: Others Colors
+    title: 其他颜色
     type: heading
-    description: Highlights and Tags colors.
+    description: 高亮和标签颜色。
     level: 2
     collapsed: true
 -
     id: text-highlight-bg
-    title: Custom ==highlights== color
+    title: 自定义 ==高亮== 颜色
     type: variable-themed-color
     opacity: 0.4
     format: hex
@@ -7321,7 +7328,7 @@ settings:
     default-dark: '#'
 -
   id: tag-background
-  title: Custom tags color
+  title: 自定义标签颜色
   type: variable-themed-color
   opacity: true
   format: hex
@@ -7329,45 +7336,45 @@ settings:
   default-dark: '#'
 - 
   id: shiba-image-settings-header
-  title: Image Settings
+  title: 图片设置
   type: heading
-  description: Customize your images by adjusting various settings such as border radius.
+  description: 通过调整边框圆角等各种设置来自定义你的图片。
   level: 2
   collapsed: true
 -
   id: image-zoom
-  title: Enable Image Zoom via CSS
+  title: 通过 CSS 启用图片缩放
   type: class-toggle
 -
   id: img-border-radius
-  title: Image Border Radius (any unit, no space)
+  title: 图片边框圆角（任意单位，无空格）
   type: variable-text
   default: 0px
 -
     id: link-style
-    title: Links 
+    title: 链接 
     type: heading
-    description: Internal, External and unresolved links customizations and colors.
+    description: 内部、外部和未解析链接的自定义和颜色。
     level: 2
     collapsed: true
 - 
   id: link-underline-internal
-  title: Toggle Internal Link Underline
+  title: 切换内部链接下划线
   type: class-toggle
   default: false
 -
   id: link-underline-external
-  title: Disable External Link Underline
+  title: 禁用外部链接下划线
   type: class-toggle
   default: false
 -
   id: link-underline-unresolved
-  title: Toggle Unresolved Link Underline 
+  title: 切换未解析链接下划线 
   type: class-toggle
   default: false
 -
   id: internal-link-color
-  title: Internal Link Color
+  title: 内部链接颜色
   type: variable-themed-color
   opacity: true
   format: hex
@@ -7375,7 +7382,7 @@ settings:
   default-dark: '#'
 -
   id: external-link-color
-  title: External Link Color
+  title: 外部链接颜色
   type: variable-themed-color
   opacity: true
   format: hex
@@ -7383,7 +7390,7 @@ settings:
   default-dark: '#'
 -
   id: unresolved-link-color
-  title: Unresolved Link Color
+  title: 未解析链接颜色
   type: variable-themed-color
   opacity: true
   format: hex
@@ -7391,14 +7398,14 @@ settings:
   default-dark: '#'
 -
     id: tabs-style
-    title: Tabs 
+    title: 标签页 
     type: heading
-    description: Tabs customizations and colors.
+    description: 标签页的自定义和颜色。
     level: 2
     collapsed: true
 -
     id: shiba-alt-tab-style
-    title: Tab style
+    title: 标签页样式
     type: class-select
     allowEmpty: false
     default: shib-floating-animated-tab-toggle
@@ -7417,51 +7424,51 @@ settings:
             value: shib-floating-animated-tab-toggle
 - 
     id: tab-radius
-    title: Tab Radius
-    description: Format is px
+    title: 标签页圆角
+    description: 格式为 px
     type: variable-number
     default: 0
     format: px
 - 
     id: shib-disable-newtab-align
-    title: Disable new tab button right alignment
+    title: 禁用新标签页按钮右对齐
     type: class-toggle
 - 
     id: shib-table-header
-    title: Tables
-    description: Modification of the design of the tables.
+    title: 表格
+    description: 修改表格的设计。
     type: heading
     level: 2
     collapsed: true
 -
     id: shib-table-toggle
-    title: Toggle table with line border
-    description: Excel table style.
+    title: 切换带线边框的表格
+    description: Excel 表格样式。
     default: true
     type: class-toggle
 -
     id: shib-table-auto
-    title: Center tables margin
+    title: 表格居中边距
     type: class-toggle
 -
     id: shib-table-thickness
-    title: Custom table border width
+    title: 自定义表格边框宽度
     type: variable-number
     default: 2
     format: px
 - 
   id: shib-table-headers-header
-  title: Table Headers
+  title: 表头
   type: heading
   level: 3
   collapsed: true
 -
     id: shib-th-highlight
-    title: Table headers highlight
+    title: 表头高亮
     type: class-toggle
 -
     id: shib-table-highlight-opacity
-    title: Highlight opacity
+    title: 高亮不透明度
     default: 0.5
     type: variable-number-slider
     min: 0
@@ -7469,7 +7476,7 @@ settings:
     step: 0.1
 -
     id: shib-table-align-th
-    title: Text align
+    title: 文本对齐
     type: variable-select
     default: center
     options:
@@ -7484,13 +7491,13 @@ settings:
             value: right
 - 
   id: shib-table-data-cells-header
-  title: Table data cells 
+  title: 表格数据单元格 
   type: heading
   level: 3
   collapsed: true
 -
     id: shib-td-highlight
-    title: Table data cells highlight
+    title: 表格数据单元格高亮
     type: class-select
     default: shib-td-none
     allowEmpty: false
@@ -7512,7 +7519,7 @@ settings:
             value: shib-td-full
 -
     id: shib-table-align-td
-    title: Text align
+    title: 文本对齐
     type: variable-select
     default: left
     options:
@@ -7527,18 +7534,18 @@ settings:
             value: right
 -
     id: shib-callout-header
-    title: Callouts
-    description: Custom callouts style.
+    title: Callouts标注
+    description: 自定义标注样式。
     type: heading
     level: 2
     collapsed: true
 - 
     id: shib-callout-toggle
-    title: Toggle callout styling
+    title: 切换标注样式
     type: class-toggle
 - 
     id: shib-callout-select
-    title: Select callout style
+    title: 选择标注样式
     type: class-select
     default: shib-callout-style-3
     allowEmpty: false
@@ -7547,7 +7554,7 @@ settings:
             label: Default
             value: shib-callout-default
         - 
-            label: Style 1 (Rounded)
+            label: Style 1 (None)
             value: shib-callout-style-1
         - 
             label: Style 2 (Dashed)
@@ -7563,30 +7570,30 @@ settings:
             value: shib-callout-block
 - 
     id: shib-callout-fold-position
-    title: Toggle fold position at the corner
+    title: 切换角落处的折叠位置
     default: true
     type: class-toggle
 - 
     id: shib-callout-color-toggle
-    title: Toggle custom callout colors
+    title: 切换自定义标注颜色
     type: class-toggle
 - 
     id: callout-radius
-    title: Callout Radius
-    description: Format is px
+    title: 标注圆角
+    description: 格式为 px
     type: variable-number
     default: 4
     format: px
 -
     id: shib-hb-header
-    title: Horizontal Bar
-    description: The ---.
+    title: 水平分隔线
+    description: ---。
     type: heading
     level: 2
     collapsed: true
 - 
     id: shib-hb-select
-    title: Select horizontal bar style
+    title: 选择水平分隔线样式
     type: class-select
     default: shiba-hb-default
     allowEmpty: false
@@ -7602,8 +7609,8 @@ settings:
             value: shiba-hb-style2
 - 
     id: outline-border
-    title: Horizontal bar Size
-    description: Format is px
+    title: 水平分隔线大小
+    description: 格式为 px
     type: variable-number-slider
     default: 2
     format: px
@@ -7612,7 +7619,7 @@ settings:
     step: 1
 -
     id: hr-outline-color
-    title: Custom horizontal bar Color
+    title: 自定义水平分隔线颜色
     type: variable-themed-color
     opacity: true
     format: hex
@@ -7620,26 +7627,26 @@ settings:
     default-dark: '#'
 -
     id: shib-checkboxes-header
-    title: Checkboxes
-    description: Custom checkboxes.
+    title: 复选框
+    description: 自定义复选框。
     type: heading
     level: 2
     collapsed: true
 -
   id: custom-checkboxes
-  title: Enable Custom Checkboxes
+  title: 启用自定义复选框
   default: true
   type: class-toggle
 -
     id: shib-blockquotes-header
-    title: Blockquotes
-    description: Custom blockquotes.
+    title: 引用块
+    description: 自定义引用块。
     type: heading
     level: 2
     collapsed: true
 -
   id: blockquote-style
-  title: Blockquote
+  title: 引用块
   type: class-select
   allowEmpty: false
   default: blockquote-style-default
@@ -7661,40 +7668,40 @@ settings:
 
 - 
   id: shib-misc-element-header
-  title: Miscellaneous
-  description: Unique features specifically designed for the Shiba Inu theme.
+  title: 杂项
+  description: 专为 Shiba Inu 主题设计的独特功能。
   type: heading
   level: 1
   collapsed: true
 -
   id: shib-misc-buttons-settings
-  title: Buttons Style
-  description: Style to make the buttons look better.
+  title: 按钮样式
+  description: 让按钮看起来更好的样式。
   type: heading
   level: 2
   collapsed: true
 -
   id: buttons-plugin-style
-  title: Enable Buttons Plugin Style
+  title: 启用 Buttons 插件样式
   type: class-toggle
   default: true
-  description: Current Buttons plugin built-in classes：🔸"circle_btn" ⬜️ "blank" 🔸 "grad_button" 🟣"btn_purple" 🔵"btn_blue" 🟢"btn_green" 🟩 "btn_lightgreen"  🟡"btn_yellow"  🔴"btn_red"  🦩 "btn_pink"  🌊 "btn_cyan"  
+  description: 当前 Buttons 插件内置类：🔸"circle_btn" ⬜️ "blank" 🔸 "grad_button" 🟣"btn_purple" 🔵"btn_blue" 🟢"btn_green" 🟩 "btn_lightgreen"  🟡"btn_yellow"  🔴"btn_red"  🦩 "btn_pink"  🌊 "btn_cyan"  
 -
   id: buttons-workspace-style
-  title: Enable Buttons Workspace Style
-  description: Set up buttons with a smooth 3D shadow effect
+  title: 启用按钮工作区样式
+  description: 设置具有平滑 3D 阴影效果的按钮
   type: class-toggle
   default: true
 -
   id: shib-misc-translucent-settings
-  title: Translucent Panel
-  description: Style to make the background of the control panels, settings, template and quick switcher transparent.
+  title: 半透明面板
+  description: 使控制面板、设置、模板和快速切换器的背景透明的样式。
   type: heading
   level: 2
   collapsed: true
 -
   id: translucent-pane-style-settings
-  title: Pane Style
+  title: 面板样式
   type: class-select
   allowEmpty: false
   default: setting-style-traditional
@@ -7710,8 +7717,8 @@ settings:
       value: shib-translucent-setting-panel
 -
   id: shib-transparent-setting-panel
-  title: Translucent Setting Panel
-  description: Make the background of the panel completely transparent
+  title: 半透明设置面板
+  description: 使面板背景完全透明
   type: class-toggle
   default: false
 
@@ -7719,42 +7726,42 @@ settings:
 
 -
     id: shib-workspace-header
-    title: Workspace 
-    description: Configure all relevant workspace settings.
+    title: 工作区 
+    description: 配置所有相关工作区设置。
     type: heading
     level: 1
     collapsed: true
 - 
     id: shib-file-explorer-header
-    title: File explorer
-    description: Settings for the file explorer in the sidebar, such as the vault title and the folders and notes.
+    title: 文件浏览器
+    description: 侧边栏中文件浏览器的设置，例如库标题和文件夹及笔记。
     type: heading
     level: 2
     collapsed: true
 - 
   id: file-explorer-vault-title-style-header
-  title: Vault Title
+  title: 库标题
   type: heading
   level: 4
   collapsed: true
 - 
     id: hide-vault-title
-    title: Hide Vault Title
+    title: 隐藏库标题
     type: class-toggle
     default: false
 - 
     id: shib-floating-header
-    title: Enable Floating Box for the Vault Title
+    title: 为库标题启用浮动框
     type: class-toggle
     default: true
 - 
     id: shib-custom-vault-folder-toggle
-    title: Enable Folder Icons
+    title: 启用文件夹图标
     type: class-toggle
     default: false
 -
   id: shib-custom-vault-folder-toggle-options
-  title: Select your custom folder icons
+  title: 选择你的自定义文件夹图标
   type: class-select
   allowEmpty: false
   default: shib-custom-vault-folder-folder-icon
@@ -7770,29 +7777,29 @@ settings:
       value: shib-custom-vault-folder-custom-icon
 - 
   id: shib-custom-vault-folder-custom-icon-url
-  title: Custom Folders Icon (svg url)
-  description: You will need an SVG url converted to css for the custom icon; www.svgrepo.com/vectors/user/ Once downloaded, open it in VSC and convert it to CSS. Then copy the entire set "url(data:image........................./%3E%3C/svg%3E")".
+  title: 自定义文件夹图标（svg url）
+  description: 你需要一个转换为 CSS 的 SVG 网址；www.svgrepo.com/vectors/user/ 下载后，在 VSC 中打开并转换为 CSS。然后复制整个设置 "url(data:image........................./%3E%3C/svg%3E")"。
   type: variable-text
   default: url("data:image/svg+xml.../%3E%3C/svg%3E")
 - 
   id: file-explorer-files-notes-style-header
-  title: Files & Notes
+  title: 文件和笔记
   type: heading
   level: 4
   collapsed: true
 - 
     id: shiba-remove-file-icons
-    title: Remove custom file icons
+    title: 移除自定义文件图标
     type: class-toggle
     default: false
 - 
     id: shiba-toggle-folder-icons
-    title: Enable custom folder icons
+    title: 启用自定义文件夹图标
     type: class-toggle
     default: false
 -
   id: shiba-toggle-folder-icons-options
-  title: Select your custom folder icons
+  title: 选择你的自定义文件夹图标
   type: class-select
   allowEmpty: false
   default: shiba-toggle-folder-icons-cute
@@ -7808,24 +7815,24 @@ settings:
       value: shiba-toggle-folder-icons-arrows
 - 
     id: shiba-toggle-indent-colors
-    title: Enable rainbow recoloring of the collpase indentation 
+    title: 启用折叠缩进的彩虹重着色 
     type: class-toggle
     default: false
 - 
     id: shiba-toggle-indent-colors-accent
-    title: Enable accent recoloring of the collpase indentation 
+    title: 启用折叠缩进的强调色重着色 
     type: class-toggle
     default: false
 -
   id: shiba-color-folders-header
-  title: Colorful Folders
-  description: Add colorful backgrounds to your folders and color to your folder titles in the file explorer.
+  title: 彩色文件夹
+  description: 在文件浏览器中为文件夹添加彩色背景并为文件夹标题添加颜色。
   type: heading
   level: 2
   collapsed: true
 -
   id: folder-style-change-options-colorful
-  title: Select Folder Colorful Mode
+  title: 选择文件夹彩色模式
   type: class-select
   allowEmpty: false
   default: shiba-color-folder-default
@@ -7841,7 +7848,7 @@ settings:
       value: shiba-color-folder-title
 - 
   id: folder-style-change-options-colors-palette
-  title: Folder Color Palette
+  title: 文件夹调色板
   type: class-select
   allowEmpty: false
   default: folder-colorful-two
@@ -7869,8 +7876,8 @@ settings:
       value: folder-colorful-custom
 - 
   id: shib-colorful-folders-radius
-  title: Background radius
-  description: Size unit is px
+  title: 背景圆角
+  description: 大小单位为 px
   type: variable-number-slider
   default: 2
   min: 0
@@ -7879,8 +7886,8 @@ settings:
   format: px
 - 
   id: shib-colorful-folders-opacity
-  title: Background opacity
-  description: Size unit is px
+  title: 背景不透明度
+  description: 大小单位为 px
   type: variable-number-slider
   default: 0.9
   min: 0
@@ -7888,7 +7895,7 @@ settings:
   step: 0.01
 - 
   id: nav-item-color
-  title: Custom Color of Note Title
+  title: 自定义笔记标题颜色
   type: variable-themed-color
   opacity: true
   format: hex
@@ -7896,7 +7903,7 @@ settings:
   default-dark: '#b3b3b3'
 - 
   id: nav-folder-title-color
-  title: Custom Color of Folder Title
+  title: 自定义文件夹标题颜色
   type: variable-themed-color
   opacity: true
   format: hex
@@ -7904,13 +7911,13 @@ settings:
   default-dark: '#b3b3b3'
 - 
   id: custom-folders-colors-header
-  title: Custom Folders Colors
+  title: 自定义文件夹颜色
   type: heading
   level: 4
   collapsed: true
 - 
   id: folder-colorful-custom-color
-  title: Custom Color of Folder 1
+  title: 文件夹 1 的自定义颜色
   type: variable-themed-color
   opacity: true
   format: hex
@@ -7918,7 +7925,7 @@ settings:
   default-dark: '#b3b3b3'
 - 
   id: folder-colorful-custom-color2
-  title: Custom Color of Folder 2
+  title: 文件夹 2 的自定义颜色
   type: variable-themed-color
   opacity: true
   format: hex
@@ -7926,7 +7933,7 @@ settings:
   default-dark: '#b3b3b3'
 - 
   id: folder-colorful-custom-color3
-  title: Custom Color of Folder 3
+  title: 文件夹 3 的自定义颜色
   type: variable-themed-color
   opacity: true
   format: hex
@@ -7934,7 +7941,7 @@ settings:
   default-dark: '#b3b3b3'
 - 
   id: folder-colorful-custom-color4
-  title: Custom Color of Folder 4
+  title: 文件夹 4 的自定义颜色
   type: variable-themed-color
   opacity: true
   format: hex
@@ -7942,7 +7949,7 @@ settings:
   default-dark: '#b3b3b3'
 - 
   id: folder-colorful-custom-color5
-  title: Custom Color of Folder 5
+  title: 文件夹 5 的自定义颜色
   type: variable-themed-color
   opacity: true
   format: hex
@@ -7950,7 +7957,7 @@ settings:
   default-dark: '#b3b3b3'
 - 
   id: folder-colorful-custom-color6
-  title: Custom Color of Folder 6
+  title: 文件夹 6 的自定义颜色
   type: variable-themed-color
   opacity: true
   format: hex
@@ -7958,7 +7965,7 @@ settings:
   default-dark: '#b3b3b3'
 - 
   id: folder-colorful-custom-color7
-  title: Custom Color of Folder 7
+  title: 文件夹 7 的自定义颜色
   type: variable-themed-color
   opacity: true
   format: hex
@@ -7966,7 +7973,7 @@ settings:
   default-dark: '#b3b3b3'
 - 
   id: folder-colorful-custom-color8
-  title: Custom Color of Folder 8
+  title: 文件夹 8 的自定义颜色
   type: variable-themed-color
   opacity: true
   format: hex
@@ -7974,7 +7981,7 @@ settings:
   default-dark: '#b3b3b3'
 - 
   id: folder-colorful-custom-color9
-  title: Custom Color of Folder 9
+  title: 文件夹 9 的自定义颜色
   type: variable-themed-color
   opacity: true
   format: hex
@@ -7982,7 +7989,7 @@ settings:
   default-dark: '#b3b3b3'
 - 
   id: folder-colorful-custom-color10
-  title: Custom Color of Folder 10
+  title: 文件夹 10 的自定义颜色
   type: variable-themed-color
   opacity: true
   format: hex
@@ -7990,33 +7997,33 @@ settings:
   default-dark: '#b3b3b3'
 - 
     id: shib-scrollbar
-    description: Settings for the Scrollbar. Adjust the width, Add Scroll Buttons, etc.
-    title: Scrollbar
+    description: 滚动条的设置。调整宽度、添加滚动按钮等。
+    title: 滚动条
     type: heading
     level: 2
     collapsed: true
 - 
     id: shib-hide-scrollbars
-    title: Hide scrollbars
-    description: It is hidden but when you place the cursor there it appears.
+    title: 隐藏滚动条
+    description: 它被隐藏了，但当你把光标放在那里时它会出现。
     type: class-toggle
     default: false
 -
     id: shib-styled-scrollbars
-    title: Styled scrollbars
-    description: Minimal scrollbars (replaces native scrollbars)
+    title: 样式化滚动条
+    description: 极简滚动条（替代原生滚动条）
     type: class-toggle
     default: true
 - 
     id: shib-graph
-    description: Customizing graph view colors.
-    title: Graph View
+    description: 自定义关系图视图颜色。
+    title: 关系图视图
     type: heading
     level: 2
     collapsed: true
 -
     id: graph-line
-    title: Graph line color
+    title: 关系图线条颜色
     type: variable-themed-color
     opacity: true
     allowEmpty: true
@@ -8025,7 +8032,7 @@ settings:
     default-dark: '#'
 -
     id: graph-fill-tag
-    title: Graph tag color
+    title: 关系图标签颜色
     type: variable-themed-color
     opacity: true
     allowEmpty: true
@@ -8034,7 +8041,7 @@ settings:
     default-dark: '#'
 -
     id: graph-fill-attachment
-    title: Graph attachment color
+    title: 关系图附件颜色
     type: variable-themed-color
     opacity: true
     allowEmpty: true
@@ -8043,7 +8050,7 @@ settings:
     default-dark: '#'
 -
     id: graph-circle-fill-unresolved
-    title: Graph unresolved color
+    title: 关系图未解析颜色
     type: variable-themed-color
     opacity: true
     allowEmpty: true
@@ -8052,7 +8059,7 @@ settings:
     default-dark: '#'
 -
     id: graph-arrow
-    title: Graph arrow color
+    title: 关系图箭头颜色
     type: variable-themed-color
     opacity: true
     allowEmpty: true
@@ -8061,7 +8068,7 @@ settings:
     default-dark: '#'
 -
     id: graph-line-highlight
-    title: Graph line highlight color
+    title: 关系图线条高亮颜色
     type: variable-themed-color
     opacity: true
     allowEmpty: true
@@ -8070,7 +8077,7 @@ settings:
     default-dark: '#'
 -
     id: graph-circle-fill
-    title: Graph circle color
+    title: 关系图圆形颜色
     type: variable-themed-color
     opacity: true
     allowEmpty: true
@@ -8079,7 +8086,7 @@ settings:
     default-dark: '#'
 -
     id: graph-circle-fill-highlight
-    title: Graph circle highlight color
+    title: 关系图圆形高亮颜色
     type: variable-themed-color
     opacity: true
     allowEmpty: true
@@ -8088,14 +8095,14 @@ settings:
     default-dark: '#'
 - 
     id: shib-layout-header
-    title: Layout
-    description: settings for the workspace frames, such as tabs and borders.
+    title: 布局
+    description: 工作区框架的设置，例如标签页和边框。
     type: heading
     level: 2
     collapsed: true
 - 
     id: shib-layout-select
-    title: Layout Style
+    title: 布局样式
     type: class-select
     allowEmpty: false
     default: shib-default-layout
@@ -8108,11 +8115,11 @@ settings:
             value: shib-card-layout
 - 
     id: shib-disable-borders
-    title: Disable borders
+    title: 禁用边框
     type: class-toggle
 -
     id: tab-outline-color
-    title: Custom borders Color
+    title: 自定义边框颜色
     type: variable-themed-color
     opacity: true
     format: hex
@@ -8120,71 +8127,71 @@ settings:
     default-dark: '#'
 - 
     id: shib-layout-card
-    title: Cards layout style
+    title: 卡片布局样式
     type: heading
     level: 3
     collapsed: true
 - 
     id: shib-card-radius
-    title: Card radius
-    description: Size unit is px
+    title: 卡片圆角
+    description: 大小单位为 px
     type: variable-number
     default: 16
     format: px
 - 
     id: shib-card-layout-padding
-    title: Card padding
-    description: Size unit is px
+    title: 卡片内边距
+    description: 大小单位为 px
     type: variable-number
     default: 10
     format: px
 - 
     id: shib-card-header-left-padding
-    title: Tab left padding
-    description: Size unit is px
+    title: 标签页左内边距
+    description: 大小单位为 px
     type: variable-number
     default: 20
     format: px
 - 
     id: shib-card-shadows
-    title: Enable shadows for cards
+    title: 为卡片启用阴影
     type: class-toggle
 - 
     id: shib-card-layout-actions
-    title: Enable card format for left ribbon
+    title: 为左侧功能区启用卡片格式
     type: class-toggle
 - 
     id: shib-card-layout-fileexplorer
-    title: Enable card format for file explorer
+    title: 为文件浏览器启用卡片格式
     default: true
     type: class-toggle
 -
     id: note-image-background
-    title: Background Image
-    description: Add a background to the workspace.
+    title: 背景图片
+    description: 为工作区添加背景。
     type: heading
     level: 2
     collapsed: true
 - 
   id: background-settings-workplace
-  title: Workspace Background Image
+  title: 工作区背景图片
   type: heading
   level: 3
   collapsed: true
 - 
   id: shib-workspace-background-image-toggle
-  title: Enable Workspace Background Image
+  title: 启用工作区背景图片
   type: class-toggle
-  default: false
+  default: true
 - 
   id: background-settings-workplace-theme-light-header
-  title: Light Mode
+  title: 浅色模式
   type: heading
   level: 4
   collapsed: true
 - 
   id: background-settings-workplace-theme-light
-  title: Light Mode Background
+  title: 浅色模式背景
   type: class-select
   allowEmpty: false
   default: background-settings-workplace-theme-light-cute-town-l
@@ -8194,14 +8201,14 @@ settings:
       value: background-settings-workplace-theme-light-custom-option
 - 
   id: background-settings-workplace-theme-light-custom
-  title: Custom Background Light Mode (url)
-  description: Customize the background image. Use the default format below for an online image. Use the following format to point to a local file - url("app://local/D:/Pictures/Mountain.jpg").
+  title: 自定义浅色模式背景（url）
+  description: 自定义背景图片。使用下面的url("https://")网络图片格式（不支持本地图片）。例如：url("https://ytmaps.vip/images/background/light2.png")，网络地址最后的文件名可改为light1.png、light2.png、...以及light7.png。或者使用您自己的网络图片。
   type: variable-text
   default: url("https://") 
 - 
   id: shib-custom-bg-blur-light
-  title: Blur Radius
-  description: To adjust the radius of blur
+  title: 模糊半径
+  description: 调整模糊的半径
   type: variable-number-slider
   default: 5
   min: 0
@@ -8210,17 +8217,17 @@ settings:
   step: 1
 - 
   id: shib-custom-bg-brightness-light
-  title: Brightness of Image
-  description: To adjust the brightness
+  title: 图片亮度
+  description: 调整亮度
   type: variable-number-slider
-  default: 0.7
+  default: 1.0
   min: 0
   max: 2
   step: 0.05
 - 
   id: shib-custom-bg-card-fg-opacity-light
-  title: Opacity of Image
-  description: To adjust the opacity
+  title: 图片不透明度
+  description: 调整不透明度
   type: variable-number-slider
   default: 0.4
   min: 0
@@ -8228,13 +8235,13 @@ settings:
   step: 0.05
 - 
   id: background-settings-workplace-theme-dark-header
-  title: Dark Mode
+  title: 深色模式
   type: heading
   level: 4
   collapsed: true
 -
   id: background-settings-workplace-theme-dark
-  title: Dark Mode Background
+  title: 深色模式背景
   type: class-select
   allowEmpty: false
   default: background-settings-workplace-theme-dark-cute-town-d
@@ -8244,14 +8251,14 @@ settings:
       value: background-settings-workplace-theme-dark-custom-option
 -
   id: background-settings-workplace-theme-dark-custom
-  title: Custom Background Dark Mode (url)
-  description: Customize the background image. Use the default format below for an online image. Use the following format to point to a local file - url("app://local/D:/Pictures/Mountain.jpg").
+  title: 自定义深色模式背景（url）
+  description: 自定义背景图片。使用下面的url("https://")网络图片格式（不支持本地图片）。例如：url("https://ytmaps.vip/images/background/light2.png")，网络地址最后的文件名可改为dark1.png、dark2.png、...以及dark7.png。或者使用您自己的网络图片。
   type: variable-text
   default: url("https://")
 - 
   id: shib-custom-bg-blur-dark
-  title: Blur Radius
-  description: To adjust the radius of blur
+  title: 模糊半径
+  description: 调整模糊的半径
   type: variable-number-slider
   default: 5
   min: 0
@@ -8260,17 +8267,17 @@ settings:
   step: 1
 - 
   id: shib-custom-bg-brightness-dark
-  title: Brightness of Image
-  description: To adjust the brightness
+  title: 图片亮度
+  description: 调整亮度
   type: variable-number-slider
-  default: 0.7
+  default: 1.0
   min: 0
   max: 2
   step: 0.05
 - 
   id: shib-custom-bg-card-fg-opacity-dark
-  title: Opacity of Image
-  description: To adjust the opacity
+  title: 图片不透明度
+  description: 调整不透明度
   type: variable-number-slider
   default: 0.4
   min: 0
@@ -8278,19 +8285,19 @@ settings:
   step: 0.05
 - 
   id: background-settings-markdown-page
-  title: File Explorer Background Image
+  title: 文件浏览器背景图片
   type: heading
   level: 3
   collapsed: true
 - 
   id: toggle-bg-panel-page
-  title: Toggle Background Image
+  title: 切换背景图片
   type: class-toggle
   default: false
 - 
   id: panel-page-opacity
-  title: Opacity of Image
-  description: To adjust the opacity
+  title: 图片不透明度
+  description: 调整不透明度
   type: variable-number-slider
   default: 0.25
   min: 0
@@ -8298,13 +8305,13 @@ settings:
   step: 0.05
 - 
   id: bg-panel-page-option-theme-light-header
-  title: Light Mode
+  title: 浅色模式
   type: heading
   level: 4
   collapsed: true
 -
   id: bg-panel-page-option
-  title: Light Mode Background
+  title: 浅色模式背景
   type: class-select
   allowEmpty: false
   default: panel-page-bg-theme-light-custom
@@ -8320,19 +8327,19 @@ settings:
       value: panel-page-bg-theme-light-custom
 -
   id: background-panel-page-theme-light-custom
-  title: Custom Background Light mode
-  description: Customize the background image. Use the default format below for an online image. Use the following format to point to a local file - url("app://local/D:/Pictures/Mountain.jpg").
+  title: 自定义浅色模式背景
+  description: 自定义背景图片。在线图片使用下面的默认格式。要指向本地文件，请使用以下格式 - url("app://local/D:/Pictures/Mountain.jpg")。
   type: variable-text
   default: url("https://") 
 - 
   id: bg-panel-page-option-theme-dark-header
-  title: Dark Mode
+  title: 深色模式
   type: heading
   level: 4
   collapsed: true
 -
   id: bg-panel-page-option
-  title: Dark Mode Background
+  title: 深色模式背景
   type: class-select
   allowEmpty: false
   default: panel-page-bg-theme-dark-custom
@@ -8351,8 +8358,8 @@ settings:
       value: panel-page-bg-theme-dark-custom
 -
   id: background-panel-page-theme-dark-custom
-  title: Custom Background Dark mode
-  description: Customize the background image. Use the default format below for an online image. Use the following format to point to a local file - url("app://local/D:/Pictures/Mountain.jpg").
+  title: 自定义深色模式背景
+  description: 自定义背景图片。在线图片使用下面的默认格式。要指向本地文件，请使用以下格式 - url("app://local/D:/Pictures/Mountain.jpg")。
   type: variable-text
   default: url("https://") 
 
@@ -8360,26 +8367,26 @@ settings:
 
 -
   id: shib-snippets-plugins-settings
-  title: Complements
-  description: Customized snippets and plugins for the Shiba Inu theme.
+  title: Minimal片段
+  description: 为 Shiba Inu 主题定制的片段和插件。
   type: heading
   level: 1
   collapsed: true
 -
   id: shib-snippets-minimal-cards
-  title: Minimal Cards Snippet
-  description: Customization of the Minimal theme Cards Layouts snippet by @kepano https://github.com/kepano/obsidian-minimal/blob/dc9e0b48a6fb1cc3cddc6819ce1aaa466660426f/src/scss/features/cards.scss (You must download it from the link if you want to use the customization)
+  title: Minimal Cards 片段
+  description: 由 @kepano 制作的 Minimal 主题卡片布局片段的定制 https://github.com/kepano/obsidian-minimal/blob/dc9e0b48a6fb1cc3cddc6819ce1aaa466660426f/src/scss/features/cards.scss （如果你想使用定制，必须从链接下载）
   type: heading
   level: 2
   collapsed: true
 -
     id: minimal-cards-style
-    title: separate values with lines
+    title: 用线分隔值
     type: class-toggle
     default: true
 - 
     id: shib-minimal-cards-style-select
-    title: Select cards style
+    title: 选择卡片样式
     type: class-select
     default: minimal-cards-style1
     allowEmpty: false
@@ -8395,36 +8402,36 @@ settings:
             value: minimal-cards-style3
 -
     id: cards-min-width
-    title: Card minimum width
-    description: Adjust the width of the cards
+    title: 卡片最小宽度
+    description: 调整卡片的宽度
     type: variable-text
     default: 180px
 -
     id: cards-max-width
-    title: Card maximum width
-    description: Default fills the available width, accepts valid CSS units
+    title: 卡片最大宽度
+    description: 默认填满可用宽度，接受有效的 CSS 单位
     type: variable-text
     default: 1fr
 -
     id: cards-image-height
-    title: Card maximum image height
-    description: Adjust the height of the cards
+    title: 卡片最大图片高度
+    description: 调整卡片的高度
     type: variable-text
     default: 400px
 -
     id: cards-padding
-    title: Card padding
-    description: Adjust the padding of the cards
+    title: 卡片内边距
+    description: 调整卡片的内边距
     type: variable-text
     default: 1.2em
 -
     id: cards-border-width
-    title: Card border width
+    title: 卡片边框宽度
     type: variable-text
     default: 1px
 -
     id: cards-background
-    title: Card background color
+    title: 卡片背景颜色
     type: variable-themed-color
     opacity: true
     format: hex
@@ -8432,7 +8439,7 @@ settings:
     default-dark: '#'
 -
     id: cards-background-modifier-border
-    title: Custom cards borders Color
+    title: 自定义卡片边框颜色
     type: variable-themed-color
     opacity: true
     format: hex
@@ -8440,7 +8447,7 @@ settings:
     default-dark: '#'
 -
     id: shiba-inu-support-header
-    title: ❤️ Support
+    title: ❤️ 支持
     type: heading
     level: 1
     collapsed: false
@@ -8450,14 +8457,12 @@ settings:
   level: 1
   type: info-text
   description:  |
-    Created by [Farouk](https://github.com/faroukx).
+    由 [Farouk](https://github.com/faroukx) 创建。
     
-    If you appreciate the theme, you can show your support by...
-    - [Buying me a coffee](https://www.buymeacoffee.com/faroukx) ☕️
-    - [Starring the theme on GitHub](https://github.com/faroukx/Obsidian-shiba-inu-theme) ⭐
+    如果你喜欢这个主题，可以通过以下方式支持我...
+    - [请我喝杯咖啡](https://www.buymeacoffee.com/faroukx) ☕️
+    - [在 GitHub 上为主题加星](https://github.com/faroukx/Obsidian-shiba-inu-theme) ⭐
     
-    If you enjoyed using the theme, consider sharing it with members of the community on the Discord or forum to help grow our community together!    
+    如果你喜欢使用这个主题，可以考虑在 Discord 或论坛上与社区成员分享，帮助我们共同壮大社区！    
   markdown: true
 */
-
-

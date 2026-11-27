@@ -4,13 +4,54 @@
     scrollbar-gutter: auto !important;
 }
 
+/* file.folder 列标题：路径过长时保留开头和最后一级文件夹。 */
+.bases-kanban-container.mod-bases-folder-heading
+    .bases-kanban-column-header
+    .bases-group-heading {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.bases-kanban-container.mod-bases-folder-heading
+    .bases-kanban-column-header
+    .bases-group-value.mod-bases-middle-ellipsis {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.bases-kanban-container.mod-bases-folder-heading
+    .bases-group-value.mod-bases-middle-ellipsis
+    > .bases-group-value-prefix {
+    /* 短路径保持自然宽度；只有总宽度不足时才收缩并省略。 */
+    flex: 0 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.bases-kanban-container.mod-bases-folder-heading
+    .bases-group-value.mod-bases-middle-ellipsis
+    > .bases-group-value-suffix {
+    flex: 0 0 auto;
+    min-width: 0;
+    /* 优先完整保留最后一级，同时给左侧起始路径留出最小空间。 */
+    max-width: calc(100% - 3em);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 /* 通用图表容器样式 */
 .bases-line-chart-container,
 .bases-bar-chart-container,
 .bases-pie-chart-container {
-    background: var(--background-primary);
     border-radius: 4px;
-    border: 1px solid var(--background-modifier-border);
     margin: 2px 2px;
     min-height: 200px;
     position: relative;
@@ -18,7 +59,6 @@
 
 /* 多图表分组容器样式 */
 .bases-chart-group {
-    background: var(--background-primary);
     border-radius: 4px;
     box-sizing: border-box;
     padding-top: 10px;
@@ -53,7 +93,6 @@
 .bases-chart-svg {
     display: block;
     margin: 0 0;
-    background: var(--background-primary);
     border-radius: 4px;
 }
 
@@ -927,4 +966,16 @@
     .bases-table-cell[data-property-type="number"] {
     justify-content: flex-end;
     width: 100%;
+}
+
+
+.bases-table-container{
+    background-color: transparent !important;
+}
+
+.bases-tbody{
+    background-color: var(--card-foreground-color) !important;
+}
+.bases-table-cell[disabled=true]{
+    background-color: var(--card-foreground-color) !important;
 }
